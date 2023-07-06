@@ -69,7 +69,7 @@ class Product(models.Model):
     color_model = models.CharField(max_length=10, default='CMYK', choices=COLOR_MODE, verbose_name="Цветовая модель",
                                    help_text="Для корректной печати модель должна быть CMYK")
     size = models.FloatField(default=0, verbose_name="Размер в Мб")
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
 
     images = models.FileField(upload_to='image/%d_%m_%y')
     # preview_images = models.FileField(upload_to='preview', blank=True, null=True, default=None)
@@ -80,7 +80,7 @@ class Product(models.Model):
 
     #
     def __str__(self):
-        return f'{self.id}-{self.material}'
+        return f'{self.id}-{self.material}-{self.price}'
 
     def get_absolute_url(self):
         return reverse('files:home')

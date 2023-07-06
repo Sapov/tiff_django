@@ -1,0 +1,7 @@
+Сливаем базу так (в терминале):
+python manage.py dumpdata --indent=2 --exclude=contenttypes > datadump.json
+
+Потом меняем подключение (или переносим например на другой комп или делаем после создания новой базы)(пишем поочерёдно 3 команды):
+python manage.py makemigrations
+python manage.py migrate --run-syncdb
+python manage.py loaddata datadump.json
