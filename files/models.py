@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
-from .tiff_file import check_tiff#, thumbnail
+from .tiff_file import check_tiff
 
 
 class Contractor(models.Model):
