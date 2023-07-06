@@ -1,19 +1,5 @@
-import os
-
 import PIL
 from PIL import Image, ImageOps
-
-
-# '''создание `thumbnail`'''
-# def thumbnail(file_name: str):
-#     # if not f'media/preview/thumbnail_{str(file_name)[:-4]}.jpg':
-#     Image.MAX_IMAGE_PIXELS = None
-#     with Image.open(file_name) as img:
-#         size = (150, 150)
-#         img.thumbnail(size)
-#         path_preview = f'media/preview/thumbnail_{str(file_name)[:-4]}.jpg'
-#         img.save(path_preview)
-#         return path_preview[5:]
 
 
 def check_tiff(file_name: str):

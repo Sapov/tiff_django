@@ -22,11 +22,11 @@ class Order(models.Model):
     total_price = models.FloatField(max_length=10, null=True, help_text='Стоимость заказа', verbose_name='Общая Стоимость ',
                                     blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
-                                           verbose_name='организация платильщик')
+                                           verbose_name='организация платильщик', default=1)
     paid = models.BooleanField(verbose_name='заказ оплачен')
     # date_complete = models.DateTimeField()
     comments = models.TextField(verbose_name='Comments', blank=True)
-    status = models.ForeignKey(StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа")
+    status = models.ForeignKey(StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

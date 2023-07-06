@@ -58,7 +58,7 @@ class Product(models.Model):
         ('GREY', 'Greyscale'),
         ('LAB', 'lab')
     )
-    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!')
+    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!', default=1)
     material = models.ForeignKey("Material", on_delete=models.CASCADE, verbose_name='Материал',
                                  default='2')
     quantity = models.IntegerField(default=1, help_text='Введите количество', verbose_name="Количество")
@@ -94,7 +94,7 @@ class Product(models.Model):
 
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
         price_per_item = self.material.price
-        self.price = (self.width) / 100 * (self.length) / 100 * self.quantity * price_per_item
+        self.price = round((self.width) / 100 * (self.length) / 100 * self.quantity * price_per_item)
         print(type(self.images))
         # self.preview_images = thumbnail(self.images) # делаем превьюшку
         super(Product, self).save(*args, **kwargs)
