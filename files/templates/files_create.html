@@ -1,0 +1,17 @@
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Выводим каждое поле формы в отдельном параграфе -->
+    {{ form.as_p }}
+    <button type="submit">Загрузка</button>
+</form>
+
+<!--&lt;!&ndash; Выводим уже созданные записи &ndash;&gt;-->
+<!--{% for b in files %}-->
+<!--<p>{{ b.title }}</p>-->
+<!--<img src="{{ b.cover.url }}" width="100px">-->
+<!--&lt;!&ndash; Выводим размер картинки &ndash;&gt;-->
+<!--<p>Оригинальный размер картинки  {{ b.cover.width }}x{{ b.cover.height }}</p>-->
+<!--<br/>-->
+<!--<a href="{{ b.book }}">Книга</a>-->
+<!--{% endfor %}-->

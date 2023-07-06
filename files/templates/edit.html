@@ -1,0 +1,21 @@
+{% block content %}
+
+
+    <form method="post" , enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <p>
+            <label>Введите width</label><br>
+            <input type="text" name="width" value="{{product.width}}" />
+        </p>
+        <p>
+            <label>Введите length</label><br>
+            <input type="text" name="length" value="{{product.length}}" />
+        </p>
+        <p>
+            <label>Введите кол-во</label><br>
+            <input type="number" name="quantity" value="{{product.quantity}}" />
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+{% endblock %}
