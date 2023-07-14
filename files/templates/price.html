@@ -1,18 +1,18 @@
 {% extends 'base.html'%}
 <title>{% block title %} Прайс-лист на широкоформатную печать {% endblock %}</title>
 {% block body %}
-{% if price.count > 0 %}
+{% if price_shirka.count > 0 %}
     <h4>Широкоформатная печать: цена за 1 м2: </h4>
     <table>
         <thead>
            <th>Материал</th><th>Тип печати</th><th>Цена</th>
        </thead>
-        {% for field in price %}
+        {% for field in price_shirka %}
         <tr>
             <td>{{ field.name }}</td>
 
             <td>{{ field.type_print }} </td>
-            <td>{{ field.price }} руб.</td>
+            <td>{{ field.price_shirka }} руб.</td>
         </tr>
         {% endfor %}
            </table>
@@ -23,11 +23,26 @@
            <th>Материал</th><th>Тип печати</th><th>Цена</th>
        </thead>
 
-           {% for field in price2 %}
+           {% for field in price_interierka %}
         <tr>
             <td>{{ field.name }}</td>
             <td>{{ field.type_print }} </td>
-            <td>{{ field.price }} руб.</td>
+            <td>{{ field.price_interierka }} руб.</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+  <h4>UV печать: цена за 1 м2: </h4>
+        <table>
+        <thead>
+           <th>Материал</th><th>Тип печати</th><th>Цена</th>
+       </thead>
+
+           {% for field in price_UV %}
+        <tr>
+            <td>{{ field.name }}</td>
+            <td>{{ field.type_print }} </td>
+            <td>{{ field.price_UV }} руб.</td>
         </tr>
         {% endfor %}
 

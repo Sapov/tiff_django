@@ -43,7 +43,7 @@ class Material(models.Model):
                                            blank=True, null=True, default=None)
 
     def __str__(self):
-        return self.name
+        return f' {self.name} -- {self.type_print}:{self.price} руб. / м2 '
 
     class Meta:
         verbose_name_plural = 'Материалы для печати'
@@ -108,7 +108,7 @@ class FinishWork(models.Model):
     price = models.FloatField(max_length=100, help_text='За 1 м. погонный', verbose_name='Стоимость работы в руб.')
 
     def __str__(self):
-        return self.work
+        return f'{self.work} -- {self.price} руб./1 м.п.'
 
     class Meta:
         verbose_name_plural = 'Финишная обработка'
