@@ -43,7 +43,7 @@ class Material(models.Model):
                                            blank=True, null=True, default=None)
 
     def __str__(self):
-        return f' {self.name} -- {self.type_print}:{self.price} руб. / м2 '
+        return f' {self.name} -     \t- {self.type_print}'
 
     class Meta:
         verbose_name_plural = 'Материалы для печати'
@@ -79,8 +79,8 @@ class Product(models.Model):
     Fields = models.ForeignKey('Fields', on_delete=models.CASCADE, verbose_name='Поля вокруг изображения', default=1)
 
 
-    def only_name_file(self):
-        self.images
+    # def only_name_file(self):
+    #     self.images
     #
     def __str__(self):
         return f'{self.id}-{self.images}-{self.price}'
