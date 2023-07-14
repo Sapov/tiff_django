@@ -7,7 +7,7 @@ from . models import *
 # Create your views here.
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
     model = OrderItem
-    fields = ['order', 'product', 'price_per_item', 'quantity', 'total_price', 'is_active']
+    fields = ['order', 'product', 'total_price', 'is_active']
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user

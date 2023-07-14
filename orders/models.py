@@ -40,7 +40,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Ордер')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Продукт')
     price_per_item = models.FloatField(max_length=100, help_text='За 1 шт.', verbose_name='Стоимость шт.', blank=True)
     quantity = models.IntegerField(default=1, help_text='Введите количество', verbose_name="Количество")
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
