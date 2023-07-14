@@ -1,0 +1,48 @@
+#version: '3'
+#
+#services:
+#
+#  migrate:
+#    build: .
+#    container_name: 'migrate'
+#    command: >
+#      /bin/sh -c "python3 manage.py makemigrations --force-color --no-input -v 3
+#      && python3 manage.py makemigrations --merge --no-input -v 3
+#      && python3 manage.py migrate --force-color -v 3
+#      && python3 manage.py createsuperuser --noinput; exit 0"
+#    environment:
+#      - DJANGO_SUPERUSER_USERNAME=admin
+#      - DJANGO_SUPERUSER_PASSWORD=admin
+#      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+#    volumes:
+#      - .:/app
+#
+#  gunicorn:
+#    image: hh_migrate
+#    container_name: 'gunicorn'
+#    restart: always
+#    command: /bin/sh -c "python3 -m gunicorn -b 0.0.0.0:80 hh.wsgi --reload"
+#    volumes:
+#      - .:/app
+#    ports:
+#      - 80:80
+#    depends_on:
+#      - migrate
+
+# Определение версии Docker Compose и начало описания сервисов___________________________________elete from django_migrations where app = 'имя приложения'
+version: '3'
+
+services:
+  django:
+    # Сборка образа для сервиса django из текущей директории
+    build: .
+    # Задание имени контейнера для сервиса django
+    container_name: django
+    # Задание команды, которую нужно запустить при запуске контейнера для сервиса django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    # Открытие порта на хостовой машине и перенаправление на порт в контейнере
+    ports:
+      - 8000:8000
+    # Зависимость от другого сервиса

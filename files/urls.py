@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from .views import index, delete, FilesUpdateView, FilesCreateView, price, FileList, add_files_SHIRKA
+from .forms import *
 
 app_name = 'files'
 
@@ -11,7 +12,9 @@ urlpatterns = [
     path('edit/<pk>', FilesUpdateView.as_view(), name="update_files"),  # форма редактирования файла
     path('delete/<int:id>/', delete),
     path('price/', price),
-    path('add_files/', add_files_SHIRKA, name ='add_file1'),
+    path('add/', UploadFiles),
+
+    # path('add_files/', add_files_SHIRKA, name ='add_file1'),
 
     # path('files/', FilesCreate.as_view())
 

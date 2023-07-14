@@ -2,7 +2,9 @@
 # add FOLDER: media, prewiev, image
 asgiref==3.6.0
 Django==4.1
-Pillow==9.5.0
-sqlparse==0.4.4
+easy-thumbnails==2.8.5
+gunicorn==20.1.0
+Pillow==10.0.0
 psycopg2-binary==2.9.5
-gunicorn~=20.1.0
+python-dotenv==1.0.0
+sqlparse==0.4.4
