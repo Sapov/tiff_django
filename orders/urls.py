@@ -5,7 +5,7 @@ from .views import *
 app_name = 'orders'
 
 urlpatterns = [
-    #path('', index, name='home'),
+    path('', OrderItemCreateView.as_view(), name="create_files"),
 
     # path('files/', FilesCreate.as_view())
 
