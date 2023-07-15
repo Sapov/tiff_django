@@ -13,10 +13,7 @@
         <tr>
             <td>{{ product.id }}</td>
 <!--            <td>{{ product.images }}</td>-->
-            <td>{% load thumbnail %}
-<!--<a href="{{ product.images}}">-->
-<img src="{% thumbnail product.images 100x0 %}" class="image-detail">
-</a></td>
+            <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>
             <td>{{ product.material }}</td>
             <td>{{ product.quantity }} шт.</td>
             <td>{{ product.width }} см.</td>
