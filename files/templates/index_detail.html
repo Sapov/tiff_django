@@ -18,9 +18,9 @@
 
                                             <tbody>
                                                 <tr>
-                                                    <td>    <span class="text-muted"> <img src="{{ product.preview_images.url }}" width="100px"> </td>
+                                                    <td>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></td>
                                                     <td>{{ product.material }}</td>
-                                                    <td>{{ product.quantity }} </div>
+                                                    <td>{{ product.quantity }}
                                                     <td> {{ product.price }} руб.</div>
                                                     <td> {{ product.Contractor }} </div>
 </td>
@@ -35,14 +35,4 @@
 
 
 
-{% for product in object_list %}
-<div class="card"> <div class="card-header">
-    <span class="text-muted"> <img src="{{ product.preview_images.url }}" width="100px">  Материал: {{ product.material }} |  Количество: {{ product.quantity }} | Стоимость: {{ product.price }} руб.</div>
-    <div class="card-body">User: {{ product.Contractor }} см. | Ширина: {{ product.width }} см. |  Длина: {{ product.length }} см. | Разрешение: {{ product.resolution }} dpi
-    | Дата добавления: {{ product.created_at }} </div>
-
-
-    <div class="card-footer text-center text-muted"> <a href="#">Edit</a> | <a href="#">Delete</a>        </div>
-</div>
-<br /> {% endfor %}
 {% endblock body %}

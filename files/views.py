@@ -53,9 +53,10 @@ class FilesCreateView(LoginRequiredMixin, CreateView):
 
 
 def price(request):
-    price = Material.objects.filter(type_print=1)  # Только широкоформатная печать!!!
-    price2 = Material.objects.filter(type_print=2)  # Только Интерьерная печать!!!
-    return render(request, "price.html", {"price": price, "price2": price2, 'title': 'price'})
+    price_shirka = Material.objects.filter(type_print=1)  # Только широкоформатная печать!!!
+    price_interierka = Material.objects.filter(type_print=2)  # Только Интерьерная печать!!!
+    price_UV = Material.objects.filter(type_print=3)  # Только UV печать!!!
+    return render(request, "price.html", {"price_shirka": price_shirka, "price_interierka": price_interierka, "price_UV": price_UV, 'title': 'Прайс-листы для Рекламных агентств'})
 
 
 class FileList(LoginRequiredMixin, ListView):
