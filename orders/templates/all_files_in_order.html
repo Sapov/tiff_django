@@ -17,38 +17,32 @@
             <td>{{ order.created }}</td>
 
 
-            <td><a href="edit/{{product.id}}">Изменить</a>
-                <a href="delete/{{product.id}}">Удалить</a>
-                <a href="edit/{{product.id}}">Добавить в заказ</a>
-                <input type="checkbox" checked>
+            <td><a href="edit/{{product.id}}">Оплатить</a>
             </td>
         </tr>
         {% endfor %}
             </table>
+<h5> Файлы: </h5>
+
     <table>
         <thead>
-           <th>Id</th><th>Картинка</th><th>Материал</th><th>Кол-во</th>
-           <th>Ширина</th><th>Длина</th><th>Стоимость</th><th>Дата</th>
+           <th>Картинка</th><th>Кол-во</th><th>Цена</th>
+           <th>Итого</th><th>Статус</th>
        </thead>
 
   {% for item in items %}
         <tr>
-            <td>{{ product.id }}</td>
-<!--            <td>{{ product.images }}</td>-->
-<!--            <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>-->
-            <td>{{ item.order }}</td>
-            <td>{{ item.product }} шт.</td>
-            <td>{{ item.price_per_item }} см.</td>
-            <td>{{ item.quantity }} см.</td>
+
+<!--            <td><a>{% load thumbnail %} <img src="{% thumbnail item.product 100x0 %}" class="image-detail"></a></td>-->
+            <td>{{ item.product }}</td>
+            <td>{{ item.quantity }}шт</td>
+
+            <td>{{ item.price_per_item }}</td>
             <td>{{ item.total_price }} руб.</td>
             <td>{{ item.is_active }}</td>
 
 
-            <td><a href="edit/{{product.id}}">Изменить</a>
-                <a href="delete/{{product.id}}">Удалить</a>
-                <a href="edit/{{product.id}}">Добавить в заказ</a>
-                <input type="checkbox" checked>
-            </td>
+                <td><a href="pay/{{product.id}}">Удалить</a></td>
         </tr>
         {% endfor %}
                     </table>

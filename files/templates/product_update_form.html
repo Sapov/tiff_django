@@ -1,4 +1,6 @@
-
+{% extends 'base.html'%}
+<title>{% block title %} Прайс-лист на широкоформатную печать {% endblock %}</title>
+{% block body %}
 
 {% block content %}
 <form method="post" , enctype="multipart/form-data">
@@ -8,3 +10,4 @@
     <button type="submit">Сохранить</button>
 </form>
 {% endblock %}
+    {% endblock %}

@@ -83,7 +83,7 @@ class Product(models.Model):
     #     self.images
     #
     def __str__(self):
-        return f'{self.id}-{self.images}-{self.price}'
+        return f'{self.images}'
 
     def get_absolute_url(self):
         return reverse('files:home')
