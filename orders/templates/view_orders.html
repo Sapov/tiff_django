@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+    <title>{% block title %} Список Заказов: {% endblock %}</title>
+{% block body %}
+
+
+{% if Orders.count > 0 %}
+    <h2>Список Заказов: </h2>
+
+    <table>
+        <thead>
+           <th>Id</th><th>Total</th><th>Платильщк</th><th>Оплачено</th>
+           <th>Каменты</th><th>Статус</th><th>Дата</th>
+       </thead>
+        {% for order in Orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.total_price }}</td>
+            <td>{{ order.organisation_payer }} шт.</td>
+            <td>{{ order.paid }} см.</td>
+            <td>{{ order.comments }} см.</td>
+            <td>{{ order.status }} руб.</td>
+            <td>{{ order.created }}</td>
+
+
+            <td><a href="/orders/view_order_item/{{order.id}}">Детализация</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    {% endif %}
+
+
+    {% endblock %}

@@ -1,6 +1,8 @@
 {% extends 'base.html'%}
     <title>{% block title %} Главная страница {% endblock %}</title>
 {% block body %}
+
+
 {% if product.count > 0 %}
     <h2>Список файлов: </h2>
 
@@ -24,11 +26,12 @@
 
             <td><a href="edit/{{product.id}}">Изменить</a>
                 <a href="delete/{{product.id}}">Удалить</a>
-                <a href="{{}}">Добавить в заказ</a>
+                <a href="edit/{{product.id}}">Добавить в заказ</a>
                 <input type="checkbox" checked>
             </td>
         </tr>
         {% endfor %}
+
     </table>
     {% endif %}
 

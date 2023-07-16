@@ -2,6 +2,9 @@ from django.db import models
 from account.models import Organisation
 from files.models import Product
 from django.db.models.signals import post_save
+from django.urls import reverse
+
+from django.conf import settings
 
 
 class StatusOrder(models.Model):
@@ -19,7 +22,8 @@ class StatusOrder(models.Model):
 
 
 class Order(models.Model):
-    total_price = models.FloatField(max_length=10, null=True, help_text='Стоимость заказа', verbose_name='Общая Стоимость ',
+    total_price = models.FloatField(max_length=10, null=True, help_text='Стоимость заказа',
+                                    verbose_name='Общая Стоимость ',
                                     blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
                                            verbose_name='организация платильщик', default=1)
@@ -29,6 +33,8 @@ class Order(models.Model):
     status = models.ForeignKey(StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!', default=1)
+
 
     def __str__(self):
         return f'Заказ № {self.id}-{self.organisation_payer}'
@@ -36,6 +42,9 @@ class Order(models.Model):
     class Meta:
         verbose_name_plural = 'Заказы'
         verbose_name = 'Заказ'
+
+    def get_absolute_url(self):
+        return reverse('files:home')
 
 
 class OrderItem(models.Model):
@@ -48,8 +57,8 @@ class OrderItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
 
-    def __str__(self):
-        return self.id
+    # def __str__(self):
+    #     return self.id
 
     class Meta:
         verbose_name_plural = 'Товары в заказе'
