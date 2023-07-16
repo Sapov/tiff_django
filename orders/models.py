@@ -37,7 +37,7 @@ class Order(models.Model):
 
 
     def __str__(self):
-        return f'Заказ № {self.id}-{self.organisation_payer}'
+        return f'Заказ № {self.id}  {self.organisation_payer}'
 
     class Meta:
         verbose_name_plural = 'Заказы'
