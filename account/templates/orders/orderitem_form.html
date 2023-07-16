@@ -1,6 +1,9 @@
+{% extends 'base.html'%}
+    <title>{% block title %} Состав заказа {% endblock %}</title>
+{% block body %}
+<h3>Состав заказа</h3>
 
 
-{% block content %}
 <form method="post" , enctype="multipart/form-data">
 
     {% csrf_token %}

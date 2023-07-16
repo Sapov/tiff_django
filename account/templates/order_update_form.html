@@ -2,10 +2,8 @@
 <title>{% block title %} Информация по заказу {% endblock %}</title>
 {% block body %}
 <H3>Информация по заказу </H3>
-<form method="post" , enctype="multipart/form-data">
-
-    {% csrf_token %}
+<form method="post">{% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Сохранить</button>
+    <input type="submit" value="Update">
 </form>
 {% endblock %}

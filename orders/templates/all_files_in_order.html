@@ -1,44 +1,41 @@
 {% extends 'base.html'%}
-    <title>{% block title %} Список Заказов: {% endblock %}</title>
+<title>{% block title %} {{curent_order.id }} {% endblock %}</title>
 {% block body %}
-
-
-{% if Orders.count > 0 %}
-    <h2>Список Заказов: </h2>
-
-    <table>
-        <thead>
-           <th>Id</th><th>Total</th><th>Платильщк</th><th>Оплачено</th>
-           <th>Каменты</th><th>Статус</th><th>Дата</th>
-       </thead>
-        {% for order in Orders %}
-        <tr>
-            <td>{{ order.id }}</td>
-            <td>{{ order.total_price }}</td>
-            <td>{{ order.organisation_payer }} шт.</td>
-            <td>{{ order.paid }} см.</td>
-            <td>{{ order.comments }} см.</td>
-            <td>{{ order.status }} руб.</td>
-            <td>{{ order.created }}</td>
-            <td><a href="/orders/view_order_item/{{order.id}}">Детализация</a>
-
-
-            </td>
-        </tr>
-        {% endfor %}
-
-    </table>
-    {% endif %}
-
-{% if product.count > 0 %}
-    <h2>Список файлов: </h2>
 
     <table>
         <thead>
            <th>Id</th><th>Картинка</th><th>Материал</th><th>Кол-во</th>
            <th>Ширина</th><th>Длина</th><th>Стоимость</th><th>Дата</th>
        </thead>
-        {% for product in product %}
+
+{% for order in Orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+<!--            <td>{{ product.images }}</td>-->
+<!--            <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>-->
+            <td>{{ order.total_price }}</td>
+            <td>{{ order.organisation_payer }} шт.</td>
+            <td>{{ order.paid }} см.</td>
+            <td>{{ order.comments }} см.</td>
+            <td>{{ order.status }} руб.</td>
+            <td>{{ order.Contractor }}</td>
+
+
+            <td><a href="edit/{{product.id}}">Изменить</a>
+                <a href="delete/{{product.id}}">Удалить</a>
+                <a href="edit/{{product.id}}">Добавить в заказ</a>
+                <input type="checkbox" checked>
+            </td>
+        </tr>
+        {% endfor %}
+            </table>
+    <table>
+        <thead>
+           <th>Id</th><th>Картинка</th><th>Материал</th><th>Кол-во</th>
+           <th>Ширина</th><th>Длина</th><th>Стоимость</th><th>Дата</th>
+       </thead>
+
+  {% for product in product %}
         <tr>
             <td>{{ product.id }}</td>
 <!--            <td>{{ product.images }}</td>-->
@@ -58,10 +55,6 @@
             </td>
         </tr>
         {% endfor %}
+                    </table>
 
-    </table>
-    {% endif %}
-
-
-
-    {% endblock %}
+{% endblock %}
