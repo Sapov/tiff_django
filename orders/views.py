@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -39,3 +40,6 @@ class View_order_item(LoginRequiredMixin, UpdateView):
     # fields = ['quantity', 'material', 'FinishWork', 'Fields']
     template_name = 'order_update_form.html'
     login_url = 'login'
+
+
+der(request, "index.html", {"product": product, 'title': 'Загрузка файлов'})
