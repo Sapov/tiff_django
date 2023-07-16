@@ -56,12 +56,13 @@ class View_order_item(LoginRequiredMixin, UpdateView):
 def all_files_in_order(request, order_id):
     Orders = Order.objects.filter(id=order_id)
     print(Orders)
-    product = Product.objects.all()
-    print(product)
+    # product = Product.objects.all()
+    items = OrderItem.objects.filter(order=order_id)
+    print(items)
     curent_order = Order.objects.get(pk=order_id)
     print(curent_order)
-    context = {'Orders': Orders, 'product': product, 'curent_order': curent_order}
+    context = {'Orders': Orders, 'items': items, 'curent_order': curent_order}
 
-    print(Orders[0].id, Orders)
+    # print(Orders[0].id, Orders)
 
     return render(request, "all_files_in_order.html", context)

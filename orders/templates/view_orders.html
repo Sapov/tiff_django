@@ -20,7 +20,8 @@
             <td>{{ order.comments }} см.</td>
             <td>{{ order.status }} руб.</td>
             <td>{{ order.created }}</td>
-            <td><a href="/orders/view_order_item/{{order.id}}">Детализация</a>
+            <td><a href="/orders/view_order_item/{{order.id}}">Дета</a>
+            <td><a href="/orders/all_files_in_order/{{order.id}}">Детализация</a>
 
 
             </td>
@@ -30,7 +31,7 @@
     </table>
     {% endif %}
 
-{% if product.count > 0 %}
+{% if items.count > 0 %}
     <h2>Список файлов: </h2>
 
     <table>
@@ -38,17 +39,17 @@
            <th>Id</th><th>Картинка</th><th>Материал</th><th>Кол-во</th>
            <th>Ширина</th><th>Длина</th><th>Стоимость</th><th>Дата</th>
        </thead>
-        {% for product in product %}
+        {% for product in items %}
         <tr>
             <td>{{ product.id }}</td>
 <!--            <td>{{ product.images }}</td>-->
-            <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>
-            <td>{{ product.material }}</td>
-            <td>{{ product.quantity }} шт.</td>
-            <td>{{ product.width }} см.</td>
-            <td>{{ product.length }} см.</td>
-            <td>{{ product.price }} руб.</td>
-            <td>{{ product.created_at }}</td>
+<!--            <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>-->
+            <td>{{ product.order }}</td>
+            <td>{{ product.product }} шт.</td>
+            <td>{{ product.price_per_item }} см.</td>
+            <td>{{ product.quantity }} см.</td>
+            <td>{{ product.total_price }} руб.</td>
+            <td>{{ product.is_active }}</td>
 
 
             <td><a href="edit/{{product.id}}">Изменить</a>
