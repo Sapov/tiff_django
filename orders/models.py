@@ -48,8 +48,8 @@ class OrderItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
 
-    # def __str__(self):
-    #     return self.product.material
+    def __str__(self):
+        return self.id
 
     class Meta:
         verbose_name_plural = 'Товары в заказе'
