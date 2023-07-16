@@ -42,4 +42,3 @@ class View_order_item(LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
 
-der(request, "index.html", {"product": product, 'title': 'Загрузка файлов'})
