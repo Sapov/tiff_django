@@ -9,7 +9,7 @@
     <table>
         <thead>
            <th>Id</th><th>Total</th><th>Платильщк</th><th>Оплачено</th>
-           <th>Каменты</th><th>Статус</th><th>Дата</th>
+           <th>Каменты</th><th>Статус</th><th>Дата заказа</th><th>Дата готовности</th>
        </thead>
         {% for order in Orders %}
         <tr>
@@ -20,6 +20,7 @@
             <td>{{ order.comments }} см.</td>
             <td>{{ order.status }} руб.</td>
             <td>{{ order.created }}</td>
+            <td>{{ order.date_complete }}</td>
             <td><a href="/orders/all_files_in_order/{{order.id}}">Детализация</a>
 
 
@@ -36,7 +37,7 @@
     <table>
         <thead>
            <th>Id</th><th>Картинка</th><th>Материал</th><th>Кол-во</th>
-           <th>Ширина</th><th>Длина</th><th>Стоимость</th><th>Дата</th>
+           <th>Ширина</th><th>Длина</th><th>Стоимость</th><th>Дата заказа</th>
        </thead>
         {% for product in items %}
         <tr>

@@ -10,7 +10,7 @@ class OrderItemInline(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     # list_display = [field.name for field in Order._meta.fields]
-    list_display = ['id', 'total_price', 'organisation_payer', 'paid', 'status', 'created']
+    list_display = ['id', 'total_price', 'organisation_payer', 'paid', 'status', 'created', 'date_complete']
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
 
