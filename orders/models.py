@@ -28,7 +28,7 @@ class Order(models.Model):
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
                                            verbose_name='организация платильщик', default=1)
     paid = models.BooleanField(verbose_name='заказ оплачен')
-    # date_complete = models.DateTimeField()
+    date_complete = models.DateTimeField(verbose_name='Дата готовности заказа', help_text='Введите дату к которой нужен заказ', null=True)
     comments = models.TextField(verbose_name='Comments', blank=True)
     status = models.ForeignKey(StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1)
     created = models.DateTimeField(auto_now_add=True)
