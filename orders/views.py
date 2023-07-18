@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 from files.models import Product
 from .models import Order, OrderItem
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
@@ -44,15 +45,6 @@ class View_order_item(LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
 
-# class View_order_item(LoginRequiredMixin, UpdateView):
-#     model = OrderItem
-#     fields = ("__all__")
-#     # fields = ['quantity', 'material', 'FinishWork', 'Fields']
-#     template_name = 'order_update_form.html'
-#     login_url = 'login'
-#
-
-
 def all_files_in_order(request, order_id):
     Orders = Order.objects.filter(id=order_id)
     # print(Orders)
@@ -65,3 +57,14 @@ def all_files_in_order(request, order_id):
     # print(Orders[0].id, Orders)
 
     return render(request, "all_files_in_order.html", context)
+
+
+class OrderUpdateView(UpdateView):
+    model = Order
+    fields = ['id', 'date_complete', 'comments']
+    template_name_suffix = '_update_form'
+
+
+class DeleteOrderView(DeleteView):
+    model = Order
+    success_url = reverse_lazy('orders:view_order')

@@ -28,13 +28,14 @@ class Order(models.Model):
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
                                            verbose_name='организация платильщик', default=1)
     paid = models.BooleanField(verbose_name='заказ оплачен')
-    date_complete = models.DateTimeField(verbose_name='Дата готовности заказа', help_text='Введите дату к которой нужен заказ', null=True)
+    date_complete = models.DateTimeField(verbose_name='Дата готовности заказа',
+                                         help_text='Введите дату к которой нужен заказ', null=True, blank=True)
     comments = models.TextField(verbose_name='Comments', blank=True)
     status = models.ForeignKey(StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!', default=1)
-
+    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
+                                   default=1)
 
     def __str__(self):
         return f'Заказ № {self.id}  {self.organisation_payer}'
@@ -44,7 +45,8 @@ class Order(models.Model):
         verbose_name = 'Заказ'
 
     def get_absolute_url(self):
-        return reverse('files:home')
+        # return reverse('orders:view_order', args=[self.id])
+        return reverse('orders:update_order', args=[self.id])
 
 
 class OrderItem(models.Model):
