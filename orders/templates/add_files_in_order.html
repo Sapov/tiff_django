@@ -39,7 +39,26 @@
             <td>{{ item.FinishWork }} руб.</td>
             <td>{{ item.Fields }}</td>
             <td>{{ item.price }}</td>
-            <td><a href="pay/{{product.id}}">Удалить</a></td>
+            <td><a href="ADD_item/{{product.id}}">Добавить в заказ</a></td>
+        </tr>
+        {% endfor %}
+                    </table>
+
+<h5> Файлы в заказе: </h5>
+
+    <table>
+        <thead>
+           <th>Картинка</th><th>Материал</th><th>Финишная обработка</th>
+           <th>Поля</th><th>Итого</th>
+       </thead>
+
+  {% for i in items_in_order %}
+        <tr>
+            <td><a>{% load thumbnail %} <img src="{% thumbnail i.product.images 100x0 %}" class="image-detail"></a></td>
+            <td>{{ i.price_per_item }} руб.</td>
+            <td>{{ i.quantity }}</td>
+            <td>{{ i.total_price }}</td>
+            <td><a href="ADD_item/{{product.id}}">Добавить в заказ</a></td>
         </tr>
         {% endfor %}
                     </table>

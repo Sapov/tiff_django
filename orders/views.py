@@ -15,7 +15,7 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 
 class OrderItemCreateView(CreateView):
     model = OrderItem
-    fields = ['order', 'product', 'price_per_item', 'quantity']
+    fields = ['order', 'product']
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
@@ -47,15 +47,9 @@ class View_order_item(LoginRequiredMixin, UpdateView):
 
 def all_files_in_order(request, order_id):
     Orders = Order.objects.filter(id=order_id)
-    # print(Orders)
-    # product = Product.objects.all()
     items = OrderItem.objects.filter(order=order_id)
-    print(items)
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items': items, 'curent_order': curent_order}
-
-    # print(Orders[0].id, Orders)
-
     return render(request, "all_files_in_order.html", context)
 
 
@@ -73,7 +67,17 @@ class DeleteOrderView(DeleteView):
 def add_files_in_order(request, order_id):
     Orders = Order.objects.filter(id=order_id)
     items = Product.objects.filter(in_order=False)  # Только те файлы которые еще были добавлены в заказ(ы)
+    print(items)
+    for i in items:
+        print(i.id)
+
+    items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
+    # for i in items_in_order:
+    #     print(i.product)
+    #     print(i.price_per_item)
+
     curent_order = Order.objects.get(pk=order_id)
-    context = {'Orders': Orders, 'items': items, 'curent_order': curent_order}
+    context = {'Orders': Orders, 'items': items, 'items_in_order': items_in_order, 'curent_order': curent_order}
 
     return render(request, "add_files_in_order.html", context)
+

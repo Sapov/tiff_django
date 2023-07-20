@@ -34,8 +34,7 @@
 
   {% for item in items %}
         <tr>
-            <td><a>{% load thumbnail %} <img src="{% thumbnail item.product 100x0 %}" class="image-detail"></a></td>
-            <td>{{ item.product }}</td>
+            <td><a>{% load thumbnail %} <img src="{% thumbnail item.product.images 100x0 %}" class="image-detail"></a></td>
             <td>{{ item.quantity }}шт</td>
             <td>{{ item.price_per_item }}  руб. </td>
             <td>{{ item.total_price }} руб.</td>
