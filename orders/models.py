@@ -46,7 +46,7 @@ class Order(models.Model):
 
     def get_absolute_url(self):
         # return reverse('orders:view_order', args=[self.id])
-        return reverse('orders:update_order', args=[self.id])
+        return reverse('orders:Add_file_in_order', args=[self.id])
 
 
 class OrderItem(models.Model):
