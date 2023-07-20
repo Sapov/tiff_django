@@ -10,7 +10,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
     model = Order
-    fields = ['id', 'total_price', 'organisation_payer', 'paid', 'status']
+    fields = ['organisation_payer']
 
 
 class OrderItemCreateView(CreateView):

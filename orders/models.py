@@ -27,7 +27,7 @@ class Order(models.Model):
                                     blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
                                            verbose_name='организация платильщик', default=1)
-    paid = models.BooleanField(verbose_name='заказ оплачен')
+    paid = models.BooleanField(verbose_name='заказ оплачен', default=False)
     date_complete = models.DateTimeField(verbose_name='Дата готовности заказа',
                                          help_text='Введите дату к которой нужен заказ', null=True, blank=True)
     comments = models.TextField(verbose_name='Comments', blank=True)
@@ -87,6 +87,13 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
     instance.order.total_price = order_total_price
     print(instance.order.total_price)
     instance.order.save(force_update=True)
+
+#-----------
+    '''Меняем состояние файла (в заказе)'''
+    product = instance.product
+
+    instance.product.in_order = True
+    instance.product.save(force_update=True)
 
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)
