@@ -58,7 +58,8 @@ class Product(models.Model):
         ('GREY', 'Greyscale'),
         ('LAB', 'lab')
     )
-    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!', default=1)
+    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
+                                   default=1)
     material = models.ForeignKey("Material", on_delete=models.CASCADE, verbose_name='Материал',
                                  default='2')
     quantity = models.IntegerField(default=1, help_text='Введите количество', verbose_name="Количество")
@@ -77,7 +78,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
     FinishWork = models.ForeignKey('FinishWork', on_delete=models.CASCADE, verbose_name='Финишная обработка', default=1)
     Fields = models.ForeignKey('Fields', on_delete=models.CASCADE, verbose_name='Поля вокруг изображения', default=1)
-
+    in_order = models.BooleanField(verbose_name='Позиция в заказе', default=0, blank=True, null=True)
 
     # def only_name_file(self):
     #     self.images

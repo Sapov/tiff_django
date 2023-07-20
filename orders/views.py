@@ -68,3 +68,17 @@ class OrderUpdateView(UpdateView):
 class DeleteOrderView(DeleteView):
     model = Order
     success_url = reverse_lazy('orders:view_order')
+
+
+def add_files_in_order(request, order_id):
+    Orders = Order.objects.filter(id=order_id)
+    # print(Orders)
+    # product = Product.objects.all()
+    items = OrderItem.objects.filter(order=order_id)
+    print(items)
+    curent_order = Order.objects.get(pk=order_id)
+    context = {'Orders': Orders, 'items': items, 'curent_order': curent_order}
+
+    # print(Orders[0].id, Orders)
+
+    return render(request, "add_files_in_order.html", context)
