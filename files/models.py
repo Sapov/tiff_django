@@ -5,6 +5,21 @@ from django.urls import reverse
 from .tiff_file import check_tiff
 
 
+class FinishWork(models.Model):
+    work = models.CharField(max_length=255, verbose_name='финишная обработка')
+    price_contractor = models.FloatField(max_length=100, help_text='За 1 м. погонный',
+                                         verbose_name='Себестоимость работы в руб.', blank=True, null=True,
+                                         default=None)  # стоимость в закупке
+    price = models.FloatField(max_length=100, help_text='За 1 м. погонный', verbose_name='Стоимость работы в руб.')
+
+    def __str__(self):
+        return f'{self.work} - {self.price} руб./1 м.п.'
+
+    class Meta:
+        verbose_name_plural = 'Финишная обработка'
+        verbose_name = 'Финишная обработка'
+
+
 class Contractor(models.Model):
     name = models.CharField(max_length=100, verbose_name='Поставщик продукции')
 
@@ -99,24 +114,9 @@ class Product(models.Model):
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
         price_per_item = self.material.price
         self.price = round((self.width) / 100 * (self.length) / 100 * self.quantity * price_per_item)
+        # tetst= self.FinishWork.objects.filter()
         print(type(self.images))
-        # self.preview_images = thumbnail(self.images) # делаем превьюшку
         super(Product, self).save(*args, **kwargs)
-
-
-class FinishWork(models.Model):
-    work = models.CharField(max_length=255, verbose_name='финишная обработка')
-    price_contractor = models.FloatField(max_length=100, help_text='За 1 м. погонный',
-                                         verbose_name='Себестоимость работы в руб.', blank=True, null=True,
-                                         default=None)  # стоимость в закупке
-    price = models.FloatField(max_length=100, help_text='За 1 м. погонный', verbose_name='Стоимость работы в руб.')
-
-    def __str__(self):
-        return f'{self.work} -- {self.price} руб./1 м.п.'
-
-    class Meta:
-        verbose_name_plural = 'Финишная обработка'
-        verbose_name = 'Финишная обработка'
 
 
 class Fields(models.Model):

@@ -7,7 +7,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 from .models import Product
-# from .tiff_file import thumbnail
 
 
 def check_tiff(file_name: str):
@@ -32,19 +31,3 @@ def check_tiff(file_name: str):
     return width, length, resolution
 
 
-# @receiver(post_save, sender=Product)
-# def post_save_product(**kwargs):
-#     instance = kwargs['instance']
-#     # print('Если возможно делаем из файла превьюху')
-#     # print(instance)
-#     print(f'Загрузили файл: {instance.images}')
-#     # os.chdir('/media/image/14_03_23')
-#     print(check_tiff(instance.images))
-#     print(instance.length)
-#     instance.width = check_tiff(instance.images)[0]
-#     instance.save(force_update=True)
-#     print(instance.width)
-
-
-
-    # thumbnail(instance.images)
