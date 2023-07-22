@@ -8,7 +8,7 @@
 
     <table>
         <thead>
-           <th>Id</th><th>Total</th><th>Платильщк</th><th>Оплачено</th>
+           <th>Заказ №</th><th>Total</th><th>Платильщк</th><th>Оплачено</th>
            <th>Каменты</th><th>Статус</th><th>Дата заказа</th><th>Дата готовности</th>
        </thead>
         {% for order in Orders %}
@@ -31,38 +31,6 @@
 
     </table>
     {% endif %}
-
-{% if items.count > 0 %}
-    <h2>Список файлов: </h2>
-
-    <table>
-        <thead>
-           <th>Id</th><th>Картинка</th><th>Материал</th><th>Кол-во</th>
-           <th>Ширина</th><th>Длина</th><th>Стоимость</th><th>Дата заказа</th>
-       </thead>
-        {% for product in items %}
-        <tr>
-            <td>{{ product.id }}</td>
-<!--            <td>{{ product.images }}</td>-->
-<!--            <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>-->
-            <td>{{ product.order }}</td>
-            <td>{{ product.product }} шт.</td>
-            <td>{{ product.price_per_item }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>{{ product.total_price }} руб.</td>
-            <td>{{ product.is_active }}</td>
-
-
-            <td><a href="edit/{{product.id}}">Изменить</a>
-                <a href="delete/{{product.id}}">Удалить</a>
-                <a href="edit/{{product.id}}">Добавить в заказ</a>
-            </td>
-        </tr>
-        {% endfor %}
-
-    </table>
-    {% endif %}
-
 
 
     {% endblock %}

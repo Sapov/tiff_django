@@ -24,10 +24,8 @@ class OrderItemCreateView(CreateView):
 @login_required
 def view_order(request):
     '''Вывод файлов толоко авторизованного пользователя'''
-    Orders = Order.objects.filter(Contractor=request.user)
-    product = Product.objects.filter(Contractor=request.user)
-
-    return render(request, "view_orders.html", {"Orders": Orders, 'product': product, 'title': 'Заказы'})
+    Orders = Order.objects.filter(Contractor=request.user).order_by('id')
+    return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы'})
 
 
 # def view_order_item(request):
