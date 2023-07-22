@@ -67,17 +67,37 @@ class DeleteOrderView(DeleteView):
 def add_files_in_order(request, order_id):
     Orders = Order.objects.filter(id=order_id)
     items = Product.objects.filter(in_order=False)  # Только те файлы которые еще были добавлены в заказ(ы)
-    print(items)
+
+    print(request)
+    print(request.__dict__)
+    print('ITEMS', items)
     for i in items:
         print(i.id)
 
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
-    # for i in items_in_order:
-    #     print(i.product)
-    #     print(i.price_per_item)
 
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items': items, 'items_in_order': items_in_order, 'curent_order': curent_order}
 
     return render(request, "add_files_in_order.html", context)
 
+#
+# def addin(request, product_id):
+#     product = Product.objects.get(id=product_id)
+#     OrderItem.objects.create(order=product_id, product=product, price_per_item=0, quantity=0, total_price=0, )
+#     items = Product.objects.filter(in_order=False)  # Только те файлы которые еще были добавлены в заказ(ы)
+#     items_in_order = OrderItem.objects.filter(order=product_id)  # файлы в заказе
+#     curent_order = Order.objects.get(pk=order_id)
+#
+#     context = {'product': product, 'items': items, 'items_in_order': items_in_order, 'curent_order': curent_order}
+#
+#     return render(request, "add_in.html", context)
+
+@login_required
+def order_pay(request, order_id):
+    '''Pay'''
+    Orders = Order.objects.filter(id=order_id)
+    text = ' Оплатить можно на карту № 0000 0000 0000 0000'
+
+    context = {'Orders': Orders, 'text':text}
+    return render(request, "orderpay.html", context)
