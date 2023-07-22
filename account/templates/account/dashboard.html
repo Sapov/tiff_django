@@ -3,17 +3,19 @@
 {% block body %}
 
 <h1>Dashboard</h1>
- <p>
- Welcome to your dashboard. You can <a href="{% url 'edit' %}">edit your profile</a>
-or <a href="{% url 'password_change' %}">change your password</a>.
+ <p>Welcome to your dashboard. You can <a href="{% url 'account:edit_profile' %}">edit your profile</a>
+or <a href="{% url 'account:password_change' %}">change your password</a>.
  </p>
 <p>
-<p><a href=" " >файлы для Широкоформатной печати</a></p>
-<p><a href=" " >файлы для Интерьерной печати</a></p>
-<p><a href=" " >файлы для УФ печати</a></p>
-<p><a href=" " >Добавить Организацию платильщик</a></p>
 
-{% endblock %}
+{% for type in type_print %}
+
+<p>  <a href=" ">{{type.type_print}}</a></p>
+{% endfor %}
+
+ {% endblock %}
+
+
 
 
 

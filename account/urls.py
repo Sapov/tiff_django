@@ -23,7 +23,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('edit/', views.edit, name='edit_profile'),
 
-    path('', views.dashboard, name='home'),
-    # path('', views.dashboard, name='dashboard'),
+    path('', views.dashboard, name='dashboard'),
 
 ]
