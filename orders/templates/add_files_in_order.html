@@ -39,7 +39,7 @@
             <td>{{ item.FinishWork }} руб.</td>
             <td>{{ item.Fields }}</td>
             <td>{{ item.price }}</td>
-            <td><a href="ADD_item/{{product.id}}">Добавить в заказ</a></td>
+            <td><a href="ADD_item/{{product.id}}{{item.id}}">Добавить в заказ</a></td>
         </tr>
         {% endfor %}
                     </table>

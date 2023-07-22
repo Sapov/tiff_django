@@ -6,10 +6,10 @@ from .views import OrderCreateView, OrderItemCreateView, view_order, View_order_
 app_name = 'orders'
 
 urlpatterns = [
-    path('create/', OrderCreateView.as_view(), name="create_order"),
+    path('new_order/', OrderCreateView.as_view(), name="new_order"),
     path('create/<pk>', OrderUpdateView.as_view(), name="update_order"),
     path('createitem/', OrderItemCreateView.as_view(), name="create_itmorder"),
-    path('view_order/', view_order, name="view_order"),
+    path('view_orders/', view_order, name="view_orders"), # посмотерть мои заказы
     path('view_order_item/<pk>', View_order_item.as_view(), name="view_order_items"),
     path('delete_order/<pk>', DeleteOrderView.as_view(), name="Delete_order"),
     path('add_files_in_order/<int:order_id>', add_files_in_order, name="Add_file_in_order"),
