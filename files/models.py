@@ -102,7 +102,7 @@ class Product(models.Model):
         return f'{self.images}'
 
     def get_absolute_url(self):
-        return reverse('files:home')
+        return reverse('files:myfiles')
 
     class Meta:
         verbose_name_plural = 'Файлы'

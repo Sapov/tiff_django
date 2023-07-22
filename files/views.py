@@ -59,6 +59,10 @@ def price(request):
     return render(request, "price.html", {"price_shirka": price_shirka, "price_interierka": price_interierka, "price_UV": price_UV, 'title': 'Прайс-листы для Рекламных агентств'})
 
 
+class FileList(LoginRequiredMixin, ListView):
+    model = Product
+    template_name = 'all_files_detail.html'
+    login_url = 'login'
 
 
 def add_files_SHIRKA(request):
