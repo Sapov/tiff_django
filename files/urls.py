@@ -5,13 +5,13 @@ from .views import index, delete, FilesUpdateView, FilesCreateView, price, FileL
 app_name = 'files'
 
 urlpatterns = [
-    path('', index, name='home'),
-    path('files_dl/', FileList.as_view(), name='files'),
+    path('', index, name='myfiles'),  # Myfiles
+    path('allfiles/', FileList.as_view(), name='all_files'),
     path('create/', FilesCreateView.as_view(), name="create_files"),  # форма добавления файла
     path('edit/<pk>', FilesUpdateView.as_view(), name="update_files"),  # форма редактирования файла
     path('delete/<int:id>/', delete),
-    path('price/', price),
-    path('add_files/', add_files_SHIRKA, name ='add_file1'),
+    path('price/', price, name="price"), # прайсл-лист
+    path('add_files/', add_files_SHIRKA, name='add_file1'),
 
     # path('files/', FilesCreate.as_view())
 

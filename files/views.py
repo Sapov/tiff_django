@@ -61,7 +61,7 @@ def price(request):
 
 class FileList(LoginRequiredMixin, ListView):
     model = Product
-    template_name = 'index_detail.html'
+    template_name = 'all_files_detail.html'
     login_url = 'login'
 
 

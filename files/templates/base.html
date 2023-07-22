@@ -15,11 +15,13 @@
 
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
 
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/create">Загрузить файл</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'files:create_files' %}">Загрузить файл</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Загрузить архив</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/price">Прайс-лист</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none"  href="/files_dl">Все файлы</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none"  href="/">Мои файлы</a>
+                  <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'files:price' %}">Прайс-лист</a>
+
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none"  href="{% url 'files:all_files' %}">Все файлы</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none"  href="/allfiles">Все файлы</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none"  href="{% url 'files:myfiles' %}">Мои файлы</a>
       </nav>
     </div>
 <div class="container">
@@ -27,9 +29,9 @@
 
  {% if request.user.is_authenticated %}
  Hello {{ request.user.first_name|default:request.user.username }},
- <a href="{% url "logout" %}">Logout</a>
+ <a href="{% url 'account:logout' %}">Logout</a>
  {% else %}
- <a href="{% url "login" %}">Log-in</a>
+ <a href="{% url 'account:login' %}">Log-in</a>
  {% endif %}
 
 {% block body %}
@@ -48,9 +50,9 @@
       <div class="col-6 col-md">
         <h5>Профиль</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="/account/edit/">Изменить профиль</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="/account/password-change/">Сменить пароль</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="/account/password-reset">Сбросить пароль</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'account:edit_profile' %}">Изменить профиль</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'account:password_change' %}">Сменить пароль</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'account:password_reset' %}">Сбросить пароль</a></li>
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Персонал для разработчиков</a></li>
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Другой</a></li>
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Последний раз</a></li>
@@ -59,8 +61,8 @@
       <div class="col-6 col-md">
         <h5>Заказы</h5>
         <ul class="list-unstyled text-small">
-            <li class="mb-1"><a class="link-secondary text-decoration-none" href="/orders/create/">Новый заказ</a></li>
-            <li class="mb-1"><a class="link-secondary text-decoration-none" href="/orders/view_order">Мои заказы</a></li>
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'orders:new_order' %}">Новый заказ</a></li>
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'orders:view_orders'%}">Мои заказы</a></li>
 
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="/orders/createitem/">Добавить в заказ</a></li>
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Последний ресурс</a></li>

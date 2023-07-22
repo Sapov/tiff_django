@@ -3,11 +3,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
+from files.models import TypePrint
 
 
 @login_required
 def dashboard(request):
-    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+    type_print = TypePrint.objects.order_by('id')
+    return render(request, 'account/dashboard.html', {'section': 'dashboard', 'type_print':type_print})
 
 
 def register(request):
