@@ -58,7 +58,7 @@ class OrderUpdateView(UpdateView):
 
 class DeleteOrderView(DeleteView):
     model = Order
-    success_url = reverse_lazy('orders:view_order')
+    success_url = reverse_lazy('orders:view_orders')
 
 
 def add_files_in_order(request, order_id):
