@@ -63,9 +63,12 @@ class DeleteOrderView(DeleteView):
 
 def add_files_in_order(request, order_id):
     Orders = Order.objects.filter(id=order_id)
+    Orders = Order.objects.get(id=order_id)
     items = Product.objects.filter(in_order=False)  # Только те файлы которые еще были добавлены в заказ(ы)
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
+    print('ORDER TYPE___', type(Orders))
+
     context = {'Orders': Orders, 'items': items, 'items_in_order': items_in_order, 'curent_order': curent_order,
                'order_id': order_id}
     return render(request, "add_files_in_order.html", context)
@@ -75,11 +78,15 @@ def add_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
     new_ord = OrderItem()
     new_ord.order = Orders
+
     item = Product.objects.get(id=item_id)
     new_ord.product = item
+    new_ord.product.in_order = False
     new_ord.save()
+    print('STATUS ITEMS', new_ord.product.in_order)
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
+    # print('ORDER TYPE', type(Orders))
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
     return render(request, "add_in.html", context)
     # return render(request, "add_files_in_order.html", context)
@@ -88,27 +95,7 @@ def add_item_in_order(request, item_id, order_id):
 def del_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
     old_ord = OrderItem.objects.get(id=item_id) # строка заказа
-    # old_ord.product.in_order = False
-    # old_ord.save()
-    # print(Orders.id)
-    print(old_ord)
-    print(old_ord.product)
-    print(old_ord.product.in_order)
     old_ord.delete()
-    # new_ord.order = orders
-    # item = OrderItem.objects.get(id=item_id)
-    # product = item
-    # new_ord.product.delete()
-    # new_ord.save()
-    # меняем состояние файла
-
-    # item = Product.objects.get(id=item_id)
-    # item.product.in_order = False
-    # item.save()
-    #
-    # instance.product.in_order = True
-    # instance.product.save(force_update=True)
-
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
