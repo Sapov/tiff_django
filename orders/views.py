@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 class OrderCreateView(LoginRequiredMixin, CreateView):
     model = Order
     fields = ['organisation_payer']
+    login_url = 'login'
 
 
 class OrderItemCreateView(CreateView):
@@ -28,12 +29,6 @@ def view_order(request):
     return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы'})
 
 
-# def view_order_item(request):
-#     '''Вывод файлов толоко авторизованного пользователя'''
-#     Orders_item = Order.objects.filter(id=id)
-#     print(Orders_item)
-#
-#     return render(request, "view_orders_item.html", {"Orders_item": Orders_item, 'title': 'Заказы'})
 class View_order_item(LoginRequiredMixin, UpdateView):
     model = OrderItem
     fields = ("__all__")
@@ -92,9 +87,8 @@ def add_item_in_order(request, item_id, order_id):
 
 def del_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
-    old_ord = OrderItem.objects.get(id=item_id) # строка заказа
+    old_ord = OrderItem.objects.get(id=item_id)  # строка заказа
     old_ord.delete()
-
 
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
@@ -102,14 +96,12 @@ def del_item_in_order(request, item_id, order_id):
     # return render(request, "add_in.html", context)
     return render(request, "add_files_in_order.html", context)
 
+
 def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
     curent_order = Order.objects.get(pk=order_id)
     text = 'Оплать можно на карту 0000 0000 0000 0000'
-    context = {'Orders': Orders, 'curent_order': curent_order, 'text':text}
+    context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
     return render(request, "orderpay.html", context)
 
     #
-
-
-

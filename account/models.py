@@ -21,7 +21,7 @@ class Organisation(models.Model):
     address_ur = models.TextField(null=True, blank=True, verbose_name='Юр. Адрес', help_text="Полный почтовый адрес")
     address_post = models.TextField(null=True, blank=True, verbose_name='Почтовый Адрес')
     phone = models.CharField(max_length=20, blank=True, verbose_name='Телефон')
-    phone2 = models.CharField(max_length=20, blank=True, verbose_name='Телефон')
+    phone2 = models.CharField(max_length=20, blank=True, verbose_name='Телефон 2')
     email = models.EmailField(max_length=20, blank=True, verbose_name='Электронная почта')
     inn = models.CharField(max_length=12, verbose_name='ИНН', blank=True)
     kpp = models.CharField(max_length=9, verbose_name='КПП', blank=True)

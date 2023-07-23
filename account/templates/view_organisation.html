@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} Все организации пользователя{% endblock %}
+{% block body %}
+
+<p><a href="{% url 'account:create_organisation' %}">Добавить организацию</a>
+
+{% if organisation.count > 0 %}
+    <h2>Список Организаций: </h2>
+
+    <table>
+        <thead>
+           <th>№</th><th>Наименование</th><th>Адрес:</th><th>ИНН</th>
+       </thead>
+        {% for organ in organisation %}
+        <tr>
+            <td>{{ organ.id }}</td>
+            <td>{{ organ.name_ul }}</td>
+            <td>{{ organ.address_ur }}</td>
+            <td>{{ organ.inn }}</td>
+
+            <td><a href="">Изменить</a></td>
+            <td><a href="">Удалить</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    {% endif %}
+
+{% endblock %}

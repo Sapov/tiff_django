@@ -4,12 +4,14 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
 from files.models import TypePrint
+from django.views.generic.edit import CreateView
+from .models import Organisation
 
 
 @login_required
 def dashboard(request):
     type_print = TypePrint.objects.order_by('id')
-    return render(request, 'account/dashboard.html', {'section': 'dashboard', 'type_print':type_print})
+    return render(request, 'account/dashboard.html', {'section': 'dashboard', 'type_print': type_print})
 
 
 def register(request):
@@ -50,3 +52,16 @@ def edit(request):
                   'account/edit.html',
                   {'user_form': user_form,
                    'profile_form': profile_form})
+
+
+class OrganisationCreateView(CreateView):
+    model = Organisation
+    # fields = ['name']
+    fields = ('__all__')
+    success_url = '/account'
+
+@login_required
+def view_organisation_user(request):
+    organisation = Organisation.objects.filter(Contractor=request.user).order_by('id')
+    return render(request, 'view_organisation.html', {'organisation':organisation, 'title': 'Мои организации'})
+
