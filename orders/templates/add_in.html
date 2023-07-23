@@ -2,27 +2,52 @@
 <title>{% block title %} {{curent_order}} {% endblock %}</title>
 {% block body %}
 <h3> {{curent_order}}</h3>
-    <table>
+
+
+
+
+
+
+
+
+
+
+<table>
         <thead>
         <th>Дата</th>
            <th>Платильщик</th><th>Оплата</th>
            <th>Сумма</th><th>Статус</th>
        </thead>
 
-{% for order in Orders %}
         <tr>
-            <td>{{ order.created }}</td>
-            <td>{{ order.organisation_payer }}</td>
-            <td>{{ order.paid }} см.</td>
-            <td>{{ order.total_price }}</td>
-            <td>{{ order.status }}</td>
+            <td>{{ Orders.created }}</td>
+            <td>{{ Orders.organisation_payer }}</td>
+            <td>{{ Orders.paid }} см.</td>
+            <td>{{ Orders.total_price }}</td>
+            <td>{{ Orders.status }}</td>
 
 
 
-            <td><a href="edit/{{product.id}}">Оплатить</a>
+            <td><a href="/orders/order_pay/{{order.id}}">Оплатить</a>
             </td>
         </tr>
-        {% endfor %}
+            </table>
+
+
+
+
+
+
+
+
+
+<table>
+        <thead>
+        <th>Дата</th>
+           <th>Платильщик</th><th>Оплата</th>
+           <th>Сумма</th><th>Статус</th>
+       </thead>
+
             </table>
 <h5> Файлы которые можно добавить в заказ: </h5>
 
@@ -58,7 +83,8 @@
             <td>{{ i.price_per_item }} руб.</td>
             <td>{{ i.quantity }}</td>
             <td>{{ i.total_price }} руб. </td>
-            <td><a href="ADD_item/{{product.id}}">Удалить</a></td>
+            <td><a href="/orders/del_item_in_order/{{order_id}}/{{item.id}}">Удалить</a></td>
+
         </tr>
         {% endfor %}
                     </table>

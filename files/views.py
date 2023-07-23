@@ -15,7 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin  # new
 @login_required
 def index(request):
     '''Вывод файлов толоко авторизованного пользователя'''
-    product = Product.objects.filter(Contractor=request.user)
+    product = Product.objects.filter(Contractor=request.user).order_by('-id') #вывод в обратном порядке -id
 
     return render(request, "index.html", {"product": product, 'title': 'Загрузка файлов'})
 

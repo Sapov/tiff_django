@@ -14,7 +14,7 @@ class StatusOrder(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f' Статус {self.name}'
+        return f'{self.name}'
 
     class Meta:
         verbose_name_plural = 'Статусы'
@@ -46,7 +46,7 @@ class Order(models.Model):
 
     def get_absolute_url(self):
         # return reverse('orders:view_order', args=[self.id])
-        return reverse('orders:Add_file_in_order', args=[self.id])
+        return reverse('orders:add_file_in_order', args=[self.id])
 
 
 class OrderItem(models.Model):

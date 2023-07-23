@@ -21,17 +21,12 @@
             <td>{{ order.status }}</td>
             <td>{{ order.created }}</td>
             <td>{{ order.date_complete }}</td>
-            <td><a href="{% url 'orders:all_files_in_order' order.id %}">Детализация</a></td>
+            <td><a href="{% url 'orders:add_file_in_order' order.id %}">Детализация</a></td>
             <td><a href="{% url 'orders:Delete_order' order.id %}">Удалить</a></td>
-
-
-
             </td>
         </tr>
         {% endfor %}
 
     </table>
     {% endif %}
-
-
     {% endblock %}

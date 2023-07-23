@@ -17,6 +17,11 @@ class OrderAdmin(admin.ModelAdmin):
 
 admin.site.register(StatusOrder)
 
+
 class StatusOrderAdmin(admin.ModelAdmin):
     model = StatusOrder
     raw_id_fields = ['name']
+
+
+
+admin.site.register(OrderItem)
