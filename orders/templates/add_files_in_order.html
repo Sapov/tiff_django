@@ -16,7 +16,7 @@
             <td>{{ Orders.paid }}</td>
             <td>{{ Orders.total_price }}</td>
             <td>{{ Orders.status }}</td>
-            <td><a href="/orders/order_pay/{{order.id}}">Оплатить</a>
+            <td><a href="{% url 'orders:order_pay' Orders.id %}">Оплатить</a>
             </td>
         </tr>
             </table>

@@ -11,19 +11,17 @@
            <th>Сумма</th><th>Статус</th>
        </thead>
 
-{% for order in Orders %}
         <tr>
-<!--            <td>{{ order.created }}</td>-->
-            <td>{{ order.organisation_payer }}</td>
-<!--            <td>{{ order.paid }} см.</td>-->
-            <td>{{ order.total_price }}</td>
-<!--            <td>{{ order.status }}</td>-->
+            <td>{{ order.created }}</td>
+            <td>{{ Orders.organisation_payer }}</td>
+            <td>{{ order.paid }}</td>
+            <td>{{ Orders.total_price }} руб. </td>
+            <td>{{ order.status }}</td>
 
 
 
             <td><a href="/orders/order_pay/{{order.id}}">Оплатить</a>
             </td>
         </tr>
-        {% endfor %}
             </table>
 {% endblock %}

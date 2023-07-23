@@ -28,7 +28,8 @@
 
 
 
-            <td><a href="/orders/order_pay/{{order.id}}">Оплатить</a>
+            <td>          <a href="{% url 'orders:order_pay' Orders.id %}">Оплатить</a>
+
             </td>
         </tr>
             </table>
