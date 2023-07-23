@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
 from files.models import TypePrint
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from .models import Organisation
+from django.urls import reverse_lazy
 
 
 @login_required
@@ -55,13 +56,22 @@ def edit(request):
 
 
 class OrganisationCreateView(CreateView):
+    '''
+    добавление организации пользователем
+    '''
     model = Organisation
     # fields = ['name']
     fields = ('__all__')
     success_url = '/account'
 
+
 @login_required
 def view_organisation_user(request):
+    """Показать все организации пользователя"""
     organisation = Organisation.objects.filter(Contractor=request.user).order_by('id')
-    return render(request, 'view_organisation.html', {'organisation':organisation, 'title': 'Мои организации'})
+    return render(request, 'view_organisation.html', {'organisation': organisation, 'title': 'Мои организации'})
 
+
+class OrganisationDeleteView(DeleteView):
+    model = Organisation
+    success_url = reverse_lazy('account:view_organisation_user')

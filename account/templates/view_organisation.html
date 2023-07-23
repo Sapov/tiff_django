@@ -19,7 +19,7 @@
             <td>{{ organ.inn }}</td>
 
             <td><a href="">Изменить</a></td>
-            <td><a href="">Удалить</a></td>
+            <td><a href="{% url 'account:delete_organisation_user' organ.id %}">Удалить</a></td>
         </tr>
         {% endfor %}
 
