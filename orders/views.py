@@ -81,12 +81,10 @@ def add_item_in_order(request, item_id, order_id):
 
     item = Product.objects.get(id=item_id)
     new_ord.product = item
-    new_ord.product.in_order = False
     new_ord.save()
-    print('STATUS ITEMS', new_ord.product.in_order)
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
-    # print('ORDER TYPE', type(Orders))
+    print('ORDER TYPE', type(Orders))
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
     return render(request, "add_in.html", context)
     # return render(request, "add_files_in_order.html", context)
@@ -96,6 +94,8 @@ def del_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
     old_ord = OrderItem.objects.get(id=item_id) # строка заказа
     old_ord.delete()
+
+
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
