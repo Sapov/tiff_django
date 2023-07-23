@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
 from files.models import TypePrint
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Organisation
 from django.urls import reverse_lazy
 
@@ -62,7 +62,8 @@ class OrganisationCreateView(CreateView):
     model = Organisation
     # fields = ['name']
     fields = ('__all__')
-    success_url = '/account'
+    success_url = reverse_lazy('account:view_organisation_user')
+
 
 
 @login_required
@@ -73,5 +74,15 @@ def view_organisation_user(request):
 
 
 class OrganisationDeleteView(DeleteView):
+    '''Удаление организации'''
     model = Organisation
+    success_url = reverse_lazy('account:view_organisation_user')
+
+
+class OrganisationUpdateView(UpdateView):
+    """ Редакторование организации"""
+    model = Organisation
+    # fields = ['name']
+    fields = ('__all__')
+    template_name_suffix = '_update_form'
     success_url = reverse_lazy('account:view_organisation_user')

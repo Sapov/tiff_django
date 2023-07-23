@@ -24,9 +24,11 @@ urlpatterns = [
     path('edit/', views.edit, name='edit_profile'),
 
     path('', views.dashboard, name='dashboard'),
+
     path('add_organisation/', views.OrganisationCreateView.as_view(), name='create_organisation'),
     path('view_organisation_user/', views.view_organisation_user, name='view_organisation_user'),
     path('delete_organisation_user/<pk>', views.OrganisationDeleteView.as_view(), name='delete_organisation_user'),
+    path('update_organisation_user/<pk>', views.OrganisationUpdateView.as_view(), name='update_organisation_user'),
 
 
 ]

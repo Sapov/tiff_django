@@ -9,16 +9,14 @@
 
     <table>
         <thead>
-           <th>№</th><th>Наименование</th><th>Адрес:</th><th>ИНН</th>
+           <th>№</th><th>Наименование</th>
        </thead>
         {% for organ in organisation %}
         <tr>
             <td>{{ organ.id }}</td>
             <td>{{ organ.name_ul }}</td>
-            <td>{{ organ.address_ur }}</td>
-            <td>{{ organ.inn }}</td>
 
-            <td><a href="">Изменить</a></td>
+            <td><a href="{% url 'account:update_organisation_user' organ.id %}">Изменить</a></td>
             <td><a href="{% url 'account:delete_organisation_user' organ.id %}">Удалить</a></td>
         </tr>
         {% endfor %}
