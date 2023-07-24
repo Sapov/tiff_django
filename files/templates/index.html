@@ -9,7 +9,7 @@
     <table>
         <thead>
            <th>Id</th><th>Картинка</th><th>Материал</th><th>Кол-во</th>
-           <th>Ширина</th><th>Длина</th><th>Стоимость</th><th>Дата</th>
+           <th>Размер</th><th>Финишка</th><th>Стоимость</th><th>Дата</th>
        </thead>
         {% for product in product %}
         <tr>
@@ -17,8 +17,8 @@
             <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>
             <td>{{ product.material }}</td>
             <td>{{ product.quantity }} шт.</td>
-            <td>{{ product.width }} см.</td>
-            <td>{{ product.length }} см.</td>
+            <td>{{ product.width }} х {{ product.length }} см.</td>
+            <td>{{ product.FinishWork }}</td>
             <td>{{ product.price }} руб.</td>
             <td>{{ product.created_at }}</td>
 

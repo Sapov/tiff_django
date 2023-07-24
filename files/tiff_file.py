@@ -22,3 +22,13 @@ def check_tiff(file_name: str):
 Решение: Photoshop / слои / выполнить сведение''')
 
     return width, length, resolution
+
+
+class Calculation:
+    def __init__(self, width, length):
+        self.width = width
+        self.length = length
+
+    def perimert(self):
+        return (self.width + self.length) * 2 / 100 # / 100 приводим к метрам
+

@@ -64,6 +64,10 @@ class OrganisationCreateView(CreateView):
     fields = ('__all__')
     success_url = reverse_lazy('account:view_organisation_user')
 
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
 
 
 @login_required
@@ -78,6 +82,10 @@ class OrganisationDeleteView(DeleteView):
     model = Organisation
     success_url = reverse_lazy('account:view_organisation_user')
 
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
 
 class OrganisationUpdateView(UpdateView):
     """ Редакторование организации"""
@@ -86,3 +94,7 @@ class OrganisationUpdateView(UpdateView):
     fields = ('__all__')
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('account:view_organisation_user')
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)

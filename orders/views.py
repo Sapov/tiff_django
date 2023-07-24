@@ -12,10 +12,15 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     fields = ['organisation_payer']
     login_url = 'login'
 
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
 
-class OrderItemCreateView(CreateView):
+
+class OrderItemCreateView(LoginRequiredMixin, CreateView):
     model = OrderItem
     fields = ['order', 'product']
+    login_url = 'login'
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
