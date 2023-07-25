@@ -60,9 +60,15 @@ class OrganisationCreateView(CreateView):
     добавление организации пользователем
     '''
     model = Organisation
-    # fields = ['name']
-    fields = ('__all__')
+    fields = ['name_ul', 'address_ur']
+    # fields = ('__all__')
     success_url = reverse_lazy('account:view_organisation_user')
+
+# только для текущего юзера
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
 
 
 @login_required
