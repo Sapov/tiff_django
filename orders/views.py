@@ -64,7 +64,7 @@ class DeleteOrderView(DeleteView):
 def add_files_in_order(request, order_id):
     Orders = Order.objects.filter(id=order_id)
     Orders = Order.objects.get(id=order_id)
-    items = Product.objects.filter(in_order=False)  # Только те файлы которые еще были добавлены в заказ(ы)
+    items = Product.objects.filter(in_order=False, Contractor=request.user)  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     print('ORDER TYPE___', type(Orders))
