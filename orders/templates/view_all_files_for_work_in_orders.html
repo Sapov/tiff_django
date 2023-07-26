@@ -32,7 +32,8 @@
           {% for i in item %}
             <tr>
             <td>{{ i.id }}</td>
-            <td><a>{% load thumbnail %} <img src="{% thumbnail i.product.image 100x0 %}" class="image-detail"></a></td>
+            <td><a>{% load thumbnail %} <img src="{% thumbnail i.product.images 100x0 %}" class="image-detail"></a></td>
+
             <td> <a href="/media/{{ i.product }}" </a>Скачать</td>
             <td>{{ i.product.material }} </td>
             <td>{{ i.product.FinishWork }} </td>
