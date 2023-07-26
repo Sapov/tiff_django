@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+<title>{% block title %} {{curent_order}} {% endblock %}</title>
+{% block body %}
+<h3> {{curent_order}}</h3>
+    <table>
+        <thead>
+        <th>Дата</th>
+           <th>Платильщик</th><th>Оплата</th>
+           <th>Сумма</th><th>Статус</th>
+       </thead>
+
+{% for order in Orders %}
+        <tr>
+            <td>{{ order.created }}</td>
+            <td>{{ order.organisation_payer }}</td>
+            <td>{{ order.paid }} см.</td>
+            <td>{{ order.total_price }}</td>
+            <td>{{ order.status }}</td>
+            </td>
+        </tr>
+        {% endfor %}
+            </table>
+<h5> Файлы: </h5>
+
+
+  {% for item in num %}
+
+        <table>
+        <thead>
+           <th>ID</th><th>Link</th><th>Link</th><th>Финишная обработка</th>
+       </thead>
+          {% for i in item %}
+            <tr>
+            <td>{{ i.id }}</td>
+            <td><a>{% load thumbnail %} <img src="{% thumbnail i.product.image 100x0 %}" class="image-detail"></a></td>
+            <td> <a href="/media/{{ i.product }}" </a>Скачать</td>
+            <td>{{ i.product.material }} </td>
+            <td>{{ i.product.FinishWork }} </td>
+</tr>
+        {% endfor %}
+                    </table>
+        {% endfor %}
+
+{% endblock %}

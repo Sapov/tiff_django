@@ -62,9 +62,10 @@ class DeleteOrderView(DeleteView):
 
 
 def add_files_in_order(request, order_id):
-    Orders = Order.objects.filter(id=order_id)
+    # Orders = Order.objects.filter(id=order_id)
     Orders = Order.objects.get(id=order_id)
-    items = Product.objects.filter(in_order=False, Contractor=request.user)  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
+    items = Product.objects.filter(in_order=False,
+                                   Contractor=request.user)  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     print('ORDER TYPE___', type(Orders))
@@ -109,6 +110,7 @@ def order_pay(request, order_id):
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
     return render(request, "orderpay.html", context)
 
+
 @login_required
 def view_all_orders(request):
     '''Посмотретьвсе заказы'''
@@ -116,3 +118,18 @@ def view_all_orders(request):
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
 
+def view_all_files_for_work_in_orders(request):
+    num = []
+    '''Посмотретьвсе заказы'''
+    Orders = Order.objects.filter(paid=True).order_by('id')
+    for order in Orders:
+        print(order)
+        print(order.id)
+        order_id = order.id
+        items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
+        print(items_in_order)
+        num.append(items_in_order)
+        print('NUM', num)
+
+    return render(request, "view_all_files_for_work_in_orders.html",
+                  {"Orders": Orders, 'num': num, 'title': 'Заказы в работе'})
