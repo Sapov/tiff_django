@@ -120,8 +120,10 @@ def view_all_orders(request):
 
 
 def view_all_files_for_work_in_orders(request):
-    num = []
     '''Посмотретьвсе заказы'''
+
+    num = []
+
     Orders = Order.objects.filter(paid=True).order_by('id')
     for order in Orders:
         print(order)

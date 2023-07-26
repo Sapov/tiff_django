@@ -3,7 +3,7 @@
 {% block body %}
 
 
-{% if product.count > 0 %}
+{% if products.count > 0 %}
     <h2>Список файлов: </h2>
 
     <table>
@@ -11,7 +11,7 @@
            <th>Id</th><th>Картинка</th><th>Материал</th><th>Кол-во</th>
            <th>Размер</th><th>Финишка</th><th>Стоимость</th><th>Дата</th>
        </thead>
-        {% for product in product %}
+        {% for product in products %}
         <tr>
             <td>{{ product.id }}</td>
             <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>
