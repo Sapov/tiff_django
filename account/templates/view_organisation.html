@@ -2,7 +2,7 @@
 {% block title %} Все организации пользователя{% endblock %}
 {% block body %}
 
-<p><a href="{% url 'account:create_organisation' %}">Добавить организацию</a>
+<p><a href="{% url 'create_organisation' %}">Добавить организацию</a>
 
 {% if organisation.count > 0 %}
     <h2>Список Организаций: </h2>
@@ -16,8 +16,8 @@
             <td>{{ organ.id }}</td>
             <td>{{ organ.name_ul }}</td>
 
-            <td><a href="{% url 'account:update_organisation_user' organ.id %}">Изменить</a></td>
-            <td><a href="{% url 'account:delete_organisation_user' organ.id %}">Удалить</a></td>
+            <td><a href="{% url 'update_organisation_user' organ.id %}">Изменить</a></td>
+            <td><a href="{% url 'delete_organisation_user' organ.id %}">Удалить</a></td>
         </tr>
         {% endfor %}
 

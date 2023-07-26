@@ -109,4 +109,10 @@ def order_pay(request, order_id):
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
     return render(request, "orderpay.html", context)
 
-    #
+@login_required
+def view_all_orders(request):
+    '''Посмотретьвсе заказы'''
+    Orders = Order.objects.filter(paid=True).order_by('id')
+    return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
+
+
