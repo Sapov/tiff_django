@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from files.models import Product
 from .models import Order, OrderItem
@@ -53,7 +53,7 @@ class View_order_item(LoginRequiredMixin, UpdateView):
 
 class OrderUpdateView(UpdateView):
     model = Order
-    fields = ['id', 'date_complete', 'comments']
+    fields = ['id', 'date_complete', 'comments', 'paid']
     template_name_suffix = '_update_form'
 
 
@@ -88,8 +88,8 @@ def add_item_in_order(request, item_id, order_id):
     curent_order = Order.objects.get(pk=order_id)
     print('ORDER TYPE', type(Orders))
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
-    return render(request, "add_in.html", context)
-    # return render(request, "add_files_in_order.html", context)
+    # return render(request, "add_in.html", context)
+    return redirect (f"/orders/add_files_in_order/{order_id}") # редирект на заказ
 
 
 def del_item_in_order(request, item_id, order_id):
@@ -120,14 +120,11 @@ def view_all_orders(request):
 
 
 def view_all_files_for_work_in_orders(request):
-    '''Посмотретьвсе заказы'''
+    '''Посмотреть все файлы в заказах'''
 
     num = []
-
     Orders = Order.objects.filter(paid=True).order_by('id')
     for order in Orders:
-        print(order)
-        print(order.id)
         order_id = order.id
         items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
         print(items_in_order)

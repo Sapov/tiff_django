@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
+from orders.models import OrderItem
 from .models import Product, Material
 from .forms import AddFiles
 from django.views.generic.edit import CreateView, UpdateView
@@ -15,7 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin  # new
 @login_required
 def index(request):
     '''Вывод файлов толоко авторизованного пользователя'''
-    products = Product.objects.filter(Contractor=request.user).order_by('-id') #вывод в обратном порядке -id
+    products = Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
 
     return render(request, "index.html", {"products": products, 'title': 'Загрузка файлов'})
 
@@ -27,7 +28,7 @@ def delete(request, id):
 
         os.remove(f'media/{str(product.images)}')  # Удаление файла
         # if str(product.preview_images)[1:]:  # если есть вообще
-            # os.remove(f'media/{str(product.preview_images)[1:]}')  # Удаление превьюшки (первый слеш мешал жить)
+        # os.remove(f'media/{str(product.preview_images)[1:]}')  # Удаление превьюшки (первый слеш мешал жить)
 
         product.delete()  # удалили запись
         return HttpResponseRedirect("/")
@@ -56,7 +57,9 @@ def price(request):
     price_shirka = Material.objects.filter(type_print=1)  # Только широкоформатная печать!!!
     price_interierka = Material.objects.filter(type_print=2)  # Только Интерьерная печать!!!
     price_UV = Material.objects.filter(type_print=4)  # Только UV печать!!!
-    return render(request, "price.html", {"price_shirka": price_shirka, "price_interierka": price_interierka, "price_UV": price_UV, 'title': 'Прайс-листы для Рекламных агентств'})
+    return render(request, "price.html",
+                  {"price_shirka": price_shirka, "price_interierka": price_interierka, "price_UV": price_UV,
+                   'title': 'Прайс-листы для Рекламных агентств'})
 
 
 class FileList(LoginRequiredMixin, ListView):
@@ -67,5 +70,16 @@ class FileList(LoginRequiredMixin, ListView):
 
 def add_files_SHIRKA(request):
     form = AddFiles()
-    return render(request, "add_files_shirka.html", {"form": form,  'title': 'Добавление файлов для '
-                                                                                                'широкоформатной печати'})
+    return render(request, "add_files_shirka.html", {"form": form, 'title': 'Добавление файлов для '
+                                                                            'широкоформатной печати'})
+
+
+def about_file(request, file_id):
+    files = OrderItem.objects.filter(order=file_id)
+
+    print(file_id)
+    print(files)
+    for i in files:
+        print(i.id)
+        print(i.material)
+    return render(request, "about_file.html", {"files": files, 'title': 'Все сведения'})

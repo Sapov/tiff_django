@@ -24,6 +24,7 @@
             <td><a href="{% url 'orders:add_file_in_order' order.id %}">Детализация</a></td>
             <td><a href="{% url 'orders:Delete_order' order.id %}">Удалить</a></td>
             <td><a href="{% url 'orders:order_pay' order.id %}">Оплатить</a></td>
+            <td><a href="{% url 'orders:update_order' order.id %}">Редактировать</a></td>
         </tr>
         {% endfor %}
 

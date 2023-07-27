@@ -70,7 +70,7 @@ class StatusProduct(models.Model):
     status = models.CharField(max_length=64, verbose_name='Статус файла')
 
     def __str__(self):
-        return f'{self.status}'
+        return f'{self.id}  - {self.status}'
 
     class Meta:
         verbose_name_plural = 'Статусы файлов'
@@ -105,7 +105,8 @@ class Product(models.Model):
     Fields = models.ForeignKey('Fields', on_delete=models.CASCADE, verbose_name='Поля вокруг изображения', default=1)
     in_order = models.BooleanField(verbose_name='Позиция в заказе', default=0, blank=True, null=True)
     status_product = models.ForeignKey("StatusProduct", on_delete=models.CASCADE, verbose_name='Статус файла',
-                                 default=1)
+                                 # default=1)
+                                 default=6)
 
     def __str__(self):
         return f'{self.images}'
@@ -125,6 +126,7 @@ class Product(models.Model):
         self.price = round((self.width) / 100 * (self.length) / 100 * self.quantity * price_per_item)
         finishka = Calculation(self.width, self.length)
         self.price += finishka.perimert() * self.FinishWork.price  # Добавляю стоимость фиишной обработки
+
         super(Product, self).save(*args, **kwargs)
 
 

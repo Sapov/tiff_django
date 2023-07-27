@@ -33,10 +33,10 @@
             <tr>
             <td>{{ i.id }}</td>
             <td><a>{% load thumbnail %} <img src="{% thumbnail i.product.images 100x0 %}" class="image-detail"></a></td>
-
             <td> <a href="/media/{{ i.products }}" </a>Скачать</td>
+            <td> <a href="{% url 'files:about_file' i.id %}" </a>about</td>
             <td>{{ i.product.material }} </td>
-            <td>{{ i.files_product.FinishWork }} </td>
+<!--            <td>{{ i.product.FinishWork }} </td>-->
 </tr>
         {% endfor %}
                     </table>
