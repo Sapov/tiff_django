@@ -96,12 +96,11 @@ def del_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
     old_ord = OrderItem.objects.get(id=item_id)  # строка заказа
     old_ord.delete()
-
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
-    # return render(request, "add_in.html", context)
-    return render(request, "add_files_in_order.html", context)
+    return redirect (f"/orders/add_files_in_order/{order_id}") # редирект на заказ
+
 
 
 def order_pay(request, order_id):
