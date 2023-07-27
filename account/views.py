@@ -1,11 +1,13 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
-from .models import Profile
+# from .models import Profile
 from files.models import TypePrint
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from .models import Organisation
+from django.views.generic import ListView
+from .models import Organisation, Profile
 from django.urls import reverse_lazy
 
 
@@ -62,33 +64,37 @@ class OrganisationCreateView(CreateView):
     model = Organisation
     fields = ['name_ul', 'address_ur']
     # fields = ('__all__')
-    success_url = reverse_lazy('view_organisation_user')
+    success_url = reverse_lazy('list_organisation')
 
-# только для текущего юзера
+    # только для текущего юзера
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
 
 
 
-@login_required
-def view_organisation_user(request):
-    """Показать все организации пользователя"""
-    organisation = Organisation.objects.filter(Contractor=request.user).order_by('id')
-    return render(request, 'view_organisation.html', {'organisation': organisation, 'title': 'Мои организации'})
+class ListOrganisation(LoginRequiredMixin, ListView):
+    template_name = 'organisation_list.html'
+    model = Organisation
+    paginate_by = 5
+
+    def get_queryset(self):
+        'организации только этого юзера'
+        queryset = []
+        print('REQEST', self.request.user)
+        queryset = Organisation.objects.filter(Contractor=self.request.user)
+        return queryset
 
 
-class OrganisationDeleteView(DeleteView):
+class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
     '''Удаление организации'''
     model = Organisation
-    success_url = reverse_lazy('view_organisation_user')
+    success_url = reverse_lazy('list_organisation')
 
 
-class OrganisationUpdateView(UpdateView):
+class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     """ Редакторование организации"""
     model = Organisation
-    # fields = ['name']
     fields = ('__all__')
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('view_organisation_user')
-
