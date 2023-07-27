@@ -45,7 +45,6 @@ class Order(models.Model):
         verbose_name = 'Заказ'
 
     def get_absolute_url(self):
-        # return reverse('orders:view_order', args=[self.id])
         return reverse('orders:add_file_in_order', args=[self.id])
 
 
@@ -59,9 +58,6 @@ class OrderItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
 
-    # def __str__(self):
-    #     return self.id
-
     class Meta:
         verbose_name_plural = 'Товары в заказе'
         verbose_name = 'Товар в заказе'
@@ -71,7 +67,6 @@ class OrderItem(models.Model):
         print(price_per_item)
         self.price_per_item = price_per_item
         self.total_price = self.price_per_item * self.quantity
-
         super(OrderItem, self).save(*args, **kwargs)
 
 
