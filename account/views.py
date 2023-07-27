@@ -72,7 +72,6 @@ class OrganisationCreateView(CreateView):
         return super().form_valid(form)
 
 
-
 class ListOrganisation(LoginRequiredMixin, ListView):
     template_name = 'organisation_list.html'
     model = Organisation
@@ -81,7 +80,6 @@ class ListOrganisation(LoginRequiredMixin, ListView):
     def get_queryset(self):
         'организации только этого юзера'
         queryset = []
-        print('REQEST', self.request.user)
         queryset = Organisation.objects.filter(Contractor=self.request.user)
         return queryset
 

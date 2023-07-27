@@ -47,6 +47,16 @@ class Order(models.Model):
     def get_absolute_url(self):
         return reverse('orders:add_file_in_order', args=[self.id])
 
+    '''если в заказе Paid = True то всем файлам заказа ставим состояние в работе'''
+    # if order.paid:
+    #     instance.product.status_product = 7
+    #     print('order.paid', order.paid)
+    #     print('instance.product.status_product', instance.product.status_product)
+    # print('order.paid', order.paid)
+    # print('instance.product.status_product', instance.product.status_product)
+
+
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Ордер')
@@ -88,6 +98,7 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
     product = instance.product
     instance.product.in_order = True
     instance.product.save(force_update=True)
+
 
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)

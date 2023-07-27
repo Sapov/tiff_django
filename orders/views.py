@@ -14,8 +14,8 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
-
         return super().form_valid(form)
+
 
 
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
