@@ -45,8 +45,17 @@ class Order(models.Model):
         verbose_name = 'Заказ'
 
     def get_absolute_url(self):
-        # return reverse('orders:view_order', args=[self.id])
         return reverse('orders:add_file_in_order', args=[self.id])
+
+    '''если в заказе Paid = True то всем файлам заказа ставим состояние в работе'''
+    # if order.paid:
+    #     instance.product.status_product = 7
+    #     print('order.paid', order.paid)
+    #     print('instance.product.status_product', instance.product.status_product)
+    # print('order.paid', order.paid)
+    # print('instance.product.status_product', instance.product.status_product)
+
+
 
 
 class OrderItem(models.Model):
@@ -59,9 +68,6 @@ class OrderItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
 
-    # def __str__(self):
-    #     return self.id
-
     class Meta:
         verbose_name_plural = 'Товары в заказе'
         verbose_name = 'Товар в заказе'
@@ -71,7 +77,6 @@ class OrderItem(models.Model):
         print(price_per_item)
         self.price_per_item = price_per_item
         self.total_price = self.price_per_item * self.quantity
-
         super(OrderItem, self).save(*args, **kwargs)
 
 
@@ -88,11 +93,12 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
     print(instance.order.total_price)
     instance.order.save(force_update=True)
 
-#-----------
+    # -----------
     '''Меняем состояние файла (в заказе)'''
     product = instance.product
     instance.product.in_order = True
     instance.product.save(force_update=True)
+
 
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)

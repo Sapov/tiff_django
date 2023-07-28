@@ -12,15 +12,15 @@
        </thead>
 
         <tr>
-            <td>{{ order.created }}</td>
+            <td>{{ Orders.created }}</td>
             <td>{{ Orders.organisation_payer }}</td>
-            <td>{{ order.paid }}</td>
+            <td>{{ Orders.paid }}</td>
             <td>{{ Orders.total_price }} руб. </td>
-            <td>{{ order.status }}</td>
+            <td>{{ Orders.status }}</td>
 
 
 
-            <td><a href="/orders/order_pay/{{order.id}}">Оплатить</a>
+            <td><a href="/orders/order_pay/{{order.id}}">Скачать счет</a>
             </td>
         </tr>
             </table>

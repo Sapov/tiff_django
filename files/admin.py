@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Material, Product, Contractor, TypePrint, Fields, FinishWork
+from .models import Material, Product, Contractor, TypePrint, Fields, FinishWork, StatusProduct
 from account.models import Organisation
 
 
@@ -45,3 +45,4 @@ class TypePrintAdmin(admin.ModelAdmin):
 
 
 admin.site.register(TypePrint, TypePrintAdmin)
+admin.site.register(StatusProduct)
