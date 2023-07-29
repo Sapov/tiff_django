@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import index, delete, FilesUpdateView, FilesCreateView, price, FileList, add_files_SHIRKA, about_file
+from .views import index, delete, FilesUpdateView, FilesCreateView, price, FileList, about_file
 
 app_name = 'files'
 
@@ -12,8 +12,5 @@ urlpatterns = [
     path('delete/<int:id>/', delete),
     path('about_file/<int:file_id>/', about_file, name='about_file'), # все о файле
     path('price/', price, name="price"), # прайс-лист
-    path('add_files/', add_files_SHIRKA, name='add_file1'),
-
-    # path('files/', FilesCreate.as_view())
 
 ]
