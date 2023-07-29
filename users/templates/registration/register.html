@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}Зарегистрируйтесь!{% endblock %}
 
-{% block content %}
-    <h1>Register</h1>
-    <hr>
+{% block body %}
+ <h1>Create an account</h1>
+ <p>Please, sign up using the following form:</p>
+
 
     <form action="{% url 'register' %}" method="post">
         {{ form }}
