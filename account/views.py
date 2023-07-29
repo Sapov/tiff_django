@@ -17,28 +17,6 @@ def dashboard(request):
     return render(request, 'account/dashboard.html', {'section': 'dashboard', 'type_print': type_print})
 
 
-def register(request):
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            # Создать новый объект пользователя,
-            # но пока не сохранять его
-            new_user = user_form.save(commit=False)
-            # Установить выбранный пароль
-            new_user.set_password(
-                user_form.cleaned_data['password'])
-            # Сохранить объект User
-            new_user.save()
-            # Создать профиль пользователя
-
-            Profile.objects.create(user=new_user)
-
-            return render(request, 'account/register_done.html', {'new_user': new_user})
-    else:
-        user_form = UserRegistrationForm()
-
-        return render(request, 'account/register.html', {'user_form': user_form})
-
 
 @login_required
 def edit(request):
@@ -57,14 +35,14 @@ def edit(request):
                    'profile_form': profile_form})
 
 
-class OrganisationCreateView(CreateView):
+class OrganisationCreateView(LoginRequiredMixin, CreateView):
     '''
     добавление организации пользователем
     '''
     model = Organisation
     fields = ['name_ul', 'address_ur']
     # fields = ('__all__')
-    success_url = reverse_lazy('list_organisation')
+    success_url = reverse_lazy('account:list_organisation')
 
     # только для текущего юзера
     def form_valid(self, form):
@@ -87,7 +65,7 @@ class ListOrganisation(LoginRequiredMixin, ListView):
 class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
     '''Удаление организации'''
     model = Organisation
-    success_url = reverse_lazy('list_organisation')
+    success_url = reverse_lazy('account:list_organisation')
 
 
 class OrganisationUpdateView(LoginRequiredMixin, UpdateView):

@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
-
 from orders.models import OrderItem
 from .models import Product, Material
 from .forms import AddFiles
@@ -53,6 +52,7 @@ class FilesCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+@login_required
 def price(request):
     price_shirka = Material.objects.filter(type_print=1)  # Только широкоформатная печать!!!
     price_interierka = Material.objects.filter(type_print=2)  # Только Интерьерная печать!!!
@@ -66,12 +66,6 @@ class FileList(LoginRequiredMixin, ListView):
     model = Product
     template_name = 'all_files_detail.html'
     login_url = 'login'
-
-
-def add_files_SHIRKA(request):
-    form = AddFiles()
-    return render(request, "add_files_shirka.html", {"form": form, 'title': 'Добавление файлов для '
-                                                                            'широкоформатной печати'})
 
 
 def about_file(request, file_id):
