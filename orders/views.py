@@ -17,7 +17,6 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
     model = OrderItem
     fields = ['order', 'product']
@@ -63,7 +62,6 @@ class DeleteOrderView(DeleteView):
 
 
 def add_files_in_order(request, order_id):
-    # Orders = Order.objects.filter(id=order_id)
     Orders = Order.objects.get(id=order_id)
     items = Product.objects.filter(in_order=False,
                                    Contractor=request.user)  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
@@ -89,7 +87,7 @@ def add_item_in_order(request, item_id, order_id):
     print('ORDER TYPE', type(Orders))
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
     # return render(request, "add_in.html", context)
-    return redirect (f"/orders/add_files_in_order/{order_id}") # редирект на заказ
+    return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
 def del_item_in_order(request, item_id, order_id):
@@ -99,8 +97,7 @@ def del_item_in_order(request, item_id, order_id):
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
-    return redirect (f"/orders/add_files_in_order/{order_id}") # редирект на заказ
-
+    return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
 def order_pay(request, order_id):
@@ -113,7 +110,7 @@ def order_pay(request, order_id):
 
 @login_required
 def view_all_orders(request):
-    '''Посмотретьвсе заказы'''
+    '''Посмотреть все заказы которы оплачены и поэтому в работе'''
     Orders = Order.objects.filter(paid=True).order_by('id')
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
