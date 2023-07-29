@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'files.apps.FilesConfig',
     'orders.apps.OrdersConfig',
     'easy_thumbnails',
+    'users',
+
 
 ]
 
