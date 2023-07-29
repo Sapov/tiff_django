@@ -64,7 +64,7 @@ class OrganisationCreateView(CreateView):
     model = Organisation
     fields = ['name_ul', 'address_ur']
     # fields = ('__all__')
-    success_url = reverse_lazy('list_organisation')
+    success_url = reverse_lazy('account:list_organisation')
 
     # только для текущего юзера
     def form_valid(self, form):
@@ -87,7 +87,7 @@ class ListOrganisation(LoginRequiredMixin, ListView):
 class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
     '''Удаление организации'''
     model = Organisation
-    success_url = reverse_lazy('list_organisation')
+    success_url = reverse_lazy('account:list_organisation')
 
 
 class OrganisationUpdateView(LoginRequiredMixin, UpdateView):

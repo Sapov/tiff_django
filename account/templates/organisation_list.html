@@ -3,7 +3,7 @@
 {% block body %}
 
     <h1>Мои организации: </h1>
-<p><a href="{% url 'create_organisation' %}">Добавить организацию</a>
+<p><a href="{% url 'account:create_organisation' %}">Добавить организацию</a>
 
 <hr>
 <div class="row">
@@ -31,8 +31,8 @@
                                                     <td>{{ oraganisation.inn }}</td>
                                                     <td>{{ oraganisation.kpp }}</td>
                                                     <td>{{ oraganisation.okpk }}</td>
-                                                    <td><a href="{% url 'update_organisation_user' oraganisation.id %}">Изменить</a></td>
-                                                    <td><a href="{% url 'delete_organisation_user' oraganisation.id %}">Удалить</a></td>
+                                                    <td><a href="{% url 'account:update_organisation_user' oraganisation.id %}">Изменить</a></td>
+                                                    <td><a href="{% url 'account:delete_organisation_user' oraganisation.id %}">Удалить</a></td>
                 </tr>
         {% endfor %}
             </tbody>
