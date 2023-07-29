@@ -1,7 +1,10 @@
 from django.core.management.base import BaseCommand
-from files.models import StatusProduct, TypePrint, Fields, FinishWork, Material
-from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, Material_data
+from files.models import StatusProduct, TypePrint, Fields, FinishWork
+from orders.models import StatusOrder
+from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data
 
+
+# How import >> python manage.py add_test_data.py
 
 class Command(BaseCommand):
     help = "Наполнить БД"
@@ -16,8 +19,8 @@ class Command(BaseCommand):
         for fields in Fields_data:
             Fields.objects.get_or_create(fields=fields)
 
-        for fields in Fields_data:
-            Fields.objects.get_or_create(fields=fields)
+        for name in StatusOrder_data:
+            StatusOrder.objects.get_or_create(name=name)
 
         for item in FinishWork_data:
             FinishWork.objects.get_or_create(

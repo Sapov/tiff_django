@@ -56,8 +56,6 @@ class Order(models.Model):
     # print('instance.product.status_product', instance.product.status_product)
 
 
-
-
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Ордер')
     product = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Продукт')
@@ -98,7 +96,6 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
     product = instance.product
     instance.product.in_order = True
     instance.product.save(force_update=True)
-
 
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)

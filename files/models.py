@@ -105,8 +105,7 @@ class Product(models.Model):
     Fields = models.ForeignKey('Fields', on_delete=models.CASCADE, verbose_name='Поля вокруг изображения', default=1)
     in_order = models.BooleanField(verbose_name='Позиция в заказе', default=0, blank=True, null=True)
     status_product = models.ForeignKey("StatusProduct", on_delete=models.CASCADE, verbose_name='Статус файла',
-                                 # default=1)
-                                 default=6)
+                                 default=1)
 
     def __str__(self):
         return f'{self.images}'
