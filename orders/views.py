@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from files.models import Product
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
 
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
@@ -12,9 +13,20 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     fields = ['organisation_payer']
     login_url = 'login'
 
+    # def get_queryset(self):
+    #     queryset = Order.objects.filter(Contractor=self.request.user)
+    #     print(queryset)
+    #     return queryset
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
+
+
+
+
+# def new_order(request):
+#     form = AddNewOrder
+#     return render(request, 'order_form_new.html')
 
 
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
@@ -115,6 +127,17 @@ def view_all_orders(request):
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
 
+class ViewAllPayOrders(ListView):
+    model = Order
+    template_name = 'all_view_orders_pay.html'
+
+    def get_queryset(self):
+        queryset = Order.objects.filter(paid=True).order_by('id')
+
+        return queryset
+
+
+@login_required
 def view_all_files_for_work_in_orders(request):
     '''Посмотреть все файлы в заказах'''
 

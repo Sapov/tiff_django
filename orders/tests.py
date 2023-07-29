@@ -13,3 +13,8 @@ class TestOrder(TestCase):
     def test_view_all_orders(self):
         response = self.client.get('/orders/view_all_orders/')
         self.assertEqual(response.status_code, 302)
+
+    def test_view_all_files_for_work_in_orders(self):
+        response = self.client.get('/orders/view_all_files_for_work_in_orders/')
+        self.assertEqual(response.status_code, 302)
+
