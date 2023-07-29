@@ -2,7 +2,6 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from users.views import Register, EmailVerify, MyLoginView
-
 urlpatterns = [
 
     path('login/', MyLoginView.as_view(), name='login'),
