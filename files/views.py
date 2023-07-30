@@ -67,12 +67,3 @@ class FileList(LoginRequiredMixin, ListView):
     login_url = 'login'
 
 
-def about_file(request, file_id):
-    files = OrderItem.objects.filter(order=file_id)
-
-    print(file_id)
-    print(files)
-    for i in files:
-        print(i.id)
-        print(i.material)
-    return render(request, "about_file.html", {"files": files, 'title': 'Все сведения'})

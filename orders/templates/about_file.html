@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+<title>{% block title %} Полные сведения о файле: {% endblock %}</title>
+{% block body %}
+
+
+{% if files.count > 0 %}
+<h2>файл: </h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Картинка</th>
+        <th>Материал</th>
+        <th>Кол-во</th>
+        <th>Размер</th>
+        <th>color_model</th>
+        <th>size</th>
+        <th>created_at</th>
+        <th>Финишка</th>
+        <th>Fields</th>
+    </thead>
+
+    {% for file in files %}
+    <tbody>
+    <tr>
+        <td>{{ file.id }}</td>
+        <td><a>{% load thumbnail %} <img src="{% thumbnail file.images 100x0 %}" class="image-detail"></a></td>
+        <td>{{ file.material }}</td>
+        <td>{{ file.quantity }} шт.</td>
+        <td>{{ file.width }} х {{ file.length }} см.</td>
+        <td>{{ file.color_model }}</td>
+        <td>{{ file.size }}</td>
+        <td>{{ file.created_at }}</td>
+        <td>{{ file.FinishWork }}</td>
+        <td>{{ file.Fields }}</td>
+
+
+    </tr>
+    {% endfor%}
+    </tbody>
+</table>
+{% endif %}
+
+
+{% endblock %}

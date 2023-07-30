@@ -22,8 +22,6 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-
-
 # def new_order(request):
 #     form = AddNewOrder
 #     return render(request, 'order_form_new.html')
@@ -137,18 +135,22 @@ class ViewAllPayOrders(ListView):
         return queryset
 
 
+def about_file(request, file_id):
+    files = Product.objects.filter(id=file_id)
+    print(files)
+    return render(request, 'about_file.html', {'files': files})
+
+
 @login_required
 def view_all_files_for_work_in_orders(request):
-    '''Посмотреть все файлы в заказах'''
+    '''Посмотреть все файлы в заказах в статусе paid'''
 
     num = []
     Orders = Order.objects.filter(paid=True).order_by('id')
     for order in Orders:
         order_id = order.id
         items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
-        print(items_in_order)
         num.append(items_in_order)
-        print('NUM', num)
 
     return render(request, "view_all_files_for_work_in_orders.html",
                   {"Orders": Orders, 'num': num, 'title': 'Заказы в работе'})
