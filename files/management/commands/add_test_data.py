@@ -3,9 +3,9 @@ from files.models import StatusProduct, TypePrint, Fields, FinishWork
 from orders.models import StatusOrder
 from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data
 
-
+#___________________________________________________
 # How import >> python manage.py add_test_data.py
-
+#___________________________________________________
 class Command(BaseCommand):
     help = "Наполнить БД"
 
