@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from files.models import Product
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
 
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
@@ -12,10 +13,18 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     fields = ['organisation_payer']
     login_url = 'login'
 
+    # def get_queryset(self):
+    #     queryset = Order.objects.filter(Contractor=self.request.user)
+    #     print(queryset)
+    #     return queryset
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
 
+
+# def new_order(request):
+#     form = AddNewOrder
+#     return render(request, 'order_form_new.html')
 
 
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
@@ -63,7 +72,6 @@ class DeleteOrderView(DeleteView):
 
 
 def add_files_in_order(request, order_id):
-    # Orders = Order.objects.filter(id=order_id)
     Orders = Order.objects.get(id=order_id)
     items = Product.objects.filter(in_order=False,
                                    Contractor=request.user)  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
@@ -89,7 +97,7 @@ def add_item_in_order(request, item_id, order_id):
     print('ORDER TYPE', type(Orders))
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
     # return render(request, "add_in.html", context)
-    return redirect (f"/orders/add_files_in_order/{order_id}") # редирект на заказ
+    return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
 def del_item_in_order(request, item_id, order_id):
@@ -99,8 +107,7 @@ def del_item_in_order(request, item_id, order_id):
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
-    return redirect (f"/orders/add_files_in_order/{order_id}") # редирект на заказ
-
+    return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
 def order_pay(request, order_id):
@@ -113,22 +120,37 @@ def order_pay(request, order_id):
 
 @login_required
 def view_all_orders(request):
-    '''Посмотретьвсе заказы'''
+    '''Посмотреть все заказы которы оплачены и поэтому в работе'''
     Orders = Order.objects.filter(paid=True).order_by('id')
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
 
+class ViewAllPayOrders(ListView):
+    model = Order
+    template_name = 'all_view_orders_pay.html'
+
+    def get_queryset(self):
+        queryset = Order.objects.filter(paid=True).order_by('id')
+
+        return queryset
+
+
+def about_file(request, file_id):
+    files = Product.objects.filter(id=file_id)
+    print(files)
+    return render(request, 'about_file.html', {'files': files})
+
+
+@login_required
 def view_all_files_for_work_in_orders(request):
-    '''Посмотреть все файлы в заказах'''
+    '''Посмотреть все файлы в заказах в статусе paid'''
 
     num = []
     Orders = Order.objects.filter(paid=True).order_by('id')
     for order in Orders:
         order_id = order.id
         items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
-        print(items_in_order)
         num.append(items_in_order)
-        print('NUM', num)
 
     return render(request, "view_all_files_for_work_in_orders.html",
                   {"Orders": Orders, 'num': num, 'title': 'Заказы в работе'})

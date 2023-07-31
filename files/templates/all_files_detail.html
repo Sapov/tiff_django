@@ -1,42 +1,41 @@
 {% extends 'base.html'%}
-    <title>{% block title %} Главная страница {% endblock %}</title>
+<title>{% block title %} Главная страница {% endblock %}</title>
 {% block body %}
 
-    <h1>Список файлов: </h1>
- <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Изображение</th>
-                                                    <th scope="col">Материал</th>
-                                                    <th scope="col">Кол-во</th>
-                                                    <th scope="col">Размер</th>
-                                                    <th scope="col">images:</th>
-                                                    <th scope="col">FinishWork:</th>
-                                                    <th scope="col">Fields:</th>
-                                                    <th scope="col">status_product:</th>
-                                                </tr>
-                                            </thead>
+<h1>Список файлов: </h1>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Изображение</th>
+        <th scope="col">Материал</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Размер</th>
+        <th scope="col">images:</th>
+        <th scope="col">FinishWork:</th>
+        <th scope="col">Fields:</th>
+        <th scope="col">status_product:</th>
+    </tr>
+    </thead>
 
-     {% for product in object_list %}
+    {% for product in object_list %}
 
-                                            <tbody>
-                                                <tr>
-                                                    <td>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></td>
-                                                    <td>{{ product.material }}</td>
-                                                    <td>{{ product.quantity }}</td>
-                                                    <td> {{ product.width }} х {{ product.length }}</td>
-                                                    <td> <a href=" {{ product.images }} " </a> ty </td>
-                                                    <td> {{ product.FinishWork }} </td>
-                                                    <td> {{ product.Fields }} </td>
-                                                    <td> {{ product.status_product }} </td>
-                                                </tr>
+    <tbody>
+    <tr>
+        <td>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></td>
+        <td>{{ product.material }}</td>
+        <td>{{ product.quantity }}</td>
+        <td> {{ product.width }} х {{ product.length }}</td>
+        <td><a href=" {{ product.images }} " </a> ty</td>
+        <td> {{ product.FinishWork }}</td>
+        <td> {{ product.Fields }}</td>
+        <td> {{ product.status_product }}</td>
+    </tr>
 
-{% endfor %}
+    {% endfor %}
 
 
-                                                    </tbody>
-                                        </table>
-
+    </tbody>
+</table>
 
 
 {% endblock body %}

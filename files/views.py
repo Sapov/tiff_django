@@ -16,8 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin  # new
 def index(request):
     '''Вывод файлов толоко авторизованного пользователя'''
     products = Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
-
-    return render(request, "index.html", {"products": products, 'title': 'Загрузка файлов'})
+    return render(request, "index.html", {"products": products, 'title': 'Ваши файлоы'})
 
 
 def delete(request, id):
@@ -68,12 +67,3 @@ class FileList(LoginRequiredMixin, ListView):
     login_url = 'login'
 
 
-def about_file(request, file_id):
-    files = OrderItem.objects.filter(order=file_id)
-
-    print(file_id)
-    print(files)
-    for i in files:
-        print(i.id)
-        print(i.material)
-    return render(request, "about_file.html", {"files": files, 'title': 'Все сведения'})
