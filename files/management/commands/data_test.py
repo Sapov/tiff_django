@@ -59,5 +59,11 @@ Material_data = [
     ('Oraget (матовый, глянцевый, прозрачный', TypePrint.objects.get_or_create(id=2)[0], 450, 900, 150),
     ('Фотообои', TypePrint.objects.get_or_create(id=2)[0], 250, 900, 150),
     ('Холст натуральный', TypePrint.objects.get_or_create(id=2)[0], 750, 1400, 150),
+# UV-PRINT TypePrint.objects.get_or_create(id=2)
+    ('Печать на ПВХ 3 мм', TypePrint.objects.get_or_create(id=2)[0], 1400, 3600, 150),
+    ('Печать на ПВХ 5 мм', TypePrint.objects.get_or_create(id=2)[0], 2020, 4200, 150),
+    ('Печать на на оцинковке', TypePrint.objects.get_or_create(id=2)[0], 1700, 3600, 150),
+
 
 ]
+
