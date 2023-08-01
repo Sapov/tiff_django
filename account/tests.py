@@ -11,3 +11,7 @@ class TestAccount(TestCase):
     def test_list_organisation(self):
         response = self.client.get('/account/list_organisation/')
         self.assertEqual(response.status_code, 302)
+
+
+
+
