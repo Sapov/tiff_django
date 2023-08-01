@@ -1,3 +1,5 @@
+from files.models import TypePrint
+
 StatusProducts_data = [
     "Оформлен",
     "В работе",
@@ -29,11 +31,11 @@ StatusOrder_data = [
     "Готов",
 ]
 
-# Material_data = [
-#     ['Баннер 440 грамм ламинированный', 1, 165, 280, 72],
-#     ['Баннер 510 грамм литой', 2, 290, 600, 72],
-#     ['Баннер 340 грамм ламинированный', 3, 130, 260, 72],
+Material_data = [
+    ('Баннер 440 грамм ламинированный', TypePrint.objects.get_or_create(id=1)[0], 165, 280, 72),
+    ('Баннер 510 грамм литой', TypePrint.objects.get_or_create(id=1)[0], 290, 600, 72),
+    ('Баннер 340 грамм ламинированный', TypePrint.objects.get_or_create(id=1)[0], 130, 260, 72),
 
 
 
-# ]
+]

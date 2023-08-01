@@ -1,10 +1,12 @@
 from django.core.management.base import BaseCommand
-from files.models import StatusProduct, TypePrint, Fields, FinishWork
+from files.models import StatusProduct, TypePrint, Fields, FinishWork, Material
 from orders.models import StatusOrder
-from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data
+from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data, \
+    Material_data
+
 
 #___________________________________________________
-# How import >> python manage.py add_test_data.py
+# How import >> python manage.py add_test_data
 #___________________________________________________
 class Command(BaseCommand):
     help = "Наполнить БД"
@@ -29,12 +31,12 @@ class Command(BaseCommand):
                 price=item[2]
 
             )
-        # for item in Material_data:
-        #     Material.objects.get_or_create(
-        #         name=item.get('name'),
-        #         type_print=item.get('type_print'),
-        #         price_contractor=item.get('price_contractor'),
-        #         price=item.get('price'),
-        #         resolution_print=item.get('resolution_print')
-        #
-        #     )
+        for item in Material_data:
+            Material.objects.get_or_create(
+                name=item[0],
+                type_print=item[1],
+                price_contractor=item[2],
+                price=item[3],
+                resolution_print=item[4]
+
+            )
