@@ -8,8 +8,8 @@ ENV PYTHONUNBUFFERED 1
 
 RUN pip install --upgrade pip
 
-#RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
-#    libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales vim
+RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
+    libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales vim
 
 RUN useradd -rms /bin/bash django && chmod 777 /opt /run
 
