@@ -23,7 +23,7 @@ services:
     env_file:
       - .env
     command: >
-      bash -c "./manage.py collectstatic --noinput && ./manage.py migrate  && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
+      bash -c " ./manage.py add_test_data && ./manage.py collectstatic --noinput && ./manage.py migrate  && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
   nginx:
     build:
       dockerfile: ./Dockerfile
