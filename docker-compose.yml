@@ -24,24 +24,19 @@ services:
       - .env
     command: >
       bash -c "./manage.py collectstatic --noinput && ./manage.py migrate  && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
-
-
-
-
-
-
-
-
-
-
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: 123123
-      POSTGRES_USER: sasha
-      POSTGRES_DB: db01
-      PGDATA: /home/sasha/postgres/data
-      POSTGRES_INITDB_ARGS: "-A md5"
-
+  nginx:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./docker/nginx/
+    container_name: yt_nginx
+    image: yt_nginx
+    volumes:
+      - static_volume:/django/static
+      - media_volume:/django/media
+    depends_on:
+      - DjangoProject
     ports:
-      - "54321:5432"
-
+      - "${NGINX_EXTERNAL_PORT}:80"
+volumes:
+  static_volume:
+  media_volume:
