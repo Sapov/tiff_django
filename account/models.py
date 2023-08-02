@@ -16,7 +16,6 @@ class Profile(models.Model):
 
 class Organisation(models.Model):
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!', default=1)
-
     name_ul = models.CharField(max_length=70, verbose_name="Имя юр. лица", help_text='Форма собственности и название')
     address_ur = models.TextField(null=True, blank=True, verbose_name='Юр. Адрес', help_text="Полный почтовый адрес")
     address_post = models.TextField(null=True, blank=True, verbose_name='Почтовый Адрес')

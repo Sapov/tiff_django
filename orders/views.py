@@ -2,10 +2,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+
+from account.models import Organisation
+# from account.models import Organisation
 from files.models import Product
+from .forms import *
+from .forms import UserOrganisationForm
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
+
+
+# from django.contrib.auth import get_user_model
 
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
@@ -14,17 +22,19 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     login_url = 'login'
 
     # def get_queryset(self):
-    #     queryset = Order.objects.filter(Contractor=self.request.user)
+    #     # qs = super().get_queryset()
+    #     queryset = Organisation.objects.filter(Contractor=self.request.user)
     #     print(queryset)
-    #     return queryset
+    #     print(queryset.filter(organisation_payer=self.request.user))
+    #
+    #     return queryset.filter(organisation_payer=self.request.user)
+
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
 
 
-# def new_order(request):
-#     form = AddNewOrder
-#     return render(request, 'order_form_new.html')
+# User = get_user_model()
 
 
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
@@ -154,3 +164,11 @@ def view_all_files_for_work_in_orders(request):
 
     return render(request, "view_all_files_for_work_in_orders.html",
                   {"Orders": Orders, 'num': num, 'title': 'Заказы в работе'})
+
+
+def user_organization_view(request):
+    # if request.method == 'POST':
+    user = request.user
+    form = UserOrganisationForm(user=user)
+    a1 = Order.objects.create(**form.cleaned_data)
+    return render(request, 'user_organization.html', {'form': form})

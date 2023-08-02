@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-#______________________POSTGRES_______________
+# ______________________POSTGRES_______________
 
 # DATABASES = {
 #     'default': {
