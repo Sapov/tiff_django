@@ -29,7 +29,7 @@ services:
       dockerfile: ./Dockerfile
       context: ./docker/nginx/
     container_name: yt_nginx
-    image: yt_nginx
+    image: nginx_for_django
     volumes:
       - static_volume:/django/static
       - media_volume:/django/media
