@@ -2,8 +2,11 @@
 <title>{% block title %} {{curent_order}} {% endblock %}</title>
 {% block body %}
 <h3> {{curent_order}}</h3>
-<table>
-    <thead>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
     <th>ID</th>
     <th>Дата</th>
     <th>Платильщик</th>
@@ -11,6 +14,7 @@
     <th>Сумма</th>
     <th>Статус</th>
     </thead>
+            <tbody>
 
     {% for order in Orders %}
     <tr>
@@ -23,14 +27,18 @@
         </td>
     </tr>
     {% endfor %}
-</table>
+          </tbody>
+        </table>
+    </div>
+</div>
 <h5> Файлы: </h5>
 
 
 {% for item in num %}
-
-<table>
-    <thead>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
     <th>ID</th>
     <th>Link</th>
     <th>Link</th>
@@ -46,7 +54,10 @@
         <!--            <td>{{ i.product.FinishWork }} </td>-->
     </tr>
     {% endfor %}
-</table>
+          </tbody>
+        </table>
+    </div>
+</div>
 {% endfor %}
 
 {% endblock %}

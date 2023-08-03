@@ -17,7 +17,8 @@ WORKDIR /django
 
 RUN mkdir /django/static && mkdir /django/media && chown -R django:django /django && chmod 755 /django
 
-COPY . /django
+COPY --chown=django:django . .
+#COPY . /django
 
 RUN pip install -r requirements.txt
 
