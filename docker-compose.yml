@@ -1,29 +1,30 @@
-version: '3.1'
+version: '3.9'
 
 services:
 
-  db:
+
+  postgres_db:
     image: postgres
     container_name: postgres_django
     volumes:
       - ~/.pg/pg_data/django:/var/lib/postgresql/data
     env_file:
       - .env
-  DjangoProject:
+  django_project:
     build:
       dockerfile: Dockerfile
       context: .
     image: django_docker:latest
     container_name: django_docker
     depends_on:
-      - db
+      - postgres_db
     volumes:
       - static_volume:/django/static
       - media_volume:/django/media
     env_file:
       - .env
     command: >
-      bash -c " ./manage.py add_test_data && ./manage.py collectstatic --noinput && ./manage.py migrate  && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
+      bash -c " ./manage.py collectstatic --noinput && ./manage.py migrate  && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
   nginx:
     build:
       dockerfile: ./Dockerfile
@@ -34,7 +35,7 @@ services:
       - static_volume:/django/static
       - media_volume:/django/media
     depends_on:
-      - DjangoProject
+      - django_project
     ports:
       - "${NGINX_EXTERNAL_PORT}:80"
 volumes:
