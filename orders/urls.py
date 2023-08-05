@@ -18,7 +18,7 @@ urlpatterns = [
     path('add_files_in_order/<int:order_id>', add_files_in_order, name="add_file_in_order"),
     path('add_item_in_order/<int:order_id>/<int:item_id>', add_item_in_order, name="add"),
     path('del_item_in_order/<int:order_id>/<int:item_id>', del_item_in_order, name="del_item_in_order"),
-    path('view_all_orders/', view_all_orders, name="view_all_orders"), # все оплаченые заказы
+    path('view_all_orders/', view_all_orders, name="view_all_orders"), # все  заказы
 
     path('view_all_orders_pay/', ViewAllPayOrders.as_view(), name="view_all_orders_pay"), # все оплаченые заказы
     path('view_all_files_for_work_in_orders/', view_all_files_for_work_in_orders, name="view_all_files_for_work_in_orders"), # все файлы в работе

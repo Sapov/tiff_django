@@ -135,7 +135,7 @@ def view_all_orders(request):
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
 
-class ViewAllPayOrders(ListView):
+class ViewAllPayOrders(LoginRequiredMixin, ListView):
     '''Посмотреть все заказы которы оплачены и поэтому в работе'''
 
     model = Order
