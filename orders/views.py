@@ -159,8 +159,7 @@ def view_all_files_for_work_in_orders(request):
     num = []
     Orders = Order.objects.filter(paid=True).order_by('id')
     for order in Orders:
-        order_id = order.id
-        items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
+        items_in_order = OrderItem.objects.filter(order=order.id)  # файлы в заказе
         num.append(items_in_order)
 
     return render(request, "view_all_files_for_work_in_orders.html",
