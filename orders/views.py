@@ -130,12 +130,14 @@ def order_pay(request, order_id):
 
 @login_required
 def view_all_orders(request):
-    '''Посмотреть все заказы которы оплачены и поэтому в работе'''
-    Orders = Order.objects.filter(paid=True).order_by('id')
+    '''Посмотреть все заказы '''
+    Orders = Order.objects.all().order_by('id')
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
 
 class ViewAllPayOrders(ListView):
+    '''Посмотреть все заказы которы оплачены и поэтому в работе'''
+
     model = Order
     template_name = 'all_view_orders_pay.html'
 
