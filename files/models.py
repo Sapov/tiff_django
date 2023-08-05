@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
-from .tiff_file import check_tiff, Calculation
+from .tiff_file import check_tiff, Calculation, Calc
 
 
 class FinishWork(models.Model):
@@ -97,6 +97,7 @@ class Product(models.Model):
                                    help_text="Для корректной печати модель должна быть CMYK")
     size = models.FloatField(default=0, verbose_name="Размер в Мб")
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    cost_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
 
     images = models.FileField(upload_to='image/%d_%m_%y')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
@@ -105,7 +106,7 @@ class Product(models.Model):
     Fields = models.ForeignKey('Fields', on_delete=models.CASCADE, verbose_name='Поля вокруг изображения', default=1)
     in_order = models.BooleanField(verbose_name='Позиция в заказе', default=0, blank=True, null=True)
     status_product = models.ForeignKey("StatusProduct", on_delete=models.CASCADE, verbose_name='Статус файла',
-                                 default=1)
+                                       default=1)
 
     def __str__(self):
         return f'{self.images}'
@@ -120,11 +121,18 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         ''' расчет и запись стоимость баннера'''
 
+        # item = Calc(self.images, self.material.price, self.quantity, self.FinishWork.price)
+
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
         price_per_item = self.material.price
         self.price = round((self.width) / 100 * (self.length) / 100 * self.quantity * price_per_item)
         finishka = Calculation(self.width, self.length)
         self.price += finishka.perimert() * self.FinishWork.price  # Добавляю стоимость фиишной обработки
+        # СЕБЕСТОИМОСТЬ
+        self.cost_price = round((self.width) / 100 * (self.length) / 100 * self.quantity * self.material.price_contractor)
+        finishka = Calculation(self.width, self.length)
+        self.cost_price += finishka.perimert() * self.FinishWork.price_contractor  # Добавляю стоимость фиишной обработки
+
 
         super(Product, self).save(*args, **kwargs)
 

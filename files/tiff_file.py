@@ -30,5 +30,27 @@ class Calculation:
         self.length = length
 
     def perimert(self):
-        return (self.width + self.length) * 2 / 100 # / 100 приводим к метрам
+        return (self.width + self.length) * 2 / 100  # / 100 приводим к метрам
 
+
+class Calc:
+    def __init__(self, images, material_price, quantity, finishWork_price):
+        self.price = None
+        self.quantity = None
+        self.finishWork_price = None
+        self.images = None
+        self.length = None
+        self.width = None
+        self.material_price = None
+        self.images = images
+        self.material_price = material_price
+        self.quantity = quantity
+        self.finishWork_price = finishWork_price
+
+    def price(self):
+        self.width, self.length, _ = check_tiff(self.images)  # Читаем размеры из Tiff
+        self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material_price)
+        finishka = Calculation(self.width, self.length)
+        self.price += finishka.perimert() * self.finishWork_price  # Добавляю стоимость фиишной обработки
+        print(self.price)
+        return self.price
