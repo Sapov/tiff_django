@@ -67,7 +67,7 @@ class View_order_item(LoginRequiredMixin, UpdateView):
 #     items = OrderItem.objects.filter(order=order_id)
 #     curent_order = Order.objects.get(pk=order_id)
 #     context = {'Orders': Orders, 'items': items, 'curent_order': curent_order}
-#     return render(request, "all_files_in_order.html", context)
+#     return render(request, "_all_files_in_order.html", context)
 
 
 class OrderUpdateView(UpdateView):
@@ -146,6 +146,7 @@ class ViewAllPayOrders(ListView):
 
 
 def about_file(request, file_id):
+    print(file_id)
     files = Product.objects.filter(id=file_id)
     print(files)
     return render(request, 'about_file.html', {'files': files})
