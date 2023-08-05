@@ -77,6 +77,9 @@ class OrderItem(models.Model):
         self.total_price = self.price_per_item * self.quantity
         super(OrderItem, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return f'{self.order}-{self.product}'
+
 
 def product_in_order_post_save(sender, instance, created, **kwargs):
     order = instance.order
