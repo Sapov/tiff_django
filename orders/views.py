@@ -67,7 +67,7 @@ class View_order_item(LoginRequiredMixin, UpdateView):
 #     items = OrderItem.objects.filter(order=order_id)
 #     curent_order = Order.objects.get(pk=order_id)
 #     context = {'Orders': Orders, 'items': items, 'curent_order': curent_order}
-#     return render(request, "all_files_in_order.html", context)
+#     return render(request, "_all_files_in_order.html", context)
 
 
 class OrderUpdateView(UpdateView):
@@ -130,12 +130,14 @@ def order_pay(request, order_id):
 
 @login_required
 def view_all_orders(request):
-    '''Посмотреть все заказы которы оплачены и поэтому в работе'''
-    Orders = Order.objects.filter(paid=True).order_by('id')
+    '''Посмотреть все заказы '''
+    Orders = Order.objects.all().order_by('id')
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
 
-class ViewAllPayOrders(ListView):
+class ViewAllPayOrders(LoginRequiredMixin, ListView):
+    '''Посмотреть все заказы которы оплачены и поэтому в работе'''
+
     model = Order
     template_name = 'all_view_orders_pay.html'
 
@@ -146,6 +148,7 @@ class ViewAllPayOrders(ListView):
 
 
 def about_file(request, file_id):
+    print(file_id)
     files = Product.objects.filter(id=file_id)
     print(files)
     return render(request, 'about_file.html', {'files': files})
@@ -158,8 +161,7 @@ def view_all_files_for_work_in_orders(request):
     num = []
     Orders = Order.objects.filter(paid=True).order_by('id')
     for order in Orders:
-        order_id = order.id
-        items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
+        items_in_order = OrderItem.objects.filter(order=order.id)  # файлы в заказе
         num.append(items_in_order)
 
     return render(request, "view_all_files_for_work_in_orders.html",
