@@ -11,6 +11,7 @@ from .forms import UserOrganisationForm
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
+# from .forms import OrderForm
 
 
 # from django.contrib.auth import get_user_model
@@ -166,6 +167,11 @@ def view_all_files_for_work_in_orders(request):
 
     return render(request, "view_all_files_for_work_in_orders.html",
                   {"Orders": Orders, 'num': num, 'title': 'Заказы в работе'})
+
+
+def New_ord(request):
+    form = OrderForm
+    return render(request, 'neworder.html')
 
 
 def user_organization_view(request):

@@ -1,9 +1,7 @@
 from django.core.management.base import BaseCommand
-from files.models import StatusProduct, TypePrint, Fields, FinishWork, Material
+from files.models import StatusProduct, TypePrint, Fields, FinishWork
 from orders.models import StatusOrder
-from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data, \
-    Material_data
-
+from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data
 
 #___________________________________________________
 # How import >> python manage.py add_test_data
@@ -29,14 +27,5 @@ class Command(BaseCommand):
                 work=item[0],
                 price_contractor=item[1],
                 price=item[2]
-
-            )
-        for item in Material_data:
-            Material.objects.get_or_create(
-                name=item[0],
-                type_print=item[1],
-                price_contractor=item[2],
-                price=item[3],
-                resolution_print=item[4]
 
             )
