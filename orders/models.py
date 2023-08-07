@@ -14,7 +14,7 @@ class StatusOrder(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.id}-{self.name}'
 
     class Meta:
         verbose_name_plural = 'Статусы'
@@ -55,19 +55,19 @@ def order_post_save(sender, instance, created, **kwargs):
     '''Если статус заказа Paid (Оплачен) - меняем все файлы в заказе на статус в работе '''
     paid = instance.paid
     id_order = instance.id
+    # status_order = instance.status # Статус заказа автоматически присваиваем тоже в раборте
     if paid:
         print('PAID')
+        # Статус заказа автоматически присваиваем тоже в раборте
+
+        # меняем все файлы в заказе на статус в работе
         all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
 
         for item in all_products_in_order:
-            print(item.product.id)
             file = Product.objects.get(id=item.product.id)
-            print(file)
-            print(file.status_product)
             status = StatusProduct.objects.get(id=2)
             file.status_product = status
             file.save()
-            print(file.status_product)
 
 
 post_save.connect(order_post_save, sender=Order)
