@@ -6,17 +6,17 @@ from .tiff_file import Calculation, check_tiff
 
 
 class FinishWork(models.Model):
-    work = models.CharField(max_length=255, verbose_name='финишная обработка')
-    price_contractor = models.FloatField(max_length=100, help_text='За 1 м. погонный',
+    work = models.CharField(max_length=255, verbose_name='Финишная обработка')
+    price_contractor = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный',
                                          verbose_name='Себестоимость работы в руб.', blank=True, null=True,
                                          default=None)  # стоимость в закупке
-    price = models.FloatField(max_length=100, help_text='За 1 м. погонный', verbose_name='Стоимость работы в руб.')
+    price = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный', verbose_name='Стоимость работы в руб.')
 
     def __str__(self):
         return f'{self.work} - {self.price} руб./1 м.п.'
 
     class Meta:
-        verbose_name_plural = 'Финишная обработка'
+        verbose_name_plural = 'Финишные обработки'
         verbose_name = 'Финишная обработка'
 
 
