@@ -25,6 +25,9 @@ class Order(models.Model):
     total_price = models.FloatField(max_length=10, null=True, help_text='Стоимость заказа',
                                     verbose_name='Общая Стоимость ',
                                     blank=True)
+    cost_total_price = models.FloatField(max_length=10, null=True, help_text='Себестоимость заказа',
+                                    verbose_name='Общая Себестоимость ',
+                                    blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
                                            verbose_name='организация платильщик', default=1)
     paid = models.BooleanField(verbose_name='заказ оплачен', default=False)
