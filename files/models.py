@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
-from .tiff_file import check_tiff, Calculation, Calc
+from .tiff_file import Calculation, check_tiff
 
 
 class FinishWork(models.Model):
@@ -121,11 +121,8 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         ''' расчет и запись стоимость баннера'''
 
-        # item = Calc(self.images, self.material.price, self.quantity, self.FinishWork.price)
-
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
-        price_per_item = self.material.price
-        self.price = round((self.width) / 100 * (self.length) / 100 * self.quantity * price_per_item)
+        self.price = round((self.width) / 100 * (self.length) / 100 * self.quantity * self.material.price)
         finishka = Calculation(self.width, self.length)
         self.price += finishka.perimert() * self.FinishWork.price  # Добавляю стоимость фиишной обработки
         # СЕБЕСТОИМОСТЬ

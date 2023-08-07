@@ -102,3 +102,5 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
 
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)
+
+# os.remove(f'media/{str(product.images)}')  # Удаление файла

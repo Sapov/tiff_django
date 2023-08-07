@@ -26,31 +26,32 @@ def check_tiff(file_name: str):
 
 class Calculation:
     def __init__(self, width, length):
+        # self.price = None
+        # self.perimetr = None
+        # self.quantity = quantity
+        # self.material = material
+        # self.resolution = None
         self.width = width
         self.length = length
+        # self.images = images
+        # self.finishWork_price = finishWork_price
 
-    def perimert(self):
-        return (self.width + self.length) * 2 / 100  # / 100 приводим к метрам
-
-
-class Calc:
-    def __init__(self, images, material_price, quantity, finishWork_price):
-        self.price = None
-        self.quantity = None
-        self.finishWork_price = None
-        self.images = None
-        self.length = None
-        self.width = None
-        self.material_price = None
-        self.images = images
-        self.material_price = material_price
-        self.quantity = quantity
-        self.finishWork_price = finishWork_price
+    def size_images(self):
+        width, length, resolution = check_tiff(self.images)  # Читаем размеры из Tiff
+        self.width = width
+        self.length = length
+        self.resolution = resolution
+        print('размеры', self.width, self.length)
 
     def price(self):
-        self.width, self.length, _ = check_tiff(self.images)  # Читаем размеры из Tiff
-        self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material_price)
-        finishka = Calculation(self.width, self.length)
-        self.price += finishka.perimert() * self.finishWork_price  # Добавляю стоимость фиишной обработки
-        print(self.price)
+        self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material.price)
+        print('PRICE', self.price)
+        return self
+
+    def perimert(self):
+        perimetr = (self.width + self.length) * 2 / 100  # / 100 приводим к метрам
+        return perimetr
+
+    def price_finishka(self):
+        self.price += self.perimetr * self.finishWork_price
         return self.price
