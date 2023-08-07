@@ -25,6 +25,9 @@ class Order(models.Model):
     total_price = models.FloatField(max_length=10, null=True, help_text='Стоимость заказа',
                                     verbose_name='Общая Стоимость ',
                                     blank=True)
+    cost_total_price = models.FloatField(max_length=10, null=True, help_text='Себестоимость заказа',
+                                    verbose_name='Общая Себестоимость ',
+                                    blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
                                            verbose_name='организация платильщик', default=1)
     paid = models.BooleanField(verbose_name='заказ оплачен', default=False)
@@ -60,8 +63,10 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Ордер')
     product = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Продукт')
     price_per_item = models.FloatField(max_length=100, help_text='За 1 шт.', verbose_name='Стоимость шт.', blank=True)
+    cost_price_per_item = models.FloatField(max_length=100, help_text='За 1 шт.', verbose_name='Себестоимость шт.', blank=True, null=True)
     quantity = models.IntegerField(default=1, help_text='Введите количество', verbose_name="Количество")
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    cost_total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Себестоимость шт.', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
@@ -75,6 +80,12 @@ class OrderItem(models.Model):
         print(price_per_item)
         self.price_per_item = price_per_item
         self.total_price = self.price_per_item * self.quantity
+        # Cost
+        cost_price_per_item = self.product.cost_price
+        print(cost_price_per_item)
+        self.cost_price_per_item = cost_price_per_item
+        self.cost_total_price = self.cost_price_per_item * self.quantity
+
         super(OrderItem, self).save(*args, **kwargs)
 
     def __str__(self):
