@@ -77,6 +77,12 @@ class OrderItem(models.Model):
         print(price_per_item)
         self.price_per_item = price_per_item
         self.total_price = self.price_per_item * self.quantity
+        # Cost
+        cost_price_per_item = self.product.cost_price
+        print(cost_price_per_item)
+        self.cost_price_per_item = cost_price_per_item
+        self.cost_total_price = self.cost_price_per_item * self.quantity
+
         super(OrderItem, self).save(*args, **kwargs)
 
     def __str__(self):
