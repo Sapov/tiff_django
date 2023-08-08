@@ -70,7 +70,7 @@ class StatusProduct(models.Model):
     status = models.CharField(max_length=64, verbose_name='Статус файла')
 
     def __str__(self):
-        return f'{self.id}  - {self.status}'
+        return f'{self.status}'
 
     class Meta:
         verbose_name_plural = 'Статусы файлов'
