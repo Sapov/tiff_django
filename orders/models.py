@@ -1,3 +1,7 @@
+import os
+import zipfile
+from datetime import date
+
 from django.db import models
 from account.models import Organisation
 from files.models import Product, StatusProduct
@@ -5,6 +9,7 @@ from django.db.models.signals import post_save
 from django.urls import reverse
 
 from django.conf import settings
+from .utils import Utils
 
 
 class StatusOrder(models.Model):
@@ -51,6 +56,7 @@ class Order(models.Model):
         return reverse('orders:add_file_in_order', args=[self.id])
 
 
+
 def order_post_save(sender, instance, created, **kwargs):
     '''Если статус заказа Paid (Оплачен) - меняем все файлы в заказе на статус в работе '''
     paid = instance.paid
@@ -68,6 +74,18 @@ def order_post_save(sender, instance, created, **kwargs):
             status = StatusProduct.objects.get(id=2)
             file.status_product = status
             file.save()
+        # else:
+        '''если UNPAID статус заказа оформлен для файлов'''
+
+        # Архивация файлов со статусом оплачен
+        # lst_files = []
+        # for item in all_products_in_order:
+        #     file = Product.objects.get(id=item.product.id)
+        #     lst_files.append(str(file))
+        lst_files = [str(Product.objects.get(id=item.product.id)) for i in all_products_in_order]
+        # архивация заказа
+        Utils.set_dir()
+        Utils.arhvive(lst_files, id_order)# Архивируемся
 
 
 post_save.connect(order_post_save, sender=Order)
