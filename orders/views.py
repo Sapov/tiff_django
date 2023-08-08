@@ -11,6 +11,8 @@ from .forms import UserOrganisationForm
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
+
+
 # from .forms import OrderForm
 
 
@@ -21,14 +23,6 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     model = Order
     fields = ['organisation_payer']
     login_url = 'login'
-
-    # def get_queryset(self):
-    #     # qs = super().get_queryset()
-    #     queryset = Organisation.objects.filter(Contractor=self.request.user)
-    #     print(queryset)
-    #     print(queryset.filter(organisation_payer=self.request.user))
-    #
-    #     return queryset.filter(organisation_payer=self.request.user)
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
@@ -144,7 +138,6 @@ class ViewAllPayOrders(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = Order.objects.filter(paid=True).order_by('id')
-
         return queryset
 
 
@@ -178,5 +171,22 @@ def user_organization_view(request):
     # if request.method == 'POST':
     user = request.user
     form = UserOrganisationForm(user=user)
-    a1 = Order.objects.create(**form.cleaned_data)
+    # a1 = Order.objects.create(**form.cleaned_data)
     return render(request, 'user_organization.html', {'form': form})
+
+
+# def order_pay_check(request, order_id):
+    # Orders = Order.objects.get(id=order_id)
+    # # print(Orders)
+    # items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
+    # print(items_in_order)
+    # for i in items_in_order:
+    #     print('#', i.id)
+    #     f = Product.objects.get(id=i.id)
+    #     print(f.status_product.id)
+    #     f.status_product.id = 3
+    #     f.status_product.save()
+    #     print(f.status_product)
+    # text = 'Оплатить можно на карту 0000 0000 0000 0000'
+    # context = {'Orders': Orders, 'text': text}
+    # return render(request, "orderpay.html", context)

@@ -1,10 +1,14 @@
+import os
+
 from django.db import models
 from account.models import Organisation
 from files.models import Product, StatusProduct
 from django.db.models.signals import post_save
 from django.urls import reverse
-
+from files.tiff_file import arh
 from django.conf import settings
+from mysite import settings
+from mysite.settings import MEDIA_URL
 
 
 class StatusOrder(models.Model):
@@ -14,7 +18,7 @@ class StatusOrder(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.id}-{self.name}'
 
     class Meta:
         verbose_name_plural = 'Статусы'
@@ -25,9 +29,6 @@ class Order(models.Model):
     total_price = models.FloatField(max_length=10, null=True, help_text='Стоимость заказа',
                                     verbose_name='Общая Стоимость ',
                                     blank=True)
-    cost_total_price = models.FloatField(max_length=10, null=True, help_text='Себестоимость заказа',
-                                         verbose_name='Общая Себестоимость ',
-                                         blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
                                            verbose_name='организация платильщик', default=1)
     paid = models.BooleanField(verbose_name='заказ оплачен', default=False)
@@ -50,24 +51,75 @@ class Order(models.Model):
     def get_absolute_url(self):
         return reverse('orders:add_file_in_order', args=[self.id])
 
+    # if order.paid:
+    #     instance.product.status_product = 7
+    #     print('order.paid', order.paid)
+    #     print('instance.product.status_product', instance.product.status_product)
+    # print('order.paid', order.paid)
+    # print('instance.product.status_product', instance.product.status_product)
+
 
 def order_post_save(sender, instance, created, **kwargs):
-    '''Если статус заказа Paid (Оплачен) - меняем все файлы в заказе на статус в работе '''
+    '''если в заказе Paid = True то всем файлам заказа ставим состояние в работе'''
     paid = instance.paid
-    id_order = instance.id
-    # status_order = instance.status # Статус заказа автоматически присваиваем тоже в раборте
+    order_id = instance.id
+
     if paid:
-        print('PAID')
-        # Статус заказа автоматически присваиваем тоже в раборте
-
-        # меняем все файлы в заказе на статус в работе
-        all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-
-        for item in all_products_in_order:
-            file = Product.objects.get(id=item.product.id)
-            status = StatusProduct.objects.get(id=2)
+        print('PAID', 'номер заказа', order_id)
+        all_products_in_order = OrderItem.objects.filter(order=order_id, is_active=True)
+        print('SET ORDER', all_products_in_order)
+        for i in all_products_in_order:
+            file = Product.objects.filter(images=i.product)
+            status = StatusProduct.objects.get(id=3)
             file.status_product = status
-            file.save()
+            file.status_product.save()
+
+            print(file)
+            print(status)
+            # for j in file:
+            #     print(j)
+            #     j.status_product = status
+            #     j.status_product.save()
+        # print('file.status_product', file.status_product)
+        # file.status_product.id = 2
+        # file.status_product.save()
+        lst = [i.product.images for i in all_products_in_order]
+        for i in all_products_in_order:
+            print(i.product)
+            print(os.chdir(f'media/{str(i.product[:14])}'))
+            print(os.getcwd())
+
+        print('ARHIVS', lst)
+
+        # print(os.getcwd())
+
+        # arh(lst, order_id)
+        #
+
+    #     print(i.product.id)
+    #     # print(i.product.color_model)
+    #     file = Product.objects.filter(id=i.product.id)
+    #     for i in file:
+    #         print(i.status_product.id)
+    #         print(i.status_product)
+    #         i.status_product.id = 2
+    #         i.save()
+    #         print(i.status_product.id)
+    #
+
+    # num = []
+    # Orders = Order.objects.filter(paid=True, order=order_id)
+    # for order in Orders:
+    #     items_in_order = OrderItem.objects.filter(order=order.id)  # файлы в заказе
+    #     num.append(items_in_order)
+    # print('items_in_order', items_in_order)
+
+    else:
+        print('UNPAID')
+        all_products_in_order = OrderItem.objects.filter(order=order_id, is_active=True)
+        print(all_products_in_order)
+        for item in all_products_in_order:
+            print('item', item, 'it.id', item.id)
 
 
 post_save.connect(order_post_save, sender=Order)
@@ -77,12 +129,8 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Ордер')
     product = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Продукт')
     price_per_item = models.FloatField(max_length=100, help_text='За 1 шт.', verbose_name='Стоимость шт.', blank=True)
-    cost_price_per_item = models.FloatField(max_length=100, help_text='За 1 шт.', verbose_name='Себестоимость шт.',
-                                            blank=True, null=True)
     quantity = models.IntegerField(default=1, help_text='Введите количество', verbose_name="Количество")
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    cost_total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name='Себестоимость шт.',
-                                           blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
@@ -96,12 +144,6 @@ class OrderItem(models.Model):
         print(price_per_item)
         self.price_per_item = price_per_item
         self.total_price = self.price_per_item * self.quantity
-        # Cost
-        cost_price_per_item = self.product.cost_price
-        print('cost_price_per_item', cost_price_per_item)
-        self.cost_price_per_item = cost_price_per_item
-        self.cost_total_price = self.cost_price_per_item * self.quantity
-
         super(OrderItem, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -111,17 +153,14 @@ class OrderItem(models.Model):
 def product_in_order_post_save(sender, instance, created, **kwargs):
     order = instance.order
     all_products_in_order = OrderItem.objects.filter(order=order, is_active=True)
+
     order_total_price = 0
-    cost_order_total_price = 0
 
     for item in all_products_in_order:
         order_total_price += item.total_price
-        cost_order_total_price += item.cost_total_price
 
     instance.order.total_price = order_total_price
-    instance.order.cost_total_price = cost_order_total_price
-    print(instance.order.total_price)
-    print('Себестоимость', cost_order_total_price)
+    print('instance.order.total_price', instance.order.total_price)
     instance.order.save(force_update=True)
 
     # -----------
@@ -130,7 +169,9 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
     instance.product.in_order = True
     instance.product.save(force_update=True)
 
+    # # Если ордер оплачен
+    # all_products_in_order_paid = OrderItem.objects.filter(order=order, is_active=True, paid=True)
+    # print('quryset', all_products_in_order_paid)
+
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)
-
-# os.remove(f'media/{str(product.images)}')  # Удаление файла
