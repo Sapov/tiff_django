@@ -73,9 +73,12 @@ def order_post_save(sender, instance, created, **kwargs):
         '''если UNPAID статус заказа оформлен для файлов'''
 
         lst_files = [str(Product.objects.get(id=item.product.id)) for i in all_products_in_order]
+        lst_files_only = [i[i.rindex('/') + 1:] for i in lst_files] # Оставляем только имена файлов
+
+        print('NAME FiLES', lst_files_only)
         # архивация заказа
         Utils.set_dir_media()
-        Utils.arhvive(lst_files, id_order)  # Архивируемся
+        Utils.arhvive(lst_files_only, id_order)  # Архивируемся
         # --------------------------Work in Yandex Disk--------------------------------#
         Yadisk.create_folder()  # Создаем папку на yadisk с датой
         Yadisk.add_yadisk_locate()  # copy files in yadisk
