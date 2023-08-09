@@ -43,7 +43,6 @@ class Utils:
 
 
 class Yadisk:
-
     path = Utils.path_save
 
     @classmethod
@@ -58,13 +57,28 @@ class Yadisk:
 
     @classmethod
     def add_yadisk_locate(cls, path=path):
-        """закидываем файлы на yadisk локально на ubuntu"""
+        """закидываем файлы на yadisk локально на ubuntu
+        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
+        Я-ДИСКЕ затирается новым"""
         Path.cwd()  # Идем в текущий каталог
+        curent_folder = os.getcwd()
+        print(curent_folder)
         lst_files = os.listdir()  # read name files from folder
         for i in lst_files:
             if i.endswith("txt") or i.endswith("zip"):
                 print(f'Копирую {i} в {LOCAL_PATH_YADISK}{path}')
-                shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
+                '''Проверяем есть ли файл'''
+                os.chdir(f'{LOCAL_PATH_YADISK}{path}')  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
+                if os.path.exists(i):
+                    os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
+                    # test print('Check', os.listdir())
+                    os.chdir(curent_folder) # test print('переходим обратно')
+                    print('Теперь мы в', os.getcwd())
+                    shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
+                else:
+                    print('No file, CREATE File')
+                    os.chdir(curent_folder)
+                    shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
 
     @classmethod
     def add_link_from_folder_yadisk(cls, path=path):
