@@ -9,7 +9,7 @@ from django.db.models.signals import post_save
 from django.urls import reverse
 
 from django.conf import settings
-from .utils import Utils
+from .utils import Utils, Yadisk
 
 
 class StatusOrder(models.Model):
@@ -84,8 +84,13 @@ def order_post_save(sender, instance, created, **kwargs):
         #     lst_files.append(str(file))
         lst_files = [str(Product.objects.get(id=item.product.id)) for i in all_products_in_order]
         # архивация заказа
-        Utils.set_dir()
+        Utils.set_dir_media()
         Utils.arhvive(lst_files, id_order)# Архивируемся
+        # --------------------------Work in Yandex Disk--------------------------------#
+
+        Yadisk.create_folder()  # Создаем папку на yadisk с датой
+        Yadisk.add_yadisk_locate()  # copy files in yadisk
+        Yadisk.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
 
 
 post_save.connect(order_post_save, sender=Order)
