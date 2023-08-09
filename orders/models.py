@@ -9,7 +9,7 @@ from django.db.models.signals import post_save
 from django.urls import reverse
 
 from django.conf import settings
-from .utils import Utils
+from .utils import Utils, Yadisk
 
 
 class StatusOrder(models.Model):
@@ -56,19 +56,14 @@ class Order(models.Model):
         return reverse('orders:add_file_in_order', args=[self.id])
 
 
-
 def order_post_save(sender, instance, created, **kwargs):
-    '''Если статус заказа Paid (Оплачен) - меняем все файлы в заказе на статус в работе '''
-    paid = instance.paid
+    '''Если статус заказа  (В работе) - меняем все файлы в заказе на статус в работе '''
+    status = instance.status
     id_order = instance.id
-    # status_order = instance.status # Статус заказа автоматически присваиваем тоже в раборте
-    if paid:
-        print('PAID')
-        # Статус заказа автоматически присваиваем тоже в раборте
-
+    if status.id == 2: # Если статус "В работе"
+        print('in Work')
         # меняем все файлы в заказе на статус в работе
         all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-
         for item in all_products_in_order:
             file = Product.objects.get(id=item.product.id)
             status = StatusProduct.objects.get(id=2)
@@ -77,15 +72,14 @@ def order_post_save(sender, instance, created, **kwargs):
         # else:
         '''если UNPAID статус заказа оформлен для файлов'''
 
-        # Архивация файлов со статусом оплачен
-        # lst_files = []
-        # for item in all_products_in_order:
-        #     file = Product.objects.get(id=item.product.id)
-        #     lst_files.append(str(file))
         lst_files = [str(Product.objects.get(id=item.product.id)) for i in all_products_in_order]
         # архивация заказа
-        Utils.set_dir()
-        Utils.arhvive(lst_files, id_order)# Архивируемся
+        Utils.set_dir_media()
+        Utils.arhvive(lst_files, id_order)  # Архивируемся
+        # --------------------------Work in Yandex Disk--------------------------------#
+        Yadisk.create_folder()  # Создаем папку на yadisk с датой
+        Yadisk.add_yadisk_locate()  # copy files in yadisk
+        Yadisk.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
 
 
 post_save.connect(order_post_save, sender=Order)
