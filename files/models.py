@@ -6,17 +6,17 @@ from .tiff_file import Calculation, check_tiff
 
 
 class FinishWork(models.Model):
-    work = models.CharField(max_length=255, verbose_name='Финишная обработка')
-    price_contractor = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный',
+    work = models.CharField(max_length=255, verbose_name='финишная обработка')
+    price_contractor = models.FloatField(max_length=100, help_text='За 1 м. погонный',
                                          verbose_name='Себестоимость работы в руб.', blank=True, null=True,
                                          default=None)  # стоимость в закупке
-    price = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный', verbose_name='Стоимость работы в руб.')
+    price = models.FloatField(max_length=100, help_text='За 1 м. погонный', verbose_name='Стоимость работы в руб.')
 
     def __str__(self):
         return f'{self.work} - {self.price} руб./1 м.п.'
 
     class Meta:
-        verbose_name_plural = 'Финишные обработки'
+        verbose_name_plural = 'Финишная обработка'
         verbose_name = 'Финишная обработка'
 
 
@@ -58,7 +58,7 @@ class Material(models.Model):
                                            blank=True, null=True, default=None)
 
     def __str__(self):
-        return f' {self.name} -     \t- {self.type_print}'
+        return f' {self.name} - {self.type_print}'
 
     class Meta:
         verbose_name_plural = 'Материалы для печати'
@@ -70,7 +70,7 @@ class StatusProduct(models.Model):
     status = models.CharField(max_length=64, verbose_name='Статус файла')
 
     def __str__(self):
-        return f'{self.status}'
+        return f'{self.id}-{self.status}'
 
     class Meta:
         verbose_name_plural = 'Статусы файлов'
@@ -122,14 +122,16 @@ class Product(models.Model):
         ''' расчет и запись стоимость баннера'''
 
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
-        self.price = round((self.width) / 100 * (self.length) / 100 * self.quantity * self.material.price)
+        # price_per_item = self.material.price
+        # self.price = item.price(self.quantity, self.material.price)
+        self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material.price)
         finishka = Calculation(self.width, self.length)
         self.price += finishka.perimert() * self.FinishWork.price  # Добавляю стоимость фиишной обработки
         # СЕБЕСТОИМОСТЬ
-        self.cost_price = round((self.width) / 100 * (self.length) / 100 * self.quantity * self.material.price_contractor)
+        self.cost_price = round(
+            (self.width) / 100 * (self.length) / 100 * self.quantity * self.material.price_contractor)
         finishka = Calculation(self.width, self.length)
         self.cost_price += finishka.perimert() * self.FinishWork.price_contractor  # Добавляю стоимость фиишной обработки
-
 
         super(Product, self).save(*args, **kwargs)
 

@@ -3,7 +3,6 @@ from django.urls import path
 from .views import OrderCreateView, OrderItemCreateView, view_order, View_order_item, \
     OrderUpdateView, DeleteOrderView, add_files_in_order, add_item_in_order, del_item_in_order, order_pay, \
     view_all_orders, view_all_files_for_work_in_orders, ViewAllPayOrders, about_file, user_organization_view
-
 app_name = 'orders'
 
 urlpatterns = [
@@ -23,6 +22,7 @@ urlpatterns = [
     path('view_all_orders_pay/', ViewAllPayOrders.as_view(), name="view_all_orders_pay"), # все оплаченые заказы
     path('view_all_files_for_work_in_orders/', view_all_files_for_work_in_orders, name="view_all_files_for_work_in_orders"), # все файлы в работе
     path('order_pay/<int:order_id>', order_pay, name="order_pay"),
+    # path('order_pay_check/<int:order_id>', order_pay_check, name="order_pay_check"),
 
     path('about_file/<int:file_id>', about_file, name="about_file"),
     # path('add/<product_id>/', addin, name="add"),

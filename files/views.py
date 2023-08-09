@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
-from .models import Product, Material
+from .models import Product, Material, FinishWork
 from .forms import AddFiles
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
@@ -56,9 +56,10 @@ def price(request):
     price_shirka = Material.objects.filter(type_print=1)  # Только широкоформатная печать!!!
     price_interierka = Material.objects.filter(type_print=2)  # Только Интерьерная печать!!!
     price_UV = Material.objects.filter(type_print=3)  # Только UV печать!!!
+    finishka = FinishWork.objects.all()  # Только UV печать!!!
     return render(request, "price.html",
                   {"price_shirka": price_shirka, "price_interierka": price_interierka, "price_UV": price_UV,
-                   'title': 'Прайс-листы для Рекламных агентств'})
+                   'finishka': finishka, 'title': 'Прайс-листы для Рекламных агентств'})
 
 
 class FileList(LoginRequiredMixin, ListView):

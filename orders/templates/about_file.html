@@ -18,6 +18,7 @@
         <th>created_at</th>
         <th>Финишка</th>
         <th>Fields</th>
+        <th>status_product</th>
     </thead>
 
     {% for file in files %}
@@ -33,8 +34,7 @@
         <td>{{ file.created_at }}</td>
         <td>{{ file.FinishWork }}</td>
         <td>{{ file.Fields }}</td>
-
-
+        <td>{{ file.status_product.status }}</td>
     </tr>
     {% endfor%}
     </tbody>

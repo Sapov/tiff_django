@@ -2,20 +2,18 @@
 <title>{% block title %} {{curent_order}} {% endblock %}</title>
 {% block body %}
 <h3> {{curent_order}}</h3>
-<h3>Все файлы поступившие в работу:</h3>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>Заказ №</th>
                 <th>Дата</th>
                 <th>Платильщик</th>
                 <th>Оплата</th>
                 <th>Статус</th>
             </thead>
             <tbody>
-
             {% for order in Orders %}
             <tr>
                 <td>{{ order.id }}</td>
@@ -42,8 +40,9 @@
             <th>Preview</th>
             <th>Link</th>
             <th>Материал</th>
-            <th>Статус файла</th>
+            <th>Финишная обработка</th>
             <th>О файле</th>
+            <th>Статус</th>
             </thead>
             {% for i in item %}
             <tbody>
@@ -53,8 +52,10 @@
                 </td>
                 <td><a href="/media/{{ i.product }}" </a>Скачать</td>
                 <td>{{ i.product.material }}</td>
-                <td>{{ i.product.status_product }}</td>
-                <td><a href="{% url 'orders:about_file' i.id %}"</a>О файле:</td>
+                <td>{{ i.product.FinishWork }}</td>
+                <td><a href="{% url 'orders:about_file' i.id %}"</a>about</td>
+                <td>{{ i.product.status_product.status }}</td>
+
             </tr>
             {% endfor %}
             </tbody>
