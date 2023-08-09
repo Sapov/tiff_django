@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
@@ -99,7 +101,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
     cost_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
 
-    images = models.FileField(upload_to='image/%d_%m_%y')
+    images = models.FileField(upload_to=f'image/{date.today()}')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
     FinishWork = models.ForeignKey('FinishWork', on_delete=models.CASCADE, verbose_name='Финишная обработка', default=1)
@@ -119,11 +121,9 @@ class Product(models.Model):
         verbose_name = 'Файл'
 
     def save(self, *args, **kwargs):
-        ''' расчет и запись стоимость баннера'''
+        ''' расчет и запись стоимости баннера'''
 
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
-        # price_per_item = self.material.price
-        # self.price = item.price(self.quantity, self.material.price)
         self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material.price)
         finishka = Calculation(self.width, self.length)
         self.price += finishka.perimert() * self.FinishWork.price  # Добавляю стоимость фиишной обработки

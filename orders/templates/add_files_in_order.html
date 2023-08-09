@@ -13,7 +13,7 @@
                 <th>Оплата</th>
                 <th>Сумма</th>
                 <th>Статус</th>
-             </thead>
+            </thead>
             <tbody>
 
             <tr>
@@ -22,13 +22,18 @@
                 <td>{{ Orders.paid }}</td>
                 <td>{{ Orders.total_price }}</td>
                 <td>{{ Orders.status }}</td>
-<!--                <td><a href="{% url 'orders:order_pay' Orders.id %}">Оплатить</a>-->
-                <td><button type="submit" class="btn btn-primary" onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оплатить</button></td>
+                <!--                <td><a href="{% url 'orders:order_pay' Orders.id %}">Оплатить</a>-->
+                <td>
+                    <button type="submit" class="btn btn-primary"
+                            onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оплатить
+                    </button>
+                </td>
             </tr>
         </table>
         </tbody>
     </div>
 </div>
+{% if items.count > 0 %}
 
 <h5> Файлы которые можно добавить в заказ: </h5>
 
@@ -58,6 +63,8 @@
         </table>
     </div>
 </div>
+{% endif %}
+
 <h5> Файлы в заказе: </h5>
 <div class="row">
     <div class="col-md-12">

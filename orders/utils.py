@@ -27,10 +27,13 @@ class Utils:
 
     @staticmethod
     def set_dir_media():
-        '''выбираем дирикторию media'''
+        '''выбираем дирeкторию media'''
+        print(f' Мы до  выбора директории {os.getcwd()}')
+        print(f'Смотрим переменную __file__{__file__}')
         curent_path = os.getcwd()
         if curent_path[-5:] != 'media':
-            os.chdir('media')  # перейти в директорию
+            os.chdir(f'media/image/{date.today()}')  # перейти в директорию
+        print(f' Мы Выбрали {os.getcwd()}')
 
     @staticmethod
     def path_for_yadisk(organizations, id_order):
@@ -72,13 +75,17 @@ class Yadisk:
                 if os.path.exists(i):
                     os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
                     # test print('Check', os.listdir())
-                    os.chdir(curent_folder) # test print('переходим обратно')
-                    print('Теперь мы в', os.getcwd())
+                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
+
                     shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
+                    # Возвращаемся в корень  print(f'ВОТ ОН КАСТЫЛЬ {__file__[:-16]}')
+                    print(f'ВОТ ОН КАСТЫЛЬ {__file__[:-16]}')
+                    os.chdir(__file__[:-16])
                 else:
-                    print('No file, CREATE File')
                     os.chdir(curent_folder)
                     shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
+                    # Возвращаемся в корень
+                    os.chdir(__file__[:-16])
 
     @classmethod
     def add_link_from_folder_yadisk(cls, path=path):
