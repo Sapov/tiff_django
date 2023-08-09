@@ -56,7 +56,6 @@ class Order(models.Model):
         return reverse('orders:add_file_in_order', args=[self.id])
 
 
-
 def order_post_save(sender, instance, created, **kwargs):
     '''Если статус заказа Paid (Оплачен) - меняем все файлы в заказе на статус в работе '''
     paid = instance.paid
@@ -85,7 +84,7 @@ def order_post_save(sender, instance, created, **kwargs):
         lst_files = [str(Product.objects.get(id=item.product.id)) for i in all_products_in_order]
         # архивация заказа
         Utils.set_dir_media()
-        Utils.arhvive(lst_files, id_order)# Архивируемся
+        Utils.arhvive(lst_files, id_order)  # Архивируемся
         # --------------------------Work in Yandex Disk--------------------------------#
 
         Yadisk.create_folder()  # Создаем папку на yadisk с датой
