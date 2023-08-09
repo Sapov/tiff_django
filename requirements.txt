@@ -10,3 +10,4 @@ python-dotenv~=1.0.0
 easy_thumbnails
 
 tqdm~=4.65.0
+data~=0.4
