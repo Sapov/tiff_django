@@ -119,11 +119,9 @@ class Product(models.Model):
         verbose_name = 'Файл'
 
     def save(self, *args, **kwargs):
-        ''' расчет и запись стоимость баннера'''
+        ''' расчет и запись стоимости баннера'''
 
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
-        # price_per_item = self.material.price
-        # self.price = item.price(self.quantity, self.material.price)
         self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material.price)
         finishka = Calculation(self.width, self.length)
         self.price += finishka.perimert() * self.FinishWork.price  # Добавляю стоимость фиишной обработки
