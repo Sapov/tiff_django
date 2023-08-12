@@ -2,7 +2,9 @@ from django.contrib import admin
 from django.urls import path
 from .views import OrderCreateView, OrderItemCreateView, view_order, View_order_item, \
     OrderUpdateView, DeleteOrderView, add_files_in_order, add_item_in_order, del_item_in_order, order_pay, \
-    view_all_orders, view_all_files_for_work_in_orders, ViewAllPayOrders, about_file, user_organization_view
+    view_all_orders, view_all_files_for_work_in_orders, ViewAllPayOrders, about_file, user_organization_view, \
+    report_complite_orders
+
 app_name = 'orders'
 
 urlpatterns = [
@@ -25,6 +27,7 @@ urlpatterns = [
     # path('order_pay_check/<int:order_id>', order_pay_check, name="order_pay_check"),
 
     path('about_file/<int:file_id>', about_file, name="about_file"),
+    path('report/', report_complite_orders, name="report_complite_orders"),
     # path('add/<product_id>/', addin, name="add"),
     # path('files/', FilesCreate.as_view())
 
