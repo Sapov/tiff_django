@@ -60,7 +60,7 @@ def order_post_save(sender, instance, created, **kwargs):
     '''Если статус заказа  (В работе) - меняем все файлы в заказе на статус в работе '''
     status = instance.status
     id_order = instance.id
-    if status.id == 2: # Если статус "В работе"
+    if status.id == 2:  # Если статус "В работе"
         print('in Work')
         # меняем все файлы в заказе на статус в работе
         all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
@@ -73,7 +73,7 @@ def order_post_save(sender, instance, created, **kwargs):
         '''если UNPAID статус заказа оформлен для файлов'''
 
         lst_files = [str(Product.objects.get(id=item.product.id)) for i in all_products_in_order]
-        lst_files_only = [i[i.rindex('/') + 1:] for i in lst_files] # Оставляем только имена файлов
+        lst_files_only = [i[i.rindex('/') + 1:] for i in lst_files]  # Оставляем только имена файлов
 
         print('NAME FiLES', lst_files_only)
         # архивация заказа

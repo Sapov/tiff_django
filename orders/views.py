@@ -6,7 +6,6 @@ from django.urls import reverse_lazy
 from account.models import Organisation
 # from account.models import Organisation
 from files.models import Product
-from .forms import *
 from .forms import UserOrganisationForm
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -190,3 +189,11 @@ def user_organization_view(request):
     # text = 'Оплатить можно на карту 0000 0000 0000 0000'
     # context = {'Orders': Orders, 'text': text}
     # return render(request, "orderpay.html", context)
+
+
+def report_complite_orders(request):
+    '''Отчет от выполненных заказах'''
+    order = Order.objects.filter(status=3)
+    return render(request, "report_complite_orders.html",
+                  {"order": order, 'title': 'Заказы в работе'})
+

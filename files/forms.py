@@ -18,3 +18,8 @@ class AddFiles(forms.Form):
     # material = forms.ModelChoiceField(queryset=Material.objects.filter(type_print=1))
     quantity = forms.CharField(max_length=29)
 
+
+class UploadArhive(forms.ModelForm):
+    class Meta:
+        model = UploadArh
+        fields = ('__all__')
