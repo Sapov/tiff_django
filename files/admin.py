@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Material, Product, Contractor, TypePrint, Fields, FinishWork, StatusProduct
+from .models import Material, Product, Contractor, TypePrint, Fields, FinishWork, StatusProduct, UploadArh
 from account.models import Organisation
 
 
@@ -27,6 +27,8 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(Organisation)
 admin.site.register(Contractor)
 admin.site.register(Fields)
+
+
 # admin.site.register(FinishWork)
 
 
@@ -37,8 +39,8 @@ class FinishWorkAdmin(admin.ModelAdmin):
     class Meta:
         model = FinishWork
 
-admin.site.register(FinishWork, FinishWorkAdmin)
 
+admin.site.register(FinishWork, FinishWorkAdmin)
 
 
 class TypePrintAdmin(admin.ModelAdmin):
@@ -50,3 +52,4 @@ class TypePrintAdmin(admin.ModelAdmin):
 
 admin.site.register(TypePrint, TypePrintAdmin)
 admin.site.register(StatusProduct)
+admin.site.register(UploadArh)

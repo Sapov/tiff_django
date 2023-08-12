@@ -1,9 +1,7 @@
 from datetime import date
-
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
-
 from .tiff_file import Calculation, check_tiff
 
 
@@ -124,6 +122,8 @@ class Product(models.Model):
         ''' расчет и запись стоимости баннера'''
 
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
+        #Сравниваем размеры с разрешением материала печати
+
         self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material.price)
         finishka = Calculation(self.width, self.length)
         self.price += finishka.perimert() * self.FinishWork.price  # Добавляю стоимость фиишной обработки
@@ -145,3 +145,7 @@ class Fields(models.Model):
     class Meta:
         verbose_name_plural = 'Поля'
         verbose_name = 'Поле вокруг печати'
+
+
+class UploadArh(models.Model):
+    path_file = models.FileField(upload_to='upload_arhive')

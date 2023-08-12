@@ -107,16 +107,9 @@ class OrderItem(models.Model):
         verbose_name = 'Товар в заказе'
 
     def save(self, *args, **kwargs):
-        price_per_item = self.product.price
-        print(price_per_item)
-        self.price_per_item = price_per_item
-        self.total_price = self.price_per_item * self.quantity
+        self.total_price = self.product.price * self.quantity
         # Cost
-        cost_price_per_item = self.product.cost_price
-        print('cost_price_per_item', cost_price_per_item)
-        self.cost_price_per_item = cost_price_per_item
-        self.cost_total_price = self.cost_price_per_item * self.quantity
-
+        self.cost_total_price = self.product.cost_price * self.quantity
         super(OrderItem, self).save(*args, **kwargs)
 
     def __str__(self):

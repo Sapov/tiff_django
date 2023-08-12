@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import index, delete, FilesUpdateView, FilesCreateView, price, FileList
+from .views import index, delete, FilesUpdateView, FilesCreateView, price, FileList, upload_arh
 
 app_name = 'files'
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('edit/<pk>', FilesUpdateView.as_view(), name="update_files"),  # форма редактирования файла
     path('delete/<int:id>/', delete),
     path('price/', price, name="price"), # прайс-лист
+    path('upload/', upload_arh, name="upload_arh"),  # загрузка архива файла
 
 ]
