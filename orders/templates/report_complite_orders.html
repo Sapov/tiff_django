@@ -2,7 +2,7 @@
 <title>{% block title %} Отчет по выполненым ордерам {% endblock %}</title>
 {% block body %}
 <h3>Отчет по выполненым ордерам</h3>
-<form action="/report/" method="post", enctype="multipart/form-data">
+<form action="{%  url 'orders:report_complite_orders' %}" method="post", enctype="multipart/form-data">
 
     {% csrf_token %}
     {{ form.as_p }}
@@ -39,12 +39,9 @@
                 <td>{{ item.created }}</td>
                 <td>{{ item.Contractor }}</td>
                 <td>
-
             </tr>
                 {% endfor%}
         </table>
-
-
         </tbody>
 
     </div>

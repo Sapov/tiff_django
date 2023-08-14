@@ -193,7 +193,11 @@ def user_organization_view(request):
 
 def report_complite_orders(request):
     '''Отчет от выполненных заказах'''
-    order = Order.objects.filter(status=3)
+    date_start = request.POST['date_start']
+    date_finish = request.POST['date_finish']
+    print(date_finish, date_start )
+    order = Order.objects.filter(created=3)
+
     return render(request, "report_complite_orders.html",
                   {"order": order, 'title': 'Заказы в работе'})
 
