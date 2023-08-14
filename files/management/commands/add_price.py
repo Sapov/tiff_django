@@ -5,7 +5,7 @@ from .data_price import Material_data
 
 
 #___________________________________________________
-# How import >> python manage.py add_test_data
+# How import >> python manage.py add_price
 #___________________________________________________
 class Command(BaseCommand):
     help = "Наполнить - прайс"
