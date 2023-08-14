@@ -5,8 +5,8 @@ from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishW
 
 #___________________________________________________
 # How import >>
-# STEP 1: python manage.py add_test_data
-# STEP 2: python manage.py add_price
+# STEP 1: python manage.py add_test_data && python manage.py add_price
+
 #___________________________________________________
 class Command(BaseCommand):
     help = "Наполнить БД"
