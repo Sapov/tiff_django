@@ -93,7 +93,7 @@ def upload_arh(request):
             # сюда написать функцию которая убирает пробелы в имени файла
             arh_name = form.cleaned_data['path_file']
             path_download = os.path.abspath(str(arh_name))
-            print(f' Путь абсoлютный {path_download}')
+            print(f'Путь абсoлютный {path_download}')
             form.save()
             # если это архив - то разархивировать
             # не получилось нормальный путь указать

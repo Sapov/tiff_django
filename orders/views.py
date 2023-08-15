@@ -175,29 +175,28 @@ def user_organization_view(request):
 
 
 # def order_pay_check(request, order_id):
-    # Orders = Order.objects.get(id=order_id)
-    # # print(Orders)
-    # items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
-    # print(items_in_order)
-    # for i in items_in_order:
-    #     print('#', i.id)
-    #     f = Product.objects.get(id=i.id)
-    #     print(f.status_product.id)
-    #     f.status_product.id = 3
-    #     f.status_product.save()
-    #     print(f.status_product)
-    # text = 'Оплатить можно на карту 0000 0000 0000 0000'
-    # context = {'Orders': Orders, 'text': text}
-    # return render(request, "orderpay.html", context)
+# Orders = Order.objects.get(id=order_id)
+# # print(Orders)
+# items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
+# print(items_in_order)
+# for i in items_in_order:
+#     print('#', i.id)
+#     f = Product.objects.get(id=i.id)
+#     print(f.status_product.id)
+#     f.status_product.id = 3
+#     f.status_product.save()
+#     print(f.status_product)
+# text = 'Оплатить можно на карту 0000 0000 0000 0000'
+# context = {'Orders': Orders, 'text': text}
+# return render(request, "orderpay.html", context)
 
 
 def report_complite_orders(request):
     '''Отчет от выполненных заказах'''
     date_start = request.POST['date_start']
     date_finish = request.POST['date_finish']
-    print(date_finish, date_start )
-    order = Order.objects.filter(created=3)
+    print(date_finish, date_start)
+    order = Order.objects.filter(status=3)
 
     return render(request, "report_complite_orders.html",
                   {"order": order, 'title': 'Заказы в работе'})
-
