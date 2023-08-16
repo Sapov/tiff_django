@@ -71,7 +71,7 @@ class FileList(LoginRequiredMixin, ListView):
 
 def unzip(arh_name):
     print("где я", os.getcwd())
-    print('UNZXIPP', arh_name)
+    print('UNZIP files', arh_name)
     patoolib.extract_archive(str(arh_name), outdir="unzip")
 
 
@@ -93,21 +93,20 @@ def upload_arh(request):
             # сюда написать функцию которая убирает пробелы в имени файла
             arh_name = form.cleaned_data['path_file']
             path_download = os.path.abspath(str(arh_name))
-            print(f'Путь абсoлютный {path_download}')
             form.save()
             # если это архив - то разархивировать
             # не получилось нормальный путь указать
-            print('DERICTORY:', os.getcwd())
-            curent_folder = os.getcwd()  # текущая директория
-            os.chdir('media/upload_arhive')  # перехожу в media/upload_arhive
-            print('NEW  DERICTORY:', os.getcwd())
-            print('unzip', arh_name)
-            unzip(arh_name)
-            os.chdir('unzip/')
-            # прочитать фалйлы и вызвать на экран
-            add_files_in_base()
-            add_files_in_product(request)
-            os.chdir(curent_folder)  # перехожу обратно
+            # print('DERICTORY:', os.getcwd())
+            # curent_folder = os.getcwd()  # текущая директория
+            # os.chdir('media/upload_arhive')  # перехожу в media/upload_arhive
+            # print('NEW  DERICTORY:', os.getcwd())
+            # print('unzip', arh_name)
+            # unzip(arh_name)
+            # os.chdir('unzip/')
+            # # прочитать фалйлы и вызвать на экран
+            # add_files_in_base()
+            # add_files_in_product(request)
+            # os.chdir(curent_folder)  # перехожу обратно
             return HttpResponseRedirect("/")
     else:
         form = UploadArhive
