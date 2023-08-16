@@ -19,7 +19,7 @@ class StatusOrder(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name}-{ self.id}'
+        return f'{self.name}-{self.id}'
 
     class Meta:
         verbose_name_plural = 'Статусы'
@@ -69,6 +69,9 @@ def order_post_save(sender, instance, created, **kwargs):
             status = StatusProduct.objects.get(id=2)
             file.status_product = status
             file.save()
+        # ______________ text FILE__________________
+        create_text_file(id_order)
+
         # else:
         '''если UNPAID статус заказа оформлен для файлов'''
 
@@ -148,4 +151,47 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)
 
+
 # os.remove(f'media/{str(product.images)}')  # Удаление файла
+
+
+def create_text_file(id_order):
+    ''' Создаем файл с харaктерисиками файла для печати '''
+
+    all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
+    text_file_name = f'Order_№{id_order}_for_print_{date.today()}.txt'
+    with open(text_file_name, "w") as text_file:
+        text_file.write(f'{"#" * 5}   {id_order}   {"#" * 5}\n\n')
+        for item in all_products_in_order:
+            file = Product.objects.get(id=item.product.id)
+            print(file.Contractor)
+            print(file.material)
+            material_txt = f'Материал для печати: {file.material}'
+            quantity_print = f'Количество: {file.quantity} шт.'
+
+            print(file.quantity)
+            length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
+
+            print(file.width)
+            print(file.length)
+            print(file.color_model)
+            color_model = f'Цветовая модель: {file.color_model}'
+
+            print(file.size)
+            size = f'Размер: {file.size} Мб'
+            square = f'Площадь: {file.length * file.width} м2'
+
+            print(file.price)
+            finish_work_rec_file = f'Финишная обработка: {file.FinishWork}'
+
+            print("Имя файла", file.images)
+            print(file.FinishWork)
+            print(file.Fields)
+            fields = f'Финишная обработка: {file.Fields}'
+
+            text_file.write(
+                f'{text_file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
+            )
+            text_file.write("-" * 40 + "\n")
+
+        return text_file_name

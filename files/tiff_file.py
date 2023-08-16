@@ -257,8 +257,16 @@ class WorkZip:
         os.chdir(curent_folder)  # перехожу обратно
         print("Теперь я", os.getcwd())
 
-    @staticmethod
-    def unzip_files():
+    @classmethod
+    def unzip_files(cls):
         os.chdir(f'media/upload_arhive/unzip')
         lst_files = os.listdir()
         print(lst_files)
+        return lst_files
+
+    @staticmethod
+    def add_files_in_product(request, lst_files):
+        os.chdir('unzip')  # перехожу в
+        for i in lst_files():
+            print(i)
+            # Product.objects.create(Contractor=request.user, images=i)

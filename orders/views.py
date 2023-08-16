@@ -43,7 +43,7 @@ class OrderItemCreateView(LoginRequiredMixin, CreateView):
 
 @login_required
 def view_order(request):
-    '''Вывод файлов толоко авторизованного пользователя'''
+    '''Вывод файлов только авторизованного пользователя'''
     Orders = Order.objects.filter(Contractor=request.user).order_by('id')
     return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы'})
 
@@ -54,14 +54,6 @@ class View_order_item(LoginRequiredMixin, UpdateView):
     # fields = ['quantity', 'material', 'FinishWork', 'Fields']
     template_name = 'order_update_form.html'
     login_url = 'login'
-
-
-# def all_files_in_order(request, order_id):
-#     Orders = Order.objects.filter(id=order_id)
-#     items = OrderItem.objects.filter(order=order_id)
-#     curent_order = Order.objects.get(pk=order_id)
-#     context = {'Orders': Orders, 'items': items, 'curent_order': curent_order}
-#     return render(request, "_all_files_in_order.html", context)
 
 
 class OrderUpdateView(UpdateView):
