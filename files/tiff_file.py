@@ -3,6 +3,7 @@ import zipfile
 from datetime import date
 import PIL
 import data
+import patoolib
 from PIL import Image, ImageOps
 from tqdm import tqdm
 
@@ -233,3 +234,31 @@ class WorkWithFile:
             file.write(f'Итого: {round(itog, 2)} руб.\n')
             print(f'Итого стоимость печати: {round(itog, 2)} руб.')
             return text_file_name
+
+
+class WorkZip:
+    def __init__(self, name):
+        self.name = name
+
+    @staticmethod
+    def print(name):
+        print(os.path.isfile(f'upload_arhive/{name}'))  # True
+        print(f'FILE NAME {name}')  # True
+
+    @staticmethod
+    def unzip(name):
+        print("В начале пути Я", os.getcwd())
+        curent_folder = os.getcwd()  # текущая директория
+        os.chdir(f'media/upload_arhive')  # перехожу в media/upload_arhive
+
+        print("где я", os.getcwd())
+        print('UNZIP files', name)
+        patoolib.extract_archive(str(name), outdir="unzip")
+        os.chdir(curent_folder)  # перехожу обратно
+        print("Теперь я", os.getcwd())
+
+    @staticmethod
+    def unzip_files():
+        os.chdir(f'media/upload_arhive/unzip')
+        lst_files = os.listdir()
+        print(lst_files)
