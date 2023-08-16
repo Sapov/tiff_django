@@ -96,17 +96,17 @@ def upload_arh(request):
             form.save()
             # если это архив - то разархивировать
             # не получилось нормальный путь указать
-            # print('DERICTORY:', os.getcwd())
-            # curent_folder = os.getcwd()  # текущая директория
-            # os.chdir('media/upload_arhive')  # перехожу в media/upload_arhive
-            # print('NEW  DERICTORY:', os.getcwd())
-            # print('unzip', arh_name)
-            # unzip(arh_name)
-            # os.chdir('unzip/')
+            print('DERICTORY:', os.getcwd())
+            curent_folder = os.getcwd()  # текущая директория
+            os.chdir('media/upload_arhive')  # перехожу в media/upload_arhive
+            print('NEW  DERICTORY:', os.getcwd())
+            print('unzip', arh_name)
+            unzip(arh_name)
+            os.chdir('unzip/')
             # # прочитать фалйлы и вызвать на экран
-            # add_files_in_base()
-            # add_files_in_product(request)
-            # os.chdir(curent_folder)  # перехожу обратно
+            add_files_in_base()
+            add_files_in_product(request)
+            os.chdir(curent_folder)  # перехожу обратно
             return HttpResponseRedirect("/")
     else:
         form = UploadArhive
