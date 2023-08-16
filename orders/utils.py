@@ -5,6 +5,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from django.core.mail import send_mail
+
 LOCAL_PATH_YADISK = os.getenv('LOCAL_PATH_YADISK')
 
 
@@ -32,7 +34,7 @@ class Utils:
         print(f'Смотрим переменную __file__{__file__}')
         curent_path = os.getcwd()
         if curent_path[-5:] != 'media':
-            os.chdir(f'media/image/{date.today()}')  # перейти в директорию
+            os.chdir(f'media/image/{date.today()}')  # перейти в директорию дата должна браться из параметра Order.created
         print(f' Мы Выбрали {os.getcwd()}')
 
     @staticmethod
@@ -42,48 +44,57 @@ class Utils:
         path_for_yandex_disk = f'{path_save}/{id_order}'  # Путь на яндекс диске для публикации
         return path_for_yandex_disk
 
-    # @staticmethod
-    # def create_text_file(id_order):
-    #     ''' Создаем файл с харaктерисиками файла для печати '''
-    #
-    #     all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-    #     text_file_name = f'{id_order}_for_print_{date.today()}.txt'
-    #     with open(text_file_name, "w") as file:
-    #         file.write(f'{"#" * 5}   {id_order}   {"#" * 5}\n\n')
-    #     itog = 0
-    #     for item in all_products_in_order:
-    #         file = Product.objects.get(id=item.product.id)
-    #         print(file.Contractor)
-    #         print(file.material)
-    #         material_txt = f'Материал для печати: {file.material}'
-    #         quantity_print = f'Количество: {file.quantity} шт.'
-    #
-    #         print(file.quantity)
-    #         length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
-    #
-    #         print(file.width)
-    #         print(file.length)
-    #         print(file.color_model)
-    #         color_model = f'Цветовая модель: {file.color_model}'
-    #
-    #         print(file.size)
-    #         size = f'Размер: {file.size} Мб'
-    #         square = f'Площадь: {file.length * file.width} м2'
-    #
-    #         print(file.price)
-    #         finish_work_rec_file = f'Финишная обработка: {file.FinishWork}  руб.'
-    #
-    #         print("Имя файла", file.images)
-    #         print(file.FinishWork)
-    #         print(file.Fields)
-    #         fields = f'Финишная обработка: {file.Fields}  руб.'
-    #
-    #         file.write(
-    #             f'{text_file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
-    #         )
-    #         file.write("-" * 40 + "\n")
-    #
-    #         return text_file_name
+    @staticmethod
+    def send_mail_order():
+        send_mail('Новый заказ от REDS',
+                  'заказ',
+                  'django.rpk@mail.ru',
+                  ['rpk.reds@ya.ru'],
+                  fail_silently=False,
+                  html_message='<h1> test mail </h1>')
+
+        # @staticmethod
+        # def create_text_file(id_order):
+        #     ''' Создаем файл с харaктерисиками файла для печати '''
+        #
+        #     all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
+        #     text_file_name = f'{id_order}_for_print_{date.today()}.txt'
+        #     with open(text_file_name, "w") as file:
+        #         file.write(f'{"#" * 5}   {id_order}   {"#" * 5}\n\n')
+        #     itog = 0
+        #     for item in all_products_in_order:
+        #         file = Product.objects.get(id=item.product.id)
+        #         print(file.Contractor)
+        #         print(file.material)
+        #         material_txt = f'Материал для печати: {file.material}'
+        #         quantity_print = f'Количество: {file.quantity} шт.'
+        #
+        #         print(file.quantity)
+        #         length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
+        #
+        #         print(file.width)
+        #         print(file.length)
+        #         print(file.color_model)
+        #         color_model = f'Цветовая модель: {file.color_model}'
+        #
+        #         print(file.size)
+        #         size = f'Размер: {file.size} Мб'
+        #         square = f'Площадь: {file.length * file.width} м2'
+        #
+        #         print(file.price)
+        #         finish_work_rec_file = f'Финишная обработка: {file.FinishWork}  руб.'
+        #
+        #         print("Имя файла", file.images)
+        #         print(file.FinishWork)
+        #         print(file.Fields)
+        #         fields = f'Финишная обработка: {file.Fields}  руб.'
+        #
+        #         file.write(
+        #             f'{text_file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
+        #         )
+        #         file.write("-" * 40 + "\n")
+        #
+        #         return text_file_name
 
 
 class Yadisk:
