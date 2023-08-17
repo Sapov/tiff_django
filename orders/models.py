@@ -75,23 +75,19 @@ def order_post_save(sender, instance, created, **kwargs):
         # else:
         '''если UNPAID статус заказа оформлен для файлов'''
 
-        lst_files = [str(Product.objects.get(id=item.product.id)) for i in all_products_in_order]
+
         ''' обрезаем путь вида image/2023-08-16/1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif до
                     1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif'''
-        lst_files_only = [i[i.rindex('/') + 1:] for i in lst_files]  # Оставляем только имена файлов
 
-
-
-        print('NAME FiLES', lst_files_only)
         # архивация заказа
         Utils.set_dir_media()
-        Utils.arhvive(lst_files_only, id_order)  # Архивируемся
+        arhive(id_order)  # Архивируемся
         # --------------------------Work in Yandex Disk--------------------------------#
-        Yadisk.create_folder()  # Создаем папку на yadisk с датой
-        Yadisk.add_yadisk_locate()  # copy files in yadisk
-        Yadisk.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        # Yadisk.create_folder()  # Создаем папку на yadisk с датой
+        # Yadisk.add_yadisk_locate()  # copy files in yadisk
+        # Yadisk.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
         # отправил письмо
-        Utils.send_mail_order()
+        # Utils.send_mail_order()
 
 
 post_save.connect(order_post_save, sender=Order)
@@ -170,7 +166,7 @@ def create_text_file(id_order):
         text_file.write(f'{"*" * 5}   Заказ № {id_order}   {"*" * 5}\n\n')
         for item in all_products_in_order:
             file = Product.objects.get(id=item.product.id)
-            file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'# обрезаем пути оставляем только имя файла
+            file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
             material_txt = f'Материал для печати: {file.material}'
             quantity_print = f'Количество: {file.quantity} шт.'
             length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
@@ -188,7 +184,20 @@ def create_text_file(id_order):
         return text_file_name
 
 
-# def only_files_names(lst_files):
-#     ''' обрезаем путь вида image/2023-08-16/1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif до
-#     1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif'''
-#     return [i[i.rindex('/') + 1:] for i in lst_files]  # Оставляем только имена файлов
+def arhive(id_order):
+    print(f' перед архивацией МЫ тут{os.getcwd()}')
+    '''Архивируем заказ'''
+    if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
+        print('Файл уже существует, архивация пропущена')
+    else:
+        all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
+        print("Архивируем файлы:", *all_products_in_order)
+        for item in all_products_in_order:
+
+            file = Product.objects.get(id=item.product.id)
+            print(str(file.images))
+            arh_name = f'Order_№_{id_order}_{date.today()}.zip'
+            new_arh = zipfile.ZipFile(arh_name, "a")
+            print(str(file.images)[str(file.images).rindex("/") + 1:])
+            new_arh.write(str(file.images)[str(file.images).rindex("/") + 1:], compress_type=zipfile.ZIP_DEFLATED)
+            new_arh.close()

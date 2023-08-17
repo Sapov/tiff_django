@@ -46,6 +46,7 @@ class Utils:
 
     @staticmethod
     def send_mail_order():
+        ''' принимаем ссылку на яд и текст шаблон письма'''
         send_mail('Новый заказ от REDS',
                   'заказ',
                   'django.rpk@mail.ru',
