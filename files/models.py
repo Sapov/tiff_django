@@ -3,7 +3,7 @@ from datetime import date
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
-from .tiff_file import Calculation, check_tiff
+from .tiff_file import Calculation, check_tiff, WorkWithFile
 
 
 class FinishWork(models.Model):
@@ -124,6 +124,7 @@ class Product(models.Model):
 
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
         # Сравниваем размеры с разрешением материала печати
+        WorkWithFile.check_resolution(self.material, self.resolution, self.images)
 
         self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material.price)
         finishka = Calculation(self.width, self.length)

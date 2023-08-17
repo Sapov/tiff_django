@@ -183,6 +183,7 @@ def create_text_file(id_order):
 
 
 def goto_media(foo):
+    ''' переходим в паапку media/image{data}  и обратно'''
     def wrapper(*args, **kwargs):
         print(f' перед архивацией МЫ тут{os.getcwd()}')
         curent_path = os.getcwd()

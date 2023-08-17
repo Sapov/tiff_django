@@ -74,7 +74,8 @@ class WorkWithFile:
         self.finish_work = None  # финишная обработка
         self.fields = None  # Поля материала
 
-    def resize_image(self, file_name: str, new_dpi: int):
+    @classmethod
+    def resize_image(cls, file_name: str, new_dpi: int):
         '''
         :param file_name: имя файла для ресайза
         :param new_dpi: новое разрешение ресайза
@@ -99,21 +100,22 @@ class WorkWithFile:
             return print('''!!! -- Это ошибка: Не сведенный файл Tif --- !!!
                 Решение: Photoshop / слои / выполнить сведение''')
 
-    def check_resolution(self):
+    @classmethod
+    def check_resolution(cls, material, resolution_file, download_file):
         '''
         Проверяем разрешения и уменьшаем в соответствии со стандартом
         :param lst_tif:
         :param material:
         :return:
         '''
-        for i in self.lst_tif:
-            if self.check_tiff(i)[2] > data.type_print[self.type_print][1]:
-                print("[INFO] Разрешение больше необходимого Уменьшаем!!")
-                self.resize_image(i, data.type_print[self.type_print][1])
-            elif self.check_tiff(i)[2] == data.type_print[self.type_print][1]:
-                print('[INFO] Разрешение соответствует требованиям')
-            else:
-                print("[INFO] Низкое разрешение не соответствует требованиям")
+        print('это будем сравнивать', material.resolution_print)
+        if resolution_file > material.resolution_print:
+            print("[INFO] Разрешение больше необходимого Уменьшаем!!")
+            cls.resize_image(download_file, material.resolution_print)
+        elif resolution_file == material.resolution_print:
+            print('[INFO] Разрешение соответствует требованиям')
+        else:
+            print("[INFO] Низкое разрешение не соответствует требованиям")
 
     def check_tiff(self, file_name: str):
         '''
