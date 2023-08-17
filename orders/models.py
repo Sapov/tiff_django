@@ -75,12 +75,10 @@ def order_post_save(sender, instance, created, **kwargs):
         # else:
         '''если UNPAID статус заказа оформлен для файлов'''
 
-
         ''' обрезаем путь вида image/2023-08-16/1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif до
                     1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif'''
 
         # архивация заказа
-        Utils.set_dir_media()
         arhive(id_order)  # Архивируемся
         # --------------------------Work in Yandex Disk--------------------------------#
         # Yadisk.create_folder()  # Создаем папку на yadisk с датой
@@ -184,18 +182,32 @@ def create_text_file(id_order):
         return text_file_name
 
 
+def goto_media(foo):
+    def wrapper(*args, **kwargs):
+        print(f' перед архивацией МЫ тут{os.getcwd()}')
+        curent_path = os.getcwd()
+        if curent_path[-5:] != 'media':
+            os.chdir(
+                f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+        print(f' Мы Выбрали {os.getcwd()}')
+        print(f' перед архивацией МЫ тут{os.getcwd()}')
+        foo(*args, **kwargs)
+        os.chdir(curent_path)  # перейти обратно
+
+    return wrapper
+
+
+@goto_media
 def arhive(id_order):
-    print(f' перед архивацией МЫ тут{os.getcwd()}')
     '''Архивируем заказ'''
+
     if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
         print('Файл уже существует, архивация пропущена')
     else:
         all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
         print("Архивируем файлы:", *all_products_in_order)
         for item in all_products_in_order:
-
             file = Product.objects.get(id=item.product.id)
-            print(str(file.images))
             arh_name = f'Order_№_{id_order}_{date.today()}.zip'
             new_arh = zipfile.ZipFile(arh_name, "a")
             print(str(file.images)[str(file.images).rindex("/") + 1:])
