@@ -3,6 +3,7 @@ import zipfile
 from datetime import date
 import PIL
 import data
+import patoolib
 from PIL import Image, ImageOps
 from tqdm import tqdm
 
@@ -73,7 +74,8 @@ class WorkWithFile:
         self.finish_work = None  # финишная обработка
         self.fields = None  # Поля материала
 
-    def resize_image(self, file_name: str, new_dpi: int):
+    @classmethod
+    def resize_image(cls, file_name: str, new_dpi: int):
         '''
         :param file_name: имя файла для ресайза
         :param new_dpi: новое разрешение ресайза
@@ -98,21 +100,22 @@ class WorkWithFile:
             return print('''!!! -- Это ошибка: Не сведенный файл Tif --- !!!
                 Решение: Photoshop / слои / выполнить сведение''')
 
-    def check_resolution(self):
+    @classmethod
+    def check_resolution(cls, material, resolution_file, download_file):
         '''
         Проверяем разрешения и уменьшаем в соответствии со стандартом
         :param lst_tif:
         :param material:
         :return:
         '''
-        for i in self.lst_tif:
-            if self.check_tiff(i)[2] > data.type_print[self.type_print][1]:
-                print("[INFO] Разрешение больше необходимого Уменьшаем!!")
-                self.resize_image(i, data.type_print[self.type_print][1])
-            elif self.check_tiff(i)[2] == data.type_print[self.type_print][1]:
-                print('[INFO] Разрешение соответствует требованиям')
-            else:
-                print("[INFO] Низкое разрешение не соответствует требованиям")
+        print('это будем сравнивать', material.resolution_print)
+        if resolution_file > material.resolution_print:
+            print("[INFO] Разрешение больше необходимого Уменьшаем!!")
+            cls.resize_image(download_file, material.resolution_print)
+        elif resolution_file == material.resolution_print:
+            print('[INFO] Разрешение соответствует требованиям')
+        else:
+            print("[INFO] Низкое разрешение не соответствует требованиям")
 
     def check_tiff(self, file_name: str):
         '''
@@ -233,3 +236,39 @@ class WorkWithFile:
             file.write(f'Итого: {round(itog, 2)} руб.\n')
             print(f'Итого стоимость печати: {round(itog, 2)} руб.')
             return text_file_name
+
+
+class WorkZip:
+    def __init__(self, name):
+        self.name = name
+
+    @staticmethod
+    def print(name):
+        print(os.path.isfile(f'upload_arhive/{name}'))  # True
+        print(f'FILE NAME {name}')  # True
+
+    @staticmethod
+    def unzip(name):
+        print("В начале пути Я", os.getcwd())
+        curent_folder = os.getcwd()  # текущая директория
+        os.chdir(f'media/upload_arhive')  # перехожу в media/upload_arhive
+
+        print("где я", os.getcwd())
+        print('UNZIP files', name)
+        patoolib.extract_archive(str(name), outdir="unzip")
+        os.chdir(curent_folder)  # перехожу обратно
+        print("Теперь я", os.getcwd())
+
+    @classmethod
+    def unzip_files(cls):
+        os.chdir(f'media/upload_arhive/unzip')
+        lst_files = os.listdir()
+        print(lst_files)
+        return lst_files
+
+    @staticmethod
+    def add_files_in_product(request, lst_files):
+        os.chdir('unzip')  # перехожу в
+        for i in lst_files():
+            print(i)
+            # Product.objects.create(Contractor=request.user, images=i)

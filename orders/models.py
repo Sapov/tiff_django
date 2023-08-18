@@ -19,7 +19,7 @@ class StatusOrder(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name}-{ self.id}'
+        return f'{self.name}-{self.id}'
 
     class Meta:
         verbose_name_plural = 'Статусы'
@@ -69,20 +69,23 @@ def order_post_save(sender, instance, created, **kwargs):
             status = StatusProduct.objects.get(id=2)
             file.status_product = status
             file.save()
+        # ______________ text FILE__________________
+        create_text_file(id_order)
+
         # else:
         '''если UNPAID статус заказа оформлен для файлов'''
 
-        lst_files = [str(Product.objects.get(id=item.product.id)) for i in all_products_in_order]
-        lst_files_only = [i[i.rindex('/') + 1:] for i in lst_files]  # Оставляем только имена файлов
+        ''' обрезаем путь вида image/2023-08-16/1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif до
+                    1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif'''
 
-        print('NAME FiLES', lst_files_only)
         # архивация заказа
-        Utils.set_dir_media()
-        Utils.arhvive(lst_files_only, id_order)  # Архивируемся
+        arhive(id_order)  # Архивируемся
         # --------------------------Work in Yandex Disk--------------------------------#
-        Yadisk.create_folder()  # Создаем папку на yadisk с датой
-        Yadisk.add_yadisk_locate()  # copy files in yadisk
-        Yadisk.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        # Yadisk.create_folder()  # Создаем папку на yadisk с датой
+        # Yadisk.add_yadisk_locate()  # copy files in yadisk
+        # Yadisk.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        # отправил письмо
+        # Utils.send_mail_order()
 
 
 post_save.connect(order_post_save, sender=Order)
@@ -148,4 +151,66 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)
 
+
 # os.remove(f'media/{str(product.images)}')  # Удаление файла
+
+
+def create_text_file(id_order):
+    ''' Создаем файл с харaктерисиками файла для печати '''
+
+    all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
+    text_file_name = f'Order_№{id_order}_for_print_{date.today()}.txt'
+    with open(text_file_name, "w") as text_file:
+        text_file.write(f'{"*" * 5}   Заказ № {id_order}   {"*" * 5}\n\n')
+        for item in all_products_in_order:
+            file = Product.objects.get(id=item.product.id)
+            file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
+            material_txt = f'Материал для печати: {file.material}'
+            quantity_print = f'Количество: {file.quantity} шт.'
+            length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
+            color_model = f'Цветовая модель: {file.color_model}'
+            size = f'Размер: {file.size} Мб'
+            square = f'Площадь: {(file.length * file.width) / 10000} м2'
+            finish_work_rec_file = f'Финишная обработка: {file.FinishWork}'
+            fields = f'Поля: {file.Fields}'
+
+            text_file.write(
+                f'{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
+            )
+            text_file.write("-" * 40 + "\n")
+
+        return text_file_name
+
+
+def goto_media(foo):
+    ''' переходим в паапку media/image{data}  и обратно'''
+    def wrapper(*args, **kwargs):
+        print(f' перед архивацией МЫ тут{os.getcwd()}')
+        curent_path = os.getcwd()
+        if curent_path[-5:] != 'media':
+            os.chdir(
+                f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+        print(f' Мы Выбрали {os.getcwd()}')
+        print(f' перед архивацией МЫ тут{os.getcwd()}')
+        foo(*args, **kwargs)
+        os.chdir(curent_path)  # перейти обратно
+
+    return wrapper
+
+
+@goto_media
+def arhive(id_order):
+    '''Архивируем заказ'''
+
+    if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
+        print('Файл уже существует, архивация пропущена')
+    else:
+        all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
+        print("Архивируем файлы:", *all_products_in_order)
+        for item in all_products_in_order:
+            file = Product.objects.get(id=item.product.id)
+            arh_name = f'Order_№_{id_order}_{date.today()}.zip'
+            new_arh = zipfile.ZipFile(arh_name, "a")
+            print(str(file.images)[str(file.images).rindex("/") + 1:])
+            new_arh.write(str(file.images)[str(file.images).rindex("/") + 1:], compress_type=zipfile.ZIP_DEFLATED)
+            new_arh.close()

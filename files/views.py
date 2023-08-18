@@ -1,4 +1,5 @@
 import os
+from datetime import date
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponseNotFound
@@ -10,6 +11,8 @@ from .forms import AddFiles, UploadArhive
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
+
+from .tiff_file import WorkZip
 
 
 # from django.core.files.storage import FileSystemStorage
@@ -69,12 +72,6 @@ class FileList(LoginRequiredMixin, ListView):
     login_url = 'login'
 
 
-def unzip(arh_name):
-    print("где я", os.getcwd())
-    print('UNZIP files', arh_name)
-    patoolib.extract_archive(str(arh_name), outdir="unzip")
-
-
 def add_files_in_base():
     print("где я" , os.getcwd())
     os.path.relpath('unzip')
@@ -89,24 +86,16 @@ def upload_arh(request):
     if request.POST:
         form = UploadArhive(request.POST, request.FILES)
         if form.is_valid():
-            print(form.cleaned_data['path_file'])
-            # сюда написать функцию которая убирает пробелы в имени файла
-            arh_name = form.cleaned_data['path_file']
-            path_download = os.path.abspath(str(arh_name))
+            # print(form.cleaned_data['path_file'])
+            file_name = form.cleaned_data['path_file']
+            # # сюда написать функцию которая убирает пробелы в имени файла
+            # arh_name = form.cleaned_data['path_file']
+            # path_download = os.path.abspath(str(arh_name))
             form.save()
-            # если это архив - то разархивировать
-            # не получилось нормальный путь указать
-            print('DERICTORY:', os.getcwd())
-            curent_folder = os.getcwd()  # текущая директория
-            os.chdir('media/upload_arhive')  # перехожу в media/upload_arhive
-            print('NEW  DERICTORY:', os.getcwd())
-            print('unzip', arh_name)
-            unzip(arh_name)
-            os.chdir('unzip/')
-            # # прочитать фалйлы и вызвать на экран
-            add_files_in_base()
-            add_files_in_product(request)
-            os.chdir(curent_folder)  # перехожу обратно
+            WorkZip.print(file_name)
+            WorkZip.unzip(file_name)
+            WorkZip.unzip_files()
+
             return HttpResponseRedirect("/")
     else:
         form = UploadArhive
@@ -115,8 +104,3 @@ def upload_arh(request):
                   {'form': form, 'title': 'Добавление файлов'})  # изменение данных в БД
 
 
-def add_files_in_product(request):
-    os.chdir('unzip')  # перехожу в
-    for i in add_files_in_base():
-        print(i)
-        Product.objects.create(Contractor=request.user, images=i)
