@@ -4,7 +4,7 @@ from datetime import date
 import PIL
 import data
 import patoolib
-from PIL import Image, ImageOps
+from PIL import Image as Image_pil, ImageOps
 from tqdm import tqdm
 
 
@@ -15,8 +15,8 @@ def check_tiff(file_name: str):
     '''
 
     try:
-        Image.MAX_IMAGE_PIXELS = None
-        with Image.open(file_name) as img:
+        Image_pil.MAX_IMAGE_PIXELS = None
+        with Image_pil.open(file_name) as img:
             width, length = img.size
             resolution = round(img.info['dpi'][0], 0)
             width = round(2.54 * width / resolution, 0)
@@ -74,7 +74,24 @@ class WorkWithFile:
         self.finish_work = None  # финишная обработка
         self.fields = None  # Поля материала
 
+    def goto_media(foo):
+        ''' переходим в паапку media/image{data}  и обратно'''
+
+        def wrapper(*args, **kwargs):
+            print(f' перед архивацией МЫ тут{os.getcwd()}')
+            curent_path = os.getcwd()
+            if curent_path[-5:] != 'media':
+                os.chdir(
+                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+            print(f' Мы Выбрали {os.getcwd()}')
+            print(f' перед архивацией МЫ тут{os.getcwd()}')
+            foo(*args, **kwargs)
+            os.chdir(curent_path)  # перейти обратно
+
+        return wrapper
+
     @classmethod
+    @goto_media
     def resize_image(cls, file_name: str, new_dpi: int):
         '''
         :param file_name: имя файла для ресайза
@@ -84,16 +101,24 @@ class WorkWithFile:
         if new_dpi <= 0:
             return print("Нельзя устанавливать отрицательное разрешение или  0")
         try:
-            Image.MAX_IMAGE_PIXELS = None
-            with Image.open(file_name) as img:
+            Image_pil.MAX_IMAGE_PIXELS = None
+            with Image_pil.open(file_name) as img:
+                print(img)
                 width_px, length_px = img.size
+                print(width_px, length_px)
                 resolution = round(img.info['dpi'][0], 0)
+                print(resolution)
                 persent_resize = float(new_dpi / resolution)
+                print('persent_resize', persent_resize)
                 width_new_px = round(float(persent_resize * width_px), 0)
                 length_new_px = round((width_new_px / width_px) * length_px, 0)
+                print('width_new_px', width_new_px, 'length_new_px', length_new_px)
                 img = img.resize((int(width_new_px), int(length_new_px)))
+                print(img)
                 # img.save(f'new{file_name}', dpi=(new_dpi, new_dpi))
                 img.save(f'{file_name}', dpi=(new_dpi, new_dpi))
+                print(img)
+                print(f' МЫ тут{os.getcwd()}')
             print(f'[INFO] Изменил размер файла {file_name} c {resolution} dpi на {new_dpi} dpi\n')
 
         except PIL.UnidentifiedImageError:
@@ -124,8 +149,8 @@ class WorkWithFile:
         '''
 
         try:
-            Image.MAX_IMAGE_PIXELS = None
-            with Image.open(file_name) as img:
+            Image_pil.MAX_IMAGE_PIXELS = None
+            with Image_pil.open(file_name) as img:
                 width, length = img.size
                 self.resolution = round(img.info['dpi'][0], 0)
                 self.width = round(2.54 * width / self.resolution, 0)
@@ -142,10 +167,10 @@ class WorkWithFile:
         return (self.width + self.length) * 2 / 100
 
     def color_mode(self, file_name) -> str:
-        Image.MAX_IMAGE_PIXELS = None
+        Image_pil.MAX_IMAGE_PIXELS = None
 
         try:
-            with Image.open(file_name) as img:
+            with Image_pil.open(file_name) as img:
                 mode = img.mode
                 if mode == 'CMYK':
 

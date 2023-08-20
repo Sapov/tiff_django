@@ -2,6 +2,7 @@ import os
 from datetime import date
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import post_save
 from django.urls import reverse
 from .tiff_file import Calculation, check_tiff, WorkWithFile
 
@@ -124,7 +125,7 @@ class Product(models.Model):
 
         self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
         # Сравниваем размеры с разрешением материала печати
-        WorkWithFile.check_resolution(self.material, self.resolution, self.images)
+        # WorkWithFile.check_resolution(self.material, self.resolution, self.images)
 
         self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material.price)
         finishka = Calculation(self.width, self.length)
@@ -136,6 +137,18 @@ class Product(models.Model):
         self.cost_price += finishka.perimert() * self.FinishWork.price_contractor  # Добавляю стоимость фиишной обработки
 
         super(Product, self).save(*args, **kwargs)
+
+
+# def product_post_save(sender, instance, created, **kwargs):
+#     material = instance.material
+#     resolution = instance.resolution
+#     images = instance.images
+#
+#     # Сравниваем размеры с разрешением материала печати
+#     WorkWithFile.check_resolution(material, resolution, images)
+#
+#
+# post_save.connect(product_post_save, sender=Product)
 
 
 class Fields(models.Model):

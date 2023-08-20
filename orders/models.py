@@ -1,15 +1,20 @@
 import os
+import shutil
 import zipfile
 from datetime import date
-
+from pathlib import Path
+from django.core.mail import send_mail
 from django.db import models
 from account.models import Organisation
 from files.models import Product, StatusProduct
 from django.db.models.signals import post_save
 from django.urls import reverse
+import subprocess
 
 from django.conf import settings
-from .utils import Utils, Yadisk
+from .utils import Yadisk
+
+LOCAL_PATH_YADISK = os.getenv('LOCAL_PATH_YADISK')
 
 
 class StatusOrder(models.Model):
@@ -70,22 +75,25 @@ def order_post_save(sender, instance, created, **kwargs):
             file.status_product = status
             file.save()
         # ______________ text FILE__________________
-        create_text_file(id_order)
+        text_file_name = UtilsModel.create_text_file(id_order)
+        print('Имя файла текстового файла:', text_file_name)
 
         # else:
         '''если UNPAID статус заказа оформлен для файлов'''
 
-        ''' обрезаем путь вида image/2023-08-16/1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif до
-                    1_м_на_15_м_глянцевая_белая_пленка_1_шт.tif'''
 
         # архивация заказа
-        arhive(id_order)  # Архивируемся
+        arvive_name = arhive(id_order)  # Архивируемся
+        print('arvive_name', arvive_name)
         # --------------------------Work in Yandex Disk--------------------------------#
-        # Yadisk.create_folder()  # Создаем папку на yadisk с датой
-        # Yadisk.add_yadisk_locate()  # copy files in yadisk
-        # Yadisk.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        UtilsModel.create_folder()  # Создаем папку на yadisk с датой
+        UtilsModel.add_yadisk_locate()  # copy files in yadisk
+        ya_link = UtilsModel.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
         # отправил письмо
-        # Utils.send_mail_order()
+        # print('ya_link', ya_link)
+        # #
+        # new_str = read_file(text_file_name)
+        # Utils.send_mail_order(f'{new_str}\nCсылка на архив: {ya_link}')
 
 
 post_save.connect(order_post_save, sender=Order)
@@ -152,48 +160,21 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
 post_save.connect(product_in_order_post_save, sender=OrderItem)
 
 
-# os.remove(f'media/{str(product.images)}')  # Удаление файла
-
-
-def create_text_file(id_order):
-    ''' Создаем файл с харaктерисиками файла для печати '''
-
-    all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-    text_file_name = f'Order_№{id_order}_for_print_{date.today()}.txt'
-    with open(text_file_name, "w") as text_file:
-        text_file.write(f'{"*" * 5}   Заказ № {id_order}   {"*" * 5}\n\n')
-        for item in all_products_in_order:
-            file = Product.objects.get(id=item.product.id)
-            file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
-            material_txt = f'Материал для печати: {file.material}'
-            quantity_print = f'Количество: {file.quantity} шт.'
-            length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
-            color_model = f'Цветовая модель: {file.color_model}'
-            size = f'Размер: {file.size} Мб'
-            square = f'Площадь: {(file.length * file.width) / 10000} м2'
-            finish_work_rec_file = f'Финишная обработка: {file.FinishWork}'
-            fields = f'Поля: {file.Fields}'
-
-            text_file.write(
-                f'{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
-            )
-            text_file.write("-" * 40 + "\n")
-
-        return text_file_name
-
-
 def goto_media(foo):
     ''' переходим в паапку media/image{data}  и обратно'''
+
     def wrapper(*args, **kwargs):
-        print(f' перед архивацией МЫ тут{os.getcwd()}')
+        print(f'[INFO] перед работой мы тут:{os.getcwd()}')
         curent_path = os.getcwd()
         if curent_path[-5:] != 'media':
-            os.chdir(
-                f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-        print(f' Мы Выбрали {os.getcwd()}')
-        print(f' перед архивацией МЫ тут{os.getcwd()}')
-        foo(*args, **kwargs)
+            os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
+
+            # f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+        print(f'[INFO] Мы Выбрали {os.getcwd()}')
+        res = foo(*args, **kwargs)
         os.chdir(curent_path)  # перейти обратно
+        print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
+        return res
 
     return wrapper
 
@@ -207,6 +188,7 @@ def arhive(id_order):
     else:
         all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
         print("Архивируем файлы:", *all_products_in_order)
+        print(f'[INFO] Мы Выбрали!!!!!!!!!!!!!!!!! {os.getcwd()}')
         for item in all_products_in_order:
             file = Product.objects.get(id=item.product.id)
             arh_name = f'Order_№_{id_order}_{date.today()}.zip'
@@ -214,3 +196,162 @@ def arhive(id_order):
             print(str(file.images)[str(file.images).rindex("/") + 1:])
             new_arh.write(str(file.images)[str(file.images).rindex("/") + 1:], compress_type=zipfile.ZIP_DEFLATED)
             new_arh.close()
+    return arh_name
+
+
+@goto_media
+def read_file(text_file_name):
+    with open(text_file_name) as file:  # читаю файл txt
+        new_str = file.read()
+        return new_str
+
+
+class UtilsModel:
+    organizations = 'Style_N'
+    path_save = f'{organizations}/{date.today()}'
+
+    @staticmethod
+    def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
+        '''Архивируем заказ'''
+        if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
+            print('Файл уже существует, архивация пропущена')
+        else:
+            print("Архивируем файлы:", *list_files)
+            for name in list_files:
+                arh_name = f'Order_№_{id_order}_{date.today()}.zip'
+                new_arh = zipfile.ZipFile(arh_name, "a")
+                new_arh.write(name, compress_type=zipfile.ZIP_DEFLATED)
+                new_arh.close()
+        return f'Order_№_{id_order}_{date.today()}.zip'
+
+
+    @staticmethod
+    def path_for_yadisk(organizations, id_order):
+        path_save = f'{organizations}/{date.today()}'
+        # --------------------------Work in Yandex Disk--------------------------------#
+        path_for_yandex_disk = f'{path_save}/{id_order}'  # Путь на яндекс диске для публикации
+        return path_for_yandex_disk
+
+    @staticmethod
+    def send_mail_order(body_mail):
+        ''' принимаем ссылку на яд и текст шаблон письма'''
+        send_mail('Новый заказ от REDS',
+                  'заказ',
+                  'django.rpk@mail.ru',
+                  ['rpk.reds@ya.ru'],
+                  fail_silently=False,
+                  html_message=body_mail)
+
+    def goto_media(foo):
+        ''' переходим в паапку media/image{data}  и обратно'''
+
+        def wrapper(*args, **kwargs):
+            print(f'[INFO] перед работой мы тут:{os.getcwd()}')
+            curent_path = os.getcwd()
+            # data_file = Product.objects.get(id=id_order)
+            if curent_path[-5:] != 'media':
+                os.chdir(
+                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+            print(f'[INFO] Мы Выбрали {os.getcwd()}')
+            res = foo(*args, **kwargs)
+            os.chdir(curent_path)  # перейти обратно
+            print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
+            return res
+
+        return wrapper
+
+    @goto_media
+    @staticmethod
+    def create_text_file(id_order):
+        ''' Создаем файл с харaктерисиками файла для печати '''
+
+        all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
+        text_file_name = f'Order_№{id_order}_for_print_{date.today()}.txt'
+        with open(text_file_name, "w") as text_file:
+            text_file.write(f'{"*" * 5}   Заказ № {id_order}   {"*" * 5}\n\n')
+            for item in all_products_in_order:
+                file = Product.objects.get(id=item.product.id)
+                file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
+                material_txt = f'Материал для печати: {file.material}'
+                quantity_print = f'Количество: {file.quantity} шт.'
+                length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
+                color_model = f'Цветовая модель: {file.color_model}'
+                size = f'Размер: {file.size} Мб'
+                square = f'Площадь: {(file.length * file.width) / 10000} м2'
+                finish_work_rec_file = f'Финишная обработка: {file.FinishWork}'
+                fields = f'Поля: {file.Fields}'
+
+                text_file.write(
+                    f'{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
+                )
+                text_file.write("-" * 40 + "\n")
+
+        return text_file_name
+
+    def goto_media(foo):
+        ''' переходим в паапку media/image{data}  и обратно'''
+
+        def wrapper(*args, **kwargs):
+            print(f'[INFO] перед работой мы тут:{os.getcwd()}')
+            curent_path = os.getcwd()
+            # data_file = Product.objects.get(id=id_order)
+            if curent_path[-5:] != 'media':
+                os.chdir(
+                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+            print(f'[INFO] Мы Выбрали {os.getcwd()}')
+            res = foo(*args, **kwargs)
+            os.chdir(curent_path)  # перейти обратно
+            print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
+            return res
+
+        return wrapper
+
+    @classmethod
+    def create_folder(cls, path=path_save):
+        '''Добавляем фолдер дата
+        Директория должна быть всегда уникальной к примеру точная дата мин/сек
+        '''
+        if os.path.exists(f"{LOCAL_PATH_YADISK}{path}"):
+            print('Директория уже создана')
+        else:
+            os.mkdir(f'{LOCAL_PATH_YADISK}{path}')
+
+    @classmethod
+    def add_yadisk_locate(cls, path=path_save):
+
+        """закидываем файлы на yadisk локально на ubuntu
+        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
+        Я-ДИСКЕ затирается новым"""
+        # Path.cwd()  # Идем в текущий каталог
+        os.chdir(
+            f'media/image/{str(date.today())}')  #
+        curent_folder = os.getcwd()
+        print('Из яндекс функции видим каталог - ', curent_folder)
+        lst_files = os.listdir()  # read name files from folder
+        for i in lst_files:
+            if i.endswith("txt") or i.endswith("zip"):
+                print(f'Копирую {i} в {LOCAL_PATH_YADISK}{path}')
+                '''Проверяем есть ли файл'''
+                os.chdir(f'{LOCAL_PATH_YADISK}{path}')  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
+                if os.path.exists(i):
+                    os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
+                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
+
+                    shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
+                    os.chdir(settings.MEDIA_ROOT)
+                else:
+                    os.chdir(curent_folder)
+                    shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
+                    # Возвращаемся в корень
+                    os.chdir(settings.MEDIA_ROOT)
+
+
+    @classmethod
+    def add_link_from_folder_yadisk(cls, path=path_save):
+        print(f'Публикую папку: {LOCAL_PATH_YADISK}{path}')
+        ya_link = subprocess.check_output(["yandex-disk", "publish", f'{LOCAL_PATH_YADISK}{path}'])
+        ya_link = str(ya_link)
+        ya_link = ya_link.lstrip("b'")
+        ya_link = ya_link.rstrip(r"\n'")
+        print(f'Ссылка на яндекс диск {ya_link}')
+        return ya_link

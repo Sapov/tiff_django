@@ -15,7 +15,7 @@ class Utils:
     path_save = f'{organizations}/{date.today()}'
 
     @staticmethod
-    def arhvive(list_files: list, id_order: str) -> None:  # add tif to ZIP file
+    def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
         '''Архивируем заказ'''
         if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
             print('Файл уже существует, архивация пропущена')
@@ -26,6 +26,7 @@ class Utils:
                 new_arh = zipfile.ZipFile(arh_name, "a")
                 new_arh.write(name, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
+        return f'Order_№_{id_order}_{date.today()}.zip'
 
     @staticmethod
     def set_dir_media():
@@ -34,7 +35,8 @@ class Utils:
         print(f'Смотрим переменную __file__{__file__}')
         curent_path = os.getcwd()
         if curent_path[-5:] != 'media':
-            os.chdir(f'media/image/{date.today()}')  # перейти в директорию дата должна браться из параметра Order.created
+            os.chdir(
+                f'media/image/{date.today()}')  # перейти в директорию дата должна браться из параметра Order.created
         print(f' Мы Выбрали {os.getcwd()}')
 
     @staticmethod
@@ -45,61 +47,83 @@ class Utils:
         return path_for_yandex_disk
 
     @staticmethod
-    def send_mail_order():
+    def send_mail_order(body_mail):
         ''' принимаем ссылку на яд и текст шаблон письма'''
         send_mail('Новый заказ от REDS',
                   'заказ',
                   'django.rpk@mail.ru',
                   ['rpk.reds@ya.ru'],
                   fail_silently=False,
-                  html_message='<h1> test mail </h1>')
+                  html_message=body_mail)
 
-        # @staticmethod
-        # def create_text_file(id_order):
-        #     ''' Создаем файл с харaктерисиками файла для печати '''
-        #
-        #     all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-        #     text_file_name = f'{id_order}_for_print_{date.today()}.txt'
-        #     with open(text_file_name, "w") as file:
-        #         file.write(f'{"#" * 5}   {id_order}   {"#" * 5}\n\n')
-        #     itog = 0
-        #     for item in all_products_in_order:
-        #         file = Product.objects.get(id=item.product.id)
-        #         print(file.Contractor)
-        #         print(file.material)
-        #         material_txt = f'Материал для печати: {file.material}'
-        #         quantity_print = f'Количество: {file.quantity} шт.'
-        #
-        #         print(file.quantity)
-        #         length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
-        #
-        #         print(file.width)
-        #         print(file.length)
-        #         print(file.color_model)
-        #         color_model = f'Цветовая модель: {file.color_model}'
-        #
-        #         print(file.size)
-        #         size = f'Размер: {file.size} Мб'
-        #         square = f'Площадь: {file.length * file.width} м2'
-        #
-        #         print(file.price)
-        #         finish_work_rec_file = f'Финишная обработка: {file.FinishWork}  руб.'
-        #
-        #         print("Имя файла", file.images)
-        #         print(file.FinishWork)
-        #         print(file.Fields)
-        #         fields = f'Финишная обработка: {file.Fields}  руб.'
-        #
-        #         file.write(
-        #             f'{text_file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
-        #         )
-        #         file.write("-" * 40 + "\n")
-        #
-        #         return text_file_name
+    def goto_media(foo):
+        ''' переходим в паапку media/image{data}  и обратно'''
+
+        def wrapper(*args, **kwargs):
+            print(f'[INFO] перед работой мы тут:{os.getcwd()}')
+            curent_path = os.getcwd()
+            # data_file = Product.objects.get(id=id_order)
+            if curent_path[-5:] != 'media':
+                os.chdir(
+                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+            print(f'[INFO] Мы Выбрали {os.getcwd()}')
+            res = foo(*args, **kwargs)
+            os.chdir(curent_path)  # перейти обратно
+            print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
+            return res
+
+        return wrapper
+
+    # @staticmethod
+    # @goto_media
+    # def create_text_file(id_order):
+    #     ''' Создаем файл с харaктерисиками файла для печати '''
+    #
+    #     all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
+    #     text_file_name = f'Order_№{id_order}_for_print_{date.today()}.txt'
+    #     with open(text_file_name, "w") as text_file:
+    #         text_file.write(f'{"*" * 5}   Заказ № {id_order}   {"*" * 5}\n\n')
+    #         for item in all_products_in_order:
+    #             file = Product.objects.get(id=item.product.id)
+    #             file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
+    #             material_txt = f'Материал для печати: {file.material}'
+    #             quantity_print = f'Количество: {file.quantity} шт.'
+    #             length_width = f'Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi'
+    #             color_model = f'Цветовая модель: {file.color_model}'
+    #             size = f'Размер: {file.size} Мб'
+    #             square = f'Площадь: {(file.length * file.width) / 10000} м2'
+    #             finish_work_rec_file = f'Финишная обработка: {file.FinishWork}'
+    #             fields = f'Поля: {file.Fields}'
+    #
+    #             text_file.write(
+    #                 f'{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
+    #             )
+    #             text_file.write("-" * 40 + "\n")
+    #
+    #     return text_file_name
 
 
 class Yadisk:
     path = Utils.path_save
+
+
+    def goto_media(foo):
+        ''' переходим в паапку media/image{data}  и обратно'''
+
+        def wrapper(*args, **kwargs):
+            print(f'[INFO] перед работой мы тут:{os.getcwd()}')
+            curent_path = os.getcwd()
+            # data_file = Product.objects.get(id=id_order)
+            if curent_path[-5:] != 'media':
+                os.chdir(
+                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+            print(f'[INFO] Мы Выбрали {os.getcwd()}')
+            res = foo(*args, **kwargs)
+            os.chdir(curent_path)  # перейти обратно
+            print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
+            return res
+
+        return wrapper
 
     @classmethod
     def create_folder(cls, path=path):
@@ -111,14 +135,16 @@ class Yadisk:
         else:
             os.mkdir(f'{LOCAL_PATH_YADISK}{path}')
 
+    @goto_media
     @classmethod
     def add_yadisk_locate(cls, path=path):
+
         """закидываем файлы на yadisk локально на ubuntu
         Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
         Я-ДИСКЕ затирается новым"""
         Path.cwd()  # Идем в текущий каталог
         curent_folder = os.getcwd()
-        print(curent_folder)
+        print('Из яндекс функции видим каталог - ', curent_folder)
         lst_files = os.listdir()  # read name files from folder
         for i in lst_files:
             if i.endswith("txt") or i.endswith("zip"):
