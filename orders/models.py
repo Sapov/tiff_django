@@ -335,18 +335,16 @@ class UtilsModel:
                 os.chdir(f'{LOCAL_PATH_YADISK}{path}')  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
                 if os.path.exists(i):
                     os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
-                    # test print('Check', os.listdir())
                     os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
 
                     shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
-                    # Возвращаемся в корень  print(f'ВОТ ОН КАСТЫЛЬ {__file__[:-16]}')
-                    print(f'ВОТ ОН КАСТЫЛЬ {__file__[:-16]}')
-                    os.chdir(__file__[:-16])
+                    os.chdir(settings.MEDIA_ROOT)
                 else:
                     os.chdir(curent_folder)
                     shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
                     # Возвращаемся в корень
-                    os.chdir(__file__[:-16])
+                    os.chdir(settings.MEDIA_ROOT)
+
 
     @classmethod
     def add_link_from_folder_yadisk(cls, path=path_save):
