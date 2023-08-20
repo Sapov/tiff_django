@@ -77,6 +77,7 @@ def order_post_save(sender, instance, created, **kwargs):
         # ______________ text FILE__________________
         text_file_name = UtilsModel.create_text_file(id_order)
         print('Имя файла текстового файла:', text_file_name)
+        new_str = read_file(text_file_name)
 
         # else:
         '''если UNPAID статус заказа оформлен для файлов'''
@@ -90,7 +91,7 @@ def order_post_save(sender, instance, created, **kwargs):
         UtilsModel.add_yadisk_locate()  # copy files in yadisk
         ya_link = UtilsModel.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
         # отправил письмо
-        new_str = read_file(text_file_name)
+
         UtilsModel.send_mail_order(f'{new_str}\nCсылка на архив: {ya_link}')
 
 
