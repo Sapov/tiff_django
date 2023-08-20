@@ -90,10 +90,8 @@ def order_post_save(sender, instance, created, **kwargs):
         UtilsModel.add_yadisk_locate()  # copy files in yadisk
         ya_link = UtilsModel.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
         # отправил письмо
-        # print('ya_link', ya_link)
-        # #
-        # new_str = read_file(text_file_name)
-        # Utils.send_mail_order(f'{new_str}\nCсылка на архив: {ya_link}')
+        new_str = read_file(text_file_name)
+        UtilsModel.send_mail_order(f'{new_str}\nCсылка на архив: {ya_link}')
 
 
 post_save.connect(order_post_save, sender=Order)
