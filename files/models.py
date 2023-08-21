@@ -110,6 +110,7 @@ class Product(models.Model):
     status_product = models.ForeignKey("StatusProduct", on_delete=models.CASCADE, verbose_name='Статус файла',
                                        default=1)
 
+
     def __str__(self):
         return f'{self.images}'
 

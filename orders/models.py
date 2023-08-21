@@ -2,7 +2,8 @@ import os
 import shutil
 import zipfile
 from datetime import date
-from pathlib import Path
+
+from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.db import models
 from account.models import Organisation
@@ -12,7 +13,6 @@ from django.urls import reverse
 import subprocess
 
 from django.conf import settings
-from .utils import Yadisk
 
 LOCAL_PATH_YADISK = os.getenv('LOCAL_PATH_YADISK')
 
@@ -24,7 +24,7 @@ class StatusOrder(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name}-{self.id}'
+        return f'{self.name}'
 
     class Meta:
         verbose_name_plural = 'Статусы'
@@ -82,7 +82,6 @@ def order_post_save(sender, instance, created, **kwargs):
         # else:
         '''если UNPAID статус заказа оформлен для файлов'''
 
-
         # архивация заказа
         arvive_name = arhive(id_order)  # Архивируемся
         print('arvive_name', arvive_name)
@@ -133,7 +132,7 @@ class OrderItem(models.Model):
         return f'{self.order}-{self.product}'
 
 
-def product_in_order_post_save(sender, instance, created, **kwargs):
+def product_in_order_post_save(instance, **kwargs):
     order = instance.order
     all_products_in_order = OrderItem.objects.filter(order=order, is_active=True)
     order_total_price = 0
@@ -151,7 +150,6 @@ def product_in_order_post_save(sender, instance, created, **kwargs):
 
     # -----------
     '''Меняем состояние файла (в заказе)'''
-    product = instance.product
     instance.product.in_order = True
     instance.product.save(force_update=True)
 
@@ -180,7 +178,7 @@ def goto_media(foo):
 
 @goto_media
 def arhive(id_order):
-    '''Архивируем заказ'''
+    """Архивируем заказ"""
 
     if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
         print('Файл уже существует, архивация пропущена')
@@ -222,7 +220,6 @@ class UtilsModel:
                 new_arh.write(name, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
         return f'Order_№_{id_order}_{date.today()}.zip'
-
 
     @staticmethod
     def path_for_yadisk(organizations, id_order):
@@ -343,7 +340,6 @@ class UtilsModel:
                     shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
                     # Возвращаемся в корень
                     os.chdir(settings.MEDIA_ROOT)
-
 
     @classmethod
     def add_link_from_folder_yadisk(cls, path=path_save):
