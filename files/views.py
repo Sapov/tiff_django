@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
 from .models import Product, Material, FinishWork
-from .forms import AddFiles, UploadArhive
+from .forms import AddFiles, UploadArhive, Calculator
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
@@ -102,5 +102,32 @@ def upload_arh(request):
 
     return render(request, 'files/upload_arh.html',
                   {'form': form, 'title': 'Добавление файлов'})  # изменение данных в БД
+
+
+def calculator(request):
+    if request.POST:
+        form = Calculator(request.POST)
+        if form.is_valid():
+            # file_name = form.cleaned_data['path_file']
+            form = Calculator(request.POST)
+
+            length = request.POST['length']
+            width = request.POST['width']
+            material = request.POST['material']
+            finishka = request.POST['finishka']
+            materials = Material.objects.get(id=material)
+            finishkas = FinishWork.objects.get(id=finishka)
+            perimetr = (float(width) + float(length))*2
+            finishka_price = perimetr * finishkas.price
+            # context =
+            results = (float(width) * float(length) * materials.price) + finishka_price
+            results = round(results, -1)
+            return render(request, "calculator.html",
+                          {"form": form, 'title': 'Калькулятор для Рекламных агентств', 'results': results})
+
+    else:
+        form = Calculator(request.POST)
+    return render(request, "calculator.html",
+                          {"form": form, 'title': 'Калькулятор для Рекламных агентств'})
 
 

@@ -23,3 +23,11 @@ class UploadArhive(forms.ModelForm):
     class Meta:
         model = UploadArh
         fields = ('__all__')
+
+
+class Calculator(forms.Form):
+    quantity = forms.FloatField(max_value=1000, label="Количество")
+    material = forms.ModelChoiceField(queryset=Material.objects.all(), label="Материал для печати")
+    finishka = forms.ModelChoiceField(queryset=FinishWork.objects.all(), label="Обработка")
+    length = forms.FloatField(max_value=1000, label="Длина")
+    width = forms.FloatField(max_value=1000, label="Ширина")
