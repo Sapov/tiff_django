@@ -72,7 +72,7 @@ class StatusProduct(models.Model):
     status = models.CharField(max_length=64, verbose_name='Статус файла')
 
     def __str__(self):
-        return f'{self.id}-{self.status}'
+        return f'{self.status}'
 
     class Meta:
         verbose_name_plural = 'Статусы файлов'
@@ -140,16 +140,14 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
 
-# def product_post_save(sender, instance, created, **kwargs):
-#     material = instance.material
-#     resolution = instance.resolution
-#     images = instance.images
-#
-#     # Сравниваем размеры с разрешением материала печати
-#     WorkWithFile.check_resolution(material, resolution, images)
-#
-#
-# post_save.connect(product_post_save, sender=Product)
+def product_post_save(sender, instance, created, **kwargs):
+    material = instance.material
+    resolution = instance.resolution
+    images = instance.images
+    # Сравниваем размеры с разрешением материала печати
+    # WorkWithFile.check_resolution(material, resolution, images)
+
+post_save.connect(product_post_save, sender=Product)
 
 
 class Fields(models.Model):

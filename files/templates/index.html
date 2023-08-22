@@ -16,6 +16,7 @@
                 <th>Размер</th>
                 <th>Финишка</th>
                 <th>Стоимость</th>
+                <th>Статус</th>
                 <th>Дата</th>
        </thead>
             <tbody>
@@ -28,10 +29,21 @@
                     <td>{{ product.width }} х {{ product.length }} см.</td>
                     <td>{{ product.FinishWork }}</td>
                     <td>{{ product.price }} руб.</td>
+                    <td>{{ product.status_product }}</td>
                     <td>{{ product.created_at }}</td>
+                     {% if product.status_product.id == 2 %}
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    {% else %}
+
                     <td><a href="edit/{{product.id}}">Изменить</a></td>
                     <td><a href="delete/{{product.id}}">Удалить</a></td>
-                    <td><a href="edit/{{product.id}}">Добавить в заказ</a></td>
+                      {% endif %}
+
+
                 </tr>
         {% endfor %}
             </tbody>

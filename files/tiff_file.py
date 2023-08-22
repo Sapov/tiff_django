@@ -7,6 +7,8 @@ import patoolib
 from PIL import Image as Image_pil, ImageOps
 from tqdm import tqdm
 
+from mysite import settings
+
 
 def check_tiff(file_name: str):
     '''
@@ -82,7 +84,7 @@ class WorkWithFile:
             curent_path = os.getcwd()
             if curent_path[-5:] != 'media':
                 os.chdir(
-                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+                    f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
             print(f' Мы Выбрали {os.getcwd()}')
             print(f' перед архивацией МЫ тут{os.getcwd()}')
             foo(*args, **kwargs)
@@ -133,7 +135,7 @@ class WorkWithFile:
         :param material:
         :return:
         '''
-        print('это будем сравнивать', material.resolution_print)
+        print('[INFO] это разрешение будем сравнивать', material.resolution_print)
         if resolution_file > material.resolution_print:
             print("[INFO] Разрешение больше необходимого Уменьшаем!!")
             cls.resize_image(download_file, material.resolution_print)
