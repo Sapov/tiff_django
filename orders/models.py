@@ -75,23 +75,22 @@ def order_post_save(sender, instance, created, **kwargs):
             file.status_product = status
             file.save()
         # ______________ text FILE__________________
-        text_file_name = UtilsModel.create_text_file(id_order)
-        print('Имя файла текстового файла:', text_file_name)
-        new_str = read_file(text_file_name)
-
+        order_item = UtilsModel(id_order)
+        order_item.create_text_file()
+        new_str = order_item.read_file()
         # else:
-        '''если UNPAID статус заказа оформлен для файлов'''
-
-        # архивация заказа
-        arvive_name = arhive(id_order)  # Архивируемся
-        print('arvive_name', arvive_name)
-        # --------------------------Work in Yandex Disk--------------------------------#
-        UtilsModel.create_folder()  # Создаем папку на yadisk с датой
-        UtilsModel.add_yadisk_locate()  # copy files in yadisk
-        ya_link = UtilsModel.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
-        # отправил письмо
-
-        UtilsModel.send_mail_order(f'{new_str}\nCсылка на архив: {ya_link}')
+        # '''если UNPAID статус заказа оформлен для файлов'''
+        #
+        # # архивация заказа
+        # arvive_name = arhive(id_order)  # Архивируемся
+        # print('arvive_name', arvive_name)
+        # # --------------------------Work in Yandex Disk--------------------------------#
+        # UtilsModel.create_folder(id_order)  # Создаем папку на yadisk с датой
+        # UtilsModel.add_yadisk_locate()  # copy files in yadisk
+        # ya_link = UtilsModel.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        # # отправил письмо
+        #
+        # UtilsModel.send_mail_order(f'{new_str}\nCсылка на архив: {ya_link}')
 
 
 post_save.connect(order_post_save, sender=Order)
@@ -196,16 +195,13 @@ def arhive(id_order):
     return arh_name
 
 
-@goto_media
-def read_file(text_file_name):
-    with open(text_file_name) as file:  # читаю файл txt
-        new_str = file.read()
-        return new_str
-
-
 class UtilsModel:
     organizations = 'Style_N'
     path_save = f'{organizations}/{date.today()}'
+
+    def __init__(self, order_id):
+        self.text_file_name = None
+        self.order_id = order_id
 
     @staticmethod
     def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
@@ -246,7 +242,8 @@ class UtilsModel:
             curent_path = os.getcwd()
             # data_file = Product.objects.get(id=id_order)
             if curent_path[-5:] != 'media':
-                os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+                os.chdir(
+                    f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
             print(f'[INFO] Мы Выбрали {os.getcwd()}')
             res = foo(*args, **kwargs)
             os.chdir(curent_path)  # перейти обратно
@@ -256,14 +253,13 @@ class UtilsModel:
         return wrapper
 
     @goto_media
-    @staticmethod
-    def create_text_file(id_order):
+    def create_text_file(self):
         ''' Создаем файл с харaктерисиками файла для печати '''
 
-        all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-        text_file_name = f'Order_№{id_order}_for_print_{date.today()}.txt'
-        with open(text_file_name, "w") as text_file:
-            text_file.write(f'{"*" * 5}   Заказ № {id_order}   {"*" * 5}\n\n')
+        all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
+        self.text_file_name = f'Order_№{self.order_id}_for_print_{date.today()}.txt'
+        with open(self.text_file_name, "w") as text_file:
+            text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
                 file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
@@ -280,33 +276,16 @@ class UtilsModel:
                     f'{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
                 )
                 text_file.write("-" * 40 + "\n")
+        print('CREATE File', self.text_file_name)
 
-        return text_file_name
-
-    def goto_media(foo):
-        ''' переходим в паапку media/image{data}  и обратно'''
-
-        def wrapper(*args, **kwargs):
-            print(f'[INFO] перед работой мы тут:{os.getcwd()}')
-            curent_path = os.getcwd()
-            # data_file = Product.objects.get(id=id_order)
-            if curent_path[-5:] != 'media':
-                os.chdir(
-                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-            print(f'[INFO] Мы Выбрали {os.getcwd()}')
-            res = foo(*args, **kwargs)
-            os.chdir(curent_path)  # перейти обратно
-            print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
-            return res
-
-        return wrapper
+        return self.text_file_name
 
     @classmethod
-    def create_folder(cls, path=path_save):
+    def create_folder(cls, id_order, path=path_save):
         '''Добавляем фолдер дата
         Директория должна быть всегда уникальной к примеру точная дата мин/сек
         '''
-        if os.path.exists(f"{LOCAL_PATH_YADISK}{path}"):
+        if os.path.exists(f"{LOCAL_PATH_YADISK}{path}{id_order}"):
             print('Директория уже создана')
         else:
             os.mkdir(f'{LOCAL_PATH_YADISK}{path}')
@@ -349,3 +328,9 @@ class UtilsModel:
         ya_link = ya_link.rstrip(r"\n'")
         print(f'Ссылка на яндекс диск {ya_link}')
         return ya_link
+
+    @goto_media
+    def read_file(self):
+        with open(self.text_file_name) as file:  # читаю файл txt
+            new_str = file.read()
+            return new_str
