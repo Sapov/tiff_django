@@ -109,7 +109,7 @@ def del_item_in_order(request, item_id, order_id):
 def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
     curent_order = Order.objects.get(pk=order_id)
-    text = 'Оплатиь можно на карту 0000 0000 0000 0000'
+    text = 'Оплатить можно на карту 0000 0000 0000 0000'
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
     return render(request, "orderpay.html", context)
 
