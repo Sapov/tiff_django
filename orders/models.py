@@ -322,7 +322,7 @@ class UtilsModel:
     def run(self):
         self.create_text_file()
         self.read_file()
-        self.arhive() #архивация заказа
+        self.arhive() # архивация заказа
         # # --------------------------Work in Yandex Disk--------------------------------#
         self.create_folder()  # Создаем папку на yadisk с датой
         self.add_yadisk_locate()  # copy files in yadisk
