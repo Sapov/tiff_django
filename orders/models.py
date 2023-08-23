@@ -246,8 +246,7 @@ class UtilsModel:
             curent_path = os.getcwd()
             # data_file = Product.objects.get(id=id_order)
             if curent_path[-5:] != 'media':
-                os.chdir(
-                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+                os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
             print(f'[INFO] Мы Выбрали {os.getcwd()}')
             res = foo(*args, **kwargs)
             os.chdir(curent_path)  # перейти обратно

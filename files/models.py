@@ -15,7 +15,7 @@ class FinishWork(models.Model):
     price = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный', verbose_name='Стоимость работы в руб.')
 
     def __str__(self):
-        return f'{self.work} - {self.price} руб./1 м.п.'
+        return self.work
 
     class Meta:
         verbose_name_plural = 'Финишные обработки'
