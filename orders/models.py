@@ -161,16 +161,16 @@ def goto_media(foo):
     ''' переходим в паапку media/image{data}  и обратно'''
 
     def wrapper(*args, **kwargs):
-        print(f'[INFO] перед работой мы тут:{os.getcwd()}')
+        print(f'[INFO] Работает декторатор -  перед работой мы тут:{os.getcwd()}')
         curent_path = os.getcwd()
         if curent_path[-5:] != 'media':
             os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
 
             # f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-        print(f'[INFO] Мы Выбрали {os.getcwd()}')
+        print(f'[INFO] Работает декторатор - Мы Выбрали {os.getcwd()}')
         res = foo(*args, **kwargs)
         os.chdir(curent_path)  # перейти обратно
-        print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
+        print(f'[INFO] Работает декторатор - Возвращаемся обратно {os.getcwd()}')
         return res
 
     return wrapper

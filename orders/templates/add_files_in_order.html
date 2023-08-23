@@ -86,7 +86,15 @@
                 <td>{{ items.product.FinishWork }}</td>
                 <td>{{ items.product.Fields }}</td>
                 <td>{{ items.product.price }} руб.</td>
-                <td><a href="/orders/del_item_in_order/{{order_id}}/{{item.id}}">Удалить</a></td>
+                {% if items.product.status_product.id == 2 %}
+
+                    <td></td>
+                {% else %}
+                    <td><a href="/orders/del_item_in_order/{{order_id}}/{{item.id}}">Удалить</a></td>
+
+                {% endif %}
+
+
             </tr>
             {% endfor %}
             </tbody>
