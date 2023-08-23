@@ -75,23 +75,8 @@ def order_post_save(sender, instance, created, **kwargs):
             file.status_product = status
             file.save()
         # ______________ text FILE__________________
-        text_file_name = UtilsModel.create_text_file(id_order)
-        print('Имя файла текстового файла:', text_file_name)
-        new_str = read_file(text_file_name)
-
-        # else:
-        '''если UNPAID статус заказа оформлен для файлов'''
-
-        # архивация заказа
-        arvive_name = arhive(id_order)  # Архивируемся
-        print('arvive_name', arvive_name)
-        # --------------------------Work in Yandex Disk--------------------------------#
-        UtilsModel.create_folder()  # Создаем папку на yadisk с датой
-        UtilsModel.add_yadisk_locate()  # copy files in yadisk
-        ya_link = UtilsModel.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
-        # отправил письмо
-
-        UtilsModel.send_mail_order(f'{new_str}\nCсылка на архив: {ya_link}')
+        order_item = UtilsModel(id_order)
+        order_item.run()
 
 
 post_save.connect(order_post_save, sender=Order)
@@ -176,36 +161,17 @@ def goto_media(foo):
     return wrapper
 
 
-@goto_media
-def arhive(id_order):
-    """Архивируем заказ"""
-
-    if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
-        print('Файл уже существует, архивация пропущена')
-    else:
-        all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-        print("Архивируем файлы:", *all_products_in_order)
-        print(f'[INFO] Мы Выбрали!!!!!!!!!!!!!!!!! {os.getcwd()}')
-        for item in all_products_in_order:
-            file = Product.objects.get(id=item.product.id)
-            arh_name = f'Order_№_{id_order}_{date.today()}.zip'
-            new_arh = zipfile.ZipFile(arh_name, "a")
-            print(str(file.images)[str(file.images).rindex("/") + 1:])
-            new_arh.write(str(file.images)[str(file.images).rindex("/") + 1:], compress_type=zipfile.ZIP_DEFLATED)
-            new_arh.close()
-    return arh_name
-
-
-@goto_media
-def read_file(text_file_name):
-    with open(text_file_name) as file:  # читаю файл txt
-        new_str = file.read()
-        return new_str
-
-
 class UtilsModel:
     organizations = 'Style_N'
     path_save = f'{organizations}/{date.today()}'
+
+    def __init__(self, order_id):
+        self.new_str = None
+        self.ya_link = None
+        self.arh_name = None
+        self.text_file_name = None
+        self.order_id = order_id
+        self.path_yandex_disk = f'{LOCAL_PATH_YADISK}{UtilsModel.path_save}/{self.order_id}'
 
     @staticmethod
     def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
@@ -221,49 +187,47 @@ class UtilsModel:
                 new_arh.close()
         return f'Order_№_{id_order}_{date.today()}.zip'
 
-    @staticmethod
-    def path_for_yadisk(organizations, id_order):
-        path_save = f'{organizations}/{date.today()}'
-        # --------------------------Work in Yandex Disk--------------------------------#
-        path_for_yandex_disk = f'{path_save}/{id_order}'  # Путь на яндекс диске для публикации
-        return path_for_yandex_disk
+    # @staticmethod
+    # def path_for_yadisk(organizations, id_order):
+    #     path_save = f'{organizations}/{date.today()}'
+    #     # --------------------------Work in Yandex Disk--------------------------------#
+    #     path_for_yandex_disk = f'{path_save}/{id_order}'  # Путь на яндекс диске для публикации
+    #     return path_for_yandex_disk
 
-    @staticmethod
-    def send_mail_order(body_mail):
+    def send_mail_order(self):
         ''' принимаем ссылку на яд и текст шаблон письма'''
         send_mail('Новый заказ от REDS',
                   'заказ',
                   'django.rpk@mail.ru',
                   ['rpk.reds@ya.ru'],
                   fail_silently=False,
-                  html_message=body_mail)
+                  html_message=f'{self.new_str}\nCсылка на архив: {self.ya_link}')
 
     def goto_media(foo):
-        ''' переходим в паапку media/image{data}  и обратно'''
+        ''' переходим в папку media/image{data}  и обратно'''
 
         def wrapper(*args, **kwargs):
-            print(f'[INFO] перед работой мы тут:{os.getcwd()}')
+            print(f'[INFO DECORATOR] перед работой мы тут:{os.getcwd()}')
             curent_path = os.getcwd()
             # data_file = Product.objects.get(id=id_order)
-            if curent_path[-5:] != 'media':
-                os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-            print(f'[INFO] Мы Выбрали {os.getcwd()}')
+            os.chdir(
+                f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+            print(f'[INFO DECORATOR] Мы Выбрали {os.getcwd()}')
             res = foo(*args, **kwargs)
             os.chdir(curent_path)  # перейти обратно
-            print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
+            print(f'[INFO DECORATOR] Возвращаемся обратно {os.getcwd()}')
             return res
 
         return wrapper
 
     @goto_media
-    @staticmethod
-    def create_text_file(id_order):
+    def create_text_file(self):
         ''' Создаем файл с харaктерисиками файла для печати '''
 
-        all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-        text_file_name = f'Order_№{id_order}_for_print_{date.today()}.txt'
-        with open(text_file_name, "w") as text_file:
-            text_file.write(f'{"*" * 5}   Заказ № {id_order}   {"*" * 5}\n\n')
+        all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
+        self.text_file_name = f'Order_№{self.order_id}_for_print_{date.today()}.txt'
+        with open(self.text_file_name, "w") as text_file:
+            text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
                 file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
@@ -280,72 +244,87 @@ class UtilsModel:
                     f'{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
                 )
                 text_file.write("-" * 40 + "\n")
+        print('CREATE File', self.text_file_name)
 
-        return text_file_name
+        return self.text_file_name
 
-    def goto_media(foo):
-        ''' переходим в паапку media/image{data}  и обратно'''
-
-        def wrapper(*args, **kwargs):
-            print(f'[INFO] перед работой мы тут:{os.getcwd()}')
-            curent_path = os.getcwd()
-            # data_file = Product.objects.get(id=id_order)
-            if curent_path[-5:] != 'media':
-                os.chdir(
-                    f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-            print(f'[INFO] Мы Выбрали {os.getcwd()}')
-            res = foo(*args, **kwargs)
-            os.chdir(curent_path)  # перейти обратно
-            print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
-            return res
-
-        return wrapper
-
-    @classmethod
-    def create_folder(cls, path=path_save):
-        '''Добавляем фолдер дата
-        Директория должна быть всегда уникальной к примеру точная дата мин/сек
+    def create_folder(self):
+        '''Добавляем фолдер
+        Директория должна быть всегда уникальной к примеру точная дата
+        и номер заказа
         '''
-        if os.path.exists(f"{LOCAL_PATH_YADISK}{path}"):
-            print('Директория уже создана')
+        if os.path.exists(self.path_yandex_disk):
+            print(f'Директория {self.path_yandex_disk} уже создана')
         else:
-            os.mkdir(f'{LOCAL_PATH_YADISK}{path}')
+            print(f'Создаем Директорию {self.path_yandex_disk}')
+            os.makedirs(self.path_yandex_disk)
 
-    @classmethod
-    def add_yadisk_locate(cls, path=path_save):
-
+    def add_yadisk_locate(self):
         """закидываем файлы на yadisk локально на ubuntu
         Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
         Я-ДИСКЕ затирается новым"""
         # Path.cwd()  # Идем в текущий каталог
         os.chdir(
-            f'media/image/{str(date.today())}')  #
+            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
         curent_folder = os.getcwd()
         print('Из яндекс функции видим каталог - ', curent_folder)
         lst_files = os.listdir()  # read name files from folder
         for i in lst_files:
             if i.endswith("txt") or i.endswith("zip"):
-                print(f'Копирую {i} в {LOCAL_PATH_YADISK}{path}')
-                '''Проверяем есть ли файл'''
-                os.chdir(f'{LOCAL_PATH_YADISK}{path}')  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
+                print(f'Копирую {i} в {self.path_yandex_disk}')
+                os.chdir(self.path_yandex_disk)  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
                 if os.path.exists(i):
                     os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
                     os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
 
-                    shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
+                    shutil.move(i, self.path_yandex_disk)
                     os.chdir(settings.MEDIA_ROOT)
                 else:
                     os.chdir(curent_folder)
-                    shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
+                    shutil.move(i, self.path_yandex_disk)
                     # Возвращаемся в корень
                     os.chdir(settings.MEDIA_ROOT)
 
-    @classmethod
-    def add_link_from_folder_yadisk(cls, path=path_save):
-        print(f'Публикую папку: {LOCAL_PATH_YADISK}{path}')
-        ya_link = subprocess.check_output(["yandex-disk", "publish", f'{LOCAL_PATH_YADISK}{path}'])
+    def add_link_from_folder_yadisk(self, path=path_save):
+        print(f'[INFO] Публикую папку: {self.path_yandex_disk}')
+        ya_link = subprocess.check_output(["yandex-disk", "publish", self.path_yandex_disk])
         ya_link = str(ya_link)
         ya_link = ya_link.lstrip("b'")
-        ya_link = ya_link.rstrip(r"\n'")
-        print(f'Ссылка на яндекс диск {ya_link}')
-        return ya_link
+        self.ya_link = ya_link.rstrip(r"\n'")
+        print(f'[INFO] Ссылка на яндекс диск: {self.ya_link}')
+        return self.ya_link
+
+    @goto_media
+    def read_file(self):
+        with open(self.text_file_name) as file:  # читаю файл txt
+            new_str = file.read()
+            return self.new_str
+
+    @goto_media
+    def arhive(self):
+        """Архивируем заказ"""
+
+        if os.path.isfile(f'Order_№_{self.order_id}_{date.today()}.zip'):
+            print('Файл уже существует, архивация пропущена')
+        else:
+            all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
+            print("Архивируем файлы:", *all_products_in_order)
+            print(f'[INFO] Мы Выбрали!!!!!!!!!!!!!!!!! {os.getcwd()}')
+            for item in all_products_in_order:
+                file = Product.objects.get(id=item.product.id)
+                self.arh_name = f'Order_№_{self.order_id}_{date.today()}.zip'
+                new_arh = zipfile.ZipFile(self.arh_name, "a")
+                print(str(file.images)[str(file.images).rindex("/") + 1:])
+                new_arh.write(str(file.images)[str(file.images).rindex("/") + 1:], compress_type=zipfile.ZIP_DEFLATED)
+                new_arh.close()
+        return self.arh_name
+
+    def run(self):
+        self.create_text_file()
+        self.read_file()
+        self.arhive() #архивация заказа
+        # # --------------------------Work in Yandex Disk--------------------------------#
+        self.create_folder()  # Создаем папку на yadisk с датой
+        self.add_yadisk_locate()  # copy files in yadisk
+        self.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        self.send_mail_order()  # отправил письмо
