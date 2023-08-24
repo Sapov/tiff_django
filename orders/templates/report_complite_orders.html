@@ -3,6 +3,23 @@
 {% block body %}
 <h3>Отчет по выполненым ордерам</h3>
 
+<form action="{%  url 'orders:report_complite_orders' %}" method="post", enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>
+       <label for="date">Начало: </label>
+
+       <input type="date" id="start" name="date_start"/>
+    </p>
+    <p>
+       <label for="date">Конец: </label>
+       <input type="date" id="finish" name="date_finish"/>
+    </p>
+    <p>
+        <button type="submit">Отправить</button>
+    </p>
+</form>
 <hr>
 {% if order.count > 0 %}
 
@@ -25,23 +42,7 @@
                 <td>{{ item.organisation_payer }}</td>
                 <td>{{ item.created }}</td>
                 <td>{{ item.Contractor }}</td>
-                <td><form action="{%  url 'orders:report_complite_orders' %}" method="post", enctype="multipart/form-data">
 
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p>
-       <label for="date">Начало: </label>
-
-       <input type="date" id="start" name="date_start"/>
-    </p>
-    <p>
-       <label for="date">Конец: </label>
-       <input type="date" id="finish" name="date_finish"/>
-    </p>
-    <p>
-        <button type="submit">Отправить</button>
-    </p>
-</form></td>
 
             </tr>
                 {% endfor%}

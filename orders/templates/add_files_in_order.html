@@ -73,6 +73,7 @@
             <tr>
                 <th>Картинка</th>
                 <th>Материал</th>
+                <th>Резмер</th>
                 <th>Финишная обработка</th>
                 <th>Поля</th>
                 <th>Итого</th>
@@ -83,6 +84,7 @@
                 <td><a>{% load thumbnail %} <img src="{% thumbnail items.product.images 100x0 %}"
                                                  class="image-detail"></a></td>
                 <td>{{ items.product.material }}</td>
+                <td>{{ items.product.width }}x{{ items.product.length }} см.</td>
                 <td>{{ items.product.FinishWork }}</td>
                 <td>{{ items.product.Fields }}</td>
                 <td>{{ items.product.price }} руб.</td>
