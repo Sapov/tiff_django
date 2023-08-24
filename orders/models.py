@@ -11,8 +11,10 @@ from files.models import Product, StatusProduct
 from django.db.models.signals import post_save
 from django.urls import reverse
 import subprocess
-
 from django.conf import settings
+
+import logging
+logger = logging.getLogger(__name__)
 
 LOCAL_PATH_YADISK = os.getenv('LOCAL_PATH_YADISK')
 
@@ -66,7 +68,7 @@ def order_post_save(sender, instance, created, **kwargs):
     status = instance.status
     id_order = instance.id
     if status.id == 2:  # Если статус "В работе"
-        print('in Work')
+        logger.info('in Work')
         # меняем все файлы в заказе на статус в работе
         all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
         for item in all_products_in_order:
@@ -102,12 +104,13 @@ class OrderItem(models.Model):
 
     def save(self, *args, **kwargs):
         price_per_item = self.product.price
-        print(price_per_item)
+        logging.info('tetst', price_per_item)
+        logger.info(price_per_item)
         self.price_per_item = price_per_item
         self.total_price = self.price_per_item * self.quantity
         # Cost
         cost_price_per_item = self.product.cost_price
-        print('cost_price_per_item', cost_price_per_item)
+        logger.info(f'cost_price_per_item {cost_price_per_item}')
         self.cost_price_per_item = cost_price_per_item
         self.cost_total_price = self.cost_price_per_item * self.quantity
 
@@ -129,8 +132,8 @@ def product_in_order_post_save(instance, **kwargs):
 
     instance.order.total_price = order_total_price
     instance.order.cost_total_price = cost_order_total_price
-    print(instance.order.total_price)
-    print('Себестоимость', cost_order_total_price)
+    logger.info(instance.order.total_price)
+    logger.info(f'Себестоимость, {cost_order_total_price}')
     instance.order.save(force_update=True)
 
     # -----------
@@ -146,16 +149,16 @@ def goto_media(foo):
     ''' переходим в паапку media/image{data}  и обратно'''
 
     def wrapper(*args, **kwargs):
-        print(f'[INFO] Работает декторатор -  перед работой мы тут:{os.getcwd()}')
+        logger.info(f'Работает декоратор -  перед работой мы тут:{os.getcwd()}')
         curent_path = os.getcwd()
         if curent_path[-5:] != 'media':
             os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
 
             # f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-        print(f'[INFO] Работает декторатор - Мы Выбрали {os.getcwd()}')
+        logger.info(f' Работает декторатор - Мы Выбрали {os.getcwd()}')
         res = foo(*args, **kwargs)
         os.chdir(curent_path)  # перейти обратно
-        print(f'[INFO] Работает декторатор - Возвращаемся обратно {os.getcwd()}')
+        logger.info(f' Работает декторатор - Возвращаемся обратно {os.getcwd()}')
         return res
 
     return wrapper
@@ -177,9 +180,10 @@ class UtilsModel:
     def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
         '''Архивируем заказ'''
         if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
-            print('Файл уже существует, архивация пропущена')
+            logger.info('Файл уже существует, архивация пропущена')
         else:
-            print("Архивируем файлы:", *list_files)
+            logger.info('Архивируем файлы:')
+            logger.info(f"Архивируем файлы: {list_files}")
             for name in list_files:
                 arh_name = f'Order_№_{id_order}_{date.today()}.zip'
                 new_arh = zipfile.ZipFile(arh_name, "a")
@@ -207,15 +211,15 @@ class UtilsModel:
         ''' переходим в папку media/image{data}  и обратно'''
 
         def wrapper(*args, **kwargs):
-            print(f'[INFO DECORATOR] перед работой мы тут:{os.getcwd()}')
+            logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
             curent_path = os.getcwd()
             # data_file = Product.objects.get(id=id_order)
             os.chdir(
                 f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-            print(f'[INFO DECORATOR] Мы Выбрали {os.getcwd()}')
+            logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
             res = foo(*args, **kwargs)
             os.chdir(curent_path)  # перейти обратно
-            print(f'[INFO DECORATOR] Возвращаемся обратно {os.getcwd()}')
+            logger.info(f'[INFO DECORATOR] Возвращаемся обратно:{os.getcwd()}')
             return res
 
         return wrapper
@@ -244,7 +248,7 @@ class UtilsModel:
                     f'{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n'
                 )
                 text_file.write("-" * 40 + "\n")
-        print('CREATE File', self.text_file_name)
+        logger.info(f'CREATE File, {self.text_file_name}')
 
         return self.text_file_name
 
@@ -254,9 +258,10 @@ class UtilsModel:
         и номер заказа
         '''
         if os.path.exists(self.path_yandex_disk):
-            print(f'Директория {self.path_yandex_disk} уже создана')
+            logger.info(f'Директория {self.path_yandex_disk} уже создана')
+
         else:
-            print(f'Создаем Директорию {self.path_yandex_disk}')
+            logger.info(f'Создаем Директорию {self.path_yandex_disk}')
             os.makedirs(self.path_yandex_disk)
 
     def add_yadisk_locate(self):
@@ -267,11 +272,11 @@ class UtilsModel:
         os.chdir(
             f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
         curent_folder = os.getcwd()
-        print('Из яндекс функции видим каталог - ', curent_folder)
+        logger.info(f'Из яндекс функции видим каталог - {curent_folder}')
         lst_files = os.listdir()  # read name files from folder
         for i in lst_files:
             if i.endswith("txt") or i.endswith("zip"):
-                print(f'Копирую {i} в {self.path_yandex_disk}')
+                logger.info(f'Копирую {i} в {self.path_yandex_disk}')
                 os.chdir(self.path_yandex_disk)  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
                 if os.path.exists(i):
                     os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
@@ -286,12 +291,12 @@ class UtilsModel:
                     os.chdir(settings.MEDIA_ROOT)
 
     def add_link_from_folder_yadisk(self, path=path_save):
-        print(f'[INFO] Публикую папку: {self.path_yandex_disk}')
+        logger.info(f'Публикую папку: {self.path_yandex_disk}')
         ya_link = subprocess.check_output(["yandex-disk", "publish", self.path_yandex_disk])
         ya_link = str(ya_link)
         ya_link = ya_link.lstrip("b'")
         self.ya_link = ya_link.rstrip(r"\n'")
-        print(f'[INFO] Ссылка на яндекс диск: {self.ya_link}')
+        logger.info(f'Ссылка на яндекс диск: {self.ya_link}')
         return self.ya_link
 
     @goto_media
@@ -305,16 +310,15 @@ class UtilsModel:
         """Архивируем заказ"""
 
         if os.path.isfile(f'Order_№_{self.order_id}_{date.today()}.zip'):
-            print('Файл уже существует, архивация пропущена')
+            logger.info('Файл уже существует, архивация пропущена')
         else:
             all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
-            print("Архивируем файлы:", *all_products_in_order)
-            print(f'[INFO] Мы Выбрали!!!!!!!!!!!!!!!!! {os.getcwd()}')
+            logger.info(f'Архивируем файлы:", {all_products_in_order}')
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
                 self.arh_name = f'Order_№_{self.order_id}_{date.today()}.zip'
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
-                print(str(file.images)[str(file.images).rindex("/") + 1:])
+                logger.info(str(file.images)[str(file.images).rindex("/") + 1:])
                 new_arh.write(str(file.images)[str(file.images).rindex("/") + 1:], compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
         return self.arh_name
