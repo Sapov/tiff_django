@@ -6,7 +6,6 @@ from django.db.models.signals import post_save
 from django.urls import reverse
 from .tiff_file import Calculation, check_tiff, WorkWithFile
 
-
 class FinishWork(models.Model):
     work = models.CharField(max_length=255, verbose_name='Финишная обработка')
     price_contractor = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный',

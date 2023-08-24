@@ -9,6 +9,10 @@ from tqdm import tqdm
 
 from mysite import settings
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 
 def check_tiff(file_name: str):
     '''
@@ -46,7 +50,7 @@ class Calculation:
         price = round(self.width / 100 * self.length / 100 * quantity * material_price)
         # finishka = Calculation(self.width, self.length)
         # self.price += finishka.perimert() * self.finishWork_price  # Добавляю стоимость фиишной обработки
-        print(price)
+        logger.info(price)
         return price
 
 
@@ -80,13 +84,13 @@ class WorkWithFile:
         ''' переходим в паапку media/image{data}  и обратно'''
 
         def wrapper(*args, **kwargs):
-            print(f' перед архивацией МЫ тут{os.getcwd()}')
+            logger.info(f'[DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
             curent_path = os.getcwd()
             if curent_path[-5:] != 'media':
                 os.chdir(
                     f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-            print(f' Мы Выбрали {os.getcwd()}')
-            print(f' перед архивацией МЫ тут{os.getcwd()}')
+            logger.info(f' [DECORATOR] Мы Выбрали {os.getcwd()}')
+            logger.info(f' [DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
             foo(*args, **kwargs)
             os.chdir(curent_path)  # перейти обратно
 
@@ -105,23 +109,22 @@ class WorkWithFile:
         try:
             Image_pil.MAX_IMAGE_PIXELS = None
             with Image_pil.open(file_name) as img:
-                print(img)
+                logger.info(img)
                 width_px, length_px = img.size
-                print(width_px, length_px)
+                logger.info(f'{width_px}, {length_px}')
                 resolution = round(img.info['dpi'][0], 0)
-                print(resolution)
+                logger.info(f'resolution:{resolution}')
                 persent_resize = float(new_dpi / resolution)
-                print('persent_resize', persent_resize)
+                logger.info(f'persent_resize {persent_resize}')
                 width_new_px = round(float(persent_resize * width_px), 0)
                 length_new_px = round((width_new_px / width_px) * length_px, 0)
                 print('width_new_px', width_new_px, 'length_new_px', length_new_px)
                 img = img.resize((int(width_new_px), int(length_new_px)))
-                print(img)
-                # img.save(f'new{file_name}', dpi=(new_dpi, new_dpi))
+                logger.info(img)
                 img.save(f'{file_name}', dpi=(new_dpi, new_dpi))
-                print(img)
-                print(f' МЫ тут{os.getcwd()}')
-            print(f'[INFO] Изменил размер файла {file_name} c {resolution} dpi на {new_dpi} dpi\n')
+                logger.info(img)
+                logger.info(f' МЫ тут{os.getcwd()}')
+            logger.info(f'[INFO] Изменил размер файла {file_name} c {resolution} dpi на {new_dpi} dpi\n')
 
         except PIL.UnidentifiedImageError:
             return print('''!!! -- Это ошибка: Не сведенный файл Tif --- !!!
@@ -135,14 +138,14 @@ class WorkWithFile:
         :param material:
         :return:
         '''
-        print('[INFO] это разрешение будем сравнивать', material.resolution_print)
+        logger.info(f'[INFO] это разрешение будем сравнивать {material.resolution_print}')
         if resolution_file > material.resolution_print:
-            print("[INFO] Разрешение больше необходимого Уменьшаем!!")
+            logger.info("[INFO] Разрешение больше необходимого Уменьшаем!!")
             cls.resize_image(download_file, material.resolution_print)
         elif resolution_file == material.resolution_print:
-            print('[INFO] Разрешение соответствует требованиям')
+            logger.info('[INFO] Разрешение соответствует требованиям')
         else:
-            print("[INFO] Низкое разрешение не соответствует требованиям")
+            logger.info("[INFO] Низкое разрешение не соответствует требованиям")
 
     def check_tiff(self, file_name: str):
         '''
@@ -232,7 +235,7 @@ class WorkWithFile:
                 w_l_dpi = self.check_tiff(self.lst_tif[i])
                 assert type(self.check_tiff(self.lst_tif[i])) == tuple, 'Ожидаем кортеж'
                 P = self.perimetr()  # периметр файла
-                print(self.fields)
+                logger.info(self.fields)
 
                 file_name = f'File # {i + 1}: {self.lst_tif[i]}'
                 self.material_txt = f'Материал для печати: {self.material}'
@@ -261,7 +264,7 @@ class WorkWithFile:
                 file.write("-" * 40 + "\n")
 
             file.write(f'Итого: {round(itog, 2)} руб.\n')
-            print(f'Итого стоимость печати: {round(itog, 2)} руб.')
+            logger.info(f'Итого стоимость печати: {round(itog, 2)} руб.')
             return text_file_name
 
 
