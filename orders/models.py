@@ -219,7 +219,7 @@ class UtilsModel:
             logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
             res = foo(*args, **kwargs)
             os.chdir(curent_path)  # перейти обратно
-            logger.info(f'[INFO DECORATOR] Возвращаемся обратно:{os.getcwd()}')
+            logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
             return res
 
         return wrapper
