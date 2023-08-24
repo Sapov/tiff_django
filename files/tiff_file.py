@@ -81,18 +81,17 @@ class WorkWithFile:
         self.fields = None  # Поля материала
 
     def goto_media(foo):
-        ''' переходим в паапку media/image{data}  и обратно'''
+        ''' переходим в папку media/image{data}  и обратно'''
 
         def wrapper(*args, **kwargs):
             logger.info(f'[DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
-            curent_path = os.getcwd()
-            if curent_path[-5:] != 'media':
-                os.chdir(
+            current_path = os.getcwd()
+            os.chdir(
                     f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
             logger.info(f' [DECORATOR] Мы Выбрали {os.getcwd()}')
             logger.info(f' [DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
             foo(*args, **kwargs)
-            os.chdir(curent_path)  # перейти обратно
+            os.chdir(current_path)  # перейти обратно
 
         return wrapper
 
