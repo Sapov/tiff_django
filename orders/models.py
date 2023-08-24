@@ -302,7 +302,7 @@ class UtilsModel:
     @goto_media
     def read_file(self):
         with open(self.text_file_name) as file:  # читаю файл txt
-            new_str = file.read()
+            self.new_str = file.read()
             return self.new_str
 
     @goto_media
