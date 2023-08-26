@@ -6,6 +6,11 @@ from django.db.models.signals import post_save
 from django.urls import reverse
 from .tiff_file import Calculation, check_tiff, WorkWithFile
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 class FinishWork(models.Model):
     work = models.CharField(max_length=255, verbose_name='Финишная обработка')
     price_contractor = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный',
@@ -79,12 +84,7 @@ class StatusProduct(models.Model):
 
 
 class Product(models.Model):
-    COLOR_MODE = (
-        ('RGB', 'rgb'),
-        ('CMYK', 'cmyk'),
-        ('GREY', 'Greyscale'),
-        ('LAB', 'lab')
-    )
+
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
                                    default=1)
     material = models.ForeignKey("Material", on_delete=models.CASCADE, verbose_name='Материал',
@@ -94,7 +94,7 @@ class Product(models.Model):
     length = models.FloatField(default=0, verbose_name="Длина", help_text="Указывается в см.")
     resolution = models.IntegerField(default=0, verbose_name="Разрешение",
                                      help_text="для баннера 72 dpi, для Пленки 150 dpi")
-    color_model = models.CharField(max_length=10, default='CMYK', choices=COLOR_MODE, verbose_name="Цветовая модель",
+    color_model = models.CharField(max_length=10, default='CMYK', verbose_name="Цветовая модель",
                                    help_text="Для корректной печати модель должна быть CMYK")
     size = models.FloatField(default=0, verbose_name="Размер в Мб")
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
@@ -109,7 +109,6 @@ class Product(models.Model):
     status_product = models.ForeignKey("StatusProduct", on_delete=models.CASCADE, verbose_name='Статус файла',
                                        default=1)
 
-
     def __str__(self):
         return f'{self.images}'
 
@@ -123,13 +122,16 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         ''' расчет и запись стоимости баннера'''
 
-        self.width, self.length, self.resolution = check_tiff(self.images)  # Читаем размеры из Tiff
         # Сравниваем размеры с разрешением материала печати
-        # WorkWithFile.check_resolution(self.material, self.resolution, self.images)
+        # Считаем стоимость печати
+        download_file = WorkWithFile(self.images)  # , self.material.resolution_print
+        self.color_model = download_file.color_mode()
+        logger.info(f'self.color_model {self.color_model }')
+        self.width, self.length, self.resolution = download_file.check_tiff()
+        self.price = download_file.price_calculation(self.quantity, self.material.price)
+        # Считаем финишку
+        self.price += download_file.finish_wokrs(self.FinishWork.price)  # Добавляю стоимость финишной обработки
 
-        self.price = round(self.width / 100 * self.length / 100 * self.quantity * self.material.price)
-        finishka = Calculation(self.width, self.length)
-        self.price += finishka.perimert() * self.FinishWork.price  # Добавляю стоимость фиишной обработки
         # СЕБЕСТОИМОСТЬ
         self.cost_price = round(
             (self.width) / 100 * (self.length) / 100 * self.quantity * self.material.price_contractor)
@@ -145,6 +147,7 @@ def product_post_save(sender, instance, created, **kwargs):
     images = instance.images
     # Сравниваем размеры с разрешением материала печати
     # WorkWithFile.check_resolution(material, resolution, images)
+
 
 post_save.connect(product_post_save, sender=Product)
 
