@@ -40,7 +40,7 @@ class Contractor(models.Model):
 
 class TypePrint(models.Model):
     type_print = models.CharField(max_length=128, verbose_name='Метод печати')
-    info_type_print = models.TextField()
+    info_type_print = models.TextField(verbose_name='Описание метода печати')
 
     class Meta:
         verbose_name_plural = 'Типы печати'
