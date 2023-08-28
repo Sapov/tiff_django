@@ -1,4 +1,5 @@
 import os
+import shutil
 import zipfile
 from datetime import date
 import PIL
@@ -54,6 +55,22 @@ class Calculation:
         return price
 
 
+def goto_media(foo):
+    ''' переходим в папку media/image{data}  и обратно'''
+
+    def wrapper(*args, **kwargs):
+        logger.info(f'[DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
+        current_path = os.getcwd()
+        os.chdir(
+            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+        logger.info(f' [DECORATOR] Мы Выбрали {os.getcwd()}')
+        logger.info(f' [DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
+        foo(*args, **kwargs)
+        os.chdir(current_path)  # перейти обратно
+
+    return wrapper
+
+
 class WorkWithFile:
     '''Работа с файлом TIFF'''
 
@@ -67,26 +84,26 @@ class WorkWithFile:
         self.resolution = None  # Разрешение файла
         self.finish_work = None  # финишная обработка
         self.fields = None  # Поля материала
-        self.image = image # Файл
+        self.image = image  # Файл
 
     def price_calculation(self, quantity, material_price):
         '''Расчитываем прайсовую стоимость печати'''
         return round(self.width / 100 * self.length / 100 * quantity * material_price)
 
-    def goto_media(foo):
-        ''' переходим в папку media/image{data}  и обратно'''
-
-        def wrapper(*args, **kwargs):
-            logger.info(f'[DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
-            current_path = os.getcwd()
-            os.chdir(
-                f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-            logger.info(f' [DECORATOR] Мы Выбрали {os.getcwd()}')
-            logger.info(f' [DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
-            foo(*args, **kwargs)
-            os.chdir(current_path)  # перейти обратно
-
-        return wrapper
+    # def goto_media(foo):
+    #     ''' переходим в папку media/image{data}  и обратно'''
+    #
+    #     def wrapper(*args, **kwargs):
+    #         logger.info(f'[DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
+    #         current_path = os.getcwd()
+    #         os.chdir(
+    #             f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+    #         logger.info(f' [DECORATOR] Мы Выбрали {os.getcwd()}')
+    #         logger.info(f' [DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
+    #         foo(*args, **kwargs)
+    #         os.chdir(current_path)  # перейти обратно
+    #
+    #     return wrapper
 
     @classmethod
     @goto_media
@@ -113,29 +130,41 @@ class WorkWithFile:
                 print('width_new_px', width_new_px, 'length_new_px', length_new_px)
                 img = img.resize((int(width_new_px), int(length_new_px)))
                 logger.info(img)
-                img.save(file_name, compression='tiff_lzw',
+                img.save('new_file.tif', compression='tiff_lzw',
                          dpi=(new_dpi, new_dpi))  # f'{file_name}',  dpi=(new_dpi, new_dpi)
-                logger.info(img)
                 logger.info(f' МЫ тут{os.getcwd()}')
             logger.info(f'[INFO] Изменил размер файла {file_name} c {resolution} dpi на {new_dpi} dpi\n')
+            # os.remove(str(file_name))
+            logger.info(f'[INFO] Deleting old file  {file_name} ')
+
+            os.rename('new_file.tif', str(file_name))
+            logger.info(f'[INFO] COPY new_file.tif {file_name} ')
 
         except PIL.UnidentifiedImageError:
             return print('''!!! -- Это ошибка: Не сведенный файл Tif --- !!!
                 Решение: Photoshop / слои / выполнить сведение''')
 
-    @classmethod
-    def check_resolution(cls, material, resolution_file, download_file):
+    def compress_image(self, resolution):
+        try:
+            Image_pil.MAX_IMAGE_PIXELS = None
+            with Image_pil.open(self.image) as img:
+                width_px, length_px = img.size
+                img.save(self.image, compression='tiff_lzw', dpi=(resolution, resolution), tiffinfo={317: 2,
+                                                                                                     278: 1})  # , dpi=(new_dpi, new_dpi))  # f'{file_name}',  dpi=(new_dpi, new_dpi)
+            logger.info(f'COMPRESS {self.image}')
+
+        except PIL.UnidentifiedImageError:
+            return print('''!!! -- Это ошибка: Не сведенный файл Tif --- !!!
+                Решение: Photoshop / слои / выполнить сведение''')
+
+    def check_resolution(self, resolution_print):
         '''
-        Проверяем разрешения и уменьшаем в соответствии со стандартом
-        :param lst_tif:
-        :param material:
-        :return:
-        '''
-        logger.info(f'[INFO] это разрешение будем сравнивать {material.resolution_print}')
-        if resolution_file > material.resolution_print:
+        Проверяем разрешения и уменьшаем в соответствии со стандартом'''
+        logger.info(f'[INFO] это разрешение будем сравнивать {resolution_print}')
+        if self.resolution > resolution_print:
             logger.info("[INFO] Разрешение больше необходимого Уменьшаем!!")
-            cls.resize_image(download_file, material.resolution_print)
-        elif resolution_file == material.resolution_print:
+            self.resize_image(self.image, resolution_print)
+        elif self.resolution == resolution_print:
             logger.info('[INFO] Разрешение соответствует требованиям')
         else:
             logger.info("[INFO] Низкое разрешение не соответствует требованиям")
@@ -161,7 +190,7 @@ class WorkWithFile:
 
         return self.width, self.length, self.resolution
 
-    def perimetr(self): # написать тесты на /0
+    def perimetr(self):  # написать тесты на /0
         return (self.width + self.length) * 2 / 100  # / 100 приводим к метрам
 
     def finish_wokrs(self, finish_work_price):

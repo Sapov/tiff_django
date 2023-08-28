@@ -84,7 +84,6 @@ class StatusProduct(models.Model):
 
 
 class Product(models.Model):
-
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
                                    default=1)
     material = models.ForeignKey("Material", on_delete=models.CASCADE, verbose_name='Материал',
@@ -125,18 +124,25 @@ class Product(models.Model):
         # Сравниваем размеры с разрешением материала печати
         # Считаем стоимость печати
         download_file = WorkWithFile(self.images)  # , self.material.resolution_print
+
         self.color_model = download_file.color_mode()
-        logger.info(f'self.color_model {self.color_model }')
+        logger.info(f'self.color_model {self.color_model}')
         self.width, self.length, self.resolution = download_file.check_tiff()
+        logger.info(f'Разрешение До {self.resolution}')
+        # RESIZE IMAGE
+        # download_file.check_resolution(self.material.resolution_print)
+        # download_file.compress_image(self.material.resolution_print)
+
         self.price = download_file.price_calculation(self.quantity, self.material.price)
         # Считаем финишку
         self.price += download_file.finish_wokrs(self.FinishWork.price)  # Добавляю стоимость финишной обработки
 
         # СЕБЕСТОИМОСТЬ
-        self.cost_price = round(
-            (self.width) / 100 * (self.length) / 100 * self.quantity * self.material.price_contractor)
-        finishka = Calculation(self.width, self.length)
-        self.cost_price += finishka.perimert() * self.FinishWork.price_contractor  # Добавляю стоимость фиишной обработки
+        self.cost_price = download_file.price_calculation(self.quantity, self.material.price_contractor)
+        logger.info(f'Себестоимость: self.cost_price {self.cost_price}')
+        self.cost_price += download_file.finish_wokrs(
+            self.FinishWork.price_contractor)  # Добавляю стоимость финишной обработки
+        logger.info(f'Себестоимость: с финишкой {self.cost_price}')
 
         super(Product, self).save(*args, **kwargs)
 
