@@ -14,6 +14,7 @@ import subprocess
 from django.conf import settings
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 LOCAL_PATH_YADISK = os.getenv('LOCAL_PATH_YADISK')
@@ -146,19 +147,22 @@ post_save.connect(product_in_order_post_save, sender=OrderItem)
 
 
 def goto_media(foo):
-    ''' переходим в паапку media/image{data}  и обратно'''
+    ''' переходим в папку media/image{data}  и обратно'''
 
     def wrapper(*args, **kwargs):
-        logger.info(f'Работает декоратор -  перед работой мы тут:{os.getcwd()}')
+        logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
         curent_path = os.getcwd()
-        if curent_path[-5:] != 'media':
-            os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
+        # logger.info(f'[INFO DECORATOR] OBJECT: {order_id}')
+        # data_file = Product.objects.get(id=self.order_id)
+        # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
+        # logger.info(f'[INFO DECORATOR] CREATED: {data_file.created}')
 
-            # f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-        logger.info(f' Работает декторатор - Мы Выбрали {os.getcwd()}')
+        os.chdir(
+            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+        logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
         res = foo(*args, **kwargs)
         os.chdir(curent_path)  # перейти обратно
-        logger.info(f' Работает декторатор - Возвращаемся обратно {os.getcwd()}')
+        logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
         return res
 
     return wrapper
@@ -207,22 +211,26 @@ class UtilsModel:
                   fail_silently=False,
                   html_message=f'{self.new_str}\nCсылка на архив: {self.ya_link}')
 
-    def goto_media(foo):
-        ''' переходим в папку media/image{data}  и обратно'''
-
-        def wrapper(*args, **kwargs):
-            logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
-            curent_path = os.getcwd()
-            # data_file = Product.objects.get(id=id_order)
-            os.chdir(
-                f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-            logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
-            res = foo(*args, **kwargs)
-            os.chdir(curent_path)  # перейти обратно
-            logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
-            return res
-
-        return wrapper
+    # def goto_media(foo):
+    #     ''' переходим в папку media/image{data}  и обратно'''
+    #
+    #     def wrapper(*args, **kwargs):
+    #         logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
+    #         curent_path = os.getcwd()
+    #         # logger.info(f'[INFO DECORATOR] OBJECT: {self.order_id}')
+    #         # data_file = Product.objects.get(id=self.order_id)
+    #         # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
+    #         # logger.info(f'[INFO DECORATOR] CREATED: {data_file.created}')
+    #
+    #         os.chdir(
+    #             f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
+    #         logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
+    #         res = foo(*args, **kwargs)
+    #         os.chdir(curent_path)  # перейти обратно
+    #         logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
+    #         return res
+    #
+    #     return wrapper
 
     @goto_media
     def create_text_file(self):
@@ -302,7 +310,7 @@ class UtilsModel:
     @goto_media
     def read_file(self):
         with open(self.text_file_name) as file:  # читаю файл txt
-            new_str = file.read()
+            self.new_str = file.read()
             return self.new_str
 
     @goto_media
@@ -326,7 +334,7 @@ class UtilsModel:
     def run(self):
         self.create_text_file()
         self.read_file()
-        self.arhive() # архивация заказа
+        self.arhive()  # архивация заказа
         # # --------------------------Work in Yandex Disk--------------------------------#
         self.create_folder()  # Создаем папку на yadisk с датой
         self.add_yadisk_locate()  # copy files in yadisk
