@@ -64,7 +64,7 @@ class Material(models.Model):
                                            blank=True, null=True, default=None)
 
     def __str__(self):
-        return f' {self.name} - {self.type_print}'
+        return f'{self.name} - {self.type_print}'
 
     class Meta:
         verbose_name_plural = 'Материалы для печати'
