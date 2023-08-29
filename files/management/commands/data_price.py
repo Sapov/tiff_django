@@ -12,9 +12,9 @@ Material_data = [
     ('Баннерная сетка 370 грамм', TypePrint.objects.get_or_create(id=1)[0], 240, 390, 72),
     ('Блюбек', TypePrint.objects.get_or_create(id=1)[0], 110, 220, 72),
     ('Бумага 150 грамм СytiLight', TypePrint.objects.get_or_create(id=1)[0], 170, 340, 72),
-    # Интерьерка TypePrint.objects.get_or_create(id=2)
-    ('Пленка Китай 80 мик Матовая', TypePrint.objects.get_or_create(id=2)[0], 280, 390, 150),
-    ('Пленка Китай 80 мик Глянец', TypePrint.objects.get_or_create(id=2)[0], 280, 390, 150),
+# Интерьерка TypePrint.objects.get_or_create(id=2)
+    ('Пленка Китай 80 мик Матовая', TypePrint.objects.get_or_create(id=2)[0], 300, 390, 150),
+    ('Пленка Китай 80 мик Глянец', TypePrint.objects.get_or_create(id=2)[0], 300, 390, 150),
     ('Пленка Китай 80 мик Глянец + ламинация', TypePrint.objects.get_or_create(id=2)[0], 450, 800, 150),
     ('Пленка Китай 100 мик Матовая', TypePrint.objects.get_or_create(id=2)[0], 320, 520, 150),
     ('Пленка Китай 100 мик Глянец', TypePrint.objects.get_or_create(id=2)[0], 320, 520, 150),
@@ -33,6 +33,8 @@ Material_data = [
     ('Печать на ПВХ 3 мм', TypePrint.objects.get_or_create(id=3)[0], 1400, 3600, 150),
     ('Печать на ПВХ 5 мм', TypePrint.objects.get_or_create(id=3)[0], 2020, 4200, 150),
     ('Печать на на оцинковке', TypePrint.objects.get_or_create(id=3)[0], 1700, 3600, 150),
+    ('Печать на на пленке матовая 100 мик', TypePrint.objects.get_or_create(id=3)[0], 425, 3600, 850),
+    ('Печать на на пленке гленцевая 100 мик', TypePrint.objects.get_or_create(id=3)[0], 425, 3600, 850),
 
 
 ]
