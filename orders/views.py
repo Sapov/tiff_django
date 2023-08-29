@@ -28,7 +28,18 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-# User = get_user_model()
+# def new_order(request):
+#     # organisation= Organisation.objects.filter(Contractor=request.user)
+#     Orders = Order.objects.create(Contractor=request.user)
+#     organisation = Organisation.objects.filter(
+#         Contractor=request.user)  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
+#     print('ORDER TYPE___', type(Orders))
+#
+#     # context = {'Orders': Orders, 'items': items, 'items_in_order': items_in_order, 'curent_order': curent_order,
+#     #            'order_id': order_id}
+#
+#     context = {'organisation': organisation, 'Orders': Orders}
+#     return render(request, "add_new_order.html", context)
 
 
 class OrderItemCreateView(LoginRequiredMixin, CreateView):

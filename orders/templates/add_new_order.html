@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+<title>{% block title %} {{curent_order}} {% endblock %}</title>
+{% block body %}
+<h3>Добавить новый заказ</h3>
+
+
+<table>
+    <thead>
+    <th>Оранизация</th>
+
+    </thead>
+    <select>
+        {% for item in organisation %}
+        <!--        <td>{{ item.name_ul }} руб.</td>-->
+
+        <option value="" {{ item.name_ul }}>{{ item.name_ul }}</option>
+        {% endfor %}
+    </select>
+
+
+</table>
+<form method="post" , enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+
+    <button type="submit">Добавить</button>
+</form>
+
+
+{% endblock %}

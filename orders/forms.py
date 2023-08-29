@@ -13,7 +13,7 @@ from account.models import Organisation
 class UserOrganisationForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)
+
         super(UserOrganisationForm, self).__init__(*args, **kwargs)
         self.fields['organization'] = forms.ModelChoiceField(queryset=Organisation.objects.filter(Contractor=user))
 

@@ -9,6 +9,7 @@ app_name = 'orders'
 
 urlpatterns = [
     path('new_order/', OrderCreateView.as_view(), name="new_order"), # Добавть новый зааказ
+    # path('neworder/', new_order, name="neworder"), # Добавть новый зааказ
     path('user_organization_view/', user_organization_view, name="user_organization_view"), # Добавть новый зааказ
     path('create/<pk>', OrderUpdateView.as_view(), name="update_order"), # Редактировать заказ
     path('createitem/', OrderItemCreateView.as_view(), name="create_itmorder"),
