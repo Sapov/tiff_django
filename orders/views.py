@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -6,7 +8,7 @@ from django.urls import reverse_lazy
 from account.models import Organisation
 # from account.models import Organisation
 from files.models import Product
-from .forms import UserOrganisationForm
+from .forms import UserOrganisationForm, NewOrder, OrderForm
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
@@ -20,26 +22,32 @@ from django.views.generic import ListView
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
     model = Order
+    # form_class = OrderForm
     fields = ['organisation_payer']
     login_url = 'login'
 
-    def form_valid(self, form):
-        form.instance.Contractor = self.request.user
-        return super().form_valid(form)
 
+def new_order(request):
+    if request.method == 'POST':
+        logging.info(f'reUSERcated{request.user}')
+        form = OrderForm()
+        print(form)
+        print(request.user)
+        # if form.is_valid():
+        # logging.info(form.cleaned_data)
+        organisation_payer = request.POST['organisation_payer']
+        logging.info(f'organisation_payer  {organisation_payer}')
+        # user = request.POST['user']
+        # logging.info(f'user {user} organisation_payer {organisation_payer}')
+        # context =
+        # organisation = Organisation.objects.get(id=organisation_payer)
+        # logging.info(organisation)
 
-# def new_order(request):
-#     # organisation= Organisation.objects.filter(Contractor=request.user)
-#     Orders = Order.objects.create(Contractor=request.user)
-#     organisation = Organisation.objects.filter(
-#         Contractor=request.user)  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
-#     print('ORDER TYPE___', type(Orders))
-#
-#     # context = {'Orders': Orders, 'items': items, 'items_in_order': items_in_order, 'curent_order': curent_order,
-#     #            'order_id': order_id}
-#
-#     context = {'organisation': organisation, 'Orders': Orders}
-#     return render(request, "add_new_order.html", context)
+        # order = Order.objects.create(Contractor=request.user)
+        # logging.info(order)
+    else:
+        form = OrderForm()
+    return render(request, 'add_new_order.html', {'form': form, })
 
 
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
@@ -55,7 +63,7 @@ class OrderItemCreateView(LoginRequiredMixin, CreateView):
 @login_required
 def view_order(request):
     '''Вывод файлов только авторизованного пользователя'''
-    Orders = Order.objects.filter(Contractor=request.user).order_by('id')
+    Orders = Order.objects.filter(Contractor=request.user).order_by('-id')
     return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы'})
 
 

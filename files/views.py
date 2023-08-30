@@ -123,11 +123,11 @@ def calculator(request):
             results = (float(width) * float(length) * materials.price) + finishka_price # в см
             results = round(results, -1)
             return render(request, "calculator.html",
-                          {"form": form, 'title': 'Калькулятор для Рекламных агентств', 'results': results})
+                          {"form": form, 'title': 'Калькулятор печати для Рекламных агентств', 'results': results})
 
     else:
         form = Calculator(request.POST)
     return render(request, "calculator.html",
-                          {"form": form, 'title': 'Калькулятор для Рекламных агентств'})
+                          {"form": form, 'title': 'Калькулятор печати для Рекламных агентств'})
 
 

@@ -6,26 +6,26 @@
 
 <table>
     <thead>
-    <th>Оранизация</th>
+    <th>Организация</th>
 
     </thead>
-    <select>
-        {% for item in organisation %}
-        <!--        <td>{{ item.name_ul }} руб.</td>-->
-
-        <option value="" {{ item.name_ul }}>{{ item.name_ul }}</option>
-        {% endfor %}
-    </select>
 
 
 </table>
-<form method="post" , enctype="multipart/form-data">
+
+<form action="{% url 'orders:neworder'  %}" method="post" , enctype="multipart/form-data">
+<!--      <select>-->
+<!--        {% for item in organisation %}-->
+
+<!--        <option value="" {{ item.name_ul }}>{{ item.name_ul }}</option>-->
+<!--        {% endfor %}-->
+<!--    </select>-->
+
 
     {% csrf_token %}
-
+    {{ form.as_p }}
 
     <button type="submit">Добавить</button>
 </form>
-
 
 {% endblock %}
