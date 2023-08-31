@@ -40,8 +40,7 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
     добавление организации пользователем
     '''
     model = Organisation
-    fields = ['name_ul', 'address_ur']
-    # fields = ('__all__')
+    fields = ['name_ul', 'inn', 'kpp', 'okpo', 'address_ur', 'address_post', 'phone', 'phone2', 'email',]
     success_url = reverse_lazy('account:list_organisation')
 
     # только для текущего юзера
@@ -71,6 +70,6 @@ class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
 class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     """ Редакторование организации"""
     model = Organisation
-    fields = ('__all__')
+    fields = ('name_ul', 'inn', 'kpp', 'okpo', 'address_ur', 'address_post', 'phone', 'phone2', 'email', )
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('view_organisation_user')

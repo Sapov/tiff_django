@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import OrderCreateView, OrderItemCreateView, view_order, View_order_item, \
+from .views import OrderItemCreateView, view_order, View_order_item, \
     OrderUpdateView, DeleteOrderView, add_files_in_order, add_item_in_order, del_item_in_order, order_pay, \
     view_all_orders, view_all_files_for_work_in_orders, ViewAllPayOrders, about_file, user_organization_view, \
     report_complite_orders, new_order
@@ -8,8 +8,8 @@ from .views import OrderCreateView, OrderItemCreateView, view_order, View_order_
 app_name = 'orders'
 
 urlpatterns = [
-    path('new_order/', OrderCreateView.as_view(), name="new_order"), # Добавть новый зааказ
-    path('neworder/', new_order, name="neworder"), # Добавть новый зааказ
+    # path('new_order/', OrderCreateView.as_view(), name="new_order"), # Добавть новый зааказ
+    path('neworder/', new_order, name="new_order"), # Добавть новый зааказ
     path('user_organization_view/', user_organization_view, name="user_organization_view"), # Добавть новый зааказ
     path('create/<pk>', OrderUpdateView.as_view(), name="update_order"), # Редактировать заказ
     path('createitem/', OrderItemCreateView.as_view(), name="create_itmorder"),

@@ -14,19 +14,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.views.generic import ListView
 
 
-# from .forms import OrderForm
-
-
-# from django.contrib.auth import get_user_model
-
-
-class OrderCreateView(LoginRequiredMixin, CreateView):
-    model = Order
-    # form_class = OrderForm
-    fields = ['organisation_payer']
-    login_url = 'login'
-
-
 def new_order(request):
     logging.info(request)
     if request.POST:
@@ -108,7 +95,6 @@ def add_item_in_order(request, item_id, order_id):
     curent_order = Order.objects.get(pk=order_id)
     print('ORDER TYPE', type(Orders))
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
-    # return render(request, "add_in.html", context)
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
@@ -133,12 +119,12 @@ def order_pay(request, order_id):
 @login_required
 def view_all_orders(request):
     '''Посмотреть все заказы '''
-    Orders = Order.objects.all().order_by('id')
+    Orders = Order.objects.all().order_by('-id')
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
 
 class ViewAllPayOrders(LoginRequiredMixin, ListView):
-    '''Посмотреть все заказы которы оплачены и поэтому в работе'''
+    '''Посмотреть все заказы которые оплачены и поэтому в работе'''
 
     model = Order
     template_name = 'all_view_orders_pay.html'
@@ -175,23 +161,6 @@ def user_organization_view(request):
     form = UserOrganisationForm(user=user)
     # a1 = Order.objects.create(**form.cleaned_data)
     return render(request, 'user_organization.html', {'form': form})
-
-
-# def order_pay_check(request, order_id):
-# Orders = Order.objects.get(id=order_id)
-# # print(Orders)
-# items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
-# print(items_in_order)
-# for i in items_in_order:
-#     print('#', i.id)
-#     f = Product.objects.get(id=i.id)
-#     print(f.status_product.id)
-#     f.status_product.id = 3
-#     f.status_product.save()
-#     print(f.status_product)
-# text = 'Оплатить можно на карту 0000 0000 0000 0000'
-# context = {'Orders': Orders, 'text': text}
-# return render(request, "orderpay.html", context)
 
 
 def report_complite_orders(request):

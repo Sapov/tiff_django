@@ -60,10 +60,17 @@
             </tr>
             {% endfor %}
             </tbody>
+
         </table>
+
     </div>
 </div>
+         {% else %}
+        <h6> Нет файлов для добавления в заказ </h6>
+
 {% endif %}
+
+{% if items_in_order.count > 0 %}
 
 <h5> Файлы в заказе: </h5>
 <div class="row">
@@ -108,4 +115,5 @@
 
     </div>
 </div>
+{% endif %}
 {% endblock %}
