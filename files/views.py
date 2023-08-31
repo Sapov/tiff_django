@@ -108,9 +108,7 @@ def calculator(request):
     if request.POST:
         form = Calculator(request.POST)
         if form.is_valid():
-            # file_name = form.cleaned_data['path_file']
             form = Calculator(request.POST)
-
             length = request.POST['length']
             width = request.POST['width']
             material = request.POST['material']
@@ -123,11 +121,11 @@ def calculator(request):
             results = (float(width) * float(length) * materials.price) + finishka_price # в см
             results = round(results, -1)
             return render(request, "calculator.html",
-                          {"form": form, 'title': 'Калькулятор для Рекламных агентств', 'results': results})
+                          {"form": form, 'title': 'Калькулятор печати для Рекламных агентств', 'results': results})
 
     else:
         form = Calculator(request.POST)
     return render(request, "calculator.html",
-                          {"form": form, 'title': 'Калькулятор для Рекламных агентств'})
+                          {"form": form, 'title': 'Калькулятор печати для Рекламных агентств'})
 
 

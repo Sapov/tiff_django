@@ -90,9 +90,9 @@
                 <td>{{ items.product.price }} руб.</td>
                 {% if items.product.status_product.id == 2 %}
 
-                    <td></td>
+                <td></td>
                 {% else %}
-                    <td><a href="/orders/del_item_in_order/{{order_id}}/{{item.id}}">Удалить</a></td>
+                <td><a href="/orders/del_item_in_order/{{order_id}}/{{item.id}}">Удалить</a></td>
 
                 {% endif %}
 
@@ -101,10 +101,10 @@
             {% endfor %}
             </tbody>
         </table>
-                                      <td>
-                    <button type="submit" class="btn btn-primary"
-                            onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ</button>
-                </td>
+        <td>
+            <button type="submit" class="btn btn-primary"
+                    onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ</button>
+        </td>
 
     </div>
 </div>

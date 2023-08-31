@@ -40,7 +40,7 @@ class Contractor(models.Model):
 
 class TypePrint(models.Model):
     type_print = models.CharField(max_length=128, verbose_name='Метод печати')
-    info_type_print = models.TextField()
+    info_type_print = models.TextField(verbose_name='Описание метода печати')
 
     class Meta:
         verbose_name_plural = 'Типы печати'
@@ -64,7 +64,7 @@ class Material(models.Model):
                                            blank=True, null=True, default=None)
 
     def __str__(self):
-        return f' {self.name} - {self.type_print}'
+        return f'{self.name} - {self.type_print}'
 
     class Meta:
         verbose_name_plural = 'Материалы для печати'
@@ -132,6 +132,9 @@ class Product(models.Model):
         # RESIZE IMAGE
         # download_file.check_resolution(self.material.resolution_print)
         # download_file.compress_image(self.material.resolution_print)
+        # RENAME IMAGES
+
+
 
         self.price = download_file.price_calculation(self.quantity, self.material.price)
         # Считаем финишку

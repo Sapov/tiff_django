@@ -6,8 +6,6 @@ import PIL
 import data
 import patoolib
 from PIL import Image as Image_pil, ImageOps
-from tqdm import tqdm
-
 from mysite import settings
 
 import logging
@@ -134,7 +132,7 @@ class WorkWithFile:
                          dpi=(new_dpi, new_dpi))  # f'{file_name}',  dpi=(new_dpi, new_dpi)
                 logger.info(f' МЫ тут{os.getcwd()}')
             logger.info(f'[INFO] Изменил размер файла {file_name} c {resolution} dpi на {new_dpi} dpi\n')
-            # os.remove(str(file_name))
+            os.remove(str(file_name))
             logger.info(f'[INFO] Deleting old file  {file_name} ')
 
             os.rename('new_file.tif', str(file_name))
@@ -289,6 +287,8 @@ class WorkWithFile:
             file.write(f'Итого: {round(itog, 2)} руб.\n')
             logger.info(f'Итого стоимость печати: {round(itog, 2)} руб.')
             return text_file_name
+
+
 
 
 class WorkZip:

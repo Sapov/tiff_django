@@ -42,7 +42,7 @@ class Order(models.Model):
                                          verbose_name='Общая Себестоимость ',
                                          blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
-                                           verbose_name='организация платильщик', default=1)
+                                           verbose_name='организация платильщик')
     paid = models.BooleanField(verbose_name='заказ оплачен', default=False)
     date_complete = models.DateTimeField(verbose_name='Дата готовности заказа',
                                          help_text='Введите дату к которой нужен заказ', null=True, blank=True)
@@ -77,7 +77,7 @@ def order_post_save(sender, instance, created, **kwargs):
             status = StatusProduct.objects.get(id=2)
             file.status_product = status
             file.save()
-        # ______________ text FILE__________________
+        # ______________ SEND FILES__________________
         order_item = UtilsModel(id_order)
         order_item.run()
 
@@ -195,13 +195,6 @@ class UtilsModel:
                 new_arh.close()
         return f'Order_№_{id_order}_{date.today()}.zip'
 
-    # @staticmethod
-    # def path_for_yadisk(organizations, id_order):
-    #     path_save = f'{organizations}/{date.today()}'
-    #     # --------------------------Work in Yandex Disk--------------------------------#
-    #     path_for_yandex_disk = f'{path_save}/{id_order}'  # Путь на яндекс диске для публикации
-    #     return path_for_yandex_disk
-
     def send_mail_order(self):
         ''' принимаем ссылку на яд и текст шаблон письма'''
         send_mail('Новый заказ от REDS',
@@ -210,27 +203,6 @@ class UtilsModel:
                   ['rpk.reds@ya.ru'],
                   fail_silently=False,
                   html_message=f'{self.new_str}\nCсылка на архив: {self.ya_link}')
-
-    # def goto_media(foo):
-    #     ''' переходим в папку media/image{data}  и обратно'''
-    #
-    #     def wrapper(*args, **kwargs):
-    #         logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
-    #         curent_path = os.getcwd()
-    #         # logger.info(f'[INFO DECORATOR] OBJECT: {self.order_id}')
-    #         # data_file = Product.objects.get(id=self.order_id)
-    #         # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
-    #         # logger.info(f'[INFO DECORATOR] CREATED: {data_file.created}')
-    #
-    #         os.chdir(
-    #             f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-    #         logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
-    #         res = foo(*args, **kwargs)
-    #         os.chdir(curent_path)  # перейти обратно
-    #         logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
-    #         return res
-    #
-    #     return wrapper
 
     @goto_media
     def create_text_file(self):

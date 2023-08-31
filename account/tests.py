@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from django.test import TestCase
 
 from django.test import TestCase
@@ -25,7 +25,6 @@ class TestAccount(TestCase):
         response = self.client.get('/account/update_organisation_user/1')
         self.assertEqual(response.status_code, 302)
         # self.assertTemplateUsed(response, 'organisation_update_form.html')
-
 
     # def test_model_Organisation_setUp(self):
     #     self.user = get_user_model().objects.create_user(
@@ -60,3 +59,24 @@ class TestAccount(TestCase):
     #         kpp='123456789',
     #         okpo='123456789012',
     #     )
+
+
+class SigninTest(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username='test@test.ru', password='12test12', email='test@test.ru')
+        self.user.save()
+
+    def tearDown(self):
+        self.user.delete()
+
+    def test_correct(self):
+        user = authenticate(username='test@test.ru', password='12test12')
+        self.assertTrue((user is not None) and user.is_authenticated)
+
+    def test_wrong_username(self):
+        user = authenticate(username='wrong', password='12test12')
+        self.assertFalse(user is not None and user.is_authenticated)
+
+    def test_wrong_pssword(self):
+        user = authenticate(username='test', password='wrong')
+        self.assertFalse(user is not None and user.is_authenticated)
