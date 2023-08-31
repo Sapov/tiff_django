@@ -108,9 +108,7 @@ def calculator(request):
     if request.POST:
         form = Calculator(request.POST)
         if form.is_valid():
-            # file_name = form.cleaned_data['path_file']
             form = Calculator(request.POST)
-
             length = request.POST['length']
             width = request.POST['width']
             material = request.POST['material']

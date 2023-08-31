@@ -132,6 +132,9 @@ class Product(models.Model):
         # RESIZE IMAGE
         # download_file.check_resolution(self.material.resolution_print)
         # download_file.compress_image(self.material.resolution_print)
+        # RENAME IMAGES
+
+
 
         self.price = download_file.price_calculation(self.quantity, self.material.price)
         # Считаем финишку

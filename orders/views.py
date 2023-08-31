@@ -8,9 +8,9 @@ from django.urls import reverse_lazy
 from account.models import Organisation
 # from account.models import Organisation
 from files.models import Product
-from .forms import UserOrganisationForm, NewOrder, OrderForm
+from .forms import NewOrder
 from .models import Order, OrderItem
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
 
 
@@ -28,26 +28,23 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 
 
 def new_order(request):
-    if request.method == 'POST':
-        logging.info(f'reUSERcated{request.user}')
-        form = OrderForm()
-        print(form)
-        print(request.user)
+    logging.info(request)
+    if request.POST:
+        logging.info(f'method POST')
+        form = NewOrder(user=request.user)
         # if form.is_valid():
-        # logging.info(form.cleaned_data)
-        organisation_payer = request.POST['organisation_payer']
-        logging.info(f'organisation_payer  {organisation_payer}')
-        # user = request.POST['user']
-        # logging.info(f'user {user} organisation_payer {organisation_payer}')
-        # context =
-        # organisation = Organisation.objects.get(id=organisation_payer)
-        # logging.info(organisation)
-
-        # order = Order.objects.create(Contractor=request.user)
-        # logging.info(order)
+        logging.info(f'пришло во view {form.user}')
+        logging.info(f'organisation_payer {request.POST["organisation_payer"]}')
+        number_organisation = request.POST["organisation_payer"]
+        organisation = Organisation.objects.get(id=number_organisation)
+        logging.info(f'organisation {organisation}')
+        neworder = Order.objects.create(Contractor=form.user, organisation_payer=organisation)
+        logging.info(f'neworder {neworder}')
+        logging.info(f'neworder {neworder.id}')
+        return redirect('orders:add_file_in_order', neworder.id)
     else:
-        form = OrderForm()
-    return render(request, 'add_new_order.html', {'form': form, })
+        form = NewOrder(user=request.user)
+    return render(request, 'neworder.html', {'form': form})
 
 
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
@@ -170,11 +167,6 @@ def view_all_files_for_work_in_orders(request):
 
     return render(request, "view_all_files_for_work_in_orders.html",
                   {"Orders": Orders, 'num': num, 'title': 'Заказы в работе'})
-
-
-def New_ord(request):
-    form = OrderForm
-    return render(request, 'neworder.html')
 
 
 def user_organization_view(request):
