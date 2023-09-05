@@ -1,5 +1,7 @@
 import logging
+import os
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -12,7 +14,9 @@ from .forms import NewOrder
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
-from .utils import DrawOder
+from .utils import DrawOrder
+import logging
+logger = logging.getLogger(__name__)
 
 
 def new_order(request):
@@ -109,15 +113,39 @@ def del_item_in_order(request, item_id, order_id):
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
+def goto_folder_orders(foo):
+    ''' переходим в папку media/orders  и обратно'''
+    def wrapper(*args, **kwargs):
+        logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
+        curent_path = os.getcwd()
+        # logger.info(f'[INFO DECORATOR] OBJECT: {order_id}')
+        # data_file = Product.objects.get(id=self.order_id)
+        # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
+        # logger.info(f'[INFO DECORATOR] CREATED: {data_filea_file.created}')
+        # перейти в директорию дата должна браться из параметра Order.created
+        os.chdir(
+            f'{settings.MEDIA_ROOT}/orders')
+        logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
+        res = foo(*args, **kwargs)
+        os.chdir(curent_path)  # перейти обратно
+        logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
+        return res
+    return wrapper
+
+
+@goto_folder_orders
 def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
     curent_order = Order.objects.get(pk=order_id)
     text = 'Оплатить можно на карту 0000 0000 0000 0000'
     # --------------- order pdf----------
-    order_pdf = DrawOder(order_id)
+    logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
+    order_pdf = DrawOrder(order_id)
     order_pdf.run()
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
     return render(request, "orderpay.html", context)
+
+
 
 
 @login_required
