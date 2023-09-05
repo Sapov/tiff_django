@@ -117,7 +117,6 @@ def calculator(request):
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length))*2
             finishka_price = perimetr * finishkas.price
-            # context =
             results = (float(width) * float(length) * materials.price) + finishka_price # в см
             results = round(results, -1)
             return render(request, "calculator.html",

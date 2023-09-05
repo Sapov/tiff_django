@@ -3,7 +3,6 @@
 {% block body %}
 <h2>Калькулятор печати</h2>
 <form action="{% url 'files:calculator' %}"  method="post" , enctype="multipart/form-data">
-
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Посчитать</button>

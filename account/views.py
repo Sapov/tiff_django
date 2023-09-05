@@ -17,7 +17,6 @@ def dashboard(request):
     return render(request, 'account/dashboard.html', {'section': 'dashboard', 'type_print': type_print})
 
 
-
 @login_required
 def edit(request):
     if request.method == 'POST':
@@ -40,7 +39,7 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
     добавление организации пользователем
     '''
     model = Organisation
-    fields = ['name_ul', 'inn', 'kpp', 'okpo', 'address_ur', 'address_post', 'phone', 'phone2', 'email',]
+    fields = ['name_ul', 'inn', 'kpp', 'okpo', 'address_ur', 'address_post', 'phone', 'phone2', 'email', ]
     success_url = reverse_lazy('account:list_organisation')
 
     # только для текущего юзера
@@ -70,6 +69,6 @@ class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
 class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     """ Редакторование организации"""
     model = Organisation
-    fields = ('name_ul', 'inn', 'kpp', 'okpo', 'address_ur', 'address_post', 'phone', 'phone2', 'email', )
+    fields = ('name_ul', 'inn', 'kpp', 'okpo', 'address_ur', 'address_post', 'phone', 'phone2', 'email',)
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('view_organisation_user')

@@ -12,6 +12,7 @@ from .forms import NewOrder
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
+from .utils import DrawOder
 
 
 def new_order(request):
@@ -112,13 +113,16 @@ def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
     curent_order = Order.objects.get(pk=order_id)
     text = 'Оплатить можно на карту 0000 0000 0000 0000'
+    # --------------- order pdf----------
+    order_pdf = DrawOder(order_id)
+    order_pdf.run()
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
     return render(request, "orderpay.html", context)
 
 
 @login_required
 def view_all_orders(request):
-    '''Посмотреть все заказы '''
+    '''Посмотреть все заказы'''
     Orders = Order.objects.all().order_by('-id')
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
