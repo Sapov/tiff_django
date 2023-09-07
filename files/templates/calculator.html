@@ -6,10 +6,10 @@
 <h2>Калькулятор печати</h2>
 <form action="{% url 'files:calculator' %}"  method="post" , enctype="multipart/form-data">
     {% csrf_token %}
-<!--    <table>{{ form.as_table }}</table>-->
     {{ form|crispy }}
 
-    <button type="submit">Посчитать</button>
+  <button type="submit" class="btn btn-primary">Посчитать</button>
+
 </form>
 
 <h5>Сумма заказа: {{ results }} руб.</h5>

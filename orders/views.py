@@ -221,7 +221,7 @@ def view_all_files_for_work_in_orders(request):
     '''Посмотреть все файлы в заказах в статусе paid'''
 
     num = []
-    Orders = Order.objects.filter(paid=True).order_by('id')
+    Orders = Order.objects.filter(paid=True).order_by('-id')
     for order in Orders:
         items_in_order = OrderItem.objects.filter(order=order.id)  # файлы в заказе
         num.append(items_in_order)

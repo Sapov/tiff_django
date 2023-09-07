@@ -4,12 +4,25 @@
 {% block title %}Загрузка файла{% endblock %}
 
 {% block body %}
-<div class="containers">
-<form method="post" , enctype="multipart/form-data">
 
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit">Сохранить</button>
-</form>
+<p>Файлы для загрузки должны иметь расширение .tiff или .tif
+    Цветовую модель CMYK (В RGB результат может быть не предсказуемым) </p>
+<p> Разрешение для файлов должно быть: - широкоформатная печать - 72 dpi
+    интерьерная печать - 150 dpi</p>
+
+<p>Рекомендуем использовать LWZ компрессию, ваш файл станет гораздо меньше.
+
+
+    У файла не должно быть альфаканалов, путей, несведенных слоев.</p>
+
+<div class="containers">
+    <form method="post" , enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Загрузить</button>
+
+    </form>
 </div>
 {% endblock %}
+

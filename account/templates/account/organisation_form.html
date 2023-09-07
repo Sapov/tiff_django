@@ -3,8 +3,9 @@
 {% load crispy_forms_tags %}
 
 {% block body %}
-<form method="post">{% csrf_token %}
-        {{ form|crispy }}
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
 
 
     <input type="submit" value="Save">

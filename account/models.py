@@ -4,9 +4,9 @@ from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    date_of_birth = models.DateField(blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
     photo = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
-    phone = models.CharField(max_length=15, blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True, verbose_name='Мобильный телефон')
     telegram = models.CharField(max_length=15, blank=True, null=True)
     organisation = models.ForeignKey('Organisation', on_delete=models.CASCADE, null=True)
 
@@ -20,7 +20,7 @@ class Organisation(models.Model):
     address_ur = models.TextField(null=True, blank=True, verbose_name='Юр. Адрес', help_text="Полный почтовый адрес")
     address_post = models.TextField(null=True, blank=True, verbose_name='Почтовый Адрес')
     phone = models.CharField(max_length=20, blank=True, verbose_name='Телефон')
-    phone2 = models.CharField(max_length=20, blank=True, verbose_name='Телефон 2')
+    phone2 = models.CharField(max_length=20, blank=True, verbose_name='Телефон резервный')
     email = models.EmailField(max_length=20, blank=True, verbose_name='Электронная почта')
     inn = models.CharField(max_length=12, verbose_name='ИНН', blank=True)
     kpp = models.CharField(max_length=9, verbose_name='КПП', blank=True)

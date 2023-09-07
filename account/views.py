@@ -71,4 +71,4 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     model = Organisation
     fields = ('name_ul', 'inn', 'kpp', 'okpo', 'address_ur', 'address_post', 'phone', 'phone2', 'email',)
     template_name_suffix = '_update_form'
-    success_url = reverse_lazy('view_organisation_user')
+    success_url = reverse_lazy('account:list_organisation')
