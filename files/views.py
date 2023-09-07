@@ -129,3 +129,6 @@ def calculator(request):
                           {"form": form, 'title': 'Калькулятор печати для Рекламных агентств'})
 
 
+class PrintCalculator:
+    def __init__(self, length, width, material, finishka):
+        pass
