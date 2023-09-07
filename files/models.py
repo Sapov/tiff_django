@@ -64,6 +64,8 @@ class Material(models.Model):
     price = models.FloatField(max_length=100, help_text='За 1 м2', verbose_name='Стоимость печати в руб.')
     resolution_print = models.IntegerField(help_text='разрешение для печати на материале', verbose_name='DPI',
                                            blank=True, null=True, default=None)
+    is_active = models.BooleanField(default=True, verbose_name='Активный ')
+
 
     def __str__(self):
         return f'{self.name} - {self.type_print}'
