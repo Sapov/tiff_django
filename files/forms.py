@@ -27,7 +27,8 @@ class UploadArhive(forms.ModelForm):
 
 class Calculator(forms.Form):
     quantity = forms.FloatField(max_value=1000, label="Количество")
-    material = forms.ModelChoiceField(queryset=Material.objects.all(), label="Материал для печати", initial=True)
+    material = forms.ModelChoiceField(queryset=Material.objects.all(), label="Материал для печати",
+                                      help_text='Выберите материал', initial=True)
     finishka = forms.ModelChoiceField(queryset=FinishWork.objects.all(), label="Обработка", initial=True)
     length = forms.FloatField(max_value=1000, label="Длина в метрах")
     width = forms.FloatField(max_value=1000, label="Ширина в метрах")

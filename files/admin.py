@@ -5,7 +5,7 @@ from account.models import Organisation
 
 class MaterialAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Material._meta.fields]
-    list_editable = ['price_contractor', 'price']
+    list_editable = ['price_contractor', 'price', 'is_active']
     list_filter = ['type_print']
     sortable_by = ['type_print']
 
@@ -34,7 +34,7 @@ admin.site.register(Fields)
 
 class FinishWorkAdmin(admin.ModelAdmin):
     list_display = [field.name for field in FinishWork._meta.fields]
-    list_editable = ['price_contractor', 'price']
+    list_editable = ['price_contractor', 'price', 'is_active']
 
     class Meta:
         model = FinishWork

@@ -1,18 +1,11 @@
 {% extends "base.html" %}
 {% block title %} Добавить организацию{% endblock %}
+{% load crispy_forms_tags %}
+
 {% block body %}
 <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Название Юр. Лица</label>
-    <input type="text" class="form-control"  name="name_ul" maxlength="70" required="" id="exampleFormControlInput1" placeholder="name@example.com">
+        {{ form|crispy }}
 
-
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Пример текстового поля</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
 
     <input type="submit" value="Save">
 </form>
