@@ -20,7 +20,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
+@login_required
 def new_order(request):
     logging.info(request)
     if request.POST:
