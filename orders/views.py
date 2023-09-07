@@ -15,7 +15,9 @@ from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
 from .utils import DrawOrder
+from django.core.paginator import Paginator
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -53,7 +55,25 @@ class OrderItemCreateView(LoginRequiredMixin, CreateView):
 def view_order(request):
     '''Вывод файлов только авторизованного пользователя'''
     Orders = Order.objects.filter(Contractor=request.user).order_by('-id')
-    return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы'})
+    logger.info(f'Orders: {Orders}')
+
+    paginator = Paginator(Orders, 2)
+    if 'page' in request.GET:
+        page_num = request.GET.get('page')
+    else:
+        page_num = 1
+    logger.info(f'page_NUM: {page_num}')
+    page_obj = paginator.get_page(page_num)
+    logger.info(f'page_NUM: {page_obj}')
+
+    return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы', 'page_obj': page_obj})
+
+
+class OrdersViewList(LoginRequiredMixin, ListView):
+    paginate_by = 5
+    model = Order
+    template_name = 'view_orders.html'
+    login_url = 'login'
 
 
 class View_order_item(LoginRequiredMixin, UpdateView):
@@ -115,6 +135,7 @@ def del_item_in_order(request, item_id, order_id):
 
 def goto_folder_orders(foo):
     ''' переходим в папку media/orders  и обратно'''
+
     def wrapper(*args, **kwargs):
         logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
         curent_path = os.getcwd()
@@ -130,6 +151,7 @@ def goto_folder_orders(foo):
         os.chdir(curent_path)  # перейти обратно
         logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
         return res
+
     return wrapper
 
 
@@ -144,8 +166,6 @@ def order_pay(request, order_id):
     order_pdf.run()
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
     return render(request, "orderpay.html", context)
-
-
 
 
 @login_required

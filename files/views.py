@@ -67,6 +67,7 @@ def price(request):
 
 
 class FileList(LoginRequiredMixin, ListView):
+    paginate_by = 5
     model = Product
     template_name = 'all_files_detail.html'
     login_url = 'login'

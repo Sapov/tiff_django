@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import path
-from .views import (OrderItemCreateView, view_order, View_order_item,  OrderUpdateView, DeleteOrderView,
+from .views import (OrderItemCreateView, view_order, View_order_item, OrderUpdateView, DeleteOrderView,
                     add_files_in_order, add_item_in_order, del_item_in_order, order_pay, \
-    view_all_orders, view_all_files_for_work_in_orders, ViewAllPayOrders, about_file, user_organization_view, \
-    report_complite_orders, new_order)
+                    view_all_orders, view_all_files_for_work_in_orders, ViewAllPayOrders, about_file,
+                    user_organization_view, \
+                    report_complite_orders, new_order, OrdersViewList)
 
 app_name = 'orders'
 
