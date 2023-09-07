@@ -67,6 +67,7 @@ def price(request):
 
 
 class FileList(LoginRequiredMixin, ListView):
+    paginate_by = 5
     model = Product
     template_name = 'all_files_detail.html'
     login_url = 'login'
@@ -117,7 +118,6 @@ def calculator(request):
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length))*2
             finishka_price = perimetr * finishkas.price
-            # context =
             results = (float(width) * float(length) * materials.price) + finishka_price # в см
             results = round(results, -1)
             return render(request, "calculator.html",

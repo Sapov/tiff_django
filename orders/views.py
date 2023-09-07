@@ -1,5 +1,7 @@
 import logging
+import os
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -12,19 +14,11 @@ from .forms import NewOrder
 from .models import Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
+from .utils import DrawOrder
+from django.core.paginator import Paginator
+import logging
 
-
-# from .forms import OrderForm
-
-
-# from django.contrib.auth import get_user_model
-
-
-class OrderCreateView(LoginRequiredMixin, CreateView):
-    model = Order
-    # form_class = OrderForm
-    fields = ['organisation_payer']
-    login_url = 'login'
+logger = logging.getLogger(__name__)
 
 
 def new_order(request):
@@ -61,7 +55,25 @@ class OrderItemCreateView(LoginRequiredMixin, CreateView):
 def view_order(request):
     '''Вывод файлов только авторизованного пользователя'''
     Orders = Order.objects.filter(Contractor=request.user).order_by('-id')
-    return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы'})
+    logger.info(f'Orders: {Orders}')
+
+    paginator = Paginator(Orders, 2)
+    if 'page' in request.GET:
+        page_num = request.GET.get('page')
+    else:
+        page_num = 1
+    logger.info(f'page_NUM: {page_num}')
+    page_obj = paginator.get_page(page_num)
+    logger.info(f'page_NUM: {page_obj}')
+
+    return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы', 'page_obj': page_obj})
+
+
+class OrdersViewList(LoginRequiredMixin, ListView):
+    paginate_by = 5
+    model = Order
+    template_name = 'view_orders.html'
+    login_url = 'login'
 
 
 class View_order_item(LoginRequiredMixin, UpdateView):
@@ -108,7 +120,6 @@ def add_item_in_order(request, item_id, order_id):
     curent_order = Order.objects.get(pk=order_id)
     print('ORDER TYPE', type(Orders))
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
-    # return render(request, "add_in.html", context)
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
@@ -122,23 +133,50 @@ def del_item_in_order(request, item_id, order_id):
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
+def goto_folder_orders(foo):
+    ''' переходим в папку media/orders  и обратно'''
+
+    def wrapper(*args, **kwargs):
+        logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
+        curent_path = os.getcwd()
+        # logger.info(f'[INFO DECORATOR] OBJECT: {order_id}')
+        # data_file = Product.objects.get(id=self.order_id)
+        # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
+        # logger.info(f'[INFO DECORATOR] CREATED: {data_filea_file.created}')
+        # перейти в директорию дата должна браться из параметра Order.created
+        os.chdir(
+            f'{settings.MEDIA_ROOT}/orders')
+        logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
+        res = foo(*args, **kwargs)
+        os.chdir(curent_path)  # перейти обратно
+        logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
+        return res
+
+    return wrapper
+
+
+@goto_folder_orders
 def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
     curent_order = Order.objects.get(pk=order_id)
     text = 'Оплатить можно на карту 0000 0000 0000 0000'
+    # --------------- order pdf----------
+    logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
+    order_pdf = DrawOrder(order_id)
+    order_pdf.run()
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
     return render(request, "orderpay.html", context)
 
 
 @login_required
 def view_all_orders(request):
-    '''Посмотреть все заказы '''
-    Orders = Order.objects.all().order_by('id')
+    '''Посмотреть все заказы'''
+    Orders = Order.objects.all().order_by('-id')
     return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
 
 
 class ViewAllPayOrders(LoginRequiredMixin, ListView):
-    '''Посмотреть все заказы которы оплачены и поэтому в работе'''
+    '''Посмотреть все заказы которые оплачены и поэтому в работе'''
 
     model = Order
     template_name = 'all_view_orders_pay.html'
@@ -175,23 +213,6 @@ def user_organization_view(request):
     form = UserOrganisationForm(user=user)
     # a1 = Order.objects.create(**form.cleaned_data)
     return render(request, 'user_organization.html', {'form': form})
-
-
-# def order_pay_check(request, order_id):
-# Orders = Order.objects.get(id=order_id)
-# # print(Orders)
-# items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
-# print(items_in_order)
-# for i in items_in_order:
-#     print('#', i.id)
-#     f = Product.objects.get(id=i.id)
-#     print(f.status_product.id)
-#     f.status_product.id = 3
-#     f.status_product.save()
-#     print(f.status_product)
-# text = 'Оплатить можно на карту 0000 0000 0000 0000'
-# context = {'Orders': Orders, 'text': text}
-# return render(request, "orderpay.html", context)
 
 
 def report_complite_orders(request):

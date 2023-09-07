@@ -53,8 +53,10 @@ class TypePrint(models.Model):
 
 class Material(models.Model):
     name = models.CharField(max_length=100, help_text='Введите имя материала для печати',
-                            verbose_name='Материал для печати', blank=True, null=True, default=None)
-    type_print = models.ForeignKey(TypePrint, on_delete=models.CASCADE, verbose_name='Тип печати', blank=True,
+                            verbose_name='Материал для печати',
+                            blank=True, null=True, default=None)
+    type_print = models.ForeignKey(TypePrint, on_delete=models.PROTECT,
+                                   verbose_name='Тип печати', blank=True,
                                    null=True, default=None)
     price_contractor = models.FloatField(max_length=100, help_text='За 1 м2',
                                          verbose_name='Себестоимость печати в руб.', blank=True, null=True,
@@ -62,6 +64,8 @@ class Material(models.Model):
     price = models.FloatField(max_length=100, help_text='За 1 м2', verbose_name='Стоимость печати в руб.')
     resolution_print = models.IntegerField(help_text='разрешение для печати на материале', verbose_name='DPI',
                                            blank=True, null=True, default=None)
+    is_active = models.BooleanField(default=True, verbose_name='Активный ')
+
 
     def __str__(self):
         return f'{self.name} - {self.type_print}'
@@ -84,9 +88,9 @@ class StatusProduct(models.Model):
 
 
 class Product(models.Model):
-    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
+    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='ЗАКАЗЧИК!!',
                                    default=1)
-    material = models.ForeignKey("Material", on_delete=models.CASCADE, verbose_name='Материал',
+    material = models.ForeignKey("Material", on_delete=models.PROTECT, verbose_name='Материал',
                                  default='2')
     quantity = models.IntegerField(default=1, help_text='Введите количество', verbose_name="Количество")
     width = models.FloatField(default=0, verbose_name="Ширина", help_text="Указывается в см.")
@@ -102,10 +106,10 @@ class Product(models.Model):
     images = models.FileField(upload_to=f'image/{date.today()}')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
-    FinishWork = models.ForeignKey('FinishWork', on_delete=models.CASCADE, verbose_name='Финишная обработка', default=1)
-    Fields = models.ForeignKey('Fields', on_delete=models.CASCADE, verbose_name='Поля вокруг изображения', default=1)
+    FinishWork = models.ForeignKey('FinishWork', on_delete=models.PROTECT, verbose_name='Финишная обработка', default=1)
+    Fields = models.ForeignKey('Fields', on_delete=models.PROTECT, verbose_name='Поля вокруг изображения', default=1)
     in_order = models.BooleanField(verbose_name='Позиция в заказе', default=0, blank=True, null=True)
-    status_product = models.ForeignKey("StatusProduct", on_delete=models.CASCADE, verbose_name='Статус файла',
+    status_product = models.ForeignKey("StatusProduct", on_delete=models.PROTECT, verbose_name='Статус файла',
                                        default=1)
 
     def __str__(self):
@@ -133,8 +137,6 @@ class Product(models.Model):
         # download_file.check_resolution(self.material.resolution_print)
         # download_file.compress_image(self.material.resolution_print)
         # RENAME IMAGES
-
-
 
         self.price = download_file.price_calculation(self.quantity, self.material.price)
         # Считаем финишку

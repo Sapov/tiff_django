@@ -42,7 +42,7 @@ class Order(models.Model):
                                          verbose_name='Общая Себестоимость ',
                                          blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
-                                           verbose_name='организация платильщик')
+                                           verbose_name='организация платильщик', help_text='Выберите организацию платильщик')
     paid = models.BooleanField(verbose_name='заказ оплачен', default=False)
     date_complete = models.DateTimeField(verbose_name='Дата готовности заказа',
                                          help_text='Введите дату к которой нужен заказ', null=True, blank=True)
