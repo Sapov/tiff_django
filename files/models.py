@@ -17,7 +17,7 @@ class FinishWork(models.Model):
                                          verbose_name='Себестоимость работы в руб.', blank=True, null=True,
                                          default=None)  # стоимость в закупке
     price = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный', verbose_name='Стоимость работы в руб.')
-    is_active = models.BooleanField(default=True, verbose_name='Активный ')
+    is_active = models.BooleanField(default=True, verbose_name='Активный')
 
 
     def __str__(self):
