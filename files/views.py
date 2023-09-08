@@ -2,7 +2,7 @@ import os
 from datetime import date
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponseNotFound, request
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
@@ -19,8 +19,25 @@ from .tiff_file import WorkZip
 @login_required
 def index(request):
     '''Вывод файлов толоко авторизованного пользователя'''
-    products = Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
-    return render(request, "index.html", {"products": products, 'title': 'Ваши файлоы'})
+    object_list = Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
+    return render(request, "index.html", {"object_list": object_list, 'title': 'Ваши файлоы'})
+
+
+class ViewFilesUserListView(LoginRequiredMixin, ListView):
+    '''Посмотреть все файлы пользователя'''
+
+    model = Product
+    paginate_by = 5
+    template_name = 'index.html'
+    login_url = 'login'
+
+    # def get_queryset(self):
+    #     queryset = Product.objects.filter(Contractor=request.GET.get('user')).order_by('-id')
+    #     # Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
+    #     return queryset
+
+
+
 
 
 def delete(request, id):
@@ -129,3 +146,6 @@ def calculator(request):
                           {"form": form, 'title': 'Калькулятор печати для Рекламных агентств'})
 
 
+class PrintCalculator:
+    def __init__(self, length, width, material, finishka):
+        pass

@@ -21,6 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+@login_required
 def new_order(request):
     logging.info(request)
     if request.POST:
@@ -168,11 +169,33 @@ def order_pay(request, order_id):
     return render(request, "orderpay.html", context)
 
 
-@login_required
-def view_all_orders(request):
-    '''Посмотреть все заказы'''
-    Orders = Order.objects.all().order_by('-id')
-    return render(request, "all_view_orders.html", {"Orders": Orders, 'title': 'Заказы в работе'})
+# @login_required
+# def view_all_orders(request):
+#     '''Посмотреть все заказы'''
+#     object_list = Order.objects.all().order_by('-id')
+#
+#     paginator = Paginator(Orders, 2)
+#     if 'page' in request.GET:
+#         page_num = request.GET.get('page')
+#     else:
+#         page_num = 1
+#     logger.info(f'page_NUM: {page_num}')
+#     page_obj = paginator.get_page(page_num)
+#     logger.info(f'page_NUM: {page_obj}')
+#
+#     return render(request, "all_view_orders.html",
+#                   {"object_list": object_list, 'title': 'Заказы в работе', 'page_obj': page_obj})
+
+
+class AllOrdersListView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = "all_view_orders.html"
+    paginate_by = 6
+
+    def get_queryset(self):
+        ''' для обратного порядка отображения'''
+        queryset = Order.objects.all().order_by('-id')
+        return queryset
 
 
 class ViewAllPayOrders(LoginRequiredMixin, ListView):
@@ -198,7 +221,7 @@ def view_all_files_for_work_in_orders(request):
     '''Посмотреть все файлы в заказах в статусе paid'''
 
     num = []
-    Orders = Order.objects.filter(paid=True).order_by('id')
+    Orders = Order.objects.filter(paid=True).order_by('-id')
     for order in Orders:
         items_in_order = OrderItem.objects.filter(order=order.id)  # файлы в заказе
         num.append(items_in_order)

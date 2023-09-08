@@ -12,7 +12,8 @@ class TestModelsFinishWork(TestCase):
         FinishWork.objects.create(
             work='Порезка баннера',
             price_contractor=100,
-            price=200)
+            price=200,
+            is_active=True)
 
     def test_work(self):
         '''Получение метаданных поля для получения необходимых значений'''
@@ -33,6 +34,15 @@ class TestModelsFinishWork(TestCase):
         field_label = work._meta.get_field('price_contractor').verbose_name
         expected_verbose_name = 'Себестоимость работы в руб.'
         self.assertEquals(field_label, expected_verbose_name)
+
+
+    def test_fields_is_active(self):
+        work = FinishWork.objects.get(id=1)
+        # Получение метаданных поля для получения необходимых значений
+        field_label = work._meta.get_field('is_active').verbose_name
+        expected_verbose_name = 'Активный'
+        self.assertEquals(field_label, expected_verbose_name)
+
 
     def test_fields_price_contractor_help_text(self):
         work = FinishWork.objects.get(id=1)

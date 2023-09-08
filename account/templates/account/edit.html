@@ -1,12 +1,15 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
 {% block title %}Редактировать профиль{% endblock %}
 {% block body %}
- <h1>Редактировать профиль</h1>
- <p>You can edit your account using the following form:</p>
- <form method="post" enctype="multipart/form-data">
- {{ user_form.as_p }}
- {{ profile_form.as_p }}
- {% csrf_token %}
- <p><input type="submit" value="Изменть"></p>
- </form>
+<h1>Редактировать профиль</h1>
+<p>You can edit your account using the following form:</p>
+<form method="post" enctype="multipart/form-data">
+    {{ user_form|crispy }}
+    {{ profile_form|crispy}}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Изменить</button>
+
+</form>
 {% endblock %}

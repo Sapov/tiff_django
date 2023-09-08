@@ -1,11 +1,15 @@
 {% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
 <title>{% block title %} Калькулятор {% endblock %}</title>
 {% block body %}
 <h2>Калькулятор печати</h2>
 <form action="{% url 'files:calculator' %}"  method="post" , enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Посчитать</button>
+    {{ form|crispy }}
+
+  <button type="submit" class="btn btn-primary">Посчитать</button>
+
 </form>
 
 <h5>Сумма заказа: {{ results }} руб.</h5>

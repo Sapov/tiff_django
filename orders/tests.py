@@ -6,7 +6,7 @@ from orders.models import StatusOrder
 
 class TestOrder(TestCase):
     def test_order_new(self):
-        response = self.client.get('/orders/new_order/')
+        response = self.client.get('/orders/neworder/')
         self.assertEqual(response.status_code, 302)
 
     def test_view_orders(self):
