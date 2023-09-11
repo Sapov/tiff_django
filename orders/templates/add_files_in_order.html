@@ -44,6 +44,8 @@
             <tr>
                 <th>Картинка</th>
                 <th>Материал</th>
+                 <th>Размер</th>
+                <th>Количество</th>
                 <th>Финишная обработка</th>
                 <th>Поля</th>
                 <th>Итого</th>
@@ -53,6 +55,8 @@
             <tr>
                 <td><a>{% load thumbnail %} <img src="{% thumbnail item.images 100x0 %}" class="image-detail"></a></td>
                 <td>{{ item.material }}</td>
+                <td>{{ items.product.width }}x{{ items.product.length }} см.</td>
+                <td>{{ items.product.quantity }} шт.</td>
                 <td>{{ item.FinishWork }}</td>
                 <td>{{ item.Fields }}</td>
                 <td>{{ item.price }}</td>
@@ -80,7 +84,8 @@
             <tr>
                 <th>Картинка</th>
                 <th>Материал</th>
-                <th>Резмер</th>
+                <th>Размер</th>
+                <th>Количество</th>
                 <th>Финишная обработка</th>
                 <th>Поля</th>
                 <th>Итого</th>
@@ -92,6 +97,7 @@
                                                  class="image-detail"></a></td>
                 <td>{{ items.product.material }}</td>
                 <td>{{ items.product.width }}x{{ items.product.length }} см.</td>
+                <td>{{ items.product.quantity }} шт.</td>
                 <td>{{ items.product.FinishWork }}</td>
                 <td>{{ items.product.Fields }}</td>
                 <td>{{ items.product.price }} руб.</td>
