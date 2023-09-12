@@ -6,6 +6,8 @@ from datetime import date
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.db import models
+from django.template.loader import get_template
+
 from account.models import Organisation
 from files.models import Product, StatusProduct
 from django.db.models.signals import post_save
@@ -42,7 +44,8 @@ class Order(models.Model):
                                          verbose_name='Общая Себестоимость ',
                                          blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
-                                           verbose_name='организация платильщик', help_text='Выберите организацию платильщик')
+                                           verbose_name='организация платильщик',
+                                           help_text='Выберите организацию платильщик')
     paid = models.BooleanField(verbose_name='заказ оплачен', default=False)
     date_complete = models.DateTimeField(verbose_name='Дата готовности заказа',
                                          help_text='Введите дату к которой нужен заказ', null=True, blank=True)
@@ -168,6 +171,28 @@ def goto_media(foo):
     return wrapper
 
 
+# def goto_orders(foo, order = self.order_id):
+#     ''' переходим в папку media/image{data}  и обратно'''
+#
+#     def wrapper(*args, **kwargs):
+#         logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
+#         curent_path = os.getcwd()
+#         # logger.info(f'[INFO DECORATOR] OBJECT: {order_id}')
+#         # data_file = Product.objects.get(id=self.order_id)
+#         # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
+#         # logger.info(f'[INFO DECORATOR] CREATED: {data_file.created}')
+#
+#         os.chdir(
+#             f'{settings.MEDIA_ROOT}/orders/{str(self.order_id)}')  # перейти в директорию orders
+#         logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
+#         res = foo(*args, **kwargs)
+#         os.chdir(curent_path)  # перейти обратно
+#         logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
+#         return res
+#
+#     return wrapper
+
+
 class UtilsModel:
     organizations = 'Style_N'
     path_save = f'{organizations}/{date.today()}'
@@ -179,34 +204,39 @@ class UtilsModel:
         self.text_file_name = None
         self.order_id = order_id
         self.path_yandex_disk = f'{LOCAL_PATH_YADISK}{UtilsModel.path_save}/{self.order_id}'
+        self.path_arhive = f'{settings.MEDIA_ROOT}/arhive/{self.order_id}'
 
-    @staticmethod
-    def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
-        '''Архивируем заказ'''
-        if os.path.isfile(f'Order_№_{id_order}_{date.today()}.zip'):
-            logger.info('Файл уже существует, архивация пропущена')
-        else:
-            logger.info('Архивируем файлы:')
-            logger.info(f"Архивируем файлы: {list_files}")
-            for name in list_files:
-                arh_name = f'Order_№_{id_order}_{date.today()}.zip'
-                new_arh = zipfile.ZipFile(arh_name, "a")
-                new_arh.write(name, compress_type=zipfile.ZIP_DEFLATED)
-                new_arh.close()
-        return f'Order_№_{id_order}_{date.today()}.zip'
+    def goto_orders(self, foo):
+        ''' переходим в папку media/image{data}  и обратно'''
+
+        def wrapper(*args, **kwargs):
+            logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
+            curent_path = os.getcwd()
+            os.chdir(
+                f'{settings.MEDIA_ROOT}/orders/{str(self.order_id)}')  # перейти в директорию orders
+            logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
+            res = foo(*args, **kwargs)
+            os.chdir(curent_path)  # перейти обратно
+            logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
+            return res
+
+        return wrapper
 
     def send_mail_order(self):
+        context = {'test_body': self.new_str,
+                   'link_arh': self.ya_link}
         ''' принимаем ссылку на яд и текст шаблон письма'''
         send_mail('Новый заказ от REDS',
                   'заказ',
                   'django.rpk@mail.ru',
                   ['rpk.reds@ya.ru'],
                   fail_silently=False,
-                  html_message=f'{self.new_str}\nCсылка на архив: {self.ya_link}')
 
-    @goto_media
+                  # html_message=f'<p>{self.new_str}</p>\n<p>Cсылка на архив: {self.ya_link}</p>')
+                  html_message=get_template('mail.html').render(context))
+
     def create_text_file(self):
-        ''' Создаем файл с харaктерисиками файла для печати '''
+        ''' Создаем файл and dict с харaктерисиками файла для печати '''
 
         all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
         self.text_file_name = f'Order_№{self.order_id}_for_print_{date.today()}.txt'
@@ -310,16 +340,58 @@ class UtilsModel:
             # file_name = f'_{self.order_id}_{date.today()}p'
             print(file)
 
+    def create_folder_server(self):
+        '''Добавляем фолдер  Директория должна быть всегда уникальной к примеру номер заказа
+        '''
+        current_path = os.getcwd()
+        os.chdir(
+            f'{settings.MEDIA_ROOT}/arhive')  # перейти в директорию orders
+        logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
+        if os.path.exists(f'{settings.MEDIA_ROOT}/arhive/{self.order_id}'):
+            logger.info(f'Директория {self.order_id} уже создана')
+        else:
+            logger.info(f'Создаем Директорию {self.order_id}')
+            os.makedirs(str(self.order_id))
+        os.chdir(current_path)  # перейти обратно
+
+    def copy_files(self):
+        """закидываем файлы на order локально на ubuntu
+        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
+        Я-ДИСКЕ затирается новым"""
+        os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
+        curent_folder = os.getcwd()
+        logger.info(f'Из copy_files функции видим каталог - {curent_folder}')
+        lst_files = os.listdir()  # read name files from folder
+        logger.info(f'FILES{lst_files}')
+        for i in lst_files:
+            if i.endswith("txt") or i.endswith("zip"):
+                logger.info(f'Копирую {i} в {self.path_arhive}')
+                os.chdir(self.path_arhive)  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
+                if os.path.exists(i):
+                    os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
+                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
+
+                    shutil.move(i, self.path_arhive)
+                    os.chdir(settings.MEDIA_ROOT)
+                else:
+                    os.chdir(curent_folder)
+                    shutil.move(i, self.path_arhive)
+                    # Возвращаемся в корень
+                    os.chdir(settings.MEDIA_ROOT)
+
+    def add_path_arhive(self):
 
 
 
     def run(self):
         self.create_text_file()
-
-        self.read_file()
+        # self.read_file()
         self.arhive()  # архивация заказа
         # # --------------------------Work in Yandex Disk--------------------------------#
-        self.create_folder()  # Создаем папку на yadisk с датой
-        self.add_yadisk_locate()  # copy files in yadisk
-        self.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
-        self.send_mail_order()  # отправил письмо
+        # self.create_folder()  # Создаем папку на yadisk с датой
+        self.create_folder_server()  # Создаем папку на сервере
+        self.copy_files() # in arhive
+        self.add_path_arhive()
+        # self.add_yadisk_locate()  # copy files in yadisk
+        # self.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        # self.send_mail_order()  # отправил письмо
