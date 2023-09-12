@@ -303,8 +303,19 @@ class UtilsModel:
                 new_arh.close()
         return self.arh_name
 
+    def rename_file(self):
+        all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
+        for item in all_products_in_order:
+            file = Product.objects.get(id=item.product.id)
+            # file_name = f'_{self.order_id}_{date.today()}p'
+            print(file)
+
+
+
+
     def run(self):
         self.create_text_file()
+
         self.read_file()
         self.arhive()  # архивация заказа
         # # --------------------------Work in Yandex Disk--------------------------------#
