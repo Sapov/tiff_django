@@ -55,6 +55,8 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
                                    default=1)
+    path_arhive = models.FileField(upload_to='arhive/', blank=True, null=True)
+
 
     def __str__(self):
         return f'Заказ № {self.id}  {self.organisation_payer}'
@@ -341,8 +343,7 @@ class UtilsModel:
             print(file)
 
     def create_folder_server(self):
-        '''Добавляем фолдер  Директория должна быть всегда уникальной к примеру номер заказа
-        '''
+        '''Добавляем фолдер уникальна номер заказа'''
         current_path = os.getcwd()
         os.chdir(
             f'{settings.MEDIA_ROOT}/arhive')  # перейти в директорию orders
@@ -357,7 +358,7 @@ class UtilsModel:
     def copy_files(self):
         """закидываем файлы на order локально на ubuntu
         Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
-        Я-ДИСКЕ затирается новым"""
+        ДИСКЕ затирается новым"""
         os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
         curent_folder = os.getcwd()
         logger.info(f'Из copy_files функции видим каталог - {curent_folder}')
@@ -380,6 +381,7 @@ class UtilsModel:
                     os.chdir(settings.MEDIA_ROOT)
 
     def add_path_arhive(self):
+        pass
 
 
 
