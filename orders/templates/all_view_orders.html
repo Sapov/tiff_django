@@ -11,7 +11,7 @@
             <thead>
 
            <th>Заказ №</th><th>Платильщк</th><th>Оплачено</th>
-           <th>Каменты</th><th>Статус</th><th>Дата заказа</th><th>Дата готовности</th>
+           <th>Каменты</th><th>Статус</th><th>Дата заказа</th><th>Дата готовности</th><th>Link</th>
          </thead>
             <tbody>
         {% for order in object_list %}
@@ -23,6 +23,8 @@
             <td>{{ order.status }}</td>
             <td>{{ order.created }}</td>
             <td>{{ order.date_complete }}</td>
+            <td><a href="/media/{{ order.order_arhive }}" </a>Скачать</td>
+
             <td><a href="{% url 'orders:add_file_in_order' order.id %}">Детализация</a></td>
         </tr>
         {% endfor %}

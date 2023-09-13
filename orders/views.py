@@ -11,7 +11,7 @@ from account.models import Organisation
 # from account.models import Organisation
 from files.models import Product
 from .forms import NewOrder
-from .models import Order, OrderItem
+from .models import Order, OrderItem, UtilsModel
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
 from .utils import DrawOrder
@@ -166,6 +166,10 @@ def order_pay(request, order_id):
     order_pdf = DrawOrder(order_id)
     order_pdf.run()
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
+
+    #_________________________
+    order_item = UtilsModel(order_id)
+    order_item.run()
     return render(request, "orderpay.html", context)
 
 
