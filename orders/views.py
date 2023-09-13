@@ -249,3 +249,5 @@ def report_complite_orders(request):
 
     return render(request, "report_complite_orders.html",
                   {"order": order,})
+
+
