@@ -53,6 +53,9 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
                                    default=1)
+    order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
+    # order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
+
 
     def __str__(self):
         return f'Заказ № {self.id}  {self.organisation_payer}'
@@ -79,8 +82,8 @@ def order_post_save(sender, instance, created, **kwargs):
             file.status_product = status
             file.save()
         # ______________ SEND FILES__________________
-        order_item = UtilsModel(id_order)
-        order_item.run()
+        # order_item = UtilsModel(id_order)
+        # order_item.run()
 
 
 post_save.connect(order_post_save, sender=Order)
@@ -232,8 +235,6 @@ class UtilsModel:
 
         return self.text_file_name
 
-
-
     @goto_media
     def read_file(self):
         with open(self.text_file_name) as file:  # читаю файл txt
@@ -295,7 +296,11 @@ class UtilsModel:
                     shutil.move(i, self.arhiv_order_path)
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
-
+    def add_arhive_in_order(self):
+        order = Order.objects.get(id=self.order_id)
+        logger.info(f'ИМЯ АРХИВА {self.arh_name}')
+        order.order_arhive = f'arhive/{self.order_id}/{self.arh_name}'
+        order.save()
 
     def run(self):
         self.create_text_file()
@@ -303,4 +308,5 @@ class UtilsModel:
         self.arhive()  # архивация заказа
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
-        self.send_mail_order()  # отправил письмо
+        self.add_arhive_in_order()
+        # self.send_mail_order()  # отправил письмо
