@@ -83,7 +83,7 @@ def order_post_save(sender, instance, created, **kwargs):
 
 
 post_save.connect(order_post_save, sender=Order)
-
+# Hard
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Ордер')
