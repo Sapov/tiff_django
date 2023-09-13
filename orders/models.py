@@ -54,8 +54,8 @@ class Order(models.Model):
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
                                    default=1)
     order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
-    # order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
 
+    # order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
 
     def __str__(self):
         return f'Заказ № {self.id}  {self.organisation_payer}'
@@ -205,7 +205,7 @@ class UtilsModel:
                   ['rpk.reds@ya.ru'],
                   fail_silently=False,
 
-                  html_message=f'{self.new_str}\nCсылка на архив: {self.ya_link}')
+                  html_message=f'{self.new_str}\nCсылка на архив: {self.download_link()}')
 
     @goto_media
     def create_text_file(self):
@@ -298,9 +298,14 @@ class UtilsModel:
 
     def add_arhive_in_order(self):
         order = Order.objects.get(id=self.order_id)
-        logger.info(f'ИМЯ АРХИВА {self.arh_name}')
+        logger.info(f'LOAD arhive in table: arhive/{self.order_id}/{self.arh_name}')
         order.order_arhive = f'arhive/{self.order_id}/{self.arh_name}'
         order.save()
+
+    def download_link(self):
+        order = Order.objects.get(id=self.order_id)
+        logger.info(f' LINK {order.order_arhive}')
+        return order.order_arhive
 
     def run(self):
         self.create_text_file()
@@ -309,4 +314,4 @@ class UtilsModel:
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
         self.add_arhive_in_order()
-        # self.send_mail_order()  # отправил письмо
+        self.send_mail_order()  # отправил письмо
