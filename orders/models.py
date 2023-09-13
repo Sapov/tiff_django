@@ -170,17 +170,13 @@ def goto_media(foo):
 
 
 class UtilsModel:
-    organizations = 'Style_N'
-    path_save = f'{organizations}/{date.today()}'
 
     def __init__(self, order_id):
         self.arhiv_order_path = None
         self.new_str = None
-        self.ya_link = None
         self.arh_name = None
         self.text_file_name = None
         self.order_id = order_id
-        # self.path_yandex_disk = f'{LOCAL_PATH_YADISK}{UtilsModel.path_save}/{self.order_id}'
         self.path_arhive = f'{settings.MEDIA_ROOT}/arhive'
 
     @staticmethod
@@ -236,52 +232,7 @@ class UtilsModel:
 
         return self.text_file_name
 
-    def create_folder(self):
-        '''Добавляем фолдер
-        Директория должна быть всегда уникальной к примеру точная дата
-        и номер заказа
-        '''
-        if os.path.exists(self.path_yandex_disk):
-            logger.info(f'Директория {self.path_yandex_disk} уже создана')
 
-        else:
-            logger.info(f'Создаем Директорию {self.path_yandex_disk}')
-            os.makedirs(self.path_yandex_disk)
-
-    def add_yadisk_locate(self):
-        """закидываем файлы на yadisk локально на ubuntu
-        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
-        Я-ДИСКЕ затирается новым"""
-        # Path.cwd()  # Идем в текущий каталог
-        os.chdir(
-            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
-        curent_folder = os.getcwd()
-        logger.info(f'Из яндекс функции видим каталог - {curent_folder}')
-        lst_files = os.listdir()  # read name files from folder
-        for i in lst_files:
-            if i.endswith("txt") or i.endswith("zip"):
-                logger.info(f'Копирую {i} в {self.path_yandex_disk}')
-                os.chdir(self.path_yandex_disk)  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
-                if os.path.exists(i):
-                    os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
-                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
-
-                    shutil.move(i, self.path_yandex_disk)
-                    os.chdir(settings.MEDIA_ROOT)
-                else:
-                    os.chdir(curent_folder)
-                    shutil.move(i, self.path_yandex_disk)
-                    # Возвращаемся в корень
-                    os.chdir(settings.MEDIA_ROOT)
-
-    def add_link_from_folder_yadisk(self, path=path_save):
-        logger.info(f'Публикую папку: {self.path_yandex_disk}')
-        ya_link = subprocess.check_output(["yandex-disk", "publish", self.path_yandex_disk])
-        ya_link = str(ya_link)
-        ya_link = ya_link.lstrip("b'")
-        self.ya_link = ya_link.rstrip(r"\n'")
-        logger.info(f'Ссылка на яндекс диск: {self.ya_link}')
-        return self.ya_link
 
     @goto_media
     def read_file(self):
@@ -344,47 +295,12 @@ class UtilsModel:
                     shutil.move(i, self.arhiv_order_path)
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
-    def copy_files(self):
-        """закидываем файлы на order локально на ubuntu
-        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
-        Я-ДИСКЕ затирается новым"""
-        os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
-        curent_folder = os.getcwd()
-        logger.info(f'Из copy_files функции видим каталог - {curent_folder}')
-        lst_files = os.listdir()  # read name files from folder
-        logger.info(f'FILES{lst_files}')
-        for i in lst_files:
-            if i.endswith("txt") or i.endswith("zip"):
-                logger.info(f'Копирую {i} в {self.path_arhive}')
-                os.chdir(self.path_arhive)  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
-                if os.path.exists(i):
-                    os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
-                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
 
-                    shutil.move(i, self.path_arhive)
-                    os.chdir(settings.MEDIA_ROOT)
-                else:
-                    os.chdir(curent_folder)
-                    shutil.move(i, self.path_arhive)
-                    # Возвращаемся в корень
-                    os.chdir(settings.MEDIA_ROOT)
 
     def run(self):
         self.create_text_file()
-
         self.read_file()
-        # self.read_file()
         self.arhive()  # архивация заказа
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
-        # self.create_folder()  # Создаем папку на yadisk с датой
-        # self.add_yadisk_locate()  # copy files in yadisk
-        # self.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
-        # self.send_mail_order()  # отправил письмо
-        # self.create_folder()  # Создаем папку на yadisk с датой
-
-        # self.copy_files()  # in arhive
-        # self.add_path_arhive()
-        # self.add_yadisk_locate()  # copy files in yadisk
-        # self.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
-        # self.send_mail_order()  # отправил письмо
+        self.send_mail_order()  # отправил письмо
