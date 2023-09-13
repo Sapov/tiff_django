@@ -42,7 +42,8 @@ class Order(models.Model):
                                          verbose_name='Общая Себестоимость ',
                                          blank=True)
     organisation_payer = models.ForeignKey(Organisation, on_delete=models.CASCADE,
-                                           verbose_name='организация платильщик', help_text='Выберите организацию платильщик')
+                                           verbose_name='организация платильщик',
+                                           help_text='Выберите организацию платильщик')
     paid = models.BooleanField(verbose_name='заказ оплачен', default=False)
     date_complete = models.DateTimeField(verbose_name='Дата готовности заказа',
                                          help_text='Введите дату к которой нужен заказ', null=True, blank=True)
@@ -173,12 +174,14 @@ class UtilsModel:
     path_save = f'{organizations}/{date.today()}'
 
     def __init__(self, order_id):
+        self.arhiv_order_path = None
         self.new_str = None
         self.ya_link = None
         self.arh_name = None
         self.text_file_name = None
         self.order_id = order_id
-        self.path_yandex_disk = f'{LOCAL_PATH_YADISK}{UtilsModel.path_save}/{self.order_id}'
+        # self.path_yandex_disk = f'{LOCAL_PATH_YADISK}{UtilsModel.path_save}/{self.order_id}'
+        self.path_arhive = f'{settings.MEDIA_ROOT}/arhive'
 
     @staticmethod
     def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
@@ -202,6 +205,7 @@ class UtilsModel:
                   'django.rpk@mail.ru',
                   ['rpk.reds@ya.ru'],
                   fail_silently=False,
+
                   html_message=f'{self.new_str}\nCсылка на архив: {self.ya_link}')
 
     @goto_media
@@ -303,12 +307,84 @@ class UtilsModel:
                 new_arh.close()
         return self.arh_name
 
+    def create_folder_server(self):
+        '''Добавляем фолдер  Директория должна быть всегда уникальной к примеру номер заказа'''
+        current_path = os.getcwd()
+        os.chdir(f'{settings.MEDIA_ROOT}/arhive')  # перейти в директорию orders
+        logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
+        if os.path.exists(f'{settings.MEDIA_ROOT}/arhive/{self.order_id}'):
+            logger.info(f'Директория {self.order_id} уже создана')
+        else:
+            logger.info(f'Создаем Директорию {self.order_id}')
+            os.makedirs(str(self.order_id))
+        os.chdir(current_path)  # перейти обратно
+
+    def copy_files_in_server(self):
+        """закидываем файлы на order локально на ubuntu
+        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
+        ДИСКЕ затирается новым"""
+        self.arhiv_order_path = f'{self.path_arhive}/{self.order_id}'
+        os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
+        curent_folder = os.getcwd()
+        logger.info(f'Из copy_files_in_server функции видим каталог - {curent_folder}')
+        lst_files = os.listdir()  # read name files from folder
+        logger.info(f'FILES{lst_files}')
+        for i in lst_files:
+            if i.endswith("txt") or i.endswith("zip"):
+                logger.info(f'Копирую {i} в {self.arhiv_order_path}')
+                os.chdir(self.arhiv_order_path)  # перехожу в диск
+                if os.path.exists(i):
+                    os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
+                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
+
+                    shutil.move(i, self.arhiv_order_path)
+                    os.chdir(settings.MEDIA_ROOT)
+                else:
+                    os.chdir(curent_folder)
+                    shutil.move(i, self.arhiv_order_path)
+                    os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
+
+    def copy_files(self):
+        """закидываем файлы на order локально на ubuntu
+        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
+        Я-ДИСКЕ затирается новым"""
+        os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
+        curent_folder = os.getcwd()
+        logger.info(f'Из copy_files функции видим каталог - {curent_folder}')
+        lst_files = os.listdir()  # read name files from folder
+        logger.info(f'FILES{lst_files}')
+        for i in lst_files:
+            if i.endswith("txt") or i.endswith("zip"):
+                logger.info(f'Копирую {i} в {self.path_arhive}')
+                os.chdir(self.path_arhive)  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
+                if os.path.exists(i):
+                    os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
+                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
+
+                    shutil.move(i, self.path_arhive)
+                    os.chdir(settings.MEDIA_ROOT)
+                else:
+                    os.chdir(curent_folder)
+                    shutil.move(i, self.path_arhive)
+                    # Возвращаемся в корень
+                    os.chdir(settings.MEDIA_ROOT)
+
     def run(self):
         self.create_text_file()
+
         self.read_file()
+        # self.read_file()
         self.arhive()  # архивация заказа
-        # # --------------------------Work in Yandex Disk--------------------------------#
-        self.create_folder()  # Создаем папку на yadisk с датой
-        self.add_yadisk_locate()  # copy files in yadisk
-        self.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
-        self.send_mail_order()  # отправил письмо
+        self.create_folder_server()  # Создаем папку на сервере
+        self.copy_files_in_server()
+        # self.create_folder()  # Создаем папку на yadisk с датой
+        # self.add_yadisk_locate()  # copy files in yadisk
+        # self.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        # self.send_mail_order()  # отправил письмо
+        # self.create_folder()  # Создаем папку на yadisk с датой
+
+        # self.copy_files()  # in arhive
+        # self.add_path_arhive()
+        # self.add_yadisk_locate()  # copy files in yadisk
+        # self.add_link_from_folder_yadisk()  # Опубликовал папку получил линк
+        # self.send_mail_order()  # отправил письмо
