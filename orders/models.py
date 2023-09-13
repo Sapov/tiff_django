@@ -125,7 +125,7 @@ class OrderItem(models.Model):
     def __str__(self):
         return f'{self.order}-{self.product}'
 
-
+#
 def product_in_order_post_save(instance, **kwargs):
     order = instance.order
     all_products_in_order = OrderItem.objects.filter(order=order, is_active=True)
