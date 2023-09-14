@@ -298,6 +298,7 @@ class UtilsModel:
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
     def add_arhive_in_order(self):
+        '''Записываем в таблицу ссылку на архив с файлами'''
         order = Order.objects.get(id=self.order_id)
         logger.info(f'LOAD arhive in table: arhive/{self.order_id}/{self.arh_name}')
         order.order_arhive = f'arhive/{self.order_id}/{self.arh_name}'
