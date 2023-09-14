@@ -54,6 +54,7 @@ class Order(models.Model):
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
                                    default=1)
     order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
+    order_pdf_file = models.FileField(upload_to=f'orders/', null=True, blank=True)
 
     # order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
 
