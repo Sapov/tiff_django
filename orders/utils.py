@@ -190,7 +190,7 @@ class DrawOrder:
 
     def __init__(self, order_id):
         self.order_id = order_id
-        self.canvas = Canvas(f'Order#{self.order_id}.pdf', pagesize=A4, )
+        self.canvas = Canvas(f'Order_{self.order_id}.pdf', pagesize=A4, )
         curent_order = Order.objects.get(pk=order_id)
         # --------------- order pdf----------
         logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
