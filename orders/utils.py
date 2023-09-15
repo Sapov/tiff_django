@@ -190,7 +190,7 @@ class DrawOrder:
 
     def __init__(self, order_id):
         self.order_id = order_id
-        self.canvas = Canvas(f'Order#{self.order_id}.pdf', pagesize=A4, )
+        self.canvas = Canvas(f'Order_{self.order_id}.pdf', pagesize=A4, )
         curent_order = Order.objects.get(pk=order_id)
         # --------------- order pdf----------
         logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
@@ -374,6 +374,13 @@ class DrawOrder:
         self.canvas.drawString(self.fields_position['X_START_FIELD_NUMBER'] * mm, (VERTIKAL - 40) * mm,
                           f'Предприниматель___________________________ Сапов А.Н.')
 
+    def add_arhive_in_order(self):
+        '''Записываем в таблицу ссылку на pdf счет с файлами'''
+        order = Order.objects.get(id=self.order_id)
+        logger.info(f'LOAD PDF in table: orders/Order#{self.order_id}.pdf')
+        order.order_pdf_file = f'orders/Order#{self.order_id}.pdf'
+        order.save()
+
     def run(self):
         self.draw_field(self.fild_bank)
         self.draw_field(self.field_bik)
@@ -390,3 +397,4 @@ class DrawOrder:
         self.create_items_order()
         self.create_dinamic_data()
         self.canvas.save()
+        self.add_arhive_in_order()

@@ -1,11 +1,16 @@
+import email.message
 import os
 import shutil
 import zipfile
 from datetime import date
 
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.db import models
+from django.template.loader import render_to_string
+
 from account.models import Organisation
 from files.models import Product, StatusProduct
 from django.db.models.signals import post_save
@@ -54,8 +59,7 @@ class Order(models.Model):
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='ЗАКАЗЧИК!!',
                                    default=1)
     order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
-
-    # order_arhive = models.FileField(upload_to=f'arhive/{id}', null=True, blank=True)
+    order_pdf_file = models.FileField(upload_to=f'orders/', null=True, blank=True)
 
     def __str__(self):
         return f'Заказ № {self.id}  {self.organisation_payer}'
@@ -197,15 +201,17 @@ class UtilsModel:
                 new_arh.close()
         return f'Order_№_{id_order}_{date.today()}.zip'
 
-    def send_mail_order(self):
-        ''' принимаем ссылку на яд и текст шаблон письма'''
+    def send_mail_order(self, domain):
+        '''отправляем письмо с архивом подрядчику'''
+        order = Order.objects.get(id=self.order_id)
         send_mail('Новый заказ от REDS',
-                  'заказ',
+                  # f'{self.new_str}\n',
+                  f'{self.new_str}\nCсылка на архив: http://{domain}/media/{self.download_link()}',
                   'django.rpk@mail.ru',
                   ['rpk.reds@ya.ru'],
-                  fail_silently=False,
+                  fail_silently=False,)
+                  # html_message=render_to_string('mail/templates.html', data))
 
-                  html_message=f'{self.new_str}\nCсылка на архив: {self.download_link()}')
 
     @goto_media
     def create_text_file(self):
@@ -297,10 +303,12 @@ class UtilsModel:
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
     def add_arhive_in_order(self):
+        '''Записываем в таблицу ссылку на архив с файлами'''
         order = Order.objects.get(id=self.order_id)
         logger.info(f'LOAD arhive in table: arhive/{self.order_id}/{self.arh_name}')
         order.order_arhive = f'arhive/{self.order_id}/{self.arh_name}'
         order.save()
+        return
 
     def download_link(self):
         order = Order.objects.get(id=self.order_id)
@@ -314,4 +322,4 @@ class UtilsModel:
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
         self.add_arhive_in_order()
-        self.send_mail_order()  # отправил письмо
+        # self.send_mail_order()  # отправил письмо

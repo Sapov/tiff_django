@@ -4,7 +4,10 @@ import os
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
 from account.models import Organisation
@@ -158,19 +161,32 @@ def goto_folder_orders(foo):
 
 @goto_folder_orders
 def order_pay(request, order_id):
+    ''' Меняем статус с заагружен на оформлен
+     генерируем счетб
+     '''
     Orders = Order.objects.get(id=order_id)
     curent_order = Order.objects.get(pk=order_id)
     text = 'Оплатить можно на карту 0000 0000 0000 0000'
     # --------------- order pdf----------
     logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
-    order_pdf = DrawOrder(order_id)
+    order_pdf = DrawOrder(order_id) # Формирование счета
     order_pdf.run()
     context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
 
-    #_________________________
+    #_________________________Архивируем и посылаем письмо с заказом________________
     order_item = UtilsModel(order_id)
     order_item.run()
+    domain = get_domain(request)
+    order_item.send_mail_order(domain)
     return render(request, "orderpay.html", context)
+
+
+def get_domain(request):
+    logger.info(f'DOMAIN: {get_current_site(request)}')
+    return get_current_site(request)
+
+
+
 
 
 # @login_required
