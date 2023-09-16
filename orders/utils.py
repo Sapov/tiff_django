@@ -1,4 +1,6 @@
 import os
+# from os import path
+
 import zipfile
 from datetime import date
 import shutil
@@ -117,6 +119,7 @@ class DrawOrder:
                        }
 
     def __init__(self, order_id):
+        self.font_path = None
         self.order_id = order_id
         self.canvas = Canvas(f'Order_{self.order_id}.pdf', pagesize=A4, )
         curent_order = Order.objects.get(pk=order_id)
@@ -125,12 +128,15 @@ class DrawOrder:
         self.buyer = (curent_order.organisation_payer.name_ul, curent_order.organisation_payer.inn,
                       curent_order.organisation_payer.address_ur, curent_order.organisation_payer.phone)
 
+    def change_path(self):
+        app_path = os.path.realpath(os.path.dirname(__file__))
+        self.font_path = os.path.join(app_path, 'fonts/arialmt.ttf')
     def draw_field(self, field):
         self.canvas.grid([field[0][0] * mm, field[0][1] * mm],
                     [field[1][0] * mm, field[1][1] * mm])
 
     def create_draw_string(self):
-        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf', 'UTF-8'))
+        pdfmetrics.registerFont(TTFont('Arial', self.font_path, 'UTF-8'))
 
         self.canvas.setFont('Arial', 12)
         self.canvas.drawString(17 * mm, 280 * mm, 'ООО "Банк Точка"')
@@ -164,7 +170,7 @@ class DrawOrder:
         self.canvas.drawString(17 * mm, 213 * mm, '(Заказчик)')
 
     def create_dinamic_data(self):
-        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf', 'UTF-8'))
+        pdfmetrics.registerFont(TTFont('Arial', self.font_path, 'UTF-8'))
 
         self.canvas.setFont('Arial', 14)
 
@@ -173,7 +179,7 @@ class DrawOrder:
 
     def split_string(self ):
         ''' Функция переносит строку по пробелам если строка больше 40 символов'''
-        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf', 'UTF-8'))
+        pdfmetrics.registerFont(TTFont('Arial', self.font_path, 'UTF-8'))
 
         self.canvas.setFont('Arial', 12)
         self.canvas.drawString(35 * mm, 218 * mm, f'{self.buyer[0]} ИНН: {self.buyer[1]} Адрес: {self.buyer[2]}')
