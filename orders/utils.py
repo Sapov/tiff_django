@@ -319,6 +319,7 @@ class DrawOrder:
         order.save()
 
     def run(self):
+        self.change_path()
         self.draw_field(self.fild_bank)
         self.draw_field(self.field_bik)
         self.draw_field(self.order_kp)
