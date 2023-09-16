@@ -13,6 +13,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.pdfbase.ttfonts import TTFont
+
 from reportlab.lib.styles import ParagraphStyle
 from .models import OrderItem, Order
 
@@ -91,79 +92,6 @@ def goto_media(foo):
     return wrapper
 
 
-class Yadisk:
-    path = Utils.path_save
-
-    # def goto_media(foo):
-    #     ''' переходим в паапку media/image{data}  и обратно'''
-    #
-    #     def wrapper(*args, **kwargs):
-    #         print(f'[INFO] перед работой мы тут:{os.getcwd()}')
-    #         curent_path = os.getcwd()
-    #         # data_file = Product.objects.get(id=id_order)
-    #         if curent_path[-5:] != 'media':
-    #             os.chdir(
-    #                 f'media/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-    #         print(f'[INFO] Мы Выбрали {os.getcwd()}')
-    #         res = foo(*args, **kwargs)
-    #         os.chdir(curent_path)  # перейти обратно
-    #         print(f'[INFO] Возвращаемся обратно {os.getcwd()}')
-    #         return res
-    #
-    #     return wrapper
-
-    @classmethod
-    def create_folder(cls, path=path):
-        '''Добавляем фолдер дата
-        Директория должна быть всегда уникальной к примеру точная дата мин/сек
-        '''
-        if os.path.exists(f"{LOCAL_PATH_YADISK}{path}"):
-            print('Директория уже создана')
-        else:
-            os.mkdir(f'{LOCAL_PATH_YADISK}{path}')
-
-    @goto_media
-    @classmethod
-    def add_yadisk_locate(cls, path=path):
-
-        """закидываем файлы на yadisk локально на ubuntu
-        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
-        Я-ДИСКЕ затирается новым"""
-        Path.cwd()  # Идем в текущий каталог
-        curent_folder = os.getcwd()
-        print('Из яндекс функции видим каталог - ', curent_folder)
-        lst_files = os.listdir()  # read name files from folder
-        for i in lst_files:
-            if i.endswith("txt") or i.endswith("zip"):
-                print(f'Копирую {i} в {LOCAL_PATH_YADISK}{path}')
-                '''Проверяем есть ли файл'''
-                os.chdir(f'{LOCAL_PATH_YADISK}{path}')  # перехожу в я-диск # test print('Теперь мы в', os.getcwd())
-                if os.path.exists(i):
-                    os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
-                    # test print('Check', os.listdir())
-                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
-
-                    shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
-                    # Возвращаемся в корень  print(f'ВОТ ОН КАСТЫЛЬ {__file__[:-16]}')
-                    print(f'ВОТ ОН КАСТЫЛЬ {__file__[:-16]}')
-                    os.chdir(__file__[:-16])
-                else:
-                    os.chdir(curent_folder)
-                    shutil.move(i, f'{LOCAL_PATH_YADISK}{path}')
-                    # Возвращаемся в корень
-                    os.chdir(__file__[:-16])
-
-    @classmethod
-    def add_link_from_folder_yadisk(cls, path=path):
-        print(f'Публикую папку: {LOCAL_PATH_YADISK}{path}')
-        ya_link = subprocess.check_output(["yandex-disk", "publish", f'{LOCAL_PATH_YADISK}{path}'])
-        ya_link = str(ya_link)
-        ya_link = ya_link.lstrip("b'")
-        ya_link = ya_link.rstrip(r"\n'")
-        print(f'Ссылка на яндекс диск {ya_link}')
-        return ya_link
-
-
 
 
 class DrawOrder:
@@ -202,7 +130,8 @@ class DrawOrder:
                     [field[1][0] * mm, field[1][1] * mm])
 
     def create_draw_string(self):
-        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf'))
+        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf', 'UTF-8'))
+
         self.canvas.setFont('Arial', 12)
         self.canvas.drawString(17 * mm, 280 * mm, 'ООО "Банк Точка"')
         self.canvas.drawString(117 * mm, 280 * mm, 'БИК')
@@ -235,7 +164,8 @@ class DrawOrder:
         self.canvas.drawString(17 * mm, 213 * mm, '(Заказчик)')
 
     def create_dinamic_data(self):
-        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf'))
+        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf', 'UTF-8'))
+
         self.canvas.setFont('Arial', 14)
 
         self.canvas.drawString(17 * mm, 245 * mm, f'Счет на оплату № {self.order_id} {self.create_data_order()}')
@@ -243,7 +173,8 @@ class DrawOrder:
 
     def split_string(self ):
         ''' Функция переносит строку по пробелам если строка больше 40 символов'''
-        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf'))
+        pdfmetrics.registerFont(TTFont('Arial', 'arialmt.ttf', 'UTF-8'))
+
         self.canvas.setFont('Arial', 12)
         self.canvas.drawString(35 * mm, 218 * mm, f'{self.buyer[0]} ИНН: {self.buyer[1]} Адрес: {self.buyer[2]}')
 
