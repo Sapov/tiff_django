@@ -164,20 +164,20 @@ def order_pay(request, order_id):
     ''' Меняем статус с заагружен на оформлен
      генерируем счетб
      '''
-    Orders = Order.objects.get(id=order_id)
-    curent_order = Order.objects.get(pk=order_id)
     text = 'Оплатить можно на карту 0000 0000 0000 0000'
     # --------------- order pdf----------
-    logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
     order_pdf = DrawOrder(order_id) # Формирование счета
     order_pdf.run()
-    context = {'Orders': Orders, 'curent_order': curent_order, 'text': text}
 
     #_________________________Архивируем и посылаем письмо с заказом________________
     order_item = UtilsModel(order_id)
     order_item.run()
     domain = get_domain(request)
     order_item.send_mail_order(domain)
+    Orders = Order.objects.get(id=order_id)
+
+    context = {'Orders': Orders, 'text': text}
+
     return render(request, "orderpay.html", context)
 
 

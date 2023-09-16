@@ -22,7 +22,7 @@ def send_email_for_verify(request, user):
         context=context,
     )
     email = EmailMessage(
-        'Veryfi email',
+        'Подтвердите регистрацию',
         message,
         to=[user.email],
     )

@@ -314,8 +314,8 @@ class DrawOrder:
     def add_arhive_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
         order = Order.objects.get(id=self.order_id)
-        logger.info(f'LOAD PDF in table: orders/Order#{self.order_id}.pdf')
-        order.order_pdf_file = f'orders/Order#{self.order_id}.pdf'
+        logger.info(f'LOAD PDF in table: orders/Order_{self.order_id}.pdf')
+        order.order_pdf_file = f'orders/Order_{self.order_id}.pdf'
         order.save()
 
     def run(self):
