@@ -15,7 +15,7 @@ RUN useradd -rms /bin/bash django && chmod 777 /opt /run
 
 WORKDIR /django
 
-RUN mkdir /django/static && mkdir /django/media && mkdir /django/media/orders && chown -R django:django /django && chmod 755 /django
+RUN mkdir /django/static && mkdir /django/media && mkdir /django/media/orders && mkdir /django/media/arhive && chown -R django:django /django && chmod 755 /django
 
 COPY --chown=django:django . .
 #COPY . /django
