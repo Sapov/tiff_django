@@ -209,9 +209,8 @@ class UtilsModel:
                   f'{self.new_str}\nCсылка на архив: http://{domain}/media/{self.download_link()}',
                   'django.rpk@mail.ru',
                   ['rpk.reds@ya.ru'],
-                  fail_silently=False,)
-                  # html_message=render_to_string('mail/templates.html', data))
-
+                  fail_silently=False, )
+        # html_message=render_to_string('mail/templates.html', data))
 
     @goto_media
     def create_text_file(self):
@@ -241,7 +240,6 @@ class UtilsModel:
 
         return self.text_file_name
 
-
     def read_file(self):
         current_path = os.getcwd()  # запоминаем где мы
         os.chdir(
@@ -252,9 +250,8 @@ class UtilsModel:
 
             return self.new_str
 
-
     def arhive(self):
-        current_path = os.getcwd() # запоминаем где мы
+        current_path = os.getcwd()  # запоминаем где мы
         os.chdir(
             f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию image
         """Архивируем заказ"""
@@ -324,6 +321,15 @@ class UtilsModel:
         logger.info(f' LINK {order.order_arhive}')
         return order.order_arhive
 
+    def set_status_order(self):
+        '''Меняем статус заказа после оформления с ГОТОВИТЬСЯ нА ОФОРМЛЕН '''
+        order = Order.objects.get(id=self.order_id)
+        status = StatusOrder.objects.get(id=2)  # 2 стауст id оформлен
+        logger.info(f'МЕНЯЮ СТАТУС нА ОФОРМЛЕН ')
+        order.status = status
+        order.save()
+        return
+
     def run(self):
         self.create_text_file()
         self.read_file()
@@ -331,4 +337,5 @@ class UtilsModel:
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
         self.add_arhive_in_order()
+        self.set_status_order()  # меняю статус заказа
         # self.send_mail_order()  # отправил письмо
