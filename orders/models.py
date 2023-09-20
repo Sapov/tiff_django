@@ -159,7 +159,7 @@ def goto_media(foo):
 
     def wrapper(*args, **kwargs):
         logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
-        curent_path = os.getcwd()
+        current_path = os.getcwd()
         # logger.info(f'[INFO DECORATOR] OBJECT: {order_id}')
         # data_file = Product.objects.get(id=self.order_id)
         # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
@@ -169,7 +169,7 @@ def goto_media(foo):
             f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
         logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
         res = foo(*args, **kwargs)
-        os.chdir(curent_path)  # перейти обратно
+        os.chdir(current_path)  # перейти обратно
         logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
         return res
 
@@ -241,14 +241,22 @@ class UtilsModel:
 
         return self.text_file_name
 
-    @goto_media
+
     def read_file(self):
+        current_path = os.getcwd()  # запоминаем где мы
+        os.chdir(
+            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию image
         with open(self.text_file_name) as file:  # читаю файл txt
             self.new_str = file.read()
+            os.chdir(current_path)  # перейти обратно
+
             return self.new_str
 
-    @goto_media
+
     def arhive(self):
+        current_path = os.getcwd() # запоминаем где мы
+        os.chdir(
+            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию image
         """Архивируем заказ"""
 
         if os.path.isfile(f'Order_№_{self.order_id}_{date.today()}.zip'):
@@ -263,6 +271,7 @@ class UtilsModel:
                 logger.info(str(file.images)[str(file.images).rindex("/") + 1:])
                 new_arh.write(str(file.images)[str(file.images).rindex("/") + 1:], compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
+        os.chdir(current_path)  # перейти обратно
         return self.arh_name
 
     def create_folder_server(self):
