@@ -266,7 +266,7 @@ class UtilsModel:
         return self.arh_name
 
     def create_folder_server(self):
-        '''Добавляем фолдер  Директория должна быть всегда уникальной к примеру номер заказа'''
+        '''Добавляем фолдер  Директория номер заказа'''
         current_path = os.getcwd()
         os.chdir(f'{settings.MEDIA_ROOT}/arhive')  # перейти в директорию orders
         logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
@@ -283,29 +283,29 @@ class UtilsModel:
         ДИСКЕ затирается новым"""
         self.arhiv_order_path = f'{self.path_arhive}/{self.order_id}'
         os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
-        curent_folder = os.getcwd()
-        logger.info(f'Из copy_files_in_server функции видим каталог - {curent_folder}')
+        current_folder = os.getcwd()
+        logger.info(f'Из copy_files_in_server функции видим каталог - {current_folder}')
         lst_files = os.listdir()  # read name files from folder
-        logger.info(f'FILES{lst_files}')
+        logger.info(f'FILES:{lst_files}')
         for i in lst_files:
             if i.endswith("txt") or i.endswith("zip"):
                 logger.info(f'Копирую {i} в {self.arhiv_order_path}')
                 os.chdir(self.arhiv_order_path)  # перехожу в диск
                 if os.path.exists(i):
                     os.remove(i)  # test print(f'На ya Диске есть такой файл {i} удалим его ')
-                    os.chdir(curent_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
+                    os.chdir(current_folder)  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
 
                     shutil.move(i, self.arhiv_order_path)
                     os.chdir(settings.MEDIA_ROOT)
                 else:
-                    os.chdir(curent_folder)
+                    os.chdir(current_folder)
                     shutil.move(i, self.arhiv_order_path)
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
     def add_arhive_in_order(self):
         '''Записываем в таблицу ссылку на архив с файлами'''
         order = Order.objects.get(id=self.order_id)
-        logger.info(f'LOAD arhive in table: arhive/{self.order_id}/{self.arh_name}')
+        logger.info(f'Записываю в заказ ссылку на архив: arhive/{self.order_id}/{self.arh_name}')
         order.order_arhive = f'arhive/{self.order_id}/{self.arh_name}'
         order.save()
         return
