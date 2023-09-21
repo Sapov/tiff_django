@@ -131,39 +131,21 @@ def del_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
     old_ord = OrderItem.objects.get(id=item_id)  # строка заказа
     old_ord.delete()
+    old_ord.save()
+
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
-def goto_folder_orders(foo):
-    ''' переходим в папку media/orders  и обратно'''
-
-    def wrapper(*args, **kwargs):
-        logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
-        curent_path = os.getcwd()
-        # logger.info(f'[INFO DECORATOR] OBJECT: {order_id}')
-        # data_file = Product.objects.get(id=self.order_id)
-        # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
-        # logger.info(f'[INFO DECORATOR] CREATED: {data_filea_file.created}')
-        # перейти в директорию дата должна браться из параметра Order.created
-        os.chdir(
-            f'{settings.MEDIA_ROOT}/orders')
-        logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
-        res = foo(*args, **kwargs)
-        os.chdir(curent_path)  # перейти обратно
-        logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
-        return res
-
-    return wrapper
-
-
-@goto_folder_orders
 def order_pay(request, order_id):
     ''' ОФОРМИТЬ ЗАКАЗ - Меняем статус с заагружен на оформлен
      генерируем счетб
      '''
+    current_path = os.getcwd()
+    os.chdir(f'{settings.MEDIA_ROOT}/orders')
+
     text = 'Оплатить можно на карту 0000 0000 0000 0000'
     # --------------- order pdf----------
     order_pdf = DrawOrder(order_id) # Формирование счета
@@ -177,6 +159,7 @@ def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
 
     context = {'Orders': Orders, 'text': text}
+    os.chdir(current_path)  # перейти обратно
 
     return render(request, "orderpay.html", context)
 
@@ -184,28 +167,6 @@ def order_pay(request, order_id):
 def get_domain(request):
     logger.info(f'DOMAIN: {get_current_site(request)}')
     return get_current_site(request)
-
-
-
-
-
-# @login_required
-# def view_all_orders(request):
-#     '''Посмотреть все заказы'''
-#     object_list = Order.objects.all().order_by('-id')
-#
-#     paginator = Paginator(Orders, 2)
-#     if 'page' in request.GET:
-#         page_num = request.GET.get('page')
-#     else:
-#         page_num = 1
-#     logger.info(f'page_NUM: {page_num}')
-#     page_obj = paginator.get_page(page_num)
-#     logger.info(f'page_NUM: {page_obj}')
-#
-#     return render(request, "all_view_orders.html",
-#                   {"object_list": object_list, 'title': 'Заказы в работе', 'page_obj': page_obj})
-
 
 class AllOrdersListView(LoginRequiredMixin, ListView):
     model = Order
