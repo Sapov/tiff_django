@@ -37,9 +37,6 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
     #     return queryset
 
 
-
-
-
 def delete(request, id):
     try:
         product = Product.objects.get(id=id)  # выбрали запись
@@ -91,7 +88,7 @@ class FileList(LoginRequiredMixin, ListView):
 
 
 def add_files_in_base():
-    print("где я" , os.getcwd())
+    print("где я", os.getcwd())
     os.path.relpath('unzip')
     list_files = os.listdir('unzip')
     # list_files = os.listdir(os.path.relpath('unzip'))
@@ -133,9 +130,9 @@ def calculator(request):
             finishka = request.POST['finishka']
             materials = Material.objects.get(id=material)
             finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length))*2
+            perimetr = (float(width) + float(length)) * 2
             finishka_price = perimetr * finishkas.price
-            results = (float(width) * float(length) * materials.price) + finishka_price # в см
+            results = (float(width) * float(length) * materials.price) + finishka_price  # в см
             results = round(results, -1)
             return render(request, "calculator.html",
                           {"form": form, 'title': 'Калькулятор печати для Рекламных агентств', 'results': results})
@@ -143,7 +140,7 @@ def calculator(request):
     else:
         form = Calculator(request.POST)
     return render(request, "calculator.html",
-                          {"form": form, 'title': 'Калькулятор печати для Рекламных агентств'})
+                  {"form": form, 'title': 'Калькулятор печати для Рекламных агентств'})
 
 
 class PrintCalculator:

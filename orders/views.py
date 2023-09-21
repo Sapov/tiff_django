@@ -131,6 +131,8 @@ def del_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
     old_ord = OrderItem.objects.get(id=item_id)  # строка заказа
     old_ord.delete()
+    old_ord.save()
+
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
@@ -165,28 +167,6 @@ def order_pay(request, order_id):
 def get_domain(request):
     logger.info(f'DOMAIN: {get_current_site(request)}')
     return get_current_site(request)
-
-
-
-
-
-# @login_required
-# def view_all_orders(request):
-#     '''Посмотреть все заказы'''
-#     object_list = Order.objects.all().order_by('-id')
-#
-#     paginator = Paginator(Orders, 2)
-#     if 'page' in request.GET:
-#         page_num = request.GET.get('page')
-#     else:
-#         page_num = 1
-#     logger.info(f'page_NUM: {page_num}')
-#     page_obj = paginator.get_page(page_num)
-#     logger.info(f'page_NUM: {page_obj}')
-#
-#     return render(request, "all_view_orders.html",
-#                   {"object_list": object_list, 'title': 'Заказы в работе', 'page_obj': page_obj})
-
 
 class AllOrdersListView(LoginRequiredMixin, ListView):
     model = Order
