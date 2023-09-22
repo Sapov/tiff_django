@@ -154,26 +154,21 @@ def product_in_order_post_save(instance, **kwargs):
 post_save.connect(product_in_order_post_save, sender=OrderItem)
 
 
-def goto_media(foo):
-    ''' переходим в папку media/image{data}  и обратно'''
-
-    def wrapper(*args, **kwargs):
-        logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
-        current_path = os.getcwd()
-        # logger.info(f'[INFO DECORATOR] OBJECT: {order_id}')
-        # data_file = Product.objects.get(id=self.order_id)
-        # logger.info(f'[INFO DECORATOR] OBJECT: {data_file}')
-        # logger.info(f'[INFO DECORATOR] CREATED: {data_file.created}')
-
-        os.chdir(
-            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-        logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
-        res = foo(*args, **kwargs)
-        os.chdir(current_path)  # перейти обратно
-        logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
-        return res
-
-    return wrapper
+# def goto_media(foo):
+#     ''' переходим в папку media/image{data}  и обратно'''
+#
+#     def wrapper(*args, **kwargs):
+#         logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
+#         current_path = os.getcwd()
+#         os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
+#         # перейти в директорию дата должна браться из параметра Order.created
+#         logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
+#         res = foo(*args, **kwargs)
+#         os.chdir(current_path)  # перейти обратно
+#         logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
+#         return res
+#
+#     return wrapper
 
 
 class UtilsModel:
@@ -212,9 +207,11 @@ class UtilsModel:
                   fail_silently=False, )
         # html_message=render_to_string('mail/templates.html', data))
 
-    @goto_media
+
     def create_text_file(self):
         ''' Создаем файл с харaктерисиками файла для печати '''
+        current_path = os.getcwd()
+        os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
 
         all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
         self.text_file_name = f'Order_№{self.order_id}_for_print_{date.today()}.txt'
@@ -237,7 +234,7 @@ class UtilsModel:
                 )
                 text_file.write("-" * 40 + "\n")
         logger.info(f'CREATE File, {self.text_file_name}')
-
+        os.chdir(current_path)
         return self.text_file_name
 
     def read_file(self):
