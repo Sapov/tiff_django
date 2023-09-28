@@ -19,7 +19,6 @@ class FinishWork(models.Model):
     price = models.FloatField(max_length=100, help_text='Цена за 1 м. погонный', verbose_name='Стоимость работы в руб.')
     is_active = models.BooleanField(default=True, verbose_name='Активный')
 
-
     def __str__(self):
         return self.work
 
@@ -68,7 +67,6 @@ class Material(models.Model):
                                            blank=True, null=True, default=None)
     is_active = models.BooleanField(default=True, verbose_name='Активный ')
 
-
     def __str__(self):
         return f'{self.name} - {self.type_print}'
 
@@ -105,7 +103,10 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
     cost_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
 
-    images = models.FileField(upload_to=f'image/{date.today()}')
+    # images = models.FileField(upload_to=date.today())
+    images = models.FileField(upload_to="image")
+    # images = models.FileField(upload_to="images/%Y/%m/%d")
+    # images = models.FileField(upload_to=f'image/{date.today()}')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
     FinishWork = models.ForeignKey('FinishWork', on_delete=models.PROTECT, verbose_name='Финишная обработка', default=1)

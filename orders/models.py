@@ -260,6 +260,7 @@ class UtilsModel:
             logger.info(f'Архивируем файлы:", {all_products_in_order}')
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
+                logger.info(f'FILE: {file}')
                 self.arh_name = f'Order_№_{self.order_id}_{date.today()}.zip'
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
                 logger.info(str(file.images)[str(file.images).rindex("/") + 1:])
