@@ -211,7 +211,7 @@ class UtilsModel:
     def create_text_file(self):
         ''' Создаем файл с харaктерисиками файла для печати '''
         current_path = os.getcwd()
-        os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
+        os.chdir(f'{settings.MEDIA_ROOT}/image/')
 
         all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
         self.text_file_name = f'Order_№{self.order_id}_for_print_{date.today()}.txt'
@@ -240,7 +240,7 @@ class UtilsModel:
     def read_file(self):
         current_path = os.getcwd()  # запоминаем где мы
         os.chdir(
-            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию image
+            f'{settings.MEDIA_ROOT}/image/')  # перейти в директорию image
         with open(self.text_file_name) as file:  # читаю файл txt
             self.new_str = file.read()
             os.chdir(current_path)  # перейти обратно
@@ -250,7 +250,7 @@ class UtilsModel:
     def arhive(self):
         current_path = os.getcwd()  # запоминаем где мы
         os.chdir(
-            f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию image
+            f'{settings.MEDIA_ROOT}/image/')  # перейти в директорию image
         """Архивируем заказ"""
 
         if os.path.isfile(f'Order_№_{self.order_id}_{date.today()}.zip'):
@@ -286,7 +286,7 @@ class UtilsModel:
         Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
         ДИСКЕ затирается новым"""
         self.arhiv_order_path = f'{self.path_arhive}/{self.order_id}'
-        os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
+        os.chdir(f'{settings.MEDIA_ROOT}/image/')
         current_folder = os.getcwd()
         logger.info(f'Из copy_files_in_server функции видим каталог - {current_folder}')
         lst_files = os.listdir()  # read name files from folder
