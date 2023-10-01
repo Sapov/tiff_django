@@ -34,6 +34,7 @@
     </div>
 </div>
 {% if items.count > 0 %}
+{% if curent_order.status.id == 1 %}
 
 <h5> Файлы которые можно добавить в заказ: </h5>
 
@@ -69,10 +70,12 @@
 
     </div>
 </div>
+{% endif %}
          {% else %}
         <h6> Нет файлов для добавления в заказ </h6>
 
 {% endif %}
+
 
 {% if items_in_order.count > 0  %}
 

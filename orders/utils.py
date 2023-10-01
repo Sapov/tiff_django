@@ -20,6 +20,7 @@ from reportlab.lib.styles import ParagraphStyle
 from .models import OrderItem, Order
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 LOCAL_PATH_YADISK = os.getenv('LOCAL_PATH_YADISK')
@@ -94,12 +95,10 @@ def goto_media(foo):
     return wrapper
 
 
-
-
 class DrawOrder:
     '''Генерируем счет PDF'''
 
-    fild_bank = [16, 116], [284, 272]  # х началоб х конец у начало у конец
+    fild_bank = [16, 116], [284, 272]  # х начало х конец у начало у конец
     field_bik = [116, 132], [284, 279]  # BIK
     order_kp = [116, 132], [284, 272]  # order kp #
     self_num = [132, 192], [284, 272]  # self num
@@ -131,9 +130,10 @@ class DrawOrder:
     def change_path(self):
         app_path = os.path.realpath(os.path.dirname(__file__))
         self.font_path = os.path.join(app_path, 'fonts/arialmt.ttf')
+
     def draw_field(self, field):
         self.canvas.grid([field[0][0] * mm, field[0][1] * mm],
-                    [field[1][0] * mm, field[1][1] * mm])
+                         [field[1][0] * mm, field[1][1] * mm])
 
     def create_draw_string(self):
         pdfmetrics.registerFont(TTFont('Arial', self.font_path, 'UTF-8'))
@@ -157,8 +157,10 @@ class DrawOrder:
         self.canvas.setFont('Arial', 9)
         self.canvas.drawString(17 * mm, 230 * mm, 'Поставщик')
         self.canvas.setFont('Arial', 12)
-        self.canvas.drawString(35 * mm, 230 * mm, 'ИП Сапов Александр Николаевич, ИНН 366202910465, 394066, г. Воронеж,')
-        self.canvas.drawString(35 * mm, 225 * mm, 'Московский проспект, дом. № 197, квартира 215, тел. +7-953-119-33-67')
+        self.canvas.drawString(35 * mm, 230 * mm,
+                               'ИП Сапов Александр Николаевич, ИНН 366202910465, 394066, г. Воронеж,')
+        self.canvas.drawString(35 * mm, 225 * mm,
+                               'Московский проспект, дом. № 197, квартира 215, тел. +7-953-119-33-67')
         self.canvas.setFont('Arial', 7)
         self.canvas.drawString(17 * mm, 225 * mm, '(Исполнитель):')
 
@@ -177,7 +179,7 @@ class DrawOrder:
         self.canvas.drawString(17 * mm, 245 * mm, f'Счет на оплату № {self.order_id} {self.create_data_order()}')
         self.canvas.line(16 * mm, 240 * mm, 193 * mm, 240 * mm)
 
-    def split_string(self ):
+    def split_string(self):
         ''' Функция переносит строку по пробелам если строка больше 40 символов'''
         pdfmetrics.registerFont(TTFont('Arial', self.font_path, 'UTF-8'))
 
@@ -205,7 +207,6 @@ class DrawOrder:
         return string_date
 
     def create_header_table(self):
-
         self.canvas.setFont('Arial', 10)
         self.canvas.grid(
             [self.fields_position['X_START_FIELD_NUMBER'] * mm, self.fields_position['X_FINISH_FIELD_NUMBER'] * mm],
@@ -253,11 +254,11 @@ class DrawOrder:
                 [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])
 
             self.canvas.grid([self.fields_position['X_FINISH_FIELD_NUMBER'] * mm,
-                         self.fields_position['X_FINISH_FIELD_PRODUCT'] * mm],
-                        [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])
+                              self.fields_position['X_FINISH_FIELD_PRODUCT'] * mm],
+                             [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])
             self.canvas.grid([self.fields_position['X_FINISH_FIELD_PRODUCT'] * mm,
-                         self.fields_position['X_FINISH_FIELD_QUNTITY'] * mm],
-                        [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])
+                              self.fields_position['X_FINISH_FIELD_QUNTITY'] * mm],
+                             [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])
             self.canvas.grid(
                 [self.fields_position['X_FINISH_FIELD_QUNTITY'] * mm, self.fields_position['X_FINISH_FIELD_ED'] * mm],
                 [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])
@@ -265,8 +266,8 @@ class DrawOrder:
                 [self.fields_position['X_FINISH_FIELD_ED'] * mm, self.fields_position['X_FINISH_FIELD_PRICE'] * mm],
                 [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])  # price
             self.canvas.grid([self.fields_position['X_FINISH_FIELD_PRICE'] * mm,
-                         self.fields_position['X_FINISH_FIELD_T_PRICE'] * mm],
-                        [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])  # field sum
+                              self.fields_position['X_FINISH_FIELD_T_PRICE'] * mm],
+                             [(Y_START - interliniag) * mm, (Y_FINISH - interliniag) * mm])  # field sum
             # ----------------------- ADD ITEMS____________________
 
             # {'X_START_FIELD_NUMBER': 16, 'X_FINISH_FIELD_NUMBER': 26,
@@ -279,37 +280,37 @@ class DrawOrder:
             #  }
             VERTIKAL = self.fields_position['Y_FINISH'] - 3 - interliniag
             self.canvas.drawString((self.fields_position['X_START_FIELD_NUMBER'] + 3) * mm,
-                              (self.fields_position['Y_FINISH'] - 3 - interliniag) * mm,
-                              f'{i + 1}')  # ID
+                                   (self.fields_position['Y_FINISH'] - 3 - interliniag) * mm,
+                                   f'{i + 1}')  # ID
 
             self.canvas.drawString((self.fields_position['X_FINISH_FIELD_NUMBER'] + 2) * mm, VERTIKAL * mm,
-                              f'{v.product.material} {v.product.length}x{v.product.width} см')  # Material Wxl
+                                   f'{v.product.material} {v.product.length}x{v.product.width} см')  # Material Wxl
             self.canvas.drawString((self.fields_position['X_FINISH_FIELD_PRODUCT'] + 9) * mm, VERTIKAL * mm,
-                              f'{v.quantity}')  # quantity
+                                   f'{v.quantity}')  # quantity
             self.canvas.drawString((self.fields_position['X_FINISH_FIELD_QUNTITY'] + 2) * mm, VERTIKAL * mm,
-                              f' шт.')  # шт
+                                   f' шт.')  # шт
             self.canvas.drawString((self.fields_position['X_FINISH_FIELD_ED'] + 8) * mm, VERTIKAL * mm,
-                              f'{v.price_per_item}')  # price Item
+                                   f'{v.price_per_item}')  # price Item
             self.canvas.drawString((self.fields_position['X_FINISH_FIELD_PRICE'] + 10) * mm, VERTIKAL * mm,
-                              f'{v.total_price}')  # total price item
+                                   f'{v.total_price}')  # total price item
             TOTAL_PRICE += v.total_price
             ITEM += i + 1
         # --------------------- TOTAL PRICE-----------------
         self.canvas.setFont('Arial', 12)
         self.canvas.drawString((self.fields_position['X_FINISH_FIELD_PRICE'] - 25) * mm, (VERTIKAL - 10) * mm,
-                          f'Итого:              {TOTAL_PRICE}')
+                               f'Итого:              {TOTAL_PRICE}')
         self.canvas.drawString((self.fields_position['X_FINISH_FIELD_PRICE'] - 25) * mm, (VERTIKAL - 15) * mm,
-                          f'Без налога (НДС)      -')
+                               f'Без налога (НДС)      -')
         self.canvas.drawString((self.fields_position['X_FINISH_FIELD_PRICE'] - 25) * mm, (VERTIKAL - 20) * mm,
-                          f'Всего к оплате:   {TOTAL_PRICE}')
+                               f'Всего к оплате:   {TOTAL_PRICE}')
         self.canvas.drawString(self.fields_position['X_START_FIELD_NUMBER'] * mm, (VERTIKAL - 25) * mm,
-                          f'Всего наименований,{ITEM}, на сумму {TOTAL_PRICE} руб.')
+                               f'Всего наименований,{ITEM}, на сумму {TOTAL_PRICE} руб.')
         self.canvas.drawString(self.fields_position['X_START_FIELD_NUMBER'] * mm, (VERTIKAL - 30) * mm,
-                          f'Оплата данного счета означает согласие с публичной офертой площадки')
+                               f'Оплата данного счета означает согласие с публичной офертой площадки')
         self.canvas.drawString(self.fields_position['X_START_FIELD_NUMBER'] * mm, (VERTIKAL - 35) * mm,
-                          f'Счет действителен в течении трех дней')
+                               f'Счет действителен в течении трех дней')
         self.canvas.drawString(self.fields_position['X_START_FIELD_NUMBER'] * mm, (VERTIKAL - 40) * mm,
-                          f'Предприниматель___________________________ Сапов А.Н.')
+                               f'Предприниматель___________________________ Сапов А.Н.')
 
     def add_arhive_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''

@@ -30,7 +30,7 @@
             архив</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'files:price' %}">Прайс-лист</a>
 
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'files:all_files' %}">Все файлы</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'orders:view_orders'%}">Мои заказы</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'files:myfiles' %}">Мои файлы</a>
     </nav>
 </div>
@@ -112,6 +112,9 @@
                 <li class="mb-1"><a class="link-secondary text-decoration-none"
                                     href="{% url 'orders:view_all_files_for_work_in_orders' %}">Посмотреть все файлы для
                     печати</a></li>
+
+                <li class="mb-1"><a class="link-secondary text-decoration-none"
+                                    href="{% url 'files:all_files' %}">Все файлы</a></li>
                 <li class="mb-1"><a class="link-secondary text-decoration-none"
                                     href="{% url 'orders:report_complite_orders' %}">Отчет по выполненым заказам</a>
                 </li>
