@@ -117,12 +117,13 @@
         </table>
     </div>
 {% if curent_order.status.id == 1 %}
-
     <td>
-
             <button type="submit" class="btn btn-primary"
                     onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ</button>
         </td>
+{% else %}
+                    <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>
+
 {% endif %}
 
 </div>

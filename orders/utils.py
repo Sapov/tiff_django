@@ -139,16 +139,16 @@ class DrawOrder:
         pdfmetrics.registerFont(TTFont('Arial', self.font_path, 'UTF-8'))
 
         self.canvas.setFont('Arial', 12)
-        self.canvas.drawString(17 * mm, 280 * mm, 'ООО "Банк Точка"')
+        self.canvas.drawString(17 * mm, 280 * mm, os.getenv('BANK_NAME'))
         self.canvas.drawString(117 * mm, 280 * mm, 'БИК')
-        self.canvas.drawString(133 * mm, 280 * mm, '044525104')  # bik number
+        self.canvas.drawString(133 * mm, 280 * mm, os.getenv('BIK_NUMBER'))  # bik number
         self.canvas.drawString(117 * mm, 275 * mm, 'Сч. №')  # Order number 1
-        self.canvas.drawString(133 * mm, 275 * mm, '30101810745374525104')  # self Order number kor schet
-        self.canvas.drawString(17 * mm, 268.5 * mm, 'ИНН    366202910465')  # ИНН
+        self.canvas.drawString(133 * mm, 275 * mm, os.getenv('ORDER_KOR'))  # self Order number kor schet
+        self.canvas.drawString(17 * mm, 268.5 * mm, os.getenv('INN'))  # ИНН
         self.canvas.drawString(67 * mm, 268.5 * mm, 'КПП')  # КПП
         self.canvas.drawString(117 * mm, 268.5 * mm, 'Сч. №')  # Order number 2
-        self.canvas.drawString(133 * mm, 268.5 * mm, '40802810108500016162')  # self NUM order
-        self.canvas.drawString(17 * mm, 264 * mm, 'ИП Сапов Александр Николаевич')  # ИП
+        self.canvas.drawString(133 * mm, 268.5 * mm, os.getenv('NUM_ORDER'))  # self NUM order
+        self.canvas.drawString(17 * mm, 264 * mm, os.getenv('NAME_ORGANISATION'))  # ИП
 
         self.canvas.setFont('Arial', 8)
         self.canvas.drawString(17 * mm, 273 * mm, 'ООО "Банк получателя"')
@@ -158,9 +158,9 @@ class DrawOrder:
         self.canvas.drawString(17 * mm, 230 * mm, 'Поставщик')
         self.canvas.setFont('Arial', 12)
         self.canvas.drawString(35 * mm, 230 * mm,
-                               'ИП Сапов Александр Николаевич, ИНН 366202910465, 394066, г. Воронеж,')
+                               os.getenv('ADDRESS_1'))
         self.canvas.drawString(35 * mm, 225 * mm,
-                               'Московский проспект, дом. № 197, квартира 215, тел. +7-953-119-33-67')
+                               os.getenv('ADDRESS_2'))
         self.canvas.setFont('Arial', 7)
         self.canvas.drawString(17 * mm, 225 * mm, '(Исполнитель):')
 

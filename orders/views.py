@@ -148,10 +148,10 @@ def order_pay(request, order_id):
 
     text = 'Оплатить можно на карту 0000 0000 0000 0000'
     # --------------- order pdf----------
-    order_pdf = DrawOrder(order_id) # Формирование счета
+    order_pdf = DrawOrder(order_id)  # Формирование счета
     order_pdf.run()
 
-    #_________________________Архивируем и посылаем письмо с заказом________________
+    # _________________________Архивируем и посылаем письмо с заказом________________
     order_item = UtilsModel(order_id)
     order_item.run()
     domain = get_domain(request)
@@ -167,6 +167,7 @@ def order_pay(request, order_id):
 def get_domain(request):
     logger.info(f'DOMAIN: {get_current_site(request)}')
     return get_current_site(request)
+
 
 class AllOrdersListView(LoginRequiredMixin, ListView):
     model = Order
@@ -229,4 +230,4 @@ def report_complite_orders(request):
     order = Order.objects.filter(status=3)
 
     return render(request, "report_complite_orders.html",
-                  {"order": order,})
+                  {"order": order, })
