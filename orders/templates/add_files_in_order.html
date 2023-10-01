@@ -108,20 +108,19 @@
                 <td><a href="/orders/del_item_in_order/{{order_id}}/{{item.id}}">Удалить</a></td>
 
                 {% endif %}
-
-
             </tr>
             {% endfor %}
             </tbody>
         </table>
-
-
     </div>
+{% if curent_order.status.id == 1 %}
+
     <td>
 
             <button type="submit" class="btn btn-primary"
                     onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ</button>
         </td>
+{% endif %}
 
 </div>
 
