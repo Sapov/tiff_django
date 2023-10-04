@@ -33,7 +33,7 @@ services:
     image: nginx_for_django
     volumes:
       - static_volume:/django/static
-      - media_volume:/django/media
+      - ~/media:/django/media
     depends_on:
       - postgres_db
     ports:
