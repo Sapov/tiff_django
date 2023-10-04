@@ -19,7 +19,7 @@ services:
       - postgres_db
     volumes:
       - static_volume:/django/static
-      - ~/media:/django/media
+      - media_volume:/django/media
     env_file:
       - .env
     command: >
@@ -33,7 +33,7 @@ services:
     image: nginx_for_django
     volumes:
       - static_volume:/django/static
-      - ~/media:/django/media
+      - media_volume:/django/media
     depends_on:
       - postgres_db
     ports:
