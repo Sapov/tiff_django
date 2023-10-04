@@ -1,23 +1,10 @@
-def to_camel_case(text):
-    new_str = []
-    flag = False
-    for i in range(len(text)):
-        if text[i] == '_' or text[i] == '-':
-            flag = True
-            continue
-        # elif text[0].islower():
-        #     flag = True
-        elif text[i].isupper():
-            new_str.append(text[i].lower())
-            continue
-
-        if flag == True:
-            new_str.append(text[i].capitalize())
-            flag = False
-        else:
-            new_str.append(text[i])
-
-    return ''.join(new_str)
+def sol(num, k):
+    s = ""
+    for i in num:
+        s += str(i)
+    str_list = " ".join(str(int(s) + k)).split()
+    l = list(map(int, str_list))
+    print(l)
 
 
-print(to_camel_case('The-Stealth-Warrior'))
+print(sol(num=[1, 2, 0, 0], k=34))
