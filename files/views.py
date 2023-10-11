@@ -1,5 +1,4 @@
 import os
-from datetime import date
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -185,3 +184,7 @@ def calculator(request):
 class PrintCalculator:
     def __init__(self, length, width, material, finishka):
         pass
+
+
+def page_not_found(request, exception):
+    return HttpResponseNotFound(f"<H1>Страница не найдена</H1")
