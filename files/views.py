@@ -172,7 +172,7 @@ def calculator(request):
             )
 
     else:
-        form = Calculator(request.POST)
+        form = Calculator()
     return render(
         request,
         "calculator.html",
