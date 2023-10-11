@@ -39,12 +39,14 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
     """Посмотреть все файлы пользователя"""
 
     model = Product
-    paginate_by = 5
+    paginate_by = 2
     template_name = "index.html"
     login_url = "login"
 
     # def get_queryset(self):
-    #     queryset = Product.objects.filter(Contractor=request.GET.get('user')).order_by('-id')
+    #     queryset = Product.objects.filter(Contractor=request.h("user")).order_by(
+    #         "-id"
+    #     )
     #     # Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
     #     return queryset
 
