@@ -1,22 +1,22 @@
 {% extends 'base.html'%}
 {% load crispy_forms_tags %}
 
-{% block title %}Загрузка файла для Широкоформатной печати{% endblock %}
+{% block title %}Загрузка файла для UV-печати{% endblock %}
 
 {% block body %}
 
-<h3>Загрузите макет для Широкоформатной печати</h3>
+<h3>Загрузите макет для Ультрафиолетовой печати</h3>
 <p>Файл должен соответствовать требованиям:
 <p>Расширение файла - TIFF</p>
 <p> Цветовая Модель - CMYK</p>
-<p> Разрешение - от 40 до 70 dpi</p>
+<p> Разрешение - от 70 до 150 dpi</p>
 
 
 <p>Рекомендуем использовать LWZ компрессию, ваш файл станет гораздо меньше.
     У файла не должно быть альфаканалов, путей, несведенных слоев.</p>
 
 <div class="containers">
-    <form action="{% url 'files:create_large' %}" method="post", enctype="multipart/form-data">
+    <form action="{% url 'files:create_uv' %}" method="post", enctype="multipart/form-data">
 
         {% csrf_token %}
         {{ form|crispy }}

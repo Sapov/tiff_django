@@ -46,6 +46,45 @@ class UploadFilesInter(forms.ModelForm):
     material = forms.ModelChoiceField(
         queryset=Material.objects.filter(type_print=2),
         label="Выберите материал для печати",
+        initial=13,  # по умолчанию пленка матовая Китай
+    )
+
+    class Meta:
+        model = Product
+        fields = [
+            "quantity",
+            "images",
+            "FinishWork",
+            "Fields",
+        ]
+
+
+class UploadFilesLarge(forms.ModelForm):
+    """Форма загрузки файлов для Широкоформатной печати отфильтруем только широкоформатную печать"""
+
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(type_print=1),
+        label="Выберите материал для печати",
+        initial=1,  # по умолчанию 440 баннер
+    )
+
+    class Meta:
+        model = Product
+        fields = [
+            "quantity",
+            "images",
+            "FinishWork",
+            "Fields",
+        ]
+
+
+class UploadFilesUV(forms.ModelForm):
+    """Форма загрузки файлов для UV-печати отфильтруем только UV-печать"""
+
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(type_print=3),
+        label="Выберите материал для печати",
+        initial=1,  # по умолчанию ПВХ 3 мм
     )
 
     class Meta:
