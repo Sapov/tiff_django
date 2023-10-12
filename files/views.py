@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
 from .models import Product, Material, FinishWork
-from .forms import AddFiles, UploadArhive, Calculator
+from .forms import AddFiles, UploadArhive, Calculator, UploadFilesInter
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
@@ -188,3 +188,38 @@ class PrintCalculator:
 
 def page_not_found(request, exception):
     return HttpResponseNotFound(f"<H1>Страница не найдена</H1")
+
+
+def view_upload_files_large(request):
+    if request.method == "POST":
+        form = UploadFilesLarge(request.POST)
+        print(request)
+
+        if form.is_valid():
+            print(form.cleaned_data)
+    form = UploadFilesLarge()
+    context = {"form": form}
+    return render(request, "files/large_print.html", context)
+
+
+# class FilesCreateViewInter(LoginRequiredMixin, CreateView):
+#     template_name = "files/large_print.html"
+#     model = Product
+#     form_class = UploadFilesLarge
+#     # fields = ["quantity", "material", "FinishWork", "Fields", "images"]
+#
+#     def form_valid(self, form):
+#         form.instance.Contractor = self.request.user
+#         return super().form_valid(form)
+
+
+class FilesCreateViewInter(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для интерьерной печати"""
+
+    model = Product
+    form_class = UploadFilesInter
+    template_name = "files/inter_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)

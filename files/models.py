@@ -126,7 +126,7 @@ class Product(models.Model):
         default=1,
     )
     material = models.ForeignKey(
-        "Material", on_delete=models.PROTECT, verbose_name="Материал", default="2"
+        "Material", on_delete=models.PROTECT, verbose_name="Материал", default="1"
     )
     quantity = models.IntegerField(
         default=1, help_text="Введите количество", verbose_name="Количество"
@@ -153,7 +153,7 @@ class Product(models.Model):
     cost_price = models.DecimalField(
         max_digits=10, decimal_places=2, default=0, blank=True, null=True
     )
-    images = models.FileField(upload_to="image")
+    images = models.FileField(upload_to="image", verbose_name="Загрузка файла")
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Добавлено"
     )  # date created

@@ -38,3 +38,21 @@ class Calculator(forms.Form):
     )
     length = forms.FloatField(max_value=100, label="Длина в метрах")
     width = forms.FloatField(max_value=100, label="Ширина в метрах")
+
+
+class UploadFilesInter(forms.ModelForm):
+    """Форма загрузки файлов для интерьерной печати отфильтруем только интерьерную печать"""
+
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(type_print=2),
+        label="Выберите материал для печати",
+    )
+
+    class Meta:
+        model = Product
+        fields = [
+            "quantity",
+            "images",
+            "FinishWork",
+            "Fields",
+        ]
