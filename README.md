@@ -11,7 +11,9 @@
 6. 
 ---------------- .env ---------------------------------
 POSTGRES_HOST=(postgres_db) - такой же как как в docker compose (container_name: postgres_db)
+
 POSTGRES_PORT=(5432) - по умолчанию 
+
 POSTGRES_USER=(postgres user) 
 POSTGRES_PASSWORD=(postgres password)
 POSTGRES_DB=(db01 - name DB)
