@@ -2,7 +2,7 @@
 ![action status](https://github.com/Sapov/tiff_django/actions/workflows/django.yml/badge.svg)
 
 Как запустить: 
-1. git clone
+1. git clone https://github.com/Sapov/tiff_django.git
 2. Создать .env
 3. docker compose up
 4. Зайти в docker django
