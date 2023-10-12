@@ -95,3 +95,32 @@ class UploadFilesUV(forms.ModelForm):
             "FinishWork",
             "Fields",
         ]
+
+
+class UploadFilesRollUp(forms.ModelForm):
+    """Форма загрузки файлов для интерьерной печати полотна для Роллапа"""
+
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(type_print=2),
+        label="Выберите материал для печати",
+        initial=20,  # по 450 литой
+    )
+    quantity = forms.IntegerField(
+        initial=1,
+        label="Количество",
+    )
+
+    FinishWork = forms.ModelChoiceField(
+        queryset=FinishWork.objects.filter(id=2),
+        label="Финишная обработка",
+        initial=0,  # по 450 литой
+    )
+
+    class Meta:
+        model = Product
+        fields = [
+            # "quantity",
+            "images",
+            # "FinishWork",
+            "Fields",
+        ]

@@ -14,6 +14,7 @@ from .forms import (
     UploadFilesInter,
     UploadFilesLarge,
     UploadFilesUV,
+    UploadFilesRollUp,
 )
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
@@ -227,6 +228,18 @@ class FilesCreateViewUV(LoginRequiredMixin, CreateView):
     model = Product
     form_class = UploadFilesUV
     template_name = "files/uv_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
+
+class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для Rollup"""
+
+    model = Product
+    form_class = UploadFilesRollUp
+    template_name = "files/rollup_print.html"
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
