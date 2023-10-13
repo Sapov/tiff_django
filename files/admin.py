@@ -1,13 +1,22 @@
 from django.contrib import admin
-from .models import Material, Product, Contractor, TypePrint, Fields, FinishWork, StatusProduct, UploadArh
+from .models import (
+    Material,
+    Product,
+    Contractor,
+    TypePrint,
+    Fields,
+    FinishWork,
+    StatusProduct,
+    UploadArh,
+)
 from account.models import Organisation
 
 
 class MaterialAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Material._meta.fields]
-    list_editable = ['price_contractor', 'price', 'is_active']
-    list_filter = ['type_print']
-    sortable_by = ['type_print']
+    list_editable = ["price_contractor", "price", "price_customer_retail", "is_active"]
+    list_filter = ["type_print"]
+    sortable_by = ["type_print"]
 
     class Meta:
         model = Material
@@ -34,7 +43,7 @@ admin.site.register(Fields)
 
 class FinishWorkAdmin(admin.ModelAdmin):
     list_display = [field.name for field in FinishWork._meta.fields]
-    list_editable = ['price_contractor', 'price', 'is_active']
+    list_editable = ["price_contractor", "price", "is_active"]
 
     class Meta:
         model = FinishWork

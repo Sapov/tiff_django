@@ -26,6 +26,15 @@ class FinishWork(models.Model):
         help_text="Цена за 1 м. погонный",
         verbose_name="Стоимость работы в руб.",
     )
+
+    price_customer_retail = models.FloatField(
+        max_length=100,
+        help_text="Цена за 1 м. погонный",
+        verbose_name="Стоимость работы розница в руб.",
+        null=True,
+        blank=True,
+    )
+
     is_active = models.BooleanField(default=True, verbose_name="Активный")
 
     def __str__(self):
@@ -87,7 +96,23 @@ class Material(models.Model):
         default=None,
     )  # стоимость в закупке
     price = models.FloatField(
-        max_length=100, help_text="За 1 м2", verbose_name="Стоимость печати в руб."
+        max_length=100,
+        help_text="За 1 м2",
+        verbose_name="Стоимость печати для РА в руб.",
+    )
+    resolution_print = models.IntegerField(
+        help_text="разрешение для печати на материале",
+        verbose_name="DPI",
+        blank=True,
+        null=True,
+        default=None,
+    )
+    price_customer_retail = models.FloatField(
+        max_length=100,
+        help_text="За 1 м2",
+        verbose_name="Стоимость печати розница в руб.",
+        null=True,
+        blank=True,
     )
     resolution_print = models.IntegerField(
         help_text="разрешение для печати на материале",

@@ -92,6 +92,11 @@ class FilesCreateView(LoginRequiredMixin, CreateView):
 
 @login_required
 def price(request):
+    if request.user.role == "CUSTOMER_RETAIL":
+        pass
+
+    print("ROLE", request.user.role)
+    """ Вывод прайс-листа"""
     price_shirka = Material.objects.filter(
         type_print=1
     )  # Только широкоформатная печать!!!
