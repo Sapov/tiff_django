@@ -11,6 +11,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
 from account.models import Organisation
+
 # from account.models import Organisation
 from files.models import Product
 from .forms import NewOrder
@@ -28,27 +29,29 @@ logger = logging.getLogger(__name__)
 def new_order(request):
     logging.info(request)
     if request.POST:
-        logging.info(f'method POST')
+        logging.info(f"method POST")
         form = NewOrder(user=request.user)
         # if form.is_valid():
-        logging.info(f'пришло во view {form.user}')
+        logging.info(f"пришло во view {form.user}")
         logging.info(f'organisation_payer {request.POST["organisation_payer"]}')
         number_organisation = request.POST["organisation_payer"]
         organisation = Organisation.objects.get(id=number_organisation)
-        logging.info(f'organisation {organisation}')
-        neworder = Order.objects.create(Contractor=form.user, organisation_payer=organisation)
-        logging.info(f'neworder {neworder}')
-        logging.info(f'neworder {neworder.id}')
-        return redirect('orders:add_file_in_order', neworder.id)
+        logging.info(f"organisation {organisation}")
+        neworder = Order.objects.create(
+            Contractor=form.user, organisation_payer=organisation
+        )
+        logging.info(f"neworder {neworder}")
+        logging.info(f"neworder {neworder.id}")
+        return redirect("orders:add_file_in_order", neworder.id)
     else:
         form = NewOrder(user=request.user)
-    return render(request, 'neworder.html', {'form': form})
+    return render(request, "neworder.html", {"form": form})
 
 
 class OrderItemCreateView(LoginRequiredMixin, CreateView):
     model = OrderItem
-    fields = ['order', 'product']
-    login_url = 'login'
+    fields = ["order", "product"]
+    login_url = "login"
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
@@ -57,58 +60,68 @@ class OrderItemCreateView(LoginRequiredMixin, CreateView):
 
 @login_required
 def view_order(request):
-    '''Вывод файлов только авторизованного пользователя'''
-    Orders = Order.objects.filter(Contractor=request.user).order_by('-id')
-    logger.info(f'Orders: {Orders}')
+    """Вывод файлов только авторизованного пользователя"""
+    Orders = Order.objects.filter(Contractor=request.user).order_by("-id")
+    logger.info(f"Orders: {Orders}")
 
     paginator = Paginator(Orders, 2)
-    if 'page' in request.GET:
-        page_num = request.GET.get('page')
+    if "page" in request.GET:
+        page_num = request.GET.get("page")
     else:
         page_num = 1
-    logger.info(f'page_NUM: {page_num}')
+    logger.info(f"page_NUM: {page_num}")
     page_obj = paginator.get_page(page_num)
-    logger.info(f'page_NUM: {page_obj}')
+    logger.info(f"page_NUM: {page_obj}")
 
-    return render(request, "view_orders.html", {"Orders": Orders, 'title': 'Заказы', 'page_obj': page_obj})
+    return render(
+        request,
+        "view_orders.html",
+        {"Orders": Orders, "title": "Заказы", "page_obj": page_obj},
+    )
 
 
 class OrdersViewList(LoginRequiredMixin, ListView):
     paginate_by = 5
     model = Order
-    template_name = 'view_orders.html'
-    login_url = 'login'
+    template_name = "view_orders.html"
+    login_url = "login"
 
 
 class View_order_item(LoginRequiredMixin, UpdateView):
     model = OrderItem
-    fields = ("__all__")
+    fields = "__all__"
     # fields = ['quantity', 'material', 'FinishWork', 'Fields']
-    template_name = 'order_update_form.html'
-    login_url = 'login'
+    template_name = "order_update_form.html"
+    login_url = "login"
 
 
 class OrderUpdateView(UpdateView):
     model = Order
-    fields = ['id', 'date_complete', 'comments', 'paid']
-    template_name_suffix = '_update_form'
+    fields = ["id", "date_complete", "comments", "paid"]
+    template_name_suffix = "_update_form"
 
 
 class DeleteOrderView(DeleteView):
     model = Order
-    success_url = reverse_lazy('orders:view_orders')
+    success_url = reverse_lazy("orders:view_orders")
 
 
 def add_files_in_order(request, order_id):
     Orders = Order.objects.get(id=order_id)
-    items = Product.objects.filter(in_order=False,
-                                   Contractor=request.user)  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
+    items = Product.objects.filter(
+        in_order=False, Contractor=request.user
+    )  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
-    curent_order = Order.objects.get(pk=order_id)
-    print('ORDER TYPE___', type(Orders))
+    current_order = Order.objects.get(pk=order_id)
+    print("ORDER TYPE___", type(Orders))
 
-    context = {'Orders': Orders, 'items': items, 'items_in_order': items_in_order, 'curent_order': curent_order,
-               'order_id': order_id}
+    context = {
+        "Orders": Orders,
+        "items": items,
+        "items_in_order": items_in_order,
+        "current_order": current_order,
+        "order_id": order_id,
+    }
     return render(request, "add_files_in_order.html", context)
 
 
@@ -122,8 +135,12 @@ def add_item_in_order(request, item_id, order_id):
     new_ord.save()
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
-    print('ORDER TYPE', type(Orders))
-    context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
+    print("ORDER TYPE", type(Orders))
+    context = {
+        "Orders": Orders,
+        "items_in_order": items_in_order,
+        "curent_order": curent_order,
+    }
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
@@ -135,18 +152,22 @@ def del_item_in_order(request, item_id, order_id):
 
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
-    context = {'Orders': Orders, 'items_in_order': items_in_order, 'curent_order': curent_order}
+    context = {
+        "Orders": Orders,
+        "items_in_order": items_in_order,
+        "curent_order": curent_order,
+    }
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
 def order_pay(request, order_id):
-    ''' ОФОРМИТЬ ЗАКАЗ - Меняем статус с заагружен на оформлен
-     генерируем счетб
-     '''
+    """ОФОРМИТЬ ЗАКАЗ - Меняем статус с заагружен на оформлен
+    генерируем счетб
+    """
     current_path = os.getcwd()
-    os.chdir(f'{settings.MEDIA_ROOT}/orders')
+    os.chdir(f"{settings.MEDIA_ROOT}/orders")
 
-    text = 'Оплатить можно на карту 0000 0000 0000 0000'
+    text = "Оплатить можно на карту 0000 0000 0000 0000"
     # --------------- order pdf----------
     order_pdf = DrawOrder(order_id)  # Формирование счета
     order_pdf.run()
@@ -158,14 +179,14 @@ def order_pay(request, order_id):
     order_item.send_mail_order(domain)
     Orders = Order.objects.get(id=order_id)
 
-    context = {'Orders': Orders, 'text': text}
+    context = {"Orders": Orders, "text": text}
     os.chdir(current_path)  # перейти обратно
 
     return render(request, "orderpay.html", context)
 
 
 def get_domain(request):
-    logger.info(f'DOMAIN: {get_current_site(request)}')
+    logger.info(f"DOMAIN: {get_current_site(request)}")
     return get_current_site(request)
 
 
@@ -175,19 +196,19 @@ class AllOrdersListView(LoginRequiredMixin, ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        ''' для обратного порядка отображения'''
-        queryset = Order.objects.all().order_by('-id')
+        """для обратного порядка отображения"""
+        queryset = Order.objects.all().order_by("-id")
         return queryset
 
 
 class ViewAllPayOrders(LoginRequiredMixin, ListView):
-    '''Посмотреть все заказы которые оплачены и поэтому в работе'''
+    """Посмотреть все заказы которые оплачены и поэтому в работе"""
 
     model = Order
-    template_name = 'all_view_orders_pay.html'
+    template_name = "all_view_orders_pay.html"
 
     def get_queryset(self):
-        queryset = Order.objects.filter(paid=True).order_by('id')
+        queryset = Order.objects.filter(paid=True).order_by("id")
         return queryset
 
 
@@ -195,39 +216,45 @@ def about_file(request, file_id):
     print(file_id)
     files = Product.objects.filter(id=file_id)
     print(files)
-    return render(request, 'about_file.html', {'files': files})
+    return render(request, "about_file.html", {"files": files})
 
 
 @login_required
 def view_all_files_for_work_in_orders(request):
-    '''Посмотреть все файлы в заказах в статусе paid'''
+    """Посмотреть все файлы в заказах в статусе paid"""
 
     num = []
-    Orders = Order.objects.filter(paid=True).order_by('-id')
+    Orders = Order.objects.filter(paid=True).order_by("-id")
     for order in Orders:
         items_in_order = OrderItem.objects.filter(order=order.id)  # файлы в заказе
         num.append(items_in_order)
 
-    return render(request, "view_all_files_for_work_in_orders.html",
-                  {"Orders": Orders, 'num': num, 'title': 'Заказы в работе'})
+    return render(
+        request,
+        "view_all_files_for_work_in_orders.html",
+        {"Orders": Orders, "num": num, "title": "Заказы в работе"},
+    )
 
 
-def user_organization_view(request):
-    # if request.method == 'POST':
-    user = request.user
-    form = UserOrganisationForm(user=user)
-    # a1 = Order.objects.create(**form.cleaned_data)
-    return render(request, 'user_organization.html', {'form': form})
+# def user_organization_view(request):
+#     # if request.method == 'POST':
+#     user = request.user
+#     form = UserOrganisationForm(user=user)
+#     # a1 = Order.objects.create(**form.cleaned_data)
+#     return render(request, "user_organization.html", {"form": form})
 
 
 def report_complite_orders(request):
-    '''Отчет от выполненных заказах'''
-
-    date_start = request.POST['date_start']
-    date_finish = request.POST['date_finish']
-    # logger.info(f'date_start:{date_start}')
-    # logger.info(f'date_finish:{date_finish}')
-    order = Order.objects.filter(status=3)
-
-    return render(request, "report_complite_orders.html",
-                  {"order": order, })
+    """Отчет от выполненных заказах"""
+    if request.method == "POST":
+        date_start = request.POST["date_start"]
+        date_finish = request.POST["date_finish"]
+    logger.info(f"date_start:{date_start}, type{type(date_start)}")
+    logger.info(f"date_finish:{date_finish}")
+    # order = Order.objects.filter(created=)
+    # 2023-10-10 18:40:09.391297
+    return render(
+        request,
+        "report_complite_orders.html",
+        {"order": order},
+    )

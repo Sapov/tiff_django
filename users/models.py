@@ -4,24 +4,25 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Role(models.TextChoices):
-    '''Роли пользователей'''
-    CUSTOMER = 'CUSTOMER', 'Клиент'
-    MANAGER = 'MANAGER', 'Менеджер'
-    OPERATOR = 'OPERATOR', 'Оператор'
-    FINANCIER = 'FINANCIER', 'Бухгалтер'
+    """Роли пользователей"""
+
+    CUSTOMER_RETAIL = "CUSTOMER_RETAIL", "Клиент"  # розничный клиент
+    CUSTOMER_AGENCY = "CUSTOMER_AGENCY", "Рекламное агентство"  # Рекламное агентство
+    MANAGER = "MANAGER", "Менеджер"
+    OPERATOR = "OPERATOR", "Оператор"
+    FINANCIER = "FINANCIER", "Бухгалтер"
 
 
 class User(AbstractUser):
     role = models.CharField(
-        max_length=24,
-        choices=Role.choices,
-        default=Role.CUSTOMER)
+        max_length=24, choices=Role.choices, default=Role.CUSTOMER_RETAIL
+    )
     email = models.EmailField(
-        _('email address'),
+        _("email address"),
         unique=True,
     )
 
     email_verify = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
