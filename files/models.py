@@ -224,8 +224,11 @@ class Product(models.Model):
         # Считаем стоимость печати
         download_file = WorkWithFile(self.images)  # , self.material.resolution_print
 
-        self.color_model = download_file.color_mode()
-        logger.info(f"self.color_model {self.color_model}")
+        self.color_model = (
+            download_file.color_mode()
+        )  # Цветовая модель     if request.user.role == "CUSTOMER_RETAIL":
+        pass
+        logger.info(f"Цветовая модель: {self.color_model}")
         self.width, self.length, self.resolution = download_file.check_tiff()
         logger.info(f"Разрешение:  {self.resolution}")
         # RESIZE IMAGE
@@ -233,7 +236,12 @@ class Product(models.Model):
         # download_file.compress_image(self.material.resolution_print)
         # RENAME IMAGES
 
-        self.price = download_file.price_calculation(self.quantity, self.material.price)
+        # проверяем по каким цена считаем по рознице или по агентству
+        if self.Contractor.role == "CUSTOMER_RETAIL":
+            price = self.material.price_customer_retail
+        elif self.Contractor.role == "CUSTOMER_AGENCY":
+            price = self.material.price
+        self.price = download_file.price_calculation(self.quantity, price)
         # Считаем финишку
         self.price += download_file.finish_wokrs(
             self.FinishWork.price
