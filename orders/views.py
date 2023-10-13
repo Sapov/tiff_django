@@ -62,7 +62,7 @@ class OrderItemCreateView(LoginRequiredMixin, CreateView):
 def view_order(request):
     """Вывод файлов только авторизованного пользователя"""
     Orders = Order.objects.filter(Contractor=request.user).order_by("-id")
-    logger.info(f"Orders: {Orders}")
+    logger.info(f"Orders:  {Orders}")
 
     paginator = Paginator(Orders, 2)
     if "page" in request.GET:
