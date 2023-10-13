@@ -19,12 +19,12 @@
     <form action="{% url 'files:create_rollup' %}" method="post", enctype="multipart/form-data">
 
         {% csrf_token %}
-<!--        {{ form|crispy }}-->
+        {{ form|crispy }}
 
-        <p>{{form.material}}</p>
-       <p> {{form.quantity}}</p>
-       <p> {{form.FinishWork}}</p>
-       <p> {{form.images}}</p>
+<!--        <p>{{form.material}}</p>-->
+<!--       <p> {{form.quantity}}</p>-->
+<!--       <p> {{form.FinishWork}}</p>-->
+<!--       <p> {{form.images}}</p>-->
         <button type="submit" class="btn btn-primary">Загрузить</button>
 
     </form>

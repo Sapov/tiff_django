@@ -104,9 +104,14 @@ class UploadFilesRollUp(forms.ModelForm):
     """Форма загрузки файлов для интерьерной печати полотна для Роллапа"""
 
     material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=3),
+        queryset=Material.objects.filter(type_print=2),
         label="Выберите материал для печати",
-        initial=1,  # по умолчанию ПВХ 3 мм
+        initial=20,  # по умолчанию литой 450 грамм
+    )
+    FinishWork = forms.ModelChoiceField(
+        queryset=FinishWork.objects.filter(id=2),
+        label="Финишная работа",
+        initial=2,  # по умолчанию литой 450 грамм
     )
 
     class Meta:

@@ -234,7 +234,7 @@ class FilesCreateViewUV(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class FilesCreateViewRollUp(LoginRequiredMixin, FormView):
+class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
     """Загрузка файлов только для Rollup"""
 
     model = Product
@@ -242,5 +242,5 @@ class FilesCreateViewRollUp(LoginRequiredMixin, FormView):
     template_name = "files/rollup_print.html"
 
     def form_valid(self, form):
-        Product.object.create(**form.cleaned_data)
+        form.instance.Contractor = self.request.user
         return super().form_valid(form)
