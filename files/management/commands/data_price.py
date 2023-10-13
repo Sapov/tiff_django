@@ -59,7 +59,7 @@ Material_data = [
         450,
         72,
     ),
-    ("Блюбек", TypePrint.objects.get_or_create(id=1)[0], 110, 220, 72),
+    ("Блюбек", TypePrint.objects.get_or_create(id=1)[0], 110, 220, 220, 72),
     (
         "Бумага 150 грамм СytiLight",
         TypePrint.objects.get_or_create(id=1)[0],

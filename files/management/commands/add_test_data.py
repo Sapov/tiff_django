@@ -1,13 +1,20 @@
 from django.core.management.base import BaseCommand
 from files.models import StatusProduct, TypePrint, Fields, FinishWork
 from orders.models import StatusOrder
-from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data
+from .data_test import (
+    StatusProducts_data,
+    TypePrint_data,
+    Fields_data,
+    FinishWork_data,
+    StatusOrder_data,
+)
 
-#___________________________________________________
+# ___________________________________________________
 # How import >>
 # STEP 1: python manage.py add_test_data && python manage.py add_price
 
-#___________________________________________________
+
+# ___________________________________________________
 class Command(BaseCommand):
     help = "Наполнить БД"
 
@@ -28,6 +35,6 @@ class Command(BaseCommand):
             FinishWork.objects.get_or_create(
                 work=item[0],
                 price_contractor=item[1],
-                price=item[2]
-
+                price=item[2],
+                price_customer_retail=item[3],
             )

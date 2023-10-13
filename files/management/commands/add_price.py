@@ -4,9 +4,9 @@ from orders.models import StatusOrder
 from .data_price import Material_data
 
 
-#___________________________________________________
+# ___________________________________________________
 # How import >> python manage.py add_price
-#___________________________________________________
+# ___________________________________________________
 class Command(BaseCommand):
     help = "Наполнить - прайс"
 
@@ -17,6 +17,6 @@ class Command(BaseCommand):
                 type_print=item[1],
                 price_contractor=item[2],
                 price=item[3],
-                resolution_print=item[4]
-
+                price_customer_retail=item[4],
+                resolution_print=item[5],
             )
