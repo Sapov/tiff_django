@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
-<title>{% block title %} {{curent_order}} {% endblock %}</title>
+<title>{% block title %} {{current_order}} {% endblock %}</title>
 {% block body %}
-<h3>{{curent_order}}</h3>
+<h3>{{current_order}}</h3>
 <hr>
 <div class="row">
     <div class="col-md-12">
@@ -9,7 +9,7 @@
             <thead>
             <tr>
                 <th>Дата</th>
-                <th>Платильщик</th>
+                <th>Плательщик</th>
                 <th>Оплата</th>
                 <th>Сумма</th>
                 <th>Статус</th>
@@ -34,7 +34,7 @@
     </div>
 </div>
 {% if items.count > 0 %}
-{% if curent_order.status.id == 1 %}
+{% if current_order.status.id == 1 %}
 
 <h5> Файлы которые можно добавить в заказ: </h5>
 
@@ -116,7 +116,7 @@
             </tbody>
         </table>
     </div>
-{% if curent_order.status.id == 1 %}
+{% if current_order.status.id == 1 %}
     <td>
             <button type="submit" class="btn btn-primary"
                     onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ</button>
