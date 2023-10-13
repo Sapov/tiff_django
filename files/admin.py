@@ -43,7 +43,7 @@ admin.site.register(Fields)
 
 class FinishWorkAdmin(admin.ModelAdmin):
     list_display = [field.name for field in FinishWork._meta.fields]
-    list_editable = ["price_contractor", "price", "is_active"]
+    list_editable = ["price_contractor", "price", "price_customer_retail", "is_active"]
 
     class Meta:
         model = FinishWork

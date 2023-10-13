@@ -20,9 +20,9 @@
             <tr>
                 <td>{{ field.name }}</td>
                 <td>{{ field.type_print }}</td>
-                 {% if user.role  == 'CUSTOMER_RETAIL' %}
+                {% if user.role == 'CUSTOMER_RETAIL' %}
                 <td>{{ field.price_customer_retail }} руб.</td>
-                {% elif user.role  == 'CUSTOMER_AGENCY' %}
+                {% elif user.role == 'CUSTOMER_AGENCY' %}
                 <td>{{ field.price }} руб.</td>
 
             </tr>
@@ -49,8 +49,12 @@
             <tr>
                 <td>{{ field.name }}</td>
                 <td>{{ field.type_print }}</td>
+                {% if user.role == 'CUSTOMER_RETAIL' %}
+                <td>{{ field.price_customer_retail }} руб.</td>
+                {% elif user.role == 'CUSTOMER_AGENCY' %}
                 <td>{{ field.price }} руб.</td>
             </tr>
+            {% endif %}
             {% endif %}
             {% endfor %}
             </tbody>
@@ -73,8 +77,12 @@
             <tr>
                 <td>{{ field.name }}</td>
                 <td>{{ field.type_print }}</td>
+                {% if user.role == 'CUSTOMER_RETAIL' %}
+                <td>{{ field.price_customer_retail }} руб.</td>
+                {% elif user.role == 'CUSTOMER_AGENCY' %}
                 <td>{{ field.price }} руб.</td>
             </tr>
+            {% endif %}
             {% endif %}
             {% endfor %}
             </tbody>
@@ -96,8 +104,12 @@
 
             <tr>
                 <td>{{ field.work }}</td>
+                {% if user.role == 'CUSTOMER_RETAIL' %}
+                <td>{{ field.price_customer_retail }} руб.</td>
+                {% elif user.role == 'CUSTOMER_AGENCY' %}
                 <td>{{ field.price }} руб.</td>
             </tr>
+            {% endif %}
             {% endif %}
             {% endfor %}
             </tbody>
