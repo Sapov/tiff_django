@@ -126,7 +126,7 @@ class Product(models.Model):
         default=1,
     )
     material = models.ForeignKey(
-        "Material", on_delete=models.PROTECT, verbose_name="Материал", default="1"
+        "Material", on_delete=models.PROTECT, verbose_name="Материал"
     )
     quantity = models.IntegerField(
         default=1, help_text="Введите количество", verbose_name="Количество"

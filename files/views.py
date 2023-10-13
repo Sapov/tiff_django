@@ -16,7 +16,7 @@ from .forms import (
     UploadFilesUV,
     UploadFilesRollUp,
 )
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
 
@@ -234,7 +234,7 @@ class FilesCreateViewUV(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
+class FilesCreateViewRollUp(LoginRequiredMixin, FormView):
     """Загрузка файлов только для Rollup"""
 
     model = Product
@@ -242,5 +242,5 @@ class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
     template_name = "files/rollup_print.html"
 
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        Product.object.create(**form.cleaned_data)
         return super().form_valid(form)

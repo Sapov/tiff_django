@@ -56,6 +56,7 @@ class UploadFilesInter(forms.ModelForm):
             "images",
             "FinishWork",
             "Fields",
+            "material",
         ]
 
 
@@ -75,6 +76,7 @@ class UploadFilesLarge(forms.ModelForm):
             "images",
             "FinishWork",
             "Fields",
+            "material",
         ]
 
 
@@ -94,6 +96,7 @@ class UploadFilesUV(forms.ModelForm):
             "images",
             "FinishWork",
             "Fields",
+            "material",
         ]
 
 
@@ -101,26 +104,17 @@ class UploadFilesRollUp(forms.ModelForm):
     """Форма загрузки файлов для интерьерной печати полотна для Роллапа"""
 
     material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=2),
+        queryset=Material.objects.filter(type_print=3),
         label="Выберите материал для печати",
-        initial=20,  # по 450 литой
-    )
-    quantity = forms.IntegerField(
-        initial=1,
-        label="Количество",
-    )
-
-    FinishWork = forms.ModelChoiceField(
-        queryset=FinishWork.objects.filter(id=2),
-        label="Финишная обработка",
-        initial=0,  # по 450 литой
+        initial=1,  # по умолчанию ПВХ 3 мм
     )
 
     class Meta:
         model = Product
         fields = [
-            # "quantity",
+            "quantity",
             "images",
-            # "FinishWork",
+            "FinishWork",
             "Fields",
+            "material",
         ]
