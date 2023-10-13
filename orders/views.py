@@ -161,8 +161,8 @@ def del_item_in_order(request, item_id, order_id):
 
 
 def order_pay(request, order_id):
-    """ОФОРМИТЬ ЗАКАЗ - Меняем статус с заагружен на оформлен
-    генерируем счетб
+    """ОФОРМИТЬ ЗАКАЗ - Меняем статус с загружен на оформлен
+    генерируем счет
     """
     current_path = os.getcwd()
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
