@@ -1,5 +1,4 @@
 import os
-from datetime import date
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -8,8 +7,16 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
 from .models import Product, Material, FinishWork
-from .forms import AddFiles, UploadArhive, Calculator
-from django.views.generic.edit import CreateView, UpdateView
+from .forms import (
+    AddFiles,
+    UploadArhive,
+    Calculator,
+    UploadFilesInter,
+    UploadFilesLarge,
+    UploadFilesUV,
+    UploadFilesRollUp,
+)
+from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
 
@@ -39,12 +46,14 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
     """Посмотреть все файлы пользователя"""
 
     model = Product
-    paginate_by = 5
+    paginate_by = 2
     template_name = "index.html"
     login_url = "login"
 
     # def get_queryset(self):
-    #     queryset = Product.objects.filter(Contractor=request.GET.get('user')).order_by('-id')
+    #     queryset = Product.objects.filter(Contractor=request.h("user")).order_by(
+    #         "-id"
+    #     )
     #     # Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
     #     return queryset
 
@@ -172,7 +181,7 @@ def calculator(request):
             )
 
     else:
-        form = Calculator(request.POST)
+        form = Calculator()
     return render(
         request,
         "calculator.html",
@@ -183,3 +192,55 @@ def calculator(request):
 class PrintCalculator:
     def __init__(self, length, width, material, finishka):
         pass
+
+
+def page_not_found(request, exception):
+    return HttpResponseNotFound(f"<H1>Страница не найдена</H1")
+
+
+class FilesCreateViewInter(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для интерьерной печати"""
+
+    model = Product
+    form_class = UploadFilesInter
+    template_name = "files/inter_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
+
+class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для широкоформатной печати"""
+
+    model = Product
+    form_class = UploadFilesLarge
+    template_name = "files/large_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
+
+class FilesCreateViewUV(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для широкоформатной печати"""
+
+    model = Product
+    form_class = UploadFilesUV
+    template_name = "files/uv_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
+
+class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для Rollup"""
+
+    model = Product
+    form_class = UploadFilesRollUp
+    template_name = "files/rollup_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
