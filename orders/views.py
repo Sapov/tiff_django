@@ -41,7 +41,7 @@ def new_order(request):
             Contractor=form.user, organisation_payer=organisation
         )
         logging.info(f"neworder {neworder}")
-        logging.info(f"neworder {neworder.id}")
+        logging.info(f"NEW ORDER ID: {neworder.id}")
         return redirect("orders:add_file_in_order", neworder.id)
     else:
         form = NewOrder(user=request.user)
