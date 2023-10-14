@@ -11,7 +11,7 @@ Material_data = [
         350,
         72,
     ),
-    ("Баннер 510 грамм литой", TypePrint.objects.get_or_create(id=1)[0], 290, 450, 72),
+    ("Баннер 510 грамм литой", TypePrint.objects.get_or_create(id=1)[0], 290, 450, 550, 72),
     (
         "Баннер 510 грамм литой(Черный оборот)",
         TypePrint.objects.get_or_create(id=1)[0],
@@ -164,7 +164,7 @@ Material_data = [
         150,
     ),
     # UV-PRINT TypePrint.objects.get_or_create(id=2)
-    ("Печать на ПВХ 3 мм", TypePrint.objects.get_or_create(id=3)[0], 1400, 3600, 3600,  150),
+    ("Печать на ПВХ 3 мм", TypePrint.objects.get_or_create(id=3)[0], 1400, 3600, 3600, 150),
     ("Печать на ПВХ 5 мм", TypePrint.objects.get_or_create(id=3)[0], 2020, 4200, 3600, 150),
     (
         "Печать на на оцинковке",
