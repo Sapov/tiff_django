@@ -25,7 +25,7 @@ class UploadArhive(forms.ModelForm):
         fields = "__all__"
 
 
-##
+###
 class Calculator(forms.Form):
     quantity = forms.FloatField(max_value=1000, label="Количество")
     material = forms.ModelChoiceField(
