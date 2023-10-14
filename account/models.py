@@ -66,10 +66,10 @@ class Organisation(models.Model):
         return self.name_ul
 
 
-class Delivery(models.Model):
-    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки")
+#class Delivery(models.Model):
+ #   type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки")
 
 
-class DeliveryAddress(models.Model):
-    city = models.CharField(max_length=200, verbose_name="Город")
-    street = models.CharField(max_length=200, verbose_name="Улица")
+#class DeliveryAddress(models.Model):
+#    city = models.CharField(max_length=200, verbose_name="Город")
+#    street = models.CharField(max_length=200, verbose_name="Улица")
