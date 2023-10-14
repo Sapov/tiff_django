@@ -28,6 +28,8 @@ class Command(BaseCommand):
             FinishWork.objects.get_or_create(
                 work=item[0],
                 price_contractor=item[1],
-                price=item[2]
+                price=item[2],
+                price_customer_retail=item[3]
+
 
             )
