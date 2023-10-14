@@ -100,13 +100,6 @@ class Material(models.Model):
         help_text="За 1 м2",
         verbose_name="Стоимость печати для РА в руб.",
     )
-    resolution_print = models.IntegerField(
-        help_text="разрешение для печати на материале",
-        verbose_name="DPI",
-        blank=True,
-        null=True,
-        default=None,
-    )
     price_customer_retail = models.FloatField(
         max_length=100,
         help_text="За 1 м2",
