@@ -33,3 +33,11 @@ class Command(BaseCommand):
 
 
             )
+
+
+# class Command(BaseCommand):
+#     def handle(self, *args, **options):
+#         with open("price.csv", 'r', encoding="utf-8") as file:
+#             for line in file:
+#                 element = line.split(",")
+#                 models.Ingredient.objects.get_or_create(name=element[0], measurement_unit=element[1])

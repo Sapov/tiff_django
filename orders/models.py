@@ -92,7 +92,7 @@ class Order(models.Model):
 
 
 def order_post_save(sender, instance, created, **kwargs):
-    """Если статус заказа  (В работе) - меняем все файлы в заказе на статус в работе"""
+    """Если статус заказа (В работе) - меняем все файлы в заказе на статус в работе"""
     status = instance.status
     id_order = instance.id
     if status.id == 2:  # Если статус "В работе"
@@ -249,7 +249,7 @@ class UtilsModel:
         # html_message=render_to_string('mail/templates.html', data))
 
     def create_text_file(self):
-        """Создаем файл с харaктерисиками файла для печати"""
+        """Создаем файл с харaктеристеками файла для печати"""
         current_path = os.getcwd()
         os.chdir(f"{settings.MEDIA_ROOT}/image/")
 
@@ -305,9 +305,9 @@ class UtilsModel:
                 logger.info(f"FILE: {file}")
                 self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
-                logger.info(str(file.images)[str(file.images).rindex("/") + 1 :])
+                logger.info(str(file.images)[str(file.images).rindex("/") + 1:])
                 new_arh.write(
-                    str(file.images)[str(file.images).rindex("/") + 1 :],
+                    str(file.images)[str(file.images).rindex("/") + 1:],
                     compress_type=zipfile.ZIP_DEFLATED,
                 )
                 new_arh.close()
@@ -371,13 +371,23 @@ class UtilsModel:
         return order.order_arhive
 
     def set_status_order(self):
-        """Меняем статус заказа после оформления с ГОТОВИТЬСЯ нА ОФОРМЛЕН"""
+        """Меняем статус заказа после оформления ГОТОВИТЬСЯ нА ОФОРМЛЕН"""
         order = Order.objects.get(id=self.order_id)
         status = StatusOrder.objects.get(id=2)  # 2 стауст id оформлен
         logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
         order.status = status
         order.save()
         return
+
+    def rename_files_for_print(self):
+        '''Переименовываем файлы перед архивацией приводим к виду:
+        --01_шт_размер_1,5х2_м_440_баннер.tiff--'''
+        all_products_in_order = OrderItem.objects.filter(
+            order=self.order_id, is_active=True
+        )
+        for item in all_products_in_order:
+            print('NAME FILES:', item.product)
+            # file = Product.objects.get(id=item.product.id)
 
     def run(self):
         self.create_text_file()

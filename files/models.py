@@ -211,7 +211,7 @@ class Product(models.Model):
         verbose_name = "Файл"
 
     def save(self, *args, **kwargs):
-        """расчет и запись стоимости баннера"""
+        """Расчет и запись стоимости баннера"""
 
         # Сравниваем размеры с разрешением материала печати
         # Считаем стоимость печати
@@ -229,7 +229,7 @@ class Product(models.Model):
         # download_file.compress_image(self.material.resolution_print)
         # RENAME IMAGES
 
-        # проверяем по каким цена считаем по рознице или по агентству
+        # проверяем по каким ценам считаем по рознице или по агентству
         if self.Contractor.role == "CUSTOMER_RETAIL":
             price = self.material.price_customer_retail
         elif self.Contractor.role == "CUSTOMER_AGENCY":
