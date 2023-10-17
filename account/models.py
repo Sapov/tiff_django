@@ -67,9 +67,25 @@ class Organisation(models.Model):
 
 
 class Delivery(models.Model):
-   type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки")
+    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки")
+
+    class Meta:
+        verbose_name_plural = "Типы доставки"
+        verbose_name = "Тип Доставки"
+        ordering = ["type_delivery"]
+
+    def __str__(self):
+        return self.type_delivery
 
 
 class DeliveryAddress(models.Model):
-   city = models.CharField(max_length=200, verbose_name="Город")
-   street = models.CharField(max_length=200, verbose_name="Улица")
+    city = models.CharField(max_length=200, verbose_name="Город")
+    street = models.CharField(max_length=200, verbose_name="Улица")
+
+    class Meta:
+        verbose_name_plural = "Адреса доставки"
+        verbose_name = "Адреса доставки"
+        ordering = ["street"]
+
+    def __str__(self):
+        return self.street

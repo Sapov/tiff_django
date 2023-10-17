@@ -202,7 +202,7 @@ class TestModelsMaterial(TestCase):
         work = Material.objects.get(id=1)
         # Получение метаданных поля для получения необходимых значений
         field_label = work._meta.get_field('price').verbose_name
-        expected_verbose_name = 'Стоимость печати в руб.'
+        expected_verbose_name = 'Стоимость печати для РА в руб.'
         self.assertEquals(field_label, expected_verbose_name)
 
     #

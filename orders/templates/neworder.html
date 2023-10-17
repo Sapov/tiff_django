@@ -1,11 +1,14 @@
 {% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
 <title>{% block title %} Новый заказ{% endblock %}</title>
 {% block body %}
 <h3>Добавить новый заказ</h3>
-<form method="post" , enctype="multipart/form-data">
+<form method="post", enctype="multipart/form-data">
 
     {% csrf_token %}
-    {{ form.as_p }}
+<!--    {{ form.as_p }}-->
+    {{ form|crispy }}
     <button type="submit" class="btn btn-primary">Новый заказ</button>
 </form>
 

@@ -16,7 +16,7 @@ from account.models import Organisation
 class NewOrder(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['organisation_payer']
+        fields = ['organisation_payer', 'delivery']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)

@@ -11,7 +11,7 @@ from django.core.mail import send_mail
 from django.db import models
 from django.template.loader import render_to_string
 
-from account.models import Organisation
+from account.models import Organisation, Delivery
 from files.models import Product, StatusProduct
 from django.db.models.signals import post_save
 from django.urls import reverse
@@ -38,6 +38,7 @@ class StatusOrder(models.Model):
 
 
 class Order(models.Model):
+    delivery = models.ForeignKey(Delivery, on_delete=models.PROTECT, verbose_name='Доставка', null=True, blank=True)
     total_price = models.FloatField(
         max_length=10,
         null=True,
