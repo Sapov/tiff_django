@@ -1,3 +1,4 @@
+import logging
 import os
 
 from django.contrib.auth.decorators import login_required
@@ -163,31 +164,40 @@ def calculator(request):
             width = request.POST["width"]
             material = request.POST["material"]
             finishka = request.POST["finishka"]
+
             materials = Material.objects.get(id=material)
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length)) * 2
-            finishka_price = perimetr * finishkas.price
-            results = (
-                float(width) * float(length) * materials.price
-            ) + finishka_price  # в см
-            results = round(results, -1)
-            return render(
-                request,
-                "calculator.html",
-                {
-                    "form": form,
-                    "title": "Калькулятор печати для Рекламных агентств",
-                    "results": results,
-                },
-            )
+
+            # проверка ретейл или агентство
+            if request.user.role == 'CUSTOMER_RETAIL':
+                material_price = materials.price_customer_retail
+                finishka_price = finishkas.price_customer_retail
+            elif request.user.role == 'CUSTOMER_AGENCY':
+                material_price = materials.price
+                finishka_price = finishkas.price
+
+        finishka_price = perimetr * finishka_price
+        results = (
+                          float(width) * float(length) * material_price
+                  ) + finishka_price  # в см
+        results = round(results, -1)
+        return render(
+            request,
+            "calculator.html",
+            {
+                "form": form,
+                "title": "Калькулятор печати",
+                "results": results,
+            },
+        )
 
     else:
         form = Calculator()
-    return render(
-        request,
-        "calculator.html",
-        {"form": form, "title": "Калькулятор печати для Рекламных агентств"},
-    )
+        return render(request,
+                      "calculator.html",
+                      {"form": form, "title": "Калькулятор печати"},
+                      )
 
 
 class PrintCalculator:
