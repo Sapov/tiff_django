@@ -169,8 +169,8 @@ def order_pay(request, order_id):
 
     text = "Оплатить можно на карту 0000 0000 0000 0000"
     # --------------- order pdf----------
-    order_pdf = DrawOrder(order_id)  # Формирование счета
-    order_pdf.run()
+    # order_pdf = DrawOrder(order_id)  # Формирование счета
+    # order_pdf.run()
 
     # _________________________Архивируем и посылаем письмо с заказом________________
     order_item = UtilsModel(order_id)
