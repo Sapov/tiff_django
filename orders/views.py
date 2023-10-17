@@ -14,6 +14,7 @@ from account.models import Organisation, Delivery
 
 # from account.models import Organisation
 from files.models import Product
+from files.pay import Pay
 from .forms import NewOrder
 from .models import Order, OrderItem, UtilsModel
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -171,8 +172,8 @@ def order_pay(request, order_id):
     """
     current_path = os.getcwd()
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
+    text = 'оплата text'
 
-    text = "Оплатить можно на карту 0000 0000 0000 0000"
     # --------------- order pdf----------
     order_pdf = DrawOrder(order_id)  # Формирование счета
     order_pdf.run()
@@ -184,7 +185,10 @@ def order_pay(request, order_id):
     order_item.send_mail_order(domain)
     Orders = Order.objects.get(id=order_id)
 
-    context = {"Orders": Orders, "text": text}
+    # -----------------------create_link_pay-----------------------------------
+    link_pay = Pay(Orders.total_price, f'Оплата заказа № {Orders.id}').run()
+
+    context = {"Orders": Orders, "text": text, 'link_pay': link_pay}
     os.chdir(current_path)  # перейти обратно
 
     return render(request, "orderpay.html", context)

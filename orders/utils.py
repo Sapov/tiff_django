@@ -23,8 +23,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-LOCAL_PATH_YADISK = os.getenv('LOCAL_PATH_YADISK')
-
 
 class Utils:
     organizations = 'Style_N'
@@ -337,3 +335,5 @@ class DrawOrder:
         self.create_dinamic_data()
         self.canvas.save()
         self.add_arhive_in_order()
+
+
