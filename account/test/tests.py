@@ -1,7 +1,6 @@
 from http import HTTPStatus
 
 from django.contrib.auth import get_user_model, authenticate
-from django.test import TestCase
 
 from django.test import TestCase
 

@@ -13,6 +13,7 @@
                 <th>Оплата</th>
                 <th>Сумма</th>
                 <th>Статус</th>
+                <th>Доставка</th>
             </thead>
             <tbody>
 
@@ -22,6 +23,7 @@
                 <td>{{ Orders.paid }}</td>
                 <td>{{ Orders.total_price }}</td>
                 <td>{{ Orders.status }}</td>
+                <td>{{ Orders.delivery }}</td>
                 <!--                <td><a href="{% url 'orders:order_pay' Orders.id %}">Оплатить</a>-->
                 <td>
 <!--                    <button type="submit" class="btn btn-primary"-->

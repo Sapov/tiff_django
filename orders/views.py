@@ -10,10 +10,11 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
-from account.models import Organisation
+from account.models import Organisation, Delivery
 
 # from account.models import Organisation
 from files.models import Product
+from files.pay import Pay
 from .forms import NewOrder
 from .models import Order, OrderItem, UtilsModel
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -32,13 +33,18 @@ def new_order(request):
         logging.info(f"method POST")
         form = NewOrder(user=request.user)
         # if form.is_valid():
-        logging.info(f"пришло во view {form.user}")
-        logging.info(f'organisation_payer {request.POST["organisation_payer"]}')
+        logging.info(f"USER: {form.user}")
+        logging.info(f'ORGANISATION: {request.POST["organisation_payer"]}')
+        logging.info(f'delivery {request.POST["delivery"]}')
+        logging.info(f'REQUEST {request.POST}')
+
         number_organisation = request.POST["organisation_payer"]
+        delivery_id = request.POST["delivery"]
         organisation = Organisation.objects.get(id=number_organisation)
+        delivery = Delivery.objects.get(id=delivery_id)
         logging.info(f"organisation {organisation}")
         neworder = Order.objects.create(
-            Contractor=form.user, organisation_payer=organisation
+            Contractor=form.user, organisation_payer=organisation, delivery=delivery,
         )
         logging.info(f"neworder {neworder}")
         logging.info(f"NEW ORDER ID: {neworder.id}")
@@ -166,8 +172,8 @@ def order_pay(request, order_id):
     """
     current_path = os.getcwd()
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
+    text = 'оплата text'
 
-    text = "Оплатить можно на карту 0000 0000 0000 0000"
     # --------------- order pdf----------
     order_pdf = DrawOrder(order_id)  # Формирование счета
     order_pdf.run()
@@ -179,7 +185,10 @@ def order_pay(request, order_id):
     order_item.send_mail_order(domain)
     Orders = Order.objects.get(id=order_id)
 
-    context = {"Orders": Orders, "text": text}
+    # -----------------------create_link_pay-----------------------------------
+    link_pay = Pay(Orders.total_price, f'Оплата заказа № {Orders.id}').run()
+
+    context = {"Orders": Orders, "text": text, 'link_pay': link_pay}
     os.chdir(current_path)  # перейти обратно
 
     return render(request, "orderpay.html", context)
