@@ -13,6 +13,7 @@ load_dotenv(find_dotenv())
 
 
 class Robokassa:
+    '''Генерация ссылки на оплату для магазина'''
     MerchantLogin: str = os.getenv("MERCHANT_LOGIN")
     merchant_password_1: str = os.getenv("PASSWORD_ONE")
     robokassa_payment_url: str = 'https://auth.robokassa.ru/Merchant/Index.aspx'
@@ -31,7 +32,10 @@ class Robokassa:
         return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
 
     def generate_receipt(self):
-        j = {"sno": "osn",  # = os.getenv('USN')
+        '''
+        https://docs.robokassa.ru/fiscalization/
+        '''
+        j = {"sno": os.getenv('SNO'),  # система налогообложения
              "items": [
                  {
                      "name": self.description,
@@ -39,52 +43,25 @@ class Robokassa:
                      "sum": self.received_sum,
                      "payment_method": "full_payment",
                      "payment_object": "commodity",
-                     "tax": "vat10"
+                     "tax": "none"
                  },
              ]
              }
 
         new_json = json.dumps(j, indent=2)
         return new_json
-        # l = json.JSONEncoder
-
-        '''
-         {
-          "sno":"osn",
-          "items": [
-            {
-              "name": "Название товара 1",
-              "quantity": 1,
-              "sum": 100,
-              "payment_method": "full_payment",
-              "payment_object": "commodity",
-              "tax": "vat10"
-            },
-            {
-              "name": "Название товара 2",
-              "quantity": 3,
-              "sum": 450,
-              "cost": 150,
-              "payment_method": "full_prepayment",
-              "payment_object": "service",
-              "nomenclature_code": "04620034587217"
-            }
-          ]
-        }
-
-
-
-        '''
 
     def generate_payment_link(self,
                               is_test=0,
                               ) -> str:
         """URL for redirection of the customer to the service.
         """
+        reciept = self.generate_receipt()
         signature = self.calculate_signature(
             self.MerchantLogin,  # Merchant login
             self.received_sum,  # Cost of goods, RU
             self.order_number,  # Invoice number
+            reciept,  # Receipt
             self.merchant_password_1  # Merchant password
         )
 
@@ -92,6 +69,7 @@ class Robokassa:
             'MerchantLogin': self.MerchantLogin,
             'OutSum': self.received_sum,
             'InvId': self.order_number,
+            'Receipt': reciept,
             'Description': self.description,  # Description of the purchase
             'SignatureValue': signature,
             'IsTest': is_test
@@ -114,6 +92,6 @@ class Robokassa:
 
 
 if __name__ == '__main__':
-    test = Robokassa(100, 'Print banner', 1)
-    # print(Robokassa(100, 'печать баннера', 1).generate_payment_link())
-    print(test.generate_receipt())
+    # test = Robokassa(100, 'Print banner', 1)
+    print(Robokassa(100, 'печать баннера', 1).generate_payment_link())
+    # print(test.generate_receipt())
