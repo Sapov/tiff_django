@@ -37,12 +37,15 @@ class Robokassa:
         order_items = OrderItem.objects.filter(order=self.order_number)
         for i, v in enumerate(order_items):
             print('NAME:', v)
+            print('NAME PRODUCT MATERIAL:', f'{v.product.material} {v.product.length}x{v.product.width} см')
+            print(f'{v.quantity} шт.')
 
     def generate_receipt(self):
         '''
         https://docs.robokassa.ru/fiscalization/
         переписать с использованием всех позиций
         '''
+        self.resept()
         j = {"sno": os.getenv('SNO'),  # система налогообложения
              "items": [
                  {
@@ -83,7 +86,7 @@ class Robokassa:
             'IsTest': is_test
         }
         self.pay_link = f'{self.robokassa_payment_url}?{parse.urlencode(data)}'
-        self._add_pay_link_in_table_order() # добавляем ссылку в базу
+        self._add_pay_link_in_table_order()  # добавляем ссылку в базу
         return self.pay_link
 
     # def check_signature_result(self,
