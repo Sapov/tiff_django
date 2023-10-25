@@ -5,6 +5,8 @@ import os
 import logging
 from urllib import parse
 
+from orders.models import OrderItem, Order
+
 logger = logging.getLogger(__name__)
 
 from dotenv import load_dotenv, find_dotenv
@@ -22,7 +24,7 @@ class Robokassa:
         self.received_sum = received_sum
         self.description = description
         self.SignatureValue = None
-        self.link = None
+        self.pay_link = None
         self.order_number = order_number
 
     @classmethod
@@ -30,6 +32,11 @@ class Robokassa:
         """Create signature MD5.
         """
         return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
+
+    def resept(self):
+        order_items = OrderItem.objects.filter(order=self.order_number)
+        for i, v in enumerate(order_items):
+            print('NAME:', v)
 
     def generate_receipt(self):
         '''
@@ -75,7 +82,9 @@ class Robokassa:
             'SignatureValue': signature,
             'IsTest': is_test
         }
-        return f'{self.robokassa_payment_url}?{parse.urlencode(data)}'
+        self.pay_link = f'{self.robokassa_payment_url}?{parse.urlencode(data)}'
+        self._add_pay_link_in_table_order() # добавляем ссылку в базу
+        return self.pay_link
 
     # def check_signature_result(self,
     #                            order_number: int,  # invoice number
@@ -87,13 +96,26 @@ class Robokassa:
     #     if signature.lower() == received_signature.lower():
     #         return True
     #     return False
+    def _add_pay_link_in_table_order(self):
+        '''Добавим ссылку об оплате в таблицу с ордером'''
+        order = Order.objects.get(id=self.order_number)
+        print(f'SAVE PAYLINK: {self.pay_link}')
+        print(self.order_number)
+        print(order)
+        order.pay_link = self.pay_link
+        order.save()
 
     def run(self):
         return self.generate_payment_link()
 
 
 if __name__ == '__main__':
-    # test = Robokassa(100, 'Print banner', 1)
-    # print(test.generate_receipt())
+    test = Robokassa(100, 'Print banner', 1)
+    print(test.generate_receipt())
 
-    print(Robokassa(100, 'печать баннера', 1).generate_payment_link())
+    # print(Robokassa(100, 'печать баннера', 4).resept())
+    # def resept():
+    #     order_items = OrderItem.objects.filter(order=4)
+    #     for i, v in enumerate(order_items):
+    #         print('NAME:', v)
+    # resept()
