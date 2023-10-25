@@ -14,7 +14,7 @@ from account.models import Organisation, Delivery
 
 # from account.models import Organisation
 from files.models import Product
-from files.pay import Pay
+from files.pay import Robokassa
 from .forms import NewOrder
 from .models import Order, OrderItem, UtilsModel
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -186,7 +186,8 @@ def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
 
     # -----------------------create_link_pay-----------------------------------
-    link_pay = Pay(Orders.total_price, f'Оплата заказа № {Orders.id}').run()
+    link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id).run()
+    # logger.info(f'Генерим платежную ссылку:', link_pay)
 
     context = {"Orders": Orders, "text": text, 'link_pay': link_pay}
     os.chdir(current_path)  # перейти обратно

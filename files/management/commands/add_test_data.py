@@ -1,13 +1,16 @@
 from django.core.management.base import BaseCommand
 from files.models import StatusProduct, TypePrint, Fields, FinishWork
 from orders.models import StatusOrder
-from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data
+from account.models import Delivery, DeliveryAddress
+from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishWork_data, StatusOrder_data, \
+    Delivery_type_data
 
-#___________________________________________________
+
+# ___________________________________________________
 # How import >>
 # STEP 1: python manage.py add_test_data && python manage.py add_price
 
-#___________________________________________________
+# ___________________________________________________
 class Command(BaseCommand):
     help = "Наполнить БД"
 
@@ -15,8 +18,13 @@ class Command(BaseCommand):
         for status in StatusProducts_data:
             StatusProduct.objects.get_or_create(status=status)
 
+        # заполняем таблицу типы печати
         for type_print in TypePrint_data:
             TypePrint.objects.get_or_create(type_print=type_print)
+
+        # заполняем таблицу типы доставки
+        for type_delivery in Delivery_type_data:
+            Delivery.objects.get_or_create(type_delivery=type_delivery)
 
         for fields in Fields_data:
             Fields.objects.get_or_create(fields=fields)
@@ -31,9 +39,7 @@ class Command(BaseCommand):
                 price=item[2],
                 price_customer_retail=item[3]
 
-
             )
-
 
 # class Command(BaseCommand):
 #     def handle(self, *args, **options):

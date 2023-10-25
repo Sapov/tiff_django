@@ -88,7 +88,7 @@ class Robokassa:
     #     return False
 
     def run(self):
-        return self.__create_pay_link()
+        return self.generate_payment_link()
 
 
 if __name__ == '__main__':
