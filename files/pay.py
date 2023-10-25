@@ -34,6 +34,7 @@ class Robokassa:
     def generate_receipt(self):
         '''
         https://docs.robokassa.ru/fiscalization/
+        переписать с использованием всех позиций
         '''
         j = {"sno": os.getenv('SNO'),  # система налогообложения
              "items": [
@@ -93,5 +94,6 @@ class Robokassa:
 
 if __name__ == '__main__':
     # test = Robokassa(100, 'Print banner', 1)
-    print(Robokassa(100, 'печать баннера', 1).generate_payment_link())
     # print(test.generate_receipt())
+
+    print(Robokassa(100, 'печать баннера', 1).generate_payment_link())
