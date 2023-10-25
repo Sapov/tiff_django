@@ -187,7 +187,7 @@ def order_pay(request, order_id):
 
     # -----------------------create_link_pay-----------------------------------
     link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id).run()
-    logger.info(f'Генерим платежную ссылку:', link_pay)
+    logger.info(f'Генерим платежную ссылку: ', link_pay)
 
     context = {"Orders": Orders, "text": text, 'link_pay': link_pay}
     os.chdir(current_path)  # перейти обратно
