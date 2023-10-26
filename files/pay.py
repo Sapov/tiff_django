@@ -33,30 +33,35 @@ class Robokassa:
         """
         return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
 
-    def resept(self):
+    def resept(self) -> list[dict]:
+        ''' формируем dict по каждой позиции и кладем в list'''
         order_items = OrderItem.objects.filter(order=self.order_number)
+        list_items = []
         for i, v in enumerate(order_items):
-            print('NAME:', v)
-            print('NAME PRODUCT MATERIAL:', f'{v.product.material} {v.product.length}x{v.product.width} см')
-            print(f'{v.quantity} шт.')
+            # logger.info('NAME:', v)
+            # logger.info('NAME PRODUCT MATERIAL:', f'{v.product.material} {v.product.length}x{v.product.width} см')
+            # logger.info(f'{v.quantity} шт.')
+
+            new_dict = {
+                "name": f'{v.product.material} {v.product.length}x{v.product.width} см',
+                "quantity": v.quantity,
+                "sum": v.price_per_item,
+                "payment_method": "full_payment",
+                "payment_object": "commodity",
+                "tax": "none"
+            }
+            list_items.append(new_dict)
+            logger.info(f'LIST all orrders ITEMS:', list_items)
+        return list_items
 
     def generate_receipt(self):
         '''
         https://docs.robokassa.ru/fiscalization/
-        переписать с использованием всех позиций
+        Формируем все позиции заказа в робочек
         '''
-        self.resept()
+        list_items = self.resept()
         j = {"sno": os.getenv('SNO'),  # система налогообложения
-             "items": [
-                 {
-                     "name": self.description,
-                     "quantity": 1,
-                     "sum": self.received_sum,
-                     "payment_method": "full_payment",
-                     "payment_object": "commodity",
-                     "tax": "none"
-                 },
-             ]
+             "items": list_items
              }
 
         new_json = json.dumps(j, indent=2)
@@ -115,10 +120,3 @@ class Robokassa:
 if __name__ == '__main__':
     test = Robokassa(100, 'Print banner', 1)
     print(test.generate_receipt())
-
-    # print(Robokassa(100, 'печать баннера', 4).resept())
-    # def resept():
-    #     order_items = OrderItem.objects.filter(order=4)
-    #     for i, v in enumerate(order_items):
-    #         print('NAME:', v)
-    # resept()
