@@ -38,9 +38,6 @@ class Robokassa:
         order_items = OrderItem.objects.filter(order=self.order_number)
         list_items = []
         for i, v in enumerate(order_items):
-            # logger.info('NAME:', v)
-            # logger.info('NAME PRODUCT MATERIAL:', f'{v.product.material} {v.product.length}x{v.product.width} см')
-            # logger.info(f'{v.quantity} шт.')
 
             new_dict = {
                 "name": f'{v.product.material} {v.product.length}x{v.product.width} см',
