@@ -119,7 +119,6 @@ def add_files_in_order(request, order_id):
     )  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     current_order = Order.objects.get(pk=order_id)
-    print("ORDER TYPE___", type(Orders))
 
     context = {
         "Orders": Orders,
@@ -186,7 +185,8 @@ def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
 
     # -----------------------create_link_pay-----------------------------------
-    link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id).run()
+    user = request.user
+    link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
     # logger.info(f'Генерим платежную ссылку: ', link_pay)
 
     context = {"Orders": Orders, "text": text, 'link_pay': link_pay}

@@ -155,7 +155,6 @@ class OrderItem(models.Model):
 
     def save(self, *args, **kwargs):
         price_per_item = self.product.price
-        logging.info("tetst", price_per_item)
         logger.info(price_per_item)
         self.price_per_item = price_per_item
         self.total_price = self.price_per_item * self.quantity

@@ -121,7 +121,7 @@ class DrawOrder:
         self.canvas = Canvas(f'Order_{self.order_id}.pdf', pagesize=A4, )
         curent_order = Order.objects.get(pk=order_id)
         # --------------- order pdf----------
-        logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
+        # logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
         self.buyer = (curent_order.organisation_payer.name_ul, curent_order.organisation_payer.inn,
                       curent_order.organisation_payer.address_ur, curent_order.organisation_payer.phone)
 
