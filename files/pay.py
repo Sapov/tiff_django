@@ -48,7 +48,7 @@ class Robokassa:
                 "tax": "none"
             }
             list_items.append(new_dict)
-        print(list_items)
+        logger.info(list_items)
         return list_items
 
     def generate_receipt(self):

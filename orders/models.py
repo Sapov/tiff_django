@@ -213,13 +213,14 @@ post_save.connect(product_in_order_post_save, sender=OrderItem)
 
 
 class UtilsModel:
-    def __init__(self, order_id):
+    def __init__(self, order_id, domain):
         self.arhiv_order_path = None
         self.new_str = None
         self.arh_name = None
         self.text_file_name = None
         self.order_id = order_id
         self.path_arhive = f"{settings.MEDIA_ROOT}/arhive"
+        self.domain = domain
 
     @staticmethod
     def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
@@ -236,13 +237,17 @@ class UtilsModel:
                 new_arh.close()
         return f"Order_№_{id_order}_{date.today()}.zip"
 
-    def send_mail_order(self, domain):
+    def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
         order = Order.objects.get(id=self.order_id)
+        print('DOMAIN', self.domain)
+        print('ID', self.order_id)
+        print('ARHIVE', str(order.order_arhive))
+
         send_mail(
             "Новый заказ от REDS",
             # f'{self.new_str}\n',
-            f"{self.new_str}\nCсылка на архив: http://{domain}/media/{self.download_link()}",
+            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}",
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
             fail_silently=False,
@@ -336,7 +341,7 @@ class UtilsModel:
         current_folder = os.getcwd()
         logger.info(f"Из copy_files_in_server функции видим каталог - {current_folder}")
         lst_files = os.listdir()  # read name files from folder
-        logger.info(f"FILES:{lst_files}")
+        # logger.info(f"FILES:{lst_files}")
         for i in lst_files:
             if i.endswith("txt") or i.endswith("zip"):
                 logger.info(f"Копирую {i} в {self.arhiv_order_path}")
@@ -364,7 +369,7 @@ class UtilsModel:
         )
         order.order_arhive = f"arhive/{self.order_id}/{self.arh_name}"
         order.save()
-        return
+
 
     def download_link(self):
         order = Order.objects.get(id=self.order_id)

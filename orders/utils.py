@@ -53,12 +53,7 @@ class Utils:
                 f'media/image/{date.today()}')  # перейти в директорию дата должна браться из параметра Order.created
         print(f' Мы Выбрали {os.getcwd()}')
 
-    @staticmethod
-    def path_for_yadisk(organizations, id_order):
-        path_save = f'{organizations}/{date.today()}'
-        # --------------------------Work in Yandex Disk--------------------------------#
-        path_for_yandex_disk = f'{path_save}/{id_order}'  # Путь на яндекс диске для публикации
-        return path_for_yandex_disk
+
 
     @staticmethod
     def send_mail_order(body_mail):
@@ -116,6 +111,7 @@ class DrawOrder:
                        }
 
     def __init__(self, order_id):
+        self.current_path=None
         self.font_path = None
         self.order_id = order_id
         self.canvas = Canvas(f'Order_{self.order_id}.pdf', pagesize=A4, )
@@ -124,6 +120,13 @@ class DrawOrder:
         # logging.info(curent_order.organisation_payer, curent_order.organisation_payer.inn)
         self.buyer = (curent_order.organisation_payer.name_ul, curent_order.organisation_payer.inn,
                       curent_order.organisation_payer.address_ur, curent_order.organisation_payer.phone)
+
+    def _go_media(self):
+        self.current_path = os.getcwd()
+        os.chdir(f"{settings.MEDIA_ROOT}/orders")
+
+    def _go_back(self):
+        os.chdir(self.current_path)  # перейти обратно
 
     def change_path(self):
         app_path = os.path.realpath(os.path.dirname(__file__))
@@ -313,11 +316,12 @@ class DrawOrder:
     def add_arhive_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
         order = Order.objects.get(id=self.order_id)
-        logger.info(f'LOAD PDF in table: orders/Order_{self.order_id}.pdf')
+        logger.info(f'ADD PDF in order: orders/Order_{self.order_id}.pdf')
         order.order_pdf_file = f'orders/Order_{self.order_id}.pdf'
         order.save()
 
     def run(self):
+        self._go_media()
         self.change_path()
         self.draw_field(self.fild_bank)
         self.draw_field(self.field_bik)
@@ -335,5 +339,4 @@ class DrawOrder:
         self.create_dinamic_data()
         self.canvas.save()
         self.add_arhive_in_order()
-
-
+        self._go_back()
