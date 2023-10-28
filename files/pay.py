@@ -41,13 +41,14 @@ class Robokassa:
         for i, v in enumerate(order_items):
             new_dict = {
                 "name": f'{v.product.material} {v.product.length}x{v.product.width} см',
-                "quantity": v.quantity,
+                "quantity": v.product.quantity,
                 "sum": v.price_per_item,
                 "payment_method": "full_payment",
                 "payment_object": "commodity",
                 "tax": "none"
             }
             list_items.append(new_dict)
+        print(list_items)
         return list_items
 
     def generate_receipt(self):
