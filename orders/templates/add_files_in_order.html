@@ -120,7 +120,7 @@
     </div>
 {% if current_order.status.id == 1 %}
     <td>
-            <button type="submit" class="btn btn-primary"
+            <button type="submit" class="btn btn-success"
                     onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ</button>
         </td>
 {% else %}

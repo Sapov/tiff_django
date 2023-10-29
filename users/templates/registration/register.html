@@ -4,8 +4,13 @@
 
 
 {% block body %}
-<h1>Создать учетную запись</h1>
-<p>Пожалуйста, зарегистрируйтесь, используя следующую форму:</p>
+<div class="container ">
+    <h3>Создать учетную запись</h3>
+    <p>Пожалуйста, зарегистрируйтесь, используя следующую форму:</p>
+    </div>
+
+<div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+
 
 
 <form action="{% url 'register' %}" method="post">
@@ -15,4 +20,7 @@
     {% csrf_token %}
     <button type="submit" class="btn btn-success">Зарегистрироваться</button>
 </form>
+</div>
 {% endblock %}
+
+

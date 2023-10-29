@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Профиль{% endblock %}
+{% block body %}
+<h1>профиль изменен</h1>
+
+<p><a href=" {% url 'account:dashboard' %}">DASHBORD</a></p>
+
+<p><a href=" {% url 'files:create_rollup' %}">Заказ мобильных стендов Roll Up</a></p>
+<p><a href=" {% url 'files:create_inter' %}">Загрузка файлов для Интерьерной печати</a></p>
+<p><a href=" {% url 'files:create_large' %}">Загрузка файлов для Широкоформатной печати</a></p>
+<p><a href=" {% url 'files:create_uv' %}">Загрузка файлов для UV-печати</a></p>
+
+<p><a href=" {% url 'files:create_rollup' %}">Заказ мобильных стендов Roll Up</a></p>
+{% endblock %}

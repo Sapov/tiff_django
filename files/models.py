@@ -137,6 +137,7 @@ class StatusProduct(models.Model):
 
 
 class Product(models.Model):
+    objects = None
     Contractor = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,

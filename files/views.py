@@ -177,6 +177,7 @@ def calculator(request):
                 material_price = materials.price
                 finishka_price = finishkas.price
 
+
         finishka_price = perimetr * finishka_price
         results = (
                           float(width) * float(length) * material_price

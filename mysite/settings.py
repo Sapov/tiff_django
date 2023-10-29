@@ -187,3 +187,9 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
 EMAIL_USE_SSL = False
+
+
+#---------------------CELERY-------------------------
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://redis:6379/0'

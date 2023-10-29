@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
@@ -19,8 +19,9 @@ from .forms import NewOrder
 from .models import Order, OrderItem, UtilsModel
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
-from .utils import DrawOrder
+from .utils import DrawOrder, Utils
 from django.core.paginator import Paginator
+from .tasks import arh_for_mail, create_order_pdf
 import logging
 
 logger = logging.getLogger(__name__)
@@ -34,18 +35,34 @@ def new_order(request):
         form = NewOrder(user=request.user)
         # if form.is_valid():
         logging.info(f"USER: {form.user}")
-        logging.info(f'ORGANISATION: {request.POST["organisation_payer"]}')
+        # logging.info(f'ORGANISATION: {request.POST["organisation_payer"]}')
         logging.info(f'delivery {request.POST["delivery"]}')
         logging.info(f'REQUEST {request.POST}')
+        if request.user.role == 'CUSTOMER_AGENCY':
+            # если агентство добавляем оранизацию платильщик
+            number_organisation = request.POST["organisation_payer"]
+            organisation = Organisation.objects.get(id=number_organisation)
+            logging.info(f"organisation {organisation}")
+            delivery_id = request.POST["delivery"]
 
-        number_organisation = request.POST["organisation_payer"]
-        delivery_id = request.POST["delivery"]
-        organisation = Organisation.objects.get(id=number_organisation)
-        delivery = Delivery.objects.get(id=delivery_id)
-        logging.info(f"organisation {organisation}")
-        neworder = Order.objects.create(
-            Contractor=form.user, organisation_payer=organisation, delivery=delivery,
-        )
+            delivery = Delivery.objects.get(id=delivery_id)
+
+            neworder = Order.objects.create(
+                Contractor=form.user, organisation_payer=organisation, delivery=delivery,
+            )
+        elif request.user.role == 'CUSTOMER_RETAIL':
+            # Если обычный юзер
+            # number_organisation = request.POST["organisation_payer"]
+            # organisation = Organisation.objects.get(id=number_organisation)
+            # logging.info(f"organisation {organisation}")
+            delivery_id = request.POST["delivery"]
+            delivery = Delivery.objects.get(id=delivery_id)
+
+            neworder = Order.objects.create(
+                Contractor=form.user, delivery=delivery,
+            )
+
+
         logging.info(f"neworder {neworder}")
         logging.info(f"NEW ORDER ID: {neworder.id}")
         return redirect("orders:add_file_in_order", neworder.id)
@@ -140,7 +157,6 @@ def add_item_in_order(request, item_id, order_id):
     new_ord.save()
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
-    print("ORDER TYPE", type(Orders))
     context = {
         "Orders": Orders,
         "items_in_order": items_in_order,
@@ -173,22 +189,20 @@ def order_pay(request, order_id):
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
     text = 'оплата text'
 
-    # --------------- order pdf----------
-    order_pdf = DrawOrder(order_id)  # Формирование счета
-    order_pdf.run()
+    # --------------- Формирование счета---------
+    create_order_pdf.delay(order_id)
+    # order_pdf = DrawOrder(order_id)  #
+    # order_pdf.run()
 
-    # _________________________Архивируем и посылаем письмо с заказом________________
-    order_item = UtilsModel(order_id)
-    order_item.run()
-    domain = get_domain(request)
-    order_item.send_mail_order(domain)
-    Orders = Order.objects.get(id=order_id)
+    # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
+    domain = str(get_domain(request))
+    arh_for_mail.delay(order_id, domain=domain)
 
     # -----------------------create_link_pay-----------------------------------
+    Orders = Order.objects.get(id=order_id)
     user = request.user
     link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
     # logger.info(f'Генерим платежную ссылку: ', link_pay)
-
     context = {"Orders": Orders, "text": text, 'link_pay': link_pay}
     os.chdir(current_path)  # перейти обратно
 
@@ -197,7 +211,7 @@ def order_pay(request, order_id):
 
 def get_domain(request):
     logger.info(f"DOMAIN: {get_current_site(request)}")
-    return get_current_site(request)
+    return str(get_current_site(request))
 
 
 class AllOrdersListView(LoginRequiredMixin, ListView):
@@ -265,6 +279,7 @@ def report_complite_orders(request):
     # 2023-10-10 18:40:09.391297
     return render(
         request,
-        "report_complite_orders.html",
+        "report_complite_"
+        "orders.html",
         {"order": order},
     )
