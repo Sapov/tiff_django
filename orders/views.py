@@ -173,17 +173,14 @@ def order_pay(request, order_id):
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
     text = 'оплата text'
 
-    # --------------- order pdf----------
+    # --------------- Формирование счета---------
     create_order_pdf.delay(order_id)
-    # order_pdf = DrawOrder(order_id)  # Формирование счета
+    # order_pdf = DrawOrder(order_id)  #
     # order_pdf.run()
 
-    # _________________________Архивируем файлы для письма-----------------
+    # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
     domain = str(get_domain(request))
     arh_for_mail.delay(order_id, domain=domain)
-
-    # -----------------------------посылаем письмо с заказом---------------------
-    # Utils.send_mails(order_id, domain)
 
     # -----------------------create_link_pay-----------------------------------
     Orders = Order.objects.get(id=order_id)

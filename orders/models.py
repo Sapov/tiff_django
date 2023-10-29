@@ -240,9 +240,8 @@ class UtilsModel:
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
         order = Order.objects.get(id=self.order_id)
-        print('DOMAIN', self.domain)
-        print('ID', self.order_id)
-        print('ARHIVE', str(order.order_arhive))
+        logger.info(f'[INFO] DOMAIN {self.domain}')
+        logger.info(f'[INFO] ARHIVE {str(order.order_arhive)}')
 
         send_mail(
             "Новый заказ от REDS",
@@ -403,4 +402,4 @@ class UtilsModel:
         self.copy_files_in_server()
         self.add_arhive_in_order()
         self.set_status_order()  # меняю статус заказа
-        # self.send_mail_order()  # отправил письмо
+        self.send_mail_order()  # отправил письмо
