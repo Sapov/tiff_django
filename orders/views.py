@@ -263,6 +263,7 @@ def report_complite_orders(request):
     # 2023-10-10 18:40:09.391297
     return render(
         request,
-        "report_complite_orders.html",
+        "report_complite_"
+        "orders.html",
         {"order": order},
     )
