@@ -58,6 +58,8 @@ class Order(models.Model):
         on_delete=models.CASCADE,
         verbose_name="организация платильщик",
         help_text="Выберите организацию платильщик",
+        null=True,
+        blank=True,
     )
     paid = models.BooleanField(verbose_name="заказ оплачен", default=False)
     date_complete = models.DateTimeField(
