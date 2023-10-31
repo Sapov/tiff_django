@@ -16,8 +16,7 @@ from account.models import Organisation
 class NewOrder(forms.ModelForm):
     class Meta:
         model = Order
-        # fields = ['organisation_payer', 'delivery'] # для агенства показываем организацию платильщик
-        fields = ['delivery']  # а для юзера нет
+        fields = ['organisation_payer', 'delivery']
 
 
 
@@ -25,4 +24,4 @@ class NewOrder(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(NewOrder, self).__init__(*args, **kwargs)
-        # self.fields['organisation_payer'].queryset = Organisation.objects.filter(Contractor=self.user)# для агенства раскоментировать
+        self.fields['organisation_payer'].queryset = Organisation.objects.filter(Contractor=self.user)# для агенства раскоментировать

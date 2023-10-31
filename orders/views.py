@@ -38,29 +38,17 @@ def new_order(request):
         # logging.info(f'ORGANISATION: {request.POST["organisation_payer"]}')
         logging.info(f'delivery {request.POST["delivery"]}')
         logging.info(f'REQUEST {request.POST}')
-        if request.user.role == 'CUSTOMER_AGENCY':
             # если агентство добавляем оранизацию платильщик
-            number_organisation = request.POST["organisation_payer"]
-            organisation = Organisation.objects.get(id=number_organisation)
-            logging.info(f"organisation {organisation}")
-            delivery_id = request.POST["delivery"]
+        number_organisation = request.POST["organisation_payer"]
+        organisation = Organisation.objects.get(id=number_organisation)
+        logging.info(f"organisation {organisation}")
+        delivery_id = request.POST["delivery"]
 
-            delivery = Delivery.objects.get(id=delivery_id)
+        delivery = Delivery.objects.get(id=delivery_id)
 
-            neworder = Order.objects.create(
-                Contractor=form.user, organisation_payer=organisation, delivery=delivery,
-            )
-        elif request.user.role == 'CUSTOMER_RETAIL':
-            # Если обычный юзер
-            # number_organisation = request.POST["organisation_payer"]
-            # organisation = Organisation.objects.get(id=number_organisation)
-            # logging.info(f"organisation {organisation}")
-            delivery_id = request.POST["delivery"]
-            delivery = Delivery.objects.get(id=delivery_id)
-
-            neworder = Order.objects.create(
-                Contractor=form.user, delivery=delivery,
-            )
+        neworder = Order.objects.create(
+            Contractor=form.user, organisation_payer=organisation, delivery=delivery,
+        )
 
 
         logging.info(f"neworder {neworder}")
