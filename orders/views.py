@@ -62,16 +62,6 @@ def new_order(request):
     return render(request, "neworder.html", {"form": form})
 
 
-class OrderItemCreateView(LoginRequiredMixin, CreateView):
-    model = OrderItem
-    fields = ["order", "product"]
-    login_url = "login"
-
-    def form_valid(self, form):
-        form.instance.Contractor = self.request.user
-        return super().form_valid(form)
-
-
 @login_required
 def view_order(request):
     """Вывод файлов только авторизованного пользователя"""

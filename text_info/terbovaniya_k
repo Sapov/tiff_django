@@ -5,3 +5,17 @@
 5. Создайте заказ
 6. Оплатите заказ
 
+
+                <li class="mb-1"><a class="link-secondary text-decoration-none"
+                                    href="{% url 'orders:view_all_orders' %}">Посмотреть все заказы</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none"
+                                    href="{% url 'orders:view_all_orders_pay' %}">Посмотреть все оплаченые заказы</a>
+                </li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none"
+                                    href="{% url 'orders:view_all_files_for_work_in_orders' %}">Посмотреть все файлы для
+                    печати</a></li>
+
+                <li class="mb-1"><a class="link-secondary text-decoration-none"
+                                    href="{% url 'files:all_files' %}">Все файлы</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none"
+                                    href="{% url 'orders:report_complite_orders' %}">Отчет по выполненым заказам</a>
