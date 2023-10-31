@@ -15,5 +15,6 @@ urlpatterns = [
     path('update_organisation_user/<pk>', views.OrganisationUpdateView.as_view(), name='update_organisation_user'),
 
     path('', views.dashboard, name='dashboard'),
+    path('list_profile/', views.ListProfile.as_view(), name='list_profile'),
 
 ]
