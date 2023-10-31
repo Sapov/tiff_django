@@ -85,7 +85,7 @@ class Order(models.Model):
     pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
 
     def __str__(self):
-        return f"Заказ № {self.id}  {self.organisation_payer}"
+        return f"Заказ № {self.id}"
 
     class Meta:
         verbose_name_plural = "Заказы"

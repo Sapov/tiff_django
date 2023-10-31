@@ -65,7 +65,7 @@ class Robokassa:
         return new_json
 
     def generate_payment_link(self,
-                              is_test=0,
+                              is_test=0,  # Если is_test=0 - реальная оплата is_test=1 - тестовая оплата
                               ) -> str:
         """URL for redirection of the customer to the service.
         """

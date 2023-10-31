@@ -32,9 +32,7 @@ urlpatterns = [
     path("view_order_item/<pk>", View_order_item.as_view(), name="view_order_items"),
     path("delete_order/<pk>", DeleteOrderView.as_view(), name="Delete_order"),
     path(
-        "add_files_in_order/<int:order_id>",
-        add_files_in_order,
-        name="add_file_in_order",
+        "add_files_in_order/<int:order_id>", add_files_in_order, name="add_file_in_order",
     ),
     path(
         "add_item_in_order/<int:order_id>/<int:item_id>", add_item_in_order, name="add"
