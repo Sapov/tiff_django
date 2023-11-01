@@ -68,7 +68,7 @@ class Organisation(models.Model):
 
 
 class Delivery(models.Model):
-    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки", default=1)
+    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки", default=2)
 
     class Meta:
         verbose_name_plural = "Типы доставки"
