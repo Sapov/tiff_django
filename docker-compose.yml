@@ -1,6 +1,12 @@
 version: '3.9'
 
 services:
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
   postgres_db:
     image: postgres:15
     container_name: postgres_db
@@ -9,6 +15,7 @@ services:
     env_file:
       - .env
     restart: always
+
   django_project:
     build:
       dockerfile: Dockerfile
@@ -25,6 +32,17 @@ services:
     command: >
       bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate  && ./manage.py add_test_data && ./manage.py add_price && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
     restart: always
+
+  worker:
+    restart: always
+    build: .
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+      - django_project
+    command: 'celery -A mysite worker -l info'
+
   nginx:
     build:
       dockerfile: ./Dockerfile
