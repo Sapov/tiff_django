@@ -95,18 +95,19 @@ class Robokassa:
         self._add_pay_link_in_table_order()  # добавляем ссылку в базу
         return self.pay_link
 
-    def check_signature_result(self,
+    @classmethod
+    def check_signature_result(cls,
                                order_number: int,  # invoice number
                                received_sum: int,  # cost of goods, RU
                                received_signature: hex,  # SignatureValue
                                password: str  # Merchant password
                                ) -> bool:
         ''' проверка ответа от робокассы'''
-        signature = self.calculate_signature(received_sum, order_number, password)
+        signature = cls.calculate_signature(received_sum, order_number, password)
         if signature.lower() == received_signature.lower():
-            print('TRUE')
+            print('PAYMENT IS TRUE.................')
             return True
-        print('FALSE')
+        print('PAYMENT IS FALSE............')
         return False
 
     def _add_pay_link_in_table_order(self):
@@ -133,6 +134,12 @@ def check_signature_result(request):
 
 
 def success_pay(request):
+    received_sum = request.GET['OutSum']
+    order_number = request.GET['InvId']
+    received_signature = request.GET['SignatureValue']
+
+    Robokassa.check_signature_result(received_sum, order_number, received_signature, os.getenv('PASSWORD_TWO'))
+    # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
     return HttpResponse(request, '<h1>success_pay</h1>')
 
 
