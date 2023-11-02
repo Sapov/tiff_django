@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView
 from .models import Organisation, Profile
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 
 
 @login_required
@@ -20,6 +21,19 @@ def dashboard(request):
         "account/dashboard.html",
         {"section": "dashboard", "type_print": type_print},
     )
+
+
+class ListProfile(LoginRequiredMixin, ListView):
+    template_name = "profile_list.html"
+    model = Profile
+    paginate_by = 5
+
+    def get_queryset(self):
+        "организации только этого юзера"
+        # queryset = []
+        queryset = Profile.objects.filter(user=self.request.user)
+        q = User.objects.filter(user=self.request.user)
+        return queryset
 
 
 @login_required

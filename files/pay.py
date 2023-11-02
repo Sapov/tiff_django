@@ -5,6 +5,8 @@ import os
 import logging
 from urllib import parse
 
+from django.http import HttpResponse
+
 from orders.models import OrderItem, Order
 
 logger = logging.getLogger(__name__)
@@ -64,10 +66,10 @@ class Robokassa:
         new_json = json.dumps(j, indent=2)
         return new_json
 
-    def generate_payment_link(self,
-                              is_test=0,
-                              ) -> str:
-        """URL for redirection of the customer to the service.
+    def generate_payment_link(self, is_test=1) -> str:
+        """
+        # Если is_test=0 - реальная оплата is_test=1 - тестовая оплата
+        URL for redirection of the customer to the service.
         """
         reciept = self.generate_receipt()
         signature = self.calculate_signature(
@@ -93,16 +95,20 @@ class Robokassa:
         self._add_pay_link_in_table_order()  # добавляем ссылку в базу
         return self.pay_link
 
-    # def check_signature_result(self,
-    #                            order_number: int,  # invoice number
-    #                            received_sum: int,  # cost of goods, RU
-    #                            received_signature: hex,  # SignatureValue
-    #                            password: str  # Merchant password
-    #                            ) -> bool:
-    #     signature = calculate_signature(received_sum, order_number, password)
-    #     if signature.lower() == received_signature.lower():
-    #         return True
-    #     return False
+    def check_signature_result(self,
+                               order_number: int,  # invoice number
+                               received_sum: int,  # cost of goods, RU
+                               received_signature: hex,  # SignatureValue
+                               password: str  # Merchant password
+                               ) -> bool:
+        ''' проверка ответа от робокассы'''
+        signature = self.calculate_signature(received_sum, order_number, password)
+        if signature.lower() == received_signature.lower():
+            print('TRUE')
+            return True
+        print('FALSE')
+        return False
+
     def _add_pay_link_in_table_order(self):
         '''Добавим ссылку об оплате в таблицу с ордером'''
         order = Order.objects.get(id=self.order_number)
@@ -115,5 +121,20 @@ class Robokassa:
 
 
 if __name__ == '__main__':
-    test = Robokassa(100, 'Print banner', 1)
-    print(test.generate_receipt())
+    test = Robokassa(100, 'Print banner', 1, 'rpk.reds@yandex.ru')
+    print(test.generate_payment_link())
+
+
+def check_signature_result(request):
+    logging.info(f'REQUEST {request.GET}')
+    logging.info(f'REQUEST {request.GET["name"]}')
+
+    return HttpResponse(request, 'ok')
+
+
+def success_pay(request):
+    return HttpResponse(request, '<h1>success_pay</h1>')
+
+
+def fail(request):
+    return HttpResponse(request, '<h1>fail</h1>')

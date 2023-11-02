@@ -30,7 +30,8 @@ class Organisation(models.Model):
     name_ul = models.CharField(
         max_length=70,
         verbose_name="Имя юр. лица",
-        help_text="Форма собственности и название",
+        help_text="Форма собственности и название.Если платильщик физ. Лицо, оаставить физ. лицо. ",
+        default='Физ. лицо'
     )
     address_ur = models.TextField(
         null=True,
@@ -67,7 +68,7 @@ class Organisation(models.Model):
 
 
 class Delivery(models.Model):
-    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки", default=1)
+    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки", default=2)
 
     class Meta:
         verbose_name_plural = "Типы доставки"

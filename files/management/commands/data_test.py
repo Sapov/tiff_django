@@ -37,8 +37,5 @@ StatusOrder_data = [
 ]
 
 Delivery_type_data = [
-    'СДЕК',
-    'Яндекс доставка',
     "Самовывоз"
-
 ]

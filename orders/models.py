@@ -38,7 +38,7 @@ class StatusOrder(models.Model):
 
 
 class Order(models.Model):
-    delivery = models.ForeignKey(Delivery, on_delete=models.PROTECT, verbose_name='Доставка', null=True, blank=True)
+    delivery = models.ForeignKey(Delivery, on_delete=models.PROTECT, verbose_name='Доставка', null=True, default=3)
     total_price = models.FloatField(
         max_length=10,
         null=True,
@@ -85,7 +85,7 @@ class Order(models.Model):
     pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
 
     def __str__(self):
-        return f"Заказ № {self.id}  {self.organisation_payer}"
+        return f"Заказ № {self.id}"
 
     class Meta:
         verbose_name_plural = "Заказы"

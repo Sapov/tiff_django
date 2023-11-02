@@ -162,6 +162,7 @@ def calculator(request):
             form = Calculator(request.POST)
             length = request.POST["length"]
             width = request.POST["width"]
+            quantity = request.POST["quantity"]
             material = request.POST["material"]
             finishka = request.POST["finishka"]
 
@@ -182,7 +183,7 @@ def calculator(request):
         results = (
                           float(width) * float(length) * material_price
                   ) + finishka_price  # в см
-        results = round(results, -1)
+        results = round(results, -1) * int(quantity)
         return render(
             request,
             "calculator.html",

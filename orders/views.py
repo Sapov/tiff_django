@@ -21,7 +21,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.views.generic import ListView
 from .utils import DrawOrder, Utils
 from django.core.paginator import Paginator
-from .tasks import arh_for_mail, create_order_pdf
+from .tasks import arh_for_mail
 import logging
 
 logger = logging.getLogger(__name__)
@@ -32,53 +32,34 @@ def new_order(request):
     logging.info(request)
     if request.POST:
         logging.info(f"method POST")
-        form = NewOrder(user=request.user)
+        # form = NewOrder(user=request.user)  # для организаций пока отключу
+        form = NewOrder()  # для организаций пока отключу
         # if form.is_valid():
-        logging.info(f"USER: {form.user}")
+        # logging.info(f"USER: {form.user}")
         # logging.info(f'ORGANISATION: {request.POST["organisation_payer"]}')
         logging.info(f'delivery {request.POST["delivery"]}')
         logging.info(f'REQUEST {request.POST}')
-        if request.user.role == 'CUSTOMER_AGENCY':
-            # если агентство добавляем оранизацию платильщик
-            number_organisation = request.POST["organisation_payer"]
-            organisation = Organisation.objects.get(id=number_organisation)
-            logging.info(f"organisation {organisation}")
-            delivery_id = request.POST["delivery"]
+        logging.info(f'USER {request.user}')
+        # если агентство добавляем оранизацию платильщик
+        # number_organisation = request.POST["organisation_payer"]
+        # organisation = Organisation.objects.get(id=number_organisation)
+        # logging.info(f"organisation {organisation}")
+        delivery_id = request.POST["delivery"]
 
-            delivery = Delivery.objects.get(id=delivery_id)
+        delivery = Delivery.objects.get(id=delivery_id)
 
-            neworder = Order.objects.create(
-                Contractor=form.user, organisation_payer=organisation, delivery=delivery,
-            )
-        elif request.user.role == 'CUSTOMER_RETAIL':
-            # Если обычный юзер
-            # number_organisation = request.POST["organisation_payer"]
-            # organisation = Organisation.objects.get(id=number_organisation)
-            # logging.info(f"organisation {organisation}")
-            delivery_id = request.POST["delivery"]
-            delivery = Delivery.objects.get(id=delivery_id)
+        # neworder = Order.objects.create(
+        #     Contractor=form.user, organisation_payer=organisation, delivery=delivery,
+        # )
 
-            neworder = Order.objects.create(
-                Contractor=form.user, delivery=delivery,
-            )
+        neworder = Order.objects.create(Contractor=request.user, delivery=delivery)
 
-
-        logging.info(f"neworder {neworder}")
-        logging.info(f"NEW ORDER ID: {neworder.id}")
+        # logging.info(f"neworder {neworder}")
+        # logging.info(f"NEW ORDER ID: {neworder.id}")
         return redirect("orders:add_file_in_order", neworder.id)
     else:
-        form = NewOrder(user=request.user)
+        form = NewOrder()
     return render(request, "neworder.html", {"form": form})
-
-
-class OrderItemCreateView(LoginRequiredMixin, CreateView):
-    model = OrderItem
-    fields = ["order", "product"]
-    login_url = "login"
-
-    def form_valid(self, form):
-        form.instance.Contractor = self.request.user
-        return super().form_valid(form)
 
 
 @login_required
@@ -190,7 +171,7 @@ def order_pay(request, order_id):
     text = 'оплата text'
 
     # --------------- Формирование счета---------
-    create_order_pdf.delay(order_id)
+    # create_order_pdf.delay(order_id)
     # order_pdf = DrawOrder(order_id)  #
     # order_pdf.run()
 
