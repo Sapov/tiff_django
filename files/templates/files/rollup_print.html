@@ -5,7 +5,7 @@
 
 {% block body %}
 
-<h3>Загрузите макет для макета для Роллапа</h3>
+<h3>Загрузите макет для Роллапа</h3>
 <p>Файл должен соответствовать требованиям:
 <p>Расширение файла - TIFF</p>
 <p> Цветовая Модель - CMYK</p>
@@ -15,23 +15,59 @@
 <p>Рекомендуем использовать LWZ компрессию, ваш файл станет гораздо меньше.
     У файла не должно быть альфаканалов, путей, несведенных слоев.</p>
 
-<div class="containers">
-    <form action="{% url 'files:create_rollup' %}" method="post", enctype="multipart/form-data">
+<div class="row">
 
-        {% csrf_token %}
-        {{ form|crispy }}
+    <div class="col-xl-8 col-lg-7">
 
-<!--        <p>{{form.material}}</p>-->
-<!--       <p> {{form.quantity}}</p>-->
-<!--       <p> {{form.FinishWork}}</p>-->
-<!--       <p> {{form.images}}</p>-->
-        <button type="submit" class="btn btn-primary">Загрузить</button>
+        <!-- Area Chart -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <form action="{% url 'files:create_rollup' %}" method="post" , enctype="multipart/form-data">
 
-    </form>
-</div>
+                    {% csrf_token %}
+
+                    {{ form|crispy }}
+                    <!--        <p>{{form.material}}</p>-->
+                    <!--       <p> {{form.quantity}}</p>-->
+                    <!--       <p> {{form.FinishWork}}</p>-->
+                    <!--       <p> {{form.images}}</p>-->
+                    <button type="submit" class="btn btn-primary">Загрузить</button>
+
+                </form>
+
+
+            </div>
+            <div class="card-body">
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Donut Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Ролл ап</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="myPieChart"></canvas>
+                                    </div>
+                                    <hr>
+                                    Мы изготавливаем трех размеров 85 х 200 см, 100 х 200 см, 120 х 200 см
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
 
 
 
-
-{% endblock %}
+    {% endblock %}
 

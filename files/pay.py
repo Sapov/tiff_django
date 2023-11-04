@@ -6,6 +6,8 @@ import logging
 from urllib import parse
 
 from django.http import HttpResponse
+from django.shortcuts import render
+from django.utils.datastructures import MultiValueDictKeyError
 
 from orders.models import OrderItem, Order
 
@@ -103,11 +105,11 @@ class Robokassa:
                                password: str  # Merchant password
                                ) -> bool:
         ''' проверка ответа от робокассы'''
-        signature = cls.calculate_signature(received_sum, order_number, password)
+        signature = cls.calculate_signature(order_number, received_sum, password)
         if signature.lower() == received_signature.lower():
-            print('PAYMENT IS TRUE.................')
+            logger.info(f'-------PAYMENT IS TRUE------------')
             return True
-        print('PAYMENT IS FALSE............')
+        logger.info(f'-------PAYMENT IS FALSE------------')
         return False
 
     def _add_pay_link_in_table_order(self):
@@ -126,22 +128,34 @@ if __name__ == '__main__':
     print(test.generate_payment_link())
 
 
-def check_signature_result(request):
-    logging.info(f'REQUEST {request.GET}')
-    logging.info(f'REQUEST {request.GET["name"]}')
+def result(request):
+    if request.GET:
+        if 'OutSum' and 'InvId' in request.GET:
+            received_sum = request.GET['OutSum']
+            order_number = request.GET['InvId']
+            received_signature = request.GET['SignatureValue']
 
-    return HttpResponse(request, 'ok')
+            if Robokassa.check_signature_result(received_sum, order_number, received_signature,
+                                                os.getenv('PASSWORD_ONE'), ):
+                return render(request, 'success_pay.html')
+
+            # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
+        return render(request, 'fail_pay.html')
 
 
 def success_pay(request):
-    received_sum = request.GET['OutSum']
-    order_number = request.GET['InvId']
-    received_signature = request.GET['SignatureValue']
+    if request.GET:
+        print(request.GET)
 
-    Robokassa.check_signature_result(received_sum, order_number, received_signature, os.getenv('PASSWORD_TWO'))
-    # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
-    return HttpResponse(request, '<h1>success_pay</h1>')
+        received_sum = request.GET['OutSum']
+        order_number = request.GET['InvId']
+        received_signature = request.GET['SignatureValue']
+
+        if Robokassa.check_signature_result(received_sum, order_number, received_signature,
+                                            os.getenv('PASSWORD_ONE'), ):
+            return render(request, 'success_pay.html')
+    return render(request, 'fail_pay.html')
 
 
 def fail(request):
-    return HttpResponse(request, '<h1>fail</h1>')
+    return render(request, 'fail_pay.html')
