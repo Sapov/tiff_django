@@ -137,6 +137,7 @@ def result(request):
 
             if Robokassa.check_signature_result(received_sum, order_number, received_signature,
                                                 os.getenv('PASSWORD_ONE'), ):
+                #переключаем оплату на TRUE
                 return render(request, 'success_pay.html')
 
             # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru

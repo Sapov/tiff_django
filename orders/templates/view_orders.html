@@ -15,24 +15,24 @@
             <tr>
                 <th>Заказ №</th>
                 <th>Total</th>
-                <th>Платильщик</th>
+<!--                <th>Платильщик</th>-->
                 <th>Оплачено</th>
-                <th>Каменты</th>
+<!--                <th>Каменты</th>-->
                 <th>Статус</th>
                 <th>Дата заказа</th>
-                <th>Дата готовности</th>
+<!--                <th>Дата готовности</th>-->
            </thead>
             <tbody>
             {% for order in Orders %}
             <tr>
                 <td>{{ order.id }}</td>
                 <td>{{ order.total_price }} руб. </td>
-                <td>{{ order.organisation_payer }}</td>
+<!--                <td>{{ order.organisation_payer }}</td>-->
                 <td>{{ order.paid }}</td>
-                <td>{{ order.comments }}</td>
+<!--                <td>{{ order.comments }}</td>-->
                 <td>{{ order.status }}</td>
                 <td>{{ order.created }}</td>
-                <td>{{ order.date_complete }}</td>
+<!--                <td>{{ order.date_complete }}</td>-->
 
                 {% if order.status.id >= 2 %}
 
