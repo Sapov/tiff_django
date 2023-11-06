@@ -184,6 +184,8 @@ def calculator(request):
                           float(width) * float(length) * material_price
                   ) + finishka_price  # в см
         results = round(results, -1) * int(quantity)
+        if results < 1000: # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+            results = 1000
         return render(
             request,
             "calculator.html",

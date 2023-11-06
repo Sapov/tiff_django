@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "users",
     "crispy_forms",
     "crispy_bootstrap4",
+    'info',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -71,7 +72,6 @@ LOGGING = {
     "loggers": {"": {"level": "INFO", "handlers": ["console", "file"]}},
 }
 
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -81,7 +81,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
 
 ROOT_URLCONF = "mysite.urls"
 
@@ -187,7 +186,7 @@ EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
 EMAIL_USE_SSL = False
 
-#---------------------CELERY-------------------------
+# ---------------------CELERY-------------------------
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 # CELERY_RESULT_BACKEND = 'redis://redis:6379/0'

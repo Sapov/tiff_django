@@ -1,0 +1,14 @@
+{% extends 'info/base_info.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<p>Содержимое страницы</p>
+
+{% for inf in info %}
+<p>{{ inf.id }}</p>
+<p>Заголовок: {{inf.title}}</p>
+<p>текст: {{inf.context}}</p>
+{% endfor %}
+
+
+{% endblock %}
