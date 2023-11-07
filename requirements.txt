@@ -7,7 +7,6 @@ click==8.1.7
 click-didyoumean==0.3.0
 click-plugins==1.1.1
 click-repl==0.3.0
-colorama==0.4.6
 coverage==7.3.2
 crispy-bootstrap4==2022.1
 data==0.4
