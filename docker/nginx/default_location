@@ -1,0 +1,8 @@
+location /static/ {
+    alias /django/static/;
+}
+
+location /media/ {
+    alias /django/media/;
+}
+
