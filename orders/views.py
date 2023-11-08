@@ -264,3 +264,38 @@ def report_complite_orders(request):
         "orders.html",
         {"order": order},
     )
+
+
+def result(request):
+    if request.GET:
+        logger.info(f'ПРИШЕЛ GET ЗАПРОС', request.GET)
+        if 'OutSum' and 'InvId' in request.GET:
+            received_sum = request.GET['OutSum']
+            order_number = request.GET['InvId']
+            received_signature = request.GET['SignatureValue']
+
+            if Robokassa.check_signature_result(received_sum, order_number, received_signature,
+                                                os.getenv('PASSWORD_ONE'), ):
+                # переключаем оплату на TRUE
+                return render(request, 'orders/success_pay.html')
+
+            # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
+        return render(request, 'orders/fail_pay.html')
+
+
+def success_pay(request):
+    if request.GET:
+        print(request.GET)
+
+        received_sum = request.GET['OutSum']
+        order_number = request.GET['InvId']
+        received_signature = request.GET['SignatureValue']
+
+        if Robokassa.check_signature_result(received_sum, order_number, received_signature,
+                                            os.getenv('PASSWORD_ONE'), ):
+            return render(request, 'orders/success_pay.html')
+    return render(request, 'orders/fail_pay.html')
+
+
+def fail(request):
+    return render(request, 'orders/fail_pay.html')

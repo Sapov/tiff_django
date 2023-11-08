@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .forms import UploadFilesInter
-from .pay import success_pay, fail, result
 from .views import (
     index,
     delete,
@@ -38,8 +37,5 @@ urlpatterns = [
     path("upload/", upload_arh, name="upload_arh"),  # загрузка архива файла
     path("calculator/", calculator, name="calculator"),  # Calculator
 
-    # https://docs.robokassa.ru/pay-interface/#notification
-    path("result/", result, name="result"),  # для робокассы проверкаe
-    path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
-    path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
+
 ]
