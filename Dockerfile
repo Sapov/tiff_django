@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-c"]
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-EXPOSE 8001
+EXPOSE 8000
 
 RUN pip install --upgrade pip
 
@@ -26,4 +26,4 @@ RUN pip install -r requirements.txt
 
 USER django
 
-CMD ["gunicorn","-b","0.0.0.0:8001","mysite.wsgi:application"]
+CMD ["gunicorn","-b","0.0.0.0:8000","mysite.wsgi:application"]
