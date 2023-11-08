@@ -127,36 +127,3 @@ if __name__ == '__main__':
     test = Robokassa(100, 'Print banner', 1, 'rpk.reds@yandex.ru')
     print(test.generate_payment_link())
 
-
-def result(request):
-    if request.GET:
-        if 'OutSum' and 'InvId' in request.GET:
-            received_sum = request.GET['OutSum']
-            order_number = request.GET['InvId']
-            received_signature = request.GET['SignatureValue']
-
-            if Robokassa.check_signature_result(received_sum, order_number, received_signature,
-                                                os.getenv('PASSWORD_ONE'), ):
-                #переключаем оплату на TRUE
-                return render(request, 'success_pay.html')
-
-            # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
-        return render(request, 'fail_pay.html')
-
-
-def success_pay(request):
-    if request.GET:
-        print(request.GET)
-
-        received_sum = request.GET['OutSum']
-        order_number = request.GET['InvId']
-        received_signature = request.GET['SignatureValue']
-
-        if Robokassa.check_signature_result(received_sum, order_number, received_signature,
-                                            os.getenv('PASSWORD_ONE'), ):
-            return render(request, 'success_pay.html')
-    return render(request, 'fail_pay.html')
-
-
-def fail(request):
-    return render(request, 'fail_pay.html')
