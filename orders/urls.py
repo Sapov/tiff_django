@@ -15,7 +15,7 @@ from .views import (
     report_complite_orders,
     new_order,
     OrdersViewList,
-    AllOrdersListView,
+    AllOrdersListView, result, success_pay, fail,
 )
 
 app_name = "orders"
@@ -54,4 +54,10 @@ urlpatterns = [
     path("order_pay/<int:order_id>", order_pay, name="order_pay"),
     path("about_file/<int:file_id>", about_file, name="about_file"),
     path("report/", report_complite_orders, name="report_complite_orders"),
+
+    # https://docs.robokassa.ru/pay-interface/#notification
+    path("result/", result, name="result"),  # для робокассы проверкаe
+    path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
+    path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
+
 ]
