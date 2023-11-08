@@ -14,8 +14,9 @@ RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
 RUN useradd -rms /bin/bash django && chmod 777 /opt /run
 
 WORKDIR /django
-
-RUN mkdir /django/static && mkdir /django/media && mkdir /django/media/orders && mkdir /django/media/arhive && chown -R django:django /django && chmod 755 /django
+RUN mkdir /django/media
+RUN mkdir /django/media/image
+RUN mkdir /django/static && mkdir /django/media/orders  && mkdir /django/media/arhive && chown -R django:django /django && chmod 755 /django
 
 COPY --chown=django:django . .
 #COPY . /django
@@ -24,4 +25,4 @@ RUN pip install -r requirements.txt
 
 USER django
 
-CMD ["gunicorn","-b","0.0.0.0:8001","mysite.wsgi:application"]
+CMD ["gunicorn","-b","0.0.0.0:8000","mysite.wsgi:application"]
