@@ -24,4 +24,4 @@ RUN pip install -r requirements.txt
 
 USER django
 
-CMD ["gunicorn","-b","0.0.0.0:8001","mysite.wsgi:application"]
+CMD ["gunicorn","-b","0.0.0.0:8000","mysite.wsgi:application"]
