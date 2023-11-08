@@ -293,9 +293,9 @@ def success_pay(request):
 
         if Robokassa.check_signature_result(received_sum, order_number, received_signature,
                                             os.getenv('PASSWORD_ONE'), ):
-            return render(request, 'success_pay.html')
-    return render(request, 'fail_pay.html')
+            return render(request, 'orders/success_pay.html')
+    return render(request, 'orders/fail_pay.html')
 
 
 def fail(request):
-    return render(request, 'fail_pay.html')
+    return render(request, 'orders/fail_pay.html')
