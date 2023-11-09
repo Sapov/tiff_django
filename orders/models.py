@@ -310,14 +310,15 @@ class UtilsModel:
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
                 logger.info(f"[INFO] FILE NAME: {file}")
-                self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
 
-                with zipfile.ZipFile(self.arh_name, 'w') as myzip:
-                    logger.info(f'[INFO] FILE NAME CLEARED: {str(file.images)[str(file.images).rindex("/") + 1:]}')
-                    myzip.write(str(file.images)[str(file.images).rindex("/") + 1:],
-                                compress_type=zipfile.ZIP_DEFLATED,
-                                )
-                myzip.close()
+                self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
+                new_arh = zipfile.ZipFile(self.arh_name, "a")
+                logger.info(str(file.images)[str(file.images).rindex("/") + 1:])
+                new_arh.write(
+                    str(file.images)[str(file.images).rindex("/") + 1:],
+                    compress_type=zipfile.ZIP_DEFLATED,
+                )
+                new_arh.close()
         os.chdir(current_path)  # перейти обратно
         return self.arh_name
 
