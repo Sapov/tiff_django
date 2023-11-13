@@ -80,8 +80,10 @@ class Delivery(models.Model):
 
 
 class DeliveryAddress(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,verbose_name="ЗАКАЗЧИК!!")
     city = models.CharField(max_length=200, verbose_name="Город")
     street = models.CharField(max_length=200, verbose_name="Улица")
+    house = models.CharField(max_length=200, verbose_name="Дом")
 
     class Meta:
         verbose_name_plural = "Адреса доставки"

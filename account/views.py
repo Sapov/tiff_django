@@ -8,7 +8,7 @@ from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from files.models import TypePrint
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView
-from .models import Organisation, Profile
+from .models import Organisation, Profile, Delivery, DeliveryAddress
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 
@@ -118,3 +118,21 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     )
     template_name_suffix = "_update_form"
     success_url = reverse_lazy("account:list_organisation")
+
+
+class DeliveryAddressCreateView(CreateView):
+    # from django.views.generic.edit import CreateView
+    model = Delivery
+    fields = ['__all__']
+
+
+class DeliveryAddressListView(ListView):
+    template_name = "delivery_list.html"
+    model = DeliveryAddress
+    paginate_by = 5
+
+    def get_queryset(self):
+        "организации только этого юзера"
+        # queryset = []
+        queryset = DeliveryAddress.objects.filter(user=self.request.user)
+        return queryset

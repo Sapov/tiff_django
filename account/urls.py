@@ -17,4 +17,6 @@ urlpatterns = [
     path('', views.dashboard, name='dashboard'),
     path('list_profile/', views.ListProfile.as_view(), name='list_profile'),
 
+    path('delivery_list/', views.DeliveryAddressListView.as_view(), name='delivery_list'),
+
 ]
