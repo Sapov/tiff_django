@@ -68,7 +68,8 @@ def delete(request, id):
         # if str(product.preview_images)[1:]:  # если есть вообще
         # os.remove(f'media/{str(product.preview_images)[1:]}')  # Удаление превьюшки (первый слеш мешал жить)
 
-        product.delete()  # удалили запись
+        product.delete()
+        p# удалили запись
         return HttpResponseRedirect("/")
     except Product.DoesNotExist:
         return HttpResponseNotFound("<h2>Удаление</h2>")
