@@ -127,5 +127,3 @@ if __name__ == '__main__':
     test = Robokassa(100, 'Print banner', 1, 'rpk.reds@yandex.ru')
     print(test.generate_payment_link())
 
-
-

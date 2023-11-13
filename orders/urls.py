@@ -59,5 +59,4 @@ urlpatterns = [
     path("result/", result, name="result"),  # для робокассы проверкаe
     path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
     path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
-
 ]
