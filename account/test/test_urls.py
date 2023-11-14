@@ -44,6 +44,7 @@ class TestOrganisation(TestCase):
 
     def test_list_organisation(self):
         response = self.client.get('/account/list_organisation/')
+        a=1
         self.assertEqual(response.status_code, 302)
         # self.assertTemplateUsed(response, 'organisation_list.html')
 
