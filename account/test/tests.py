@@ -16,7 +16,6 @@ class TestAccount(TestCase):
     #         password='secret',
     #     )
 
-
     #
     #     self.organisation = Organisation.objects.create(
     #         name_ul='Общество с ограниченной ответственностью Пароходная компания Юрия Майорова',
@@ -67,3 +66,29 @@ class SigninTest(TestCase):
         user = authenticate(username='test', password='wrong')
         self.assertFalse(user is not None and user.is_authenticated)
 
+
+# class TestTemplates(TestCase):
+#     # def setUp(self):
+#     #     self.user = User.objects.create_user(
+#     #         email='test@test.ru', password='pass1234', email_confirm=True)
+#
+#     def setUp(self):
+#         self.user = get_user_model().objects.create_user(username='test@test.ru', password='12test12',
+#                                                          email='test@test.ru')
+#         self.user.save()
+#
+#         self.client.login(username='test@test.ru', password='pass1234')
+#         # self.healht_data = baker.make(
+#         #     HealthData, user=CustomUser.objects.get(id=self.user.id))
+#         # self.parameters = baker.make(
+#         #     Result, dashboard=self.healht_data, fat_percent='49 %, 3', bmi=20)
+#         # self.url = reverse('cms:dashboard')
+#         # self.resp = self.client.get(self.url)
+#
+#     def test_parameters_template(self):
+#         self.response = self.client.get('/account/add_organisation/')
+#
+#         # self.assertEqual(self.response.status_code, 200)
+#         self.assertTemplateUsed(self.response, 'organisation_form.html')
+#         # self.assertContains(self.resp, 'form')
+#         # self.assertContains(self.resp, 'measuring_system')
