@@ -120,19 +120,37 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("account:list_organisation")
 
 
-class DeliveryAddressCreateView(CreateView):
+class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
     # from django.views.generic.edit import CreateView
-    model = Delivery
-    fields = ['__all__']
+    model = DeliveryAddress
+    fields = ['city', 'street', 'house']
+    success_url = reverse_lazy("account:delivery_list")
+
+    # только для текущего юзера
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
-class DeliveryAddressListView(ListView):
+class DeliveryAddressListView(LoginRequiredMixin, ListView):
     template_name = "delivery_list.html"
     model = DeliveryAddress
     paginate_by = 5
 
     def get_queryset(self):
-        "организации только этого юзера"
-        # queryset = []
+        "Адреса доставки только этого юзера"
         queryset = DeliveryAddress.objects.filter(user=self.request.user)
         return queryset
+
+
+class DeliveryAddressUpdate(LoginRequiredMixin, UpdateView):
+    model = DeliveryAddress
+    fields = ['city', 'street', 'house']
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy("account:delivery_list")
+
+
+class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
+    model = DeliveryAddress
+    fields = '__all__'
+    success_url = reverse_lazy("account:delivery_list")

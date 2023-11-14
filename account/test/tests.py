@@ -8,24 +8,6 @@ from account.models import Organisation
 
 
 class TestAccount(TestCase):
-    def test_add_organisation(self):
-        response = self.client.get('/account/add_organisation/')
-        self.assertEqual(response.status_code, 302)
-        # self.assertTemplateUsed(response, 'organisation_form.html')
-
-    def test_list_organisation(self):
-        response = self.client.get('/account/list_organisation/')
-        self.assertEqual(response.status_code, 302)
-        # self.assertTemplateUsed(response, 'organisation_list.html')
-
-    def test_del_organisation(self):
-        response = self.client.get('/account/delete_organisation_user/1')
-        self.assertEqual(response.status_code, 302)
-
-    def test_update_organisation(self):
-        response = self.client.get('/account/update_organisation_user/1')
-        self.assertEqual(response.status_code, 302)
-        # self.assertTemplateUsed(response, 'organisation_update_form.html')
 
     # def test_model_Organisation_setUp(self):
     #     self.user = get_user_model().objects.create_user(
@@ -33,6 +15,8 @@ class TestAccount(TestCase):
     #         email='test@mail.ru',
     #         password='secret',
     #     )
+
+
     #
     #     self.organisation = Organisation.objects.create(
     #         name_ul='Общество с ограниченной ответственностью Пароходная компания Юрия Майорова',

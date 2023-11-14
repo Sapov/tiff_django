@@ -3,7 +3,15 @@
 {% block body %}
 
     <h1>Мои Адреса: </h1>
-<p><a href="{% url 'account:create_organisation' %}">Добавить организацию</a>
+
+  <a href="{% url 'account:delivery_create' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">Добавить адрес</span>
+                                    </a>
+
+
 
 <hr>
 <div class="row">
@@ -16,7 +24,7 @@
                                                     <th scope="col">Город</th>
                                                     <th scope="col">Улица</th>
                                                     <th scope="col">Дом</th>
-                                                    <th scope="col">ИНН</th>
+                                                    <th scope="col">Кв</th>
                                                     <th scope="col">КПП</th>
                                                     <th scope="col">ОКПО:</th>
                                                 </tr>
@@ -29,12 +37,12 @@
                                                     <td>{{ item.id }}</td>
                                                     <td>{{ item.city }}</td>
                                                     <td>{{ item.street }}</td>
-                                                    <td>{{ oraganisation.phone }}</td>
+                                                    <td>{{ item.house }}</td>
                                                     <td>{{ oraganisation.inn }}</td>
                                                     <td>{{ oraganisation.kpp }}</td>
                                                     <td>{{ oraganisation.okpk }}</td>
-                                                    <td><a href="{% url 'account:update_organisation_user' oraganisation.id %}">Изменить</a></td>
-                                                    <td><a href="{% url 'account:delete_organisation_user' oraganisation.id %}">Удалить</a></td>
+                                                    <td><a href="{% url 'account:delivery_update' item.id %}">Изменить</a></td>
+                                                    <td><a href="{% url 'account:delivery_delete' item.id %}">Удалить</a></td>
                 </tr>
         {% endfor %}
             </tbody>

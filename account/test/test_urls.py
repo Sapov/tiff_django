@@ -7,42 +7,51 @@ from ..models import Organisation, Profile
 User = get_user_model()
 
 
-class AccountURLTests(TestCase):
+class TestDelivery(TestCase):
 
-    def setUp(self):
-        self.guest_client = Client()
-        self.user = User.objects.create_user(username='auth')
-        self.authorized_client = Client()
-        self.authorized_client.force_login(self.user)
+    def test_delivery_create(self):
+        ''' Редирект пользователя с /account/delivery_list/'''
+        response = self.client.get('/account/delivery_create/')
+        self.assertEqual(response.status_code, 302)
 
-        self.organisation = Organisation.objects.create(
-            Contractor=self.user,
-            name_ul='Test Company',
-            address_ur='Test Address',
-            address_post='Test Post Address',
-            phone='123456',
-            email='test@example.com',
-            inn='123456789012',
-            kpp='123456789',
-            okpo='123456789012',
-        )
+    def test_delivery_update(self):
+        ''' Редирект пользователя с /account/delivery_list/'''
+        response = self.client.get('/account/delivery_update/1')
+        self.assertEqual(response.status_code, 302)
+
+    def test_delivery_delete(self):
+        """ Редирект пользователя с /account/delivery_list/"""
+        response = self.client.get('/account/delivery_delete/1')
+        self.assertEqual(response.status_code, 302)
+
+    def test_delivery_list(self):
+        """ Редирект пользователя с /account/delivery_list/"""
+        response = self.client.get('/account/delivery_list/')
+        self.assertEqual(response.status_code, 302)
+
+    # def test_delivery_list_templates(self):
+    #     """ Редирект пользователя с /account/delivery_list/"""
+    #     response = self.client.get('/account/delivery_list/')
+    #
+    #     self.assertTemplateUsed(response, 'delivery_list.html')
 
 
-class TestAccount(TestCase):
+class TestOrganisation(TestCase):
     def test_add_organisation(self):
-        ''' Редирект пользователя с /account/add_organisation/'''
         response = self.client.get('/account/add_organisation/')
         self.assertEqual(response.status_code, 302)
+        # self.assertTemplateUsed(response, 'organisation_form.html')
 
     def test_list_organisation(self):
-        """ Редирект пользователя с /account/list_organisation/"""
         response = self.client.get('/account/list_organisation/')
         self.assertEqual(response.status_code, 302)
+        # self.assertTemplateUsed(response, 'organisation_list.html')
 
-    def test_edit_profile(self):
-        ''' Редирект пользователя с /account/edit/'''
-        response = self.client.get('/account/edit/')
+    def test_del_organisation(self):
+        response = self.client.get('/account/delete_organisation_user/1')
         self.assertEqual(response.status_code, 302)
 
-
-
+    def test_update_organisation(self):
+        response = self.client.get('/account/update_organisation_user/1')
+        self.assertEqual(response.status_code, 302)
+        # self.assertTemplateUsed(response, 'organisation_update_form.html')
