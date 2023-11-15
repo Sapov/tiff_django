@@ -335,7 +335,7 @@ class UtilsModel:
         os.chdir(current_path)  # перейти обратно
 
     def copy_files_in_server(self):
-        """закидываем файлы на order локально на ubuntu
+        """Закидываем файлы на order локально на ubuntu
         Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
         ДИСКЕ затирается новым"""
         self.arhiv_order_path = f"{self.path_arhive}/{self.order_id}"
