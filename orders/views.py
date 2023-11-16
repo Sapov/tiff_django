@@ -64,11 +64,11 @@ def new_order(request):
 
 @login_required
 def view_order(request):
-    """Вывод файлов только авторизованного пользователя"""
+    """Вывод ордеров только авторизованного пользователя"""
     Orders = Order.objects.filter(Contractor=request.user).order_by("-id")
     logger.info(f"Orders:  {Orders}")
 
-    paginator = Paginator(Orders, 2)
+    paginator = Paginator(Orders, 6)
     if "page" in request.GET:
         page_num = request.GET.get("page")
     else:
