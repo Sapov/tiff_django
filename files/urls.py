@@ -36,6 +36,4 @@ urlpatterns = [
     path("price/", price, name="price"),  # прайс-лист
     path("upload/", upload_arh, name="upload_arh"),  # загрузка архива файла
     path("calculator/", calculator, name="calculator"),  # Calculator
-
-
 ]
