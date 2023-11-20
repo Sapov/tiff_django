@@ -31,7 +31,7 @@ class Organisation(models.Model):
         max_length=70,
         verbose_name="Имя юр. лица",
         help_text="Форма собственности и название.Если платильщик физ. Лицо, оаставить физ. лицо. ",
-        default='Физ. лицо'
+        default="Физ. лицо",
     )
     address_ur = models.TextField(
         null=True,
@@ -68,7 +68,9 @@ class Organisation(models.Model):
 
 
 class Delivery(models.Model):
-    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки", default=2)
+    type_delivery = models.CharField(
+        max_length=200, verbose_name="Тип доставки", default=2
+    )
 
     class Meta:
         verbose_name_plural = "Типы доставки"
@@ -80,10 +82,14 @@ class Delivery(models.Model):
 
 
 class DeliveryAddress(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,verbose_name="ЗАКАЗЧИК!!")
-    city = models.CharField(max_length=200, verbose_name="Город")
-    street = models.CharField(max_length=200, verbose_name="Улица")
-    house = models.CharField(max_length=200, verbose_name="Дом")
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!"
+    )
+    city = models.CharField(max_length=200, verbose_name="Город", null=True, blank=True)
+    street = models.CharField(
+        max_length=200, verbose_name="Улица", null=True, blank=True
+    )
+    house = models.CharField(max_length=200, verbose_name="Дом", null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Адреса доставки"
