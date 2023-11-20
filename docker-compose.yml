@@ -25,8 +25,8 @@ services:
     depends_on:
       - postgres_db
     volumes:
-      - ~/django/static_volume:/django/static
-      - ~/django/media_volume:/django/media
+      - static_volume:/django/static
+      - media_volume:/django/media
     env_file:
       - .env
     environment:
@@ -41,9 +41,9 @@ services:
     restart: always
     build: .
     volumes:
-      - ~/django/:/app
-      - ~/django/static_volume:/django/static
-      - ~/django/media_volume:/django/media
+      - /:/app
+      - static_volume:/django/static
+      - media_volume:/django/media
     depends_on:
       - redis
       - django_project
@@ -56,8 +56,8 @@ services:
     container_name: nginx_for_django
     image: nginx_for_django
     volumes:
-      - ~/django/static_volume:/django/static
-      - ~/django/media_volume:/django/media
+      - static_volume:/django/static
+      - media_volume:/django/media
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -81,6 +81,8 @@ services:
       - acme:/etc/acme.sh
 
 volumes:
+  static_volume:
+  media_volume:
   certs:
   vhost:
   html:
