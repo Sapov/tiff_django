@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage, send_mail
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
@@ -269,7 +270,7 @@ def report_complite_orders(request):
 
 def result(request):
     if request.POST:
-        logger.info(f"ПРИШЕЛ GET ЗАПРОС", request.GET)
+        logger.info(f"ПРИШЕЛ GET ЗАПРОС", request.POST)
         if "OutSum" and "InvId" in request.POST:
             received_sum = request.POST["OutSum"]
             order_number = request.POST["InvId"]
@@ -282,10 +283,11 @@ def result(request):
                 os.getenv("PASSWORD_ONE"),
             ):
                 # переключаем оплату на TRUE
+                # return render(request, "orders/success_pay.html")
                 return render(request, "orders/success_pay.html")
 
             # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
-        return render(request, "orders/fail_pay.html")
+        return HttpResponse(f"OK{order_number}")
 
 
 def success_pay(request):
