@@ -38,8 +38,8 @@ def new_order(request):
         # logging.info(f"USER: {form.user}")
         # logging.info(f'ORGANISATION: {request.POST["organisation_payer"]}')
         logging.info(f'delivery {request.POST["delivery"]}')
-        logging.info(f'REQUEST {request.POST}')
-        logging.info(f'USER {request.user}')
+        logging.info(f"REQUEST {request.POST}")
+        logging.info(f"USER {request.user}")
         # если агентство добавляем оранизацию платильщик
         # number_organisation = request.POST["organisation_payer"]
         # organisation = Organisation.objects.get(id=number_organisation)
@@ -168,7 +168,7 @@ def order_pay(request, order_id):
     """
     current_path = os.getcwd()
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
-    text = 'оплата text'
+    text = "оплата text"
 
     # --------------- Формирование счета---------
     # create_order_pdf.delay(order_id)
@@ -182,9 +182,11 @@ def order_pay(request, order_id):
     # -----------------------create_link_pay-----------------------------------
     Orders = Order.objects.get(id=order_id)
     user = request.user
-    link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
+    link_pay = Robokassa(
+        Orders.total_price, f"Оплата заказа № {Orders.id}", order_id, user
+    ).run()
     # logger.info(f'Генерим платежную ссылку: ', link_pay)
-    context = {"Orders": Orders, "text": text, 'link_pay': link_pay}
+    context = {"Orders": Orders, "text": text, "link_pay": link_pay}
     os.chdir(current_path)  # перейти обратно
 
     return render(request, "orderpay.html", context)
@@ -260,42 +262,49 @@ def report_complite_orders(request):
     # 2023-10-10 18:40:09.391297
     return render(
         request,
-        "report_complite_"
-        "orders.html",
+        "report_complite_" "orders.html",
         {"order": order},
     )
 
 
 def result(request):
-    if request.GET:
-        logger.info(f'ПРИШЕЛ GET ЗАПРОС', request.GET)
-        if 'OutSum' and 'InvId' in request.GET:
-            received_sum = request.GET['OutSum']
-            order_number = request.GET['InvId']
-            received_signature = request.GET['SignatureValue']
+    if request.POST:
+        logger.info(f"ПРИШЕЛ GET ЗАПРОС", request.GET)
+        if "OutSum" and "InvId" in request.POST:
+            received_sum = request.POST["OutSum"]
+            order_number = request.POST["InvId"]
+            received_signature = request.POST["SignatureValue"]
 
-            if Robokassa.check_signature_result(received_sum, order_number, received_signature,
-                                                os.getenv('PASSWORD_ONE'), ):
+            if Robokassa.check_signature_result(
+                received_sum,
+                order_number,
+                received_signature,
+                os.getenv("PASSWORD_ONE"),
+            ):
                 # переключаем оплату на TRUE
-                return render(request, 'orders/success_pay.html')
+                return render(request, "orders/success_pay.html")
 
             # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
-        return render(request, 'orders/fail_pay.html')
+        return render(request, "orders/fail_pay.html")
 
 
 def success_pay(request):
     if request.GET:
         print(request.GET)
 
-        received_sum = request.GET['OutSum']
-        order_number = request.GET['InvId']
-        received_signature = request.GET['SignatureValue']
+        received_sum = request.GET["OutSum"]
+        order_number = request.GET["InvId"]
+        received_signature = request.GET["SignatureValue"]
 
-        if Robokassa.check_signature_result(received_sum, order_number, received_signature,
-                                            os.getenv('PASSWORD_ONE'), ):
-            return render(request, 'orders/success_pay.html')
-    return render(request, 'orders/fail_pay.html')
+        if Robokassa.check_signature_result(
+            received_sum,
+            order_number,
+            received_signature,
+            os.getenv("PASSWORD_ONE"),
+        ):
+            return render(request, "orders/success_pay.html")
+    return render(request, "orders/fail_pay.html")
 
 
 def fail(request):
-    return render(request, 'orders/fail_pay.html')
+    return render(request, "orders/fail_pay.html")
