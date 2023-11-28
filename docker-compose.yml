@@ -58,10 +58,10 @@ services:
     volumes:
       - static_volume:/django/static
       - media_volume:/django/media
-      - certs:/etc/nginx/certs
-      - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+#      - certs:/etc/nginx/certs
+#      - vhost:/etc/nginx/vhost.d
+#      - html:/usr/share/nginx/html
+#      - /var/run/docker.sock:/tmp/docker.sock:ro
 
     depends_on:
       - postgres_db
