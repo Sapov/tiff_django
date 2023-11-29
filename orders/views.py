@@ -269,12 +269,12 @@ def report_complite_orders(request):
 
 
 def result(request):
-    if request.POST:
-        logger.info(f"ПРИШЕЛ GET ЗАПРОС", request.POST)
-        if "OutSum" and "InvId" in request.POST:
-            received_sum = request.POST["OutSum"]
-            order_number = request.POST["InvId"]
-            received_signature = request.POST["SignatureValue"]
+    if request.method == "GET":
+        logger.info(f"ПРИШЕЛ GET ЗАПРОС", request.GET)
+        if "OutSum" and "InvId" in request.GET:
+            received_sum = request.GET["OutSum"]
+            order_number = request.GET["InvId"]
+            received_signature = request.GET["SignatureValue"]
 
             if Robokassa.check_signature_result(
                 received_sum,
