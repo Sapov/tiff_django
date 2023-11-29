@@ -10,6 +10,7 @@ from orders.utils import DrawOrder, Utils
 
 @shared_task
 def arh_for_mail(order_id: int, domain: str):
+    """Отправляем письмо подрядчику"""
     order_item = UtilsModel(order_id, domain)
     order_item.run()
     # send_mail_order(order_id, domain)

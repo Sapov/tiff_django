@@ -189,7 +189,7 @@ def order_pay(request, order_id):
     # logger.info(f'Генерим платежную ссылку: ', link_pay)
     context = {"Orders": Orders, "text": text, "link_pay": link_pay}
     os.chdir(current_path)  # перейти обратно
-
+    # -------------------Отправляем письмо заказчику------------------
     return render(request, "orderpay.html", context)
 
 

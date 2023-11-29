@@ -38,7 +38,13 @@ class StatusOrder(models.Model):
 
 
 class Order(models.Model):
-    delivery = models.ForeignKey(Delivery, on_delete=models.PROTECT, verbose_name='Доставка', null=True, default=3)
+    delivery = models.ForeignKey(
+        Delivery,
+        on_delete=models.PROTECT,
+        verbose_name="Доставка",
+        null=True,
+        default=3,
+    )
     total_price = models.FloatField(
         max_length=10,
         null=True,
@@ -82,7 +88,7 @@ class Order(models.Model):
     )
     order_arhive = models.FileField(upload_to=f"arhive/{id}", null=True, blank=True)
     order_pdf_file = models.FileField(upload_to=f"orders/", null=True, blank=True)
-    pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
+    pay_link = models.TextField(verbose_name="ссылка для оплаты", null=True, blank=True)
 
     def __str__(self):
         return f"Заказ № {self.id}"
@@ -242,8 +248,8 @@ class UtilsModel:
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
         order = Order.objects.get(id=self.order_id)
-        logger.info(f'[INFO] DOMAIN {self.domain}')
-        logger.info(f'[INFO] ARHIVE {str(order.order_arhive)}')
+        logger.info(f"[INFO] DOMAIN {self.domain}")
+        logger.info(f"[INFO] ARHIVE {str(order.order_arhive)}")
 
         send_mail(
             "Новый заказ от REDS",
@@ -251,6 +257,30 @@ class UtilsModel:
             f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}",
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
+            fail_silently=False,
+        )
+        # html_message=render_to_string('mail/templates.html', data))
+
+    def send_mail_for_client(self):
+        """отправляем письмо Клиенту сообщение о новом заказе"""
+        order = Order.objects.get(id=self.order_id)
+        logger.info(f"[INFO] DOMAIN {self.domain}")
+        logger.info(f"[CONTRACTOR MAIL] {str(order.Contractor)}")
+        logger.info(
+            f"dir:{os.getcwd()}"
+        )  # dir:/home/sasha/PycharmProjects/tiff_django/media
+
+        # with open("templates/mail/new_order.html", "r") as tem:
+        #     print(tem.read())
+        #     tema = str(tem.read())
+        # with open('newfile.txt', 'w', encoding='utf-8') as g:
+
+        send_mail(
+            f"Вы оформили новый заказ № {self.order_id}",
+            # f'{self.new_str}\n',
+            f"{self.new_str}\n",
+            "django.rpk@mail.ru",
+            [f"{str(order.Contractor)}"],
             fail_silently=False,
         )
         # html_message=render_to_string('mail/templates.html', data))
@@ -313,9 +343,9 @@ class UtilsModel:
 
                 self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
-                logger.info(str(file.images)[str(file.images).rindex("/") + 1:])
+                logger.info(str(file.images)[str(file.images).rindex("/") + 1 :])
                 new_arh.write(
-                    str(file.images)[str(file.images).rindex("/") + 1:],
+                    str(file.images)[str(file.images).rindex("/") + 1 :],
                     compress_type=zipfile.ZIP_DEFLATED,
                 )
                 new_arh.close()
@@ -387,13 +417,13 @@ class UtilsModel:
         return
 
     def rename_files_for_print(self):
-        '''Переименовываем файлы перед архивацией приводим к виду:
-        --01_шт_размер_1,5х2_м_440_баннер.tiff--'''
+        """Переименовываем файлы перед архивацией приводим к виду:
+        --01_шт_размер_1,5х2_м_440_баннер.tiff--"""
         all_products_in_order = OrderItem.objects.filter(
             order=self.order_id, is_active=True
         )
         for item in all_products_in_order:
-            print('NAME FILES:', item.product)
+            print("NAME FILES:", item.product)
             # file = Product.objects.get(id=item.product.id)
 
     def run(self):
@@ -405,3 +435,4 @@ class UtilsModel:
         self.add_arhive_in_order()
         self.set_status_order()  # меняю статус заказа
         self.send_mail_order()  # отправил письмо
+        self.send_mail_for_client()  # отправил письмо пользователю
