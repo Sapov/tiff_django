@@ -37,17 +37,17 @@ services:
       bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate  && ./manage.py add_test_data && ./manage.py add_price && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
     restart: always
 
-  worker:
-    restart: always
-    build: .
-    volumes:
-      - /:/app
-      - static_volume:/django/static
-      - media_volume:/django/media
-    depends_on:
-      - redis
-      - django_project
-    command: 'celery -A mysite worker -l info'
+#  worker:
+#    restart: always
+#    build: .
+#    volumes:
+#      - /:/app
+#      - static_volume:/django/static
+#      - media_volume:/django/media
+#    depends_on:
+#      - redis
+#      - django_project
+#    command: 'celery -A mysite worker -l info'
 
   nginx:
     build:
