@@ -291,9 +291,8 @@ def result(request):
 
 
 def success_pay(request):
-    if request.GET:
-        print(request.GET)
-
+    if request.method == "GET":
+        print("GET")
         received_sum = request.GET["OutSum"]
         order_number = request.GET["InvId"]
         received_signature = request.GET["SignatureValue"]
@@ -304,7 +303,11 @@ def success_pay(request):
             received_signature,
             os.getenv("PASSWORD_ONE"),
         ):
+            print("////SUCCESS////")
             return render(request, "orders/success_pay.html")
+    else:
+        print("NOT GET")
+
     return render(request, "orders/fail_pay.html")
 
 
