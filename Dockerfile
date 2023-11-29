@@ -14,9 +14,18 @@ RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
 
 RUN useradd -rms /bin/bash django && chmod 777 /opt /run
 
-WORKDIR /django
+RUN mkdir persistentdata
+RUN mkdir persistentdata/certbot
+RUN mkdir persistentdata/certbot/conf
+RUN mkdir persistentdata/certbot/www
+RUN mkdir persistentdata/certbot/conf/live/
+RUN mkdir persistentdata/certbot/conf/live/orders.san-cd.ru/ # adjust to your domain orders.san-cd.ru
+RUN mkdir persistentdata/static
+RUN mkdir persistentdata/media
+RUN mkdir persistentdata/db
 RUN mkdir /django/media
 RUN mkdir /django/media/image
+WORKDIR /django
 RUN mkdir /django/static && mkdir /django/media/orders && mkdir /django/media/arhive && chown -R django:django /django && chmod 755 /django
 
 
