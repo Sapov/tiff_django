@@ -46,7 +46,7 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-        return render(request, 'account/complite_edit.html')
+        return render(request, "account/complite_edit.html")
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
@@ -123,7 +123,17 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
 class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
     # from django.views.generic.edit import CreateView
     model = DeliveryAddress
-    fields = ['city', 'street', 'house']
+    fields = [
+        "delivery_method",
+        "region",
+        "district",
+        "city",
+        "street",
+        "house",
+        "first_name",
+        "second_name",
+        "phone",
+    ]
     success_url = reverse_lazy("account:delivery_list")
 
     # только для текущего юзера
@@ -145,12 +155,12 @@ class DeliveryAddressListView(LoginRequiredMixin, ListView):
 
 class DeliveryAddressUpdate(LoginRequiredMixin, UpdateView):
     model = DeliveryAddress
-    fields = ['city', 'street', 'house']
-    template_name_suffix = '_update_form'
+    fields = ["region", "district", "city", "street", "house", "delivery_method"]
+    template_name_suffix = "_update_form"
     success_url = reverse_lazy("account:delivery_list")
 
 
 class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
     model = DeliveryAddress
-    fields = '__all__'
+    fields = "__all__"
     success_url = reverse_lazy("account:delivery_list")

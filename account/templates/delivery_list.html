@@ -21,12 +21,14 @@
             <tr>
 
                                                     <th scope="col">№</th>
+                                                    <th scope="col">Область</th>
+                                                    <th scope="col">Регион</th>
                                                     <th scope="col">Город</th>
                                                     <th scope="col">Улица</th>
                                                     <th scope="col">Дом</th>
-                                                    <th scope="col">Кв</th>
-                                                    <th scope="col">КПП</th>
-                                                    <th scope="col">ОКПО:</th>
+                                                    <th scope="col">Имя получателя</th>
+                                                    <th scope="col">Тел. получателя</th>
+                                                    <th scope="col">Тип доставки:</th>
                                                 </tr>
                                             </thead>
 
@@ -35,12 +37,14 @@
                                             <tbody>
                                                 <tr>
                                                     <td>{{ item.id }}</td>
+                                                    <td>{{ item.region }}</td>
+                                                    <td>{{ item.district }}</td>
                                                     <td>{{ item.city }}</td>
                                                     <td>{{ item.street }}</td>
                                                     <td>{{ item.house }}</td>
-                                                    <td>{{ oraganisation.inn }}</td>
-                                                    <td>{{ oraganisation.kpp }}</td>
-                                                    <td>{{ oraganisation.okpk }}</td>
+                                                    <td>{{ item.first_name }} {{ item.second_name }}</td>
+                                                    <td>{{ item.phone }}</td>
+                                                    <td>{{ item.delivery_method }}</td>
                                                     <td><a href="{% url 'account:delivery_update' item.id %}">Изменить</a></td>
                                                     <td><a href="{% url 'account:delivery_delete' item.id %}">Удалить</a></td>
                 </tr>
