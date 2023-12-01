@@ -1,3 +1,4 @@
+import datetime
 import logging
 import os
 
@@ -17,7 +18,7 @@ from account.models import Organisation, Delivery
 from files.models import Product
 from files.pay import Robokassa
 from .forms import NewOrder
-from .models import Order, OrderItem, UtilsModel
+from .models import Order, OrderItem, UtilsModel, StatusOrder
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
 from .utils import DrawOrder, Utils
@@ -250,6 +251,7 @@ def view_all_files_for_work_in_orders(request):
 #     form = UserOrganisationForm(user=user)
 #     # a1 = Order.objects.create(**form.cleaned_data)
 #     return render(request, "user_organization.html", {"form": form})
+# from django.utils.timezone import make_aware
 
 
 def report_complite_orders(request):
@@ -257,15 +259,35 @@ def report_complite_orders(request):
     if request.method == "POST":
         date_start = request.POST["date_start"]
         date_finish = request.POST["date_finish"]
-    logger.info(f"date_start:{date_start}, type{type(date_start)}")
-    logger.info(f"date_finish:{date_finish}")
-    # order = Order.objects.filter(created=)
-    # 2023-10-10 18:40:09.391297
+        date_finish = date_finish + " 00:00:00.000000"
+        # date_time_obj = datetime.datetime.strptime(date_start, "%Y-%m-%d %H:%M:%S.%f")
+        # aware_datetime = make_aware(date_time_obj)
+
+        logger.info(f"date_start:{date_start}")
+        order = Order.objects.all()
+        print(order)
+        "2023-11-08 18:30:21.612153+00:00"
+        return render(
+            request,
+            "report_complite_orders.html",
+            {"order": order},
+        )
     return render(
         request,
-        "report_complite_" "orders.html",
-        {"order": order},
+        "report_complite_orders.html",
     )
+
+
+def set_status_order(order_id: int):
+    """Переключаю статус заказа на /в работе/"""
+
+    order = Order.objects.get(id=order_id)
+    status = StatusOrder.objects.get(id=3)
+    """ Ставлю оплачено"""
+    order.paid = True
+    order.status = status
+    order.save()
+    logger.info(f'"""Переключаю статус заказа на /в работе/"""')
 
 
 def result(request):
@@ -287,7 +309,7 @@ def result(request):
                 return HttpResponse(f"OK{order_number}")
 
             # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
-        return HttpResponse(f"NNoOK{order_number}")
+            return HttpResponse(f"NNoOK{order_number}")
 
 
 def success_pay(request):
@@ -304,6 +326,9 @@ def success_pay(request):
             os.getenv("PASSWORD_ONE"),
         ):
             print("////SUCCESS////")
+            """ меняем состояние заказа на В работе и на ОПЛАЧЕН"""
+            set_status_order(order_number)
+
             return render(request, "orders/success_pay.html")
     else:
         print("NOT GET")
@@ -313,3 +338,26 @@ def success_pay(request):
 
 def fail(request):
     return render(request, "orders/fail_pay.html")
+
+
+def send_mail_for_client_work(self):
+    """отправляем письмо Клиенту сообщение о поступлении заказа в работу"""
+    order = Order.objects.get(id=self.order_id)
+    logger.info(
+        f"dir:{os.getcwd()}"
+    )  # dir:/home/sasha/PycharmProjects/tiff_django/media
+
+    # with open("templates/mail/new_order.html", "r") as tem:
+    #     print(tem.read())
+    #     tema = str(tem.read())
+    # with open('newfile.txt', 'w', encoding='utf-8') as g:
+
+    send_mail(
+        f"Вы оплатили заказ № {self.order_id}",
+        # f'{self.new_str}\n',
+        f"{self.new_str}\n",
+        "django.rpk@mail.ru",
+        [f"{str(order.Contractor)}"],
+        fail_silently=False,
+    )
+    # html_message=render_to_string('mail/templates.html', data))

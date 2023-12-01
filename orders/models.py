@@ -264,8 +264,6 @@ class UtilsModel:
     def send_mail_for_client(self):
         """отправляем письмо Клиенту сообщение о новом заказе"""
         order = Order.objects.get(id=self.order_id)
-        logger.info(f"[INFO] DOMAIN {self.domain}")
-        logger.info(f"[CONTRACTOR MAIL] {str(order.Contractor)}")
         logger.info(
             f"dir:{os.getcwd()}"
         )  # dir:/home/sasha/PycharmProjects/tiff_django/media
