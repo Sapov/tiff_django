@@ -71,14 +71,14 @@ services:
 
     restart: always
 
-#  acme_companion:
-#    image: nginxproxy/acme-companion:2.2
-#    container_name: acme_companion
-#    volumes_from:
-#      - nginx
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock:ro
-#      - acme:/etc/acme.sh
+  acme_companion:
+    image: nginxproxy/acme-companion:2.2
+    container_name: acme_companion
+    volumes_from:
+      - nginx
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/etc/acme.sh
 
 volumes:
   static_volume:
