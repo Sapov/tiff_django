@@ -85,14 +85,18 @@ class DeliveryAddress(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!"
     )
-    region = models.CharField(max_length=100, verbose_name="Область")
+    region = models.CharField(
+        max_length=100, verbose_name="Область", null=True, blank=True
+    )
     district = models.CharField(
         max_length=100, verbose_name="Регион", null=True, blank=True
     )
 
-    city = models.CharField(max_length=200, verbose_name="Город")
-    street = models.CharField(max_length=200, verbose_name="Улица")
-    house = models.CharField(max_length=200, verbose_name="Дом")
+    city = models.CharField(max_length=200, verbose_name="Город", null=True, blank=True)
+    street = models.CharField(
+        max_length=200, verbose_name="Улица", null=True, blank=True
+    )
+    house = models.CharField(max_length=200, verbose_name="Дом", null=True, blank=True)
 
     first_name = models.CharField(
         max_length=100, verbose_name="Имя", null=True, blank=True
@@ -100,7 +104,9 @@ class DeliveryAddress(models.Model):
     second_name = models.CharField(
         max_length=100, verbose_name="Фамилия", null=True, blank=True
     )
-    phone = models.CharField(max_length=100, verbose_name="Телефон")
+    phone = models.CharField(
+        max_length=100, verbose_name="Телефон", null=True, blank=True
+    )
     delivery_method = models.ForeignKey(
         Delivery,
         on_delete=models.PROTECT,
