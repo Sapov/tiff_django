@@ -94,8 +94,12 @@ class DeliveryAddress(models.Model):
     street = models.CharField(max_length=200, verbose_name="Улица")
     house = models.CharField(max_length=200, verbose_name="Дом")
 
-    first_name = models.CharField(max_length=100, verbose_name="Имя")
-    second_name = models.CharField(max_length=100, verbose_name="Фамилия")
+    first_name = models.CharField(
+        max_length=100, verbose_name="Имя", null=True, blank=True
+    )
+    second_name = models.CharField(
+        max_length=100, verbose_name="Фамилия", null=True, blank=True
+    )
     phone = models.CharField(max_length=100, verbose_name="Телефон")
     delivery_method = models.ForeignKey(
         Delivery,
