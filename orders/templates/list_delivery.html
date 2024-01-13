@@ -1,17 +1,10 @@
 {% extends 'base.html'%}
+
+{% load crispy_forms_tags %}
 <title>{% block title %} Адреса доставки: {% endblock %}</title>
 {% block body %}
 
-    <h1>Мои Адреса: </h1>
-
-  <a href="{% url 'account:delivery_create' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">Добавить адрес</span>
-                                    </a>
-
-
+    <h1>Выберите адрес доставки: </h1>
 
 <hr>
 <div class="row">
@@ -20,7 +13,7 @@
             <thead>
             <tr>
 
-                                                    <th scope="col">№</th>
+                                                    <th scope="col">Выбор адреса</th>
                                                     <th scope="col">Область</th>
                                                     <th scope="col">Регион</th>
                                                     <th scope="col">Город</th>
@@ -36,7 +29,8 @@
 
                                             <tbody>
                                                 <tr>
-                                                    <td>{{ item.id }}</td>
+                                                    <td>   <input id="{{ item.id }}" type="radio" name="id_delivery" >
+
                                                     <td>{{ item.region }}</td>
                                                     <td>{{ item.district }}</td>
                                                     <td>{{ item.city }}</td>
@@ -45,13 +39,20 @@
                                                     <td>{{ item.first_name }} {{ item.second_name }}</td>
                                                     <td>{{ item.phone }}</td>
                                                     <td>{{ item.delivery_method }}</td>
-                                                    <td><a href="{% url 'account:delivery_update' item.id %}">Изменить</a></td>
-                                                    <td><a href="{% url 'account:delivery_delete' item.id %}">Удалить</a></td>
+
+
+                                                    </td>
                 </tr>
         {% endfor %}
             </tbody>
     </table>
     </div>
 </div>
+<form method="post", enctype="multipart/form-data">
 
+    {% csrf_token %}
+<!--    {{ form.as_p }}-->
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Новый заказ</button>
+</form>
 {% endblock body %}

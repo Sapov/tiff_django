@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
-from account.models import Organisation, Delivery
+from account.models import Organisation, Delivery, DeliveryAddress
 
 # from account.models import Organisation
 from files.models import Product
@@ -34,33 +34,30 @@ def new_order(request):
     logging.info(request)
     if request.POST:
         logging.info(f"method POST")
-        # form = NewOrder(user=request.user)  # для организаций пока отключу
-        form = NewOrder()  # для организаций пока отключу
+        form = NewOrder(user=request.user)
         # if form.is_valid():
-        # logging.info(f"USER: {form.user}")
-        # logging.info(f'ORGANISATION: {request.POST["organisation_payer"]}')
-        logging.info(f'delivery {request.POST["delivery"]}')
+        logging.info(f"USER: {form.user}")
+        logging.info(f'delivery_address {request.POST["delivery_address"]}')
         logging.info(f"REQUEST {request.POST}")
         logging.info(f"USER {request.user}")
         # если агентство добавляем оранизацию платильщик
         # number_organisation = request.POST["organisation_payer"]
         # organisation = Organisation.objects.get(id=number_organisation)
         # logging.info(f"organisation {organisation}")
-        delivery_id = request.POST["delivery"]
+        delivery_id = request.POST["delivery_address"]
 
-        delivery = Delivery.objects.get(id=delivery_id)
+        delivery = DeliveryAddress.objects.get(id=delivery_id)
 
-        # neworder = Order.objects.create(
-        #     Contractor=form.user, organisation_payer=organisation, delivery=delivery,
-        # )
+        neworder = Order.objects.create(
+            Contractor=form.user,
+            # organisation_payer=organisation,
+            delivery_address=delivery,
+        )
 
-        neworder = Order.objects.create(Contractor=request.user, delivery=delivery)
-
-        # logging.info(f"neworder {neworder}")
-        # logging.info(f"NEW ORDER ID: {neworder.id}")
         return redirect("orders:add_file_in_order", neworder.id)
     else:
-        form = NewOrder()
+        # form = NewOrder()
+        form = NewOrder(user=request.user)
     return render(request, "neworder.html", {"form": form})
 
 
@@ -119,6 +116,8 @@ def add_files_in_order(request, order_id):
     )  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     current_order = Order.objects.get(pk=order_id)
+    delivery_address = DeliveryAddress.objects.filter(user=request.user)
+    logger.info(f"delivery_address:  {delivery_address}")
 
     context = {
         "Orders": Orders,
@@ -126,6 +125,7 @@ def add_files_in_order(request, order_id):
         "items_in_order": items_in_order,
         "current_order": current_order,
         "order_id": order_id,
+        "delivery_address": delivery_address,
     }
     return render(request, "add_files_in_order.html", context)
 
@@ -361,3 +361,47 @@ def send_mail_for_client_work(self):
         fail_silently=False,
     )
     # html_message=render_to_string('mail/templates.html', data))
+
+
+class DeliveryAddressListView(LoginRequiredMixin, ListView):
+    template_name = "list_delivery.html"
+    model = DeliveryAddress
+    paginate_by = 5
+
+    def get_queryset(self):
+        "Адреса доставки только этого юзера"
+        queryset = DeliveryAddress.objects.filter(user=self.request.user)
+        return queryset
+
+
+def order(request):
+    logging.info(request)
+    if request.POST:
+        logging.info(f"method POST")
+        # form = NewOrder(user=request.user)  # для организаций пока отключу
+        form = NewOrder()  # для организаций пока отключу
+        logging.info(f'delivery_address {request.POST["delivery_address"]}')
+        logging.info(f"REQUEST {request.POST}")
+        logging.info(f"USER {request.user}")
+        # если агентство добавляем оранизацию платильщик
+        # number_organisation = request.POST["organisation_payer"]
+        # organisation = Organisation.objects.get(id=number_organisation)
+        # logging.info(f"organisation {organisation}")
+        delivery_id = request.POST["delivery_address"]
+
+        delivery_address = DeliveryAddress.objects.get(id=delivery_id)
+
+        # neworder = Order.objects.create(
+        #     Contractor=form.user, organisation_payer=organisation, delivery=delivery,
+        # )
+
+        neworder = Order.objects.create(
+            Contractor=request.user, delivery_address=delivery_address
+        )
+
+        logging.info(f"neworder {neworder}")
+        # logging.info(f"NEW ORDER ID: {neworder.id}")
+        return redirect("orders:add_file_in_order", neworder.id)
+    else:
+        form = NewOrder()
+    return render(request, "neworder.html", {"form": form})

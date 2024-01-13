@@ -37,7 +37,7 @@
                 </td>
                 <td>{{ Orders.total_price }}</td>
                 <td>{{ Orders.status }}</td>
-                <td>{{ Orders.delivery }}</td>
+                <td>{{ Orders.delivery_address }}</td>
                 <!--                <td><a href="{% url 'orders:order_pay' Orders.id %}">Оплатить</a>-->
                 <td>
 <!--                    <button type="submit" class="btn btn-primary"-->
@@ -133,6 +133,8 @@
         </table>
     </div>
 {% if current_order.status.id == 1 %}
+
+
     <td>
             <button type="submit" class="btn btn-success"
                     onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ</button>
@@ -140,7 +142,8 @@
 {% else %}
 <!--                    <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>-->
 
-                             {% if Orders.paid == False %}
+ {% if Orders.paid == False %}
+
                     <td>
      <button type="submit" class="btn btn-primary"
         onClick="location.href='{{Orders.pay_link}}'">Оплатить картой</button> </td>

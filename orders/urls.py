@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path
+
 from .views import (
     view_order,
     View_order_item,
@@ -15,7 +16,11 @@ from .views import (
     report_complite_orders,
     new_order,
     OrdersViewList,
-    AllOrdersListView, result, success_pay, fail,
+    AllOrdersListView,
+    result,
+    success_pay,
+    fail,
+    DeliveryAddressListView,
 )
 
 app_name = "orders"
@@ -23,6 +28,7 @@ app_name = "orders"
 urlpatterns = [
     # path('new_order/', OrderCreateView.as_view(), name="new_order"), # Добавть новый зааказ
     path("neworder/", new_order, name="new_order"),  # Добавить новый зааказ
+    path("order/", DeliveryAddressListView.as_view(), name="DeliveryAddressListView"),
     path(
         "create/<pk>", OrderUpdateView.as_view(), name="update_order"
     ),  # Редактировать заказ
@@ -30,7 +36,9 @@ urlpatterns = [
     path("view_order_item/<pk>", View_order_item.as_view(), name="view_order_items"),
     path("delete_order/<pk>", DeleteOrderView.as_view(), name="Delete_order"),
     path(
-        "add_files_in_order/<int:order_id>", add_files_in_order, name="add_file_in_order",
+        "add_files_in_order/<int:order_id>",
+        add_files_in_order,
+        name="add_file_in_order",
     ),
     path(
         "add_item_in_order/<int:order_id>/<int:item_id>", add_item_in_order, name="add"
@@ -54,7 +62,6 @@ urlpatterns = [
     path("order_pay/<int:order_id>", order_pay, name="order_pay"),
     path("about_file/<int:file_id>", about_file, name="about_file"),
     path("report/", report_complite_orders, name="report_complite_orders"),
-
     # https://docs.robokassa.ru/pay-interface/#notification
     path("result/", result, name="result"),  # для робокассы проверкаe
     path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен

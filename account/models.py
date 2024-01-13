@@ -122,4 +122,4 @@ class DeliveryAddress(models.Model):
         ordering = ["street"]
 
     def __str__(self):
-        return self.street
+        return f"{self.region}-{self.city}-{self.street}-{self.house}"

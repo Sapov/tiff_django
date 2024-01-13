@@ -69,7 +69,7 @@ def delete(request, id):
         # os.remove(f'media/{str(product.preview_images)[1:]}')  # Удаление превьюшки (первый слеш мешал жить)
 
         product.delete()
-        p# удалили запись
+        p  # удалили запись
         return HttpResponseRedirect("/")
     except Product.DoesNotExist:
         return HttpResponseNotFound("<h2>Удаление</h2>")
@@ -172,21 +172,22 @@ def calculator(request):
             perimetr = (float(width) + float(length)) * 2
 
             # проверка ретейл или агентство
-            if request.user.role == 'CUSTOMER_RETAIL':
+            if request.user.role == "CUSTOMER_RETAIL":
                 material_price = materials.price_customer_retail
                 finishka_price = finishkas.price_customer_retail
-            elif request.user.role == 'CUSTOMER_AGENCY':
+            elif request.user.role == "CUSTOMER_AGENCY":
                 material_price = materials.price
                 finishka_price = finishkas.price
 
-
         finishka_price = perimetr * finishka_price
         results = (
-                          float(width) * float(length) * material_price
-                  ) + finishka_price  # в см
+            float(width) * float(length) * material_price
+        ) + finishka_price  # в см
         results = round(results, -1) * int(quantity)
-        if request.user.role == 'CUSTOMER_RETAIL':
-            if results < 1000: # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+        if request.user.role == "CUSTOMER_RETAIL":
+            if (
+                results < 1000
+            ):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
                 results = 1000
         return render(
             request,
@@ -200,10 +201,11 @@ def calculator(request):
 
     else:
         form = Calculator()
-        return render(request,
-                      "calculator.html",
-                      {"form": form, "title": "Калькулятор печати"},
-                      )
+        return render(
+            request,
+            "calculator.html",
+            {"form": form, "title": "Калькулятор печати"},
+        )
 
 
 class PrintCalculator:
@@ -261,4 +263,3 @@ class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
-
