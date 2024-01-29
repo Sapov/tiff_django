@@ -21,6 +21,7 @@
                 <!--                <th>Каменты</th>-->
                 <th>Статус</th>
                 <th>Дата заказа</th>
+                <th>Дата готовности</th>
                 <!--                <th>Дата готовности</th>-->
             </thead>
             <tbody>
@@ -45,6 +46,7 @@
                 <!--                <td>{{ order.comments }}</td>-->
                 <td>{{ order.status }}</td>
                 <td>{{ order.created }}</td>
+                <td>{{ order.date_complete }}</td>
                 <!--                <td>{{ order.date_complete }}</td>-->
 
                 {% if order.status.id >= 2 %}

@@ -38,6 +38,7 @@ def new_order(request):
         # if form.is_valid():
         logging.info(f"USER: {form.user}")
         logging.info(f'delivery_address {request.POST["delivery_address"]}')
+        logging.info(f'date_complite {request.POST["date_complite"]}')
         logging.info(f"REQUEST {request.POST}")
         logging.info(f"USER {request.user}")
         # если агентство добавляем оранизацию платильщик
@@ -45,11 +46,15 @@ def new_order(request):
         # organisation = Organisation.objects.get(id=number_organisation)
         # logging.info(f"organisation {organisation}")
         delivery_id = request.POST["delivery_address"]
+        date_complite = request.POST["date_complite"]
+        date_complite = datetime.datetime.strptime(date_complite, "%Y-%m-%d")
+        logging.info(f"date_complite {date_complite} - {type(date_complite)}")
 
         delivery = DeliveryAddress.objects.get(id=delivery_id)
 
         neworder = Order.objects.create(
             Contractor=form.user,
+            date_complete=date_complite,
             # organisation_payer=organisation,
             delivery_address=delivery,
         )
@@ -60,6 +65,15 @@ def new_order(request):
         form = NewOrder(user=request.user)
         # ограничение по дням нельзя сделать заказ раньше сегодняшней даты
         today = datetime.datetime.today()
+        logging.info(f"[ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] {today.isoweekday()}")
+        logging.info(f"СЕГОДНЯ  {today}")
+        # Если заказ приняли в четверг, то отдадим только в понедельник
+        if today.isoweekday() >= 4:
+            # + 4 дня так как два выходных
+            today = today + datetime.timedelta(days=4)
+        else:
+            today = today + datetime.timedelta(days=2)
+
         today = today.strftime("%Y-%m-%d")
     return render(request, "neworder.html", {"form": form, "today": today})
 
