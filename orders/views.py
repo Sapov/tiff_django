@@ -59,6 +59,8 @@ def new_order(request):
             delivery_address=delivery,
         )
 
+        ##
+
         return redirect("orders:add_file_in_order", neworder.id)
     else:
         # form = NewOrder()
