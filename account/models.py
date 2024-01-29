@@ -88,15 +88,19 @@ class DeliveryAddress(models.Model):
     region = models.CharField(
         max_length=100, verbose_name="Область", null=True, blank=True
     )
-    district = models.CharField(
-        max_length=100, verbose_name="Регион", null=True, blank=True
-    )
 
     city = models.CharField(max_length=200, verbose_name="Город", null=True, blank=True)
     street = models.CharField(
         max_length=200, verbose_name="Улица", null=True, blank=True
     )
     house = models.CharField(max_length=200, verbose_name="Дом", null=True, blank=True)
+    entrance = models.CharField(
+        max_length=10, verbose_name="Подъезд", null=True, blank=True
+    )
+    floor = models.CharField(max_length=10, verbose_name="Этаж", null=True, blank=True)
+    flat = models.CharField(
+        max_length=10, verbose_name="Квартира/офис", null=True, blank=True
+    )
 
     first_name = models.CharField(
         max_length=100, verbose_name="Имя", null=True, blank=True
@@ -122,4 +126,4 @@ class DeliveryAddress(models.Model):
         ordering = ["street"]
 
     def __str__(self):
-        return f"{self.region}-{self.city}-{self.street}-{self.house}"
+        return f"{self.delivery_method}-{self.city}-{self.street}-{self.house}"

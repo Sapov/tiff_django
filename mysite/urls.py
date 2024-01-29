@@ -24,8 +24,8 @@ from files.views import page_not_found
 
 urlpatterns = [
     path("users/", include("users.urls")),
-    path("", include("files.urls")),
-    path("account/", include("account.urls")),
+    path("files/", include("files.urls")),
+    path("", include("account.urls")),
     path("orders/", include("orders.urls")),
     path("info/", include("info.urls")),
     path("admin/", admin.site.urls),

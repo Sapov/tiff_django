@@ -109,6 +109,7 @@ class UploadFilesRollUp(forms.ModelForm):
         label="Выберите материал для печати",
         initial=20,  # по умолчанию литой 450 грамм
     )
+
     FinishWork = forms.ModelChoiceField(
         queryset=FinishWork.objects.filter(id=2),
         label="Финишная обработка",

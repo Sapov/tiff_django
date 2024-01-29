@@ -8,7 +8,6 @@ from .views import (
     FilesUpdateView,
     FilesCreateView,
     price,
-    FileList,
     upload_arh,
     calculator,
     ViewFilesUserListView,
@@ -23,7 +22,6 @@ app_name = "files"
 urlpatterns = [
     path("", index, name="myfiles"),  # Myfiles
     path("ind/", ViewFilesUserListView.as_view(), name="myfiles1"),  # Myfiles
-    path("allfiles/", FileList.as_view(), name="all_files"),
     # форма добавления файла
     path("create/", FilesCreateView.as_view(), name="create_files"),
     path("create_large/", FilesCreateViewLarge.as_view(), name="create_large"),

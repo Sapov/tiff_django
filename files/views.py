@@ -47,14 +47,13 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
     """Посмотреть все файлы пользователя"""
 
     model = Product
-    paginate_by = 2
+    paginate_by = 5
     template_name = "index.html"
     login_url = "login"
 
-    # def get_queryset(self):
-    #     queryset = Product.objects.filter(Contractor=request.h("user")).order_by(
-    #         "-id"
-    #     )
+    def get_queryset(self):
+        queryset = Product.objects.filter(Contractor=self.request.user).order_by("-id")
+
     #     # Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
     #     return queryset
 
@@ -114,13 +113,6 @@ def price(request):
             "title": "Прайс-лист",
         },
     )
-
-
-class FileList(LoginRequiredMixin, ListView):
-    paginate_by = 5
-    model = Product
-    template_name = "all_files_detail.html"
-    login_url = "login"
 
 
 def add_files_in_base():
@@ -206,11 +198,6 @@ def calculator(request):
             "calculator.html",
             {"form": form, "title": "Калькулятор печати"},
         )
-
-
-class PrintCalculator:
-    def __init__(self, length, width, material, finishka):
-        pass
 
 
 def page_not_found(request, exception):

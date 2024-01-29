@@ -4,6 +4,8 @@
 
 
 {% if object_list.count > 0 %}
+{% if user.role == 'MANAGER' %}
+
     <h2>Список всех Заказов: </h2>
 <div class="row">
     <div class="col-md-12">
@@ -33,5 +35,33 @@
     </div>
 </div>
 
-    {% endif %}
+<!--PAGIATION-->
+{% if page_obj.has_other_pages %}
+<nav aria-label="...">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.previous_page_number}}">Предыдущая</a>
+        </li>
+        {% endif %}
+        {% for p in page_obj.paginator.page_range %}
+        {% if page_obj.number == p %}
+        <li class="page-item active" aria-current="page"><a class="page-link" href="{{ p }}">{{ p }}</a></li>
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+        <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{page_obj.next_page_number}}">Следующая</a>
+        </li>
+        {% endif %}
+
+    </ul>
+</nav>
+{% endif %}
+<!--END PAGINATIONA-->
+
+{% endif %}
+{% endif %}
     {% endblock %}

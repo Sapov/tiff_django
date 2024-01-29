@@ -19,6 +19,7 @@ class NewOrder(forms.ModelForm):
         fields = [
             # "organisation_payer",
             "delivery_address",
+            # "date_complete",
         ]
 
     def __init__(self, *args, **kwargs):

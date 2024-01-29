@@ -126,10 +126,12 @@ class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
     fields = [
         "delivery_method",
         "region",
-        "district",
         "city",
         "street",
         "house",
+        "entrance",
+        "floor",
+        "flat",
         "first_name",
         "second_name",
         "phone",
@@ -155,7 +157,7 @@ class DeliveryAddressListView(LoginRequiredMixin, ListView):
 
 class DeliveryAddressUpdate(LoginRequiredMixin, UpdateView):
     model = DeliveryAddress
-    fields = ["region", "district", "city", "street", "house", "delivery_method"]
+    fields = ["region", "city", "street", "house", "delivery_method"]
     template_name_suffix = "_update_form"
     success_url = reverse_lazy("account:delivery_list")
 

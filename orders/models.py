@@ -41,7 +41,7 @@ class Order(models.Model):
     delivery_address = models.ForeignKey(
         DeliveryAddress,
         on_delete=models.PROTECT,
-        verbose_name="Address",
+        verbose_name="Адрес доставки",
         null=True,
     )
     total_price = models.FloatField(

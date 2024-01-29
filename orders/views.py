@@ -58,7 +58,10 @@ def new_order(request):
     else:
         # form = NewOrder()
         form = NewOrder(user=request.user)
-    return render(request, "neworder.html", {"form": form})
+        # ограничение по дням нельзя сделать заказ раньше сегодняшней даты
+        today = datetime.datetime.today()
+        today = today.strftime("%Y-%m-%d")
+    return render(request, "neworder.html", {"form": form, "today": today})
 
 
 @login_required
@@ -151,6 +154,7 @@ def add_item_in_order(request, item_id, order_id):
 def del_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
     old_ord = OrderItem.objects.get(id=item_id)  # строка заказа
+    print(f"old_ord", old_ord)
     old_ord.delete()
     old_ord.save()
 
@@ -202,7 +206,7 @@ def get_domain(request):
 class AllOrdersListView(LoginRequiredMixin, ListView):
     model = Order
     template_name = "all_view_orders.html"
-    paginate_by = 6
+    paginate_by = 10
 
     def get_queryset(self):
         """для обратного порядка отображения"""
@@ -258,20 +262,22 @@ def report_complite_orders(request):
     """Отчет от выполненных заказах"""
     if request.method == "POST":
         date_start = request.POST["date_start"]
+        # по умолчанию дата старт должна быть начало текущего месяца
         date_finish = request.POST["date_finish"]
-        date_finish = date_finish + " 00:00:00.000000"
-        # date_time_obj = datetime.datetime.strptime(date_start, "%Y-%m-%d %H:%M:%S.%f")
-        # aware_datetime = make_aware(date_time_obj)
+        if date_start:
+            date_finish = date_finish + " 00:00:00.000000"
+            date_time_obj = datetime.datetime.strptime(date_start, "%Y-%m-%d")
+            # aware_datetime = make_aware(date_time_obj)
 
-        logger.info(f"date_start:{date_start}")
-        order = Order.objects.all()
-        print(order)
-        "2023-11-08 18:30:21.612153+00:00"
-        return render(
-            request,
-            "report_complite_orders.html",
-            {"order": order},
-        )
+            logger.info(f"STR:{date_time_obj} {type(date_time_obj)}")
+            order = Order.objects.filter(created=date_time_obj)
+            print("ORDERS", order)
+            # "2023-11-08 18:30:21.612153+00:00"
+            return render(
+                request,
+                "report_complite_orders.html",
+                {"order": order},
+            )
     return render(
         request,
         "report_complite_orders.html",
@@ -361,47 +367,3 @@ def send_mail_for_client_work(self):
         fail_silently=False,
     )
     # html_message=render_to_string('mail/templates.html', data))
-
-
-class DeliveryAddressListView(LoginRequiredMixin, ListView):
-    template_name = "list_delivery.html"
-    model = DeliveryAddress
-    paginate_by = 5
-
-    def get_queryset(self):
-        "Адреса доставки только этого юзера"
-        queryset = DeliveryAddress.objects.filter(user=self.request.user)
-        return queryset
-
-
-def order(request):
-    logging.info(request)
-    if request.POST:
-        logging.info(f"method POST")
-        # form = NewOrder(user=request.user)  # для организаций пока отключу
-        form = NewOrder()  # для организаций пока отключу
-        logging.info(f'delivery_address {request.POST["delivery_address"]}')
-        logging.info(f"REQUEST {request.POST}")
-        logging.info(f"USER {request.user}")
-        # если агентство добавляем оранизацию платильщик
-        # number_organisation = request.POST["organisation_payer"]
-        # organisation = Organisation.objects.get(id=number_organisation)
-        # logging.info(f"organisation {organisation}")
-        delivery_id = request.POST["delivery_address"]
-
-        delivery_address = DeliveryAddress.objects.get(id=delivery_id)
-
-        # neworder = Order.objects.create(
-        #     Contractor=form.user, organisation_payer=organisation, delivery=delivery,
-        # )
-
-        neworder = Order.objects.create(
-            Contractor=request.user, delivery_address=delivery_address
-        )
-
-        logging.info(f"neworder {neworder}")
-        # logging.info(f"NEW ORDER ID: {neworder.id}")
-        return redirect("orders:add_file_in_order", neworder.id)
-    else:
-        form = NewOrder()
-    return render(request, "neworder.html", {"form": form})

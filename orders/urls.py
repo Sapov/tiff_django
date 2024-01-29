@@ -20,7 +20,6 @@ from .views import (
     result,
     success_pay,
     fail,
-    DeliveryAddressListView,
 )
 
 app_name = "orders"
@@ -28,7 +27,6 @@ app_name = "orders"
 urlpatterns = [
     # path('new_order/', OrderCreateView.as_view(), name="new_order"), # Добавть новый зааказ
     path("neworder/", new_order, name="new_order"),  # Добавить новый зааказ
-    path("order/", DeliveryAddressListView.as_view(), name="DeliveryAddressListView"),
     path(
         "create/<pk>", OrderUpdateView.as_view(), name="update_order"
     ),  # Редактировать заказ
@@ -50,7 +48,7 @@ urlpatterns = [
     ),
     path(
         "view_all_orders/", AllOrdersListView.as_view(), name="view_all_orders"
-    ),  # Посмотреть все заказы
+    ),  # Посмотреть все заказы для менеджера
     path(
         "view_all_orders_pay/", ViewAllPayOrders.as_view(), name="view_all_orders_pay"
     ),  # все оплаченые заказы
@@ -63,7 +61,7 @@ urlpatterns = [
     path("about_file/<int:file_id>", about_file, name="about_file"),
     path("report/", report_complite_orders, name="report_complite_orders"),
     # https://docs.robokassa.ru/pay-interface/#notification
-    path("result/", result, name="result"),  # для робокассы проверкаe
+    path("result/", result, name="result"),  # для робокассы проверка
     path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
     path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
 ]
