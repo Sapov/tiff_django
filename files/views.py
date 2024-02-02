@@ -84,7 +84,7 @@ class FilesUpdateView(LoginRequiredMixin, UpdateView):
 
 class FilesCreateView(LoginRequiredMixin, CreateView):
     model = Product
-    fields = ["quantity", "material", "FinishWork", "Fields", "images"]
+    fields = ["quantity", "material", "FinishWork", "Fields", "images", "comments"]
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
@@ -158,6 +158,7 @@ def calculator(request):
             quantity = request.POST["quantity"]
             material = request.POST["material"]
             finishka = request.POST["finishka"]
+            print(request.user.role)
 
             materials = Material.objects.get(id=material)
             finishkas = FinishWork.objects.get(id=finishka)

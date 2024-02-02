@@ -281,12 +281,12 @@ def report_complite_orders(request):
         # по умолчанию дата старт должна быть начало текущего месяца
         date_finish = request.POST["date_finish"]
         if date_start:
-            date_finish = date_finish + " 00:00:00.000000"
+            date_finish = date_finish + "00:00:00.000000"
             date_time_obj = datetime.datetime.strptime(date_start, "%Y-%m-%d")
             # aware_datetime = make_aware(date_time_obj)
 
             logger.info(f"STR:{date_time_obj} {type(date_time_obj)}")
-            order = Order.objects.filter(created=date_time_obj)
+            order = Order.objects.all()
             print("ORDERS", order)
             # "2023-11-08 18:30:21.612153+00:00"
             return render(

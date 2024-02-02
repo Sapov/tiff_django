@@ -200,6 +200,7 @@ class Product(models.Model):
         verbose_name="Статус файла",
         default=1,
     )
+    comments = models.TextField(verbose_name="Комментарии к файлу")
 
     def __str__(self):
         return f"{self.images}"
