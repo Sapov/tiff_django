@@ -253,7 +253,9 @@ class UtilsModel:
         send_mail(
             "Новый заказ от REDS",
             # f'{self.new_str}\n',
-            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}",
+            # email,
+            # f"{render_to_string('templates/mail/email_for_contractor.txt')}"
+            f"{self.new_str}\nCсылка на архив: https://{self.domain}/media/{str(order.order_arhive)}",
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
             fail_silently=False,
@@ -287,6 +289,9 @@ class UtilsModel:
         current_path = os.getcwd()
         os.chdir(f"{settings.MEDIA_ROOT}/image/")
 
+        order = Order.objects.get(id=self.order_id)
+        logger.info(f"ДАТА ГОТОВНОСТИ: {order.date_complete}")
+
         all_products_in_order = OrderItem.objects.filter(
             order=self.order_id, is_active=True
         )
@@ -304,9 +309,12 @@ class UtilsModel:
                 square = f"Площадь: {(file.length * file.width) / 10000} м2"
                 finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
                 fields = f"Поля: {file.Fields}"
+                comments = f"Коментарии к файлу: {file.comments}"
+                # data_complite = f"Дата готовности заказа: {complite.date_complete}"
 
                 text_file.write(
-                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n"
+                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}"
+                    f"\n{fields}\n{finish_work_rec_file}\n{comments}\n"
                 )
                 text_file.write("-" * 40 + "\n")
         logger.info(f"CREATE File, {self.text_file_name}")
@@ -431,5 +439,5 @@ class UtilsModel:
         self.copy_files_in_server()
         self.add_arhive_in_order()
         self.set_status_order()  # меняю статус заказа
-        self.send_mail_order()  # отправил письмо
+        self.send_mail_order()  # отправил письмо подрядчику
         self.send_mail_for_client()  # отправил письмо пользователю

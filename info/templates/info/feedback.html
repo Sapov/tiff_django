@@ -1,0 +1,38 @@
+{% load crispy_forms_tags %}
+
+<title>{% block title %}{{title}} {% endblock %}</title>
+{% block body %}
+
+
+{% if flag == 0 %}
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Обратная связь</h1>
+    <p class="mb-4">Укажите то то то-о</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Форма для связи:</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form action="{% url 'info:feedback' %}" method="post", enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <button type="submit" class="btn btn-primary">Отправить</button>
+                <a href="https://www.san-cd.ru/privacy.html">* Отправляя свои данные, я соглашаюсь с Политикой конфиденциальности.</a>
+
+            </form>
+
+{% else %}
+                <h1 class="h3 mb-2 text-gray-800">{{response}}</h1>
+{% endif %}
+
+        </div>
+         </div>
+<!--</div>-->
+<!--         </div>-->
+
+{% endblock %}

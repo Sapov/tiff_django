@@ -16,6 +16,19 @@ def arh_for_mail(order_id: int, domain: str):
     # send_mail_order(order_id, domain)
 
 
+@shared_task
+def feedback_mail(cleaned_data):
+    """Отправляем письмо подрядчику"""
+    send_mail(
+        f"Письмишко с сайта",
+        # f'{self.new_str}\n',
+        f"{cleaned_data['message']}\n",
+        "django.rpk@mail.ru",
+        [f"rpk.reds@ya.ru"],
+        fail_silently=False,
+    )
+
+
 # @shared_task
 # def create_order_pdf(order_id):
 #'''Формирования счета для организаций'''
