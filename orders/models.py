@@ -5,7 +5,7 @@ import zipfile
 from datetime import date
 
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.db import models
@@ -250,17 +250,30 @@ class UtilsModel:
         logger.info(f"[INFO] DOMAIN {self.domain}")
         logger.info(f"[INFO] ARHIVE {str(order.order_arhive)}")
 
-        send_mail(
-            "Новый заказ от REDS",
-            # f'{self.new_str}\n',
-            # email,
-            # f"{render_to_string('templates/mail/email_for_contractor.txt')}"
-            f"{self.new_str}\nCсылка на архив: https://{self.domain}/media/{str(order.order_arhive)}",
-            "django.rpk@mail.ru",
-            ["rpk.reds@ya.ru"],
-            fail_silently=False,
+        # send_mail(
+        #     "Новый заказ от REDS",
+        #     # f'{self.new_str}\n',
+        #     # email,
+        #     # f"{render_to_string('templates/mail/email_for_contractor.txt')}"
+        #     f"{self.new_str}\nCсылка на архив: https://{self.domain}/media/{str(order.order_arhive)}",
+        #     "django.rpk@mail.ru",
+        #     ["rpk.reds@ya.ru"],
+        #     fail_silently=False,
+        # )
+        # ----------------------------
+        data = {
+            "order_items": self.new_str,
+            "order_link": f"https://{self.domain}/media/{str(order.order_arhive)}",
+        }
+        html_message = render_to_string("info/mail_order_for_typografyl.html", data)
+        msg = EmailMultiAlternatives(
+            subject=f"Новый заказ от REDS № {self.order_id}",
+            to=[
+                "rpk.reds@ya.ru",
+            ],
         )
-        # html_message=render_to_string('mail/templates.html', data))
+        msg.attach_alternative(html_message, "text/html")
+        msg.send()
 
     def send_mail_for_client(self):
         """отправляем письмо Клиенту сообщение о новом заказе"""
@@ -282,10 +295,21 @@ class UtilsModel:
             [f"{str(order.Contractor)}"],
             fail_silently=False,
         )
-        # html_message=render_to_string('mail/templates.html', data))
+        # ---------------------------------------
+        # data = {
+        #     "order_items": self.new_str,
+        #     "order_link": f"https://{self.domain}/media/{str(order.order_arhive)}",
+        # }
+        # html_message = render_to_string("info/mail_order_for_client.html", data)
+        # msg = EmailMultiAlternatives(
+        #     subject=f"Новый заказ от REDS № {self.order_id}",
+        #     to=[f"{str(order.Contractor)}"],
+        # )
+        # msg.attach_alternative(html_message, "text/html")
+        # msg.send()
 
     def create_text_file(self):
-        """Создаем файл с харaктеристеками файла для печати"""
+        """Создаем файл с харaктеристиками файла для печати"""
         current_path = os.getcwd()
         os.chdir(f"{settings.MEDIA_ROOT}/image/")
 

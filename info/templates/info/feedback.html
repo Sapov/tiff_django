@@ -1,3 +1,5 @@
+{% extends 'info/base_info.html'%}
+
 {% load crispy_forms_tags %}
 
 <title>{% block title %}{{title}} {% endblock %}</title>
@@ -8,7 +10,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Обратная связь</h1>
+    <h1 class="h2">Обратная связь</h1>
     <p class="mb-4">Укажите то то то-о</p>
 
 <div class="card shadow mb-4">
@@ -27,7 +29,10 @@
             </form>
 
 {% else %}
-                <h1 class="h3 mb-2 text-gray-800">{{response}}</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">{{response}}</h6>
+    </div>
 {% endif %}
 
         </div>
