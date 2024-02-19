@@ -1,12 +1,11 @@
-import email.message
+import hashlib
 import os
 import shutil
 import zipfile
 from datetime import date
+from typing import Dict, Any
 
-from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage, EmailMultiAlternatives
-from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.db import models
 from django.template.loader import render_to_string
@@ -15,7 +14,6 @@ from account.models import Organisation, Delivery, DeliveryAddress
 from files.models import Product, StatusProduct
 from django.db.models.signals import post_save
 from django.urls import reverse
-import subprocess
 from django.conf import settings
 
 import logging
@@ -219,8 +217,16 @@ post_save.connect(product_in_order_post_save, sender=OrderItem)
 #     return wrapper
 
 
+class OrderLive:
+    pass
+
+
 class UtilsModel:
-    def __init__(self, order_id, domain):
+    def __init__(self, order_id, domain, status_id):
+        self.order_complite = None
+        self.order_list: list = None
+        self.hash_num = None
+        self.status_id = status_id
         self.arhiv_order_path = None
         self.new_str = None
         self.arh_name = None
@@ -235,7 +241,6 @@ class UtilsModel:
         if os.path.isfile(f"Order_№_{id_order}_{date.today()}.zip"):
             logger.info("Файл уже существует, архивация пропущена")
         else:
-            logger.info("Архивируем файлы:")
             logger.info(f"Архивируем файлы: {list_files}")
             for name in list_files:
                 arh_name = f"Order_№_{id_order}_{date.today()}.zip"
@@ -250,20 +255,14 @@ class UtilsModel:
         logger.info(f"[INFO] DOMAIN {self.domain}")
         logger.info(f"[INFO] ARHIVE {str(order.order_arhive)}")
 
-        # send_mail(
-        #     "Новый заказ от REDS",
-        #     # f'{self.new_str}\n',
-        #     # email,
-        #     # f"{render_to_string('templates/mail/email_for_contractor.txt')}"
-        #     f"{self.new_str}\nCсылка на архив: https://{self.domain}/media/{str(order.order_arhive)}",
-        #     "django.rpk@mail.ru",
-        #     ["rpk.reds@ya.ru"],
-        #     fail_silently=False,
-        # )
-        # ----------------------------
+        # ----------------------------отправляем хешшш
+
         data = {
-            "order_items": self.new_str,
-            "order_link": f"https://{self.domain}/media/{str(order.order_arhive)}",
+            "order_complete": self.order_complite,
+            "order_item": self.order_list,
+            "order_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
+            "confirm_link": f"http://{self.domain}/orders/set_status_order/{self.order_id}/{self.generate_hash()}",
+            "order_id": self.order_id,
         }
         html_message = render_to_string("info/mail_order_for_typografyl.html", data)
         msg = EmailMultiAlternatives(
@@ -274,6 +273,24 @@ class UtilsModel:
         )
         msg.attach_alternative(html_message, "text/html")
         msg.send()
+
+    def generate_hash(self):
+        self.hash_num = hashlib.md5(str(self.order_id).encode()).hexdigest()
+        logger.info(f"GENERATE HASH {self.hash_num}TYPE {type(self.hash_num)}")
+        return self.hash_num
+
+    @classmethod
+    def check_hash(cls, order_number: int, received_signature: hex) -> bool:
+        """проверка ответа от"""
+        signature = hashlib.md5(str(order_number).encode()).hexdigest()
+        logger.info(f"ТО что получили {received_signature}{type(received_signature)}")
+
+        if received_signature == signature:
+            logger.info(f"-------PAYMENT IS TRUE------------")
+            return True
+        else:
+            logger.info(f"-------PAYMENT IS FALSE------------")
+            return False
 
     def send_mail_for_client(self):
         """отправляем письмо Клиенту сообщение о новом заказе"""
@@ -315,6 +332,7 @@ class UtilsModel:
 
         order = Order.objects.get(id=self.order_id)
         logger.info(f"ДАТА ГОТОВНОСТИ: {order.date_complete}")
+        self.order_complite = order.date_complete
 
         all_products_in_order = OrderItem.objects.filter(
             order=self.order_id, is_active=True
@@ -322,6 +340,8 @@ class UtilsModel:
         self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
         with open(self.text_file_name, "w") as text_file:
             text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
+            self.order_list = []
+            items_file = {}
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
                 file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
@@ -329,19 +349,36 @@ class UtilsModel:
                 quantity_print = f"Количество: {file.quantity} шт."
                 length_width = f"Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi"
                 color_model = f"Цветовая модель: {file.color_model}"
-                size = f"Размер: {file.size} Мб"
+                # size = f"Размер: {file.size} Мб"
                 square = f"Площадь: {(file.length * file.width) / 10000} м2"
                 finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
                 fields = f"Поля: {file.Fields}"
-                comments = f"Коментарии к файлу: {file.comments}"
+                comments = f"Комментарии к файлу: {file.comments}"
                 # data_complite = f"Дата готовности заказа: {complite.date_complete}"
 
+                self.order_list.append(file_name)
+                self.order_list.append(material_txt)
+                self.order_list.append(quantity_print)
+                self.order_list.append(length_width)
+                self.order_list.append(color_model)
+                # self.order_list.append(size)
+                self.order_list.append(square)
+                self.order_list.append(finish_work_rec_file)
+                if fields != "Поля: Без полей":
+                    self.order_list.append(fields)
+                if comments != "Комментарии к файлу: ":
+                    self.order_list.append(comments)
+                self.order_list.append("-" * 40 + "\n")
+                # data_complite = f"Дата готовности заказа: {complite.date_complete}"
+
+                # logger.info(f"СОЗДаНИЕ DICTA: {self.order_dict}")
                 text_file.write(
-                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}"
-                    f"\n{fields}\n{finish_work_rec_file}\n{comments}\n"
+                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n"
+                    f"{fields}\n{finish_work_rec_file}\n{comments}\n"
                 )
                 text_file.write("-" * 40 + "\n")
         logger.info(f"CREATE File, {self.text_file_name}")
+        logger.info(f"CREATE LIST, {self.order_list}")
         os.chdir(current_path)
         return self.text_file_name
 
@@ -439,11 +476,10 @@ class UtilsModel:
     def set_status_order(self):
         """Меняем статус заказа после оформления ГОТОВИТЬСЯ нА ОФОРМЛЕН"""
         order = Order.objects.get(id=self.order_id)
-        status = StatusOrder.objects.get(id=2)  # 2 стауст id оформлен
-        logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
+        status = StatusOrder.objects.get(id=self.status_id)  # 2 статус id оформлен
+        logger.info(f"МЕНЯЮ СТАТУС Заказа")
         order.status = status
         order.save()
-        return
 
     def rename_files_for_print(self):
         """Переименовываем файлы перед архивацией приводим к виду:

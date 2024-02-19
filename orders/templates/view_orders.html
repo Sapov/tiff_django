@@ -16,13 +16,11 @@
             <tr>
                 <th>Заказ №</th>
                 <th>Стоимость</th>
-                <!--                <th>Платильщик</th>-->
                 <th>Оплата</th>
                 <!--                <th>Каменты</th>-->
                 <th>Статус</th>
                 <th>Дата заказа</th>
                 <th>Дата готовности</th>
-                <!--                <th>Дата готовности</th>-->
             </thead>
             <tbody>
             {% for order in page_obj %}
@@ -41,13 +39,11 @@
                     </div>
                     {% endif %}
 
-                    <!--                    {{ order.paid }}-->
                 </td>
                 <!--                <td>{{ order.comments }}</td>-->
                 <td>{{ order.status }}</td>
                 <td>{{ order.created }}</td>
                 <td>{{ order.date_complete }}</td>
-                <!--                <td>{{ order.date_complete }}</td>-->
 
                 {% if order.status.id >= 2 %}
 

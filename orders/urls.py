@@ -20,6 +20,7 @@ from .views import (
     result,
     success_pay,
     fail,
+    set_status_order,
 )
 
 app_name = "orders"
@@ -40,6 +41,12 @@ urlpatterns = [
     ),
     path(
         "add_item_in_order/<int:order_id>/<int:item_id>", add_item_in_order, name="add"
+    ),
+    # Изменяем статус заказа
+    path(
+        "set_status_order/<int:order_id>/<str:hash>",
+        set_status_order,
+        name="set_status_order",
     ),
     path(
         "del_item_in_order/<int:order_id>/<int:item_id>",

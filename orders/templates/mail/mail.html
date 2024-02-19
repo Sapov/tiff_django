@@ -2,87 +2,108 @@
 <html>
 <head>
     <title>Блочная вёрстка</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
-        <style>
-body {
-     background: #FFF;
-     color: #000;
-     font-family: Arial, sans-serif;
-     font-size: 14px;
-}
+    <style>
+        body {
+             background: #FFF;
+             color: #000;
+             font-family: Arial, sans-serif;
+             font-size: 14px;
+        }
 
-#header {
-     background: red;
-     width: 100%;
-     height: 55px;
-}
+        #header {
+             background: red;
+             width: 100%;
+             height: 55px;
+        }
 
-#container {
-     background: #FFD700;
-     margin: auto auto;
-     text-align: center;
-     width: 80%;
-     height: 600px;
-}
+        #container {
+             background: #FFD700;
+             margin: auto auto;
+             text-align: center;
+             width: 80%;
+             height: 600px;
+        }
 
-#navigation {
-     background: #FE9798;
-     width: 100%;
-     height: 25px;
-}
+        #navigation {
+             background: #FE9798;
+             width: 100%;
+             height: 25px;
+        }
 
-#sidebar {
-     background: #40E0D0;
-     float: left;
-     width: 20%;
-     height: 280px;
-}
+        #sidebar {
+             background: #40E0D0;
+             float: left;
+             width: 20%;
+             height: 280px;
+        }
 
-#content {
-     background: #DCDCDC;
-     float: right;
-     width: 100%;
-     height: 280px;
-}
+        #content {
+             background: #DCDCDC;
+             float: right;
+             width: 100%;
+             height: 280px;
+        }
 
-#clear {
-     clear: both;
-}
+        #clear {
+             clear: both;
+        }
 
-#footer {
-    background: #00BFFF;
-	width: 100%;
-	height: 40px;
-}
+        #footer {
+            background: #00BFFF;
+            width: 100%;
+            height: 40px;
+        }
 
     </style>
 </head>
 <body>
 <div id="container">
-	<div id="header">
-	<h2>header (шапка сайта)</h2>
-	</div>
+    <div id="header">
+        <h2>РПК REDS</h2>
+    </div>
 
-	<div id="navigation">
-	<h2>Блок навигации</h2>
-	</div>
+    <div id="navigation">
+        <h2>Новый заказ № {{order_id}}</h2>
 
-<!--	<div id="sidebar">-->
-<!--	<h2>Левая панель</h2>-->
-<!--	</div>-->
+    </div>
 
-	<div id="content">
-	<h2>Основной контент страницы</h2>
-	</div>
+    <!--	<div id="sidebar">-->
+    <!--	<h2>Левая панель</h2>-->
+    <!--	</div>-->
 
-	<div id="clear">
+    <div id="content">
+        <h3>Содержание:</h3>
+        <p>
+            {{order_items}}
+        <ul>
 
-	</div>
+            <li>
+                Количество: 1 шт.
+            </li>
+        </ul>
 
-	<div id="footer">
-	<h2>footer (низ сайта)</h2>
-	</div>
+        </p>
+
+
+        <a href={{order_link}}
+           style="line-height: 16px; font-size: 16px !important;  border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; color: #ffffff; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif; text-align: center; height: 100%; width: auto; background: #c62334 repeat center center; padding: 11px 20px;">Скачать
+        </a>
+
+        <a href={{confirm_link}}
+           style="line-height: 16px; font-size: 16px !important;  border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; color: #ffffff; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif; text-align: center; height: 100%; width: auto; background: #c62334 repeat center center; padding: 11px 20px;">Принять
+            в работу
+        </a>
+    </div>
+
+    <div id="clear">
+
+    </div>
+
+    <!--	<div id="footer">-->
+    <!--	<h2>footer (низ сайта)</h2>-->
+    <!--	</div>-->
 </div>
 </body>
 </html>

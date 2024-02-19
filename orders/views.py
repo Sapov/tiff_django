@@ -1,4 +1,5 @@
 import datetime
+import hashlib
 import logging
 import os
 
@@ -70,9 +71,14 @@ def new_order(request):
         logging.info(f"[ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] {today.isoweekday()}")
         logging.info(f"СЕГОДНЯ  {today}")
         # Если заказ приняли в четверг, то отдадим только в понедельник
-        if today.isoweekday() >= 4:
+        if today.isoweekday() == 4:
             # + 4 дня так как два выходных
             today = today + datetime.timedelta(days=4)
+            # Оформленный в пятницу будет готов в понедельник
+        elif today.isoweekday() == 5 or today.isoweekday() == 6:
+            today = today + datetime.timedelta(days=3)
+        # Оформленный заказ в субботу готов будет во вторник + 3
+        # Оформленный заказ в воскресенье готов во вторник + 2
         else:
             today = today + datetime.timedelta(days=2)
 
@@ -185,33 +191,49 @@ def del_item_in_order(request, item_id, order_id):
 
 
 def order_pay(request, order_id):
-    """ОФОРМИТЬ ЗАКАЗ - Меняем статус с загружен на оформлен
+    """ОФОРМИТЬ ЗАКАЗ - Меняем статус с загружен на оформлен status_id=2
     генерируем счет
     """
-    current_path = os.getcwd()
-    os.chdir(f"{settings.MEDIA_ROOT}/orders")
-    text = "оплата text"
 
-    # --------------- Формирование счета---------
-    # create_order_pdf.delay(order_id)
-    # order_pdf = DrawOrder(order_id)  #
-    # order_pdf.run()
+    order = Order.objects.get(id=order_id)
 
-    # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
-    domain = str(get_domain(request))
-    arh_for_mail.delay(order_id, domain=domain)
+    logger.info(f" СТАТУС Заказа!!!! {order.status.id} ")
+    if order.status.id == 1:
+        current_path = os.getcwd()
+        os.chdir(f"{settings.MEDIA_ROOT}/orders")
 
-    # -----------------------create_link_pay-----------------------------------
-    Orders = Order.objects.get(id=order_id)
-    user = request.user
-    link_pay = Robokassa(
-        Orders.total_price, f"Оплата заказа № {Orders.id}", order_id, user
-    ).run()
-    # logger.info(f'Генерим платежную ссылку: ', link_pay)
-    context = {"Orders": Orders, "text": text, "link_pay": link_pay}
-    os.chdir(current_path)  # перейти обратно
-    # -------------------Отправляем письмо заказчику------------------
-    return render(request, "orderpay.html", context)
+        # --------------- Формирование счета---------
+        # create_order_pdf.delay(order_id)
+        # order_pdf = DrawOrder(order_id)  #
+        # order_pdf.run()
+
+        # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
+        # Это нужно переставить после удачной оплаты
+        domain = str(get_domain(request))
+        arh_for_mail.delay(order_id, domain=domain, status_id=2)
+
+        # -----------------------create_link_pay-----------------------------------
+        Orders = Order.objects.get(id=order_id)
+        user = request.user
+        link_pay = Robokassa(
+            Orders.total_price, f"Оплата заказа № {Orders.id}", order_id, user
+        ).run()
+        # logger.info(f'Генерим платежную ссылку: ', link_pay)
+        context = {"Orders": Orders, "link_pay": link_pay}
+        os.chdir(current_path)  # перейти обратно
+        # -------------------Отправляем письмо заказчику------------------
+        return render(request, "orderpay.html", context)
+    else:
+        # -----------------------create_link_pay-----------------------------------
+        Orders = Order.objects.get(id=order_id)
+        user = request.user
+        link_pay = Robokassa(
+            Orders.total_price, f"Оплата заказа № {Orders.id}", order_id, user
+        ).run()
+        # logger.info(f'Генерим платежную ссылку: ', link_pay)
+        context = {"Orders": Orders, "link_pay": link_pay}
+        # -------------------Отправляем письмо заказчику------------------
+        return render(request, "orderpay.html", context)
 
 
 def get_domain(request):
@@ -300,16 +322,13 @@ def report_complite_orders(request):
     )
 
 
-def set_status_order(order_id: int):
-    """Переключаю статус заказа на /в работе/"""
-
+def set_pay_order(order_id: int):
+    """Переключаю статус Оплачен"""
     order = Order.objects.get(id=order_id)
-    status = StatusOrder.objects.get(id=3)
     """ Ставлю оплачено"""
     order.paid = True
-    order.status = status
     order.save()
-    logger.info(f'"""Переключаю статус заказа на /в работе/"""')
+    logger.info(f'[IS PAY ORDER] "Переключаю заказ ОПЛАЧЕН')
 
 
 def result(request):
@@ -348,8 +367,9 @@ def success_pay(request):
             os.getenv("PASSWORD_ONE"),
         ):
             print("////SUCCESS////")
-            """ меняем состояние заказа на В работе и на ОПЛАЧЕН"""
-            set_status_order(order_number)
+            """ меняем состояние заказа на ОПЛАЧЕН"""
+            # set_status_order(order_number)
+            set_pay_order(order_number)
 
             return render(request, "orders/success_pay.html")
     else:
@@ -383,3 +403,32 @@ def send_mail_for_client_work(self):
         fail_silently=False,
     )
     # html_message=render_to_string('mail/templates.html', data))
+
+
+def set_status_order(request, order_id: int, hash: str):
+    signature = hashlib.md5(str(order_id).encode()).hexdigest()
+    logger.info(f"ТО что получили {hash}{type(hash)}")
+
+    if hash == signature:
+        logger.info(f"-------HASH IS TRUE------------")
+        """Переключаю статус заказа на /в работе/"""
+        order = Order.objects.get(id=order_id)
+        status = StatusOrder.objects.get(id=3)
+        order.status = status
+        order.save()
+        logger.info(f'"""Переключаю статус заказа на в работе')
+        contex = {
+            "id": order_id,
+            "title": "Новый статус заказа",
+            "status": "Принят в работу",
+        }
+        return render(request, "orders/set_status.html", contex)
+
+    else:
+        logger.info(f"-------HASH IS FALSE------------")
+        contex = {
+            "id": order_id,
+            "title": "Новый статус заказа",
+            "status": "Не принят в работу",
+        }
+        return render(request, "orders/set_status.html", contex)

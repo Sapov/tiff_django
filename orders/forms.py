@@ -9,7 +9,6 @@ from .models import Order
 #     organisation_payer = forms.ModelChoiceField(queryset=Order.objects.filter(user=request.user))
 
 from django import forms
-from django.contrib.auth import get_user_model
 from account.models import Organisation, DeliveryAddress
 
 

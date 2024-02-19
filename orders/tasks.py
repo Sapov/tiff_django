@@ -10,9 +10,10 @@ from django.template.loader import render_to_string
 
 
 @shared_task
-def arh_for_mail(order_id: int, domain: str):
-    """Отправляем письмо подрядчику"""
-    order_item = UtilsModel(order_id, domain)
+def arh_for_mail(order_id: int, domain: str, status_id):
+    """Отправляем письмо подрядчику
+    self.status_id - статус заказа"""
+    order_item = UtilsModel(order_id, domain, status_id)
     order_item.run()
 
 

@@ -389,9 +389,9 @@ display: inline !important;
                                                             <td class=""
                                                                 style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 100%; color: #222222; font-family: Arial, sans-serif; font-weight: normal; font-size: 16px; background: transparent repeat center center; margin: 0; padding: 0px 10px;"
                                                                 align="left" bgcolor="transparent" valign="top">
-                                                                <h1 style="text-align: center; color: #1d2120; font-family: Arial, sans-serif; font-weight: normal; font-size: 32px; line-height: 1.3; word-break: normal; margin: 0; padding: 0;"
+                                                                <h1 style="text-align: center; color: #1d2120; font-family: Arial, sans-serif; font-weight: normal; font-size: 20px; line-height: 1.3; word-break: normal; margin: 0; padding: 0;"
                                                                     align="center"><span
-                                                                        style="background-color: #c62334; color: #f0f0f0;">Сервис онлайн печати</span>
+                                                                        style="background-color: #c62334; color: #f0f0f0;">Дата готовности {{order_complete}}</span>
                                                                 </h1>
                                                             </td>
                                                         </tr>
@@ -464,7 +464,7 @@ display: inline !important;
                                                                 </h1>
                                                                 <h1 style="text-align: center; color: #1d2120; font-family: Arial, sans-serif; font-weight: normal; font-size: 32px; line-height: 1.3; word-break: normal; margin: 0; padding: 0;"
                                                                     align="center"><span
-                                                                        style="background-color: transparent;">Новый заказ </span>
+                                                                        style="background-color: transparent;">Новый заказ № {{order_id}}</span>
                                                                 </h1>
                                                             </td>
                                                         </tr>
@@ -558,7 +558,19 @@ display: inline !important;
                                                                 style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 100%; color: #222222; font-family: Arial, sans-serif; font-weight: normal; font-size: 16px; background: transparent repeat center center; margin: 0; padding: 0px 24px;"
                                                                 align="left" bgcolor="transparent" valign="top">
                                                                 <p style="text-align: left; color: #222222; font-family: Arial, sans-serif; font-weight: normal; font-size: 16px; line-height: 1.3; margin: 0 0 10px; padding: 0;"
-                                                                   align="left"><p>{{order_items}}</p>
+                                                                   align="left">
+
+                                                                    {% for i in order_item %}
+
+
+
+                                                                    <tr>
+                                                                        <td> {{i}}</td>
+
+                                                                </tr>
+
+                                                                    {% endfor %}
+                                                                 </tbody>
                                                             </td>
                                                         </tr>
                                                         </tbody>
@@ -772,7 +784,13 @@ display: inline !important;
                                                                 <!---->
                                                                 <a href={{order_link}}
                                                                    style="line-height: 16px; font-size: 16px !important; display: inline-block; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; color: #ffffff; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif; text-align: center; height: 100%; width: auto; background: #c62334 repeat center center; padding: 11px 20px;">Скачать
-                                                                    </a>
+                                                                </a>
+
+                                                                <a href={{confirm_link}}
+                                                                   style="line-height: 16px; font-size: 16px !important; display: inline-block; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; color: #ffffff; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif; text-align: center; height: 100%; width: auto; background: #00b561 repeat center center; padding: 11px 20px;">Принял
+                                                                    в работу
+                                                                </a>
+
                                                                 <!-- <![endif]-->
                                                                 <!--[endif]---->
                                                             </td>
