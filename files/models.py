@@ -200,6 +200,9 @@ class Product(models.Model):
         verbose_name="Статус файла",
         default=1,
     )
+    comments = models.TextField(
+        verbose_name="Комментарии к файлу", blank=True, null=True
+    )
 
     def __str__(self):
         return f"{self.images}"
@@ -235,6 +238,9 @@ class Product(models.Model):
             price = self.material.price_customer_retail
         elif self.Contractor.role == "CUSTOMER_AGENCY":
             price = self.material.price
+        else:
+            # Иначе считаем как по CUSTOMER_RETAIL
+            price = self.material.price_customer_retail
         self.price = download_file.price_calculation(self.quantity, price)
         # Считаем финишку
         self.price += download_file.finish_wokrs(

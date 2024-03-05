@@ -47,14 +47,13 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
     """Посмотреть все файлы пользователя"""
 
     model = Product
-    paginate_by = 2
+    paginate_by = 5
     template_name = "index.html"
     login_url = "login"
 
-    # def get_queryset(self):
-    #     queryset = Product.objects.filter(Contractor=request.h("user")).order_by(
-    #         "-id"
-    #     )
+    def get_queryset(self):
+        queryset = Product.objects.filter(Contractor=self.request.user).order_by("-id")
+
     #     # Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
     #     return queryset
 
@@ -68,7 +67,8 @@ def delete(request, id):
         # if str(product.preview_images)[1:]:  # если есть вообще
         # os.remove(f'media/{str(product.preview_images)[1:]}')  # Удаление превьюшки (первый слеш мешал жить)
 
-        product.delete()  # удалили запись
+        product.delete()
+        # удалили запись
         return HttpResponseRedirect("/")
     except Product.DoesNotExist:
         return HttpResponseNotFound("<h2>Удаление</h2>")
@@ -84,7 +84,7 @@ class FilesUpdateView(LoginRequiredMixin, UpdateView):
 
 class FilesCreateView(LoginRequiredMixin, CreateView):
     model = Product
-    fields = ["quantity", "material", "FinishWork", "Fields", "images"]
+    fields = ["quantity", "material", "FinishWork", "Fields", "images", "comments"]
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
@@ -113,13 +113,6 @@ def price(request):
             "title": "Прайс-лист",
         },
     )
-
-
-class FileList(LoginRequiredMixin, ListView):
-    paginate_by = 5
-    model = Product
-    template_name = "all_files_detail.html"
-    login_url = "login"
 
 
 def add_files_in_base():
@@ -165,27 +158,29 @@ def calculator(request):
             quantity = request.POST["quantity"]
             material = request.POST["material"]
             finishka = request.POST["finishka"]
+            print(request.user.role)
 
             materials = Material.objects.get(id=material)
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length)) * 2
 
             # проверка ретейл или агентство
-            if request.user.role == 'CUSTOMER_RETAIL':
+            if request.user.role == "CUSTOMER_RETAIL":
                 material_price = materials.price_customer_retail
                 finishka_price = finishkas.price_customer_retail
-            elif request.user.role == 'CUSTOMER_AGENCY':
+            elif request.user.role == "CUSTOMER_AGENCY":
                 material_price = materials.price
                 finishka_price = finishkas.price
 
-
         finishka_price = perimetr * finishka_price
         results = (
-                          float(width) * float(length) * material_price
-                  ) + finishka_price  # в см
+            float(width) * float(length) * material_price
+        ) + finishka_price  # в см
         results = round(results, -1) * int(quantity)
-        if request.user.role == 'CUSTOMER_RETAIL':
-            if results < 1000: # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+        if request.user.role == "CUSTOMER_RETAIL":
+            if (
+                results < 1000
+            ):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
                 results = 1000
         return render(
             request,
@@ -199,15 +194,11 @@ def calculator(request):
 
     else:
         form = Calculator()
-        return render(request,
-                      "calculator.html",
-                      {"form": form, "title": "Калькулятор печати"},
-                      )
-
-
-class PrintCalculator:
-    def __init__(self, length, width, material, finishka):
-        pass
+        return render(
+            request,
+            "calculator.html",
+            {"form": form, "title": "Калькулятор печати"},
+        )
 
 
 def page_not_found(request, exception):
@@ -260,4 +251,3 @@ class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
-
