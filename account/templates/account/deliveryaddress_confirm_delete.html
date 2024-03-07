@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} Добавить адрес:{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<form method="post">{% csrf_token %}
+    <p>Удалить адрес "{{ object }}"?</p>
+    {{ form }}
+    <input type="submit" value="Подтвердить">
+</form>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Добавить адрес:{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<h3>Заполните адрес доставки</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+
+    <input type="submit" value="Добавить">
+</form>
+{% endblock %}
