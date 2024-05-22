@@ -251,19 +251,20 @@ def view_all_files_for_work_in_orders(request):
 
 def report_complite_orders(request):
     """Отчет от выполненных заказах"""
+
     if request.method == "POST":
         date_start = request.POST["date_start"]
         date_finish = request.POST["date_finish"]
-    logger.info(f"date_start:{date_start}, type{type(date_start)}")
-    logger.info(f"date_finish:{date_finish}")
-    # order = Order.objects.filter(created=)
-    # 2023-10-10 18:40:09.391297
-    return render(
-        request,
-        "report_complite_"
-        "orders.html",
-        {"order": order},
-    )
+        logger.info(f"date_start:{date_start}, type{type(date_start)}")
+        logger.info(f"date_finish:{date_finish}")
+        order = Order.objects.filter(created=2023-10-10)
+        return render(request, "report_complite_orders.html", {"order": order})
+
+
+
+    else:
+        # form = Calculator()
+        return render(request, "report_complite_orders.html")
 
 
 def result(request):
@@ -275,7 +276,7 @@ def result(request):
 
             if Robokassa.check_signature_result(received_sum, order_number, received_signature,
                                                 os.getenv('PASSWORD_ONE'), ):
-                #переключаем оплату на TRUE
+                # переключаем оплату на TRUE
                 return render(request, 'success_pay.html')
 
             # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
