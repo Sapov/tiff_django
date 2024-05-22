@@ -22,6 +22,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
 
 from .tiff_file import WorkZip
+from rest_framework import generics,viewsets
+from .serializers import MaterlailSerializer
 
 
 # from django.core.files.storage import FileSystemStorage
@@ -174,12 +176,12 @@ def calculator(request):
 
         finishka_price = perimetr * finishka_price
         results = (
-            float(width) * float(length) * material_price
-        ) + finishka_price  # в см
+                          float(width) * float(length) * material_price
+                  ) + finishka_price  # в см
         results = round(results, -1) * int(quantity)
         if request.user.role == "CUSTOMER_RETAIL":
             if (
-                results < 1000
+                    results < 1000
             ):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
                 results = 1000
         return render(
@@ -251,3 +253,27 @@ class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
+
+
+# class MaterialApiList(generics.ListCreateAPIView):
+#     queryset = Material.objects.all()
+#     serializer_class = MaterlailSerializer
+#
+#
+# class MaterialRetriveApiList(generics.RetrieveAPIView):
+#     queryset = Material.objects.all()
+#     serializer_class = MaterlailSerializer
+#
+#
+# class MaterialAPIUpdate(generics.RetrieveAPIView):
+#     queryset = Material.objects.all()
+#     serializer_class = MaterlailSerializer
+#
+#
+# class MaterialAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Material.objects.all()
+#     serializer_class = MaterlailSerializer
+
+class MaterialViewSet(viewsets.ModelViewSet):
+    queryset = Material.objects.all()
+    serializer_class = MaterlailSerializer
