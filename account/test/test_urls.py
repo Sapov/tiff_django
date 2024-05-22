@@ -45,4 +45,28 @@ class TestAccount(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
+class TestModelProfile(TestCase):
 
+    @classmethod
+    def setUpTestData(cls):
+        # Set up non-modified objects used by all
+        # test methods
+        Profile.objects.create(
+            user=User.objects.create(username='vasa'),
+            date_of_birth="2023-04-07",
+
+            phone='47786786',
+            telegram='4545645645',
+            organisation=Organisation.objects.create(id=1),
+
+        )
+
+    def test_date_of_birth_label(self):
+        profile = Profile.objects.get(id=1)
+        field_label = profile._meta.get_field('date_of_birth').verbose_name
+        self.assertEqual(field_label, 'Дата рождения')
+
+    def test_telegram_length(self):
+        profile = Profile.objects.get(id=1)
+        max_length = profile._meta.get_field('telegram').max_length
+        self.assertEqual(max_length, 15)

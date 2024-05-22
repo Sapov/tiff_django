@@ -8,7 +8,7 @@ from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from files.models import TypePrint
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView
-from .models import Organisation, Profile
+from .models import Organisation, Profile, Delivery, DeliveryAddress
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 
@@ -46,7 +46,7 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-        return render(request, 'account/complite_edit.html')
+        return render(request, "account/complite_edit.html")
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
@@ -118,3 +118,51 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     )
     template_name_suffix = "_update_form"
     success_url = reverse_lazy("account:list_organisation")
+
+
+class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
+    # from django.views.generic.edit import CreateView
+    model = DeliveryAddress
+    fields = [
+        "delivery_method",
+        "region",
+        "city",
+        "street",
+        "house",
+        "entrance",
+        "floor",
+        "flat",
+        "first_name",
+        "second_name",
+        "phone",
+    ]
+    success_url = reverse_lazy("account:delivery_list")
+
+    # только для текущего юзера
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class DeliveryAddressListView(LoginRequiredMixin, ListView):
+    template_name = "delivery_list.html"
+    model = DeliveryAddress
+    paginate_by = 5
+
+    def get_queryset(self):
+        "Адреса доставки только этого юзера"
+        queryset = DeliveryAddress.objects.filter(user=self.request.user)
+        return queryset
+
+
+class DeliveryAddressUpdate(LoginRequiredMixin, UpdateView):
+    model = DeliveryAddress
+    fields = ["region", "city", "street", "house", "delivery_method"]
+    template_name_suffix = "_update_form"
+    success_url = reverse_lazy("account:delivery_list")
+
+
+class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
+    model = DeliveryAddress
+    fields = "__all__"
+    success_url = reverse_lazy("account:delivery_list")

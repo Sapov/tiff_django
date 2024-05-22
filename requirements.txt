@@ -1,4 +1,4 @@
-amqp==5.1.1
+amqp
 asgiref==3.6.0
 async-timeout==4.0.3
 billiard==4.1.0
@@ -11,7 +11,7 @@ coverage==7.3.2
 crispy-bootstrap4==2022.1
 data==0.4
 decorator==5.1.1
-Django==4.1
+Django
 django-crispy-forms==2.0
 dnspython==2.4.2
 easy-thumbnails==2.8.5

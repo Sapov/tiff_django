@@ -40,9 +40,8 @@ urlpatterns = [
         del_item_in_order,
         name="del_item_in_order",
     ),
-    path(
-        "view_all_orders/", AllOrdersListView.as_view(), name="view_all_orders"
-    ),  # Посмотреть все заказы
+# Посмотреть все заказы
+    path("view_all_orders/", AllOrdersListView.as_view(), name="view_all_orders"),
     path(
         "view_all_orders_pay/", ViewAllPayOrders.as_view(), name="view_all_orders_pay"
     ),  # все оплаченые заказы
