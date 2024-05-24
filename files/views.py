@@ -322,8 +322,7 @@ def calculator_out(request):
             materials = Material.objects.get(id=material)
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length)) * 2
-            # logger.info(f'[request.user.role]:{request.user.role}')
-            # проверка ретейл или агентство
+            logger.info(f'[request]:{request}')
             material_price = materials.price_customer_retail
             finishka_price = finishkas.price_customer_retail
 
