@@ -41,6 +41,21 @@ class Calculator(forms.Form):
     width = forms.FloatField(max_value=100, label="Ширина в метрах")
 
 
+class CalculatorLargePrint(forms.Form):
+    '''для широкоформатной печати'''
+    quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(type_print=1),
+        label="Материал для печати",
+        help_text="Выберите материал",
+        initial=1,
+    )
+    finishka = forms.ModelChoiceField(
+        queryset=FinishWork.objects.all(), label="Обработка", initial=True
+    )
+    length = forms.FloatField(max_value=100, label="Длина в метрах")
+    width = forms.FloatField(max_value=100, label="Ширина в метрах")
+
 
 class UploadFilesInter(forms.ModelForm):
     """Форма загрузки файлов для интерьерной печати отфильтруем только интерьерную печать"""
