@@ -15,15 +15,19 @@ from .forms import (
     UploadFilesInter,
     UploadFilesLarge,
     UploadFilesUV,
-    UploadFilesRollUp,
+    UploadFilesRollUp, CalculatorLargePrint,
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
 
 from .tiff_file import WorkZip
-from rest_framework import generics,viewsets
+from rest_framework import generics, viewsets
 from .serializers import MaterlailSerializer
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # from django.core.files.storage import FileSystemStorage
@@ -200,6 +204,59 @@ def calculator(request):
             request,
             "calculator.html",
             {"form": form, "title": "Калькулятор печати"},
+        )
+
+
+def calculator_large_print(request):
+    if request.POST:
+        form = CalculatorLargePrint(request.POST)
+        if form.is_valid():
+            form = CalculatorLargePrint(request.POST)
+            length = request.POST["length"]
+            width = request.POST["width"]
+            quantity = request.POST["quantity"]
+            material = request.POST["material"]
+            finishka = request.POST["finishka"]
+            logger.info(f'[USER ROLE]: {request.user.role}')
+
+            materials = Material.objects.get(id=material)
+            finishkas = FinishWork.objects.get(id=finishka)
+            perimetr = (float(width) + float(length)) * 2
+
+            # проверка ретейл или агентство
+            if request.user.role == "CUSTOMER_RETAIL":
+                material_price = materials.price_customer_retail
+                finishka_price = finishkas.price_customer_retail
+            elif request.user.role == "CUSTOMER_AGENCY":
+                material_price = materials.price
+                finishka_price = finishkas.price
+
+        finishka_price = perimetr * finishka_price
+        results = (
+                          float(width) * float(length) * material_price
+                  ) + finishka_price  # в см
+        results = round(results, -1) * int(quantity)
+        if request.user.role == "CUSTOMER_RETAIL":
+            if (
+                    results < 1000
+            ):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+                results = 1000
+        return render(
+            request,
+            "files/calculator_large.html",
+            {
+                "form": form,
+                "title": "Калькулятор ШФ печати",
+                "results": results,
+            },
+        )
+
+    else:
+        form = CalculatorLargePrint()
+        return render(
+            request,
+            "files/calculator_large.html",
+            {"form": form, "title": "Калькулятор Широкоформатной печати"},
         )
 
 
