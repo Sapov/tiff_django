@@ -15,7 +15,7 @@ from account.models import Organisation, Delivery
 # from account.models import Organisation
 from files.models import Product
 from files.pay import Robokassa
-from .forms import NewOrder
+from .forms import NewOrder, ReportForm
 from .models import Order, OrderItem, UtilsModel
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
@@ -251,19 +251,23 @@ def view_all_files_for_work_in_orders(request):
 
 def report_complite_orders(request):
     """Отчет от выполненных заказах"""
+
     if request.method == "POST":
+        form = ReportForm(request.POST)
         date_start = request.POST["date_start"]
         date_finish = request.POST["date_finish"]
-    logger.info(f"date_start:{date_start}, type{type(date_start)}")
-    logger.info(f"date_finish:{date_finish}")
-    # order = Order.objects.filter(created=)
-    # 2023-10-10 18:40:09.391297
-    return render(
-        request,
-        "report_complite_"
-        "orders.html",
-        {"order": order},
-    )
+        logger.info(f"date_start:{date_start}, type{type(date_start)}")
+        logger.info(f"date_finish:{date_finish}")
+
+        order = Order.objects.filter(date_start)
+        if form.is_valid():
+            return render(request, "report_complite_orders.html", {form: 'form', "order": order})
+
+
+
+    else:
+        form = ReportForm()
+        return render(request, "report_complite_orders.html", {'form': form})
 
 
 def result(request):
@@ -275,7 +279,7 @@ def result(request):
 
             if Robokassa.check_signature_result(received_sum, order_number, received_signature,
                                                 os.getenv('PASSWORD_ONE'), ):
-                #переключаем оплату на TRUE
+                # переключаем оплату на TRUE
                 return render(request, 'success_pay.html')
 
             # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
@@ -298,3 +302,35 @@ def success_pay(request):
 
 def fail(request):
     return render(request, 'fail_pay.html')
+
+
+from datetime import datetime, timedelta
+from django.utils import timezone
+
+# class Generator:
+#
+#     def get_mytimezone_date(original_datetime):
+#         new_datetime = datetime.strptime(original_datetime, '%Y-%m-%d')
+#         tz = timezone.get_current_timezone()
+#         timzone_datetime = timezone.make_aware(new_datetime, tz, True)
+#         return timzone_datetime.date()
+#
+#     def __init__(self, start_date=None, end_date=None):
+#
+#         if end_date:
+#             self.end_date = self.get_mytimezone_date(end_date)
+#         else:
+#             self.end_date = timezone.now().date()
+#
+#         if start_date:
+#             self.start_date = self.get_mytimezone_date(start_date)
+#         else:
+#             self.start_date = self.end_date - timedelta(days=7)
+#
+#     def get_query(self, d):
+#
+#         query = MyModel.objects.filter(
+#             d__in=d,
+#             created__gte=start_date,
+#             created__lte=end_date
+#         )
