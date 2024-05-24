@@ -34,9 +34,8 @@ logger = logging.getLogger(__name__)
 @login_required
 def index(request):
     """Вывод файлов только авторизованного пользователя"""
-    object_list = Product.objects.filter(Contractor=request.user).order_by(
-        "-id"
-    )  # вывод в обратном порядке -id
+    # вывод в обратном порядке -id
+    object_list = Product.objects.filter(Contractor=request.user).order_by("-id")
     """paginator"""
     paginator = Paginator(object_list, 5)  # Show 5 contacts per page.
     page_number = request.GET.get("page")
@@ -60,9 +59,6 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Product.objects.filter(Contractor=self.request.user).order_by("-id")
 
-    #     # Product.objects.filter(Contractor=request.user).order_by('-id')  # вывод в обратном порядке -id
-    #     return queryset
-
 
 def delete(request, id):
     try:
@@ -70,9 +66,6 @@ def delete(request, id):
         # Deleting files
 
         os.remove(f"media/{str(product.images)}")  # Удаление файла
-        # if str(product.preview_images)[1:]:  # если есть вообще
-        # os.remove(f'media/{str(product.preview_images)[1:]}')  # Удаление превьюшки (первый слеш мешал жить)
-
         product.delete()
         # удалили запись
         return HttpResponseRedirect("/")
@@ -82,7 +75,6 @@ def delete(request, id):
 
 class FilesUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
-    # fields = ("__all__")
     fields = ["quantity", "material", "FinishWork", "Fields"]
     template_name = "product_update_form.html"
     login_url = "login"
@@ -311,25 +303,6 @@ class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
 
-
-# class MaterialApiList(generics.ListCreateAPIView):
-#     queryset = Material.objects.all()
-#     serializer_class = MaterlailSerializer
-#
-#
-# class MaterialRetriveApiList(generics.RetrieveAPIView):
-#     queryset = Material.objects.all()
-#     serializer_class = MaterlailSerializer
-#
-#
-# class MaterialAPIUpdate(generics.RetrieveAPIView):
-#     queryset = Material.objects.all()
-#     serializer_class = MaterlailSerializer
-#
-#
-# class MaterialAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Material.objects.all()
-#     serializer_class = MaterlailSerializer
 
 class MaterialViewSet(viewsets.ModelViewSet):
     queryset = Material.objects.all()
