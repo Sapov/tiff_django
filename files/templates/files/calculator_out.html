@@ -1,33 +1,31 @@
+{% extends 'files/base_site.html' %}
 {% load crispy_forms_tags %}
 
-<title>{% block title %} Калькулятор {% endblock %}</title>
-{% block body %}
-<div class="container-fluid">
+{% block title %} {{title}} {% endblock %}
+{% block content %}
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Калькулятор печати</h1>
-    <p class="mb-4">Выберите материал, укажите обработку если есть введите размер и нажмите кнопку "Посчитать"</p>
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Финишная обработка:</h6>
+<h1>{{title}}</h1>
+
+
+ <div class="row">
+    <div class="col-8">
+
+<form action="{% url 'files:calculator_out' %}" method="post">
+{% csrf_token %}
+{{ form|crispy }}
+<button type="submit" class="btn btn-primary">Рассчитать</button>
+</form>
+
+<h5>Сумма заказа: {{results}} руб.</h5>
+<div > {{form.non_field_errors }}</div>
     </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <form action="{% url 'files:calculator_out' %}" method="post", enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form|crispy }}
+    <div class="col-4">
 
-                <button type="submit" class="btn btn-primary">Посчитать</button>
+<h2>Сумма заказа: {{results}} руб.</h2>
 
-            </form>
+    </div>
+  </div>
 
-            <h5>Сумма заказа: {{results}} руб.</h5>
-
-
-        </div>
-         </div>
-<!--</div>-->
-<!--         </div>-->
 
 {% endblock %}
