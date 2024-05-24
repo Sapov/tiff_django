@@ -41,6 +41,7 @@ class Calculator(forms.Form):
     width = forms.FloatField(max_value=100, label="Ширина в метрах")
 
 
+
 class UploadFilesInter(forms.ModelForm):
     """Форма загрузки файлов для интерьерной печати отфильтруем только интерьерную печать"""
 
