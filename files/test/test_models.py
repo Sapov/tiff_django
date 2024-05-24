@@ -35,14 +35,12 @@ class TestModelsFinishWork(TestCase):
         expected_verbose_name = 'Себестоимость работы в руб.'
         self.assertEquals(field_label, expected_verbose_name)
 
-
     def test_fields_is_active(self):
         work = FinishWork.objects.get(id=1)
         # Получение метаданных поля для получения необходимых значений
         field_label = work._meta.get_field('is_active').verbose_name
         expected_verbose_name = 'Активный'
         self.assertEquals(field_label, expected_verbose_name)
-
 
     def test_fields_price_contractor_help_text(self):
         work = FinishWork.objects.get(id=1)
@@ -171,7 +169,7 @@ class TestModelsMaterial(TestCase):
             'name').max_length  # Получение метаданных поля для получения необходимых значений
         self.assertEquals(max_length, 100)  # Сравнить значение с ожидаемым результатом
 
-    def test_fields_ptype_print(self):
+    def test_fields_type_print(self):
         type_print = Material.objects.get(id=1)
         # Получение метаданных поля для получения необходимых значений
         field_label = type_print._meta.get_field('type_print').verbose_name
@@ -219,6 +217,27 @@ class TestModelsMaterial(TestCase):
             'price_contractor').max_length  # Получение метаданных поля для получения необходимых значений
         self.assertEquals(max_length, 100)  # Сравнить значение с ожидаемым результатом
 
+    # --------TEST-----price_customer_retail----------
+    def test_fields_price_customer_retail(self):
+        work = Material.objects.get(id=1)
+        # Получение метаданных поля для получения необходимых значений
+        field_label = work._meta.get_field('price_customer_retail').verbose_name
+        expected_verbose_name = 'Стоимость печати розница в руб.'
+        self.assertEquals(field_label, expected_verbose_name)
+
+    def test_price_customer_retail_help_text(self):
+        work = Material.objects.get(id=1)
+        # Получение метаданных поля для получения необходимых значений
+        field_label = work._meta.get_field('price_customer_retail').help_text
+        expected_verbose_name = 'За 1 м2'
+        self.assertEquals(field_label, expected_verbose_name)
+
+    def test_max_length_price_customer_retail(self):
+        work = Material.objects.get(id=1)  # Получение объекта для тестирования
+        max_length = work._meta.get_field(
+            'price_customer_retail').max_length  # Получение метаданных поля для получения необходимых значений
+        self.assertEquals(max_length, 100)  # Сравнить значение с ожидаемым результатом
+
     def test_fields_resolution_print_verbose_name(self):
         work = Material.objects.get(id=1)
         # Получение метаданных поля для получения необходимых значений
@@ -232,12 +251,6 @@ class TestModelsMaterial(TestCase):
         field_label = work._meta.get_field('resolution_print').help_text
         expected_verbose_name = 'разрешение для печати на материале'
         self.assertEquals(field_label, expected_verbose_name)
-
-    # def test_max_length_presolution_print(self):
-    #     work = Material.objects.get(id=1)  # Получение объекта для тестирования
-    #     max_length = work._meta.get_field(
-    #         'resolution_print').max_length  # Получение метаданных поля для получения необходимых значений
-    #     self.assertEquals(max_length, 100)  # Сравнить значение с ожидаемым результатом
 
     def test_string_representation(self):
         """Тест строкового отображения"""

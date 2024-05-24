@@ -24,3 +24,8 @@ class NewOrder(forms.ModelForm):
     #     super(NewOrder, self).__init__(*args, **kwargs)
     #     self.fields['organisation_payer'].queryset = Organisation.objects.filter(
     #         Contractor=self.user)  # для агенства раскоментировать
+
+
+class ReportForm(forms.Form):
+    date_start = forms.DateField()
+    date_finish=forms.DateTimeInput()
