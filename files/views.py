@@ -82,7 +82,7 @@ class FilesUpdateView(LoginRequiredMixin, UpdateView):
 
 class FilesCreateView(LoginRequiredMixin, CreateView):
     model = Product
-    fields = ["quantity", "material", "FinishWork", "Fields", "images", "comments"]
+    fields = ["quantity", "material", "FinishWork", "images", "comments"]
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
