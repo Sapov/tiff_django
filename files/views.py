@@ -270,7 +270,6 @@ class FilesCreateViewInter(LoginRequiredMixin, CreateView):
 
 class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
     """Загрузка файлов только для широкоформатной печати"""
-
     model = Product
     form_class = UploadFilesLarge
     template_name = "files/large_print.html"

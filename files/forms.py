@@ -89,9 +89,10 @@ class UploadFilesLarge(forms.ModelForm):
         model = Product
         fields = [
             "quantity",
-            "images",
-            "FinishWork",
             "material",
+            "FinishWork",
+            "images",
+            "comments"
         ]
 
 
