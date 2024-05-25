@@ -10,9 +10,9 @@ def load_excel(sheet: str, range_cell: str):
     sheet = wb[sheet]  # читаю первый лист по Ширке
     Material_data = []
     for row in sheet[range_cell]:
-        for cell in row:
-            item = [cell.value for cell in row]
+        item = [cell.value for cell in row]
         Material_data.append(item)
+    # print(Material_data)
     return Material_data
 
 
