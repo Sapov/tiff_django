@@ -72,7 +72,6 @@ class UploadFilesInter(forms.ModelForm):
             "quantity",
             "images",
             "FinishWork",
-            "Fields",
             "material",
         ]
 
@@ -92,7 +91,6 @@ class UploadFilesLarge(forms.ModelForm):
             "quantity",
             "images",
             "FinishWork",
-            "Fields",
             "material",
         ]
 
@@ -112,7 +110,6 @@ class UploadFilesUV(forms.ModelForm):
             "quantity",
             "images",
             "FinishWork",
-            "Fields",
             "material",
         ]
 
