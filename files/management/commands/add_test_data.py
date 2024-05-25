@@ -14,9 +14,9 @@ from .data_test import StatusProducts_data, TypePrint_data, Fields_data, FinishW
 class Command(BaseCommand):
     help = "Наполнить БД"
 
-    def handle(self, *args, **options):
-        for status in StatusProducts_data:
-            StatusProduct.objects.get_or_create(status=status)
+    # def handle(self, *args, **options):
+    #     for status in StatusProducts_data:
+    #         StatusProduct.objects.get_or_create(status=status)
 
         # # заполняем таблицу типы печати
         # for type_print in TypePrint_data:
@@ -26,8 +26,8 @@ class Command(BaseCommand):
         for type_delivery in Delivery_type_data:
             Delivery.objects.get_or_create(type_delivery=type_delivery)
 
-        for fields in Fields_data:
-            Fields.objects.get_or_create(fields=fields)
+        # for fields in Fields_data:
+        #     Fields.objects.get_or_create(fields=fields)
 
         for name in StatusOrder_data:
             StatusOrder.objects.get_or_create(name=name)
