@@ -7,7 +7,7 @@ from .models import (
     Fields,
     FinishWork,
     StatusProduct,
-    UploadArh,
+    UploadArh, UseCalculator,
 )
 from account.models import Organisation
 
@@ -36,6 +36,7 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(Organisation)
 admin.site.register(Contractor)
 admin.site.register(Fields)
+admin.site.register(UseCalculator)
 
 
 # admin.site.register(FinishWork)
