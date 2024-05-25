@@ -70,9 +70,10 @@ class UploadFilesInter(forms.ModelForm):
         model = Product
         fields = [
             "quantity",
-            "images",
-            "FinishWork",
             "material",
+            "FinishWork",
+            "images",
+            "comments"
         ]
 
 
@@ -109,9 +110,10 @@ class UploadFilesUV(forms.ModelForm):
         model = Product
         fields = [
             "quantity",
-            "images",
-            "FinishWork",
             "material",
+            "FinishWork",
+            "images",
+            "comments"
         ]
 
 
