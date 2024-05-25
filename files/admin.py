@@ -36,7 +36,19 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(Organisation)
 admin.site.register(Contractor)
 admin.site.register(Fields)
-admin.site.register(UseCalculator)
+
+
+class UseCalculatorAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in UseCalculator._meta.fields]
+    # list_editable = ["price_contractor", "price", "price_customer_retail", "is_active"]
+    list_filter = ["created_at", 'material']
+    sortable_by = ["created_at"]
+
+    class Meta:
+        model = UseCalculator
+
+
+admin.site.register(UseCalculator, UseCalculatorAdmin)
 
 
 # admin.site.register(FinishWork)
