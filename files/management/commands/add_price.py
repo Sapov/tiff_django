@@ -1,4 +1,6 @@
 from django.core.management.base import BaseCommand
+
+from account.models import Delivery
 from files.models import Material, FinishWork, TypePrint, StatusProduct
 from orders.models import StatusOrder
 from .from_excel import load_excel
@@ -42,8 +44,15 @@ class Command(BaseCommand):
 
         print('*' * 30, 'заполняем Статус Продукта ', '*' * 30)
         for status in load_excel('status_product', 'b2:b5'):
+            print(status)
             StatusProduct.objects.get_or_create(status=status)
 
         print('*' * 30, 'заполняем Статус Заказа ', '*' * 30)
         for status in load_excel('status_order', 'b2:b6'):
+            print(status)
             StatusOrder.objects.get_or_create(name=status)
+
+        print('*' * 30, 'заполняем Типы доставки ', '*' * 30)
+        for type_delivery in load_excel('delivery', 'b2:b6'):
+            print(type_delivery)
+            Delivery.objects.get_or_create(type_delivery=type_delivery)

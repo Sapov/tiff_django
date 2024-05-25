@@ -23,14 +23,14 @@ class Command(BaseCommand):
         #     TypePrint.objects.get_or_create(type_print=type_print)
 
         # заполняем таблицу типы доставки
-        for type_delivery in Delivery_type_data:
-            Delivery.objects.get_or_create(type_delivery=type_delivery)
+        # for type_delivery in Delivery_type_data:
+        #     Delivery.objects.get_or_create(type_delivery=type_delivery)
 
         # for fields in Fields_data:
         #     Fields.objects.get_or_create(fields=fields)
 
-        for name in StatusOrder_data:
-            StatusOrder.objects.get_or_create(name=name)
+        # for name in StatusOrder_data:
+        #     StatusOrder.objects.get_or_create(name=name)
         #
         # for item in FinishWork_data:
         #     FinishWork.objects.get_or_create(
