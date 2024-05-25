@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 name=item[0],
                 type_print=TypePrint.objects.get_or_create(id=1)[0],
                 price_contractor=item[1],
-                price_agent=item[2],
+                price=item[2],
                 price_customer_retail=item[3],
                 resolution_print=item[4]
             )
@@ -32,7 +32,7 @@ class Command(BaseCommand):
             FinishWork.objects.get_or_create(
                 work=item[0],
                 price_contractor=item[1],
-                price_agent=item[2],
+                price=item[2],
                 price_customer_retail=item[3],
                 # is_active=item[4]
             )
