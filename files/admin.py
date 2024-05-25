@@ -4,7 +4,6 @@ from .models import (
     Product,
     Contractor,
     TypePrint,
-    Fields,
     FinishWork,
     StatusProduct,
     UploadArh, UseCalculator,
@@ -35,7 +34,6 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Organisation)
 admin.site.register(Contractor)
-admin.site.register(Fields)
 
 
 class UseCalculatorAdmin(admin.ModelAdmin):
