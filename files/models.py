@@ -284,3 +284,38 @@ class Fields(models.Model):
 
 class UploadArh(models.Model):
     path_file = models.FileField(upload_to="upload_arhive")
+
+
+class UseCalculator(models.Model):
+    ''' Расчеты пользователей сайта '''
+
+    material = models.ForeignKey(
+        "Material", on_delete=models.PROTECT, verbose_name="Материал"
+    )
+    quantity = models.IntegerField(
+        default=1, help_text="Введите количество", verbose_name="Количество"
+    )
+    width = models.FloatField(
+        default=0, verbose_name="Ширина", help_text="Указывается в см."
+    )
+    length = models.FloatField(
+        default=0, verbose_name="Длина", help_text="Указывается в см."
+    )
+
+    results = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+
+    FinishWork = models.ForeignKey(
+        "FinishWork",
+        on_delete=models.PROTECT,
+        verbose_name="Финишная обработка",
+        default=1)
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name="Добавлено"
+    )
+
+    def __str__(self):
+        return str(self.material)
+
+    class Meta:
+        verbose_name_plural = "Расчеты клиентов сайта"
+        verbose_name = "Расчет клиентов сайта"
