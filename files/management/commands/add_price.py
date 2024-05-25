@@ -35,7 +35,6 @@ class Command(BaseCommand):
             )
         # заполняем Типы материалов в таблицу TypePrint
         print('*' * 30, 'заполняем Типы материалов в таблицу TypePrint', '*' * 30)
-
-        for type_print in load_excel('type_print', 'b2:b58'):
+        for type_print in load_excel('type_print', 'b2:b5'):
             print(type_print)
             TypePrint.objects.get_or_create(type_print=type_print)
