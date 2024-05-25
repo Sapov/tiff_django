@@ -185,12 +185,7 @@ class Product(models.Model):
         verbose_name="Финишная обработка",
         default=1,
     )
-    Fields = models.ForeignKey(
-        "Fields",
-        on_delete=models.PROTECT,
-        verbose_name="Поля вокруг изображения",
-        default=1,
-    )
+
     in_order = models.BooleanField(
         verbose_name="Позиция в заказе", default=0, blank=True, null=True
     )
@@ -271,15 +266,6 @@ def product_post_save(sender, instance, created, **kwargs):
 post_save.connect(product_post_save, sender=Product)
 
 
-class Fields(models.Model):
-    fields = models.CharField(max_length=255, verbose_name="Поля вокруг изображения")
-
-    def __str__(self):
-        return self.fields
-
-    class Meta:
-        verbose_name_plural = "Поля"
-        verbose_name = "Поле вокруг печати"
 
 
 class UploadArh(models.Model):
