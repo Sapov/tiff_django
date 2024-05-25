@@ -271,15 +271,6 @@ def product_post_save(sender, instance, created, **kwargs):
 post_save.connect(product_post_save, sender=Product)
 
 
-class Fields(models.Model):
-    fields = models.CharField(max_length=255, verbose_name="Поля вокруг изображения")
-
-    def __str__(self):
-        return self.fields
-
-    class Meta:
-        verbose_name_plural = "Поля"
-        verbose_name = "Поле вокруг печати"
 
 
 class UploadArh(models.Model):
