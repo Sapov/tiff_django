@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound, request
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
-from .models import Product, Material, FinishWork
+from .models import Product, Material, FinishWork, UseCalculator
 from .forms import (
     AddFiles,
     UploadArhive,
@@ -331,14 +331,18 @@ def calculator_out(request):
             results = round(results, -1) * int(quantity)
             if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
                 results = 1000
-            return render(request,
-                          "files/calculator_out.html",
-                          {
-                              "form": form,
-                              "title": "Калькулятор печати",
-                              "results": results,
-                          },
-                          )
+
+            try:
+                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
+                                             results=results, FinishWork=finishkas)
+                return render(request, "files/calculator_out.html", {"form": form,
+                                                                     "title": "Калькулятор печати",
+                                                                     "results": results,
+                                                                     },
+                              )
+
+            except:
+                form.add_error(None, 'Ошибка расчета')
 
     else:
         form = Calculator()
