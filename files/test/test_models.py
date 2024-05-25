@@ -284,13 +284,20 @@ class TestModelsUseCalculator(TestCase):
 
         # created_at = 2004/01/01
 
-        def test_material_label(self):
-            '''Получение метаданных поля для получения необходимых значений'''
-            material = Material.objects.get(id=1)
-            field_label = material._meta.get_field('type_print').verbose_name
-            expected_verbose_name = 'Материал'
-            self.assertEquals(field_label, expected_verbose_name)
-        #
+    # def test_material_label(self):
+    #     '''Получение метаданных поля для получения необходимых значений'''
+    #     item = UseCalculator.objects.get(id=1)
+    #     field_label = item._meta.get_field('material').verbose_name
+    #     expected_verbose_name = 'Материал'
+    #     self.assertEquals(field_label, expected_verbose_name)
+
+    # def test_quantity_label(self):
+    #     '''Получение метаданных поля для получения необходимых значений'''
+    #     item = UseCalculator.objects.get(id=1)
+    #     field_label = item._meta.get_field('quantity').verbose_name
+    #     expected_verbose_name = 'Количество'
+    #     self.assertEquals(field_label, expected_verbose_name)
+    #     #
         # def test_max_length_type_print(self):
         #     type_print = TypePrint.objects.get(id=1)  # Получение объекта для тестирования
         #     max_length = type_print._meta.get_field(
