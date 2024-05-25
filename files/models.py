@@ -302,7 +302,7 @@ class UseCalculator(models.Model):
         default=0, verbose_name="Длина", help_text="Указывается в см."
     )
 
-    results = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    results = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name="Стимость")
 
     FinishWork = models.ForeignKey(
         "FinishWork",
@@ -314,7 +314,7 @@ class UseCalculator(models.Model):
     )
 
     def __str__(self):
-        return f'{str(self.material)[:10]} Кол-во: {self.quantity}шт. Размер: {self.width}x{self.length}м. Стоимость: {self.results} руб.'
+        return f'Дата: {str(self.created_at)[:16]} /{str(self.material)[:10]}/ Кол-во: {self.quantity}шт./Размер: {self.width}x{self.length}м./Стоимость: {self.results} руб.'
 
     class Meta:
         verbose_name_plural = "Расчеты клиентов сайта"

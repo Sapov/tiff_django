@@ -1,4 +1,4 @@
-from files.models import FinishWork, TypePrint, Material
+from files.models import FinishWork, TypePrint, Material, UseCalculator
 from django.test import TestCase
 from django.urls import reverse
 
@@ -267,3 +267,77 @@ class TestModelsMaterial(TestCase):
         """Тест поля verbose_name_plural модели TriFinishWorkal"""
 
         self.assertEqual(Material._meta.verbose_name_plural, 'Материалы для печати')
+
+
+class TestModelsUseCalculator(TestCase):
+    """Тесты для модели UseCalculator"""
+    #
+    # @classmethod
+    # def setUpTestData(cls):
+    #     """Заносит данные в БД перед запуском тестов класса"""
+    #     material = models.ForeignKey(
+    #         "Material", on_delete=models.PROTECT, verbose_name="Материал"
+    #     )
+    #     quantity = models.IntegerField(
+    #         default=1, help_text="Введите количество", verbose_name="Количество"
+    #     )
+    #     width = models.FloatField(
+    #         default=0, verbose_name="Ширина", help_text="Указывается в см."
+    #     )
+    #     length = models.FloatField(
+    #         default=0, verbose_name="Длина", help_text="Указывается в см."
+    #     )
+    #
+    #     results = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    #
+    #     FinishWork = models.ForeignKey(
+    #         "FinishWork",
+    #         on_delete=models.PROTECT,
+    #         verbose_name="Финишная обработка",
+    #         default=1)
+    #     created_at = models.DateTimeField(
+    #         auto_now_add=True, verbose_name="Добавлено"
+    #     )
+    #
+    #
+    #     UseCalculator.objects.create(
+    #         type_print='Интерьерная печать',
+    #         info_type_print=' Интретьерная печать харктеризуется мелкой детализацией и предназначена'
+    #                         'для размещения внутри помещения')
+    #
+    # def test_type_print(self):
+    #     '''Получение метаданных поля для получения необходимых значений'''
+    #     type_print = TypePrint.objects.get(id=1)
+    #     field_label = type_print._meta.get_field('type_print').verbose_name
+    #     expected_verbose_name = 'Метод печати'
+    #     self.assertEquals(field_label, expected_verbose_name)
+    #
+    # def test_max_length_type_print(self):
+    #     type_print = TypePrint.objects.get(id=1)  # Получение объекта для тестирования
+    #     max_length = type_print._meta.get_field(
+    #         'type_print').max_length  # Получение метаданных поля для получения необходимых значений
+    #     self.assertEquals(max_length, 128)  # Сравнить значение с ожидаемым результатом
+    #
+    # def test_fields_info_type_print(self):
+    #     type_print = TypePrint.objects.get(id=1)
+    #     # Получение метаданных поля для получения необходимых значений
+    #     field_label = type_print._meta.get_field('info_type_print').verbose_name
+    #     expected_verbose_name = 'Описание метода печати'
+    #     self.assertEquals(field_label, expected_verbose_name)
+    #
+    # def test_string_representation_TypePrint(self):
+    #     """Тест строкового отображения __str__"""
+    #     type_print = TypePrint.objects.get(id=1)  # Получение объекта для тестирования
+    #     # expected_object_name = '%s, %s, %s' % (work.work, work.price_contractor, work.price)
+    #     expected_object_name = f'{type_print.type_print}'
+    #     self.assertEquals(expected_object_name, str(type_print))
+    #
+    # def test_model_verbose_name_TypePrint(self):
+    #     """Тест поля verbose_name модели FinishWork"""
+    #
+    #     self.assertEqual(TypePrint._meta.verbose_name, 'Тип печати')
+    #
+    # def test_model_verbose_name_plural_TypePrint(self):
+    #     """Тест поля verbose_name_plural модели TriFinishWorkal"""
+    #
+    #     self.assertEqual(TypePrint._meta.verbose_name_plural, 'Типы печати')
