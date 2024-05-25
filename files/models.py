@@ -302,7 +302,7 @@ class UseCalculator(models.Model):
         default=0, verbose_name="Длина", help_text="Указывается в см."
     )
 
-    results = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name="Стимость")
+    results = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name="Стоимость")
 
     FinishWork = models.ForeignKey(
         "FinishWork",
