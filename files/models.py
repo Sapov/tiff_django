@@ -314,7 +314,7 @@ class UseCalculator(models.Model):
     )
 
     def __str__(self):
-        return str(self.material)
+        return f'{str(self.material)[:10]} Кол-во: {self.quantity}шт. Размер: {self.width}x{self.length}м. Стоимость: {self.results} руб.'
 
     class Meta:
         verbose_name_plural = "Расчеты клиентов сайта"
