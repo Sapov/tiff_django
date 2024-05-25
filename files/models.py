@@ -185,12 +185,7 @@ class Product(models.Model):
         verbose_name="Финишная обработка",
         default=1,
     )
-    Fields = models.ForeignKey(
-        "Fields",
-        on_delete=models.PROTECT,
-        verbose_name="Поля вокруг изображения",
-        default=1,
-    )
+
     in_order = models.BooleanField(
         verbose_name="Позиция в заказе", default=0, blank=True, null=True
     )
