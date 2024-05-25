@@ -18,9 +18,9 @@ class Command(BaseCommand):
         for status in StatusProducts_data:
             StatusProduct.objects.get_or_create(status=status)
 
-        # заполняем таблицу типы печати
-        for type_print in TypePrint_data:
-            TypePrint.objects.get_or_create(type_print=type_print)
+        # # заполняем таблицу типы печати
+        # for type_print in TypePrint_data:
+        #     TypePrint.objects.get_or_create(type_print=type_print)
 
         # заполняем таблицу типы доставки
         for type_delivery in Delivery_type_data:
@@ -31,15 +31,15 @@ class Command(BaseCommand):
 
         for name in StatusOrder_data:
             StatusOrder.objects.get_or_create(name=name)
-
-        for item in FinishWork_data:
-            FinishWork.objects.get_or_create(
-                work=item[0],
-                price_contractor=item[1],
-                price=item[2],
-                price_customer_retail=item[3]
-
-            )
+        #
+        # for item in FinishWork_data:
+        #     FinishWork.objects.get_or_create(
+        #         work=item[0],
+        #         price_contractor=item[1],
+        #         price=item[2],
+        #         price_customer_retail=item[3]
+        #
+        #     )
 
 # class Command(BaseCommand):
 #     def handle(self, *args, **options):

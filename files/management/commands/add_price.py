@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from files.models import Material, FinishWork, TypePrint
+from files.models import Material, FinishWork, TypePrint, StatusProduct
 from .from_excel import load_excel
 
 
@@ -38,3 +38,7 @@ class Command(BaseCommand):
         for type_print in load_excel('type_print', 'b2:b5'):
             print(type_print)
             TypePrint.objects.get_or_create(type_print=type_print)
+
+        print('*' * 30, 'заполняем Статус Продукта ', '*' * 30)
+        for status in load_excel('status_product', 'b2:b5'):
+            StatusProduct.objects.get_or_create(status=status)
