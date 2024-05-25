@@ -44,6 +44,17 @@ class Command(BaseCommand):
                 resolution_print=item[4]
             )
 
+        print('*' * 30, 'Заполняю базу стоимости UV print печать материалов ', '*' * 30)
+        for item in load_excel('uf-print', 'b2:f6'):
+            print(item)
+            Material.objects.get_or_create(
+                name=item[0],
+                type_print=TypePrint.objects.get_or_create(id=2)[0],
+                price_contractor=item[1],
+                price=item[2],
+                price_customer_retail=item[3],
+                resolution_print=item[4]
+            )
 
         # заполняем Финишку в таблицу FinishWork
         print('*' * 30, 'Заполняю Постпечатную обработку', '*' * 30)
