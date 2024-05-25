@@ -49,7 +49,7 @@ class Command(BaseCommand):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],
-                type_print=TypePrint.objects.get_or_create(id=2)[0],
+                type_print=TypePrint.objects.get_or_create(id=3)[0],
                 price_contractor=item[1],
                 price=item[2],
                 price_customer_retail=item[3],
