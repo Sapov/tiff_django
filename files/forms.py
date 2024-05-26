@@ -128,7 +128,7 @@ class UploadFilesRollUp(forms.ModelForm):
     FinishWork = forms.ModelChoiceField(
         queryset=FinishWork.objects.filter(id=2),
         label="Финишная обработка",
-        initial=2,  # по умолчанию литой 450 грамм
+        initial=2,
     )
 
     class Meta:
