@@ -34,7 +34,7 @@ urlpatterns = [
     path("delete/<int:id>/", delete),
     path("price/", price, name="price"),  # прайс-лист
     path("upload/", upload_arh, name="upload_arh"),  # загрузка архива файла
-
+    # calculators
     path("calculator/", calculator, name="calculator"),  # Calculator
     path("calculator_large_print/", calculator_large_print, name="calculator_large_print"),  # calculator_large_print
     path("calculator_out/", calculator_out, name="calculator_out"),  # calculator для общего пользования
