@@ -15,6 +15,8 @@ def arh_for_mail(order_id: int, domain: str):
     # send_mail_order(order_id, domain)
 
 
+
+
 # @shared_task
 # def create_order_pdf(order_id):
 #'''Формирования счета для организаций'''
