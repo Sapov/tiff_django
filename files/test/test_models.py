@@ -255,7 +255,7 @@ class TestModelsMaterial(TestCase):
     def test_string_representation(self):
         """Тест строкового отображения"""
         work = Material.objects.get(id=1)  # Получение объекта для тестирования
-        expected_object_name = f'{work.name} - {work.type_print}'
+        expected_object_name = f'{work.name} {work.type_print}'
         self.assertEquals(expected_object_name, str(work))
 
     def test_model_verbose_name(self):

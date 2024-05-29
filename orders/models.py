@@ -95,25 +95,25 @@ class Order(models.Model):
         return reverse("orders:add_file_in_order", args=[self.id])
 
 
-def order_post_save(sender, instance, created, **kwargs):
-    """Если статус заказа (В работе) - меняем все файлы в заказе на статус в работе"""
-    status = instance.status
-    id_order = instance.id
-    if status.id == 2:  # Если статус "В работе"
-        logger.info("in Work")
-        # меняем все файлы в заказе на статус в работе
-        all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-        for item in all_products_in_order:
-            file = Product.objects.get(id=item.product.id)
-            status = StatusProduct.objects.get(id=2)
-            file.status_product = status
-            file.save()
-        # ______________ SEND FILES__________________
-        # order_item = UtilsModel(id_order)
-        # order_item.run()
-
-
-post_save.connect(order_post_save, sender=Order)
+# def order_post_save(sender, instance, created, **kwargs):
+#     """Если статус заказа (В работе) - меняем все файлы в заказе на статус в работе"""
+#     status = instance.status
+#     id_order = instance.id
+#     if status.id == 2:  # Если статус "В работе"
+#         logger.info("in Work")
+#         # меняем все файлы в заказе на статус в работе
+#         all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
+#         for item in all_products_in_order:
+#             file = Product.objects.get(id=item.product.id)
+#             status = StatusProduct.objects.get(id=2)
+#             file.status_product = status
+#             file.save()
+#         # ______________ SEND FILES__________________
+#         # order_item = UtilsModel(id_order)
+#         # order_item.run()
+#
+#
+# post_save.connect(order_post_save, sender=Order)
 
 
 class OrderItem(models.Model):
@@ -224,21 +224,6 @@ class UtilsModel:
         self.path_arhive = f"{settings.MEDIA_ROOT}/arhive"
         self.domain = domain
 
-    @staticmethod
-    def arhvive(list_files: list, id_order: str) -> str:  # add tif to ZIP file
-        """Архивируем заказ"""
-        if os.path.isfile(f"Order_№_{id_order}_{date.today()}.zip"):
-            logger.info("Файл уже существует, архивация пропущена")
-        else:
-            logger.info("Архивируем файлы:")
-            logger.info(f"Архивируем файлы: {list_files}")
-            for name in list_files:
-                arh_name = f"Order_№_{id_order}_{date.today()}.zip"
-                new_arh = zipfile.ZipFile(arh_name, "a")
-                new_arh.write(name, compress_type=zipfile.ZIP_DEFLATED)
-                new_arh.close()
-        return f"Order_№_{id_order}_{date.today()}.zip"
-
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
         order = Order.objects.get(id=self.order_id)
@@ -305,20 +290,29 @@ class UtilsModel:
             all_products_in_order = OrderItem.objects.filter(
                 order=self.order_id, is_active=True
             )
-            logger.info(f'Архивируем файлы:", {all_products_in_order}')
+            logger.info(f'[archive]: Архивируем файлы:", {all_products_in_order}')
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
                 logger.info(f"FILE: {file}")
                 self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
-                logger.info(str(file.images)[str(file.images).rindex("/") + 1:])
-                new_arh.write(
-                    str(file.images)[str(file.images).rindex("/") + 1:],
-                    compress_type=zipfile.ZIP_DEFLATED,
-                )
+
+                logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
+                new_name_file = (f"{file.quantity}_шт_{int(file.width)}x{int(file.length)}_"
+                                f"{'_'.join(str(file.material).split())}_"
+                                f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
+                logger.info(f'[new Name] {new_name_file}')
+                logger.info(f'file.images: {file.images}')
+
+                logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
+                old_name = str(file.images)[str(file.images).rindex("/") + 1:]
+
+                os.rename(old_name, new_name_file)
+                new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
         os.chdir(current_path)  # перейти обратно
         return self.arh_name
+
 
     def create_folder_server(self):
         """Добавляем фолдер  Директория номер заказа"""
@@ -370,20 +364,18 @@ class UtilsModel:
         order.order_arhive = f"arhive/{self.order_id}/{self.arh_name}"
         order.save()
 
-
     def download_link(self):
         order = Order.objects.get(id=self.order_id)
         logger.info(f" LINK {order.order_arhive}")
         return order.order_arhive
 
     def set_status_order(self):
-        """Меняем статус заказа после оформления ГОТОВИТЬСЯ нА ОФОРМЛЕН"""
+        """Меняем статус заказа после оформления ГОТОВИТЬСЯ НА ОФОРМЛЕН"""
         order = Order.objects.get(id=self.order_id)
         status = StatusOrder.objects.get(id=2)  # 2 стауст id оформлен
         logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
         order.status = status
         order.save()
-        return
 
     def rename_files_for_print(self):
         '''Переименовываем файлы перед архивацией приводим к виду:
