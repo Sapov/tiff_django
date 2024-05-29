@@ -13,6 +13,11 @@ class TestAccount(TestCase):
         self.assertEqual(response.status_code, 302)
         # self.assertTemplateUsed(response, 'organisation_form.html')
 
+    # def test_add_organisation_templates(self, request):
+    #     response = self.client.get('/account/add_organisation/')
+    #     # self.assertEqual(response.status_code, 302)
+    #     self.assertTemplateUsed(response, 'account/organisation_form.html')
+
     def test_list_organisation(self):
         response = self.client.get('/account/list_organisation/')
         self.assertEqual(response.status_code, 302)
