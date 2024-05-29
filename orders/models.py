@@ -276,10 +276,9 @@ class UtilsModel:
                 size = f"Размер: {file.size} Мб"
                 square = f"Площадь: {(file.length * file.width) / 10000} м2"
                 finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
-                fields = f"Поля: {file.Fields}"
 
                 text_file.write(
-                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{fields}\n{finish_work_rec_file}\n"
+                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{finish_work_rec_file}\n"
                 )
                 text_file.write("-" * 40 + "\n")
         logger.info(f"CREATE File, {self.text_file_name}")
