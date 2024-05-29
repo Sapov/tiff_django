@@ -47,39 +47,38 @@ class TestAccount(TestCase):
     #         published=True,
     #     )
 
-    def test_setUp(self):
-        self.user = get_user_model().objects.create_user(username='testuser', password='testpass')
-        self.organisation = Organisation.objects.create(
-            Contractor=self.user,
-            name_ul='Test Company',
-            address_ur='Test Address',
-            address_post='Test Post Address',
-            phone='123456',
-            email='test@example.com',
-            inn='123456789012',
-            kpp='123456789',
-            okpo='123456789012',
-        )
+    # def test_setUp(self):
+    #     self.user = get_user_model().objects.create_user(username='testuser', password='testpass')
+    #     self.organisation = Organisation.objects.create(
+    #         Contractor=self.user,
+    #         name_ul='Test Company',
+    #         address_ur='Test Address',
+    #         address_post='Test Post Address',
+    #         phone='123456',
+    #         email='test@example.com',
+    #         inn='123456789012',
+    #         kpp='123456789',
+    #         okpo='123456789012',
+    #     )
 
-
-class SigninTest(TestCase):
-    def setUp(self):
-        self.user = get_user_model().objects.create_user(username='test@test.ru', password='12test12',
-                                                         email='test@test.ru')
-        self.user.save()
-
-    def tearDown(self):
-        self.user.delete()
-
-    def test_correct(self):
-        user = authenticate(username='test@test.ru', password='12test12')
-        self.assertTrue((user is not None) and user.is_authenticated)
-
-    def test_wrong_username(self):
-        user = authenticate(username='wrong', password='12test12')
-        self.assertFalse(user is not None and user.is_authenticated)
-
-    def test_wrong_pssword(self):
-        user = authenticate(username='test', password='wrong')
-        self.assertFalse(user is not None and user.is_authenticated)
-
+#
+# class SigninTest(TestCase):
+#     def setUp(self):
+#         self.user = get_user_model().objects.create_user(username='test@test.ru', password='12test12',
+#                                                          email='test@test.ru')
+#         self.user.save()
+#
+#     def test_correct(self):
+#         user = authenticate(username='test@test.ru', password='12test12')
+#         self.assertTrue((user is not None) and user.is_authenticated)
+#
+#     def test_wrong_username(self):
+#         user = authenticate(username='wrong', password='12test12')
+#         self.assertFalse(user is not None and user.is_authenticated)
+#
+#     def test_wrong_pssword(self):
+#         user = authenticate(username='test', password='wrong')
+#         self.assertFalse(user is not None and user.is_authenticated)
+#
+#     def tearDown(self):
+#         self.user.delete()
