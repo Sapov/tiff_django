@@ -117,7 +117,7 @@ class Material(models.Model):
     is_active = models.BooleanField(default=True, verbose_name="Активный ")
 
     def __str__(self):
-        return f"{self.name} - {self.type_print}"
+        return f"{self.name} {self.type_print}"
 
     class Meta:
         verbose_name_plural = "Материалы для печати"
