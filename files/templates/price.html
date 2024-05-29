@@ -57,7 +57,6 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <th>Материал</th>
-                    <th>Тип печати</th>
                     <th>Цена</th>
                     </thead>
                     <tbody>
@@ -65,7 +64,6 @@
                     {% if field.is_active == True %}
                     <tr>
                         <td>{{ field.name }}</td>
-                        <td>{{ field.type_print }}</td>
                         {% if user.role == 'CUSTOMER_RETAIL' %}
                         <td>{{ field.price_customer_retail }} руб.</td>
                         {% elif user.role == 'CUSTOMER_AGENCY' %}
