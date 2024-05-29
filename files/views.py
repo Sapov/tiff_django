@@ -1,4 +1,3 @@
-import logging
 import os
 
 from django.contrib.auth.decorators import login_required
@@ -203,7 +202,6 @@ def calculator_large_print(request):
     if request.POST:
         form = CalculatorLargePrint(request.POST)
         if form.is_valid():
-            form = CalculatorLargePrint(request.POST)
             length = request.POST["length"]
             width = request.POST["width"]
             quantity = request.POST["quantity"]
@@ -352,11 +350,10 @@ def calculator_out(request):
         )
 
 
-def calculator_large_print_1(request):
-    if request.POST:
+def calculator_large_print_out(request):
+    if request.method == 'POST':
         form = CalculatorLargePrint(request.POST)
         if form.is_valid():
-            form = Calculator(request.POST)
             length = request.POST["length"]
             width = request.POST["width"]
             quantity = request.POST["quantity"]
@@ -365,7 +362,9 @@ def calculator_large_print_1(request):
             materials = Material.objects.get(id=material)
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length)) * 2
-            logger.info(f'[request]:{request}')
+            logger.info(f'[request]:{request.POST}')
+            print(form.cleaned_data)
+
             material_price = materials.price_customer_retail
             finishka_price = finishkas.price_customer_retail
 

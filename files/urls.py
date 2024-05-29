@@ -15,7 +15,7 @@ from .views import (
     FilesCreateViewInter,
     FilesCreateViewLarge,
     FilesCreateViewUV,
-    FilesCreateViewRollUp, calculator_out, calculator_large_print_1,
+    FilesCreateViewRollUp, calculator_out, calculator_large_print_out,
 )
 
 app_name = "files"
@@ -39,7 +39,8 @@ urlpatterns = [
     path("calculator/", calculator, name="calculator"),  # Calculator
     path("calculator_large_print/", calculator_large_print, name="calculator_large_print"),  # calculator_large_print
     path("calculator_out/", calculator_out, name="calculator_out"),  # calculator для общего пользования
-    path("calculator_large_print_1/", calculator_large_print_1, name="calculator_large_print_1"),  # calculator для общего пользования
+    #калькулятор на сайт широкоформатная печать
+    path("calculator_large_print_out/", calculator_large_print_out, name="calculator_large_print_out"),
 
 
 ]

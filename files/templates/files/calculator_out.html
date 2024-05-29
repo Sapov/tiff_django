@@ -9,9 +9,9 @@
 
 
  <div class="row">
-    <div class="col-8">
+    <div class="col-6">
 
-<form action="{% url 'files:calculator_out' %}" method="post">
+<form action="{% url 'files:calculator_large_print_out' %}" method="post">
 {% csrf_token %}
 {{ form|crispy }}
 <button type="submit" class="btn btn-primary">Рассчитать</button>
@@ -20,7 +20,7 @@
 <h5>Сумма заказа: {{results}} руб.</h5>
 <div > {{form.non_field_errors }}</div>
     </div>
-    <div class="col-4">
+    <div class="col-6">
 
 <h2>Сумма заказа: {{results}} руб.</h2>
 
