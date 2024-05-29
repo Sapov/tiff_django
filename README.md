@@ -2,11 +2,29 @@
 ![action status](https://github.com/Sapov/tiff_django/actions/workflows/django.yml/badge.svg)
 
 Как запустить: 
-1. git clone https://github.com/Sapov/tiff_django.git
-2. Создать .env
-3. docker compose up
-4. Зайти в docker django
-5. Добавить админа (сменю скоро на дефолтного) -> изменить пароль с admin/admin
+git clone https://github.com/Sapov/tiff_django.git
+python3 -m venv myenv
+source /myenv/bin/activate
+pip install -r requirements.txt
+touch .env
+python3 manege.py makemigrations
+python3 manege.py migrate
+python manage.py add_price
+python3 manage.py createsuperuser
+mkdir media/orders
+mkdir media/arhive
+python3 manage.py runserver
+
+
+для отладки запустить redis:
+Новая Консоль:
+docker run -d -p 6379:6379 redis
+
+Запускаем Celery:
+celery -A mysite worker -l info
+
+Запускаем RUNSERVER:
+python manage.py runserver
    
 ---------------- .env ---------------------------------
 
