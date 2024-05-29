@@ -30,7 +30,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Tests
-      run:
+      run: |
+        echo "SECRET_KEY = 'django-insecure-dummy-secret'" > ./proj/.env
+
         python manage.py test
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
