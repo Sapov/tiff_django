@@ -350,3 +350,47 @@ def calculator_out(request):
             "files/calculator_out.html",
             {"form": form, "title": "Калькулятор печати"},
         )
+
+
+def calculator_large_print_1(request):
+    if request.POST:
+        form = CalculatorLargePrint(request.POST)
+        if form.is_valid():
+            form = Calculator(request.POST)
+            length = request.POST["length"]
+            width = request.POST["width"]
+            quantity = request.POST["quantity"]
+            material = request.POST["material"]
+            finishka = request.POST["finishka"]
+            materials = Material.objects.get(id=material)
+            finishkas = FinishWork.objects.get(id=finishka)
+            perimetr = (float(width) + float(length)) * 2
+            logger.info(f'[request]:{request}')
+            material_price = materials.price_customer_retail
+            finishka_price = finishkas.price_customer_retail
+
+            finishka_price = perimetr * finishka_price
+            results = (float(width) * float(length) * material_price) + finishka_price  # в см
+            results = round(results, -1) * int(quantity)
+            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+                results = 1000
+
+            try:
+                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
+                                             results=results, FinishWork=finishkas)
+                return render(request, "files/calculator_out.html", {"form": form,
+                                                                     "title": "Калькулятор печати",
+                                                                     "results": results,
+                                                                     },
+                              )
+
+            except:
+                form.add_error(None, 'Ошибка расчета')
+
+    else:
+        form = CalculatorLargePrint()
+        return render(
+            request,
+            "files/calculator_out.html",
+            {"form": form, "title": "Калькулятор печати"},
+        )
