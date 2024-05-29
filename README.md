@@ -11,12 +11,19 @@ source /myenv/bin/activate
 pip install -r requirements.txt
 
 touch .env
+
 python3 manege.py makemigrations
+
 python3 manege.py migrate
+
 python manage.py add_price
+
 python3 manage.py createsuperuser
+
 mkdir media/orders
+
 mkdir media/arhive
+
 python3 manage.py runserver
 
 
