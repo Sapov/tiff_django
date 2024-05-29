@@ -59,3 +59,12 @@ _____________________________________________________
 
 
 Остановить: docker compose down
+
+для отладки запустить redis:
+docker run -d -p 6379:6379 redis
+
+Запускаем Celery:
+celery -A mysite worker -l info
+
+Запускаем RUNSERVER:
+python manage.py runserver
