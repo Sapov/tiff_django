@@ -31,7 +31,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        echo "SECRET_KEY = 'django-insecure-dummy-secret'" > ./proj/.env
+        echo "SECRET_KEY = 'django-insecure-dummy-secret'" > ./.env
 
         python manage.py test
       env:
