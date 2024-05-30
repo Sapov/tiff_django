@@ -375,8 +375,8 @@ def calculator_large_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_out.html", {"form": form,
-                                                                     "title": "Калькулятор печати",
+                return render(request, "files/calculator_large.html", {"form": form,
+                                                                     "title": "Калькулятор широкоформатной печати",
                                                                      "results": results,
                                                                      }, )
 
@@ -385,7 +385,7 @@ def calculator_large_print_out(request):
 
     else:
         form = CalculatorLargePrint()
-        return render(request, "files/calculator_out.html", {"form": form, "title": "Калькулятор печати"})
+        return render(request, "files/calculator_large.html", {"form": form, "title": "Калькулятор широкоформатной печати"})
 
 
 def calculator_interier_print_out(request):
