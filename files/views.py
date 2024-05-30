@@ -14,7 +14,7 @@ from .forms import (
     UploadFilesInter,
     UploadFilesLarge,
     UploadFilesUV,
-    UploadFilesRollUp, CalculatorLargePrint,
+    UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
@@ -310,7 +310,7 @@ def calculator_out(request):
     if request.POST:
         form = Calculator(request.POST)
         if form.is_valid():
-            form = Calculator(request.POST)
+            # form = Calculator(request.POST)
             length = request.POST["length"]
             width = request.POST["width"]
             quantity = request.POST["quantity"]
@@ -364,10 +364,8 @@ def calculator_large_print_out(request):
             perimetr = (float(width) + float(length)) * 2
             logger.info(f'[request]:{request.POST}')
             print(form.cleaned_data)
-
             material_price = materials.price_customer_retail
             finishka_price = finishkas.price_customer_retail
-
             finishka_price = perimetr * finishka_price
             results = (float(width) * float(length) * material_price) + finishka_price  # в см
             results = round(results, -1) * int(quantity)
@@ -377,8 +375,85 @@ def calculator_large_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_out.html", {"form": form,
-                                                                     "title": "Калькулятор печати",
+                return render(request, "files/calculator_large.html", {"form": form,
+                                                                     "title": "Калькулятор широкоформатной печати",
+                                                                     "results": results,
+                                                                     }, )
+
+            except:
+                form.add_error(None, 'Ошибка расчета')
+
+    else:
+        form = CalculatorLargePrint()
+        return render(request, "files/calculator_large.html", {"form": form, "title": "Калькулятор широкоформатной печати"})
+
+
+def calculator_interier_print_out(request):
+    if request.method == 'POST':
+        form = CalculatorInterierPrint(request.POST)
+        if form.is_valid():
+            length = request.POST["length"]
+            width = request.POST["width"]
+            quantity = request.POST["quantity"]
+            material = request.POST["material"]
+            finishka = request.POST["finishka"]
+            materials = Material.objects.get(id=material)
+            finishkas = FinishWork.objects.get(id=finishka)
+            perimetr = (float(width) + float(length)) * 2
+            logger.info(f'[request]:{request.POST}')
+            print(form.cleaned_data)
+            material_price = materials.price_customer_retail
+            finishka_price = finishkas.price_customer_retail
+            finishka_price = perimetr * finishka_price
+            results = (float(width) * float(length) * material_price) + finishka_price  # в см
+            results = round(results, -1) * int(quantity)
+            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+                results = 1000
+
+            try:
+                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
+                                             results=results, FinishWork=finishkas)
+                return render(request, "files/calculator_interier.html", {"form": form,
+                                                                     "title": "Калькулятор интерьерной печати",
+                                                                     "results": results,
+                                                                     }, )
+
+            except:
+                form.add_error(None, 'Ошибка расчета')
+
+    else:
+        form = CalculatorInterierPrint()
+        return render(request, "files/calculator_interier.html", {"form": form, "title": "Калькулятор интерьерной печати"})
+
+
+def calculator_uv_print_out(request):
+    """ Калькулятор для УФ печати"""
+    if request.method == 'POST':
+        form = CalculatorUVPrint(request.POST)
+        if form.is_valid():
+            length = request.POST["length"]
+            width = request.POST["width"]
+            quantity = request.POST["quantity"]
+            material = request.POST["material"]
+            finishka = request.POST["finishka"]
+            materials = Material.objects.get(id=material)
+            finishkas = FinishWork.objects.get(id=finishka)
+            perimetr = (float(width) + float(length)) * 2
+            logger.info(f'[request]:{request.POST}')
+            print(form.cleaned_data)
+            material_price = materials.price_customer_retail
+            finishka_price = finishkas.price_customer_retail
+            finishka_price = perimetr * finishka_price
+            results = (float(width) * float(length) * material_price) + finishka_price  # в см
+            results = round(results, -1) * int(quantity)
+            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+                results = 1000
+
+            try:
+                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
+                                             results=results, FinishWork=finishkas)
+                return render(request, "files/calculator_uv.html", {"form": form,
+                                                                     "title": "Калькулятор UV печати",
                                                                      "results": results,
                                                                      },
                               )
@@ -387,9 +462,53 @@ def calculator_large_print_out(request):
                 form.add_error(None, 'Ошибка расчета')
 
     else:
-        form = CalculatorLargePrint()
+        form = CalculatorUVPrint()
         return render(
             request,
-            "files/calculator_out.html",
-            {"form": form, "title": "Калькулятор печати"},
+            "files/calculator_uv.html",
+            {"form": form, "title": "Калькулятор UV печати"},
+        )
+
+
+def calculator_blank_out(request):
+    """ Калькулятор чистого материала"""
+    if request.method == 'POST':
+        form = CalculatorBlankMaterial(request.POST)
+        if form.is_valid():
+            length = request.POST["length"]
+            width = request.POST["width"]
+            quantity = request.POST["quantity"]
+            material = request.POST["material"]
+            finishka = request.POST["finishka"]
+            materials = Material.objects.get(id=material)
+            finishkas = FinishWork.objects.get(id=finishka)
+            perimetr = (float(width) + float(length)) * 2
+            logger.info(f'[request]:{request.POST}')
+            print(form.cleaned_data)
+            material_price = materials.price_customer_retail
+            finishka_price = finishkas.price_customer_retail
+            finishka_price = perimetr * finishka_price
+            results = (float(width) * float(length) * material_price) + finishka_price  # в см
+            results = round(results, -1) * int(quantity)
+            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+                results = 1000
+
+            try:
+                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
+                                             results=results, FinishWork=finishkas)
+                return render(request, "files/calculator_blank_material.html", {"form": form,
+                                                                     "title": "Калькулятор пустого материала",
+                                                                     "results": results,
+                                                                     },
+                              )
+
+            except:
+                form.add_error(None, 'Ошибка расчета')
+
+    else:
+        form = CalculatorBlankMaterial()
+        return render(
+            request,
+            "files/calculator_blank_material.html",
+            {"form": form, "title": "Калькулятор пустого материала"},
         )
