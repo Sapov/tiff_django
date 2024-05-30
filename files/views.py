@@ -452,7 +452,7 @@ def calculator_uv_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_out.html", {"form": form,
+                return render(request, "files/calculator_uv.html", {"form": form,
                                                                      "title": "Калькулятор UV печати",
                                                                      "results": results,
                                                                      },
@@ -465,7 +465,7 @@ def calculator_uv_print_out(request):
         form = CalculatorUVPrint()
         return render(
             request,
-            "files/calculator_out.html",
+            "files/calculator_uv.html",
             {"form": form, "title": "Калькулятор UV печати"},
         )
 
@@ -496,7 +496,7 @@ def calculator_blank_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_out.html", {"form": form,
+                return render(request, "files/calculator_blank_material.html", {"form": form,
                                                                      "title": "Калькулятор пустого материала",
                                                                      "results": results,
                                                                      },
@@ -509,6 +509,6 @@ def calculator_blank_out(request):
         form = CalculatorBlankMaterial()
         return render(
             request,
-            "files/calculator_out.html",
+            "files/calculator_blank_material.html",
             {"form": form, "title": "Калькулятор пустого материала"},
         )
