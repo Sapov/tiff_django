@@ -68,6 +68,7 @@ class CalculatorInterierPrint(forms.Form):
     length = forms.FloatField(max_value=100, label="Длина в метрах")
     width = forms.FloatField(max_value=100, label="Ширина в метрах")
 
+
 class CalculatorUVPrint(forms.Form):
     '''для интерьерной печати'''
     quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
