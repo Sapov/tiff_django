@@ -14,7 +14,7 @@ from .forms import (
     UploadFilesInter,
     UploadFilesLarge,
     UploadFilesUV,
-    UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint,
+    UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
@@ -419,7 +419,7 @@ def calculator_interier_print_out(request):
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
                 return render(request, "files/calculator_out.html", {"form": form,
-                                                                     "title": "Калькулятор печати",
+                                                                     "title": "Калькулятор интерьернной печати",
                                                                      "results": results,
                                                                      },
                               )
@@ -432,11 +432,12 @@ def calculator_interier_print_out(request):
         return render(
             request,
             "files/calculator_out.html",
-            {"form": form, "title": "Калькулятор печати"},
+            {"form": form, "title": "Калькулятор интерьернной печати"},
         )
 
 
 def calculator_uv_print_out(request):
+    """ Калькулятор для УФ печати"""
     if request.method == 'POST':
         form = CalculatorUVPrint(request.POST)
         if form.is_valid():
@@ -462,7 +463,7 @@ def calculator_uv_print_out(request):
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
                 return render(request, "files/calculator_out.html", {"form": form,
-                                                                     "title": "Калькулятор печати",
+                                                                     "title": "Калькулятор UV печати",
                                                                      "results": results,
                                                                      },
                               )
@@ -475,11 +476,14 @@ def calculator_uv_print_out(request):
         return render(
             request,
             "files/calculator_out.html",
-            {"form": form, "title": "Калькулятор печати"},
+            {"form": form, "title": "Калькулятор UV печати"},
         )
-def calculator_interier_print_out(request):
+
+
+def calculator_blank_out(request):
+    """ Калькулятор чистого материала"""
     if request.method == 'POST':
-        form = CalculatorInterierPrint(request.POST)
+        form = CalculatorBlankMaterial(request.POST)
         if form.is_valid():
             length = request.POST["length"]
             width = request.POST["width"]
@@ -503,7 +507,7 @@ def calculator_interier_print_out(request):
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
                 return render(request, "files/calculator_out.html", {"form": form,
-                                                                     "title": "Калькулятор печати",
+                                                                     "title": "Калькулятор пустого материала",
                                                                      "results": results,
                                                                      },
                               )
@@ -512,9 +516,9 @@ def calculator_interier_print_out(request):
                 form.add_error(None, 'Ошибка расчета')
 
     else:
-        form = CalculatorInterierPrint()
+        form = CalculatorBlankMaterial()
         return render(
             request,
             "files/calculator_out.html",
-            {"form": form, "title": "Калькулятор печати"},
+            {"form": form, "title": "Калькулятор пустого материала"},
         )

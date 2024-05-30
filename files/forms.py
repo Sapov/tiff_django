@@ -84,7 +84,7 @@ class CalculatorUVPrint(forms.Form):
 
 
 class CalculatorBlankMaterial(forms.Form):
-    '''для интерьерной печати'''
+    '''для расчета чистого материала'''
     quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
     material = forms.ModelChoiceField(
         queryset=Material.objects.filter(type_print=4),  # пустой материал
