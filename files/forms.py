@@ -48,7 +48,7 @@ class CalculatorLargePrint(forms.Form):
         queryset=Material.objects.filter(type_print=1),
         label="Материал для печати",
         help_text="Выберите материал",
-        initial=1,)
+        initial=1, )
     finishka = forms.ModelChoiceField(
         queryset=FinishWork.objects.all(), label="Обработка", initial=True)
     length = forms.FloatField(max_value=100, label="Длина в метрах")
@@ -59,10 +59,10 @@ class CalculatorInterierPrint(forms.Form):
     '''для интерьерной печати'''
     quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
     material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=2), # интерьерка
+        queryset=Material.objects.filter(type_print=2),  # интерьерка
         label="Материал для печати",
         help_text="Выберите материал",
-        initial=1,)
+        initial=1, )
     finishka = forms.ModelChoiceField(
         queryset=FinishWork.objects.all(), label="Обработка", initial=True)
     length = forms.FloatField(max_value=100, label="Длина в метрах")
@@ -73,15 +73,28 @@ class CalculatorUVPrint(forms.Form):
     '''для интерьерной печати'''
     quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
     material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=3, # уф
+        queryset=Material.objects.filter(type_print=3),  # УФ
         label="Материал для печати",
         help_text="Выберите материал",
-        initial=1,)
+        initial=1, )
     finishka = forms.ModelChoiceField(
         queryset=FinishWork.objects.all(), label="Обработка", initial=True)
     length = forms.FloatField(max_value=100, label="Длина в метрах")
     width = forms.FloatField(max_value=100, label="Ширина в метрах")
 
+
+class CalculatorBlankMaterial(forms.Form):
+    '''для интерьерной печати'''
+    quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(type_print=4),  # пустой материал
+        label="Материал для печати",
+        help_text="Выберите материал",
+        initial=1, )
+    finishka = forms.ModelChoiceField(
+        queryset=FinishWork.objects.all(), label="Обработка", initial=True)
+    length = forms.FloatField(max_value=100, label="Длина в метрах")
+    width = forms.FloatField(max_value=100, label="Ширина в метрах")
 
 
 class UploadFilesInter(forms.ModelForm):
