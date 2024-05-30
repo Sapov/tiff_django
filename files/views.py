@@ -310,7 +310,7 @@ def calculator_out(request):
     if request.POST:
         form = Calculator(request.POST)
         if form.is_valid():
-            form = Calculator(request.POST)
+            # form = Calculator(request.POST)
             length = request.POST["length"]
             width = request.POST["width"]
             quantity = request.POST["quantity"]
@@ -378,19 +378,14 @@ def calculator_large_print_out(request):
                 return render(request, "files/calculator_out.html", {"form": form,
                                                                      "title": "Калькулятор печати",
                                                                      "results": results,
-                                                                     },
-                              )
+                                                                     }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorLargePrint()
-        return render(
-            request,
-            "files/calculator_out.html",
-            {"form": form, "title": "Калькулятор печати"},
-        )
+        return render(request, "files/calculator_out.html", {"form": form, "title": "Калькулятор печати"})
 
 
 def calculator_interier_print_out(request):
@@ -418,22 +413,17 @@ def calculator_interier_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_out.html", {"form": form,
-                                                                     "title": "Калькулятор интерьернной печати",
+                return render(request, "files/calculator_interier.html", {"form": form,
+                                                                     "title": "Калькулятор интерьерной печати",
                                                                      "results": results,
-                                                                     },
-                              )
+                                                                     }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorInterierPrint()
-        return render(
-            request,
-            "files/calculator_out.html",
-            {"form": form, "title": "Калькулятор интерьернной печати"},
-        )
+        return render(request, "files/calculator_interier.html", {"form": form, "title": "Калькулятор интерьерной печати"})
 
 
 def calculator_uv_print_out(request):
