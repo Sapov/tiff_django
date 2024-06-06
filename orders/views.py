@@ -264,13 +264,9 @@ def report_complite_orders(request):
         # order = Order.objects.filter(created__date=date(2024, 6, 5))
 
         if form.is_valid():
-            if len(date_start) == 0:
+            if len(date_start) == 0 or len(date_finish) == 0:
                 form = ReportForm()
                 return render(request, "report_complite_orders.html", {'form': form})
-
-            # print(int(date_start[:4]), int(date_start[5:7]), int(date_start[8:]))
-            # order = Order.objects.filter(
-            #     created__date=date(int(date_start[:4]), int(date_start[5:7]), int(date_start[8:])))
 
             '''
             events_within_date_range = Event.objects.filter(
