@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import date
+from datetime import date, datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -261,11 +261,34 @@ def report_complite_orders(request):
         logger.info(f"date_finish:{date_finish}")
 
         # order = Order.objects.filter(date_start)
-        order = Order.objects.filter(created__date=date(2024, 6, 5))
+        # order = Order.objects.filter(created__date=date(2024, 6, 5))
 
         if form.is_valid():
-            return render(request, "report_complite_orders.html", {form: 'form', "order": order})
+            if len(date_start) == 0:
+                form = ReportForm()
+                return render(request, "report_complite_orders.html", {'form': form})
 
+            # print(int(date_start[:4]), int(date_start[5:7]), int(date_start[8:]))
+            # order = Order.objects.filter(
+            #     created__date=date(int(date_start[:4]), int(date_start[5:7]), int(date_start[8:])))
+
+            '''
+            events_within_date_range = Event.objects.filter(
+    event_date__gte=datetime.combine(date(2023, 3, 14), datetime.min.time()),
+    event_date__lt=datetime.combine(date(2023, 3, 15), datetime.min.time())
+)
+Приведенный выше запрос вернет события, происходящие с 14 марта и до, но не включающего, 15 марта 2023 года. 
+Создание комбинированной даты и времени через datetime.combine с использованием datetime.min.time() в примере выше 
+включает все моменты времени данного дня.
+            '''
+            order = Order.objects.filter(created__gte=datetime.combine(date(int(date_start[:4]), int(date_start[5:7]),
+                                                                            int(date_start[8:])),
+                                                                       datetime.min.time()),
+                                         created__lt=datetime.combine(date(int(date_finish[:4]), int(date_finish[5:7]),
+                                                                           int(date_finish[8:])),
+                                                                      datetime.min.time()))
+
+            return render(request, "report_complite_orders.html", {form: 'form', "order": order})
 
 
     else:
@@ -305,4 +328,3 @@ def success_pay(request):
 
 def fail(request):
     return render(request, 'fail_pay.html')
-

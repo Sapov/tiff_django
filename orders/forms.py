@@ -27,5 +27,5 @@ class NewOrder(forms.ModelForm):
 
 
 class ReportForm(forms.Form):
-    date_start = forms.DateField()
-    date_finish=forms.DateTimeInput()
+    date_start = forms.DateTimeInput()
+    date_finish = forms.DateTimeInput()
