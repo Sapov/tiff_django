@@ -285,14 +285,15 @@ def report_complite_orders(request):
                                                                       datetime.min.time()))
             all_total_price = all_cost_total_price = 0
             for i in order:
-                all_total_price += i.total_price
-                all_cost_total_price += i.cost_total_price
-                context = {form: 'form',
-                           "order": order,
-                           'all_total_price': all_total_price,
-                           'all_cost_total_price': all_cost_total_price,
-                           'date_start': date_start,
-                           'date_finish': date_finish}
+                if i.total_price != None or i.cost_total_price != None:
+                    all_total_price += i.total_price
+                    all_cost_total_price += i.cost_total_price
+                    context = {form: 'form',
+                               "order": order,
+                               'all_total_price': all_total_price,
+                               'all_cost_total_price': all_cost_total_price,
+                               'date_start': date_start,
+                               'date_finish': date_finish}
 
             return render(request, "report_complite_orders.html", context=context)
 
