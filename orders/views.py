@@ -251,7 +251,7 @@ def view_all_files_for_work_in_orders(request):
 
 
 def report_complite_orders(request):
-    """Отчет от выполненных заказах"""
+    """Отчет оп выполненным заказам"""
 
     if request.method == "POST":
         form = ReportForm(request.POST)
@@ -260,10 +260,8 @@ def report_complite_orders(request):
         logger.info(f"date_start:{date_start}, type{type(date_start)}--{date_start}")
         logger.info(f"date_finish:{date_finish}")
 
-        # order = Order.objects.filter(date_start)
-        # order = Order.objects.filter(created__date=date(2024, 6, 5))
-
         if form.is_valid():
+            # проверяем что выбрали дату и строка пришла не пустая
             if len(date_start) == 0 or len(date_finish) == 0:
                 form = ReportForm()
                 return render(request, "report_complite_orders.html", {'form': form})
