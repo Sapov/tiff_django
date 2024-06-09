@@ -20,19 +20,27 @@
 <!--                <th>Каменты</th>-->
                 <th>Статус</th>
                 <th>Дата заказа</th>
-<!--                <th>Дата готовности</th>-->
+                <th>Дата готовности</th>
            </thead>
             <tbody>
             {% for order in Orders %}
             <tr>
                 <td>{{ order.id }}</td>
                 <td>{{ order.total_price }} руб. </td>
+                    <td>{% if order.paid == False %}
+                    <div class="mb-2">
+                        <code>Не оплачено!</code>
+
+                    </div>
+                    {% else%}
+                    <div class="text-success mb-2">Оплачено
+                    </div>
+                    {% endif %}
 <!--                <td>{{ order.organisation_payer }}</td>-->
-                <td>{{ order.paid }}</td>
 <!--                <td>{{ order.comments }}</td>-->
                 <td>{{ order.status }}</td>
                 <td>{{ order.created }}</td>
-<!--                <td>{{ order.date_complete }}</td>-->
+                <td>{{ order.date_complete }}</td>
 
                 {% if order.status.id >= 2 %}
 
