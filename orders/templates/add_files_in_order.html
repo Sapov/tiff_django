@@ -134,11 +134,16 @@
         </td>
 {% else %}
 <!--                    <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>-->
-                    <td><a href="{{Orders.pay_link}}">Оплатить картой</a></td>
+ {% if Orders.paid == False %}
+
+                    <td>
+     <button type="submit" class="btn btn-primary"
+        onClick="location.href='{{Orders.pay_link}}'">Оплатить картой</button> </td>
+
+                    {% endif %}
+
 
 {% endif %}
-
-</div>
-
+    </div>
 {% endif %}
 {% endblock %}
