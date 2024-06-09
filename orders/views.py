@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 
-from account.models import Organisation, Delivery
+from account.models import Organisation, Delivery, DeliveryAddress
 
 # from account.models import Organisation
 from files.models import Product
@@ -33,34 +33,55 @@ def new_order(request):
     logging.info(request)
     if request.POST:
         logging.info(f"method POST")
-        # form = NewOrder(user=request.user)  # для организаций пока отключу
-        form = NewOrder()  # для организаций пока отключу
+        form = NewOrder(user=request.user)
         # if form.is_valid():
-        # logging.info(f"USER: {form.user}")
-        # logging.info(f'ORGANISATION: {request.POST["organisation_payer"]}')
-        logging.info(f'delivery {request.POST["delivery"]}')
-        logging.info(f'REQUEST {request.POST}')
-        logging.info(f'USER {request.user}')
+        logging.info(f"USER: {form.user}")
+        logging.info(f'delivery_address {request.POST["delivery_address"]}')
+        logging.info(f'date_complite {request.POST["date_complite"]}')
+        logging.info(f"REQUEST {request.POST}")
+        logging.info(f"USER {request.user}")
         # если агентство добавляем оранизацию платильщик
         # number_organisation = request.POST["organisation_payer"]
         # organisation = Organisation.objects.get(id=number_organisation)
         # logging.info(f"organisation {organisation}")
-        delivery_id = request.POST["delivery"]
+        delivery_id = request.POST["delivery_address"]
+        date_complite = request.POST["date_complite"]
+        date_complite = datetime.datetime.strptime(date_complite, "%Y-%m-%d")
+        logging.info(f"date_complite {date_complite} - {type(date_complite)}")
 
-        delivery = Delivery.objects.get(id=delivery_id)
+        delivery = DeliveryAddress.objects.get(id=delivery_id)
 
-        # neworder = Order.objects.create(
-        #     Contractor=form.user, organisation_payer=organisation, delivery=delivery,
-        # )
+        neworder = Order.objects.create(
+            Contractor=form.user,
+            date_complete=date_complite,
+            # organisation_payer=organisation,
+            delivery_address=delivery,
+        )
 
-        neworder = Order.objects.create(Contractor=request.user, delivery=delivery)
 
-        # logging.info(f"neworder {neworder}")
-        # logging.info(f"NEW ORDER ID: {neworder.id}")
         return redirect("orders:add_file_in_order", neworder.id)
     else:
-        form = NewOrder()
-    return render(request, "neworder.html", {"form": form})
+        # form = NewOrder()
+        form = NewOrder(user=request.user)
+        # ограничение по дням нельзя сделать заказ раньше сегодняшней даты
+        today = datetime.datetime.today()
+        logging.info(f"[ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] {today.isoweekday()}")
+        logging.info(f"СЕГОДНЯ  {today}")
+        # Если заказ приняли в четверг, то отдадим только в понедельник
+        if today.isoweekday() == 4:
+            # + 4 дня так как два выходных
+            today = today + datetime.timedelta(days=4)
+            # Оформленный в пятницу будет готов в понедельник
+        elif today.isoweekday() == 5 or today.isoweekday() == 6:
+            today = today + datetime.timedelta(days=3)
+        # Оформленный заказ в субботу готов будет во вторник + 3
+        # Оформленный заказ в воскресенье готов во вторник + 2
+        else:
+            today = today + datetime.timedelta(days=2)
+
+        today = today.strftime("%Y-%m-%d")
+    return render(request, "neworder.html", {"form": form, "today": today})
+
 
 
 @login_required
