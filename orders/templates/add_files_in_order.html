@@ -106,7 +106,8 @@
             </thead>
             <tbody>
             {% for items in items_in_order %}
-            <tr>
+
+             <tr>
                 <td><a>{% load thumbnail %} <img src="{% thumbnail items.product.images 100x0 %}"
                                                  class="image-detail"></a></td>
                 <td>{{ items.product.material }}</td>
