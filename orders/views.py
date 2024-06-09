@@ -1,6 +1,7 @@
 import logging
 import os
 from datetime import date, datetime
+import datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -36,7 +37,7 @@ def new_order(request):
         form = NewOrder(user=request.user)
         # if form.is_valid():
         logging.info(f"USER: {form.user}")
-        logging.info(f'delivery_address {request.POST["delivery_address"]}')
+        # logging.info(f'delivery_address {request.POST["delivery_address"]}')
         logging.info(f'date_complite {request.POST["date_complite"]}')
         logging.info(f"REQUEST {request.POST}")
         logging.info(f"USER {request.user}")
@@ -44,20 +45,23 @@ def new_order(request):
         # number_organisation = request.POST["organisation_payer"]
         # organisation = Organisation.objects.get(id=number_organisation)
         # logging.info(f"organisation {organisation}")
-        delivery_id = request.POST["delivery_address"]
+        # delivery_id = request.POST["delivery_address"]
         date_complite = request.POST["date_complite"]
         date_complite = datetime.datetime.strptime(date_complite, "%Y-%m-%d")
         logging.info(f"date_complite {date_complite} - {type(date_complite)}")
+        delivery_id = request.POST["delivery"]
+        logging.info(f"DELIV ID:  {delivery_id}")
 
-        delivery = DeliveryAddress.objects.get(id=delivery_id)
+        delivery = Delivery.objects.get(id=delivery_id)
+        logging.info(f"DELIVERY:  {delivery}")
+        # delivery = DeliveryAddress.objects.get(id=delivery_id)
 
         neworder = Order.objects.create(
             Contractor=form.user,
             date_complete=date_complite,
             # organisation_payer=organisation,
-            delivery_address=delivery,
+            delivery=delivery,
         )
-
 
         return redirect("orders:add_file_in_order", neworder.id)
     else:
@@ -81,7 +85,6 @@ def new_order(request):
 
         today = today.strftime("%Y-%m-%d")
     return render(request, "neworder.html", {"form": form, "today": today})
-
 
 
 @login_required
