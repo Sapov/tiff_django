@@ -1,5 +1,6 @@
 import logging
 import os
+from datetime import date, datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -250,19 +251,49 @@ def view_all_files_for_work_in_orders(request):
 
 
 def report_complite_orders(request):
-    """Отчет от выполненных заказах"""
+    """Отчет оп выполненным заказам"""
 
     if request.method == "POST":
         form = ReportForm(request.POST)
         date_start = request.POST["date_start"]
         date_finish = request.POST["date_finish"]
-        logger.info(f"date_start:{date_start}, type{type(date_start)}")
+        logger.info(f"date_start:{date_start}, type{type(date_start)}--{date_start}")
         logger.info(f"date_finish:{date_finish}")
 
-        order = Order.objects.filter(date_start)
         if form.is_valid():
-            return render(request, "report_complite_orders.html", {form: 'form', "order": order})
+            # проверяем что выбрали дату и строка пришла не пустая
+            if len(date_start) == 0 or len(date_finish) == 0:
+                form = ReportForm()
+                return render(request, "report_complite_orders.html", {'form': form})
 
+            '''
+            events_within_date_range = Event.objects.filter(
+    event_date__gte=datetime.combine(date(2023, 3, 14), datetime.min.time()),
+    event_date__lt=datetime.combine(date(2023, 3, 15), datetime.min.time())
+)
+Приведенный выше запрос вернет события, происходящие с 14 марта и до, но не включающего, 15 марта 2023 года. 
+Создание комбинированной даты и времени через datetime.combine с использованием datetime.min.time() в примере выше 
+включает все моменты времени данного дня.
+            '''
+            order = Order.objects.filter(created__gte=datetime.combine(date(int(date_start[:4]), int(date_start[5:7]),
+                                                                            int(date_start[8:])),
+                                                                       datetime.min.time()),
+                                         created__lt=datetime.combine(date(int(date_finish[:4]), int(date_finish[5:7]),
+                                                                           int(date_finish[8:])),
+                                                                      datetime.min.time()))
+            all_total_price = all_cost_total_price = 0
+            for i in order:
+                if i.total_price != None or i.cost_total_price != None:
+                    all_total_price += i.total_price
+                    all_cost_total_price += i.cost_total_price
+                    context = {form: 'form',
+                               "order": order,
+                               'all_total_price': all_total_price,
+                               'all_cost_total_price': all_cost_total_price,
+                               'date_start': date_start,
+                               'date_finish': date_finish}
+
+            return render(request, "report_complite_orders.html", context=context)
 
 
     else:
@@ -302,35 +333,3 @@ def success_pay(request):
 
 def fail(request):
     return render(request, 'fail_pay.html')
-
-
-from datetime import datetime, timedelta
-from django.utils import timezone
-
-# class Generator:
-#
-#     def get_mytimezone_date(original_datetime):
-#         new_datetime = datetime.strptime(original_datetime, '%Y-%m-%d')
-#         tz = timezone.get_current_timezone()
-#         timzone_datetime = timezone.make_aware(new_datetime, tz, True)
-#         return timzone_datetime.date()
-#
-#     def __init__(self, start_date=None, end_date=None):
-#
-#         if end_date:
-#             self.end_date = self.get_mytimezone_date(end_date)
-#         else:
-#             self.end_date = timezone.now().date()
-#
-#         if start_date:
-#             self.start_date = self.get_mytimezone_date(start_date)
-#         else:
-#             self.start_date = self.end_date - timedelta(days=7)
-#
-#     def get_query(self, d):
-#
-#         query = MyModel.objects.filter(
-#             d__in=d,
-#             created__gte=start_date,
-#             created__lte=end_date
-#         )
