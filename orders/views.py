@@ -299,25 +299,27 @@ def report_complite_orders(request):
 Создание комбинированной даты и времени через datetime.combine с использованием datetime.min.time() в примере выше 
 включает все моменты времени данного дня.
             '''
-            order = Order.objects.filter(created__gte=datetime.combine(date(int(date_start[:4]), int(date_start[5:7]),
-                                                                            int(date_start[8:])),
-                                                                       datetime.min.time()),
-                                         created__lt=datetime.combine(date(int(date_finish[:4]), int(date_finish[5:7]),
-                                                                           int(date_finish[8:])),
-                                                                      datetime.min.time()))
+            order = Order.objects.filter(
+                created__gte=datetime.datetime.combine(date(int(date_start[:4]), int(date_start[5:7]),
+                                                            int(date_start[8:])),
+                                                       datetime.datetime.min.time()),
+                created__lt=datetime.datetime.combine(date(int(date_finish[:4]), int(date_finish[5:7]),
+                                                           int(date_finish[8:])),
+                                                      datetime.datetime.min.time()))
+            logger.info(f'ОРДЕРА: {order}')
             all_total_price = all_cost_total_price = 0
             for i in order:
                 if i.total_price != None or i.cost_total_price != None:
                     all_total_price += i.total_price
                     all_cost_total_price += i.cost_total_price
-                    context = {form: 'form',
-                               "order": order,
-                               'all_total_price': all_total_price,
-                               'all_cost_total_price': all_cost_total_price,
-                               'date_start': date_start,
-                               'date_finish': date_finish}
+            context_dic = {form: 'form',
+                           "order": order,
+                           'all_total_price': all_total_price,
+                           'all_cost_total_price': all_cost_total_price,
+                           'date_start': date_start,
+                           'date_finish': date_finish}
 
-            return render(request, "report_complite_orders.html", context=context)
+            return render(request, "report_complite_orders.html", context=context_dic)
 
 
     else:
@@ -357,3 +359,22 @@ def success_pay(request):
 
 def fail(request):
     return render(request, 'fail_pay.html')
+
+
+def report_day(request):
+    ''' ОТчет о заказах за день'''
+    date_now = datetime.datetime.now()
+    order = Order.objects.filter(created__date=date(date_now.year, date_now.month, date_now.day))
+
+    all_total_price = all_cost_total_price = 0
+    for i in order:
+        if i.total_price != None or i.cost_total_price != None:
+            all_total_price += i.total_price
+            all_cost_total_price += i.cost_total_price
+            context = {
+                "order": order,
+                'all_total_price': all_total_price,
+                'all_cost_total_price': all_cost_total_price,
+            }
+
+    return render(request, "orders/report_day.html", context=context)

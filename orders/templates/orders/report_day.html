@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+<title>{% block title %} Отчет по выполненым заказам за день {% endblock %}</title>
+{% block body %}
+<h3>Отчет по выполненым заказам за день</h3>
+
+<hr>
+<!--{% if order.count > 0 %}-->
+<!--<h4>За период с {{date_start}} по {{date_finish}}</h4>-->
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Сумма заказа</th>
+                <th>Затраты по заказу</th>
+                <th>Организация</th>
+                <th>Дата формирования заказа</th>
+                <th>Contractor</th>
+            </thead>
+            <tbody>
+            {% for item in order %}
+            <tr>
+                <td>{{ item.total_price }}</td>
+                <td>{{ item.cost_total_price }}</td>
+                <td>{{ item.organisation_payer }}</td>
+                <td>{{ item.created }}</td>
+                <td>{{ item.Contractor }}</td>
+
+
+            </tr>
+                {% endfor%}
+        </table>
+        <p>Затраты за период: {{all_cost_total_price}} руб.</p>
+        <p>Выручка за период: {{all_total_price}} руб. </p>
+
+
+        </tbody>
+
+
+
+    </div>
+</div>
+
+<!--    {% endif %}-->
+
+{% endblock %}
