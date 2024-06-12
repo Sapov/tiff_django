@@ -15,7 +15,7 @@ from .views import (
     report_complite_orders,
     new_order,
     OrdersViewList,
-    AllOrdersListView, result, success_pay, fail,
+    AllOrdersListView, result, success_pay, fail, report_day,
 )
 
 app_name = "orders"
@@ -40,7 +40,7 @@ urlpatterns = [
         del_item_in_order,
         name="del_item_in_order",
     ),
-# Посмотреть все заказы
+    # Посмотреть все заказы
     path("view_all_orders/", AllOrdersListView.as_view(), name="view_all_orders"),
     path(
         "view_all_orders_pay/", ViewAllPayOrders.as_view(), name="view_all_orders_pay"
@@ -52,6 +52,8 @@ urlpatterns = [
     ),  # все файлы в работе
     path("order_pay/<int:order_id>", order_pay, name="order_pay"),
     path("about_file/<int:file_id>", about_file, name="about_file"),
+    # --------отчеты
+    path('report_day/', report_day, name='report_day'),
     path("report/", report_complite_orders, name="report_complite_orders"),
 
     # https://docs.robokassa.ru/pay-interface/#notification
