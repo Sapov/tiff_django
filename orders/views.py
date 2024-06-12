@@ -368,7 +368,7 @@ def report_day(request):
 
     all_total_price = all_cost_total_price = 0
     for i in order:
-        if i.total_price != None or i.cost_total_price != None:
+        if i.total_price is not None or i.cost_total_price is not None:
             all_total_price += i.total_price
             all_cost_total_price += i.cost_total_price
             context = {
