@@ -523,3 +523,14 @@ class ViewContractorListView(LoginRequiredMixin, ListView):
     paginate_by = 5
     template_name = "files/view_contractor.html"
     login_url = "login"
+
+
+class CreateViewContractor(LoginRequiredMixin, CreateView):
+    """Добавить подрядчика"""
+    model = Contractor
+    form_class = UploadFilesLarge
+    template_name = "files/large_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
