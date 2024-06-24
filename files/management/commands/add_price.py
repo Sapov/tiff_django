@@ -31,6 +31,17 @@ class Command(BaseCommand):
                 price_customer_retail=item[3],
                 resolution_print=item[4]
             )
+        '''заполняем стоимость пустого материала диапазоном b2:E9 '''
+        print('*' * 30, 'Заполняю базу стоимости Пустого материала из файла', '*' * 30)
+        for item in load_excel('shirka', 'b2:E9'):
+            print(item)
+            Material.objects.get_or_create(
+                name=item[0],
+                type_print=TypePrint.objects.get_or_create(id=4)[0],
+                price_contractor=item[1],
+                price=item[2],
+                price_customer_retail=item[3],
+            )
 
         print('*' * 30, 'Заполняю базу стоимости Интерьерку печать материалов из файла', '*' * 30)
         for item in load_excel('interierka', 'b2:f17'):
