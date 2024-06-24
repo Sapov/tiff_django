@@ -143,15 +143,40 @@
 
             </div>
         </div>
-<!--    </div>-->
 
 
-<!--</div>-->
-<!-- /.container-fluid -->
+<div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Чистый материал:</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <th>Материал</th>
+                    <th>Цена</th>
+                    </thead>
+                    <tbody>
+                    {% for field in blank_material %}
+                    {% if field.is_active == True %}
+                    <tr>
+                        <td>{{ field.name }}</td>
+                        {% if user.role == 'CUSTOMER_RETAIL' %}
+                        <td>{{ field.price_customer_retail }} руб.</td>
+                        {% elif user.role == 'CUSTOMER_AGENCY' %}
+                        <td>{{ field.price }} руб.</td>
 
-<!--</div>-->
-<!-- End of Main Content -->
+                    </tr>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
 
+
+            </div>
+        </div>
+    </div>
 
 {% endif %}
 

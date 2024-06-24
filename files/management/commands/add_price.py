@@ -33,7 +33,7 @@ class Command(BaseCommand):
             )
         '''заполняем стоимость пустого материала диапазоном b2:E9 '''
         print('*' * 30, 'Заполняю базу стоимости Пустого материала из файла', '*' * 30)
-        for item in load_excel('shirka', 'b2:E9'):
+        for item in load_excel('blank_material', 'b2:E9'):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],

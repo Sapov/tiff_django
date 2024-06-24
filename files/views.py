@@ -94,10 +94,9 @@ def price(request):
     price_shirka = Material.objects.filter(
         type_print=1
     )  # Только широкоформатная печать!!!
-    price_interierka = Material.objects.filter(
-        type_print=2
-    )  # Только Интерьерная печать!!!
+    price_interierka = Material.objects.filter(type_print=2)  # Только Интерьерная печать!!!
     price_UV = Material.objects.filter(type_print=3)  # Только UV печать!!!
+    blank_material = Material.objects.filter(type_print=4)  # Только Чистый материал!!!
     finishka = FinishWork.objects.all()  # Только финишка печать!!!
     return render(
         request,
@@ -107,6 +106,7 @@ def price(request):
             "price_interierka": price_interierka,
             "price_UV": price_UV,
             "finishka": finishka,
+            'blank_material': blank_material,
             "title": "Прайс-лист",
         },
     )
@@ -376,16 +376,17 @@ def calculator_large_print_out(request):
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
                 return render(request, "files/calculator_large.html", {"form": form,
-                                                                     "title": "Калькулятор широкоформатной печати",
-                                                                     "results": results,
-                                                                     }, )
+                                                                       "title": "Калькулятор широкоформатной печати",
+                                                                       "results": results,
+                                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorLargePrint()
-        return render(request, "files/calculator_large.html", {"form": form, "title": "Калькулятор широкоформатной печати"})
+        return render(request, "files/calculator_large.html",
+                      {"form": form, "title": "Калькулятор широкоформатной печати"})
 
 
 def calculator_interier_print_out(request):
@@ -414,16 +415,17 @@ def calculator_interier_print_out(request):
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
                 return render(request, "files/calculator_interier.html", {"form": form,
-                                                                     "title": "Калькулятор интерьерной печати",
-                                                                     "results": results,
-                                                                     }, )
+                                                                          "title": "Калькулятор интерьерной печати",
+                                                                          "results": results,
+                                                                          }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorInterierPrint()
-        return render(request, "files/calculator_interier.html", {"form": form, "title": "Калькулятор интерьерной печати"})
+        return render(request, "files/calculator_interier.html",
+                      {"form": form, "title": "Калькулятор интерьерной печати"})
 
 
 def calculator_uv_print_out(request):
@@ -453,9 +455,9 @@ def calculator_uv_print_out(request):
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
                 return render(request, "files/calculator_uv.html", {"form": form,
-                                                                     "title": "Калькулятор UV печати",
-                                                                     "results": results,
-                                                                     },
+                                                                    "title": "Калькулятор UV печати",
+                                                                    "results": results,
+                                                                    },
                               )
 
             except:
@@ -497,9 +499,9 @@ def calculator_blank_out(request):
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
                 return render(request, "files/calculator_blank_material.html", {"form": form,
-                                                                     "title": "Калькулятор пустого материала",
-                                                                     "results": results,
-                                                                     },
+                                                                                "title": "Калькулятор пустого материала",
+                                                                                "results": results,
+                                                                                },
                               )
 
             except:
