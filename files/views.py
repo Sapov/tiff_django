@@ -74,7 +74,7 @@ def delete(request, id):
 
 class FilesUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
-    fields = ["quantity", "material", "FinishWork", "Fields"]
+    fields = ["quantity", "material", "FinishWork"]
     template_name = "product_update_form.html"
     login_url = "login"
 

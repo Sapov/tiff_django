@@ -174,8 +174,8 @@ def add_item_in_order(request, item_id, order_id):
 def del_item_in_order(request, item_id, order_id):
     Orders = Order.objects.get(id=order_id)
     old_ord = OrderItem.objects.get(id=item_id)  # строка заказа
-    old_ord.delete()
-    old_ord.save()
+    logging.info(f'[Удаляем из OrderItems] {old_ord}')
+
 
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
