@@ -171,11 +171,17 @@ def add_item_in_order(request, item_id, order_id):
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
-def del_item_in_order(request, item_id, order_id):
+def del_item_in_order(request, order_id: int, item_id: int):
     Orders = Order.objects.get(id=order_id)
     old_ord = OrderItem.objects.get(id=item_id)  # строка заказа
+    print('PRODNUM', old_ord.product_id)
+    product = Product.objects.get(id=old_ord.product_id)
+    old_ord.delete()
     logging.info(f'[Удаляем из OrderItems] {old_ord}')
 
+    product.delete()
+    logging.info(f'[Удаляем из Product] {product}')
+    # os.remove(f"media/{str(product.images)}")  # Удаление файла
 
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
