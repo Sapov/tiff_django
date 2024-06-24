@@ -48,13 +48,13 @@ class FinishWork(models.Model):
 
 class Contractor(models.Model):
     '''Организации исполнители работ'''
-    name = models.CharField(max_length=100, verbose_name="Наименование орнаеизации")
+    name = models.CharField(max_length=100, verbose_name="Наименование организации")
     description = models.CharField(max_length=200, verbose_name="Описание направления деятельности")
     email_contractor = models.EmailField(verbose_name="Email организации")
     phone_contractor = models.CharField(max_length=11, verbose_name="Телефон организации")
     phone_contractor_2 = models.CharField(max_length=11, verbose_name="Телефон организации")
     address = models.CharField(verbose_name="Адрес", max_length=200)
-    contact_contractor = models.CharField(max_length=23,verbose_name="Контактное лицо")
+    contact_contractor = models.CharField(max_length=23, verbose_name="Контактное лицо")
 
     class Meta:
         verbose_name_plural = "Подрядчики"

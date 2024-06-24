@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound, request
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
-from .models import Product, Material, FinishWork, UseCalculator
+from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     AddFiles,
     UploadArhive,
@@ -514,3 +514,12 @@ def calculator_blank_out(request):
             "files/calculator_blank_material.html",
             {"form": form, "title": "Калькулятор пустого материала"},
         )
+
+
+class ViewContractorListView(LoginRequiredMixin, ListView):
+    """Посмотреть всех подрядчиков"""
+
+    model = Contractor
+    paginate_by = 5
+    template_name = "files/view_contractor.html"
+    login_url = "login"

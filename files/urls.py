@@ -16,7 +16,7 @@ from .views import (
     FilesCreateViewLarge,
     FilesCreateViewUV,
     FilesCreateViewRollUp, calculator_out, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
-    calculator_interier_print_out,
+    calculator_interier_print_out, ViewContractorListView,
 )
 
 app_name = "files"
@@ -45,6 +45,8 @@ urlpatterns = [
     path("calculator_interier_print_out/", calculator_interier_print_out, name="calculator_interier_print_out"),
     path("calculator_uv_print_out/", calculator_uv_print_out, name="calculator_uv_print_out"),
     path("calculator_blank_out/", calculator_blank_out, name="calculator_blank_out"),
+    # CRUD Contractor Подрядчики
+    path("contractor_view/", ViewContractorListView.as_view(), name="contractor_view"),
 
 
 ]
