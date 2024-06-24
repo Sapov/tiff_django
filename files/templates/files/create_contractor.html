@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
+{% block title %}Загрузка макета для Роллапа{% endblock %}
+
+{% block body %}
+
+<div class="col-xl-8 col-lg-7">
+
+        <!-- Area Chart -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <form action="{% url 'files:contractor_view' %}" method="post" , enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">Загрузить</button>
+
+                </form>
+
+
+            </div>
+
+                {% endblock %}

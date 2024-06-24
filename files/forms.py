@@ -184,5 +184,5 @@ class UploadFilesRollUp(forms.ModelForm):
 class CreateContractor(forms.ModelForm):
     class Meta:
         model = Contractor
-        fields = ["name", "description", "email_contractor", "phone_contractor", "Phone_contractor_2",
+        fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
                   'address', 'contact_contractor']

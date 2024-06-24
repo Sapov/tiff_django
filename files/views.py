@@ -15,6 +15,7 @@ from .forms import (
     UploadFilesLarge,
     UploadFilesUV,
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
+    CreateContractor,
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
@@ -528,9 +529,6 @@ class ViewContractorListView(LoginRequiredMixin, ListView):
 class CreateViewContractor(LoginRequiredMixin, CreateView):
     """Добавить подрядчика"""
     model = Contractor
-    form_class = UploadFilesLarge
-    template_name = "files/large_print.html"
+    form_class = CreateContractor
+    template_name = "files/create_contractor.html"
 
-    def form_valid(self, form):
-        form.instance.Contractor = self.request.user
-        return super().form_valid(form)
