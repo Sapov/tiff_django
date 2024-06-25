@@ -218,6 +218,7 @@ class UtilsModel:
         self.order_id = order_id
         self.path_arhive = f"{settings.MEDIA_ROOT}/arhive"
         self.domain = domain
+        self.confirm_link_to_work = None
 
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
@@ -228,7 +229,8 @@ class UtilsModel:
         send_mail(
             "Новый заказ от REDS",
             # f'{self.new_str}\n',
-            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}",
+            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\n ссылка для"
+            f"подтверждения заказа {self.confirm_link_to_work}",
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
             fail_silently=False,
@@ -372,9 +374,8 @@ class UtilsModel:
 
     def __generate_link(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        confirm_link_to_work = f'http://{self.domain}/{self.order_id}/{self.calculate_signature(self.order_id)}'
-        logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {confirm_link_to_work}')
-        return confirm_link_to_work
+        self.confirm_link_to_work = f'http://{self.domain}/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
 
     @staticmethod
     def calculate_signature(*args) -> str:
