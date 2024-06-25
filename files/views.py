@@ -6,24 +6,21 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound, request
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
-from orders.models import OrderItem
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
-    AddFiles,
     UploadArhive,
     Calculator,
     UploadFilesInter,
     UploadFilesLarge,
     UploadFilesUV,
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
-    CreateContractor,
+
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
-import patoolib
 
 from .tiff_file import WorkZip
-from rest_framework import generics, viewsets
+from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 
 import logging
@@ -31,7 +28,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-# from django.core.files.storage import FileSystemStorage
 @login_required
 def index(request):
     """Вывод файлов только авторизованного пользователя"""
@@ -118,7 +114,6 @@ def add_files_in_base():
     print("где я", os.getcwd())
     os.path.relpath("unzip")
     list_files = os.listdir("unzip")
-    # list_files = os.listdir(os.path.relpath('unzip'))
     print(list_files)
     print(os.path.relpath("unzip"))
     return list_files
@@ -130,9 +125,6 @@ def upload_arh(request):
         if form.is_valid():
             # print(form.cleaned_data['path_file'])
             file_name = form.cleaned_data["path_file"]
-            # # сюда написать функцию которая убирает пробелы в имени файла
-            # arh_name = form.cleaned_data['path_file']
-            # path_download = os.path.abspath(str(arh_name))
             form.save()
             WorkZip.print(file_name)
             WorkZip.unzip(file_name)
@@ -157,8 +149,7 @@ def calculator(request):
             quantity = request.POST["quantity"]
             material = request.POST["material"]
             finishka = request.POST["finishka"]
-            print(request.user.role)
-
+            logger.info(f'[USER ROLE] -> {request.user.role}')
             materials = Material.objects.get(id=material)
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length)) * 2
@@ -553,5 +544,7 @@ class ContractorDeleteView(DeleteView):
 
 def confirm_order_to_work(request, order_id: int):
     ''' Подтверждение заказа менеджером типографии'''
-    pass
+
+    if request.method == 'POST':
+
     return render(request, "files/confirm_order_to_work.html")
