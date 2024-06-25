@@ -64,6 +64,9 @@ class Contractor(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("files:contractor_view")
+
 
 class TypePrint(models.Model):
     type_print = models.CharField(max_length=128, verbose_name="Метод печати")

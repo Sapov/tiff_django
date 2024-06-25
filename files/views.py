@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, HttpResponseNotFound, request
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
@@ -521,18 +522,21 @@ class ViewContractorListView(LoginRequiredMixin, ListView):
     """Посмотреть всех подрядчиков"""
 
     model = Contractor
-    paginate_by = 5
+    # paginate_by = 5
     template_name = "files/view_contractor.html"
     login_url = "login"
 
 
-class CreateViewContractor(LoginRequiredMixin, CreateView):
+class ContractorCreateView(LoginRequiredMixin, CreateView):
     """Добавить подрядчика"""
     model = Contractor
     fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
               'address', 'contact_contractor']
-    # form_class = CreateContractor
-    # template_name = "files/contractor_form.html"
+
+    # только для текущего юзера
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
 
 
 class ContractorUpdateView(UpdateView):
