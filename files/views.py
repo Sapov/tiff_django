@@ -556,5 +556,5 @@ def confirm_order_to_work(request, pk, hash_code):
 
         return render(request, "files/confirm_order_to_work.html")
     else:
-        return render(request, "files/confirm_order_to_work.html")
+        return render(request, "files/no_confirm_order_to_work.html")
 

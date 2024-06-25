@@ -230,7 +230,7 @@ class UtilsModel:
             "Новый заказ от REDS",
             # f'{self.new_str}\n',
             f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\nCсылка для"
-            f"подтверждения заказа {self.confirm_link_to_work}",
+            f" подтверждения заказа {self.confirm_link_to_work}",
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
             fail_silently=False,
