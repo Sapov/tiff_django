@@ -551,8 +551,7 @@ class ContractorDeleteView(DeleteView):
     success_url = reverse_lazy("files:contractor_view")
 
 
-def order_in_work(request, contractor):
-    ''' переврдим состояние заказа в другое'''
-
-    '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
+def confirm_order_to_work(request, order_id: int):
+    ''' Подтверждение заказа менеджером типографии'''
     pass
+    return render(request, "files/confirm_order_to_work.html")

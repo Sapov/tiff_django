@@ -51,6 +51,7 @@ urlpatterns = [
     path("contractor_create/", ContractorCreateView.as_view(), name="contractor_create"),
     path("contractor_update/<pk>", ContractorUpdateView.as_view(), name="contractor_update"),
     path("contractor_delete/<pk>", ContractorDeleteView.as_view(), name="contractor_delete"),
-
+    # подтверждение принятия заказа типографией
+    path("confirm_order_to_work/<pk>", confirm_order_to_work, name="confirm_order_to_work"),
 
 ]
