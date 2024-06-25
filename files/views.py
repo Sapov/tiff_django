@@ -549,3 +549,10 @@ class ContractorUpdateView(UpdateView):
 class ContractorDeleteView(DeleteView):
     model = Contractor
     success_url = reverse_lazy("files:contractor_view")
+
+
+def order_in_work(request, contractor):
+    ''' переврдим состояние заказа в другое'''
+
+    '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
+    pass

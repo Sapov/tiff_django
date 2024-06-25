@@ -1,9 +1,10 @@
-birds = {}
-while True:
-    bird = input('Введите птичку: ')  # Goldfinch: 10
-    if bird == '':
-        break
-    name, count = bird.split(':')
-    birds[name] = birds.get(name, 0) + int(count)
+import hashlib
 
-print(birds)
+
+def calculate_signature(*args) -> str:
+    """Create signature MD5.
+    """
+    return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
+
+
+print(calculate_signature('ddd', 234, 'sasha'))

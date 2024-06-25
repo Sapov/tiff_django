@@ -1,3 +1,4 @@
+import hashlib
 import os
 import shutil
 import zipfile
@@ -361,20 +362,35 @@ class UtilsModel:
         logger.info(f" LINK {order.order_arhive}")
         return order.order_arhive
 
-    def set_status_order(self):
-        """Меняем статус заказа после оформления ГОТОВИТЬСЯ НА ОФОРМЛЕН"""
+    def __set_status_order(self, id_status: int):
+        """Меняем статус заказа"""
         order = Order.objects.get(id=self.order_id)
-        status = StatusOrder.objects.get(id=2)  # 2 стауст id оформлен
+        status = StatusOrder.objects.get(id=id_status)  # меняю стаус
         logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
         order.status = status
         order.save()
 
-    def run(self):
-        self.create_text_file()
-        self.read_file()
-        self.arhive()  # архивация заказа
-        self.create_folder_server()  # Создаем папку на сервере
-        self.copy_files_in_server()
-        self.add_arhive_in_order()
-        self.set_status_order()  # меняю статус заказа
-        self.send_mail_order()  # отправил письмо
+    def __generate_link(self):
+        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
+
+        confirm_link_to_work = f'http://{self.domain}/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(f'CONFIRM LINK {confirm_link_to_work}')
+        return confirm_link_to_work
+
+    @staticmethod
+    def calculate_signature(*args) -> str:
+        """Create signature MD5.
+        """
+        return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
+
+
+def run(self):
+    self.create_text_file()
+    self.read_file()
+    self.arhive()  # архивация заказа
+    self.create_folder_server()  # Создаем папку на сервере
+    self.copy_files_in_server()
+    self.add_arhive_in_order()
+    self.__set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
+    self.__generate_link()  # генерирую ссылку
+    self.send_mail_order()  # отправил письмо
