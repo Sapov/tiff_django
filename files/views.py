@@ -544,16 +544,17 @@ class ContractorDeleteView(DeleteView):
     success_url = reverse_lazy("files:contractor_view")
 
 
-def confirm_order_to_work(request, order_id: int):
+def confirm_order_to_work(request, pk, hash_code):
     ''' Подтверждение заказа менеджером типографии'''
-
-    if request.POST:
+    if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
         """Меняем статус заказа"""
-        logger.info(f'[request]:{request.POST}')
-        order = Order.objects.get(id=order_id) # получаем заказ по id заказаки
-        status = StatusOrder.objects.get(id=3) # меняем статус заказак)  # меняю стаус 3
+        order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
+        status = StatusOrder.objects.get(id=3)  # меняем статус заказак)  # меняю стаус 3
         logger.info(f"МЕНЯЮ СТАТУС нА В РАБАОТЕ")
         order.status = status
         order.save()
 
-    return render(request, "files/confirm_order_to_work.html")
+        return render(request, "files/confirm_order_to_work.html")
+    else:
+        return render(request, "files/confirm_order_to_work.html")
+

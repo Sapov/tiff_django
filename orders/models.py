@@ -229,7 +229,7 @@ class UtilsModel:
         send_mail(
             "Новый заказ от REDS",
             # f'{self.new_str}\n',
-            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\n ссылка для"
+            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\nCсылка для"
             f"подтверждения заказа {self.confirm_link_to_work}",
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
@@ -374,7 +374,7 @@ class UtilsModel:
 
     def __generate_link(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_work = f'http://{self.domain}/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
 
     @staticmethod
