@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 class FinishWork(models.Model):
+    ''' финищная обработка'''
     work = models.CharField(max_length=255, verbose_name="Финишная обработка")
     price_contractor = models.FloatField(
         max_length=100,
@@ -46,7 +47,14 @@ class FinishWork(models.Model):
 
 
 class Contractor(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Поставщик продукции")
+    '''Организации исполнители работ'''
+    name = models.CharField(max_length=100, verbose_name="Наименование организации")
+    description = models.CharField(max_length=200, verbose_name="Описание направления деятельности")
+    email_contractor = models.EmailField(verbose_name="Email организации")
+    phone_contractor = models.CharField(max_length=11, verbose_name="Телефон организации")
+    phone_contractor_2 = models.CharField(max_length=11, verbose_name="Телефон организации")
+    address = models.CharField(verbose_name="Адрес", max_length=200)
+    contact_contractor = models.CharField(max_length=23, verbose_name="Контактное лицо")
 
     class Meta:
         verbose_name_plural = "Подрядчики"
@@ -55,6 +63,9 @@ class Contractor(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("files:contractor_view")
 
 
 class TypePrint(models.Model):
@@ -264,8 +275,6 @@ def product_post_save(sender, instance, created, **kwargs):
 
 
 post_save.connect(product_post_save, sender=Product)
-
-
 
 
 class UploadArh(models.Model):

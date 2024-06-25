@@ -16,7 +16,8 @@ from .views import (
     FilesCreateViewLarge,
     FilesCreateViewUV,
     FilesCreateViewRollUp, calculator_out, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
-    calculator_interier_print_out,
+    calculator_interier_print_out, ViewContractorListView, ContractorCreateView, ContractorUpdateView,
+    ContractorDeleteView,
 )
 
 app_name = "files"
@@ -35,7 +36,7 @@ urlpatterns = [
     path("delete/<int:id>/", delete),
     path("price/", price, name="price"),  # прайс-лист
     path("upload/", upload_arh, name="upload_arh"),  # загрузка архива файла
-    # calculators
+    # --------------calculators--------------
     # calc outer
     path("calculator/", calculator, name="calculator"),  # Calculator
     path("calculator_large_print/", calculator_large_print, name="calculator_large_print"),  # calculator_large_print
@@ -45,6 +46,11 @@ urlpatterns = [
     path("calculator_interier_print_out/", calculator_interier_print_out, name="calculator_interier_print_out"),
     path("calculator_uv_print_out/", calculator_uv_print_out, name="calculator_uv_print_out"),
     path("calculator_blank_out/", calculator_blank_out, name="calculator_blank_out"),
+    # CRUD Contractor Подрядчики
+    path("contractor_view/", ViewContractorListView.as_view(), name="contractor_view"),
+    path("contractor_create/", ContractorCreateView.as_view(), name="contractor_create"),
+    path("contractor_update/<pk>", ContractorUpdateView.as_view(), name="contractor_update"),
+    path("contractor_delete/<pk>", ContractorDeleteView.as_view(), name="contractor_delete"),
 
 
 ]

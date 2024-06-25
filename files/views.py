@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, HttpResponseNotFound, request
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from orders.models import OrderItem
-from .models import Product, Material, FinishWork, UseCalculator
+from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     AddFiles,
     UploadArhive,
@@ -15,8 +16,9 @@ from .forms import (
     UploadFilesLarge,
     UploadFilesUV,
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
+    CreateContractor,
 )
-from django.views.generic.edit import CreateView, UpdateView, FormView
+from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
 
@@ -514,3 +516,36 @@ def calculator_blank_out(request):
             "files/calculator_blank_material.html",
             {"form": form, "title": "Калькулятор пустого материала"},
         )
+
+
+class ViewContractorListView(LoginRequiredMixin, ListView):
+    """Посмотреть всех подрядчиков"""
+
+    model = Contractor
+    # paginate_by = 5
+    template_name = "files/view_contractor.html"
+    login_url = "login"
+
+
+class ContractorCreateView(LoginRequiredMixin, CreateView):
+    """Добавить подрядчика"""
+    model = Contractor
+    fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
+              'address', 'contact_contractor']
+
+    # только для текущего юзера
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
+
+class ContractorUpdateView(UpdateView):
+    model = Contractor
+    fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
+              'address', 'contact_contractor']
+    template_name_suffix = "_update_form"
+
+
+class ContractorDeleteView(DeleteView):
+    model = Contractor
+    success_url = reverse_lazy("files:contractor_view")

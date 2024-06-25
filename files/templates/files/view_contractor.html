@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+<title>{% block title %} Подрядчики {% endblock %}</title>
+{% block body %}
+
+<h1>Все подрядчики: </h1>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Название Организации
+        <th scope="col">Описание деятельности</th>
+        <th scope="col">Почта</th>
+        <th scope="col">Телефон</th>
+        <th scope="col">Телефон 2 :</th>
+        <th scope="col">Почтовый адрес:</th>
+        <th scope="col">Контактное лицо:</th>
+    </tr>
+    </thead>
+
+    {% for item in object_list %}
+
+    <tbody>
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td> {{ item.email_contractor }} </td>
+        <td> {{ item.phone_contractor }} </td>
+        <td> {{ item.phone_contractor_2 }} </td>
+        <td> {{ item.address }}</td>
+        <td> {{ item.contact_contractor }}</td>
+        <td><a href="{% url 'files:contractor_update' item.id %} ">Изменить</a></td>
+        <td><a href="{% url 'files:contractor_delete' item.id %} ">Удалить</a></td>
+
+    </tr>
+
+    {% endfor %}
+
+
+    </tbody>
+</table>
+
+
+{% endblock body %}

@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+<title>{% block title %} Обновление {% endblock %}</title>
+{% block body %}
+
+{% load crispy_forms_tags %}
+
+<form method="post" , enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Сохранить</button>
+</form>
+{% endblock %}
