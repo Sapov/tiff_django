@@ -1,4 +1,7 @@
-{% block content %}
+{% extends 'base.html'%}
+<title>{% block title %} Обновление {% endblock %}</title>
+{% block body %}
+
 {% load crispy_forms_tags %}
 
 <form method="post" , enctype="multipart/form-data">

@@ -18,7 +18,7 @@ from .forms import (
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
     CreateContractor,
 )
-from django.views.generic.edit import CreateView, UpdateView, FormView
+from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 import patoolib
 
@@ -544,3 +544,8 @@ class ContractorUpdateView(UpdateView):
     fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
               'address', 'contact_contractor']
     template_name_suffix = "_update_form"
+
+
+class ContractorDeleteView(DeleteView):
+    model = Contractor
+    success_url = reverse_lazy("files:contractor_view")

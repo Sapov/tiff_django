@@ -28,7 +28,7 @@
         <td> {{ item.address }}</td>
         <td> {{ item.contact_contractor }}</td>
         <td><a href="{% url 'files:contractor_update' item.id %} ">Изменить</a></td>
-        <td><a href="{% url 'files:contractor_update' item.id %} ">Изменить</a></td>
+        <td><a href="{% url 'files:contractor_delete' item.id %} ">Удалить</a></td>
 
     </tr>
 
