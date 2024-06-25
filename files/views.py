@@ -529,6 +529,14 @@ class ViewContractorListView(LoginRequiredMixin, ListView):
 class CreateViewContractor(LoginRequiredMixin, CreateView):
     """Добавить подрядчика"""
     model = Contractor
-    form_class = CreateContractor
-    template_name = "files/create_contractor.html"
+    fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
+              'address', 'contact_contractor']
+    # form_class = CreateContractor
+    # template_name = "files/contractor_form.html"
 
+
+class ContractorUpdateView(UpdateView):
+    model = Contractor
+    fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
+              'address', 'contact_contractor']
+    template_name_suffix = "_update_form"
