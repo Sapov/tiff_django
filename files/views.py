@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound, request
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
+
+from orders.models import UtilsModel, Order, StatusOrder
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     UploadArhive,
@@ -545,6 +547,13 @@ class ContractorDeleteView(DeleteView):
 def confirm_order_to_work(request, order_id: int):
     ''' Подтверждение заказа менеджером типографии'''
 
-    if request.method == 'POST':
+    if request.POST:
+        """Меняем статус заказа"""
+        logger.info(f'[request]:{request.POST}')
+        order = Order.objects.get(id=order_id) # получаем заказ по id заказаки
+        status = StatusOrder.objects.get(id=3) # меняем статус заказак)  # меняю стаус 3
+        logger.info(f"МЕНЯЮ СТАТУС нА В РАБАОТЕ")
+        order.status = status
+        order.save()
 
     return render(request, "files/confirm_order_to_work.html")

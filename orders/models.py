@@ -364,7 +364,7 @@ class UtilsModel:
         logger.info(f" LINK {order.order_arhive}")
         return order.order_arhive
 
-    def __set_status_order(self, id_status: int):
+    def set_status_order(self, id_status: int):
         """Меняем статус заказа"""
         order = Order.objects.get(id=self.order_id)
         status = StatusOrder.objects.get(id=id_status)  # меняю стаус
@@ -390,6 +390,6 @@ class UtilsModel:
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
         self.add_arhive_in_order()
-        self.__set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
+        self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link()  # генерирую ссылку
         self.send_mail_order()  # отправил письмо

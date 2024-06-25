@@ -17,7 +17,7 @@ from .views import (
     FilesCreateViewUV,
     FilesCreateViewRollUp, calculator_out, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     calculator_interier_print_out, ViewContractorListView, ContractorCreateView, ContractorUpdateView,
-    ContractorDeleteView,
+    ContractorDeleteView, confirm_order_to_work,
 )
 
 app_name = "files"
