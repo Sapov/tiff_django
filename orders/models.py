@@ -1,21 +1,15 @@
-import email.message
 import os
 import shutil
 import zipfile
 from datetime import date
 
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
-from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.db import models
-from django.template.loader import render_to_string
 
 from account.models import Organisation, Delivery
-from files.models import Product, StatusProduct
+from files.models import Product
 from django.db.models.signals import post_save
 from django.urls import reverse
-import subprocess
 from django.conf import settings
 
 import logging
@@ -299,8 +293,8 @@ class UtilsModel:
 
                 logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
                 new_name_file = (f"{file.quantity}_шт_{int(file.width)}x{int(file.length)}_"
-                                f"{'_'.join(str(file.material).split())}_"
-                                f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
+                                 f"{'_'.join(str(file.material).split())}_"
+                                 f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
                 logger.info(f'[new Name] {new_name_file}')
                 logger.info(f'file.images: {file.images}')
 
@@ -312,7 +306,6 @@ class UtilsModel:
                 new_arh.close()
         os.chdir(current_path)  # перейти обратно
         return self.arh_name
-
 
     def create_folder_server(self):
         """Добавляем фолдер  Директория номер заказа"""
@@ -335,7 +328,6 @@ class UtilsModel:
         current_folder = os.getcwd()
         logger.info(f"Из copy_files_in_server функции видим каталог - {current_folder}")
         lst_files = os.listdir()  # read name files from folder
-        # logger.info(f"FILES:{lst_files}")
         for i in lst_files:
             if i.endswith("txt") or i.endswith("zip"):
                 logger.info(f"Копирую {i} в {self.arhiv_order_path}")
@@ -376,16 +368,6 @@ class UtilsModel:
         logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
         order.status = status
         order.save()
-
-    def rename_files_for_print(self):
-        '''Переименовываем файлы перед архивацией приводим к виду:
-        --01_шт_размер_1,5х2_м_440_баннер.tiff--'''
-        all_products_in_order = OrderItem.objects.filter(
-            order=self.order_id, is_active=True
-        )
-        for item in all_products_in_order:
-            print('NAME FILES:', item.product)
-            # file = Product.objects.get(id=item.product.id)
 
     def run(self):
         self.create_text_file()
