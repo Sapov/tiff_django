@@ -550,7 +550,7 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
         """Меняем статус заказа"""
         order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
         status = StatusOrder.objects.get(id=3)  # меняем статус заказак)  # меняю стаус 3
-        logger.info(f"МЕНЯЮ СТАТУС нА В РАБАОТЕ")
+        logger.info(f"МЕНЯЮ СТАТУС нА В Работе")
         order.status = status
         order.save()
 
@@ -564,11 +564,11 @@ def confirm_order_to_complieted(request, pk, hash_code):
     if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
         """Меняем статус заказа"""
         order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
-        status = StatusOrder.objects.get(id=3)  # меняем статус заказак)  # меняю стаус 3
-        logger.info(f"МЕНЯЮ СТАТУС нА В РАБАОТЕ")
+        status = StatusOrder.objects.get(id=4)  # меняем статус заказак)  # меняю стаус 3
+        logger.info(f"МЕНЯЮ СТАТУС НА В ГОТОВ")
         order.status = status
         order.save()
 
-        return render(request, "files/confirm_order_to_work.html")
+        return render(request, "files/confirm_order_to_complieted.html")
     else:
-        return render(request, "files/no_confirm_order_to_work.html")
+        return render(request, "files/no_confirm_order_to_complieted.html")
