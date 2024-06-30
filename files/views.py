@@ -564,7 +564,7 @@ def confirm_order_to_complieted(request, pk, hash_code):
     if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
         """Меняем статус заказа"""
         order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
-        status = StatusOrder.objects.get(id=4)  # меняем статус заказак)  # меняю стаус 3
+        status = StatusOrder.objects.get(id=5)  # меняем статус заказак)  # меняю стаус ГОТОВ
         logger.info(f"МЕНЯЮ СТАТУС НА В ГОТОВ")
         order.status = status
         order.save()

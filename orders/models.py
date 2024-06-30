@@ -387,7 +387,7 @@ class UtilsModel:
 
     def __generate_link_to_compited(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние ГОТОВ'''
-        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(f'[Генерирую ссылку подтверждения перевода заказа в состояние ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
 
     def run(self):
