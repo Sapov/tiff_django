@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+<title>{% block title %} {{current_order}} {% endblock %}</title>
+{% block body %}
+
+<div class="row">
+    <button type="submit" class="btn btn-primary"
+            onClick="location.href='{{Orders.pay_link}}'">Перевод на карту
+    </button>
+
+    <button type="submit" class="btn btn-primary"
+            onClick="location.href='{{Orders.pay_link}}'">Оплата картов
+    </button>
+
+    <div class="row">
+        <button type="submit" class="btn btn-primary"
+                onClick="location.href='{{Orders.pay_link}}'">Выписать счет
+        </button>
+
+    </div>
+        {% endblock %}

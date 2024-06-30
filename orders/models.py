@@ -1,21 +1,16 @@
-import email.message
+import hashlib
 import os
 import shutil
 import zipfile
 from datetime import date
 
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
-from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.db import models
-from django.template.loader import render_to_string
 
 from account.models import Organisation, Delivery
-from files.models import Product, StatusProduct
+from files.models import Product
 from django.db.models.signals import post_save
 from django.urls import reverse
-import subprocess
 from django.conf import settings
 
 import logging
@@ -223,6 +218,8 @@ class UtilsModel:
         self.order_id = order_id
         self.path_arhive = f"{settings.MEDIA_ROOT}/arhive"
         self.domain = domain
+        self.confirm_link_to_work = None
+        self.confirm_link_to_complited = None
 
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
@@ -233,7 +230,9 @@ class UtilsModel:
         send_mail(
             "Новый заказ от REDS",
             # f'{self.new_str}\n',
-            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}",
+            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\nCсылка для"
+            f" подтверждения заказа {self.confirm_link_to_work}\nЗаказ Готов {self.confirm_link_to_complited}",
+
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
             fail_silently=False,
@@ -299,8 +298,8 @@ class UtilsModel:
 
                 logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
                 new_name_file = (f"{file.quantity}_шт_{int(file.width)}x{int(file.length)}_"
-                                f"{'_'.join(str(file.material).split())}_"
-                                f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
+                                 f"{'_'.join(str(file.material).split())}_"
+                                 f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
                 logger.info(f'[new Name] {new_name_file}')
                 logger.info(f'file.images: {file.images}')
 
@@ -312,7 +311,6 @@ class UtilsModel:
                 new_arh.close()
         os.chdir(current_path)  # перейти обратно
         return self.arh_name
-
 
     def create_folder_server(self):
         """Добавляем фолдер  Директория номер заказа"""
@@ -335,7 +333,6 @@ class UtilsModel:
         current_folder = os.getcwd()
         logger.info(f"Из copy_files_in_server функции видим каталог - {current_folder}")
         lst_files = os.listdir()  # read name files from folder
-        # logger.info(f"FILES:{lst_files}")
         for i in lst_files:
             if i.endswith("txt") or i.endswith("zip"):
                 logger.info(f"Копирую {i} в {self.arhiv_order_path}")
@@ -369,23 +366,29 @@ class UtilsModel:
         logger.info(f" LINK {order.order_arhive}")
         return order.order_arhive
 
-    def set_status_order(self):
-        """Меняем статус заказа после оформления ГОТОВИТЬСЯ НА ОФОРМЛЕН"""
+    def set_status_order(self, id_status: int):
+        """Меняем статус заказа"""
         order = Order.objects.get(id=self.order_id)
-        status = StatusOrder.objects.get(id=2)  # 2 стауст id оформлен
+        status = StatusOrder.objects.get(id=id_status)  # меняю стаус
         logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
         order.status = status
         order.save()
 
-    def rename_files_for_print(self):
-        '''Переименовываем файлы перед архивацией приводим к виду:
-        --01_шт_размер_1,5х2_м_440_баннер.tiff--'''
-        all_products_in_order = OrderItem.objects.filter(
-            order=self.order_id, is_active=True
-        )
-        for item in all_products_in_order:
-            print('NAME FILES:', item.product)
-            # file = Product.objects.get(id=item.product.id)
+    @staticmethod
+    def calculate_signature(*args) -> str:
+        """Create signature MD5.
+        """
+        return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
+
+    def __generate_link_to_work(self):
+        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
+        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
+
+    def __generate_link_to_compited(self):
+        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние ГОТОВ'''
+        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(f'[Генерирую ссылку подтверждения перевода заказа в состояние ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
 
     def run(self):
         self.create_text_file()
@@ -394,5 +397,8 @@ class UtilsModel:
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
         self.add_arhive_in_order()
-        self.set_status_order()  # меняю статус заказа
+        self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
+        self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
+        self.__generate_link_to_compited()  # генерирую ссылку для перевода в сотояие ГОТОВ
         self.send_mail_order()  # отправил письмо
+

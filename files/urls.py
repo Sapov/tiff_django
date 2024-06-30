@@ -17,7 +17,7 @@ from .views import (
     FilesCreateViewUV,
     FilesCreateViewRollUp, calculator_out, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     calculator_interier_print_out, ViewContractorListView, ContractorCreateView, ContractorUpdateView,
-    ContractorDeleteView,
+    ContractorDeleteView, confirm_order_to_work, confirm_order_to_complieted,
 )
 
 app_name = "files"
@@ -51,6 +51,9 @@ urlpatterns = [
     path("contractor_create/", ContractorCreateView.as_view(), name="contractor_create"),
     path("contractor_update/<pk>", ContractorUpdateView.as_view(), name="contractor_update"),
     path("contractor_delete/<pk>", ContractorDeleteView.as_view(), name="contractor_delete"),
-
+    # подтверждение принятия заказа типографией
+    path("confirm_order_to_work/<pk>/<hash_code>/", confirm_order_to_work, name="confirm_order_to_work"),
+    # поодтверждение готовности заказа
+    path("confirm_order_to_compited/<pk>/<hash_code>/", confirm_order_to_complieted, name="confirm_order_to_complited"),
 
 ]

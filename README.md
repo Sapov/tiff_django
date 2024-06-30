@@ -8,7 +8,7 @@
 Как запустить: 
 git clone https://github.com/Sapov/tiff_django.git
 
-python3 -m venv myenv
+python -m venv myenv
 
 source /myenv/bin/activate
 
@@ -16,13 +16,13 @@ pip install -r requirements.txt
 
 touch .env
 
-python3 manege.py makemigrations
+python manage.py makemigrations
 
-python3 manege.py migrate
+python manage.py migrate
 
 python manage.py add_price
 
-python3 manage.py createsuperuser
+python manage.py createsuperuser
 
 mkdir media/orders
 
