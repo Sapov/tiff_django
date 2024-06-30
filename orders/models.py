@@ -228,10 +228,11 @@ class UtilsModel:
         logger.info(f'[INFO] ARHIVE {str(order.order_arhive)}')
 
         send_mail(
-            "Новый заказ от REDS",
+            f"Новый заказ от REDS Дата готовности: {order.date_complete}",
             # f'{self.new_str}\n',
             f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\nCсылка для"
-            f" подтверждения заказа {self.confirm_link_to_work}\nЗаказ Готов {self.confirm_link_to_complited}",
+            f" подтверждения заказа {self.confirm_link_to_work}\nЗаказ Готов {self.confirm_link_to_complited}\n"
+            f"Дата готовности: {order.date_complete}",
 
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
