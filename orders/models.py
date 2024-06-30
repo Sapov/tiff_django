@@ -219,6 +219,7 @@ class UtilsModel:
         self.path_arhive = f"{settings.MEDIA_ROOT}/arhive"
         self.domain = domain
         self.confirm_link_to_work = None
+        self.confirm_link_to_complited = None
 
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
@@ -230,7 +231,8 @@ class UtilsModel:
             "Новый заказ от REDS",
             # f'{self.new_str}\n',
             f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\nCсылка для"
-            f" подтверждения заказа {self.confirm_link_to_work}",
+            f" подтверждения заказа {self.confirm_link_to_work}\nЗаказ Готов {self.confirm_link_to_complited}",
+
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
             fail_silently=False,
@@ -372,16 +374,21 @@ class UtilsModel:
         order.status = status
         order.save()
 
-    def __generate_link(self):
-        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
-        logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
-
     @staticmethod
     def calculate_signature(*args) -> str:
         """Create signature MD5.
         """
         return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
+
+    def __generate_link_to_work(self):
+        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
+        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
+
+    def __generate_link_to_compited(self):
+        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние ГОТОВ'''
+        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(f'[Генерирую ссылку подтверждения перевода заказа в состояние ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
 
     def run(self):
         self.create_text_file()
@@ -391,5 +398,7 @@ class UtilsModel:
         self.copy_files_in_server()
         self.add_arhive_in_order()
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
-        self.__generate_link()  # генерирую ссылку
+        self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
+        self.__generate_link_to_compited()  # генерирую ссылку для перевода в сотояие ГОТОВ
         self.send_mail_order()  # отправил письмо
+
