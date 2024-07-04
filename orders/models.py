@@ -230,8 +230,8 @@ class UtilsModel:
         send_mail(
             f"Новый заказ от REDS Дата готовности: {order.date_complete}",
             # f'{self.new_str}\n',
-            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\nCсылка для"
-            f" подтверждения заказа {self.confirm_link_to_work}\nЗаказ Готов {self.confirm_link_to_complited}\n"
+            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\n"
+            f"Заказ принят в работу {self.confirm_link_to_work}\nЗаказ Готов {self.confirm_link_to_complited}\n"
             f"Дата готовности: {order.date_complete}",
 
             "django.rpk@mail.ru",
