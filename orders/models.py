@@ -226,13 +226,14 @@ class UtilsModel:
         order = Order.objects.get(id=self.order_id)
         logger.info(f'[INFO] DOMAIN {self.domain}')
         logger.info(f'[INFO] ARHIVE {str(order.order_arhive)}')
+        data_complite_mail = order.date_complete.strftime("%d-%m-%Y %H:%M")
 
         send_mail(
-            f"Новый заказ от REDS Дата готовности: {order.date_complete}",
+            f"Новый заказ от REDS Дата готовности: {data_complite_mail}",
             # f'{self.new_str}\n',
             f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\n"
             f"Заказ принят в работу {self.confirm_link_to_work}\nЗаказ Готов {self.confirm_link_to_complited}\n"
-            f"Дата готовности: {order.date_complete}",
+            f"Дата готовности: {data_complite_mail}",
 
             "django.rpk@mail.ru",
             ["rpk.reds@ya.ru"],
