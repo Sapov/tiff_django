@@ -10,9 +10,22 @@
 #
 # print(ts([2, 7, 8, 6], 9))
 
-t = [["Скажи-ка", "дядя", "ведь", "не", "даром"],
-     ["Я", "Python", "выучил", "с", "каналом"],
-     ["Балакирев", "что", "раздавал?"]]
+from datetime import datetime, timedelta
 
-print(str(t))
-print('дядя' in t)
+start = datetime.now()
+# print(f'START {start}')
+# for i in range(1000000):
+#     print(i)
+# print(f'START {start} TYPE {type(start)}')
+# finish = datetime.now() - start
+# print(f'FINISH {finish} TYPE {type(finish)}')
+print(start)
+print(start.strftime('%d %B %Y'))
+format_of_time = start.strftime("%H:%M")
+
+print(format_of_time)
+
+
+clock_in_half_hour = datetime.now() + timedelta(hours=12)
+print(clock_in_half_hour.strftime('%d %B %Y'))
+print(clock_in_half_hour.strftime('%H:%M'))
