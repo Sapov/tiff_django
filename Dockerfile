@@ -8,8 +8,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN pip install --upgrade pip
 
-RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
-    libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales vim
+RUN apt update && apt -qy install gcc gettext cron openssh-client locales vim
 
 RUN useradd -rms /bin/bash django && chmod 777 /opt /run
 
@@ -24,5 +23,4 @@ COPY --chown=django:django . .
 RUN pip install -r requirements.txt
 
 USER django
-
 CMD ["gunicorn","-b","0.0.0.0:8000","mysite.wsgi:application"]

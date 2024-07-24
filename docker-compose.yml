@@ -66,6 +66,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
     depends_on:
+      - django_project
       - postgres_db
     ports:
       - "${NGINX_EXTERNAL_PORT}:80"
