@@ -101,13 +101,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "mysite.wsgi.application"
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databasessettings.py
-#
 DATABASES = {"default":
     {
         "ENGINE": "django.db.backends.sqlite3",
