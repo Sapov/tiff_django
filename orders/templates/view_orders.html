@@ -26,7 +26,37 @@
             <tbody>
             {% for order in Orders %}
             <tr>
-                <td>{{ order.id }}</td>
+
+                 {% if order.status.id >= 2 %}
+
+                <td><button type="submit" class="btn btn-primary"
+                            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id }}</button></td>
+
+                {% else %}
+                <td>
+                    <!--                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">-->
+                    <!--                    <ul class="navbar-nav ml-auto">-->
+                    <!--                                            <li class="nav-item dropdown">-->
+                    <a class="btn btn-success nav-link dropdown-toggle"
+                       href="{% url 'orders:add_file_in_order' order.id %}" id="navbarDropdown"
+                       role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        Заказ № {{ order.id }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right animated--grow-in"
+                         aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">Оплатить</a>
+                        <a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">Редактировать</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'orders:Delete_order' order.id %}">Удалить</a>
+                    </div>
+                    <!--                                            </li>-->
+                    <!--                    </ul>-->
+                    <!--                                    </nav>-->
+                </td>
+                {% endif %}
+
+
                 <td>{{ order.total_price }} руб.</td>
                 <td>{% if order.paid == False %}
                     <div class="mb-2">
@@ -57,34 +87,6 @@
                 <td>{{ order.created }}</td>
                 <td>{{ order.date_complete }}</td>
 
-                {% if order.status.id >= 2 %}
-
-                <td><button type="submit" class="btn btn-primary"
-                            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id }}</button></td>
-
-                {% else %}
-                <td>
-                    <!--                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">-->
-                    <!--                    <ul class="navbar-nav ml-auto">-->
-                    <!--                                            <li class="nav-item dropdown">-->
-                    <a class="btn btn-success nav-link dropdown-toggle"
-                       href="{% url 'orders:add_file_in_order' order.id %}" id="navbarDropdown"
-                       role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        Заказ № {{ order.id }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                         aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">Оплатить</a>
-                        <a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">Редактировать</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'orders:Delete_order' order.id %}">Удалить</a>
-                    </div>
-                    <!--                                            </li>-->
-                    <!--                    </ul>-->
-                    <!--                                    </nav>-->
-                </td>
-                {% endif %}
 
             </tr>
             {% endfor %}
