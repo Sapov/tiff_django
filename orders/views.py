@@ -18,7 +18,7 @@ from account.models import Organisation, Delivery, DeliveryAddress
 from files.models import Product
 from files.pay import Robokassa
 from .forms import NewOrder, ReportForm
-from .models import Order, OrderItem, UtilsModel
+from .models import Order, OrderItem, UtilsModel, StatusOrder
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
 from .utils import DrawOrder, Utils
@@ -48,7 +48,7 @@ def new_order(request):
         # delivery_id = request.POST["delivery_address"]
         date_complite = request.POST["date_complite"]
         date_complite = datetime.datetime.strptime(date_complite, "%Y-%m-%d")
-        date_complite += datetime.timedelta(hours=15) # чтоб отдавать в 12 часов
+        date_complite += datetime.timedelta(hours=15)  # чтоб отдавать в 12 часов
 
         logging.info(f"date_complite {date_complite} - {type(date_complite)}")
         delivery_id = request.POST["delivery"]
@@ -386,3 +386,18 @@ def report_day(request):
             }
 
     return render(request, "orders/report_day.html", context=context)
+
+
+def set_status_order(request, status_oder: int, pk: int, hash_code: str):
+    ''' Подтверждение приема заказа менеджером типографии'''
+    if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
+        """Меняем статус заказа"""
+        order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
+        status = StatusOrder.objects.get(id=status_oder)  # меняем статус заказа )  # меняю стаус
+        logger.info(f"МЕНЯЮ СТАТУС нА В Работе")
+        order.status = status
+        order.save()
+
+        return render(request, "files/confirm_order_to_work.html")
+    else:
+        return render(request, "files/no_confirm_order_to_work.html")

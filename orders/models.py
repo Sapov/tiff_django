@@ -237,7 +237,11 @@ class UtilsModel:
             "order_complete": self.order_complite,
             "order_item": self.order_list,
             "order_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
-            "confirm_link": f"http://{self.domain}/orders/set_status_order/{self.order_id}/{self.generate_hash()}",
+            # "confirm_link": f"http://{self.domain}/orders/set_status_order/{self.order_id}/{self.generate_hash()}",
+            "confirm_link": self.confirm_link_to_work,
+            "confirm_status_complite": self.confirm_link_to_complited,
+
+
             "order_id": self.order_id,
         }
         html_message = render_to_string("mail/mail_order_for_typografyl.html", data)
@@ -287,19 +291,18 @@ class UtilsModel:
                 # self.order_list.append(size)
                 self.order_list.append(square)
                 self.order_list.append(finish_work_rec_file)
-               
+
                 if comments != "Комментарии к файлу: ":
                     self.order_list.append(comments)
                 self.order_list.append("-" * 40 + "\n")
 
-                
                 text_file.write(
                     f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{finish_work_rec_file}\n{comments}\n"
                 )
                 text_file.write("-" * 40 + "\n")
         logger.info(f"CREATE File, {self.text_file_name}")
         logger.info(f"CREATE LIST, {self.order_list}")
-        
+
         os.chdir(current_path)
         return self.text_file_name
 
@@ -414,16 +417,14 @@ class UtilsModel:
         """
         return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
 
-    def __generate_link_to_work(self):
+    def __generate_link_to_work(self, status_id: int):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{status_id}/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
-
-    def __generate_link_to_compited(self):
-        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние ГОТОВ'''
-        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
-        logger.info(
-            f'[Генерирую ссылку подтверждения перевода заказа в состояние ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
+    def __generate_link_to_work(self, status_id: int):
+        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
+        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_work/{status_id}/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(f'[Генерирую ссылку ПЕРЕВОД С СОСТОЯНИЕ ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
 
     def run(self):
         self.create_text_file()
@@ -433,6 +434,6 @@ class UtilsModel:
         self.copy_files_in_server()
         self.add_arhive_in_order()
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
-        self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
-        self.__generate_link_to_compited()  # генерирую ссылку для перевода в сотояие ГОТОВ
+        self.__generate_link_to_work(3)  # генерирую ссылку о подтверждении принятия в работу
+        self.__generate_link_to_complited(5)  # генерирую ссылку для перевода в сотояие ГОТОВ
         self.send_mail_order()  # отправил письмо

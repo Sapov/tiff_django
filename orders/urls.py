@@ -33,7 +33,12 @@ urlpatterns = [
     path("add_item_in_order/<int:order_id>/<int:item_id>", add_item_in_order, name="add"),
     path("del_item_in_order/<int:order_id>/<int:item_id>", del_item_in_order, name="del_item_in_order", ),
     #--------------------Изменяем статус заказа------------------
-    path('set_status_order/<int:order_id>/<str:hash>', set_status_order),
+    path('set_status_order/<int:status_order>/<int:order_id>/<str:hash>', set_status_order),
+    # # подтверждение принятия заказа типографией
+    # path("confirm_order_to_work/<pk>/<hash_code>/", confirm_order_to_work, name="confirm_order_to_work"),
+    # # поодтверждение готовности заказа
+    # path("confirm_order_to_compited/<pk>/<hash_code>/", confirm_order_to_complieted, name="confirm_order_to_complited"),
+
 
     # Посмотреть все заказы
     path("view_all_orders/", AllOrdersListView.as_view(), name="view_all_orders"),
