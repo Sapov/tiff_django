@@ -240,7 +240,7 @@ class UtilsModel:
             "confirm_link": f"http://{self.domain}/orders/set_status_order/{self.order_id}/{self.generate_hash()}",
             "order_id": self.order_id,
         }
-        html_message = render_to_string("info/mail_order_for_typografyl.html", data)
+        html_message = render_to_string("mail/mail_order_for_typografyl.html", data)
         msg = EmailMultiAlternatives(
             subject=f"Новый заказ от REDS № {self.order_id}",
             to=[
