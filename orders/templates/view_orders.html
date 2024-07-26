@@ -63,10 +63,26 @@
                     <td></td>
                     <td></td>
                 {% else %}
-                    <td><a href="{% url 'orders:add_file_in_order' order.id %}">Детализация</a></td>
-                    <td><a href="{% url 'orders:Delete_order' order.id %}">Удалить</a></td>
-                    <td><a href="{% url 'orders:order_pay' order.id %}">Оплатить</a></td>
-                    <td><a href="{% url 'orders:update_order' order.id %}">Редактировать</a></td>
+                <td>
+                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="{% url 'orders:add_file_in_order' order.id %}" id="navbarDropdown"
+                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Детализ
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right animated--grow-in"
+                                                    aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">Оплатить</a>
+                                                    <a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">Редактировать</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="{% url 'orders:Delete_order' order.id %}">Удалить</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </nav>
+</td>
                 {% endif %}
 
             </tr>
