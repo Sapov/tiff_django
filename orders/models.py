@@ -249,177 +249,177 @@ class UtilsModel:
         msg.send()
 
 
-def create_text_file(self):
-    """Создаем файл с харaктеристеками файла для печати"""
-    current_path = os.getcwd()
-    os.chdir(f"{settings.MEDIA_ROOT}/image/")
+    def create_text_file(self):
+        """Создаем файл с харaктеристеками файла для печати"""
+        current_path = os.getcwd()
+        os.chdir(f"{settings.MEDIA_ROOT}/image/")
 
-    all_products_in_order = OrderItem.objects.filter(
-        order=self.order_id, is_active=True
-    )
-    self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
-    with open(self.text_file_name, "w") as text_file:
-        text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
-        for item in all_products_in_order:
-            file = Product.objects.get(id=item.product.id)
-            file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
-            material_txt = f"Материал для печати: {file.material}"
-            quantity_print = f"Количество: {file.quantity} шт."
-            length_width = f"Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi"
-            color_model = f"Цветовая модель: {file.color_model}"
-            size = f"Размер: {file.size} Мб"
-            square = f"Площадь: {(file.length * file.width) / 10000} м2"
-            finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
-
-            text_file.write(
-                f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{finish_work_rec_file}\n"
-            )
-            text_file.write("-" * 40 + "\n")
-    logger.info(f"CREATE File, {self.text_file_name}")
-    os.chdir(current_path)
-    return self.text_file_name
-
-
-def read_file(self):
-    current_path = os.getcwd()  # запоминаем где мы
-    os.chdir(f"{settings.MEDIA_ROOT}/image/")  # перейти в директорию image
-    with open(self.text_file_name) as file:  # читаю файл txt
-        self.new_str = file.read()
-        os.chdir(current_path)  # перейти обратно
-
-        return self.new_str
-
-
-def arhive(self):
-    current_path = os.getcwd()  # запоминаем где мы
-    os.chdir(f"{settings.MEDIA_ROOT}/image/")  # перейти в директорию image
-    """Архивируем заказ"""
-
-    if os.path.isfile(f"Order_№_{self.order_id}_{date.today()}.zip"):
-        logger.info("Файл уже существует, архивация пропущена")
-    else:
         all_products_in_order = OrderItem.objects.filter(
             order=self.order_id, is_active=True
         )
-        logger.info(f'[archive]: Архивируем файлы:", {all_products_in_order}')
-        for item in all_products_in_order:
-            file = Product.objects.get(id=item.product.id)
-            logger.info(f"FILE: {file}")
-            self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
-            new_arh = zipfile.ZipFile(self.arh_name, "a")
+        self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
+        with open(self.text_file_name, "w") as text_file:
+            text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
+            for item in all_products_in_order:
+                file = Product.objects.get(id=item.product.id)
+                file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
+                material_txt = f"Материал для печати: {file.material}"
+                quantity_print = f"Количество: {file.quantity} шт."
+                length_width = f"Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi"
+                color_model = f"Цветовая модель: {file.color_model}"
+                size = f"Размер: {file.size} Мб"
+                square = f"Площадь: {(file.length * file.width) / 10000} м2"
+                finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
 
-            logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
-            new_name_file = (f"{file.quantity}_шт_{int(file.width)}x{int(file.length)}_"
-                             f"{'_'.join(str(file.material).split())}_"
-                             f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
-            logger.info(f'[new Name] {new_name_file}')
-            logger.info(f'file.images: {file.images}')
-
-            logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
-            old_name = str(file.images)[str(file.images).rindex("/") + 1:]
-
-            os.rename(old_name, new_name_file)
-            new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
-            new_arh.close()
-    os.chdir(current_path)  # перейти обратно
-    return self.arh_name
-
-
-def create_folder_server(self):
-    """Добавляем фолдер  Директория номер заказа"""
-    current_path = os.getcwd()
-    os.chdir(f"{settings.MEDIA_ROOT}/arhive")  # перейти в директорию orders
-    logger.info(f"[INFO DECORATOR] Мы Выбрали: {os.getcwd()}")
-    if os.path.exists(f"{settings.MEDIA_ROOT}/arhive/{self.order_id}"):
-        logger.info(f"Директория {self.order_id} уже создана")
-    else:
-        logger.info(f"Создаем Директорию {self.order_id}")
-        os.makedirs(str(self.order_id))
-    os.chdir(current_path)  # перейти обратно
+                text_file.write(
+                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{finish_work_rec_file}\n"
+                )
+                text_file.write("-" * 40 + "\n")
+        logger.info(f"CREATE File, {self.text_file_name}")
+        os.chdir(current_path)
+        return self.text_file_name
 
 
-def copy_files_in_server(self):
-    """закидываем файлы на order локально на ubuntu
-    Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
-    ДИСКЕ затирается новым"""
-    self.arhiv_order_path = f"{self.path_arhive}/{self.order_id}"
-    os.chdir(f"{settings.MEDIA_ROOT}/image/")
-    current_folder = os.getcwd()
-    logger.info(f"Из copy_files_in_server функции видим каталог - {current_folder}")
-    lst_files = os.listdir()  # read name files from folder
-    for i in lst_files:
-        if i.endswith("txt") or i.endswith("zip"):
-            logger.info(f"Копирую {i} в {self.arhiv_order_path}")
-            os.chdir(self.arhiv_order_path)  # перехожу в диск
-            if os.path.exists(i):
-                os.remove(
-                    i
-                )  # test print(f'На ya Диске есть такой файл {i} удалим его ')
-                os.chdir(
-                    current_folder
-                )  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
+    def read_file(self):
+        current_path = os.getcwd()  # запоминаем где мы
+        os.chdir(f"{settings.MEDIA_ROOT}/image/")  # перейти в директорию image
+        with open(self.text_file_name) as file:  # читаю файл txt
+            self.new_str = file.read()
+            os.chdir(current_path)  # перейти обратно
 
-                shutil.move(i, self.arhiv_order_path)
-                os.chdir(settings.MEDIA_ROOT)
-            else:
-                os.chdir(current_folder)
-                shutil.move(i, self.arhiv_order_path)
-                os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
+            return self.new_str
 
 
-def add_arhive_in_order(self):
-    """Записываем в таблицу ссылку на архив с файлами"""
-    order = Order.objects.get(id=self.order_id)
-    logger.info(
-        f"Записываю в заказ ссылку на архив: arhive/{self.order_id}/{self.arh_name}"
-    )
-    order.order_arhive = f"arhive/{self.order_id}/{self.arh_name}"
-    order.save()
+    def arhive(self):
+        current_path = os.getcwd()  # запоминаем где мы
+        os.chdir(f"{settings.MEDIA_ROOT}/image/")  # перейти в директорию image
+        """Архивируем заказ"""
+
+        if os.path.isfile(f"Order_№_{self.order_id}_{date.today()}.zip"):
+            logger.info("Файл уже существует, архивация пропущена")
+        else:
+            all_products_in_order = OrderItem.objects.filter(
+                order=self.order_id, is_active=True
+            )
+            logger.info(f'[archive]: Архивируем файлы:", {all_products_in_order}')
+            for item in all_products_in_order:
+                file = Product.objects.get(id=item.product.id)
+                logger.info(f"FILE: {file}")
+                self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
+                new_arh = zipfile.ZipFile(self.arh_name, "a")
+
+                logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
+                new_name_file = (f"{file.quantity}_шт_{int(file.width)}x{int(file.length)}_"
+                                 f"{'_'.join(str(file.material).split())}_"
+                                 f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
+                logger.info(f'[new Name] {new_name_file}')
+                logger.info(f'file.images: {file.images}')
+
+                logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
+                old_name = str(file.images)[str(file.images).rindex("/") + 1:]
+
+                os.rename(old_name, new_name_file)
+                new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
+                new_arh.close()
+        os.chdir(current_path)  # перейти обратно
+        return self.arh_name
 
 
-def download_link(self):
-    order = Order.objects.get(id=self.order_id)
-    logger.info(f" LINK {order.order_arhive}")
-    return order.order_arhive
+    def create_folder_server(self):
+        """Добавляем фолдер  Директория номер заказа"""
+        current_path = os.getcwd()
+        os.chdir(f"{settings.MEDIA_ROOT}/arhive")  # перейти в директорию orders
+        logger.info(f"[INFO DECORATOR] Мы Выбрали: {os.getcwd()}")
+        if os.path.exists(f"{settings.MEDIA_ROOT}/arhive/{self.order_id}"):
+            logger.info(f"Директория {self.order_id} уже создана")
+        else:
+            logger.info(f"Создаем Директорию {self.order_id}")
+            os.makedirs(str(self.order_id))
+        os.chdir(current_path)  # перейти обратно
 
 
-def set_status_order(self, id_status: int):
-    """Меняем статус заказа"""
-    order = Order.objects.get(id=self.order_id)
-    status = StatusOrder.objects.get(id=id_status)  # меняю стаус
-    logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
-    order.status = status
-    order.save()
+    def copy_files_in_server(self):
+        """закидываем файлы на order локально на ubuntu
+        Если состояние заказа ставим обратно в ОФОРМЛЕН, а потом ставим в РАБОТЕ, то файл(архив) на
+        ДИСКЕ затирается новым"""
+        self.arhiv_order_path = f"{self.path_arhive}/{self.order_id}"
+        os.chdir(f"{settings.MEDIA_ROOT}/image/")
+        current_folder = os.getcwd()
+        logger.info(f"Из copy_files_in_server функции видим каталог - {current_folder}")
+        lst_files = os.listdir()  # read name files from folder
+        for i in lst_files:
+            if i.endswith("txt") or i.endswith("zip"):
+                logger.info(f"Копирую {i} в {self.arhiv_order_path}")
+                os.chdir(self.arhiv_order_path)  # перехожу в диск
+                if os.path.exists(i):
+                    os.remove(
+                        i
+                    )  # test print(f'На ya Диске есть такой файл {i} удалим его ')
+                    os.chdir(
+                        current_folder
+                    )  # test print('переходим обратно') print('Теперь мы в', os.getcwd())
+
+                    shutil.move(i, self.arhiv_order_path)
+                    os.chdir(settings.MEDIA_ROOT)
+                else:
+                    os.chdir(current_folder)
+                    shutil.move(i, self.arhiv_order_path)
+                    os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
 
-@staticmethod
-def calculate_signature(*args) -> str:
-    """Create signature MD5.
-    """
-    return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
+    def add_arhive_in_order(self):
+        """Записываем в таблицу ссылку на архив с файлами"""
+        order = Order.objects.get(id=self.order_id)
+        logger.info(
+            f"Записываю в заказ ссылку на архив: arhive/{self.order_id}/{self.arh_name}"
+        )
+        order.order_arhive = f"arhive/{self.order_id}/{self.arh_name}"
+        order.save()
 
 
-def __generate_link_to_work(self):
-    '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-    self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
-    logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
+    def download_link(self):
+        order = Order.objects.get(id=self.order_id)
+        logger.info(f" LINK {order.order_arhive}")
+        return order.order_arhive
 
 
-def __generate_link_to_compited(self):
-    '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние ГОТОВ'''
-    self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
-    logger.info(
-        f'[Генерирую ссылку подтверждения перевода заказа в состояние ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
+    def set_status_order(self, id_status: int):
+        """Меняем статус заказа"""
+        order = Order.objects.get(id=self.order_id)
+        status = StatusOrder.objects.get(id=id_status)  # меняю стаус
+        logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
+        order.status = status
+        order.save()
 
 
-def run(self):
-    self.create_text_file()
-    self.read_file()
-    self.arhive()  # архивация заказа
-    self.create_folder_server()  # Создаем папку на сервере
-    self.copy_files_in_server()
-    self.add_arhive_in_order()
-    self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
-    self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
-    self.__generate_link_to_compited()  # генерирую ссылку для перевода в сотояие ГОТОВ
-    self.send_mail_order()  # отправил письмо
+    @staticmethod
+    def calculate_signature(*args) -> str:
+        """Create signature MD5.
+        """
+        return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
+
+
+    def __generate_link_to_work(self):
+        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
+        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
+
+
+    def __generate_link_to_compited(self):
+        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние ГОТОВ'''
+        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        logger.info(
+            f'[Генерирую ссылку подтверждения перевода заказа в состояние ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
+
+
+    def run(self):
+        self.create_text_file()
+        self.read_file()
+        self.arhive()  # архивация заказа
+        self.create_folder_server()  # Создаем папку на сервере
+        self.copy_files_in_server()
+        self.add_arhive_in_order()
+        self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
+        self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
+        self.__generate_link_to_compited()  # генерирую ссылку для перевода в сотояие ГОТОВ
+        self.send_mail_order()  # отправил письмо
