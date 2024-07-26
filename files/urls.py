@@ -41,7 +41,7 @@ urlpatterns = [
     path("calculator/", calculator, name="calculator"),  # Calculator
     path("calculator_large_print/", calculator_large_print, name="calculator_large_print"),  # calculator_large_print
     path("calculator_out/", calculator_out, name="calculator_out"),  # calculator для общего пользования
-    #калькулятор на сайт широкоформатная печать
+    # Калькулятор на сайт широкоформатная печать
     path("calculator_large_print_out/", calculator_large_print_out, name="calculator_large_print_out"),
     path("calculator_interier_print_out/", calculator_interier_print_out, name="calculator_interier_print_out"),
     path("calculator_uv_print_out/", calculator_uv_print_out, name="calculator_uv_print_out"),
