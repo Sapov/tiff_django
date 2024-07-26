@@ -386,3 +386,35 @@ def report_day(request):
             }
 
     return render(request, "orders/report_day.html", context=context)
+
+def set_status_order(request, order_id: int, hash: str):
+    signature = hashlib.md5(str(order_id).encode()).hexdigest()
+    logger.info(f"ТО что получили {hash}{type(hash)}")
+
+    if hash == signature:
+        logger.info(f"-------HASH IS TRUE------------")
+        """Переключаю статус заказа на /в работе/"""
+        order = Order.objects.get(id=order_id)
+        status = StatusOrder.objects.get(id=3)
+        order.status = status
+        order.save()
+        logger.info(f'"""Переключаю статус заказа на в работе')
+        contex = {
+            "id": order_id,
+            "title": "Новый статус заказа",
+            "status": "Принят в работу",
+        }
+        return render(request, "orders/set_status.html", contex)
+
+    else:
+        logger.info(f"-------HASH IS FALSE------------")
+        contex = {
+            "id": order_id,
+            "title": "Новый статус заказа",
+            "status": "Не принят в работу",
+        }
+        return render(request, "orders/set_status.html", contex)
+
+
+
+
