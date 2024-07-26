@@ -30,20 +30,7 @@
                     {% endif %}
                 </td>
                 <td>{{ Orders.total_price }}</td>
-                 <div class="mb-2">
-                        <code>В работе</code>
-                    </div>
-                    {% elif order.status.id == 5 %}
-                    <div class="text-success mb-2">Готов
-                    </div>
-                    {% elif order.status.id == 1 %}
-                    <div class="text-warning mb-2">Готовится
-                    </div>
-                   {% elif order.status.id == 2 %}
-                    <div class="text-primary mb-2">Оформлен
-                    </div>
-                    {% endif %}
-                        </td>
+                <td>{{ Orders.status }}</td>
                 <td>{{ Orders.delivery }}</td>
                 <!--                <td><a href="{% url 'orders:order_pay' Orders.id %}">Оплатить</a>-->
                 <td>
