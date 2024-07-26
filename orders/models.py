@@ -260,6 +260,8 @@ class UtilsModel:
         self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
         with open(self.text_file_name, "w") as text_file:
             text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
+            self.order_list = []
+            items_file = {}
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
                 file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
@@ -270,11 +272,28 @@ class UtilsModel:
                 size = f"Размер: {file.size} Мб"
                 square = f"Площадь: {(file.length * file.width) / 10000} м2"
                 finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
+                comments = f"Комментарии к файлу: {file.comments}"
+                self.order_list.append(file_name)
+                self.order_list.append(material_txt)
+                self.order_list.append(quantity_print)
+                self.order_list.append(length_width)
+                self.order_list.append(color_model)
+                # self.order_list.append(size)
+                self.order_list.append(square)
+                self.order_list.append(finish_work_rec_file)
+               
+                if comments != "Комментарии к файлу: ":
+                    self.order_list.append(comments)
+                self.order_list.append("-" * 40 + "\n")
+
+                
                 text_file.write(
-                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{finish_work_rec_file}\n"
+                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{finish_work_rec_file}\n{comments}\n"
                 )
                 text_file.write("-" * 40 + "\n")
         logger.info(f"CREATE File, {self.text_file_name}")
+        logger.info(f"CREATE LIST, {self.order_list}")
+        
         os.chdir(current_path)
         return self.text_file_name
 
