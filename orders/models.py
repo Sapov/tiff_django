@@ -1,20 +1,19 @@
 import hashlib
+import logging
 import os
 import shutil
 import zipfile
 from datetime import date
 
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 from django.db import models
+from django.db.models.signals import post_save
 from django.template.loader import render_to_string
+from django.urls import reverse
 
 from account.models import Organisation, Delivery
 from files.models import Product
-from django.db.models.signals import post_save
-from django.urls import reverse
-from django.conf import settings
-
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -212,6 +211,8 @@ post_save.connect(product_in_order_post_save, sender=OrderItem)
 
 class UtilsModel:
     def __init__(self, order_id, domain):
+        self.order_complite = None
+        self.order_list = None
         self.arhiv_order_path = None
         self.new_str = None
         self.arh_name = None
@@ -248,15 +249,14 @@ class UtilsModel:
         msg.attach_alternative(html_message, "text/html")
         msg.send()
 
-
     def create_text_file(self):
         """Создаем файл с харaктеристеками файла для печати"""
         current_path = os.getcwd()
         os.chdir(f"{settings.MEDIA_ROOT}/image/")
 
-        all_products_in_order = OrderItem.objects.filter(
-            order=self.order_id, is_active=True
-        )
+        all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
+        order = Order.objects.get(id=self.order_id)
+        self.order_complite = order.date_complete
         self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
         with open(self.text_file_name, "w") as text_file:
             text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
@@ -279,7 +279,6 @@ class UtilsModel:
         os.chdir(current_path)
         return self.text_file_name
 
-
     def read_file(self):
         current_path = os.getcwd()  # запоминаем где мы
         os.chdir(f"{settings.MEDIA_ROOT}/image/")  # перейти в директорию image
@@ -288,7 +287,6 @@ class UtilsModel:
             os.chdir(current_path)  # перейти обратно
 
             return self.new_str
-
 
     def arhive(self):
         current_path = os.getcwd()  # запоминаем где мы
@@ -324,7 +322,6 @@ class UtilsModel:
         os.chdir(current_path)  # перейти обратно
         return self.arh_name
 
-
     def create_folder_server(self):
         """Добавляем фолдер  Директория номер заказа"""
         current_path = os.getcwd()
@@ -336,7 +333,6 @@ class UtilsModel:
             logger.info(f"Создаем Директорию {self.order_id}")
             os.makedirs(str(self.order_id))
         os.chdir(current_path)  # перейти обратно
-
 
     def copy_files_in_server(self):
         """закидываем файлы на order локально на ubuntu
@@ -366,7 +362,6 @@ class UtilsModel:
                     shutil.move(i, self.arhiv_order_path)
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
-
     def add_arhive_in_order(self):
         """Записываем в таблицу ссылку на архив с файлами"""
         order = Order.objects.get(id=self.order_id)
@@ -376,12 +371,10 @@ class UtilsModel:
         order.order_arhive = f"arhive/{self.order_id}/{self.arh_name}"
         order.save()
 
-
     def download_link(self):
         order = Order.objects.get(id=self.order_id)
         logger.info(f" LINK {order.order_arhive}")
         return order.order_arhive
-
 
     def set_status_order(self, id_status: int):
         """Меняем статус заказа"""
@@ -391,26 +384,22 @@ class UtilsModel:
         order.status = status
         order.save()
 
-
     @staticmethod
     def calculate_signature(*args) -> str:
         """Create signature MD5.
         """
         return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
 
-
     def __generate_link_to_work(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
         self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
-
 
     def __generate_link_to_compited(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние ГОТОВ'''
         self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(
             f'[Генерирую ссылку подтверждения перевода заказа в состояние ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
-
 
     def run(self):
         self.create_text_file()
