@@ -241,7 +241,6 @@ class UtilsModel:
             "confirm_link": self.confirm_link_to_work,
             "confirm_status_complite": self.confirm_link_to_complited,
 
-
             "order_id": self.order_id,
         }
         html_message = render_to_string("mail/mail_order_for_typografyl.html", data)
@@ -417,13 +416,14 @@ class UtilsModel:
         """
         return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
 
-    def __generate_link_to_work(self, status_id: int):
+    def __generate_link_to_work(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{status_id}/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        self.confirm_link_to_work = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
-    def __generate_link_to_work(self, status_id: int):
+
+    def __generate_link_to_complited(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_work/{status_id}/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(f'[Генерирую ссылку ПЕРЕВОД С СОСТОЯНИЕ ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
 
     def run(self):

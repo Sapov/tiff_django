@@ -52,8 +52,8 @@ urlpatterns = [
     path("contractor_update/<pk>", ContractorUpdateView.as_view(), name="contractor_update"),
     path("contractor_delete/<pk>", ContractorDeleteView.as_view(), name="contractor_delete"),
     # подтверждение принятия заказа типографией
-    path("confirm_order_to_work/<int>/<pk>/<hash_code>/", confirm_order_to_work, name="confirm_order_to_work"),
+    path("confirm_order_to_work/<pk>/<hash_code>/", confirm_order_to_work, name="confirm_order_to_work"),
     # поодтверждение готовности заказа
-    path("confirm_order_to_compited/<int>/<pk>/<hash_code>/", confirm_order_to_complieted, name="confirm_order_to_complited"),
+    path("confirm_order_to_compited/<pk>/<hash_code>/", confirm_order_to_complieted, name="confirm_order_to_complited"),
 
 ]

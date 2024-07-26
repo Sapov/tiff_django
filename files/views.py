@@ -545,6 +545,7 @@ class ContractorDeleteView(DeleteView):
 
 
 def confirm_order_to_work(request, pk: int, hash_code: str):
+    # print(f'id_status_order P{id_status_order} type {type(id_status_order)}')
     ''' Подтверждение приема заказа менеджером типографии'''
     if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
         """Меняем статус заказа"""
@@ -559,7 +560,7 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
         return render(request, "files/no_confirm_order_to_work.html")
 
 
-def confirm_order_to_complieted(request, pk, hash_code):
+def confirm_order_to_complieted(request, pk: int, hash_code):
     ''' Подтверждение готовнасти заказа менеджером типографии'''
     if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
         """Меняем статус заказа"""
