@@ -213,7 +213,7 @@ class UtilsModel:
     def __init__(self, order_id, domain):
         self.order_complite = None
         self.order_list = None
-        self.hash_num
+        self.hash_num = None
         self.arhiv_order_path = None
         self.new_str = None
         self.arh_name = None
