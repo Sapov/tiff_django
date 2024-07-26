@@ -39,17 +39,17 @@
                     {% elif Orders.status.id == 1 %}
                     <div class="text-warning mb-2">Готовится
                     </div>
-                   {% elif Orders.status.id == 2 %}
+                    {% elif Orders.status.id == 2 %}
                     <div class="text-primary mb-2">Оформлен
                     </div>
 
                     {% endif %}
-                        </td>
+                </td>
                 <td>{{ Orders.delivery }}</td>
                 <td>
-<!--                    <button type="submit" class="btn btn-primary"-->
-<!--                            onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оплатить-->
-<!--                    </button>-->
+                    <!--                    <button type="submit" class="btn btn-primary"-->
+                    <!--                            onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оплатить-->
+                    <!--                    </button>-->
                 </td>
             </tr>
         </table>
@@ -68,7 +68,7 @@
             <tr>
                 <th>Картинка</th>
                 <th>Материал</th>
-                 <th>Размер</th>
+                <th>Размер</th>
                 <th>Количество</th>
                 <th>Финишная обработка</th>
                 <th>Итого</th>
@@ -92,8 +92,8 @@
     </div>
 </div>
 {% endif %}
-         {% else %}
-        <h6> Нет файлов для добавления в заказ </h6>
+{% else %}
+<h6> Нет файлов для добавления в заказ </h6>
 
 {% endif %}
 
@@ -116,7 +116,7 @@
             <tbody>
             {% for items in items_in_order %}
 
-             <tr>
+            <tr>
                 <td><a>{% load thumbnail %} <img src="{% thumbnail items.product.images 100x0 %}"
                                                  class="image-detail"></a></td>
                 <td>{{ items.product.material }}</td>
@@ -124,11 +124,13 @@
                 <td>{{ items.product.quantity }} шт.</td>
                 <td>{{ items.product.FinishWork }}</td>
                 <td>{{ items.product.price }} руб.</td>
-                {% if items.product.status_product.id == 2 %}
+                    {% if Orders.status.id == 1 %}
+                <td><a href="/orders/del_item_in_order/{{order_id}}/{{items.id}}">Удалить файл</a></td>
 
-                <td></td>
+
                 {% else %}
-                <td><a href="/orders/del_item_in_order/{{order_id}}/{{items.id}}">Удалить</a></td>
+                <td></td>
+
 
                 {% endif %}
             </tr>
@@ -136,23 +138,26 @@
             </tbody>
         </table>
     </div>
-{% if current_order.status.id == 1 %}
+    {% if current_order.status.id == 1 %}
     <td>
-            <button type="submit" class="btn btn-success"
-                    onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ</button>
-        </td>
-{% else %}
-<!--                    <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>-->
- {% if Orders.paid == False %}
+        <button type="submit" class="btn btn-success"
+                onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ
+        </button>
+    </td>
+    {% else %}
+    <!--                    <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>-->
+    {% if Orders.paid == False %}
 
-                    <td>
-     <button type="submit" class="btn btn-primary"
-        onClick="location.href='{{Orders.pay_link}}'">Оплатить картой</button> </td>
+    <td>
+        <button type="submit" class="btn btn-primary"
+                onClick="location.href='{{Orders.pay_link}}'">Оплатить картой
+        </button>
+    </td>
 
-                    {% endif %}
+    {% endif %}
 
 
-{% endif %}
-    </div>
+    {% endif %}
+</div>
 {% endif %}
 {% endblock %}
