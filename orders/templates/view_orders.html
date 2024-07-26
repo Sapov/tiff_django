@@ -27,7 +27,6 @@
             {% for order in Orders %}
             <tr>
                 <td>{{ order.id }}</td>
-
                 <td>{{ order.total_price }} руб.</td>
                 <td>{% if order.paid == False %}
                     <div class="mb-2">
@@ -68,7 +67,7 @@
                     <!--                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">-->
                     <!--                    <ul class="navbar-nav ml-auto">-->
                     <!--                                            <li class="nav-item dropdown">-->
-                    <a class="btn btn-primary nav-link dropdown-toggle"
+                    <a class="btn btn-success nav-link dropdown-toggle"
                        href="{% url 'orders:add_file_in_order' order.id %}" id="navbarDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
