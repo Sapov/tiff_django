@@ -45,6 +45,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right animated--grow-in"
                          aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'orders:add_file_in_order' order.id %}">Добавить файлы</a>
                         <a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">Оплатить</a>
                         <a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">Редактировать</a>
                         <div class="dropdown-divider"></div>
