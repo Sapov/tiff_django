@@ -388,6 +388,7 @@ class UtilsModel:
                     shutil.move(i, self.arhiv_order_path)
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
+
     def add_arhive_in_order(self):
         """Записываем в таблицу ссылку на архив с файлами"""
         order = Order.objects.get(id=self.order_id)
