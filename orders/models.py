@@ -213,6 +213,7 @@ class UtilsModel:
     def __init__(self, order_id, domain):
         self.order_complite = None
         self.order_list = None
+        self.hash_num
         self.arhiv_order_path = None
         self.new_str = None
         self.arh_name = None
@@ -248,6 +249,11 @@ class UtilsModel:
         )
         msg.attach_alternative(html_message, "text/html")
         msg.send()
+
+    def generate_hash(self):
+        self.hash_num = hashlib.md5(str(self.order_id).encode()).hexdigest()
+        logger.info(f"GENERATE HASH {self.hash_num}TYPE {type(self.hash_num)}")
+        return self.hash_num
 
     def create_text_file(self):
         """Создаем файл с харaктеристеками файла для печати"""
