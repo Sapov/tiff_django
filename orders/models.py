@@ -388,7 +388,6 @@ class UtilsModel:
                     shutil.move(i, self.arhiv_order_path)
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
-
     def add_arhive_in_order(self):
         """Записываем в таблицу ссылку на архив с файлами"""
         order = Order.objects.get(id=self.order_id)
@@ -424,7 +423,7 @@ class UtilsModel:
 
     def __generate_link_to_complited(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        self.confirm_link_to_complited = f'http://{self.domain}/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(f'[Генерирую ссылку ПЕРЕВОД С СОСТОЯНИЕ ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
 
     def run(self):
@@ -435,6 +434,6 @@ class UtilsModel:
         self.copy_files_in_server()
         self.add_arhive_in_order()
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
-        self.__generate_link_to_work(3)  # генерирую ссылку о подтверждении принятия в работу
-        self.__generate_link_to_complited(5)  # генерирую ссылку для перевода в сотояие ГОТОВ
+        self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
+        self.__generate_link_to_complited()  # генерирую ссылку для перевода в сотояие ГОТОВ
         self.send_mail_order()  # отправил письмо
