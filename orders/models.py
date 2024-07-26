@@ -222,24 +222,30 @@ class UtilsModel:
         self.confirm_link_to_complited = None
 
     def send_mail_order(self):
-        """отправляем письмо с архивом подрядчику"""
+              """отправляем письмо с архивом подрядчику"""
         order = Order.objects.get(id=self.order_id)
-        logger.info(f'[INFO] DOMAIN {self.domain}')
-        logger.info(f'[INFO] ARHIVE {str(order.order_arhive)}')
-        data_complite_mail = order.date_complete.strftime("%d-%m-%Y %H:%M")
+        logger.info(f"[INFO] DOMAIN {self.domain}")
+        logger.info(f"[INFO] ARHIVE {str(order.order_arhive)}")
 
-        send_mail(
-            f"Новый заказ от REDS Дата готовности: {data_complite_mail}",
-            # f'{self.new_str}\n',
-            f"{self.new_str}\nCсылка на архив: http://{self.domain}/media/{str(order.order_arhive)}\n"
-            f"Заказ принят в работу {self.confirm_link_to_work}\nЗаказ Готов {self.confirm_link_to_complited}\n"
-            f"Дата готовности: {data_complite_mail}",
+        # ----------------------------отправляем хешшш
 
-            "django.rpk@mail.ru",
-            ["rpk.reds@ya.ru"],
-            fail_silently=False,
+        data = {
+            "order_complete": self.order_complite,
+            "order_item": self.order_list,
+            "order_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
+            "confirm_link": f"http://{self.domain}/orders/set_status_order/{self.order_id}/{self.generate_hash()}",
+            "order_id": self.order_id,
+        }
+        html_message = render_to_string("info/mail_order_for_typografyl.html", data)
+        msg = EmailMultiAlternatives(
+            subject=f"Новый заказ от REDS № {self.order_id}",
+            to=[
+                "rpk.reds@ya.ru",
+            ],
         )
-        # html_message=render_to_string('mail/templates.html', data))
+        msg.attach_alternative(html_message, "text/html")
+        msg.send()
+
 
     def create_text_file(self):
         """Создаем файл с харaктеристеками файла для печати"""
