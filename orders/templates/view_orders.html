@@ -37,7 +37,22 @@
                     {% endif %}
 <!--                <td>{{ order.organisation_payer }}</td>-->
 <!--                <td>{{ order.comments }}</td>-->
-                <td>{{ order.status }}</td>
+                   <td>{% if order.status.id == 3 %}
+                    <div class="mb-2">
+                        <code>В работе</code>
+                    </div>
+                    {% elif order.status.id == 5 %}
+                    <div class="text-success mb-2">Готов
+                    </div>
+                    {% elif order.status.id == 1 %}
+                    <div class="text-warning mb-2">Готовится
+                    </div>
+                   {% elif order.status.id == 2 %}
+                    <div class="text-primary mb-2">Оформлен
+                    </div>
+
+                    {% endif %}
+                        </td>
                 <td>{{ order.created }}</td>
                 <td>{{ order.date_complete }}</td>
 

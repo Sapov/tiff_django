@@ -19,7 +19,6 @@
 
             <tr>
                 <td>{{ Orders.created }}</td>
-<!--                <td>{{ Orders.organisation_payer }}</td>-->
                 <td> {% if Orders.paid == False %}
                     <div class="mb-2">
                         <code>Не оплачено</code>
@@ -31,7 +30,20 @@
                     {% endif %}
                 </td>
                 <td>{{ Orders.total_price }}</td>
-                <td>{{ Orders.status }}</td>
+                 <div class="mb-2">
+                        <code>В работе</code>
+                    </div>
+                    {% elif order.status.id == 5 %}
+                    <div class="text-success mb-2">Готов
+                    </div>
+                    {% elif order.status.id == 1 %}
+                    <div class="text-warning mb-2">Готовится
+                    </div>
+                   {% elif order.status.id == 2 %}
+                    <div class="text-primary mb-2">Оформлен
+                    </div>
+                    {% endif %}
+                        </td>
                 <td>{{ Orders.delivery }}</td>
                 <!--                <td><a href="{% url 'orders:order_pay' Orders.id %}">Оплатить</a>-->
                 <td>
@@ -59,7 +71,6 @@
                  <th>Размер</th>
                 <th>Количество</th>
                 <th>Финишная обработка</th>
-                <th>Поля</th>
                 <th>Итого</th>
             </thead>
             <tbody>
@@ -70,7 +81,6 @@
                 <td>{{ item.width }}x{{ item.length }} см.</td>
                 <td>{{ item.quantity }} шт.</td>
                 <td>{{ item.FinishWork }}</td>
-                <td>{{ item.Fields }}</td>
                 <td>{{ item.price }}</td>
                 <td><a href="/orders/add_item_in_order/{{order_id}}/{{item.id}}">Добавить в заказ</a></td>
             </tr>
@@ -101,7 +111,6 @@
                 <th>Размер</th>
                 <th>Количество</th>
                 <th>Финишная обработка</th>
-                <th>Поля</th>
                 <th>Итого</th>
             </thead>
             <tbody>
@@ -114,7 +123,6 @@
                 <td>{{ items.product.width }}x{{ items.product.length }} см.</td>
                 <td>{{ items.product.quantity }} шт.</td>
                 <td>{{ items.product.FinishWork }}</td>
-                <td>{{ items.product.Fields }}</td>
                 <td>{{ items.product.price }} руб.</td>
                 {% if items.product.status_product.id == 2 %}
 
