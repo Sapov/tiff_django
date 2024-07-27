@@ -2,8 +2,8 @@
 <title>{% block title %} Организации: {% endblock %}</title>
 {% block body %}
 
-    <h1>Мои профиль: </h1>
-<p><a href="{% url 'account:create_organisation' %}">Редачить</a>
+<h1>Мои профиль: </h1>
+<p><a href="{% url 'account:edit_profile' %}">Редактировать</a>
 
 <hr>
 <div class="row">
@@ -12,31 +12,30 @@
             <thead>
             <tr>
 
-                                                    <th scope="col">№</th>
-                                                    <th scope="col">Название</th>
-                                                    <th scope="col">Адрес</th>
-                                                    <th scope="col">Тел</th>
-                                                    <th scope="col">ИНН</th>
-                                                    <th scope="col">КПП</th>
-                                                    <th scope="col">ОКПО:</th>
-                                                </tr>
-                                            </thead>
+                <th scope="col">№</th>
+                <th scope="col">Email</th>
+                <th scope="col">Тел</th>
+                <th scope="col">Whatsapp</th>
+                <th scope="col">Статус</th>
+                <th scope="col">ОКПО:</th>
+            </tr>
+            </thead>
 
-     {% for item in object_list %}
+            {% for item in object_list %}
 
-                                            <tbody>
-                                                <tr>
-                                                    <td>{{ item.id }}</td>
-                                                    <td>{{ item.date_of_birth }}</td>
-                                                    <td>{{ item.photo }}</td>
-                                                    <td>{{ item.phone }}</td>
-                                                    <td>{{ item.phone }}</td>
-                                                    <td>{{ item.telegram }}</td>
-<!--                                                    <td>{{ oraganisation.okpk }}</td>-->
-                </tr>
-        {% endfor %}
+            <tbody>
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.phone_number }}</td>
+                <td>{{ item.whatsapp }}</td>
+                <td>{{ item.role }}</td>
+                <td>{{ item.telegram }}</td>
+                <!--                                                    <td>{{ oraganisation.okpk }}</td>-->
+            </tr>
+            {% endfor %}
             </tbody>
-    </table>
+        </table>
     </div>
 </div>
 

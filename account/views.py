@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 
@@ -9,8 +9,10 @@ from files.models import TypePrint
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView
 from .models import Organisation, Profile, Delivery, DeliveryAddress
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.models import User
+
+Users = get_user_model()
 
 
 @login_required
@@ -25,28 +27,27 @@ def dashboard(request):
 
 class ListProfile(LoginRequiredMixin, ListView):
     template_name = "profile_list.html"
-    model = Profile
+    model = Users
     paginate_by = 5
 
     def get_queryset(self):
         "организации только этого юзера"
         # queryset = []
-        queryset = Profile.objects.filter(user=self.request.user)
-        q = User.objects.filter(user=self.request.user)
+        queryset = Users.objects.filter(email=self.request.user)
+        #     q = User.objects.filter(user=self.request.user)
         return queryset
 
 
 @login_required
-def edit(request):
+def edit_profile(request):
     if request.method == "POST":
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(
-            instance=request.user.profile, data=request.POST, files=request.FILES
-        )
+            instance=request.user.profile, data=request.POST, files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-        return render(request, "account/complite_edit.html")
+        return redirect('account:list_profile')
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
