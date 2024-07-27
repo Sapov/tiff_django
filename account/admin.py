@@ -7,5 +7,6 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'photo']
     raw_id_fields = ['user']
 
+
 admin.site.register(Delivery)
 admin.site.register(DeliveryAddress)

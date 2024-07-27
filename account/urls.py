@@ -5,7 +5,7 @@ app_name = 'account'
 
 urlpatterns = [
     # ----------profile--------------
-    path('edit/', views.edit, name='edit_profile'),
+    path('edit/', views.edit_profile, name='edit_profile'),
     # -------------------------CRUD ORGANISATION-----------------------------------------------
     path('add_organisation/', views.OrganisationCreateView.as_view(), name='create_organisation'),
     path('list_organisation/', views.ListOrganisation.as_view(), name='list_organisation'),
