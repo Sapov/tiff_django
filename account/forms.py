@@ -1,6 +1,9 @@
 from django import forms
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from phonenumber_field.formfields import PhoneNumberField
+
 from .models import Profile
+from users.models import User
 
 
 class LoginForm(forms.Form):
@@ -27,10 +30,12 @@ class UserRegistrationForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["first_name", "last_name", "email"]
+        fields = ["first_name", "last_name", "email", 'phone_number']
+
+
 
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["date_of_birth", "phone", "photo"]
+        fields = ["photo"]

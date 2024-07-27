@@ -20,4 +20,5 @@ urlpatterns = [
     path('delivery_create/', views.DeliveryAddressCreateView.as_view(), name='delivery_create'),
     path('delivery_update/<pk>', views.DeliveryAddressUpdate.as_view(), name='delivery_update'),
     path('delivery_delete/<pk>', views.DeliveryAddressDelete.as_view(), name='delivery_delete'),
+
 ]
