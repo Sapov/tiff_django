@@ -29,7 +29,6 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th scope="col">ID</th>
         <th scope="col">Материал</th>
         <th scope="col">Количество</th>
         <th scope="col">Ширина</th>
@@ -43,7 +42,6 @@
 
     <tbody>
     <tr>
-        <td>{{ string.pk }}</td>
         <td>{{ string.quantity }} шт.</td>
         <td> {{ string.width }} м</td>
         <td> {{ string.length }} м</td>
@@ -54,6 +52,5 @@
     </tr>
 
     {% endfor %}
-
 
 {% endblock %}
