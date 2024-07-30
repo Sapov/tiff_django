@@ -1,10 +1,12 @@
 amqp==5.2.0
+annotated-types==0.7.0
 asgiref==3.8.1
 async-timeout==4.0.3
 attrs==23.2.0
 billiard==4.1.0
 celery==5.3.4
 certifi==2024.7.4
+charset-normalizer==3.3.2
 click==8.1.7
 click-didyoumean==0.3.0
 click-plugins==1.1.1
@@ -22,6 +24,8 @@ easy-thumbnails==2.8.5
 et-xmlfile==1.1.0
 eventlet==0.33.3
 funcsigs==1.0.2
+geographiclib==2.0
+geopy==2.4.1
 greenlet==3.0.1
 gunicorn==22.0.0
 h11==0.14.0
@@ -35,11 +39,14 @@ phonenumbers==8.13.40
 pillow==10.3.0
 prompt-toolkit==3.0.39
 psycopg2-binary==2.9.9
+pydantic==2.8.2
+pydantic_core==2.20.1
 PySocks==1.7.1
 python-dateutil==2.8.2
 python-dotenv==1.0.0
 redis==5.0.1
 reportlab==4.0.4
+requests==2.32.3
 selenium==4.22.0
 six==1.16.0
 sniffio==1.3.1

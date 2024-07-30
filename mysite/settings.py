@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'info',
     'rest_framework',
     "phonenumber_field",
+    'django-extensions',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
