@@ -26,6 +26,34 @@
 
     </div>
   </div>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Материал</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Ширина</th>
+        <th scope="col">Длина</th>
+        <th scope="col">Обработка</th>
+        <th scope="col">Дата:</th>
+        <th scope="col">Стоимость</th>
+    </tr>
+    </thead>
+{% for string in last_five_string %}
+
+    <tbody>
+    <tr>
+        <td>{{ string.pk }}</td>
+        <td>{{ string.quantity }} шт.</td>
+        <td> {{ string.width }} м</td>
+        <td> {{ string.length }} м</td>
+        <td> {{ string.FinishWork }} </td>
+        <td> {{ string.created_at }}</td>
+        <td> {{ string.results }} руб. </td>
+
+    </tr>
+
+    {% endfor %}
 
 
 {% endblock %}
