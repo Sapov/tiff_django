@@ -1,11 +1,11 @@
-{% extends 'files/base_site.html' %}
+{% extends 'files/templates_reds.html' %}
 {% load crispy_forms_tags %}
 
 {% block title %} {{title}} {% endblock %}
 {% block content %}
 
 
-<h1>{{title}}</h1>
+<h1 style="text-align: center">{{title}}</h1>
 
 
  <div class="row">
@@ -26,6 +26,7 @@
 
     </div>
   </div>
+<h4 style="text-align: center; ">Последние посчитанные заказы</h4>
 <table class="table table-bordered">
     <thead>
     <tr>
