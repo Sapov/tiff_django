@@ -19,9 +19,9 @@ class Command(BaseCommand):
             print(type_print)
             TypePrint.objects.get_or_create(type_print=type_print[0])
 
-        '''заполняем ширку из первого  листа с диапазоном b2:f9 '''
+        '''заполняем ширку из первого  листа с диапазоном b2:f12 '''
         print('*' * 30, 'Заполняю базу стоимости Широкоформатная печать материалов из файла', '*' * 30)
-        for item in load_excel('shirka', 'b2:f9'):
+        for item in load_excel('shirka', 'b2:f12'):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],
@@ -56,7 +56,7 @@ class Command(BaseCommand):
             )
 
         print('*' * 30, 'Заполняю базу стоимости UV print печать материалов ', '*' * 30)
-        for item in load_excel('uf-print', 'b2:f6'):
+        for item in load_excel('uf-print', 'b2:f18'):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],
@@ -69,7 +69,7 @@ class Command(BaseCommand):
 
         # заполняем Финишку в таблицу FinishWork
         print('*' * 30, 'Заполняю Постпечатную обработку', '*' * 30)
-        for item in load_excel('finishka', 'b2:e8'):
+        for item in load_excel('finishka', 'b2:e9'):
             print(item)
             FinishWork.objects.get_or_create(
                 work=item[0],
