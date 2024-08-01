@@ -48,7 +48,7 @@ def new_order(request):
         # delivery_id = request.POST["delivery_address"]
         date_complite = request.POST["date_complite"]
         date_complite = datetime.datetime.strptime(date_complite, "%Y-%m-%d")
-        date_complite += datetime.timedelta(hours=15)  # чтоб отдавать в 12 часов
+        date_complite += datetime.timedelta(hours=12)  # чтоб отдавать в 12 часов
 
         logging.info(f"date_complite {date_complite} - {type(date_complite)}")
         delivery_id = request.POST["delivery"]

@@ -370,9 +370,10 @@ def calculator_large_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
+                last_five_string = UseCalculator.objects.order_by('-id')[:5]
                 return render(request, "files/calculator_large.html", {"form": form,
                                                                        "title": "Калькулятор широкоформатной печати",
-                                                                       "results": results,
+                                                                       "results": results, 'last_five_string':last_five_string,
                                                                        }, )
 
             except:
@@ -380,8 +381,10 @@ def calculator_large_print_out(request):
 
     else:
         form = CalculatorLargePrint()
+        last_five_string = UseCalculator.objects.order_by('-id')[:5]
+
         return render(request, "files/calculator_large.html",
-                      {"form": form, "title": "Калькулятор широкоформатной печати"})
+                      {"form": form, "title": "Калькулятор широкоформатной печати", 'last_five_string':last_five_string})
 
 
 def calculator_interier_print_out(request):

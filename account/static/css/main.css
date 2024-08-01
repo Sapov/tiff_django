@@ -2,8 +2,28 @@ body {
 min-width: 320px;
 font-family: 'Roboto', sans-serif;
 
-}
+table, td, th {
+    border-collapse: collapse;
+    border: 1px solid #245488;
 
+  }
+
+  td, th {
+    /* делаем отступ в ячейках, выставляем выравнивание текста */
+    padding: 10px 20px;
+    text-align: center;
+  }
+
+h1 {
+ font-family:  'Open Sans', sans-serif;
+ padding: 20px 0px 5px 0px;
+ font-size: 32px;
+ align-content: center;
+}
+.container {
+  width: 70%;
+  margin: 0 auto;
+  }
 .roboto-thin {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
