@@ -341,7 +341,8 @@ class UtilsModel:
                 logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
                 old_name = str(file.images)[str(file.images).rindex("/") + 1:]
 
-                os.rename(old_name, new_name_file)
+                # os.rename(old_name, new_name_file)
+                shutil.copy(old_name, new_name_file)
                 new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
         os.chdir(current_path)  # перейти обратно

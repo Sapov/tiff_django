@@ -28,8 +28,9 @@ router = routers.SimpleRouter()
 router.register(r'material', MaterialViewSet)
 
 urlpatterns = [
-    path("users/", include("users.urls")),
-    path("", include("files.urls")),
+    path("files/", include("files.urls")),
+    path("", include("users.urls")),
+    path('', include('django.contrib.auth.urls')),
     path("account/", include("account.urls")),
     path("orders/", include("orders.urls")),
     path("info/", include("info.urls")),
@@ -47,4 +48,5 @@ handler404 = page_not_found
 #
 # # включаем возможность обработки картинок
 if settings.DEBUG:
+    # urlpatterns.append(path('static/<path:path>'))
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

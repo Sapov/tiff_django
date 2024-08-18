@@ -27,6 +27,7 @@ urlpatterns = [
         "create/<pk>", OrderUpdateView.as_view(), name="update_order"),
     # Редактировать заказ
     path("view_orders/", view_order, name="view_orders"),  # посмотерть мои заказы
+    path("view_orders1/", OrdersViewList.as_view(), name="view_orders1"),  # посмотерть мои заказы
     path("view_order_item/<pk>", View_order_item.as_view(), name="view_order_items"),
     path("delete_order/<pk>", DeleteOrderView.as_view(), name="Delete_order"),
     path("add_files_in_order/<int:order_id>", add_files_in_order, name="add_file_in_order", ),

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "easy_thumbnails",
     "account.apps.AccountConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -42,7 +43,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "files.apps.FilesConfig",
     "orders.apps.OrdersConfig",
-    "easy_thumbnails",
     "users",
     "crispy_forms",
     "crispy_bootstrap4",
@@ -167,7 +167,8 @@ AUTH_USER_MODEL = "users.User"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = "account:dashboard"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"

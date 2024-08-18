@@ -91,7 +91,7 @@ def new_order(request):
 
 @login_required
 def view_order(request):
-    """Вывод файлов только авторизованного пользователя"""
+    """Вывод Заказов только авторизованного пользователя"""
     Orders = Order.objects.filter(Contractor=request.user).order_by("-id")
     logger.info(f"Orders:  {Orders}")
 

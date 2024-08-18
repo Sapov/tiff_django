@@ -6,8 +6,10 @@ from users.views import Register, EmailVerify, MyLoginView
 
 urlpatterns = [
 
-    path('login/', MyLoginView.as_view(), name='login'),
-    path('', include('django.contrib.auth.urls')),
+    path('', MyLoginView.as_view(), name='login'),
+
+    # path('login/', MyLoginView.as_view(), name='login'),
+    # path('', include('django.contrib.auth.urls')),
 
     path('invalid_verify/', TemplateView.as_view(template_name='registration/invalid_verify.html'),
         name='invalid_verify'),

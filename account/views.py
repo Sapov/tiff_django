@@ -17,11 +17,10 @@ Users = get_user_model()
 
 @login_required
 def dashboard(request):
-    type_print = TypePrint.objects.order_by("id")
     return render(
         request,
         "account/dashboard.html",
-        {"section": "dashboard", "type_print": type_print},
+        {"section": "dashboard"},
     )
 
 
@@ -97,7 +96,6 @@ class ListOrganisation(LoginRequiredMixin, ListView):
 
 class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
     """Удаление организации"""
-
     model = Organisation
     success_url = reverse_lazy("account:list_organisation")
 
