@@ -144,7 +144,7 @@ class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
 
 
 class DeliveryAddressListView(LoginRequiredMixin, ListView):
-    template_name = "delivery_list.html"
+    template_name = "account/delivery_list.html"
     model = DeliveryAddress
     paginate_by = 5
 
