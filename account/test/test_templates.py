@@ -16,7 +16,7 @@ class AccountTemplatesTests(TestCase):
         ''' Проверка страницы list профиля пользователя'''
         response = self.authorized_client.get('/account/list_profile/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'profile_list.html')
+        self.assertTemplateUsed(response, 'account/profile_list.html')
 
     def test_create_organisation(self):
         ''' Проверка наличия шаблона добавить организацию пользователя'''
@@ -28,4 +28,11 @@ class AccountTemplatesTests(TestCase):
         ''' Проверка наличия шаблона list организаций пользователя'''
         response = self.authorized_client.get('/account/list_organisation/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'organisation_list.html')
+        self.assertTemplateUsed(response, 'account/organisation_list.html')
+
+    # def test_delete_organisation_template(self):
+    #     '''Шаблон подтверждения удаления организации НЕ ЧЕГО УДАЛЯТЬ НУЖНО СНАЧАЛА ДОБАВИТЬ'''
+    #     response = self.authorized_client.get('/account/delete_organisation_user/1')
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'account/organisation_confirm_delete.html')
+

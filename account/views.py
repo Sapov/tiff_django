@@ -25,7 +25,7 @@ def dashboard(request):
 
 
 class ListProfile(LoginRequiredMixin, ListView):
-    template_name = "profile_list.html"
+    template_name = "account/profile_list.html"
     model = Users
     paginate_by = 5
 
@@ -83,7 +83,7 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
 
 
 class ListOrganisation(LoginRequiredMixin, ListView):
-    template_name = "organisation_list.html"
+    template_name = "account/organisation_list.html"
     model = Organisation
     paginate_by = 5
 
