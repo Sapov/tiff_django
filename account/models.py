@@ -81,9 +81,9 @@ class Delivery(models.Model):
 
 
 class DeliveryAddress(models.Model):
-    # user = models.ForeignKey(
-    #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
-    # )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
+    )
     region = models.CharField(
         max_length=100, verbose_name="Область", null=True, blank=True
     )
