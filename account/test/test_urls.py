@@ -15,6 +15,7 @@ class AccountURLTests(TestCase):
         self.authorized_client = Client()
         self.authorized_client.force_login(self.user)
 
+
         self.organisation = Organisation.objects.create(
             Contractor=self.user,
             name_ul='Test Company',
@@ -27,6 +28,12 @@ class AccountURLTests(TestCase):
             okpo='123456789012',
         )
 
+    def test_add_organisation(self):
+        ''' Проверка страницы Оранизации пользователя'''
+        self.authorized_client.force_login(self.user)
+
+        response = self.authorized_client.get('/account/add_organisation/')
+        self.assertEqual(response.status_code, 200)
 
 class TestAccount(TestCase):
     def test_add_organisation(self):
