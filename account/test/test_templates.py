@@ -37,7 +37,7 @@ class AccountTemplatesTests(TestCase):
     #     self.assertTemplateUsed(response, 'account/organisation_confirm_delete.html')
 
     def test_delivery_list(self):
-        ''' Проверка страницы list адреса доставки  пользователя'''
+        ''' Проверка страницы list адреса доставки пользователя'''
         response = self.authorized_client.get('/account/delivery_list/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/delivery_list.html')

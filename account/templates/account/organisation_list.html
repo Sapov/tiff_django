@@ -3,7 +3,12 @@
 {% block body %}
 
     <h1>Мои организации: </h1>
-<p><a href="{% url 'account:create_organisation' %}">Добавить организацию</a>
+ <a href="{% url 'account:create_organisation' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">Добавить организацию</span>
+                                    </a>
 
 <hr>
 <div class="row">
