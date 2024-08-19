@@ -1,8 +1,4 @@
 # tiff_django
-![action status](https://github.com/Sapov/tiff_django/actions/workflows/django.yml/badge.svg)
-
-
-![example workflow](https://github.com/Sapov/tiff_django/actions/workflows/django.yml/badge.svg)
 
 
 Как запустить: 
