@@ -3,7 +3,12 @@
 {% block body %}
 
 <h1>Мои профиль: </h1>
-<p><a href="{% url 'account:edit_profile' %}">Редактировать</a>
+ <a href="{% url 'account:edit_profile' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">Редактировать</span>
+                                    </a>
 
 <hr>
 <div class="row">
