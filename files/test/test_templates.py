@@ -6,13 +6,16 @@ User = get_user_model()
 
 
 class FileTemplateTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(username='userTest')
         self.authorized_client = Client()
         self.authorized_client.force_login(self.user)
 
     def test_template_list_files(self):
-        response = self.authorized_client.get('')
+        response = self.authorized_client.get('/files/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
+
+    # def test_template_create_file(self):
+    #     response = self.authorized_client.get('files/create/')
+    #     self.assertEquals(response.status_code, 200)
