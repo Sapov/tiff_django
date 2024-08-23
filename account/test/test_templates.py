@@ -6,6 +6,19 @@ from account.models import Organisation, DeliveryAddress
 User = get_user_model()
 
 
+class ProfileTemplatesTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testUser')
+        self.authorized_client = Client()
+        self.authorized_client.force_login(self.user)
+
+    def test_list_profile(self):
+        ''' Проверка страницы list профиля пользователя'''
+        response = self.authorized_client.get('/account/list_profile/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'account/profile_list.html')
+
+
 class AccountTemplatesDeliveryAddressTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='testUser')
@@ -32,14 +45,9 @@ class AccountTemplatesDeliveryAddressTests(TestCase):
     #     self.assertEqual(response.status_code, 200)
     #     self.assertTemplateUsed(response, '/account/deliveryaddress_confirm_delete.html')
 
-    def test_list_profile(self):
-        ''' Проверка страницы list профиля пользователя'''
-        response = self.authorized_client.get('/account/list_profile/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'account/profile_list.html')
-
 
 class AccountTemplatesOrganisationTests(TestCase):
+    ''' CRUD шаблоны работа с моделью Organisation'''
 
     def setUp(self):
         self.guest_client = Client()
