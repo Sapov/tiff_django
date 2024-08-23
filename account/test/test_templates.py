@@ -6,19 +6,38 @@ from account.models import Organisation
 User = get_user_model()
 
 
-class AccountTemplatesTests(TestCase):
-
+class AccountTemplatesDeliveryTests(TestCase):
     def setUp(self):
-        self.guest_client = Client()
-        self.user = User.objects.create_user(username='auth')
+        self.user = User.objects.create_user(username='testUser')
         self.authorized_client = Client()
         self.authorized_client.force_login(self.user)
+
+    def test_create_delivery(self):
+        '''Шаблон добавление адреса доставки'''
+        response = self.authorized_client.get('/account/delivery_create/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'account/deliveryaddress_form.html')
+
+    def test_delivery_list(self):
+        ''' Проверка страницы list адреса доставки пользователя'''
+        response = self.authorized_client.get('/account/delivery_list/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'account/delivery_list.html')
 
     def test_list_profile(self):
         ''' Проверка страницы list профиля пользователя'''
         response = self.authorized_client.get('/account/list_profile/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/profile_list.html')
+
+
+class AccountTemplatesOrganisationTests(TestCase):
+
+    def setUp(self):
+        self.guest_client = Client()
+        self.user = User.objects.create_user(username='auth')
+        self.authorized_client = Client()
+        self.authorized_client.force_login(self.user)
 
     def test_create_organisation(self):
         ''' Проверка наличия шаблона добавить организацию пользователя'''
@@ -36,16 +55,9 @@ class AccountTemplatesTests(TestCase):
         '''Шаблон подтверждения удаления организации НЕ ЧЕГО УДАЛЯТЬ НУЖНО СНАЧАЛА ДОБАВИТЬ'''
 
         Organisation.objects.create(name_ul="OOO Рога и Копыты")
-
         response = self.authorized_client.get('/account/delete_organisation_user/1')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/organisation_confirm_delete.html')
-
-    def test_delivery_list(self):
-        ''' Проверка страницы list адреса доставки пользователя'''
-        response = self.authorized_client.get('/account/delivery_list/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'account/delivery_list.html')
 
 
 class ItemModelTest(TestCase):
@@ -62,4 +74,3 @@ class ItemModelTest(TestCase):
         Organisation.objects.create(name_ul="OOO Рога и Копыты")
         saved_organisation = Organisation.objects.all()
         self.assertEqual(saved_organisation.count(), 1)
-
