@@ -35,16 +35,15 @@
                     <td>{{ product.price }} руб.</td>
                     <td>{{ product.status_product }}</td>
                     <td>{{ product.created_at }}</td>
-                     {% if product.status_product.id == 2 %}
-
-                        <td></td>
-                        <td></td>
+                     {% if product.status_product.id == 1 %}
+                    <td><a href="edit/{{product.id}}">Изменить</a></td>
+                    <td><a href="delete/{{product.id}}">Удалить</a></td>
                         <td></td>
                         <td></td>
                     {% else %}
 
-                    <td><a href="edit/{{product.id}}">Изменить</a></td>
-                    <td><a href="delete/{{product.id}}">Удалить</a></td>
+                    <td></td>
+                        <td></td>
                       {% endif %}
 
 

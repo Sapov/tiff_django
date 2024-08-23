@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 
+from account.models import Organisation
+
 User = get_user_model()
 
 
@@ -30,14 +32,34 @@ class AccountTemplatesTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/organisation_list.html')
 
-    # def test_delete_organisation_template(self):
-    #     '''Шаблон подтверждения удаления организации НЕ ЧЕГО УДАЛЯТЬ НУЖНО СНАЧАЛА ДОБАВИТЬ'''
-    #     response = self.authorized_client.get('/account/delete_organisation_user/1')
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'account/organisation_confirm_delete.html')
+    def test_delete_organisation_template(self):
+        '''Шаблон подтверждения удаления организации НЕ ЧЕГО УДАЛЯТЬ НУЖНО СНАЧАЛА ДОБАВИТЬ'''
+
+        Organisation.objects.create(name_ul="OOO Рога и Копыты")
+
+        response = self.authorized_client.get('/account/delete_organisation_user/1')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'account/organisation_confirm_delete.html')
 
     def test_delivery_list(self):
         ''' Проверка страницы list адреса доставки пользователя'''
         response = self.authorized_client.get('/account/delivery_list/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/delivery_list.html')
+
+
+class ItemModelTest(TestCase):
+    '''тест модели элемента'''
+
+    def setUp(self):
+        self.guest_client = Client()
+        self.user = User.objects.create_user(username='auth')
+        self.authorized_client = Client()
+        self.authorized_client.force_login(self.user)
+
+    def test_saving_and_retrieving_item(self):
+        '''Тест сохранения и получения элемента списка'''
+        Organisation.objects.create(name_ul="OOO Рога и Копыты")
+        saved_organisation = Organisation.objects.all()
+        self.assertEqual(saved_organisation.count(), 1)
+

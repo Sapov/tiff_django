@@ -410,6 +410,10 @@ class UtilsModel:
         order.status = status
         order.save()
 
+    def set_status_file(self):
+        '''Меняем стаус файла на "в работе"'''
+        pass
+
     @staticmethod
     def calculate_signature(*args) -> str:
         """Create signature MD5.

@@ -67,7 +67,7 @@ def delete(request, id):
         os.remove(f"media/{str(product.images)}")  # Удаление файла
         product.delete()
         # удалили запись
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/files/")
     except Product.DoesNotExist:
         return HttpResponseNotFound("<h2>Удаление</h2>")
 
