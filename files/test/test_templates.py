@@ -16,6 +16,8 @@ class FileTemplateTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    # def test_template_create_file(self):
-    #     response = self.authorized_client.get('files/create/')
-    #     self.assertEquals(response.status_code, 200)
+    def test_template_create_file(self):
+        ''' Шаблон добавления файла'''
+        response = self.authorized_client.get('/files/create/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'files/product_form.html')
