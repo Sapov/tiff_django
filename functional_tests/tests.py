@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 import unittest
-
+from django.test import LiveServerTestCase
 from selenium.webdriver.support.select import Select
 
 
@@ -14,35 +14,35 @@ from selenium.webdriver.support.select import Select
 #         options.add_argument("--start-maximized")
 #         self.browser = webdriver.Chrome(options=options)
 
-        # self.browser.get("http://127.0.0.1:8000/")
+# self.browser.get("http://127.0.0.1:8000/")
 
-    # def test_page_login(self):
-    #     '''Проверка наличия страницы "Вход"'''
-    #     self.assertIn('Сервис онлайн печати баннеров', self.browser.title)
-    #
-    # def test_login_page(self):
-    #     self.browser.find_element(By.CSS_SELECTOR, "[name='username']").send_keys("vasa@mail.ru")
-    #     self.browser.find_element(By.CSS_SELECTOR, "[name='password']").send_keys("q911ww1234")
-    #     self.browser.find_element(By.CSS_SELECTOR, "[name='button']").click()
-    #     time.sleep(3)
-    #     self.assertIn('Дашборд', self.browser.title)  # переход в дашборд
-    # def tearDown(self):
-    #     self.browser.quit()
+# def test_page_login(self):
+#     '''Проверка наличия страницы "Вход"'''
+#     self.assertIn('Сервис онлайн печати баннеров', self.browser.title)
+#
+# def test_login_page(self):
+#     self.browser.find_element(By.CSS_SELECTOR, "[name='username']").send_keys("vasa@mail.ru")
+#     self.browser.find_element(By.CSS_SELECTOR, "[name='password']").send_keys("q911ww1234")
+#     self.browser.find_element(By.CSS_SELECTOR, "[name='button']").click()
+#     time.sleep(3)
+#     self.assertIn('Дашборд', self.browser.title)  # переход в дашборд
+# def tearDown(self):
+#     self.browser.quit()
 
 
-class AddressDeliveryTests(unittest.TestCase):
+class AddressDeliveryTests(LiveServerTestCase):
     def setUp(self):
         options = Options()
         options.add_argument("--start-maximized")
         self.browser = webdriver.Chrome(options=options)
 
     def test_add_address_page(self):
-        self.browser.get("http://127.0.0.1:8000/")
+        self.browser.get(self.live_server_url)
 
         self.browser.find_element(By.CSS_SELECTOR, "[name='username']").send_keys("vasa@mail.ru")
         self.browser.find_element(By.CSS_SELECTOR, "[name='password']").send_keys("q911ww1234")
         self.browser.find_element(By.CSS_SELECTOR, "[name='button']").click()
-        time.sleep(3)
+        time.sleep(4)
         # Добавляем новый адрес доставки
         self.browser.get("http://127.0.0.1:8000/account/delivery_list/")
         self.browser.find_element(By.CSS_SELECTOR, "[class='text']").click()
@@ -118,10 +118,15 @@ class AddressDeliveryTests(unittest.TestCase):
                                   '#content > div > div.row > div > table > tbody:nth-child(2) > tr > td:nth-child(6) > a').click()
         self.browser.find_element(By.CSS_SELECTOR, '[type="submit"]').click()
         time.sleep(1)
+
     #
     def tearDown(self):
         self.browser.quit()
+
+
 #
 #
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
+
+'sfsdf'.capitalize()
