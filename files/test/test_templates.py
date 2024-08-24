@@ -39,3 +39,8 @@ class FileTemplateTest(TestCase):
         response = self.authorized_client.get('/files/calculator_large_print_out/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'files/calculator_large.html')
+
+    def test_templates_calculator_interier_print_out(self):
+        response = self.authorized_client.get('/files/calculator_interier_print_out/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'files/calculator_interier.html')
