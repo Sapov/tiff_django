@@ -34,8 +34,3 @@ class FileTemplateTest(TestCase):
         response = self.authorized_client.get('/files/calculator/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'calculator.html')
-    # def test_template_edit_file(self):
-    #     '''Тест шаблона редактирования файла'''
-    #     Product.objects.create(quantity=3)
-    #     response = self.authorized_client.get('/files/edit/1')
-    #     self.assertEqual(response.status_code, 200)
