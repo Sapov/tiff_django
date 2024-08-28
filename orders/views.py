@@ -71,13 +71,12 @@ def new_order(request):
     else:
         form = NewOrder(user=request.user)
         # ограничение по дням нельзя сделать заказ раньше сегодняшней даты
-        today = select_time_complete()
+        today = select_time_complete(datetime.datetime.today())
     return render(request, "neworder.html", {"form": form, "today": today})
 
 
-def select_time_complete():
+def select_time_complete(today: datetime) -> str:
     ''' Выбор времени готовности заказа'''
-    today = datetime.datetime.today()
     logging.info(f'[info] тип данных возвращаемых формой наверняка строка?? {type(today)}--{today}')
     logging.info(f"[ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] {today.isoweekday()}")
     # Если заказ приняли в четверг, то отдадим только в понедельник
