@@ -40,7 +40,6 @@ urlpatterns = [
     # # поодтверждение готовности заказа
     # path("confirm_order_to_compited/<pk>/<hash_code>/", confirm_order_to_complieted, name="confirm_order_to_complited"),
 
-
     # Посмотреть все заказы
     path("view_all_orders/", AllOrdersListView.as_view(), name="view_all_orders"),
     path("view_all_orders_pay/", ViewAllPayOrders.as_view(), name="view_all_orders_pay"),  # все оплаченые заказы
