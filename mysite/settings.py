@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "phonenumber_field",
     'django_extensions',
+    'django_celery_beat',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
