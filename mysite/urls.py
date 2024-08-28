@@ -36,10 +36,6 @@ urlpatterns = [
     path("info/", include("info.urls")),
     path("admin/", admin.site.urls),
     path("api/v1/", include(router.urls)), # api/v1/material
-    # path("api/v1/materiallist/", MaterialViewSet.as_view({'get': 'list'})),
-    # path("api/v1/materiallist/<int:pk>/", MaterialViewSet.as_view({'put': 'update'})),
-    # path("api/v1/material/<int:pk>/", MaterialRetriveApiList.as_view()),  # Показать одну запись из таблицы
-    # path("api/v1/materialdeteil/<int:pk>/", MaterialAPIDetailView.as_view()),  # Изменить одну запись из таблицы
 
 ]
 

@@ -23,3 +23,4 @@ urlpatterns = [
     path('delivery_delete/<pk>', views.DeliveryAddressDelete.as_view(), name='delivery_delete'),
 
 ]
+

@@ -406,7 +406,7 @@ class UtilsModel:
         """Меняем статус заказа"""
         order = Order.objects.get(id=self.order_id)
         status = StatusOrder.objects.get(id=id_status)  # меняю стаус
-        logger.info(f"МЕНЯЮ СТАТУС нА ОФОРМЛЕН ")
+        logger.info(f"МЕНЯЮ СТАТУС ЗАКАЗА НА ОФОРМЛЕН ")
         order.status = status
         order.save()
 
