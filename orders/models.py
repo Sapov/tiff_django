@@ -3,8 +3,8 @@ import logging
 import os
 import shutil
 import zipfile
-from datetime import date
-
+from datetime import date, datetime
+import datetime
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.db import models
@@ -264,7 +264,8 @@ class UtilsModel:
 
         all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
         order = Order.objects.get(id=self.order_id)
-        self.order_complite = order.date_complete
+        self.order_complite = order.date_complete - datetime.timedelta(hours=24)  # чтоб отдавать в 12 часов
+
         self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
         with open(self.text_file_name, "w") as text_file:
             text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
