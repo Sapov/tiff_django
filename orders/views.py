@@ -47,8 +47,11 @@ def new_order(request):
         # logging.info(f"organisation {organisation}")
         # delivery_id = request.POST["delivery_address"]
         date_complite = request.POST["date_complite"]
+        logging.info(f'[INFO] отправленная форма имеет дату {date_complite}')
         date_complite = datetime.datetime.strptime(date_complite, "%Y-%m-%d")
+        logging.info(f'[INFO] Приводим строку в формату даты {date_complite}')
         date_complite += datetime.timedelta(hours=12)  # чтоб отдавать в 12 часов
+        logging.info(f'[INFO] прибавляем 12 часов {date_complite}')
 
         logging.info(f"date_complite {date_complite} - {type(date_complite)}")
         delivery_id = request.POST["delivery"]
@@ -56,7 +59,6 @@ def new_order(request):
 
         delivery = Delivery.objects.get(id=delivery_id)
         logging.info(f"DELIVERY:  {delivery}")
-        # delivery = DeliveryAddress.objects.get(id=delivery_id)
 
         neworder = Order.objects.create(
             Contractor=form.user,
@@ -67,26 +69,30 @@ def new_order(request):
 
         return redirect("orders:add_file_in_order", neworder.id)
     else:
-        # form = NewOrder()
         form = NewOrder(user=request.user)
         # ограничение по дням нельзя сделать заказ раньше сегодняшней даты
-        today = datetime.datetime.today()
-        logging.info(f"[ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] {today.isoweekday()}")
-        logging.info(f"СЕГОДНЯ  {today}")
-        # Если заказ приняли в четверг, то отдадим только в понедельник
-        if today.isoweekday() == 4:
-            # + 4 дня так как два выходных
-            today = today + datetime.timedelta(days=4)
-            # Оформленный в пятницу будет готов в понедельник
-        elif today.isoweekday() == 5 or today.isoweekday() == 6:
-            today = today + datetime.timedelta(days=3)
-        # Оформленный заказ в субботу готов будет во вторник + 3
-        # Оформленный заказ в воскресенье готов во вторник + 2
-        else:
-            today = today + datetime.timedelta(days=2)
-
-        today = today.strftime("%Y-%m-%d")
+        today = select_time_complete()
     return render(request, "neworder.html", {"form": form, "today": today})
+
+
+def select_time_complete():
+    ''' Выбор времени готовности заказа'''
+    today = datetime.datetime.today()
+    logging.info(f'[info] тип данных возвращаемых формой наверняка строка?? {type(today)}--{today}')
+    logging.info(f"[ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] {today.isoweekday()}")
+    # Если заказ приняли в четверг, то отдадим только в понедельник
+    if today.isoweekday() == 4:
+        # + 4 дня так как два выходных
+        today = today + datetime.timedelta(days=4)
+        # Оформленный в пятницу будет готов в понедельник
+    elif today.isoweekday() == 5 or today.isoweekday() == 6:
+        today = today + datetime.timedelta(days=3)
+    # Оформленный заказ в субботу готов будет во вторник + 3
+    # Оформленный заказ в воскресенье готов во вторник + 2
+    else:
+        today = today + datetime.timedelta(days=2)
+    today = today.strftime("%Y-%m-%d")
+    return today
 
 
 @login_required
