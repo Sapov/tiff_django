@@ -3,16 +3,16 @@
 
 <title>{% block title %} Новый заказ{% endblock %}</title>
 {% block body %}
-<p> </p>
+<p></p>
 <h3>Добавить новый заказ</h3>
-<form method="post", enctype="multipart/form-data">
+<form method="post" , enctype="multipart/form-data">
 
     {% csrf_token %}
     {{ form|crispy }}
-        <p>
-       <label for="date">Дата готовности: </label>
+    <p>
+        <label for="date">Дата готовности: </label>
 
-       <input type="date" value={{today}} min={{today}} id="start" name="date_complite"/>
+        <input type="date" value={{today}} min={{today}} id="start" name="date_complite"/>
     </p>
     <button type="submit" class="btn btn-primary">Новый заказ</button>
 </form>

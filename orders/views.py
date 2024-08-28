@@ -36,9 +36,7 @@ def new_order(request):
         logging.info(f"method POST")
         form = NewOrder(user=request.user)
         # if form.is_valid():
-        logging.info(f"USER: {form.user}")
         # logging.info(f'delivery_address {request.POST["delivery_address"]}')
-        logging.info(f'date_complite {request.POST["date_complite"]}')
         logging.info(f"REQUEST {request.POST}")
         logging.info(f"USER {request.user}")
         # если агентство добавляем оранизацию платильщик

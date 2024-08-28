@@ -6,6 +6,7 @@ from orders.views import select_time_complete
 
 
 class TestFunctionSelectTimeComplete(TestCase):
+    '''Тестрование функции расчета времени готовности заказа'''
     def test_select_data_complete_four_day(self):
         self.assertEqual(select_time_complete(datetime.datetime(2024, 8, 29, )), '2024-09-02')
 
