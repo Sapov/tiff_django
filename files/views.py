@@ -193,58 +193,6 @@ def calculator(request):
         )
 
 
-def calculator_large_print(request):
-    if request.POST:
-        form = CalculatorLargePrint(request.POST)
-        if form.is_valid():
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            logger.info(f'[USER ROLE]: {request.user.role}')
-
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-
-            # проверка ретейл или агентство
-            if request.user.role == "CUSTOMER_RETAIL":
-                material_price = materials.price_customer_retail
-                finishka_price = finishkas.price_customer_retail
-            elif request.user.role == "CUSTOMER_AGENCY":
-                material_price = materials.price
-                finishka_price = finishkas.price
-
-        finishka_price = perimetr * finishka_price
-        results = (
-                          float(width) * float(length) * material_price
-                  ) + finishka_price  # в см
-        results = round(results, -1) * int(quantity)
-        if request.user.role == "CUSTOMER_RETAIL":
-            if (
-                    results < 1000
-            ):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-        return render(
-            request,
-            "files/calculator_large.html",
-            {
-                "form": form,
-                "title": "Калькулятор ШФ печати",
-                "results": results,
-            },
-        )
-
-    else:
-        form = CalculatorLargePrint()
-        return render(
-            request,
-            "files/calculator_large.html",
-            {"form": form, "title": "Калькулятор Широкоформатной печати"},
-        )
-
-
 def page_not_found(request, exception):
     return HttpResponseNotFound(f"<H1>Страница не найдена</H1")
 

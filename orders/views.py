@@ -1,8 +1,10 @@
+import json
 import logging
 import os
 from datetime import date, datetime
 import datetime
 
+from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,6 +13,7 @@ from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 from account.models import Organisation, Delivery, DeliveryAddress
 
@@ -39,11 +42,6 @@ def new_order(request):
         # logging.info(f'delivery_address {request.POST["delivery_address"]}')
         logging.info(f"REQUEST {request.POST}")
         logging.info(f"USER {request.user}")
-        # если агентство добавляем оранизацию платильщик
-        # number_organisation = request.POST["organisation_payer"]
-        # organisation = Organisation.objects.get(id=number_organisation)
-        # logging.info(f"organisation {organisation}")
-        # delivery_id = request.POST["delivery_address"]
         date_complite = request.POST["date_complite"]
         logging.info(f'[INFO] отправленная форма имеет дату {date_complite}')
         date_complite = datetime.datetime.strptime(date_complite, "%Y-%m-%d")
@@ -204,7 +202,6 @@ def order_pay(request, order_id):
     """
     current_path = os.getcwd()
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
-    text = 'оплата text'
 
     # --------------- Формирование счета---------
     # create_order_pdf.delay(order_id)
@@ -214,13 +211,25 @@ def order_pay(request, order_id):
     # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
     domain = str(get_domain(request))
     arh_for_mail.delay(order_id, domain=domain)
+    #------------Устанавливаем таймер на готовность заказа по истечении таймера отправлякем письмо с вопросом о готовности----------------
+        # получаем дату готовности из базы
+    Orders = Order.objects.get(id=order_id)
+    print('ДАТА ГОТОВНСТИ', Orders.date_complete)
+    PeriodicTask.objects.create(
+        name='Timer order {}'.format(order_id),
+        task='timer_order_complete',
+        interval=IntervalSchedule.objects.get(every=10, period='seconds'),
+        args=json.dumps(order_id),
+        start_time=timezone.now(),
+    )
+
 
     # -----------------------create_link_pay-----------------------------------
     Orders = Order.objects.get(id=order_id)
     user = request.user
     link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
     # logger.info(f'Генерим платежную ссылку: ', link_pay)
-    context = {"Orders": Orders, "text": text, 'link_pay': link_pay}
+    context = {"Orders": Orders, 'link_pay': link_pay}
     os.chdir(current_path)  # перейти обратно
 
     return render(request, "orderpay.html", context)
