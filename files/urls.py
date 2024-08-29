@@ -14,7 +14,7 @@ from .views import (
     FilesCreateViewInter,
     FilesCreateViewLarge,
     FilesCreateViewUV,
-    FilesCreateViewRollUp, calculator_out, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
+    FilesCreateViewRollUp, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     calculator_interier_print_out, ViewContractorListView, ContractorCreateView, ContractorUpdateView,
     ContractorDeleteView, confirm_order_to_work, confirm_order_to_complieted,
 )
