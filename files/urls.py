@@ -10,7 +10,6 @@ from .views import (
     price,
     upload_arh,
     calculator,
-    calculator_large_print,
     ViewFilesUserListView,
     FilesCreateViewInter,
     FilesCreateViewLarge,
@@ -39,7 +38,6 @@ urlpatterns = [
     # --------------calculators--------------
     # calc outer
     path("calculator/", calculator, name="calculator"),  # Calculator
-    path("calculator_large_print/", calculator_large_print, name="calculator_large_print"),  # calculator_large_print
     path("calculator_out/", calculator_out, name="calculator_out"),  # calculator для общего пользования
     # Калькулятор на сайт широкоформатная печать
     path("calculator_large_print_out/", calculator_large_print_out, name="calculator_large_print_out"),
