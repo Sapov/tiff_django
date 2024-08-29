@@ -15,10 +15,12 @@ def arh_for_mail(order_id: int, domain: str):
     # send_mail_order(order_id, domain)
 
 
-
+@shared_task()
+def print_hello():
+    print('Hello' * 100)
 
 # @shared_task
 # def create_order_pdf(order_id):
-#'''Формирования счета для организаций'''
+# '''Формирования счета для организаций'''
 #     order_pdf = DrawOrder(order_id)  # Формирование счета
 #     order_pdf.run()
