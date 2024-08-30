@@ -1,30 +1,25 @@
-import json
-import logging
 import os
 from datetime import date, datetime
 import datetime
 
-from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
 from django.urls import reverse_lazy
-from django_celery_beat.models import PeriodicTask, IntervalSchedule
+from django_celery_beat.models import PeriodicTask
 
-from account.models import Organisation, Delivery, DeliveryAddress
+from account.models import Delivery
 
 # from account.models import Organisation
 from files.models import Product
 from files.pay import Robokassa
+from .alerts import Alerts
 from .forms import NewOrder, ReportForm
 from .models import Order, OrderItem, UtilsModel, StatusOrder
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
-from .utils import DrawOrder, Utils
 from django.core.paginator import Paginator
 from .tasks import arh_for_mail
 import logging
@@ -214,7 +209,7 @@ def order_pay(request, order_id):
     # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправлякем письмо с вопросом о готовности----------------
     # получаем дату готовности из базы
 
-    start_count_down(domain, order_id)
+    Alerts.start_count_down(domain, order_id)
 
     # -----------------------create_link_pay-----------------------------------
     Orders = Order.objects.get(id=order_id)
@@ -225,21 +220,6 @@ def order_pay(request, order_id):
     os.chdir(current_path)  # перейти обратно
 
     return render(request, "orderpay.html", context)
-
-
-def start_count_down(domain, order_id):
-    Orders = Order.objects.get(id=order_id)
-    print('ДАТА ГОТОВНСТИ', Orders.date_complete)
-    PeriodicTask.objects.create(
-        name=f'Timer count Down order №{order_id}',
-        task='timer_order_complete',
-        # interval=IntervalSchedule.objects.get(every=1, period='hours'),
-        interval=IntervalSchedule.objects.get(every=2, period='minutes'),
-        args=json.dumps([order_id, domain]),
-        # start_time=Orders.date_complete - datetime.timedelta(hours=3),  # за три часа до дедлайна пишем письма
-        start_time=timezone.now() + datetime.timedelta(minutes=3),  # за три часа до дедлайна пишем письма
-
-    )
 
 
 def stop_count_down(order_id: int):
