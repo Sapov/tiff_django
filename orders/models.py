@@ -211,7 +211,7 @@ post_save.connect(product_in_order_post_save, sender=OrderItem)
 
 class UtilsModel:
     def __init__(self, order_id, domain):
-        self.order_complite = None
+        self.order_complete = None
         self.order_list = None
         self.hash_num = None
         self.arhiv_order_path = None
@@ -228,13 +228,9 @@ class UtilsModel:
         """отправляем письмо с архивом подрядчику"""
 
         order = Order.objects.get(id=self.order_id)
-        logger.info(f"[INFO] DOMAIN {self.domain}")
-        logger.info(f"[INFO] ARHIVE {str(order.order_arhive)}")
-
-        # ----------------------------отправляем хешшш
 
         data = {
-            "data_order_complete": self.order_complite,
+            "data_order_complete": self.order_complete,
             "order_item": self.order_list,
             "order_archive_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
             "confirm_link": self.confirm_link_to_work,
@@ -263,7 +259,7 @@ class UtilsModel:
 
         all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
         order = Order.objects.get(id=self.order_id)
-        self.order_complite = order.date_complete - datetime.timedelta(hours=24)  # Типография от дает на сутки раньше
+        self.order_complete = order.date_complete - datetime.timedelta(hours=24)  # Типография от дает на сутки раньше
 
         self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
         with open(self.text_file_name, "w") as text_file:
