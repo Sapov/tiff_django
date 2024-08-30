@@ -10,10 +10,12 @@ class Mail:
 
     def send_mail_request_for_order_readiness(self):
         """отправляем письмо с запросом о готовности заказа подрядчику"""
-        order = Order.object.get(id=self.order_id)
+        order = Order.objects.get(id=self.order_id)
+        print("ORDER COMPLETE", order.date_complete)
+
         data = {
-            "data_order_complete": order.order_complete,
-            "confirm_status_complete": self.confirm_link_to_complited,
+            "data_order_complete": order.date_complete,
+            # "confirm_status_complete": self.confirm_link_to_complited,
             "order_id": self.order_id,
         }
 
