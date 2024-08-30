@@ -211,8 +211,8 @@ def order_pay(request, order_id):
     # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
     domain = str(get_domain(request))
     arh_for_mail.delay(order_id, domain=domain)
-    #------------Устанавливаем таймер на готовность заказа по истечении таймера отправлякем письмо с вопросом о готовности----------------
-        # получаем дату готовности из базы
+    # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправлякем письмо с вопросом о готовности----------------
+    # получаем дату готовности из базы
 
     start_count_down(domain, order_id)
 
@@ -231,11 +231,12 @@ def start_count_down(domain, order_id):
     Orders = Order.objects.get(id=order_id)
     print('ДАТА ГОТОВНСТИ', Orders.date_complete)
     PeriodicTask.objects.create(
-        name=f'Timer order {order_id}',
+        name=f'Timer count Down order №{order_id}',
         task='timer_order_complete',
-        interval=IntervalSchedule.objects.get(every=60, period='seconds'),
+        interval=IntervalSchedule.objects.get(every=1, period='hours'),
         args=json.dumps([order_id, domain]),
-        start_time=Orders.date_complete,
+        start_time=Orders.date_complete - datetime.timedelta(hours=67),  # за три часа до дедлайна пишем письма
+
     )
 
 

@@ -15,11 +15,6 @@ def arh_for_mail(order_id: int, domain: str):
     # send_mail_order(order_id, domain)
 
 
-@shared_task()
-def print_hello():
-    print('Hello \n')
-
-
 @shared_task(name='timer_order_complete')
 def timer_order_complete(*args):
     order_id, domain = args
