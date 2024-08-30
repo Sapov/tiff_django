@@ -59,8 +59,8 @@ services:
       - static_volume:/django/static
       - media_volume:/django/media
     depends_on:
-      -redis
-      -django_project
+      - redis
+      - django_project
     command: 'celery -A mysite beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler'
 
   nginx:
