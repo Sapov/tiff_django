@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 
 from orders.models import UtilsModel, Order
 from orders.utils import DrawOrder, Utils
-from .mail import Mail
+from .alerts import Alerts
 
 @shared_task
 def arh_for_mail(order_id: int, domain: str):
@@ -19,7 +19,7 @@ def arh_for_mail(order_id: int, domain: str):
 def timer_order_complete(*args):
     order_id, domain = args
     print(f'[INFO]-------------Отсылаем письмо с вопросом о готовности заказа--№ {order_id}---------')
-    item_mail = Mail(order_id, domain)
+    item_mail = Alerts(order_id, domain)
     item_mail.send_mail_request_for_order_readiness()
 # @shared_task
 # def create_order_pdf(order_id):

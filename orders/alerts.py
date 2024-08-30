@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class Mail:
+class Alerts:
     def __init__(self, order_id: int, domain):
         self.domain = domain
         self.order_id = order_id
