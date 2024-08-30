@@ -420,13 +420,6 @@ class UtilsModel:
                                      f'{self.calculate_signature(self.order_id)}')
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
 
-    def __generate_link_to_completed(self):
-        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в готов'''
-        self.confirm_link_to_complited = (f'http://{self.domain}/files/confirm_order_to_compited/{self.order_id}/'
-                                          f'{self.calculate_signature(self.order_id)}')
-        logger.info(f'[Генерирую ссылку ПЕРЕВОД С СОСТОЯНИЕ ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
-
-
     def run(self):
         self.create_text_file()
         self.read_file()
@@ -436,5 +429,4 @@ class UtilsModel:
         self.add_arhive_in_order()
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
-        self.__generate_link_to_completed()  # генерирую ссылку для перевода в состояние ГОТОВ
         self.send_mail_order()  # отправил письмо
