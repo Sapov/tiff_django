@@ -235,7 +235,7 @@ def start_count_down(domain, order_id):
         task='timer_order_complete',
         interval=IntervalSchedule.objects.get(every=1, period='hours'),
         args=json.dumps([order_id, domain]),
-        start_time=Orders.date_complete - datetime.timedelta(hours=67),  # за три часа до дедлайна пишем письма
+        start_time=Orders.date_complete - datetime.timedelta(hours=66),  # за три часа до дедлайна пишем письма
 
     )
 
