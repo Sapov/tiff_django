@@ -17,9 +17,10 @@ def arh_for_mail(order_id: int, domain: str):
 
 @shared_task()
 def print_hello():
-    print('Hello \n' * 100)
+    print('Hello \n')
 
 
+@shared_task(name='timer_order_complete')
 def timer_order_complete():
     print('-------------Отсылаем  письмо с вопросом о готовности заказа-----------')
 # @shared_task

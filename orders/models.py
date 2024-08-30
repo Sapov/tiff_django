@@ -236,7 +236,7 @@ class UtilsModel:
         data = {
             "order_complete": self.order_complite,
             "order_item": self.order_list,
-            "order_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
+            "order_archive_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
             # "confirm_link": f"http://{self.domain}/orders/set_status_order/{self.order_id}/{self.generate_hash()}",
             "confirm_link": self.confirm_link_to_work,
             "confirm_status_complite": self.confirm_link_to_complited,
@@ -264,7 +264,7 @@ class UtilsModel:
 
         all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
         order = Order.objects.get(id=self.order_id)
-        self.order_complite = order.date_complete - datetime.timedelta(hours=24)  # чтоб отдавать в 12 часов
+        self.order_complite = order.date_complete - datetime.timedelta(hours=24)  # Типография от дает на сутки раньше
 
         self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
         with open(self.text_file_name, "w") as text_file:

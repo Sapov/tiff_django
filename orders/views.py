@@ -216,10 +216,10 @@ def order_pay(request, order_id):
     Orders = Order.objects.get(id=order_id)
     print('ДАТА ГОТОВНСТИ', Orders.date_complete)
     PeriodicTask.objects.create(
-        name='Timer order {}'.format(order_id),
+        name=f'Timer order {order_id}',
         task='timer_order_complete',
-        interval=IntervalSchedule.objects.get(every=10, period='seconds'),
-        args=json.dumps(order_id),
+        interval=IntervalSchedule.objects.get_or_create(every=10, period='seconds'),
+        # args=json.dumps(order_id),
         start_time=timezone.now(),
     )
 
