@@ -68,7 +68,6 @@ def new_order(request):
 
 def select_time_complete(today: datetime) -> str:
     ''' Выбор времени готовности заказа'''
-    logging.info(f'[info] тип данных возвращаемых формой наверняка строка?? {type(today)}--{today}')
     logging.info(f"[ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] {today.isoweekday()}")
     # Если заказ приняли в четверг, то отдадим только в понедельник
     if today.isoweekday() == 4:
