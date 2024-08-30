@@ -424,24 +424,6 @@ class UtilsModel:
         self.confirm_link_to_complited = f'http://{self.domain}/files/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
         logger.info(f'[Генерирую ссылку ПЕРЕВОД С СОСТОЯНИЕ ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
 
-    def send_mail_request_for_order_readiness(self):
-        """отправляем письмо с запросом о готовности заказа подрядчику"""
-        data = {
-            "data_order_complete": self.order_complete,
-            "order_item": self.order_list,
-            "confirm_status_complete": self.confirm_link_to_complited,
-            "order_id": self.order_id,
-        }
-
-        html_message = render_to_string("mail/mail_order_for_typografyl.html", data)
-        msg = EmailMultiAlternatives(
-            subject=f"Готов ли заказ от REDS № {self.order_id}",
-            to=[
-                "rpk.reds@ya.ru",
-            ],
-        )
-        msg.attach_alternative(html_message, "text/html")
-        msg.send()
 
     def run(self):
         self.create_text_file()

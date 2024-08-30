@@ -233,9 +233,11 @@ def start_count_down(domain, order_id):
     PeriodicTask.objects.create(
         name=f'Timer count Down order №{order_id}',
         task='timer_order_complete',
-        interval=IntervalSchedule.objects.get(every=1, period='hours'),
+        # interval=IntervalSchedule.objects.get(every=1, period='hours'),
+        interval=IntervalSchedule.objects.get(every=2, period='minutes'),
         args=json.dumps([order_id, domain]),
-        start_time=Orders.date_complete - datetime.timedelta(hours=66),  # за три часа до дедлайна пишем письма
+        # start_time=Orders.date_complete - datetime.timedelta(hours=3),  # за три часа до дедлайна пишем письма
+        start_time=timezone.now() + datetime.timedelta(minutes=3),  # за три часа до дедлайна пишем письма
 
     )
 
