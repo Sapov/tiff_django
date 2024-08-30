@@ -234,10 +234,9 @@ class UtilsModel:
         # ----------------------------отправляем хешшш
 
         data = {
-            "order_complete": self.order_complite,
+            "data_order_complete": self.order_complite,
             "order_item": self.order_list,
             "order_archive_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
-            # "confirm_link": f"http://{self.domain}/orders/set_status_order/{self.order_id}/{self.generate_hash()}",
             "confirm_link": self.confirm_link_to_work,
             "confirm_status_complete": self.confirm_link_to_complited,
             "order_id": self.order_id,
