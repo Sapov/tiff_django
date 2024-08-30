@@ -2,8 +2,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from .models import Order, UtilsModel
 import logging
-logger = logging.getLogger(__name__)
 
+logger = logging.getLogger(__name__)
 
 
 class Mail:
@@ -14,6 +14,7 @@ class Mail:
     def send_mail_request_for_order_readiness(self):
         """отправляем письмо с запросом о готовности заказа подрядчику"""
         order = Order.objects.get(id=self.order_id)
+        self.__generate_link_to_completed()
         data = {
             "data_order_complete": order.date_complete,
             "confirm_status_complete": self.confirm_link_to_completed,

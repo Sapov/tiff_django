@@ -242,6 +242,13 @@ def start_count_down(domain, order_id):
     )
 
 
+def stop_count_down(order_id: int):
+    '''Останавдиваем отсылку писем с влпрсами о готовности заказа'''
+    item_periodic_task = PeriodicTask.objects.get(name=f'Timer count Down order №{order_id}')
+    item_periodic_task.enabled = False
+    item_periodic_task.save()
+
+
 def get_domain(request):
     logger.info(f"DOMAIN: {get_current_site(request)}")
     return str(get_current_site(request))
