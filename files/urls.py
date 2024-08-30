@@ -51,6 +51,6 @@ urlpatterns = [
     # подтверждение принятия заказа типографией
     path("confirm_order_to_work/<pk>/<hash_code>/", confirm_order_to_work, name="confirm_order_to_work"),
     # поодтверждение готовности заказа
-    path("confirm_order_to_compited/<pk>/<hash_code>/", confirm_order_to_complieted, name="confirm_order_to_complited"),
+    path("confirm_order_to_competed/<pk>/<hash_code>/", confirm_order_to_complieted, name="confirm_order_to_completed"),
 
 ]
