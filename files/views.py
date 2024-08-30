@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 
 from orders.models import UtilsModel, Order, StatusOrder
+from orders.views import stop_count_down
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     UploadArhive,
@@ -469,7 +470,7 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
         return render(request, "files/no_confirm_order_to_work.html")
 
 
-def confirm_order_to_complieted(request, pk: int, hash_code):
+def confirm_order_to_completed(request, pk: int, hash_code):
     ''' Подтверждение готовнасти заказа менеджером типографии'''
     if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
         """Меняем статус заказа"""
@@ -478,7 +479,8 @@ def confirm_order_to_complieted(request, pk: int, hash_code):
         logger.info(f"МЕНЯЮ СТАТУС НА В ГОТОВ")
         order.status = status
         order.save()
+        stop_count_down(pk)
 
-        return render(request, "files/confirm_order_to_complieted.html")
+        return render(request, "files/confirm_order_to_completed.html")
     else:
-        return render(request, "files/no_confirm_order_to_complieted.html")
+        return render(request, "files/no_confirm_order_to_completed.html")
