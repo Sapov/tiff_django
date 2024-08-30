@@ -213,16 +213,8 @@ def order_pay(request, order_id):
     arh_for_mail.delay(order_id, domain=domain)
     #------------Устанавливаем таймер на готовность заказа по истечении таймера отправлякем письмо с вопросом о готовности----------------
         # получаем дату готовности из базы
-    Orders = Order.objects.get(id=order_id)
-    print('ДАТА ГОТОВНСТИ', Orders.date_complete)
-    PeriodicTask.objects.create(
-        name=f'Timer order {order_id}',
-        task='timer_order_complete',
-        interval=IntervalSchedule.objects.get_or_create(every=10, period='seconds'),
-        # args=json.dumps(order_id),
-        start_time=timezone.now(),
-    )
 
+    start_count_down(domain, order_id)
 
     # -----------------------create_link_pay-----------------------------------
     Orders = Order.objects.get(id=order_id)
@@ -233,6 +225,18 @@ def order_pay(request, order_id):
     os.chdir(current_path)  # перейти обратно
 
     return render(request, "orderpay.html", context)
+
+
+def start_count_down(domain, order_id):
+    Orders = Order.objects.get(id=order_id)
+    print('ДАТА ГОТОВНСТИ', Orders.date_complete)
+    PeriodicTask.objects.create(
+        name=f'Timer order {order_id}',
+        task='timer_order_complete',
+        interval=IntervalSchedule.objects.get(every=60, period='seconds'),
+        args=json.dumps([order_id, domain]),
+        start_time=Orders.date_complete,
+    )
 
 
 def get_domain(request):
