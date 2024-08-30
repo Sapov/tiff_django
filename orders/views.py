@@ -247,6 +247,7 @@ def stop_count_down(order_id: int):
     item_periodic_task = PeriodicTask.objects.get(name=f'Timer count Down order №{order_id}')
     item_periodic_task.enabled = False
     item_periodic_task.save()
+    item_periodic_task.delete()
 
 
 def get_domain(request):
