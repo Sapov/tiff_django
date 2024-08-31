@@ -294,7 +294,7 @@ def calculator_large_print_out(request):
                        'last_five_string': last_five_string})
 
 
-def calculator_interier_print_out(request):
+def calculator_interior_print_out(request):
     if request.method == 'POST':
         form = CalculatorInterierPrint(request.POST)
         if form.is_valid():

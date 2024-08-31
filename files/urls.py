@@ -15,8 +15,8 @@ from .views import (
     FilesCreateViewLarge,
     FilesCreateViewUV,
     FilesCreateViewRollUp, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
-    calculator_interier_print_out, ViewContractorListView, ContractorCreateView, ContractorUpdateView,
-    ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed,
+    ViewContractorListView, ContractorCreateView, ContractorUpdateView,
+    ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed, calculator_interior_print_out,
 )
 
 app_name = "files"
@@ -40,7 +40,7 @@ urlpatterns = [
     path("calculator/", calculator, name="calculator"),  # Calculator
     # Калькулятор на сайт широкоформатная печать
     path("calculator_large_print_out/", calculator_large_print_out, name="calculator_large_print_out"),
-    path("calculator_interier_print_out/", calculator_interier_print_out, name="calculator_interier_print_out"),
+    path("calculator_Interior_print_out/", calculator_interior_print_out, name="calculator_Interior_print_out"),
     path("calculator_uv_print_out/", calculator_uv_print_out, name="calculator_uv_print_out"),
     path("calculator_blank_out/", calculator_blank_out, name="calculator_blank_out"),
     # CRUD Contractor Подрядчики
