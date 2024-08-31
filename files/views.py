@@ -269,7 +269,7 @@ def calculator_large_print_out(request):
             finishka_price = perimetr * finishka_price
             results = (float(width) * float(length) * material_price) + finishka_price  # в см
             results = round(results, -1) * int(quantity)
-            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+            if results < 1000:  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
                 results = 1000
 
             try:
@@ -294,7 +294,7 @@ def calculator_large_print_out(request):
                        'last_five_string': last_five_string})
 
 
-def calculator_interior_print_out(request):
+def calculator_interior_print(request):
     if request.method == 'POST':
         form = CalculatorInterierPrint(request.POST)
         if form.is_valid():
@@ -313,18 +313,18 @@ def calculator_interior_print_out(request):
             finishka_price = perimetr * finishka_price
             results = (float(width) * float(length) * material_price) + finishka_price  # в см
             results = round(results, -1) * int(quantity)
-            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+            if results < 1000:  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
                 results = 1000
 
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
                 last_five_string = UseCalculator.objects.order_by('-id')[:5]
-
-                return render(request, "files/calculator_large.html", {"form": form,
-                                                                       "title": "Калькулятор интерьерной печати",
+                return render(request, "files/calculator_interior_print.html", {"form": form,
+                                                                       "title": "Калькулятор широкоформатной печати",
                                                                        "results": results,
-                                                                       'last_five_string': last_five_string}, )
+                                                                       'last_five_string': last_five_string,
+                                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
@@ -332,7 +332,7 @@ def calculator_interior_print_out(request):
     else:
         form = CalculatorInterierPrint()
         last_five_string = UseCalculator.objects.order_by('-id')[:5]
-        return render(request, "files/calculator_large.html",
+        return render(request, "files/calculator_interior_print.html",
                       {"form": form, "title": "Калькулятор интерьерной печати", 'last_five_string': last_five_string})
 
 

@@ -41,9 +41,9 @@ class FileTemplateTest(TestCase):
         self.assertTemplateUsed(response, 'files/calculator_large.html')
 
     def test_templates_calculator_interior_print_out(self):
-        response = self.authorized_client.get('/files/calculator_interior_print_out/')
+        response = self.authorized_client.get('/files/calculator_interior_print/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'files/calculator_large.html')
+        self.assertTemplateUsed(response, 'files/calculator_interior_print.html')
 
     def test_templates_calculator_blank_material(self):
         response = self.authorized_client.get('/files/calculator_blank/')
