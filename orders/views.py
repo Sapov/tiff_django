@@ -223,10 +223,13 @@ def order_pay(request, order_id):
 
 def stop_count_down(order_id: int):
     '''Останавливаем отсылку писем с вопросами о готовности заказа'''
-    item_periodic_task = PeriodicTask.objects.get(name=f'Timer count Down order №{order_id}')
-    item_periodic_task.enabled = False
-    item_periodic_task.save()
-    item_periodic_task.delete()
+    try:
+        item_periodic_task = PeriodicTask.objects.get(name=f'Timer count Down order №{order_id}')
+        item_periodic_task.enabled = False
+        item_periodic_task.save()
+        item_periodic_task.delete()
+    except Exception as Ex:
+        print('Нет уже задачи', Ex)
 
 
 def get_domain(request):
