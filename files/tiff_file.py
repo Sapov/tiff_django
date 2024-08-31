@@ -328,28 +328,31 @@ class WorkZip:
 class Calculator:
     ''' Класс умеет рассчитывать стоимость печати '''
 
-    def __init__(self, width: int, length: int, role: str):
+    def __init__(self, width: int, length: int, role: str, material, quantity: int):
+        self.price = None
+        self.quantity = quantity
+        self.material = material
         self.role = role
         self.width = width
         self.length = length
+        self.value_material_price = None
 
-    def calculator(self):
-        pass
+    def __print_calculator(self):
+        '''Расчитываем прайсовую стоимость печати'''
+        self.price = round(self.width / 100 * self.length / 100 * self.value_material_price)
+
+    def __finishka_calculator(self):
+
 
     def change_role_user(self):
-        # проверяем по каким ценам считаем по рознице или по агентству
+        # проверяем роль пользователя и выбираем стоимость ему соответствующую
         if self.role == "CUSTOMER_RETAIL":
-            price = self.material.price_customer_retail
+            self.value_material_price = self.material.price_customer_retail
         elif self.role == "CUSTOMER_AGENCY":
-            price = self.material.price
+            self.value_material_price = self.material.price
         else:
             # Иначе считаем как по CUSTOMER_RETAIL
-            price = self.material.price_customer_retail
-        self.price = download_file.price_calculation(self.quantity, price)
-        # Считаем финишку
-        self.price += download_file.finish_wokrs(
-            self.FinishWork.price
-        )  # Добавляю стоимость финишной обработки
+            self.value_material_price = self.material.price_customer_retail
 
 
 ''' Принимает:
