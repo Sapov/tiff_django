@@ -74,9 +74,6 @@ class WorkWithFile:
 
     def __init__(self, image):
         self.file_name = None  # имя файла
-        # self.type_print = type_print  # тип печати
-        # self.lst_tif = lst_tif  # Список тиф файлов
-        # self.material = material
         self.width = None  # Ширина файла
         self.length = None  # Длина файла
         self.resolution = None  # Разрешение файла
@@ -87,21 +84,6 @@ class WorkWithFile:
     def price_calculation(self, quantity, material_price):
         '''Расчитываем прайсовую стоимость печати'''
         return round(self.width / 100 * self.length / 100 * quantity * material_price)
-
-    # def goto_media(foo):
-    #     ''' переходим в папку media/image{data}  и обратно'''
-    #
-    #     def wrapper(*args, **kwargs):
-    #         logger.info(f'[DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
-    #         current_path = os.getcwd()
-    #         os.chdir(
-    #             f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-    #         logger.info(f' [DECORATOR] Мы Выбрали {os.getcwd()}')
-    #         logger.info(f' [DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
-    #         foo(*args, **kwargs)
-    #         os.chdir(current_path)  # перейти обратно
-    #
-    #     return wrapper
 
     @classmethod
     @goto_media
