@@ -216,19 +216,19 @@ class Product(models.Model):
         self.price = image_parameters.calculate()
 
         # -----------
-        # проверяем по каким ценам считаем по рознице или по агентству
-        if self.Contractor.role == "CUSTOMER_RETAIL":
-            price = self.material.price_customer_retail
-        elif self.Contractor.role == "CUSTOMER_AGENCY":
-            price = self.material.price
-        else:
-            # Иначе считаем как по CUSTOMER_RETAIL
-            price = self.material.price_customer_retail
-        self.price = download_file.price_calculation(self.quantity, price)
-        # Считаем финишку
-        self.price += download_file.finish_wokrs(
-            self.FinishWork.price
-        )  # Добавляю стоимость финишной обработки
+        # # проверяем по каким ценам считаем по рознице или по агентству
+        # if self.Contractor.role == "CUSTOMER_RETAIL":
+        #     price = self.material.price_customer_retail
+        # elif self.Contractor.role == "CUSTOMER_AGENCY":
+        #     price = self.material.price
+        # else:
+        #     # Иначе считаем как по CUSTOMER_RETAIL
+        #     price = self.material.price_customer_retail
+        # self.price = download_file.price_calculation(self.quantity, price)
+        # # Считаем финишку
+        # self.price += download_file.finish_wokrs(
+        #     self.FinishWork.price
+        # )  # Добавляю стоимость финишной обработки
 
         # СЕБЕСТОИМОСТЬ
         self.cost_price = download_file.price_calculation(

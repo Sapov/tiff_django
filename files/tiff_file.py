@@ -351,16 +351,18 @@ class Calculator:
         if self.role == "CUSTOMER_RETAIL":
             self.value_material_price = self.material.price_customer_retail
             self.value_finishing_price = self.finishing.price_customer_retail
+            print('Считаем по цене', self.value_material_price, 'AND', self.value_finishing_price)
         elif self.role == "CUSTOMER_AGENCY":
             self.value_material_price = self.material.price
             self.finishing = self.finishing.price
         else:
             # Иначе считаем как по CUSTOMER_RETAIL
             self.value_material_price = self.material.price_customer_retail
+            self.value_finishing_price = self.finishing.price_customer_retail
 
     def calculate(self):
         self.__change_role_user()
-        return self.__print_calculator() * self.__finishing_calculator() * self.quantity
+        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
 
 
 ''' Принимает:
