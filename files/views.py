@@ -359,7 +359,7 @@ def calculator_uv_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_uv.html", {"form": form,
+                return render(request, "files/calculator_large.html", {"form": form,
                                                                     "title": "Калькулятор UV печати",
                                                                     "results": results,
                                                                     },
@@ -372,7 +372,7 @@ def calculator_uv_print_out(request):
         form = CalculatorUVPrint()
         return render(
             request,
-            "files/calculator_uv.html",
+            "files/calculator_large.html",
             {"form": form, "title": "Калькулятор UV печати"},
         )
 

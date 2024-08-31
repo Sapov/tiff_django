@@ -40,7 +40,7 @@ urlpatterns = [
     path("calculator/", calculator, name="calculator"),  # Calculator
     # Калькулятор на сайт широкоформатная печать
     path("calculator_large_print_out/", calculator_large_print_out, name="calculator_large_print_out"),
-    path("calculator_Interior_print_out/", calculator_interior_print_out, name="calculator_Interior_print_out"),
+    path("calculator_interior_print_out/", calculator_interior_print_out, name="calculator_Interior_print_out"),
     path("calculator_uv_print_out/", calculator_uv_print_out, name="calculator_uv_print_out"),
     path("calculator_blank_out/", calculator_blank_out, name="calculator_blank_out"),
     # CRUD Contractor Подрядчики
