@@ -319,7 +319,7 @@ def calculator_interior_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_interier.html", {"form": form,
+                return render(request, "files/calculator_large.html", {"form": form,
                                                                           "title": "Калькулятор интерьерной печати",
                                                                           "results": results,
                                                                           }, )
@@ -329,7 +329,7 @@ def calculator_interior_print_out(request):
 
     else:
         form = CalculatorInterierPrint()
-        return render(request, "files/calculator_interier.html",
+        return render(request, "files/calculator_large.html",
                       {"form": form, "title": "Калькулятор интерьерной печати"})
 
 
