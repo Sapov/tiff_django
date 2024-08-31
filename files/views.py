@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 
 from orders.models import UtilsModel, Order, StatusOrder
+from orders.views import stop_count_down
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     UploadArhive,
@@ -193,58 +194,6 @@ def calculator(request):
         )
 
 
-def calculator_large_print(request):
-    if request.POST:
-        form = CalculatorLargePrint(request.POST)
-        if form.is_valid():
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            logger.info(f'[USER ROLE]: {request.user.role}')
-
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-
-            # проверка ретейл или агентство
-            if request.user.role == "CUSTOMER_RETAIL":
-                material_price = materials.price_customer_retail
-                finishka_price = finishkas.price_customer_retail
-            elif request.user.role == "CUSTOMER_AGENCY":
-                material_price = materials.price
-                finishka_price = finishkas.price
-
-        finishka_price = perimetr * finishka_price
-        results = (
-                          float(width) * float(length) * material_price
-                  ) + finishka_price  # в см
-        results = round(results, -1) * int(quantity)
-        if request.user.role == "CUSTOMER_RETAIL":
-            if (
-                    results < 1000
-            ):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-        return render(
-            request,
-            "files/calculator_large.html",
-            {
-                "form": form,
-                "title": "Калькулятор ШФ печати",
-                "results": results,
-            },
-        )
-
-    else:
-        form = CalculatorLargePrint()
-        return render(
-            request,
-            "files/calculator_large.html",
-            {"form": form, "title": "Калькулятор Широкоформатной печати"},
-        )
-
-
 def page_not_found(request, exception):
     return HttpResponseNotFound(f"<H1>Страница не найдена</H1")
 
@@ -301,50 +250,6 @@ class MaterialViewSet(viewsets.ModelViewSet):
     serializer_class = MaterlailSerializer
 
 
-def calculator_out(request):
-    if request.POST:
-        form = Calculator(request.POST)
-        if form.is_valid():
-            # form = Calculator(request.POST)
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-            logger.info(f'[request]:{request}')
-            material_price = materials.price_customer_retail
-            finishka_price = finishkas.price_customer_retail
-
-            finishka_price = perimetr * finishka_price
-            results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            results = round(results, -1) * int(quantity)
-            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-
-            try:
-                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
-                                             results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_out.html", {"form": form,
-                                                                     "title": "Калькулятор печати",
-                                                                     "results": results,
-                                                                     },
-                              )
-
-            except:
-                form.add_error(None, 'Ошибка расчета')
-
-    else:
-        form = Calculator()
-        return render(
-            request,
-            "files/calculator_out.html",
-            {"form": form, "title": "Калькулятор печати"},
-        )
-
-
 def calculator_large_print_out(request):
     if request.method == 'POST':
         form = CalculatorLargePrint(request.POST)
@@ -373,7 +278,8 @@ def calculator_large_print_out(request):
                 last_five_string = UseCalculator.objects.order_by('-id')[:5]
                 return render(request, "files/calculator_large.html", {"form": form,
                                                                        "title": "Калькулятор широкоформатной печати",
-                                                                       "results": results, 'last_five_string':last_five_string,
+                                                                       "results": results,
+                                                                       'last_five_string': last_five_string,
                                                                        }, )
 
             except:
@@ -384,7 +290,8 @@ def calculator_large_print_out(request):
         last_five_string = UseCalculator.objects.order_by('-id')[:5]
 
         return render(request, "files/calculator_large.html",
-                      {"form": form, "title": "Калькулятор широкоформатной печати", 'last_five_string':last_five_string})
+                      {"form": form, "title": "Калькулятор широкоформатной печати",
+                       'last_five_string': last_five_string})
 
 
 def calculator_interier_print_out(request):
@@ -550,7 +457,7 @@ class ContractorDeleteView(DeleteView):
 def confirm_order_to_work(request, pk: int, hash_code: str):
     # print(f'id_status_order P{id_status_order} type {type(id_status_order)}')
     ''' Подтверждение приема заказа менеджером типографии'''
-    if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
+    if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш равен коду от хеша номера заказа
         """Меняем статус заказа"""
         order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
         status = StatusOrder.objects.get(id=3)  # меняем статус заказак)  # меняю стаус 3
@@ -563,7 +470,7 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
         return render(request, "files/no_confirm_order_to_work.html")
 
 
-def confirm_order_to_complieted(request, pk: int, hash_code):
+def confirm_order_to_completed(request, pk: int, hash_code):
     ''' Подтверждение готовнасти заказа менеджером типографии'''
     if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
         """Меняем статус заказа"""
@@ -572,7 +479,8 @@ def confirm_order_to_complieted(request, pk: int, hash_code):
         logger.info(f"МЕНЯЮ СТАТУС НА В ГОТОВ")
         order.status = status
         order.save()
+        stop_count_down(pk)
 
-        return render(request, "files/confirm_order_to_complieted.html")
+        return render(request, "files/confirm_order_to_completed.html")
     else:
-        return render(request, "files/no_confirm_order_to_complieted.html")
+        return render(request, "files/no_confirm_order_to_completed.html")

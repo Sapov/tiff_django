@@ -51,6 +51,31 @@ services:
       - django_project
     command: 'celery -A mysite worker -l info'
 
+  celery-beat:
+    restart: always
+    build: .
+    volumes:
+      - /:/app
+      - static_volume:/django/static
+      - media_volume:/django/media
+    depends_on:
+      - redis
+      - django_project
+    command: 'celery -A mysite beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler'
+
+  flower:
+    container_name: flower
+    build: .
+    ports:
+      - 5555:5555
+    volumes:
+      - /:/app
+      - static_volume:/django/static
+      - media_volume:/django/media
+    depends_on:
+      - redis
+    command: 'celery -A mysite flower'
+
   nginx:
     build:
       dockerfile: ./Dockerfile

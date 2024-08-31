@@ -16,11 +16,7 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Quick-start development __settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -50,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "phonenumber_field",
     'django_extensions',
+    'django_celery_beat',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
@@ -189,6 +186,10 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 # CELERY_BROKER_URL = 'redis://redis:6379/0'
 # CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
+CELERY_IMPORTS = [
+    'orders.tasks',
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [

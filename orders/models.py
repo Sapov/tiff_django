@@ -211,7 +211,7 @@ post_save.connect(product_in_order_post_save, sender=OrderItem)
 
 class UtilsModel:
     def __init__(self, order_id, domain):
-        self.order_complite = None
+        self.order_complete = None
         self.order_list = None
         self.hash_num = None
         self.arhiv_order_path = None
@@ -226,20 +226,13 @@ class UtilsModel:
 
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
-
         order = Order.objects.get(id=self.order_id)
-        logger.info(f"[INFO] DOMAIN {self.domain}")
-        logger.info(f"[INFO] ARHIVE {str(order.order_arhive)}")
-
-        # ----------------------------отправляем хешшш
-
         data = {
-            "order_complete": self.order_complite,
+            "data_order_complete": self.order_complete,
             "order_item": self.order_list,
-            "order_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
-            # "confirm_link": f"http://{self.domain}/orders/set_status_order/{self.order_id}/{self.generate_hash()}",
+            "order_archive_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
             "confirm_link": self.confirm_link_to_work,
-            "confirm_status_complite": self.confirm_link_to_complited,
+            "confirm_status_complete": self.confirm_link_to_complited,
             "order_id": self.order_id,
         }
         html_message = render_to_string("mail/mail_order_for_typografyl.html", data)
@@ -264,7 +257,7 @@ class UtilsModel:
 
         all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
         order = Order.objects.get(id=self.order_id)
-        self.order_complite = order.date_complete - datetime.timedelta(hours=24)  # чтоб отдавать в 12 часов
+        self.order_complete = order.date_complete - datetime.timedelta(hours=24)  # Типография от дает на сутки раньше
 
         self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
         with open(self.text_file_name, "w") as text_file:
@@ -423,13 +416,9 @@ class UtilsModel:
 
     def __generate_link_to_work(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_work = f'http://{self.domain}/files/confirm_order_to_work/{self.order_id}/{self.calculate_signature(self.order_id)}'
+        self.confirm_link_to_work = (f'http://{self.domain}/files/confirm_order_to_work/{self.order_id}/'
+                                     f'{self.calculate_signature(self.order_id)}')
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
-
-    def __generate_link_to_complited(self):
-        '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_complited = f'http://{self.domain}/files/confirm_order_to_compited/{self.order_id}/{self.calculate_signature(self.order_id)}'
-        logger.info(f'[Генерирую ссылку ПЕРЕВОД С СОСТОЯНИЕ ГОТОВ] CONFIRM LINK: {self.confirm_link_to_complited}')
 
     def run(self):
         self.create_text_file()
@@ -440,5 +429,4 @@ class UtilsModel:
         self.add_arhive_in_order()
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
-        self.__generate_link_to_complited()  # генерирую ссылку для перевода в сотояие ГОТОВ
         self.send_mail_order()  # отправил письмо

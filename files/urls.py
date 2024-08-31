@@ -10,14 +10,13 @@ from .views import (
     price,
     upload_arh,
     calculator,
-    calculator_large_print,
     ViewFilesUserListView,
     FilesCreateViewInter,
     FilesCreateViewLarge,
     FilesCreateViewUV,
-    FilesCreateViewRollUp, calculator_out, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
+    FilesCreateViewRollUp, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     calculator_interier_print_out, ViewContractorListView, ContractorCreateView, ContractorUpdateView,
-    ContractorDeleteView, confirm_order_to_work, confirm_order_to_complieted,
+    ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed,
 )
 
 app_name = "files"
@@ -39,8 +38,6 @@ urlpatterns = [
     # --------------calculators--------------
     # calc outer
     path("calculator/", calculator, name="calculator"),  # Calculator
-    path("calculator_large_print/", calculator_large_print, name="calculator_large_print"),  # calculator_large_print
-    path("calculator_out/", calculator_out, name="calculator_out"),  # calculator для общего пользования
     # Калькулятор на сайт широкоформатная печать
     path("calculator_large_print_out/", calculator_large_print_out, name="calculator_large_print_out"),
     path("calculator_interier_print_out/", calculator_interier_print_out, name="calculator_interier_print_out"),
@@ -53,7 +50,7 @@ urlpatterns = [
     path("contractor_delete/<pk>", ContractorDeleteView.as_view(), name="contractor_delete"),
     # подтверждение принятия заказа типографией
     path("confirm_order_to_work/<pk>/<hash_code>/", confirm_order_to_work, name="confirm_order_to_work"),
-    # поодтверждение готовности заказа
-    path("confirm_order_to_compited/<pk>/<hash_code>/", confirm_order_to_complieted, name="confirm_order_to_complited"),
+    # подтверждение готовности заказа
+    path("confirm_order_to_competed/<pk>/<hash_code>/", confirm_order_to_completed, name="confirm_order_to_completed"),
 
 ]

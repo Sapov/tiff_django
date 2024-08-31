@@ -53,8 +53,6 @@ class Utils:
                 f'media/image/{date.today()}')  # перейти в директорию дата должна браться из параметра Order.created
         print(f' Мы Выбрали {os.getcwd()}')
 
-
-
     @staticmethod
     def send_mail_order(body_mail):
         ''' принимаем ссылку на яд и текст шаблон письма'''
@@ -111,7 +109,7 @@ class DrawOrder:
                        }
 
     def __init__(self, order_id):
-        self.current_path=None
+        self.current_path = None
         self.font_path = None
         self.order_id = order_id
         self.canvas = Canvas(f'Order_{self.order_id}.pdf', pagesize=A4, )
@@ -340,3 +338,4 @@ class DrawOrder:
         self.canvas.save()
         self.add_arhive_in_order()
         self._go_back()
+
