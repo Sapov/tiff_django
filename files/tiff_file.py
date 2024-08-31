@@ -328,9 +328,10 @@ class WorkZip:
 class Calculator:
     ''' Класс умеет рассчитывать стоимость печати '''
 
-    def __init__(self, width: int, length: int, role: str, material, quantity: int):
-        self.price = None
+    def __init__(self, width: float, length: float, role: str, material, finishing, quantity: int):
         self.quantity = quantity
+        self.value_finishing_price = None
+        self.finishing = finishing
         self.material = material
         self.role = role
         self.width = width
@@ -339,20 +340,27 @@ class Calculator:
 
     def __print_calculator(self):
         '''Расчитываем прайсовую стоимость печати'''
-        self.price = round(self.width / 100 * self.length / 100 * self.value_material_price)
+        return round(self.width / 100 * self.length / 100 * self.value_material_price)
 
-    def __finishka_calculator(self):
+    def __finishing_calculator(self):
+        ''' Считаем стоимость финишной обработки'''
+        return (self.width + self.length) * 2 / 100 * self.value_finishing_price  # / 100 приводим к метрам
 
-
-    def change_role_user(self):
+    def __change_role_user(self):
         # проверяем роль пользователя и выбираем стоимость ему соответствующую
         if self.role == "CUSTOMER_RETAIL":
             self.value_material_price = self.material.price_customer_retail
+            self.value_finishing_price = self.finishing.price_customer_retail
         elif self.role == "CUSTOMER_AGENCY":
             self.value_material_price = self.material.price
+            self.finishing = self.finishing.price
         else:
             # Иначе считаем как по CUSTOMER_RETAIL
             self.value_material_price = self.material.price_customer_retail
+
+    def calculate(self):
+        self.__change_role_user()
+        return self.__print_calculator() * self.__finishing_calculator() * self.quantity
 
 
 ''' Принимает:

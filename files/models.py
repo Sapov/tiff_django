@@ -211,7 +211,11 @@ class Product(models.Model):
         # download_file.compress_image(self.material.resolution_print)
         # RENAME IMAGES
         # 0-------------------class
-        raschet = Calculator(self.width, self.length, self.Contractor.role, self.material)
+        image_parameters = Calculator(self.width, self.length, self.Contractor.role, self.material, self.FinishWork,
+                                      self.quantity)
+        self.price = image_parameters.calculate()
+
+        # -----------
         # проверяем по каким ценам считаем по рознице или по агентству
         if self.Contractor.role == "CUSTOMER_RETAIL":
             price = self.material.price_customer_retail
