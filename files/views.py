@@ -319,10 +319,12 @@ def calculator_interior_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
+                last_five_string = UseCalculator.objects.order_by('-id')[:5]
+
                 return render(request, "files/calculator_large.html", {"form": form,
-                                                                          "title": "Калькулятор интерьерной печати",
-                                                                          "results": results,
-                                                                          }, )
+                                                                       "title": "Калькулятор интерьерной печати",
+                                                                       "results": results,
+                                                                       'last_five_string': last_five_string}, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
@@ -331,7 +333,7 @@ def calculator_interior_print_out(request):
         form = CalculatorInterierPrint()
         last_five_string = UseCalculator.objects.order_by('-id')[:5]
         return render(request, "files/calculator_large.html",
-                      {"form": form, "title": "Калькулятор интерьерной печати"})
+                      {"form": form, "title": "Калькулятор интерьерной печати", 'last_five_string': last_five_string})
 
 
 def calculator_uv_print_out(request):
@@ -360,10 +362,13 @@ def calculator_uv_print_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
+                last_five_string = UseCalculator.objects.order_by('-id')[:5]
+
                 return render(request, "files/calculator_large.html", {"form": form,
-                                                                    "title": "Калькулятор UV печати",
-                                                                    "results": results,
-                                                                    },
+                                                                       "title": "Калькулятор UV печати",
+                                                                       "results": results,
+                                                                       'last_five_string': last_five_string
+                                                                       },
                               )
 
             except:
@@ -376,7 +381,7 @@ def calculator_uv_print_out(request):
         return render(
             request,
             "files/calculator_large.html",
-            {"form": form, "title": "Калькулятор UV печати"},
+            {"form": form, "title": "Калькулятор UV печати", 'last_five_string': last_five_string},
         )
 
 
@@ -406,10 +411,13 @@ def calculator_blank_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
+                last_five_string = UseCalculator.objects.order_by('-id')[:5]
+
                 return render(request, "files/calculator_large.html", {"form": form,
-                                                                                "title": "Калькулятор пустого материала",
-                                                                                "results": results,
-                                                                                },
+                                                                       "title": "Калькулятор пустого материала",
+                                                                       "results": results,
+                                                                       'last_five_string': last_five_string
+                                                                       },
                               )
 
             except:
@@ -421,7 +429,7 @@ def calculator_blank_out(request):
         return render(
             request,
             "files/calculator_large.html",
-            {"form": form, "title": "Калькулятор пустого материала"},
+            {"form": form, "title": "Калькулятор пустого материала", 'last_five_string': last_five_string},
         )
 
 
