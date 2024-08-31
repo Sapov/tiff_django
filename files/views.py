@@ -329,6 +329,7 @@ def calculator_interior_print_out(request):
 
     else:
         form = CalculatorInterierPrint()
+        last_five_string = UseCalculator.objects.order_by('-id')[:5]
         return render(request, "files/calculator_large.html",
                       {"form": form, "title": "Калькулятор интерьерной печати"})
 
@@ -370,6 +371,8 @@ def calculator_uv_print_out(request):
 
     else:
         form = CalculatorUVPrint()
+        last_five_string = UseCalculator.objects.order_by('-id')[:5]
+
         return render(
             request,
             "files/calculator_large.html",
@@ -414,6 +417,7 @@ def calculator_blank_out(request):
 
     else:
         form = CalculatorBlankMaterial()
+        last_five_string = UseCalculator.objects.order_by('-id')[:5]
         return render(
             request,
             "files/calculator_large.html",
