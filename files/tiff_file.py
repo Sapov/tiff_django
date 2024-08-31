@@ -289,8 +289,6 @@ class WorkWithFile:
             return text_file_name
 
 
-
-
 class WorkZip:
     def __init__(self, name):
         self.name = name
@@ -325,3 +323,40 @@ class WorkZip:
         for i in lst_files():
             print(i)
             # Product.objects.create(Contractor=request.user, images=i)
+
+
+class Calculator:
+    ''' Класс умеет рассчитывать стоимость печати '''
+
+    def __init__(self, width: int, length: int, role: str):
+        self.role = role
+        self.width = width
+        self.length = length
+
+    def calculator(self):
+        pass
+
+    def change_role_user(self):
+        # проверяем по каким ценам считаем по рознице или по агентству
+        if self.role == "CUSTOMER_RETAIL":
+            price = self.material.price_customer_retail
+        elif self.role == "CUSTOMER_AGENCY":
+            price = self.material.price
+        else:
+            # Иначе считаем как по CUSTOMER_RETAIL
+            price = self.material.price_customer_retail
+        self.price = download_file.price_calculation(self.quantity, price)
+        # Считаем финишку
+        self.price += download_file.finish_wokrs(
+            self.FinishWork.price
+        )  # Добавляю стоимость финишной обработки
+
+
+''' Принимает:
+ 1. Размеры
+ 2. Материал 
+ 3. Роль пользователя
+ 4. Финишную обработку,
+ 5. Количество
+ -- написать калькулятор, написать тесты
+'''
