@@ -403,7 +403,7 @@ def calculator_blank_out(request):
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
                                              results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_blank_material.html", {"form": form,
+                return render(request, "files/calculator_large.html", {"form": form,
                                                                                 "title": "Калькулятор пустого материала",
                                                                                 "results": results,
                                                                                 },
@@ -416,7 +416,7 @@ def calculator_blank_out(request):
         form = CalculatorBlankMaterial()
         return render(
             request,
-            "files/calculator_blank_material.html",
+            "files/calculator_large.html",
             {"form": form, "title": "Калькулятор пустого материала"},
         )
 
