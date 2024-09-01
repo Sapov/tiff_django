@@ -373,9 +373,13 @@ class Calculator(Image):
             self.value_finishing_price = self.finishing.price_customer_retail
 
     def calculate(self):
-        self.dimensions()
         self.__change_role_user()
-        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity,  self.width, self.length
+        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
+
+    def calculate_cost(self):
+        self.value_material_price = self.material.price_contractor
+        self.finishing = self.finishing.price_contractor
+        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
 
 
 ''' Принимает:

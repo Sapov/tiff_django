@@ -213,9 +213,11 @@ class Product(models.Model):
         # 0-------------------class
         image_parameters = Calculator(self.images, self.Contractor.role, self.material, self.FinishWork,
                                       self.quantity)
-        self.price, self.width, self.length = image_parameters.calculate()
-        # -----------
+        self.width, self.length, self.resolution = image_parameters.dimensions()
+        self.price = image_parameters.calculate()
 
+        # -----------
+        self.cost_price = image_parameters.calculate_cost()
         # СЕБЕСТОИМОСТЬ
         # self.cost_price = download_file.price_calculation(
         #     self.quantity, self.material.price_contractor
