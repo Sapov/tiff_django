@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
 from django.urls import reverse
-from .tiff_file import Calculation, check_tiff, WorkWithFile
+from .tiff_file import WorkWithFile, Calculator, Image
 
 import logging
 
@@ -155,60 +155,34 @@ class Product(models.Model):
         verbose_name="ЗАКАЗЧИК!!",
         default=1,
     )
-    material = models.ForeignKey(
-        "Material", on_delete=models.PROTECT, verbose_name="Материал"
-    )
-    quantity = models.IntegerField(
-        default=1, help_text="Введите количество", verbose_name="Количество"
-    )
-    width = models.FloatField(
-        default=0, verbose_name="Ширина", help_text="Указывается в см."
-    )
-    length = models.FloatField(
-        default=0, verbose_name="Длина", help_text="Указывается в см."
-    )
-    resolution = models.IntegerField(
-        default=0,
-        verbose_name="Разрешение",
-        help_text="для баннера 72 dpi, для Пленки 150 dpi",
-    )
-    color_model = models.CharField(
-        max_length=10,
-        default="CMYK",
-        verbose_name="Цветовая модель",
-        help_text="Для корректной печати модель должна быть CMYK",
-    )
+    material = models.ForeignKey("Material", on_delete=models.PROTECT, verbose_name="Материал")
+    quantity = models.IntegerField(default=1, help_text="Введите количество", verbose_name="Количество")
+    width = models.FloatField(default=0, verbose_name="Ширина", help_text="Указывается в см.")
+    length = models.FloatField(default=0, verbose_name="Длина", help_text="Указывается в см.")
+    resolution = models.IntegerField(default=0, verbose_name="Разрешение", help_text="для баннера"
+                                                                                     "72 dpi, для Пленки 150 dpi", )
+    color_model = models.CharField(max_length=10, default="CMYK", verbose_name="Цветовая модель",
+                                   help_text="Для корректной печати модель должна быть CMYK", )
     size = models.FloatField(default=0, verbose_name="Размер в Мб")
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
-    cost_price = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0, blank=True, null=True
-    )
+    cost_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
     images = models.FileField(upload_to="image", verbose_name="Загрузка файла")
-    created_at = models.DateTimeField(
-        auto_now_add=True, verbose_name="Добавлено"
-    )  # date created
-    updated_at = models.DateTimeField(
-        auto_now=True, verbose_name="Изменено"
-    )  # date update
-    FinishWork = models.ForeignKey(
-        "FinishWork",
-        on_delete=models.PROTECT,
-        verbose_name="Финишная обработка",
-        default=1,
-    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
+    FinishWork = models.ForeignKey("FinishWork",
+                                   on_delete=models.PROTECT,
+                                   verbose_name="Финишная обработка",
+                                   default=1,
+                                   )
 
-    in_order = models.BooleanField(
-        verbose_name="Позиция в заказе", default=0, blank=True, null=True
-    )
+    in_order = models.BooleanField(verbose_name="Позиция в заказе", default=0, blank=True, null=True)
     status_product = models.ForeignKey(
         "StatusProduct",
         on_delete=models.PROTECT,
         verbose_name="Статус файла",
         default=1,
     )
-    comments = models.TextField(
-        verbose_name="Комментарии к файлу", blank=True, null=True
-    )
+    comments = models.TextField(verbose_name="Комментарии к файлу", blank=True, null=True)
 
     def __str__(self):
         return f"{self.images}"
@@ -222,47 +196,18 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         """Расчет и запись стоимости баннера"""
+        image_parameters = Image(self.images)
+        self.width, self.length, self.resolution = image_parameters.dimensions()
+        dict_param = {'quantity': self.quantity,
+                      'material': self.material,
+                      'finishing': self.FinishWork,
+                      'length': self.length,
+                      'width': self.width,
+                      'role': self.Contractor.role}
 
-        # Сравниваем размеры с разрешением материала печати
-        # Считаем стоимость печати
-        download_file = WorkWithFile(self.images)  # , self.material.resolution_print
-
-        self.color_model = (
-            download_file.color_mode()
-        )  # Цветовая модель     if request.user.role == "CUSTOMER_RETAIL":
-        pass
-        logger.info(f"Цветовая модель: {self.color_model}")
-        self.width, self.length, self.resolution = download_file.check_tiff()
-        logger.info(f"Разрешение:  {self.resolution}")
-        # RESIZE IMAGE
-        # download_file.check_resolution(self.material.resolution_print)
-        # download_file.compress_image(self.material.resolution_print)
-        # RENAME IMAGES
-
-        # проверяем по каким ценам считаем по рознице или по агентству
-        if self.Contractor.role == "CUSTOMER_RETAIL":
-            price = self.material.price_customer_retail
-        elif self.Contractor.role == "CUSTOMER_AGENCY":
-            price = self.material.price
-        else:
-            # Иначе считаем как по CUSTOMER_RETAIL
-            price = self.material.price_customer_retail
-        self.price = download_file.price_calculation(self.quantity, price)
-        # Считаем финишку
-        self.price += download_file.finish_wokrs(
-            self.FinishWork.price
-        )  # Добавляю стоимость финишной обработки
-
-        # СЕБЕСТОИМОСТЬ
-        self.cost_price = download_file.price_calculation(
-            self.quantity, self.material.price_contractor
-        )
-        logger.info(f"Себестоимость: self.cost_price {self.cost_price}")
-        self.cost_price += download_file.finish_wokrs(
-            self.FinishWork.price_contractor
-        )  # Добавляю стоимость финишной обработки
-        logger.info(f"Себестоимость: с финишкой {self.cost_price}")
-
+        image_price = Calculator(dict_param)
+        self.price = image_price.calculate_price()
+        self.cost_price = image_price.calculate_cost()
         super(Product, self).save(*args, **kwargs)
 
 

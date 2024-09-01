@@ -1,31 +1,16 @@
-# two sum
-
-# def ts(nums, target):
-#     d = {}
-#     for i in range(len(nums)):
-#         if target - nums[i] in d:
-#             return [d[target - nums[i]], i]
-#         d[nums[i]] = i
-#
-#
-# print(ts([2, 7, 8, 6], 9))
-
-from datetime import datetime, timedelta
-
-start = datetime.now()
-# print(f'START {start}')
-# for i in range(1000000):
-#     print(i)
-# print(f'START {start} TYPE {type(start)}')
-# finish = datetime.now() - start
-# print(f'FINISH {finish} TYPE {type(finish)}')
-print(start)
-print(start.strftime('%d %B %Y'))
-format_of_time = start.strftime("%H:%M")
-
-print(format_of_time)
+class A:
+    def __init__(self, cd_dict: dict):
+        # self.quantity = kwargs['quantity']
+        self.material = cd_dict['material']
+        # self.length = args['length']
+        # print(args)
+        print(self.material)
 
 
-clock_in_half_hour = datetime.now() + timedelta(hours=12)
-print(clock_in_half_hour.strftime('%d %B %Y'))
-print(clock_in_half_hour.strftime('%H:%M'))
+cd = {'quantity': 1.0, 'material': '<Material: Баннер 440 грамм ламинированный Широкоформатная печать>',
+      'finishka': '<FinishWork: оставить белые поля по 5 см>', 'length': 0.4, 'width': 2.0}
+cd['test'] = 'test'
+
+ass = A(cd)
+# print(dir(ass))
+# print(ass.__dict__)

@@ -74,9 +74,6 @@ class WorkWithFile:
 
     def __init__(self, image):
         self.file_name = None  # имя файла
-        # self.type_print = type_print  # тип печати
-        # self.lst_tif = lst_tif  # Список тиф файлов
-        # self.material = material
         self.width = None  # Ширина файла
         self.length = None  # Длина файла
         self.resolution = None  # Разрешение файла
@@ -87,21 +84,6 @@ class WorkWithFile:
     def price_calculation(self, quantity, material_price):
         '''Расчитываем прайсовую стоимость печати'''
         return round(self.width / 100 * self.length / 100 * quantity * material_price)
-
-    # def goto_media(foo):
-    #     ''' переходим в папку media/image{data}  и обратно'''
-    #
-    #     def wrapper(*args, **kwargs):
-    #         logger.info(f'[DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
-    #         current_path = os.getcwd()
-    #         os.chdir(
-    #             f'{settings.MEDIA_ROOT}/image/{str(date.today())}')  # перейти в директорию дата должна браться из параметра Order.created
-    #         logger.info(f' [DECORATOR] Мы Выбрали {os.getcwd()}')
-    #         logger.info(f' [DECORATOR] перед архивацией МЫ тут{os.getcwd()}')
-    #         foo(*args, **kwargs)
-    #         os.chdir(current_path)  # перейти обратно
-    #
-    #     return wrapper
 
     @classmethod
     @goto_media
@@ -289,8 +271,6 @@ class WorkWithFile:
             return text_file_name
 
 
-
-
 class WorkZip:
     def __init__(self, name):
         self.name = name
@@ -325,3 +305,91 @@ class WorkZip:
         for i in lst_files():
             print(i)
             # Product.objects.create(Contractor=request.user, images=i)
+
+
+class Image:
+    '''Работа с загруженным файлом'''
+
+    def __init__(self, image):
+        self.image = image
+        self.length = None
+        self.width = None
+        self.resolution = None
+
+    def dimensions(self):
+        '''
+        :param self.image принимает имя файла
+        :return: возращает кортеж (длина, ширина (см) и разрешение файла (dpi)
+        '''
+
+        try:
+            Image_pil.MAX_IMAGE_PIXELS = None
+            with Image_pil.open(self.image) as img:
+                width, length = img.size
+                self.resolution = round(img.info['dpi'][0], 0)
+                self.width = round(2.54 * width / self.resolution, 0) / 100
+                self.length = round(2.54 * length / self.resolution, 0) / 100
+
+        except PIL.UnidentifiedImageError:
+
+            return print('''!!! -- Это ошибка: Не сведенный файл Tiff --- !!!
+    Решение: Photoshop / слои / выполнить сведение''')
+
+        return self.width, self.length, self.resolution
+
+
+class Calculator:
+    ''' Класс умеет рассчитывать стоимость печати по Image '''
+
+    def __init__(self, image_param: dict):
+        self.length = image_param['length']
+        self.width = image_param['width']
+        self.quantity = image_param['quantity']
+        self.value_finishing_price = None
+        self.finishing = image_param['finishing']
+        self.material = image_param['material']
+        self.role = image_param['role']
+        self.value_material_price = None
+        # logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
+        #              f'self.width: {self.width} TYPE {type(self.width)}\n '
+        #              f'self.quantity: {self.quantity} TYPE {type(self.quantity)}'
+        #              f'self.value_finishing_price: {self.value_finishing_price} TYPE {type(self.value_finishing_price)}\n'
+        #              f'self.finishing:{self.finishing} TYPE {type(self.finishing)}\n'
+        #              f'self.material: {self.material} TYPE{type(self.material)}\n'
+        #              f'self.role: {self.role}: TYPE {type(self.role)} ')
+
+    def __print_calculator(self):
+        '''Расчитываем прайсовую стоимость печати'''
+        logger.info(f'[INFO PRINT CALCULATOR ROUND] {round(self.width * self.length * self.value_material_price, -1)}')
+        return round(self.width * self.length * self.value_material_price, -1)
+
+    def __finishing_calculator(self):
+        ''' Считаем стоимость финишной обработки'''
+        return (self.width + self.length) * 2 * self.value_finishing_price  # / 100 приводим к метрам
+
+    def __change_role_user(self):
+        # проверяем роль пользователя и выбираем стоимость ему соответствующую
+        logger.info(f'USER IS: {self.role}')
+        if self.role == "CUSTOMER_RETAIL" or str(self.role) == "AnonymousUser":
+            self.value_material_price = self.material.price_customer_retail
+            self.value_finishing_price = self.finishing.price_customer_retail
+        elif self.role == "CUSTOMER_AGENCY":
+            self.value_material_price = self.material.price
+            self.finishing = self.finishing.price
+        else:
+            # Иначе считаем как по CUSTOMER_RETAIL
+            self.value_material_price = self.material.price_customer_retail
+            self.value_finishing_price = self.finishing.price_customer_retail
+
+    def calculate(self):
+        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
+
+    def calculate_cost(self):
+        # СЕБЕСТОИМОСТЬ
+        self.value_material_price = self.material.price_contractor
+        self.finishing = self.finishing.price_contractor
+        return self.calculate()
+
+    def calculate_price(self):
+        self.__change_role_user()
+        return self.calculate()

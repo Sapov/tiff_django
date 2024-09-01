@@ -12,7 +12,7 @@ from orders.views import stop_count_down
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     UploadArhive,
-    Calculator,
+    CalculatorForm,
     UploadFilesInter,
     UploadFilesLarge,
     UploadFilesUV,
@@ -22,7 +22,7 @@ from .forms import (
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 
-from .tiff_file import WorkZip
+from .tiff_file import WorkZip, Calculator
 from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 
@@ -143,55 +143,35 @@ def upload_arh(request):
 
 
 def calculator(request):
-    if request.POST:
-        form = Calculator(request.POST)
+    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = "Калькулятор широкоформатной печати"
+    template_name = "files/calculator.html"
+
+    if request.method == 'POST':
+        form = CalculatorForm(request.POST)
         if form.is_valid():
-            form = Calculator(request.POST)
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            logger.info(f'[USER ROLE] -> {request.user.role}')
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
+            cd = form.cleaned_data
+            cd['role'] = request.user.role  # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA] {cd}')
+            image_price = Calculator(cd)
+            results = image_price.calculate_price()
+            cd['results'] = results
+            try:
+                add_user_calculator(cd)
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
-            # проверка ретейл или агентство
-            if request.user.role == "CUSTOMER_RETAIL":
-                material_price = materials.price_customer_retail
-                finishka_price = finishkas.price_customer_retail
-            elif request.user.role == "CUSTOMER_AGENCY":
-                material_price = materials.price
-                finishka_price = finishkas.price
-
-        finishka_price = perimetr * finishka_price
-        results = (
-                          float(width) * float(length) * material_price
-                  ) + finishka_price  # в см
-        results = round(results, -1) * int(quantity)
-        if request.user.role == "CUSTOMER_RETAIL":
-            if (
-                    results < 1000
-            ):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-        return render(
-            request,
-            "calculator.html",
-            {
-                "form": form,
-                "title": "Калькулятор печати",
-                "results": results,
-            },
-        )
+            except:
+                form.add_error(None, 'Ошибка расчета')
 
     else:
-        form = Calculator()
-        return render(
-            request,
-            "calculator.html",
-            {"form": form, "title": "Калькулятор печати"},
-        )
+        form = CalculatorForm()
+        return render(request, template_name,
+                      {"form": form, "title": title,
+                       'last_five_string': last_five_string})
 
 
 def page_not_found(request, exception):
@@ -251,174 +231,139 @@ class MaterialViewSet(viewsets.ModelViewSet):
 
 
 def calculator_large_print_out(request):
+    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = "Калькулятор широкоформатной печати"
+    template_name = "files/calculator_large.html"
+
     if request.method == 'POST':
         form = CalculatorLargePrint(request.POST)
         if form.is_valid():
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-            logger.info(f'[request]:{request.POST}')
-            print(form.cleaned_data)
-            material_price = materials.price_customer_retail
-            finishka_price = finishkas.price_customer_retail
-            finishka_price = perimetr * finishka_price
-            results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            results = round(results, -1) * int(quantity)
-            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-
+            cd = form.cleaned_data
+            cd['role'] = request.user  # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA] {cd}')
+            image_price = Calculator(cd)
+            results = image_price.calculate_price()
+            cd['results'] = results
             try:
-                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
-                                             results=results, FinishWork=finishkas)
-                last_five_string = UseCalculator.objects.order_by('-id')[:5]
-                return render(request, "files/calculator_large.html", {"form": form,
-                                                                       "title": "Калькулятор широкоформатной печати",
-                                                                       "results": results,
-                                                                       'last_five_string': last_five_string,
-                                                                       }, )
+                add_user_calculator(cd)
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorLargePrint()
-        last_five_string = UseCalculator.objects.order_by('-id')[:5]
-
-        return render(request, "files/calculator_large.html",
-                      {"form": form, "title": "Калькулятор широкоформатной печати",
+        return render(request, template_name,
+                      {"form": form, "title": title,
                        'last_five_string': last_five_string})
 
 
-def calculator_interier_print_out(request):
+def add_user_calculator(cd):
+    UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
+                                 width=cd['width'], length=cd['length'],
+                                 results=cd['results'], FinishWork=cd['finishing'])
+
+
+def calculator_interior_print(request):
+    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = "Калькулятор Интерьерной печати"
+    template_name = "files/calculator_interior_print.html"
+
     if request.method == 'POST':
         form = CalculatorInterierPrint(request.POST)
         if form.is_valid():
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-            logger.info(f'[request]:{request.POST}')
-            print(form.cleaned_data)
-            material_price = materials.price_customer_retail
-            finishka_price = finishkas.price_customer_retail
-            finishka_price = perimetr * finishka_price
-            results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            results = round(results, -1) * int(quantity)
-            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-
+            cd = form.cleaned_data
+            cd['role'] = request.user  # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA] {cd}')
+            image_price = Calculator(cd)
+            results = image_price.calculate_price()
+            cd['results'] = results
             try:
-                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
-                                             results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_interier.html", {"form": form,
-                                                                          "title": "Калькулятор интерьерной печати",
-                                                                          "results": results,
-                                                                          }, )
+                add_user_calculator(cd)
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorInterierPrint()
-        return render(request, "files/calculator_interier.html",
-                      {"form": form, "title": "Калькулятор интерьерной печати"})
+        return render(request, template_name,
+                      {"form": form, "title": title,
+                       'last_five_string': last_five_string})
 
 
 def calculator_uv_print_out(request):
     """ Калькулятор для УФ печати"""
+    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = 'Калькулятор UV печати'
+    template_name = "files/calculator_uv_print.html"
+
     if request.method == 'POST':
         form = CalculatorUVPrint(request.POST)
         if form.is_valid():
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-            logger.info(f'[request]:{request.POST}')
-            print(form.cleaned_data)
-            material_price = materials.price_customer_retail
-            finishka_price = finishkas.price_customer_retail
-            finishka_price = perimetr * finishka_price
-            results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            results = round(results, -1) * int(quantity)
-            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-
+            cd = form.cleaned_data
+            cd['role'] = request.user  # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA] {cd}')
+            image_price = Calculator(cd)
+            results = image_price.calculate_price()
+            cd['results'] = results
             try:
-                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
-                                             results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_uv.html", {"form": form,
-                                                                    "title": "Калькулятор UV печати",
-                                                                    "results": results,
-                                                                    },
-                              )
+                add_user_calculator(cd)
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorUVPrint()
-        return render(
-            request,
-            "files/calculator_uv.html",
-            {"form": form, "title": "Калькулятор UV печати"},
-        )
+        return render(request, template_name,
+                      {"form": form, "title": title,
+                       'last_five_string': last_five_string})
 
 
 def calculator_blank_out(request):
     """ Калькулятор чистого материала"""
+    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = 'Калькулятор Чистый материал'
+    template_name = "files/calculator_blank_material.html"
+
     if request.method == 'POST':
         form = CalculatorBlankMaterial(request.POST)
         if form.is_valid():
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-            logger.info(f'[request]:{request.POST}')
-            print(form.cleaned_data)
-            material_price = materials.price_customer_retail
-            finishka_price = finishkas.price_customer_retail
-            finishka_price = perimetr * finishka_price
-            results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            results = round(results, -1) * int(quantity)
-            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-
+            cd = form.cleaned_data
+            cd['role'] = request.user  # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA] {cd}')
+            image_price = Calculator(cd)
+            results = image_price.calculate_price()
+            cd['results'] = results
             try:
-                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
-                                             results=results, FinishWork=finishkas)
-                return render(request, "files/calculator_blank_material.html", {"form": form,
-                                                                                "title": "Калькулятор пустого материала",
-                                                                                "results": results,
-                                                                                },
-                              )
+                add_user_calculator(cd)
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorBlankMaterial()
-        return render(
-            request,
-            "files/calculator_blank_material.html",
-            {"form": form, "title": "Калькулятор пустого материала"},
-        )
+        return render(request, template_name,
+                      {"form": form, "title": title,
+                       'last_five_string': last_five_string})
 
 
 class ViewContractorListView(LoginRequiredMixin, ListView):
