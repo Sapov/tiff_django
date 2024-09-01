@@ -362,8 +362,7 @@ class Calculator:
 
     def __print_calculator(self):
         '''Расчитываем прайсовую стоимость печати'''
-        logger.info(f'[INFO PRINT CALCULATOR] {round(self.width * self.length * self.value_material_price)}')
-        logger.info(f'[INFO PRINT CALCULATOR ROUNS] {round(self.width * self.length * self.value_material_price, -1)}')
+        logger.info(f'[INFO PRINT CALCULATOR ROUND] {round(self.width * self.length * self.value_material_price, -1)}')
         return round(self.width * self.length * self.value_material_price, -1)
 
     def __finishing_calculator(self):
@@ -372,11 +371,10 @@ class Calculator:
 
     def __change_role_user(self):
         # проверяем роль пользователя и выбираем стоимость ему соответствующую
-        print('USER IS', self.role)
+        logger.info(f'USER IS: {self.role}')
         if self.role == "CUSTOMER_RETAIL" or str(self.role) == "AnonymousUser":
             self.value_material_price = self.material.price_customer_retail
             self.value_finishing_price = self.finishing.price_customer_retail
-            print('Считаем по цене', self.value_material_price, 'AND', self.value_finishing_price)
         elif self.role == "CUSTOMER_AGENCY":
             self.value_material_price = self.material.price
             self.finishing = self.finishing.price

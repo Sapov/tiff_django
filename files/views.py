@@ -252,11 +252,14 @@ class MaterialViewSet(viewsets.ModelViewSet):
 
 def calculator_large_print_out(request):
     last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = "Калькулятор широкоформатной печати"
+    template_name = "files/calculator_large.html"
+
     if request.method == 'POST':
         form = CalculatorLargePrint(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            cd['role'] = request.user # Хочу передавать словарем
+            cd['role'] = request.user  # Хочу передавать словарем
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
@@ -264,50 +267,40 @@ def calculator_large_print_out(request):
                 UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
                                              width=cd['width'], length=cd['length'],
                                              results=results, FinishWork=cd['finishing'])
-                return render(request, "files/calculator_large.html", {"form": form,
-                                                                       "title": "Калькулятор широкоформатной печати",
-                                                                       "results": results,
-                                                                       'last_five_string': last_five_string,
-                                                                       }, )
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorLargePrint()
-        return render(request, "files/calculator_large.html",
-                      {"form": form, "title": "Калькулятор широкоформатной печати",
+        return render(request, template_name,
+                      {"form": form, "title": title,
                        'last_five_string': last_five_string})
 
 
 def calculator_interior_print(request):
+    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = "Калькулятор Интерьерной печати"
+
     if request.method == 'POST':
         form = CalculatorInterierPrint(request.POST)
         if form.is_valid():
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-            logger.info(f'[request]:{request.POST}')
-            print(form.cleaned_data)
-            material_price = materials.price_customer_retail
-            finishka_price = finishkas.price_customer_retail
-            finishka_price = perimetr * finishka_price
-            results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            results = round(results, -1) * int(quantity)
-            if results < 1000:  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-
+            cd = form.cleaned_data
+            cd['role'] = request.user  # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA] {cd}')
+            image_price = Calculator(cd)
+            results = image_price.calculate_price()
             try:
-                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
-                                             results=results, FinishWork=finishkas)
-                last_five_string = UseCalculator.objects.order_by('-id')[:5]
+                UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
+                                             width=cd['width'], length=cd['length'],
+                                             results=results, FinishWork=cd['finishing'])
                 return render(request, "files/calculator_interior_print.html", {"form": form,
-                                                                                "title": "Калькулятор широкоформатной печати",
+                                                                                "title": title,
                                                                                 "results": results,
                                                                                 'last_five_string': last_five_string,
                                                                                 }, )
@@ -315,11 +308,11 @@ def calculator_interior_print(request):
             except:
                 form.add_error(None, 'Ошибка расчета')
 
-    else:
-        form = CalculatorInterierPrint()
-        last_five_string = UseCalculator.objects.order_by('-id')[:5]
-        return render(request, "files/calculator_interior_print.html",
-                      {"form": form, "title": "Калькулятор интерьерной печати", 'last_five_string': last_five_string})
+        else:
+            form = CalculatorInterierPrint()
+            return render(request, "files/calculator_interior_print.html",
+                          {"form": form, "title": title,
+                           'last_five_string': last_five_string})
 
 
 def calculator_uv_print_out(request):
