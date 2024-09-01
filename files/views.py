@@ -291,6 +291,7 @@ def add_user_calculator(cd):
 def calculator_interior_print(request):
     last_five_string = UseCalculator.objects.order_by('-id')[:5]
     title = "Калькулятор Интерьерной печати"
+    template_name = "files/calculator_interior_print.html"
 
     if request.method == 'POST':
         form = CalculatorInterierPrint(request.POST)
@@ -300,25 +301,23 @@ def calculator_interior_print(request):
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
+            cd['results'] = results
             try:
-                UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
-                                             width=cd['width'], length=cd['length'],
-                                             results=results, FinishWork=cd['finishing'])
-                return render(request, "files/calculator_interior_print.html", {"form": form,
-                                                                                "title": title,
-                                                                                "results": results,
-                                                                                'last_five_string': last_five_string,
-                                                                                }, )
+                add_user_calculator(cd)
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
-        else:
-            form = CalculatorInterierPrint()
-            return render(request, "files/calculator_interior_print.html",
-                          {"form": form, "title": title,
-                           'last_five_string': last_five_string})
-
+    else:
+        form = CalculatorInterierPrint()
+        return render(request, template_name,
+                      {"form": form, "title": title,
+                       'last_five_string': last_five_string})
 
 def calculator_uv_print_out(request):
     """ Калькулятор для УФ печати"""
