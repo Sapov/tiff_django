@@ -263,10 +263,9 @@ def calculator_large_print_out(request):
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
+            cd['results'] = results
             try:
-                UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
-                                             width=cd['width'], length=cd['length'],
-                                             results=results, FinishWork=cd['finishing'])
+                add_user_calculator(cd)
                 return render(request, template_name, {"form": form,
                                                        "title": title,
                                                        "results": results,
@@ -281,6 +280,12 @@ def calculator_large_print_out(request):
         return render(request, template_name,
                       {"form": form, "title": title,
                        'last_five_string': last_five_string})
+
+
+def add_user_calculator(cd):
+    UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
+                                 width=cd['width'], length=cd['length'],
+                                 results=cd['results'], FinishWork=cd['finishing'])
 
 
 def calculator_interior_print(request):
