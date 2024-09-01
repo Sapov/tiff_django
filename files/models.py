@@ -199,7 +199,7 @@ class Product(models.Model):
         image_parameters = Calculator(self.images, self.Contractor.role, self.material, self.FinishWork,
                                       self.quantity)
         self.width, self.length, self.resolution = image_parameters.dimensions()
-        self.price = image_parameters.calculate()
+        self.price = image_parameters.run()
         self.cost_price = image_parameters.calculate_cost()
         super(Product, self).save(*args, **kwargs)
 
