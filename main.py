@@ -1,31 +1,36 @@
-# two sum
+class GenericView:
+    def __init__(self, methods=('GET',)):
+        self.methods = methods
+        if methods == ('PUT', 'POST',):
+            self.methods = ('PUT', 'POST',)
 
-# def ts(nums, target):
-#     d = {}
-#     for i in range(len(nums)):
-#         if target - nums[i] in d:
-#             return [d[target - nums[i]], i]
-#         d[nums[i]] = i
-#
-#
-# print(ts([2, 7, 8, 6], 9))
+    def get(self, request):
+        return ""
 
-from datetime import datetime, timedelta
+    def post(self, request):
+        pass
 
-start = datetime.now()
-# print(f'START {start}')
-# for i in range(1000000):
-#     print(i)
-# print(f'START {start} TYPE {type(start)}')
-# finish = datetime.now() - start
-# print(f'FINISH {finish} TYPE {type(finish)}')
-print(start)
-print(start.strftime('%d %B %Y'))
-format_of_time = start.strftime("%H:%M")
+    def put(self, request):
+        pass
 
-print(format_of_time)
+    def delete(self, request):
+        pass
 
 
-clock_in_half_hour = datetime.now() + timedelta(hours=12)
-print(clock_in_half_hour.strftime('%d %B %Y'))
-print(clock_in_half_hour.strftime('%H:%M'))
+class DetailView(GenericView):
+    def render_request(self, request, method):
+        if method in self.methods:
+            if 'url' in request:
+                return getattr(self, method.lower())(request)
+            else:
+                raise TypeError('request не содержит обязательного ключа url')
+        else:
+            raise TypeError('данный запрос не может быть выполнен')
+
+
+# dv = DetailView()  # по умолчанию methods=('GET',)
+# dv = DetailView(methods=('PUT', 'POST'))
+dv = DetailView()
+html = dv.render_request({'url': 'https://site.ru/home'}, 'GET')  # url: https://site.ru/home
+print(dir(dv))
+print(dv.__dict__)

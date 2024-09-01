@@ -307,17 +307,47 @@ class WorkZip:
             # Product.objects.create(Contractor=request.user, images=i)
 
 
-class Calculator:
+class Image:
+    '''Работа с загруженным файлом'''
+
+    def __init__(self, image):
+        self.image = image
+        self.length = None
+        self.width = None
+        self.resolution = None
+
+    def dimensions(self):
+        '''
+        :param self.image принимает имя файла
+        :return: возращает кортеж (длина, ширина (см) и разрешение файла (dpi)
+        '''
+
+        try:
+            Image_pil.MAX_IMAGE_PIXELS = None
+            with Image_pil.open(self.image) as img:
+                width, length = img.size
+                self.resolution = round(img.info['dpi'][0], 0)
+                self.width = round(2.54 * width / self.resolution, 0)
+                self.length = round(2.54 * length / self.resolution, 0)
+
+        except PIL.UnidentifiedImageError:
+
+            return print('''!!! -- Это ошибка: Не сведенный файл Tif --- !!!
+    Решение: Photoshop / слои / выполнить сведение''')
+
+        return self.width, self.length, self.resolution
+
+
+class Calculator(Image):
     ''' Класс умеет рассчитывать стоимость печати '''
 
-    def __init__(self, width: float, length: float, role: str, material, finishing, quantity: int):
+    def __init__(self, image, role: str, material, finishing, quantity: int):
+        super().__init__(image)
         self.quantity = quantity
         self.value_finishing_price = None
         self.finishing = finishing
         self.material = material
         self.role = role
-        self.width = width
-        self.length = length
         self.value_material_price = None
 
     def __print_calculator(self):
@@ -343,8 +373,9 @@ class Calculator:
             self.value_finishing_price = self.finishing.price_customer_retail
 
     def calculate(self):
+        self.dimensions()
         self.__change_role_user()
-        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
+        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity,  self.width, self.length
 
 
 ''' Принимает:
