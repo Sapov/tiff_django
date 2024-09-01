@@ -51,8 +51,8 @@ class CalculatorLargePrint(forms.Form):
         initial=1, )
     finishka = forms.ModelChoiceField(
         queryset=FinishWork.objects.all(), label="Обработка", initial=True)
-    length = forms.FloatField(max_value=1000, label="Длина в метрах")
-    width = forms.FloatField(max_value=1000, label="Ширина в метрах")
+    length = forms.FloatField(max_value=100, label="Длина в метрах")
+    width = forms.FloatField(max_value=100, label="Ширина в метрах")
 
 
 class CalculatorInterierPrint(forms.Form):
