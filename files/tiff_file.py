@@ -332,7 +332,7 @@ class Image:
 
         except PIL.UnidentifiedImageError:
 
-            return print('''!!! -- Это ошибка: Не сведенный файл Tif --- !!!
+            return print('''!!! -- Это ошибка: Не сведенный файл Tiff --- !!!
     Решение: Photoshop / слои / выполнить сведение''')
 
         return self.width, self.length, self.resolution
@@ -377,16 +377,7 @@ class Calculator(Image):
         return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
 
     def calculate_cost(self):
+        # СЕБЕСТОИМОСТЬ
         self.value_material_price = self.material.price_contractor
         self.finishing = self.finishing.price_contractor
         return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
-
-
-''' Принимает:
- 1. Размеры
- 2. Материал 
- 3. Роль пользователя
- 4. Финишную обработку,
- 5. Количество
- -- написать калькулятор, написать тесты
-'''

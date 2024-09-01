@@ -196,38 +196,11 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         """Расчет и запись стоимости баннера"""
-
-        # Сравниваем размеры с разрешением материала печати
-        # Считаем стоимость печати
-        # download_file = WorkWithFile(self.images)  # , self.material.resolution_print
-        #
-        # self.color_model = (download_file.color_mode())  # Цветовая модель if request.user.role == "CUSTOMER_RETAIL":
-        #
-        # logger.info(f"Цветовая модель: {self.color_model}")
-        # self.width, self.length, self.resolution = download_file.check_tiff()
-        # logger.info(f"Разрешение:  {self.resolution}")
-        # RESIZE IMAGE
-        # download_file.check_resolution(self.material.resolution_print)
-        # download_file.compress_image(self.material.resolution_print)
-        # RENAME IMAGES
-        # 0-------------------class
         image_parameters = Calculator(self.images, self.Contractor.role, self.material, self.FinishWork,
                                       self.quantity)
         self.width, self.length, self.resolution = image_parameters.dimensions()
         self.price = image_parameters.calculate()
-
-        # -----------
         self.cost_price = image_parameters.calculate_cost()
-        # СЕБЕСТОИМОСТЬ
-        # self.cost_price = download_file.price_calculation(
-        #     self.quantity, self.material.price_contractor
-        # )
-        # logger.info(f"Себестоимость: self.cost_price {self.cost_price}")
-        # self.cost_price += download_file.finish_wokrs(
-        #     self.FinishWork.price_contractor
-        # )  # Добавляю стоимость финишной обработки
-        # logger.info(f"Себестоимость: с финишкой {self.cost_price}")
-
         super(Product, self).save(*args, **kwargs)
 
 
