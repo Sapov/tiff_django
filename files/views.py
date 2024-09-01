@@ -12,7 +12,7 @@ from orders.views import stop_count_down
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     UploadArhive,
-    Calculator,
+    CalculatorForm,
     UploadFilesInter,
     UploadFilesLarge,
     UploadFilesUV,
@@ -22,7 +22,7 @@ from .forms import (
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 
-from .tiff_file import WorkZip
+from .tiff_file import WorkZip, Calculator
 from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 
@@ -144,9 +144,9 @@ def upload_arh(request):
 
 def calculator(request):
     if request.POST:
-        form = Calculator(request.POST)
+        form = CalculatorForm(request.POST)
         if form.is_valid():
-            form = Calculator(request.POST)
+            form = CalculatorForm(request.POST)
             length = request.POST["length"]
             width = request.POST["width"]
             quantity = request.POST["quantity"]
@@ -186,7 +186,7 @@ def calculator(request):
         )
 
     else:
-        form = Calculator()
+        form = CalculatorForm()
         return render(
             request,
             "calculator.html",
@@ -263,14 +263,21 @@ def calculator_large_print_out(request):
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length)) * 2
             logger.info(f'[request]:{request.POST}')
-            print(form.cleaned_data)
+            print('CLEAN DATA', form.cleaned_data)
+            print('USER', request.user)
             material_price = materials.price_customer_retail
             finishka_price = finishkas.price_customer_retail
             finishka_price = perimetr * finishka_price
-            results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            results = round(results, -1) * int(quantity)
-            if results < 1000:  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
+            # results = (float(width) * float(length) * material_price) + finishka_price  # в см
+            # results = round(results, -1) * int(quantity)
+
+            image_price = Calculator(float(width), float(length), request.user.role, materials, finishkas, int(quantity))
+            print('image_price', image_price, dir(image_price), )
+            results = image_price.calculate_price()
+            print('RESULTS', results)
+
+            # if results < 1000:  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
+            #     results = 1000
 
             try:
                 UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
@@ -321,10 +328,10 @@ def calculator_interior_print(request):
                                              results=results, FinishWork=finishkas)
                 last_five_string = UseCalculator.objects.order_by('-id')[:5]
                 return render(request, "files/calculator_interior_print.html", {"form": form,
-                                                                       "title": "Калькулятор широкоформатной печати",
-                                                                       "results": results,
-                                                                       'last_five_string': last_five_string,
-                                                                       }, )
+                                                                                "title": "Калькулятор широкоформатной печати",
+                                                                                "results": results,
+                                                                                'last_five_string': last_five_string,
+                                                                                }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')

@@ -198,9 +198,8 @@ class Product(models.Model):
         """Расчет и запись стоимости баннера"""
         image_parameters = Image(self.images)
         self.width, self.length, self.resolution = image_parameters.dimensions()
-
         image_price = Calculator(self.width, self.length, self.Contractor.role, self.material, self.FinishWork,
-                                      self.quantity)
+                                 self.quantity)
         self.price = image_price.calculate_price()
         self.cost_price = image_price.calculate_cost()
         super(Product, self).save(*args, **kwargs)

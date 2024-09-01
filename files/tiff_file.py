@@ -327,8 +327,8 @@ class Image:
             with Image_pil.open(self.image) as img:
                 width, length = img.size
                 self.resolution = round(img.info['dpi'][0], 0)
-                self.width = round(2.54 * width / self.resolution, 0)
-                self.length = round(2.54 * length / self.resolution, 0)
+                self.width = round(2.54 * width / self.resolution, 0) / 100
+                self.length = round(2.54 * length / self.resolution, 0) / 100
 
         except PIL.UnidentifiedImageError:
 
@@ -341,7 +341,7 @@ class Image:
 class Calculator:
     ''' Класс умеет рассчитывать стоимость печати по Image '''
 
-    def __init__(self, width, length, role: str, material, finishing, quantity: int):
+    def __init__(self, width: float, length: float, role: str, material, finishing, quantity: int):
         self.length = length
         self.width = width
         self.quantity = quantity
@@ -350,18 +350,27 @@ class Calculator:
         self.material = material
         self.role = role
         self.value_material_price = None
+        logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
+                     f'self.width: {self.width} TYPE {type(self.width)}\n '
+                     f'self.quantity: {self.quantity} TYPE {type(self.quantity)}'
+                     f'self.value_finishing_price: {self.value_finishing_price} TYPE {type(self.value_finishing_price)}\n'
+                     f'self.finishing:{self.finishing} TYPE {type(self.finishing)}\n'
+                     f'self.material: {self.material} TYPE{type(self.material)}\n'
+                     f'self.role: {self.role}: TYPE {type(self.role)} ')
 
     def __print_calculator(self):
         '''Расчитываем прайсовую стоимость печати'''
-        return round(self.width / 100 * self.length / 100 * self.value_material_price)
+        logger.info(f'[INFO PRINT CALCULATOR] {round(self.width * self.length * self.value_material_price)}')
+        return round(self.width * self.length * self.value_material_price)
 
     def __finishing_calculator(self):
         ''' Считаем стоимость финишной обработки'''
-        return (self.width + self.length) * 2 / 100 * self.value_finishing_price  # / 100 приводим к метрам
+        return (self.width + self.length) * 2 * self.value_finishing_price  # / 100 приводим к метрам
 
     def __change_role_user(self):
         # проверяем роль пользователя и выбираем стоимость ему соответствующую
-        if self.role == "CUSTOMER_RETAIL":
+        print('USER IS', self.role)
+        if self.role == "CUSTOMER_RETAIL" or str(self.role) == "AnonymousUser":
             self.value_material_price = self.material.price_customer_retail
             self.value_finishing_price = self.finishing.price_customer_retail
             print('Считаем по цене', self.value_material_price, 'AND', self.value_finishing_price)
