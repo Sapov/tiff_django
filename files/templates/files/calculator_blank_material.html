@@ -1,0 +1,57 @@
+{% extends 'files/templates_reds.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+
+<h1 style="text-align: center">{{title}}</h1>
+
+
+ <div class="row">
+    <div class="col-12">
+
+<form action="{% url 'files:calculator_blank' %}" method="post">
+{% csrf_token %}
+{{ form|crispy }}
+<button type="submit" class="btn btn-primary">Рассчитать</button>
+</form>
+
+<div > {{form.non_field_errors }}</div>
+    </div>
+    <div class="col-6">
+
+<h2>Сумма заказа: {{results}} руб.</h2>
+
+    </div>
+  </div>
+<h4 style="text-align: center; ">Последние посчитанные заказы</h4>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Материал</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Ширина</th>
+        <th scope="col">Длина</th>
+        <th scope="col">Обработка</th>
+        <th scope="col">Дата:</th>
+        <th scope="col">Стоимость</th>
+    </tr>
+    </thead>
+{% for string in last_five_string %}
+
+    <tbody>
+    <tr>
+        <td>{{ string.material }}</td>
+        <td>{{ string.quantity }} шт.</td>
+        <td> {{ string.width }} м</td>
+        <td> {{ string.length }} м</td>
+        <td> {{ string.FinishWork }} </td>
+        <td> {{ string.created_at }}</td>
+        <td> {{ string.results }} руб. </td>
+
+    </tr>
+
+    {% endfor %}
+
+
+{% endblock %}
