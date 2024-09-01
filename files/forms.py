@@ -34,7 +34,7 @@ class CalculatorForm(forms.Form):
         help_text="Выберите материал",
         initial=1,
     )
-    finishka = forms.ModelChoiceField(
+    finishing = forms.ModelChoiceField(
         queryset=FinishWork.objects.all(), label="Обработка", initial=True
     )
     length = forms.FloatField(max_value=100, label="Длина в метрах")

@@ -143,55 +143,35 @@ def upload_arh(request):
 
 
 def calculator(request):
-    if request.POST:
+    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = "Калькулятор широкоформатной печати"
+    template_name = "files/calculator.html"
+
+    if request.method == 'POST':
         form = CalculatorForm(request.POST)
         if form.is_valid():
-            form = CalculatorForm(request.POST)
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            logger.info(f'[USER ROLE] -> {request.user.role}')
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
+            cd = form.cleaned_data
+            cd['role'] = request.user.role  # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA] {cd}')
+            image_price = Calculator(cd)
+            results = image_price.calculate_price()
+            cd['results'] = results
+            try:
+                add_user_calculator(cd)
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
-            # проверка ретейл или агентство
-            if request.user.role == "CUSTOMER_RETAIL":
-                material_price = materials.price_customer_retail
-                finishka_price = finishkas.price_customer_retail
-            elif request.user.role == "CUSTOMER_AGENCY":
-                material_price = materials.price
-                finishka_price = finishkas.price
-
-        finishka_price = perimetr * finishka_price
-        results = (
-                          float(width) * float(length) * material_price
-                  ) + finishka_price  # в см
-        results = round(results, -1) * int(quantity)
-        if request.user.role == "CUSTOMER_RETAIL":
-            if (
-                    results < 1000
-            ):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-        return render(
-            request,
-            "calculator.html",
-            {
-                "form": form,
-                "title": "Калькулятор печати",
-                "results": results,
-            },
-        )
+            except:
+                form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorForm()
-        return render(
-            request,
-            "calculator.html",
-            {"form": form, "title": "Калькулятор печати"},
-        )
+        return render(request, template_name,
+                      {"form": form, "title": title,
+                       'last_five_string': last_five_string})
 
 
 def page_not_found(request, exception):
