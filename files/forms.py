@@ -49,7 +49,7 @@ class CalculatorLargePrint(forms.Form):
         label="Материал для печати",
         help_text="Выберите материал",
         initial=1, )
-    finishka = forms.ModelChoiceField(
+    finishing = forms.ModelChoiceField(
         queryset=FinishWork.objects.all(), label="Обработка", initial=True)
     length = forms.FloatField(max_value=100, label="Длина в метрах")
     width = forms.FloatField(max_value=100, label="Ширина в метрах")

@@ -255,28 +255,15 @@ def calculator_large_print_out(request):
     if request.method == 'POST':
         form = CalculatorLargePrint(request.POST)
         if form.is_valid():
-            # length = request.POST["length"]
-            # width = request.POST["width"]
-            # quantity = request.POST["quantity"]
-            # material = request.POST["material"]
-            # finishka = request.POST["finishka"]
-            # materials = Material.objects.get(id=material)
-            # finishkas = FinishWork.objects.get(id=finishka)
-            # perimetr = (float(width) + float(length)) * 2
-            # logger.info(f'[request]:{request.POST}')
             cd = form.cleaned_data
-            print('CLEAN DATA', form.cleaned_data)
-            image_price = Calculator(width=cd['width'], length=cd['length'], role=request.user, material=cd['material'],
-                                     finishing=cd['finishka'], quantity=int(cd['quantity']))
+            cd['role'] = request.user # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA]', cd)
+            image_price = Calculator(cd)
             results = image_price.calculate_price()
-
-            # if results < 1000:  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-            #     results = 1000
-
             try:
                 UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
                                              width=cd['width'], length=cd['length'],
-                                             results=results, FinishWork=cd['finishka'])
+                                             results=results, FinishWork=cd['finishing'])
                 return render(request, "files/calculator_large.html", {"form": form,
                                                                        "title": "Калькулятор широкоформатной печати",
                                                                        "results": results,
@@ -288,7 +275,6 @@ def calculator_large_print_out(request):
 
     else:
         form = CalculatorLargePrint()
-
         return render(request, "files/calculator_large.html",
                       {"form": form, "title": "Калькулятор широкоформатной печати",
                        'last_five_string': last_five_string})

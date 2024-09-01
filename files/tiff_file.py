@@ -341,14 +341,16 @@ class Image:
 class Calculator:
     ''' Класс умеет рассчитывать стоимость печати по Image '''
 
-    def __init__(self, width: float, length: float, role: str, material, finishing, quantity: int):
-        self.length = length
-        self.width = width
-        self.quantity = quantity
+    # def __init__(self, width: float, length: float, role: str, material, finishing, quantity: int):
+    def __init__(self, image_param: dict):
+        # self.length = length
+        self.length = image_param['length']
+        self.width = image_param['width']
+        self.quantity = image_param['quantity']
         self.value_finishing_price = None
-        self.finishing = finishing
-        self.material = material
-        self.role = role
+        self.finishing = image_param['finishing']
+        self.material = image_param['material']
+        self.role = image_param['role']
         self.value_material_price = None
         logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
                      f'self.width: {self.width} TYPE {type(self.width)}\n '

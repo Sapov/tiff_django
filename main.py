@@ -1,36 +1,16 @@
-class GenericView:
-    def __init__(self, methods=('GET',)):
-        self.methods = methods
-        if methods == ('PUT', 'POST',):
-            self.methods = ('PUT', 'POST',)
-
-    def get(self, request):
-        return ""
-
-    def post(self, request):
-        pass
-
-    def put(self, request):
-        pass
-
-    def delete(self, request):
-        pass
+class A:
+    def __init__(self, cd_dict: dict):
+        # self.quantity = kwargs['quantity']
+        self.material = cd_dict['material']
+        # self.length = args['length']
+        # print(args)
+        print(self.material)
 
 
-class DetailView(GenericView):
-    def render_request(self, request, method):
-        if method in self.methods:
-            if 'url' in request:
-                return getattr(self, method.lower())(request)
-            else:
-                raise TypeError('request не содержит обязательного ключа url')
-        else:
-            raise TypeError('данный запрос не может быть выполнен')
+cd = {'quantity': 1.0, 'material': '<Material: Баннер 440 грамм ламинированный Широкоформатная печать>',
+      'finishka': '<FinishWork: оставить белые поля по 5 см>', 'length': 0.4, 'width': 2.0}
+cd['test'] = 'test'
 
-
-# dv = DetailView()  # по умолчанию methods=('GET',)
-# dv = DetailView(methods=('PUT', 'POST'))
-dv = DetailView()
-html = dv.render_request({'url': 'https://site.ru/home'}, 'GET')  # url: https://site.ru/home
-print(dir(dv))
-print(dv.__dict__)
+ass = A(cd)
+# print(dir(ass))
+# print(ass.__dict__)
