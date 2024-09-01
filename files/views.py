@@ -319,53 +319,38 @@ def calculator_interior_print(request):
                       {"form": form, "title": title,
                        'last_five_string': last_five_string})
 
+
 def calculator_uv_print_out(request):
     """ Калькулятор для УФ печати"""
+    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    title = 'Калькулятор UV печати'
+    template_name = "files/calculator_uv_print.html"
+
     if request.method == 'POST':
         form = CalculatorUVPrint(request.POST)
         if form.is_valid():
-            length = request.POST["length"]
-            width = request.POST["width"]
-            quantity = request.POST["quantity"]
-            material = request.POST["material"]
-            finishka = request.POST["finishka"]
-            materials = Material.objects.get(id=material)
-            finishkas = FinishWork.objects.get(id=finishka)
-            perimetr = (float(width) + float(length)) * 2
-            logger.info(f'[request]:{request.POST}')
-            print(form.cleaned_data)
-            material_price = materials.price_customer_retail
-            finishka_price = finishkas.price_customer_retail
-            finishka_price = perimetr * finishka_price
-            results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            results = round(results, -1) * int(quantity)
-            if (results < 1000):  # если сумма получилась менее 1000 руб. округляю до 1000 руб.
-                results = 1000
-
+            cd = form.cleaned_data
+            cd['role'] = request.user  # Хочу передавать словарем
+            logger.info(f'[INFO CLEAN DATA] {cd}')
+            image_price = Calculator(cd)
+            results = image_price.calculate_price()
+            cd['results'] = results
             try:
-                UseCalculator.objects.create(material=materials, quantity=quantity, width=width, length=length,
-                                             results=results, FinishWork=finishkas)
-                last_five_string = UseCalculator.objects.order_by('-id')[:5]
-
-                return render(request, "files/calculator_large.html", {"form": form,
-                                                                       "title": "Калькулятор UV печати",
-                                                                       "results": results,
-                                                                       'last_five_string': last_five_string
-                                                                       },
-                              )
+                add_user_calculator(cd)
+                return render(request, template_name, {"form": form,
+                                                       "title": title,
+                                                       "results": results,
+                                                       'last_five_string': last_five_string,
+                                                       }, )
 
             except:
                 form.add_error(None, 'Ошибка расчета')
 
     else:
         form = CalculatorUVPrint()
-        last_five_string = UseCalculator.objects.order_by('-id')[:5]
-
-        return render(
-            request,
-            "files/calculator_large.html",
-            {"form": form, "title": "Калькулятор UV печати", 'last_five_string': last_five_string},
-        )
+        return render(request, template_name,
+                      {"form": form, "title": title,
+                       'last_five_string': last_five_string})
 
 
 def calculator_blank_out(request):
