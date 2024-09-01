@@ -338,11 +338,12 @@ class Image:
         return self.width, self.length, self.resolution
 
 
-class Calculator(Image):
-    ''' Класс умеет рассчитывать стоимость печати '''
+class Calculator:
+    ''' Класс умеет рассчитывать стоимость печати по Image '''
 
-    def __init__(self, image, role: str, material, finishing, quantity: int):
-        super().__init__(image)
+    def __init__(self, width, length, role: str, material, finishing, quantity: int):
+        self.length = length
+        self.width = width
         self.quantity = quantity
         self.value_finishing_price = None
         self.finishing = finishing

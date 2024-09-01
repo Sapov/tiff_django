@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
 from django.urls import reverse
-from .tiff_file import check_tiff, WorkWithFile, Calculator
+from .tiff_file import check_tiff, WorkWithFile, Calculator, Image
 
 import logging
 
@@ -196,11 +196,13 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         """Расчет и запись стоимости баннера"""
-        image_parameters = Calculator(self.images, self.Contractor.role, self.material, self.FinishWork,
-                                      self.quantity)
+        image_parameters = Image(self.images)
         self.width, self.length, self.resolution = image_parameters.dimensions()
-        self.price = image_parameters.calculate_price()
-        self.cost_price = image_parameters.calculate_cost()
+
+        image_price = Calculator(self.width, self.length, self.Contractor.role, self.material, self.FinishWork,
+                                      self.quantity)
+        self.price = image_price.calculate_price()
+        self.cost_price = image_price.calculate_cost()
         super(Product, self).save(*args, **kwargs)
 
 
