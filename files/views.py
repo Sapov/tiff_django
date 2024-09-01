@@ -263,13 +263,9 @@ def calculator_large_print_out(request):
             finishkas = FinishWork.objects.get(id=finishka)
             perimetr = (float(width) + float(length)) * 2
             logger.info(f'[request]:{request.POST}')
+
             print('CLEAN DATA', form.cleaned_data)
             print('USER', request.user)
-            material_price = materials.price_customer_retail
-            finishka_price = finishkas.price_customer_retail
-            finishka_price = perimetr * finishka_price
-            # results = (float(width) * float(length) * material_price) + finishka_price  # в см
-            # results = round(results, -1) * int(quantity)
 
             image_price = Calculator(float(width), float(length), request.user.role, materials, finishkas, int(quantity))
             print('image_price', image_price, dir(image_price), )
