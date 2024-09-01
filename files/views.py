@@ -356,9 +356,8 @@ def calculator_uv_print_out(request):
 def calculator_blank_out(request):
     """ Калькулятор чистого материала"""
     last_five_string = UseCalculator.objects.order_by('-id')[:5]
-    title = 'Калькулятор UV печати'
-    template_name = "files/calculator_uv_print.html"
-
+    title = 'Калькулятор Чистый материал'
+    template_name = "files/calculator_blank_material.html"
 
     if request.method == 'POST':
         form = CalculatorBlankMaterial(request.POST)
