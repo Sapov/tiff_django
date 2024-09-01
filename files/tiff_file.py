@@ -381,6 +381,6 @@ class Calculator(Image):
         self.finishing = self.finishing.price_contractor
         return self.calculate()
 
-    def run(self):
+    def calculate_price(self):
         self.__change_role_user()
         return self.calculate()
