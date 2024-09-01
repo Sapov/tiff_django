@@ -371,7 +371,7 @@ class Calculator:
     def __change_role_user(self):
         # проверяем роль пользователя и выбираем стоимость ему соответствующую
         print('USER IS', self.role)
-        if self.role == "CUSTOMER_RETAIL" or str(self.role) == "ANONYMOUS":
+        if self.role == "CUSTOMER_RETAIL" or str(self.role) == "AnonymousUser":
             self.value_material_price = self.material.price_customer_retail
             self.value_finishing_price = self.finishing.price_customer_retail
             print('Считаем по цене', self.value_material_price, 'AND', self.value_finishing_price)
