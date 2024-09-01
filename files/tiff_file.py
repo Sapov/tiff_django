@@ -383,4 +383,4 @@ class Calculator(Image):
 
     def run(self):
         self.__change_role_user()
-        self.calculate()
+        return self.calculate()
