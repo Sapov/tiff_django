@@ -33,10 +33,10 @@ class CalculatorLargePrintFormTest(TestCase):
         self.assertTrue(
             form.fields['material'].help_text == None or form.fields['material'].help_text == 'Выберите материал')
 
-    def test_CalculatorLargePrint_form_field_label_finishka(self):
+    def test_CalculatorLargePrint_form_field_label_finishing(self):
         form = CalculatorLargePrint()
         self.assertTrue(
-            form.fields['finishka'].label == None or form.fields['finishka'].label == 'Обработка')
+            form.fields['finishing'].label == None or form.fields['finishing'].label == 'Обработка')
 
     def test_CalculatorLargePrint_form_field_label_length(self):
         form = CalculatorLargePrint()

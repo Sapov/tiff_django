@@ -370,14 +370,10 @@ class Calculator:
     def __change_role_user(self):
         # проверяем роль пользователя и выбираем стоимость ему соответствующую
         logger.info(f'USER IS: {self.role}')
-        if self.role == "CUSTOMER_RETAIL" or str(self.role) == "AnonymousUser":
-            self.value_material_price = self.material.price_customer_retail
-            self.value_finishing_price = self.finishing.price_customer_retail
-        elif self.role == "CUSTOMER_AGENCY":
-            self.value_material_price = self.material.price
+        if self.role == "CUSTOMER_AGENCY":
             self.finishing = self.finishing.price
+            self.value_material_price = self.material.price
         else:
-            # Иначе считаем как по CUSTOMER_RETAIL
             self.value_material_price = self.material.price_customer_retail
             self.value_finishing_price = self.finishing.price_customer_retail
 
@@ -390,6 +386,14 @@ class Calculator:
         self.finishing = self.finishing.price_contractor
         return self.calculate()
 
+    def check_result(self):
+        if self.role == "CUSTOMER_AGENCY":
+            self.calculate()
+        else:
+            if self.calculate() < 1000:
+                return 1000
+            return self.calculate()
+
     def calculate_price(self):
         self.__change_role_user()
-        return self.calculate()
+        return self.check_result()
