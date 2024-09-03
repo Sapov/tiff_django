@@ -1,16 +1,54 @@
-class A:
-    def __init__(self, cd_dict: dict):
-        # self.quantity = kwargs['quantity']
-        self.material = cd_dict['material']
-        # self.length = args['length']
-        # print(args)
-        print(self.material)
+from string import digits, ascii_lowercase
 
 
-cd = {'quantity': 1.0, 'material': '<Material: Баннер 440 грамм ламинированный Широкоформатная печать>',
-      'finishka': '<FinishWork: оставить белые поля по 5 см>', 'length': 0.4, 'width': 2.0}
-cd['test'] = 'test'
+class TextInput:
+    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + ascii_lowercase
+    CHARS_CORRECT = CHARS + CHARS.upper() + digits
 
-ass = A(cd)
-# print(dir(ass))
-# print(ass.__dict__)
+    def __init__(self, name: str, size: int = 10):
+        self.check_name(name)
+        self.size = size
+        self.name = name
+
+    @classmethod
+    def check_name(cls, name):
+        if type(name) != str or len(name) < 3 or len(name) > 50:
+            ValueError("некорректное поле name")
+        if not set(name) < set(cls.CHARS_CORRECT):
+            ValueError("некорректное поле name")
+
+    def get_html(self):
+        return f"<p class='login'>{self.name}: <input type='text' size={self.size} />"
+
+
+class PasswordInput:
+    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + ascii_lowercase
+    CHARS_CORRECT = CHARS + CHARS.upper() + digits
+
+    def __init__(self, name: str, size: int = 10):
+        self.check_name(name)
+        self.size = size
+        self.name = name
+
+    def get_html(self):
+        return f"<p class='password'>{self.name}: <input type='text' size={self.size} />"
+
+    @classmethod
+    def check_name(cls, name):
+        if type(name) != str or len(name) < 3 or len(name) > 50:
+            ValueError("некорректное поле name")
+        if not set(name) < set(cls.CHARS_CORRECT):
+            ValueError("некорректное поле name")
+
+
+class FormLogin:
+    def __init__(self, lgn, psw):
+        self.login = lgn
+        self.password = psw
+
+    def render_template(self):
+        return "\n".join(['<form action="#">', self.login.get_html(), self.password.get_html(), '</form>'])
+
+
+login = FormLogin(TextInput("Логин"), PasswordInput("Пароль"))
+html = login.render_template()
