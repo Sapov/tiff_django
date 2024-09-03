@@ -95,7 +95,7 @@ class Command(BaseCommand):
             print(type_delivery)
             Delivery.objects.get_or_create(type_delivery=type_delivery[0])
 
-        self.add_intervals_for_celery_beat()
+        # self.add_intervals_for_celery_beat()
 
     def add_intervals_for_celery_beat(self):
         print('[INFO] Добавляем интервалы для Celery beat')
