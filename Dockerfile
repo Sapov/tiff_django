@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-c"]
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-
+EXPOSE 8000
 RUN pip install --upgrade pip
 
 RUN apt update && apt -qy install gcc gettext cron openssh-client locales vim
