@@ -55,5 +55,17 @@
 
 
 class Server:
+    def __init__(self):
+        self.IP = self.generate_ip()
+
+    @classmethod
+    def generate_ip(cls):
+        return ip += 1
+
+
+class Router:
     pass
 
+
+class DataL
+    pass
