@@ -269,7 +269,7 @@ class UtilsModel:
                 file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
                 material_txt = f"Материал для печати: {file.material}"
                 quantity_print = f"Количество: {file.quantity} шт."
-                length_width = f"Ширина: {file.width} см\nДлина: {file.length} см\nРазрешение: {file.resolution} dpi"
+                length_width = f"Ширина: {file.width} м\nДлина: {file.length} м\nРазрешение: {file.resolution} dpi"
                 color_model = f"Цветовая модель: {file.color_model}"
                 size = f"Размер: {file.size} Мб"
                 square = f"Площадь: {(file.length * file.width) / 10000} м2"
