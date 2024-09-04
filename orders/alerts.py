@@ -2,7 +2,6 @@ import json
 from datetime import date, datetime
 import datetime
 
-
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import timezone
@@ -24,7 +23,7 @@ class Alerts:
         order = Order.objects.get(id=self.order_id)
         self.__generate_link_to_completed()
         data = {
-            "data_order_complete": order.date_complete,
+            "data_order_complete": order.date_complete - datetime.timedelta(hours=24),  # Типог-я отдает на сутки раньше
             "confirm_status_complete": self.confirm_link_to_completed,
             "order_id": self.order_id,
         }
@@ -56,5 +55,5 @@ class Alerts:
             # interval=IntervalSchedule.objects.get(every=2, period='minutes'),
             args=json.dumps([order_id, domain]),
             # start_time=Orders.date_complete - datetime.timedelta(hours=3),  # за три часа до дедлайна пишем письма
-            start_time=timezone.now() + datetime.timedelta(minutes=3),  # за три часа до дедлайна пишем письма
+            start_time=timezone.now() + datetime.timedelta(hours=21),  # за три часа до дедлайна пишем письма
         )
