@@ -86,8 +86,8 @@ class TestModelsFinishWork(TestCase):
     def test_null_customer_retail(self):
         work = FinishWork.objects.get(id=1)
         expected_bool = work._meta.get_field('price_customer_retail').null
-        # self.assertEqual(expected_bool, True)
-        self.assertTrue(expected_bool)
+        self.assertEqual(expected_bool, True)
+        # self.assertTrue(expected_bool)
 
     def test_fields_is_active(self):
         work = FinishWork.objects.get(id=1)
@@ -292,63 +292,65 @@ class TestModelsMaterial(TestCase):
 
         self.assertEqual(Material._meta.verbose_name_plural, 'Материалы для печати')
 
-# class TestModelsUseCalculator(TestCase):
-#     """Тесты для модели UseCalculator"""
-#
-#     @classmethod
-#     def setUpTestData(cls):
-#         """Заносит данные в БД перед запуском тестов класса"""
-#         Material.objects.create(name='Баннер 440 грамм ламинированный',  # type_print='Интерьерная печать',
-#                                 price_contractor=200, price=400, resolution_print=100)
-#         fw = FinishWork.objects.create(id=1)
-#
-#         UseCalculator.objects.create(material=Material.objects.get(id=1),
-#                                      quantity=2, width=2, length=3, results=3800,
-#
-#                                      FinishWork=FinishWork.objects.get(id=1), )
-#
-#         # created_at = 2004/01/01
-#
-#     def test_material_label(self):
-#         '''Получение метаданных поля для получения необходимых значений'''
-#         item = UseCalculator.objects.get(id=1)
-#         field_label = item._meta.get_field('material').verbose_name
-#         expected_verbose_name = 'Материал'
-#         self.assertEquals(field_label, expected_verbose_name)
 
-# def test_quantity_label(self):
-#     '''Получение метаданных поля для получения необходимых значений'''
-#     item = UseCalculator.objects.get(id=1)
-#     field_label = item._meta.get_field('quantity').verbose_name
-#     expected_verbose_name = 'Количество'
-#     self.assertEquals(field_label, expected_verbose_name)
-#     #
-# def test_max_length_type_print(self):
-#     type_print = TypePrint.objects.get(id=1)  # Получение объекта для тестирования
-#     max_length = type_print._meta.get_field(
-#         'type_print').max_length  # Получение метаданных поля для получения необходимых значений
-#     self.assertEquals(max_length, 128)  # Сравнить значение с ожидаемым результатом
-#
-# def test_fields_info_type_print(self):
-#     type_print = TypePrint.objects.get(id=1)
-#     # Получение метаданных поля для получения необходимых значений
-#     field_label = type_print._meta.get_field('info_type_print').verbose_name
-#     expected_verbose_name = 'Описание метода печати'
-#     self.assertEquals(field_label, expected_verbose_name)
-#
-# def test_string_representation_TypePrint(self):
-#     """Тест строкового отображения __str__"""
-#     type_print = TypePrint.objects.get(id=1)  # Получение объекта для тестирования
-#     # expected_object_name = '%s, %s, %s' % (work.work, work.price_contractor, work.price)
-#     expected_object_name = f'{type_print.type_print}'
-#     self.assertEquals(expected_object_name, str(type_print))
-#
-# def test_model_verbose_name_TypePrint(self):
-#     """Тест поля verbose_name модели FinishWork"""
-#
-#     self.assertEqual(TypePrint._meta.verbose_name, 'Тип печати')
-#
-# def test_model_verbose_name_plural_TypePrint(self):
-#     """Тест поля verbose_name_plural модели TriFinishWorkal"""
-#
-#     self.assertEqual(TypePrint._meta.verbose_name_plural, 'Типы печати')
+class TestModelsUseCalculator(TestCase):
+    """Тесты для модели UseCalculator"""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Заносит данные в БД перед запуском тестов класса"""
+        Material.objects.create(name='Баннер 440 грамм ламинированный',  # type_print='Интерьерная печать',
+                                price_contractor=200, price=400, resolution_print=100)
+        fw = FinishWork.objects.create(work='Порезка', price_contractor=50, price=100, price_customer_retail=200,
+                                       is_active=True)
+
+        UseCalculator.objects.create(material=Material.objects.get(id=1),
+                                     quantity=2, width=2, length=3, results=3800,
+                                     FinishWork=FinishWork.objects.get(id=1), )
+
+        # created_at = 2004/01/01
+
+    def test_material_label(self):
+        '''Получение метаданных поля для получения необходимых значений'''
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('material').verbose_name
+        expected_verbose_name = 'Материал'
+        self.assertEquals(field_label, expected_verbose_name)
+
+    def test_quantity_label(self):
+        '''Получение метаданных поля для получения необходимых значений'''
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('quantity').verbose_name
+        expected_verbose_name = 'Количество'
+        self.assertEquals(field_label, expected_verbose_name)
+
+    def test_quantity_help_text(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('quantity').help_text
+        expected_help_text = 'Введите количество'
+        self.assertEqual(field_label, expected_help_text)
+
+    def test_quantity_default(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('quantity').default
+        expected_default = 1
+        self.assertEqual(field_label, expected_default)
+
+    def test_width_label(self):
+        '''Получение метаданных поля для получения необходимых значений'''
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('width').verbose_name
+        expected_verbose_name = 'Ширина'
+        self.assertEquals(field_label, expected_verbose_name)
+
+    def test_width_help_text(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('width').help_text
+        expected_help_text = 'Указывается в см.'
+        self.assertEqual(field_label, expected_help_text)
+
+    def test_width_default(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('width').default
+        expected_default = 0
+        self.assertEqual(field_label, expected_default)
