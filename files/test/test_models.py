@@ -374,7 +374,6 @@ class TestModelsUseCalculator(TestCase):
         expected_default = 0
         self.assertEqual(field_label, expected_default)
 
-
     def test_results_label(self):
         '''Получение метаданных поля для получения необходимых значений'''
         item = UseCalculator.objects.get(id=1)
@@ -405,3 +404,39 @@ class TestModelsUseCalculator(TestCase):
         field_label = item._meta.get_field('results').blank
         expected_blank = True
         self.assertEqual(field_label, expected_blank)
+
+    def test_Finishwork_verbose_name(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('FinishWork').verbose_name
+        expected_verbose_name = 'Финишная обработка'
+        self.assertEqual(field_label, expected_verbose_name)
+
+    def test_Finishwork_default(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('FinishWork').default
+        expected_decimal_places = 1
+        self.assertEqual(field_label, expected_decimal_places)
+
+    def test_fild_created_at(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('created_at').verbose_name
+        expected_verbose_name = 'Добавлено'
+        self.assertEqual(field_label, expected_verbose_name)
+
+    def test_model_verbose_name(self):
+        """Тест поля verbose_name модели UseCalculator"""
+        self.assertEqual(UseCalculator._meta.verbose_name, 'Расчет клиентов сайта')
+
+    def test_model_verbose_name_plural(self):
+        """Тест поля verbose_name_plural модели UseCalculator"""
+        self.assertEqual(UseCalculator._meta.verbose_name_plural, 'Расчеты клиентов сайта')
+
+    def test_string_representation(self):
+        """Тест строкового отображения"""
+        work = UseCalculator.objects.get(id=1)  # Получение объекта для тестирования
+        # expected_object_name = '%s, %s, %s' % (work.work, work.price_contractor, work.price)
+        expected_object_name = (f'Дата: {str(work.created_at)[:16]} /{str(work.material)[:10]}/ '
+                                f'Кол-во: {work.quantity}шт./Размер: {work.width}x{work.length}м./Стоимость: '
+                                f'{work.results} руб.')
+
+        self.assertEquals(expected_object_name, str(work))
