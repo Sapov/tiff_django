@@ -272,7 +272,7 @@ class UtilsModel:
                 length_width = f"Ширина: {file.width} м\nДлина: {file.length} м\nРазрешение: {file.resolution} dpi"
                 color_model = f"Цветовая модель: {file.color_model}"
                 size = f"Размер: {file.size} Мб"
-                square = f"Площадь: {(file.length * file.width) / 10000} м2"
+                square = f"Площадь: {(file.length * file.width)} м2"
                 finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
                 comments = f"Комментарии к файлу: {file.comments}"
                 self.order_list.append(file_name)
@@ -326,7 +326,7 @@ class UtilsModel:
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
 
                 logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
-                new_name_file = (f"{file.quantity}_шт_{int(file.width)}x{int(file.length)}_"
+                new_name_file = (f"{file.quantity}_шт_{float(file.width)}x{float(file.length)}_"
                                  f"{'_'.join(str(file.material).split())}_"
                                  f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
                 logger.info(f'[new Name] {new_name_file}')
