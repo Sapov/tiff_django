@@ -15,7 +15,6 @@ class AccountURLTests(TestCase):
         self.authorized_client = Client()
         self.authorized_client.force_login(self.user)
 
-
         self.organisation = Organisation.objects.create(
             Contractor=self.user,
             name_ul='Test Company',
@@ -34,6 +33,7 @@ class AccountURLTests(TestCase):
 
         response = self.authorized_client.get('/account/add_organisation/')
         self.assertEqual(response.status_code, 200)
+
 
 class TestAccount(TestCase):
     def test_add_organisation(self):
@@ -61,7 +61,6 @@ class TestModelProfile(TestCase):
         Profile.objects.create(
             user=User.objects.create(username='vasa'),
             organisation=Organisation.objects.create(id=1),
-
         )
 
     def test_telegram_length(self):

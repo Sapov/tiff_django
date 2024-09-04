@@ -18,12 +18,11 @@ class ProfileTemplatesTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/profile_list.html')
 
-    # def test_edit_profile(self):
+        # def test_edit_profile(self):
         '''Тест редактрование профиля НУЖНО СНАЧАЛА СОЗДАТЬ ПРОФИЛЬ'''
         # Нужно сначала добавить профиль
         # response = self.authorized_client.get('/account/edit/')
         # self.assertEqual(response.status_code, 200)
-
 
 
 class AccountTemplatesDeliveryAddressTests(TestCase):

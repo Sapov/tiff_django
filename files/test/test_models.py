@@ -1,4 +1,4 @@
-from files.models import FinishWork, TypePrint, Material, UseCalculator
+from files.models import FinishWork, TypePrint, Material, UseCalculator, Contractor
 from django.test import TestCase
 from django.urls import reverse
 
@@ -117,6 +117,30 @@ class TestModelsFinishWork(TestCase):
         self.assertEqual(FinishWork._meta.verbose_name_plural, 'Финишные обработки')
 
 
+class TestModelContractor(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        Contractor.objects.create(name='Рога и Копыта',
+                                  description='Спекулянты',
+                                  email_contractor='roga@copita.ru',
+                                  phone_contractor='123',
+                                  phone_contractor_2='234',
+                                  address='г. Тамбов',
+                                  contact_contractor='Петька')
+
+    def test_name_label(self):
+        item = Contractor.objects.get(id=1)
+        field_label = item._meta.get_field('name').verbose_name
+        expected_name = 'Наименование организации'
+        self.assertEqual(field_label, expected_name)
+
+    def test_name_max_length(self):
+        item = Contractor.objects.get(id=1)
+        field_label = item._meta.get_field('name').max_length
+        expected_max_length = 100
+        self.assertEqual(field_label, expected_max_length)
+
+
 class TestModelsTypePrint(TestCase):
     """Тесты для модели TypePrint"""
 
@@ -157,12 +181,10 @@ class TestModelsTypePrint(TestCase):
 
     def test_model_verbose_name_TypePrint(self):
         """Тест поля verbose_name модели FinishWork"""
-
         self.assertEqual(TypePrint._meta.verbose_name, 'Тип печати')
 
     def test_model_verbose_name_plural_TypePrint(self):
         """Тест поля verbose_name_plural модели TriFinishWorkal"""
-
         self.assertEqual(TypePrint._meta.verbose_name_plural, 'Типы печати')
 
 
