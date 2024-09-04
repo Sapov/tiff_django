@@ -373,3 +373,35 @@ class TestModelsUseCalculator(TestCase):
         field_label = item._meta.get_field('length').default
         expected_default = 0
         self.assertEqual(field_label, expected_default)
+
+
+    def test_results_label(self):
+        '''Получение метаданных поля для получения необходимых значений'''
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('results').verbose_name
+        expected_verbose_name = 'Стоимость'
+        self.assertEquals(field_label, expected_verbose_name)
+
+    def test_results_max_digits(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('results').max_digits
+        expected_max_digit = 10
+        self.assertEqual(field_label, expected_max_digit)
+
+    def test_results_decimal_places(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('results').decimal_places
+        expected_decimal_places = 2
+        self.assertEqual(field_label, expected_decimal_places)
+
+    def test_results_default(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('results').default
+        expected_decimal_places = 0
+        self.assertEqual(field_label, expected_decimal_places)
+
+    def test_results_blank(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('results').blank
+        expected_blank = True
+        self.assertEqual(field_label, expected_blank)
