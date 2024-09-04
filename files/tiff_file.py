@@ -378,16 +378,12 @@ class Calculator:
             self.value_finishing_price = self.finishing.price_customer_retail
 
     def calculate(self):
-        print(f'__print_calculator {self.__print_calculator()} \n self.__finishing_calculator(): {self.__finishing_calculator()}\n  ')
         return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
 
     def calculate_cost(self):
         # СЕБЕСТОИМОСТЬ
         self.value_material_price = self.material.price_contractor
         self.value_finishing_price = self.finishing.price_contractor
-        print('СЕБЕСТОИМОСТЬ СЧИТАЕТСя ПО ПРАЙСУ MATERIAL', self.value_material_price)
-        print('СЕБЕСТОИМОСТЬ СЧИТАЕТСя ПО ПРАЙСУ FINISHING', self.finishing)
-        print('COST', self.calculate())
         return self.calculate()
 
     def check_result(self):
