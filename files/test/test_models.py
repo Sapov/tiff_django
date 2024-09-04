@@ -96,6 +96,11 @@ class TestModelsFinishWork(TestCase):
         expected_verbose_name = 'Активный'
         self.assertEquals(field_label, expected_verbose_name)
 
+    def test_filed_blank_customer_retail(self):
+        work = FinishWork.objects.get(id=1)
+        expected_bool = work._meta.get_field('price_customer_retail').blank
+        self.assertTrue(expected_bool)
+
     def test_string_representation(self):
         """Тест строкового отображения"""
         work = FinishWork.objects.get(id=1)  # Получение объекта для тестирования
