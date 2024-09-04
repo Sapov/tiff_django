@@ -354,3 +354,22 @@ class TestModelsUseCalculator(TestCase):
         field_label = item._meta.get_field('width').default
         expected_default = 0
         self.assertEqual(field_label, expected_default)
+
+    def test_length_label(self):
+        '''Получение метаданных поля для получения необходимых значений'''
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('length').verbose_name
+        expected_verbose_name = 'Длина'
+        self.assertEquals(field_label, expected_verbose_name)
+
+    def test_length_help_text(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('length').help_text
+        expected_help_text = 'Указывается в см.'
+        self.assertEqual(field_label, expected_help_text)
+
+    def test_length_default(self):
+        item = UseCalculator.objects.get(id=1)
+        field_label = item._meta.get_field('length').default
+        expected_default = 0
+        self.assertEqual(field_label, expected_default)
