@@ -34,7 +34,7 @@ services:
       - LETSENCRYPT_HOST=${ALLOWED_HOST}
 
     command: >
-      bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && ./manage.py add_default_admin && ./manage.py add_price && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
+      bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && ./manage.py add_price && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
     restart: always
 
   worker:
