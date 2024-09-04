@@ -386,7 +386,7 @@ class UtilsModel:
         """Записываем в таблицу ссылку на архив с файлами"""
         order = Order.objects.get(id=self.order_id)
         logger.info(
-            f"Записываю в заказ ссылку на архив: arhive/{self.order_id}/{self.arh_name}"
+            f"Записываю в заказ ссылку на архив: archive/{self.order_id}/{self.arh_name}"
         )
         order.order_arhive = f"arhive/{self.order_id}/{self.arh_name}"
         order.save()

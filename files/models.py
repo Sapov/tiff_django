@@ -229,29 +229,14 @@ class UploadArh(models.Model):
 class UseCalculator(models.Model):
     ''' Расчеты пользователей сайта '''
 
-    material = models.ForeignKey(
-        "Material", on_delete=models.PROTECT, verbose_name="Материал"
-    )
-    quantity = models.IntegerField(
-        default=1, help_text="Введите количество", verbose_name="Количество"
-    )
-    width = models.FloatField(
-        default=0, verbose_name="Ширина", help_text="Указывается в см."
-    )
-    length = models.FloatField(
-        default=0, verbose_name="Длина", help_text="Указывается в см."
-    )
-
+    material = models.ForeignKey("Material", on_delete=models.PROTECT, verbose_name="Материал")
+    quantity = models.IntegerField(default=1, help_text="Введите количество", verbose_name="Количество")
+    width = models.FloatField(default=0, verbose_name="Ширина", help_text="Указывается в см.")
+    length = models.FloatField(default=0, verbose_name="Длина", help_text="Указывается в см.")
     results = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name="Стоимость")
-
-    FinishWork = models.ForeignKey(
-        "FinishWork",
-        on_delete=models.PROTECT,
-        verbose_name="Финишная обработка",
-        default=1)
-    created_at = models.DateTimeField(
-        auto_now_add=True, verbose_name="Добавлено"
-    )
+    FinishWork = models.ForeignKey("FinishWork", on_delete=models.PROTECT, verbose_name="Финишная обработка",
+                                   default=1)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")
 
     def __str__(self):
         return f'Дата: {str(self.created_at)[:16]} /{str(self.material)[:10]}/ Кол-во: {self.quantity}шт./Размер: {self.width}x{self.length}м./Стоимость: {self.results} руб.'
