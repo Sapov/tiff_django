@@ -351,15 +351,16 @@ class Calculator:
         self.role = image_param['role']
         self.value_material_price = None
         logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
-                     f'self.width: {self.width} TYPE {type(self.width)}\n '
-                     f'self.quantity: {self.quantity} TYPE {type(self.quantity)}'
-                     f'self.value_finishing_price: {self.value_finishing_price} TYPE {type(self.value_finishing_price)}\n'
+                     f'Width: {self.width} TYPE {type(self.width)}\n '
+                     f'Quantity: {self.quantity} TYPE {type(self.quantity)}\n'
+                     f'Value_finishing_price: {self.value_finishing_price} TYPE {type(self.value_finishing_price)}\n'
                      f'self.finishing:{self.finishing} TYPE {type(self.finishing)}\n'
                      f'self.material: {self.material} TYPE{type(self.material)}\n'
                      f'self.role: {self.role}: TYPE {type(self.role)} ')
 
     def __print_calculator(self):
         '''Расчитываем прайсовую стоимость печати'''
+        logger.info(f'value_material_price: {self.value_material_price}')
         logger.info(f'[INFO PRINT CALCULATOR ROUND] {round(self.width * self.length * self.value_material_price, -1)}')
         return round(self.width * self.length * self.value_material_price, -1)
 
@@ -367,7 +368,7 @@ class Calculator:
         ''' Считаем стоимость финишной обработки'''
         return (self.width + self.length) * 2 * self.value_finishing_price  # / 100 приводим к метрам
 
-    def __change_role_user(self):
+    def change_role_user(self):
         # проверяем роль пользователя и выбираем стоимость ему соответствующую
         logger.info(f'USER IS: {self.role}')
         if self.role == "CUSTOMER_AGENCY":
@@ -376,6 +377,7 @@ class Calculator:
         else:
             self.value_material_price = self.material.price_customer_retail
             self.value_finishing_price = self.finishing.price_customer_retail
+        return self.value_material_price, self.value_finishing_price
 
     def calculate(self):
         return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
@@ -395,5 +397,5 @@ class Calculator:
             return self.calculate()
 
     def calculate_price(self):
-        self.__change_role_user()
+        self.change_role_user()
         return self.check_result()
