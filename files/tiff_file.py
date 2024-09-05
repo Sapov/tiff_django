@@ -350,13 +350,13 @@ class Calculator:
         self.material = image_param['material']
         self.role = image_param['role']
         self.value_material_price = None
-        # logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
-        #              f'Width: {self.width} TYPE {type(self.width)}\n '
-        #              f'Quantity: {self.quantity} TYPE {type(self.quantity)}\n'
-        #              f'Value_finishing_price: {self.value_finishing_price} TYPE {type(self.value_finishing_price)}\n'
-        #              f'self.finishing:{self.finishing} TYPE {type(self.finishing)}\n'
-        #              f'self.material: {self.material} TYPE{type(self.material)}\n'
-        #              f'self.role: {self.role}: TYPE {type(self.role)} ')
+        logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
+                     f'Width: {self.width} TYPE {type(self.width)}\n '
+                     f'Quantity: {self.quantity} TYPE {type(self.quantity)}\n'
+                     f'Value_finishing_price: {self.value_finishing_price} TYPE {type(self.value_finishing_price)}\n'
+                     f'self.finishing:{self.finishing} TYPE {type(self.finishing)}\n'
+                     f'self.material: {self.material} TYPE{type(self.material)}\n'
+                     f'self.role: {self.role}: TYPE {type(self.role)} ')
 
     def __print_calculator(self):
         '''Расчитываем прайсовую стоимость печати'''
@@ -367,7 +367,7 @@ class Calculator:
         ''' Считаем стоимость финишной обработки'''
         return (self.width + self.length) * 2 * self.value_finishing_price  # / 100 приводим к метрам
 
-    def change_role_user(self):
+    def _change_role_user(self):
         # проверяем роль пользователя и выбираем стоимость ему соответствующую
         logger.info(f'USER IS: {self.role}')
         if self.role == "CUSTOMER_AGENCY":
@@ -389,12 +389,12 @@ class Calculator:
 
     def __check_result(self):
         if self.role == "CUSTOMER_AGENCY":
-            self.calculate()
+            return self.calculate()
         else:
             if self.calculate() < 1000:
                 return 1000
             return self.calculate()
 
     def calculate_price(self):
-        self.change_role_user()
+        self._change_role_user()
         return self.__check_result()
