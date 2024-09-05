@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 
-from orders.models import UtilsModel, Order, StatusOrder
+from orders.models import UtilsModel, Order, StatusOrder, OrderItem
 from orders.views import stop_count_down
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
@@ -409,8 +409,16 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
         logger.info(f"МЕНЯЮ СТАТУС нА В Работе")
         order.status = status
         order.save()
-
-        return render(request, "files/confirm_order_to_work.html")
+        # отобразить файлы в заказе
+        items_in_order = OrderItem.objects.filter(order=pk)  # файлы в заказе
+        context = {
+            # "Orders": Orders,
+            # "items": items,
+            "items_in_order": items_in_order,
+            # "current_order": current_order,
+            "order_id": pk,
+        }
+        return render(request, "files/confirm_order_to_work.html", context)
     else:
         return render(request, "files/no_confirm_order_to_work.html")
 
@@ -429,3 +437,5 @@ def confirm_order_to_completed(request, pk: int, hash_code):
         return render(request, "files/confirm_order_to_completed.html")
     else:
         return render(request, "files/no_confirm_order_to_completed.html")
+
+

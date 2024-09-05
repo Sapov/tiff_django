@@ -8,8 +8,41 @@
 <title>Заказ изменил статус</title>
 
 
-
 <h5 style="text-align: center; ">Заказ изменил статус на "В работе"</h5>
 
+{% if items_in_order.count > 0  %}
 
-{% endblock %}
+<h5> Файлы в заказе: </h5>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Картинка</th>
+                <th>Материал</th>
+                <th>Размер</th>
+                <th>Количество</th>
+                <th>Финишная обработка</th>
+            </thead>
+            <tbody>
+            {% for items in items_in_order %}
+
+            <tr>
+                <td><a>{% load thumbnail %} <img src="{% thumbnail items.product.images 100x0 %}"
+                                                 class="image-detail"></a></td>
+                <td>{{ items.product.material }}</td>
+                <td>{{ items.product.width }}x{{ items.product.length }} см.</td>
+                <td>{{ items.product.quantity }} шт.</td>
+                <td>{{ items.product.FinishWork }}</td>
+                <td></td>
+
+
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    {% endblock %}
