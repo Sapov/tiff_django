@@ -59,3 +59,37 @@ class TestCalculator(TestCase):
         print(item_image.__dict__)
         results = item_image.calculate_price()
         self.assertEqual(results, ((2 * 2) * 400) + (2 + 2) * 2 * 80)
+
+    def test_calculate_cost(self):
+        '''Считаем себестоимость по contractor price'''
+        material = Material.objects.get(id=1)
+        finishWork = FinishWork.objects.get(id=1)
+        user = User.objects.get(id=1)
+        dict_param = {'quantity': 1,
+                      'material': material,
+                      'finishing': finishWork,
+                      'length': 2,
+                      'width': 2,
+                      'role': user.role}
+
+        item_image = Calculator(dict_param)
+        print(item_image.__dict__)
+        results = item_image.calculate_cost()
+        self.assertEqual(results, ((2 * 2) * 200) + (2 + 2) * 2 * 40)
+
+    def test_result(self):
+        '''При маленьких размерах стоимость равна 1000'''
+        material = Material.objects.get(id=1)
+        finishWork = FinishWork.objects.get(id=1)
+        user = User.objects.get(id=1)
+        dict_param = {'quantity': 1,
+                      'material': material,
+                      'finishing': finishWork,
+                      'length': 0.2,
+                      'width': 0.2,
+                      'role': user.role}
+
+        item_image = Calculator(dict_param)
+        print(item_image.__dict__)
+        results = item_image.calculate_price()
+        self.assertEqual(results, 1000)

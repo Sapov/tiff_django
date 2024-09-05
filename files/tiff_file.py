@@ -350,23 +350,20 @@ class Calculator:
         self.material = image_param['material']
         self.role = image_param['role']
         self.value_material_price = None
-        logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
-                     f'Width: {self.width} TYPE {type(self.width)}\n '
-                     f'Quantity: {self.quantity} TYPE {type(self.quantity)}\n'
-                     f'Value_finishing_price: {self.value_finishing_price} TYPE {type(self.value_finishing_price)}\n'
-                     f'self.finishing:{self.finishing} TYPE {type(self.finishing)}\n'
-                     f'self.material: {self.material} TYPE{type(self.material)}\n'
-                     f'self.role: {self.role}: TYPE {type(self.role)} ')
+        # logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
+        #              f'Width: {self.width} TYPE {type(self.width)}\n '
+        #              f'Quantity: {self.quantity} TYPE {type(self.quantity)}\n'
+        #              f'Value_finishing_price: {self.value_finishing_price} TYPE {type(self.value_finishing_price)}\n'
+        #              f'self.finishing:{self.finishing} TYPE {type(self.finishing)}\n'
+        #              f'self.material: {self.material} TYPE{type(self.material)}\n'
+        #              f'self.role: {self.role}: TYPE {type(self.role)} ')
 
     def __print_calculator(self):
         '''Расчитываем прайсовую стоимость печати'''
-        logger.info(f'value_material_price: {self.value_material_price}')
-        logger.info(f'self.width: {self.width}')
-        logger.info(f'self.length: {self.length}')
         # logger.info(f'[INFO PRINT CALCULATOR ROUND] {round(self.width * self.length * self.value_material_price, -1)}')
         return round(self.width * self.length * self.value_material_price, -1)
 
-    def finishing_calculator(self):
+    def __finishing_calculator(self):
         ''' Считаем стоимость финишной обработки'''
         return (self.width + self.length) * 2 * self.value_finishing_price  # / 100 приводим к метрам
 
@@ -382,7 +379,7 @@ class Calculator:
         return self.value_material_price, self.value_finishing_price
 
     def calculate(self):
-        return (self.__print_calculator() + self.finishing_calculator()) * self.quantity
+        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
 
     def calculate_cost(self):
         # СЕБЕСТОИМОСТЬ
@@ -390,7 +387,7 @@ class Calculator:
         self.value_finishing_price = self.finishing.price_contractor
         return self.calculate()
 
-    def check_result(self):
+    def __check_result(self):
         if self.role == "CUSTOMER_AGENCY":
             self.calculate()
         else:
@@ -400,4 +397,4 @@ class Calculator:
 
     def calculate_price(self):
         self.change_role_user()
-        return self.check_result()
+        return self.__check_result()
