@@ -361,10 +361,12 @@ class Calculator:
     def __print_calculator(self):
         '''Расчитываем прайсовую стоимость печати'''
         logger.info(f'value_material_price: {self.value_material_price}')
-        logger.info(f'[INFO PRINT CALCULATOR ROUND] {round(self.width * self.length * self.value_material_price, -1)}')
+        logger.info(f'self.width: {self.width}')
+        logger.info(f'self.length: {self.length}')
+        # logger.info(f'[INFO PRINT CALCULATOR ROUND] {round(self.width * self.length * self.value_material_price, -1)}')
         return round(self.width * self.length * self.value_material_price, -1)
 
-    def __finishing_calculator(self):
+    def finishing_calculator(self):
         ''' Считаем стоимость финишной обработки'''
         return (self.width + self.length) * 2 * self.value_finishing_price  # / 100 приводим к метрам
 
@@ -380,7 +382,7 @@ class Calculator:
         return self.value_material_price, self.value_finishing_price
 
     def calculate(self):
-        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
+        return (self.__print_calculator() + self.finishing_calculator()) * self.quantity
 
     def calculate_cost(self):
         # СЕБЕСТОИМОСТЬ

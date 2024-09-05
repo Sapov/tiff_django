@@ -27,21 +27,6 @@ class TestCalculator(TestCase):
                                   is_active=True)
         User.objects.create(username='testUser', role='CUSTOMER_RETAIL')
 
-    # def test_cal(self):
-    #     material = Material.objects.get(id=1)
-    #     finishWork = FinishWork.objects.get(id=1)
-    #     user = User.objects.get(id=1)
-    #     dict_param = {'quantity': 1,
-    #                   'material': material,
-    #                   'finishing': finishWork.price,
-    #                   'length': 2,
-    #                   'width': 2,
-    #                   'role': user.role}
-    #
-    #     item_image = Calculator(dict_param)
-    #     results = item_image.calculate()
-    #     self.assertEqual(results, 200)
-
     def test_change_role_user(self):
         material = Material.objects.get(id=1)
         finishWork = FinishWork.objects.get(id=1)
@@ -56,3 +41,21 @@ class TestCalculator(TestCase):
         results = item_image.change_role_user()
         self.assertEqual(results, (400, 80,))
 
+    def test_finishing_calculator(self):
+        pass
+
+    def test_calculate_price(self):
+        material = Material.objects.get(id=1)
+        finishWork = FinishWork.objects.get(id=1)
+        user = User.objects.get(id=1)
+        dict_param = {'quantity': 1,
+                      'material': material,
+                      'finishing': finishWork,
+                      'length': 2,
+                      'width': 2,
+                      'role': user.role}
+
+        item_image = Calculator(dict_param)
+        print(item_image.__dict__)
+        results = item_image.calculate_price()
+        self.assertEqual(results, ((2 * 2) * 400) + (2 + 2) * 2 * 80)
