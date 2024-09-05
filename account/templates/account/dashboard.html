@@ -2,7 +2,7 @@
 {% block title %}Dashboard{% endblock %}
 {% block body %}
 
-<h1>Dashboard</h1>
+<h1>Дашборд</h1>
 
 
 <div class="row">
@@ -76,6 +76,99 @@
                             </div>
                         </div>
                     </div>
+<h3>Мои заказы</h3>
+<button type="submit" class="btn btn-primary"
+        onClick="location.href='{% url 'orders:new_order' %}'">Создать заказ
+</button>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Заказ №</th>
+                <th>Сумма заказа</th>
+                <!--                <th>Платильщик</th>-->
+                <th>Оплачено</th>
+                <!--                <th>Каменты</th>-->
+                <th>Статус</th>
+                <th>Дата заказа</th>
+                <th>Дата готовности</th>
+            </thead>
+            <tbody>
+            {% for order in Orders %}
+            <tr>
+
+                 {% if order.status.id >= 2 %}
+
+                <td><button type="submit" class="btn btn-primary"
+                            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id }}</button></td>
+
+                {% else %}
+                <td>
+                    <!--                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">-->
+                    <!--                    <ul class="navbar-nav ml-auto">-->
+                    <!--                                            <li class="nav-item dropdown">-->
+                    <a class="btn btn-success nav-link dropdown-toggle"
+                       href="{% url 'orders:add_file_in_order' order.id %}" id="navbarDropdown"
+                       role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        Заказ № {{ order.id }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right animated--grow-in"
+                         aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'orders:add_file_in_order' order.id %}">Добавить файлы</a>
+                        <a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">Оплатить</a>
+                        <a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">Редактировать</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'orders:Delete_order' order.id %}">Удалить</a>
+                    </div>
+                    <!--                                            </li>-->
+                    <!--                    </ul>-->
+                    <!--                                    </nav>-->
+                </td>
+                {% endif %}
+
+
+                <td>{{ order.total_price }} руб.</td>
+                <td>{% if order.paid == False %}
+                    <div class="mb-2">
+                        <code>Не оплачено!</code>
+                    </div>
+                    {% else%}
+                    <div class="text-success mb-2">Оплачено
+                    </div>
+                    {% endif %}
+                    <!--                <td>{{ order.organisation_payer }}</td>-->
+                    <!--                <td>{{ order.comments }}</td>-->
+                <td>{% if order.status.id == 3 %}
+                    <div class="mb-2">
+                        <code>В работе</code>
+                    </div>
+                    {% elif order.status.id == 5 %}
+                    <div class="text-success mb-2">Готов
+                    </div>
+                    {% elif order.status.id == 1 %}
+                    <div class="text-warning mb-2">Готовится
+                    </div>
+                    {% elif order.status.id == 2 %}
+                    <div class="text-primary mb-2">Оформлен
+                    </div>
+
+                    {% endif %}
+                </td>
+                <td>{{ order.created }}</td>
+                <td>{{ order.date_complete }}</td>
+
+
+            </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
 {% endblock %}
