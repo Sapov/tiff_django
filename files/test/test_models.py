@@ -1,6 +1,10 @@
-from files.models import FinishWork, TypePrint, Material, UseCalculator, Contractor
+from django.contrib.auth import get_user_model
+
+from files.models import FinishWork, TypePrint, Material, UseCalculator, Contractor, StatusProduct, Product
 from django.test import TestCase
 from django.urls import reverse
+
+User = get_user_model()
 
 
 class TestModelsFinishWork(TestCase):
@@ -313,6 +317,56 @@ class TestModelsMaterial(TestCase):
         """Тест поля verbose_name_plural модели TriFinishWorkal"""
 
         self.assertEqual(Material._meta.verbose_name_plural, 'Материалы для печати')
+
+
+class TestStatusProduct(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        StatusProduct.objects.create(status='Оформлен')
+
+    def test_field_status_verbose_name(self):
+        status = StatusProduct.objects.get(id=1)
+        field_label = status._meta.get_field('status').verbose_name
+        expected_verbose_name = 'Статус файла'
+        self.assertEqual(field_label, expected_verbose_name)
+
+    def test_field_status_max_length(self):
+        status = StatusProduct.objects.get(id=1)
+        field_label = status._meta.get_field('status').max_length
+        expected_verbose_name = 64
+        self.assertEqual(field_label, expected_verbose_name)
+
+
+class TestProductModel(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        Product.objects.create(Contractor=User.objects.create(nameuser='test', ),
+                               material=Material.objects.create(name='Баннер 440 грамм ламинированный',
+                                                                price_contractor=200, price=400, resolution_print=100),
+                               quantity=1,
+                               width=3,
+                               length=6,
+                               resolution=72,
+                               color_model='RGB',
+                               size=90,
+                               price=350,
+                               cost_price=200,
+                               images='img.tiff',
+                               created_at='01.01.2024',
+                               updated_at='01.01.2024',
+                               FinishWork=FinishWork.objects.create(work='Порезка', price_contractor=50, price=100,
+                                                                    price_customer_retail=200,
+                                                                    is_active=True),
+                               in_order=True,
+                               status_product=StatusProduct.objects.create(status='Оформлен'),
+                               comments='Любой текст'
+                               )
+
+    def test_Contractor_field_verbose_name(self):
+        product = Product.objects.get(id=1)
+        fields_label = product._meta.get_fields('Contractor').verbose_name
+        expected_label = 'ЗАКАЗЧИК!!'
+        self.assertEqual(fields_label, expected_label)
 
 
 class TestModelsUseCalculator(TestCase):

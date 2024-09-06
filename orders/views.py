@@ -201,24 +201,30 @@ def order_pay(request, order_id):
     # create_order_pdf.delay(order_id)
     # order_pdf = DrawOrder(order_id)  #
     # order_pdf.run()
+    order = Order.objects.get(id=order_id)
 
-    # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
-    domain = str(get_domain(request))
-    arh_for_mail.delay(order_id, domain=domain)
-    # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправлякем письмо с вопросом о готовности----------------
-    # получаем дату готовности из базы
+    if str(order.status) != 'Оформлен':  # предотвращаем повторную отправку заказа
 
-    Alerts.start_count_down(domain, order_id)
+        # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
+        domain = str(get_domain(request))
+        arh_for_mail.delay(order_id, domain=domain)
+        # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправлякем письмо с вопросом о готовности----------------
+        # получаем дату готовности из базы
 
-    # -----------------------create_link_pay-----------------------------------
-    Orders = Order.objects.get(id=order_id)
-    user = request.user
-    link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
-    # logger.info(f'Генерим платежную ссылку: ', link_pay)
-    context = {"Orders": Orders, 'link_pay': link_pay}
-    os.chdir(current_path)  # перейти обратно
+        Alerts.start_count_down(domain, order_id)
+        # -----------------------create_link_pay-----------------------------------
+        Orders = Order.objects.get(id=order_id)
+        user = request.user
+        link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
+        # logger.info(f'Генерим платежную ссылку: ', link_pay)
+        context = {"Orders": Orders, 'link_pay': link_pay}
+        os.chdir(current_path)  # перейти обратно
 
-    return render(request, "orderpay.html", context)
+        return render(request, "orderpay.html", context)
+    else:
+        # context = {"Orders": order}
+
+        return render(request, "orderpay.html")
 
 
 def stop_count_down(order_id: int):

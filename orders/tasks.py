@@ -8,6 +8,7 @@ from orders.models import UtilsModel, Order
 from orders.utils import DrawOrder, Utils
 from .alerts import Alerts
 
+
 @shared_task
 def arh_for_mail(order_id: int, domain: str):
     order_item = UtilsModel(order_id, domain)
