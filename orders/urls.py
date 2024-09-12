@@ -52,5 +52,7 @@ urlpatterns = [
     path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
     path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
 
+    # для Курьеров
+
     path("courier/", ViewAllCompleteOrders.as_view(), name='orders_complete')
 ]

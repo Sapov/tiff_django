@@ -270,7 +270,6 @@ class ViewAllCompleteOrders(ViewAllPayOrders):
         return Order.objects.filter(status_id=5).order_by("-id")
 
 
-
 def about_file(request, file_id):
     print(file_id)
     files = Product.objects.filter(id=file_id)
