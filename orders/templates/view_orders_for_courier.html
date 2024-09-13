@@ -11,7 +11,6 @@
             <thead>
             <tr>
                 <th>Заказ №</th>
-                <th>Каменты</th>
                 <th>Статус</th>
                 <th>Дата заказа</th>
                 <th>Дата готовности</th>
@@ -20,11 +19,11 @@
             {% for order in object_list %}
             <tr>
                 <td>{{ order.id }}</td>
-                <td>{{ order.comments }}</td>
                 <td>{{ order.status }}</td>
                 <td>{{ order.created }}</td>
                 <td>{{ order.date_complete }}</td>
                 <td><a href="{% url 'orders:add_file_in_order' order.id %}">Детализация</a></td>
+                <td><a href="{% url 'orders:add_file_in_order' order.id %}">Кнопка В работе</a></td>
 
                 {% endfor %}
             </tbody>
