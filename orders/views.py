@@ -259,6 +259,7 @@ class ViewAllPayOrders(LoginRequiredMixin, ListView):
 
     model = Order
     template_name = "all_view_orders_pay.html"
+    paginate_by = 6
 
     def get_queryset(self):
         queryset = Order.objects.filter(paid=True).order_by("id")
@@ -266,6 +267,8 @@ class ViewAllPayOrders(LoginRequiredMixin, ListView):
 
 
 class ViewAllCompleteOrders(ViewAllPayOrders):
+    template_name = "view_orders_for_courier.html"
+
     def get_queryset(self):
         return Order.objects.filter(status_id=5).order_by("-id")
 
