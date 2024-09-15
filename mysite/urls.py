@@ -34,6 +34,7 @@ urlpatterns = [
     path("account/", include("account.urls")),
     path("orders/", include("orders.urls")),
     path("info/", include("info.urls")),
+    path("delivery_in_bus/", include("info.urls")),
     path("admin/", admin.site.urls),
     path("api/v1/", include(router.urls)), # api/v1/material
 
