@@ -6,12 +6,13 @@ from orders.models import Order
 
 
 # Create your views here.
-class ViewAllCompleteOrders(LoginRequiredMixin, ListView):
+class ViewAllCompleteOrdersForBus(LoginRequiredMixin, ListView):
+    '''Показать все ордера которые завершины и имеют статус доставка автобусом'''
     model = Order
     paginate_by = 6
     template_name = "delivery_in_bus/view_orders_for_courier.html"
 
     def get_queryset(self):
-        return Order.objects.filter(status_id=5).order_by("-id")
+        return Order.objects.filter(status_id=5).filter(delivery_id=2).order_by("-id")
 
 
