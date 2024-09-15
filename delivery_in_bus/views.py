@@ -16,3 +16,9 @@ class ViewAllCompleteOrdersForBus(LoginRequiredMixin, ListView):
         return Order.objects.filter(status_id=5).filter(delivery_id=2).order_by("-id")
 
 
+def render_instruction(request, order_id):
+    context = {'order_id': order_id}
+    return render(request, template_name='delivery_in_bus/courier_instruction.html', context=context)
+
+
+

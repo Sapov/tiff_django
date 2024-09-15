@@ -5,6 +5,7 @@
 {% if request.user.role == 'COURIER' %}
 <h1>Отправить автобусом {{current_order}}</h1>
 <hr>
+
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped table-hover">
@@ -73,32 +74,23 @@
 
             </tr>
             {% endfor %}
+
             </tbody>
         </table>
+        <td>
+            <button type="submit" class="btn btn-success"
+                    onClick="location.href='{% url 'delivery_in_bus:instruction_for_courier' Orders.id %}'">Отгрузить заказ
+            </button>
+        </td>
+
     </div>
-    {% if current_order.status.id == 1 %}
-    <td>
-        <button type="submit" class="btn btn-success"
-                onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ
-        </button>
-    </td>
-    {% else %}
-    <!--                    <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>-->
-    {% if Orders.paid == False %}
-
-    <td>
-        <button type="submit" class="btn btn-primary"
-                onClick="location.href='{{Orders.pay_link}}'">Оплатить картой
-        </button>
-    </td>
-
-    {% endif %}
 
 
-    {% endif %}
 </div>
 {% endif %}
+
 {% else %}
+
 <h1>{{current_order}}</h1>
 <hr>
 <div class="row">
