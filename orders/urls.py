@@ -53,6 +53,5 @@ urlpatterns = [
     path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
 
     # для Курьеров
-
     path("courier/", ViewAllCompleteOrders.as_view(), name='orders_complete')
 ]
