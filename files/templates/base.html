@@ -27,7 +27,6 @@
 {% if request.user.is_authenticated %}
 
 
-
 <body id="page-top">
 
 <!-- Page Wrapper -->
@@ -43,7 +42,69 @@
             </div>
             <div class="sidebar-brand-text mx-3">REDS</div>
         </a>
+        {% if request.user.role == 'COURIER' %}
 
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Заказы</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Мои заказы:</h6>
+                    <a class="collapse-item" href="{% url 'delivery_in_bus:orders_for_courier_in_bus' %}">Заказы в доставку</a>
+                    <a class="collapse-item" href="{% url 'orders:view_orders'%}">Выполненые заказы</a>
+                    <a class="collapse-item" href="{% url 'files:myfiles' %}">Баланс</a>
+                    <a class="collapse-item" href="{% url 'files:create_files' %}">Выплаты</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Профиль</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Мой профиль:</h6>
+                    <a class="collapse-item" href="{% url 'account:edit_profile' %}">Изменить</a>
+                    <a class="collapse-item" href="{% url 'password_change' %}">Сменить пароль</a>
+                </div>
+            </div>
+        </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+        {% else %}
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
@@ -149,6 +210,7 @@
 
     </ul>
     <!-- End of Sidebar -->
+    {% endif %}
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -256,13 +318,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800"></h1>
 
-                    <a href="{% url 'account:dashboard' %}"
-                       class="d-none d-sm-inline-block btn btn-success shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Загрузить файл</a>
-                </div>
                 {% block body %}
                 {% endblock %}
 
