@@ -4,6 +4,7 @@ from delivery_in_bus.models import OrdersDeliveryBus
 
 
 class FormLoadImg(forms.ModelForm):
+    # order_id =
     class Meta:
         model = OrdersDeliveryBus
-        fields = '__all__'
+        fields = ['img_production', 'img_phone', 'img_bus', 'comments']
