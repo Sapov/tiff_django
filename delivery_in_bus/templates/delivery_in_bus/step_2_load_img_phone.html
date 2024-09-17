@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+<title>{% block title %} {{title}} {{current_order}} {% endblock %}</title>
+{% block body %}
+
+<h1>{{title}}</h1>
+
+<h5>Сфотографировать и загрузить номер телефона водителя</h5>
+<form action="" method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+
+{{ form.as_p }}
+    <button type="submit">Добавить</button>
+
+</form>
+
+
+{% endblock %}
