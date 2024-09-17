@@ -13,3 +13,9 @@ class FormLoadImgStepTwo(forms.ModelForm):
     class Meta:
         model = OrdersDeliveryBus
         fields = ['img_phone']
+
+
+class FormLoadImgStepThree(forms.ModelForm):
+    class Meta:
+        model = OrdersDeliveryBus
+        fields = ['img_bus']

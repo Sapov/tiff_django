@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+<title>{% block title %} {{title}} {{current_order}} {% endblock %}</title>
+{% block body %}
+
+<h1>{{title}}</h1>
+
+<table>
+    <tr>
+        <td>Фото продукции</td>
+        <td>Фото Телефона водителя</td>
+    </tr>
+    <tr>
+        <td><a>{% load thumbnail %} <img src="{% thumbnail item.img_production 400x0 %}" class="image-detail"></a></td>
+        <td><a>{% load thumbnail %} <img src="{% thumbnail item.img_phone 400x0 %}" class="image-detail"></a></td>
+
+    </tr>
+</table>
+
+
+
+<form action="{% url 'delivery_in_bus:load_img_phone' order_id %}" method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+
+{{ form.as_p }}
+    <button type="submit">Добавить фото номера автобуса</button>
+
+</form>
+
+
+{% endblock %}

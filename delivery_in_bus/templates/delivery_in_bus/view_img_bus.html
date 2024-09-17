@@ -4,8 +4,11 @@
 
 <h1>{{title}}</h1>
 
-<h5>Сфотографировать и загрузить номер телефона водителя</h5>
-<form action="" method='post' enctype="multipart/form-data">
+
+<td><a>{% load thumbnail %} <img src="{% thumbnail item.img_production 400x0 %}" class="image-detail"></a></td>
+
+
+<form action="{% url 'delivery_in_bus:load_img_phone' order_id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
 
 {{ form.as_p }}

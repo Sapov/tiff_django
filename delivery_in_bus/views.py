@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView
-
+from django.urls import reverse
 from delivery_in_bus.forms import FormLoadImg, FormLoadImgStepTwo
 from delivery_in_bus.models import OrdersDeliveryBus
 from orders.models import Order
@@ -28,16 +28,23 @@ def load_img_production(request, order_id):
         form = FormLoadImg(request.POST, request.FILES)
         if form.is_valid():
             inst_order = Order.objects.get(id=order_id)
-            OrdersDeliveryBus.objects.create(
-                order_id=inst_order,
-                user=request.user,
-                img_production=form.cleaned_data['img_production'])
-            form = FormLoadImgStepTwo()
-            context = {'title': 'Загрузи фото номера телефона водителя',
+            itm = OrdersDeliveryBus()
+            itm.order_id = inst_order
+            itm.user = request.user
+            itm.img_production = form.cleaned_data['img_production']
+            # OrdersDeliveryBus.objects.create(
+            #     order_id=inst_order,
+            #     user=request.user,
+            #     img_production=form.cleaned_data['img_production'])
+            itm.save()
+            # item = OrdersDeliveryBus.objects.get(order_id=inst_order)
+            context = {'title': 'Фото упакованной продукции',
                        'order_id': order_id,
-                       'form': form}
+                       'item': itm}
 
-            return render(request, 'delivery_in_bus/step_2_load_img_phone.html', context=context)
+            # return reverse('files:load_phone', order_id)
+
+            return render(request, 'delivery_in_bus/view_img_bus.html', context=context)
     else:
         form = FormLoadImg()
 
@@ -45,6 +52,34 @@ def load_img_production(request, order_id):
                    'order_id': order_id,
                    'form': form}
         return render(request, 'delivery_in_bus/ordersdeliverybus_form.html', context=context)
+
+
+def load_img_phone(request, order_id):
+    if request.method == 'POST':
+        form = FormLoadImgStepTwo(request.POST, request.FILES)
+
+        if form.is_valid():
+            inst_order = Order.objects.get(id=order_id)
+            itm = OrdersDeliveryBus.objects.get(order_id=order_id)
+            itm.img_phone = form.cleaned_data['img_phone']
+            itm.save()
+            # OrdersDeliveryBus.objects.create(
+            #     order_id=inst_order,
+            #     user=request.user,
+            #     img_phone=form.cleaned_data['img_phone'])
+            # form = FormLoadImgStepThree()
+            context = {'title': 'Загрузи ',
+                       'order_id': order_id,
+                       'item': itm}
+
+            return render(request, 'delivery_in_bus/view_img_phone.html', context=context)
+    else:
+        form = FormLoadImgStepTwo()
+
+        context = {'title': 'Загрузи фото номера телефона водителя',
+                   'order_id': order_id,
+                   'form': form}
+        return render(request, 'delivery_in_bus/step_2_load_img_phone.html', context=context)
 
 # class ImgProdCreateView(LoginRequiredMixin, CreateView):
 #     model = OrdersDeliveryBus
