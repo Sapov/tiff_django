@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 
-from delivery_in_bus.forms import FormLoadImg
+from delivery_in_bus.forms import FormLoadImg, FormLoadImgStepTwo
 from delivery_in_bus.models import OrdersDeliveryBus
 from orders.models import Order
 
@@ -32,6 +32,7 @@ def load_img_production(request, order_id):
                 order_id=inst_order,
                 user=request.user,
                 img_production=form.cleaned_data['img_production'])
+            form = FormLoadImgStepTwo()
             context = {'title': 'Загрузи фото номера телефона водителя',
                        'order_id': order_id,
                        'form': form}
