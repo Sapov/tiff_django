@@ -30,6 +30,12 @@
 
 
 </ol>
+<form action="{% url 'delivery_in_bus:courier_img' order_id %}" method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить тел</button>
+
+</form>
 
 <td><a href="{% url 'delivery_in_bus:load_img' order_id %}">Загрузить фото продукции</a></td>
 

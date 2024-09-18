@@ -3,15 +3,43 @@
 {% block body %}
 
 <h1>{{title}}</h1>
+<ol>
+    <li>Прибыть в типографию по адресу: г. Воронеж, ул. Ленина, 54</li>
+    <li>Связаться с менеджером по тел:</li>
+    <li>Забрать продукцию</li>
+    <li>Отвезти на ЖД Вокзал к 21-00 <a href="https://goo.gl/maps/DvRRDRJtStvFBkmw9">Место посадки в автобус на Google карте</a>
+</li>
 
-<h5>Сфотографировать и загрузить номер телефона водителя</h5>
+</ol>
+<hr>
+<h5>Время отправки автобусов: 21-15 и 23-00</h5>
+<h5 align="center">Место отправки автобусов: ЖД Вокзал 1</h5>
+<script type="text/javascript" charset="utf-8" async
+        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab7246f8643d2a63fcb03b8c43382b0bf43d8ee9b4f144742a5afdb55d44635cf&amp;width=100%25&amp;height=416&amp;lang=ru_RU&amp;scroll=true"></script>
+<hr>
+<h5>Процедура Отправки продукции:</h5>
+<ol>
+    <p>
+        В месте отправки автобуса быть не менее чем за 25 минут до отправки автобуса.
+    </p>
+    <li>Погрузить продукцию в автобус.</li>
+    <li>Сфотографировать и загрузить погруженную продукцию в автобусе.</li>
+    <li>Сфотографировать и загрузить номер телефона водителя.</li>
+    <li>Сфотографировать и загрузить номер автобуса</li>
+    <li>Нажать кнопку отправить продукцию.</li>
+    <li>Если все прогрузилось успешно вы увидите сообщение об этом на экране</li>
+
+
+</ol>
 <form action="" method='post' enctype="multipart/form-data">
     {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Загрузить</button>
 
-{{ form.as_p }}
-    <button type="submit">Добавить тел</button>
-
+<!--<form action="" method='post' enctype="multipart/form-data">-->
+<!--    {% csrf_token %}-->
+<!---->
+<!--{{ form.as_p }}-->
+<!--    <button type="submit">Добавить тел</button>-->
 </form>
-
-
 {% endblock %}
