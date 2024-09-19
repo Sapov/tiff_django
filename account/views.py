@@ -84,13 +84,17 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
     model = Organisation
     fields = [
         "name_ul",
-        "inn",
+        "tax_сode",
         "kpp",
         "okpo",
-        "address_ur",
+        'bank_account',
+        'bank_name',
+        'bik_bank',
+        'bankCorrAccount',
+
+        "legalAddress",
         "address_post",
         "phone",
-        "phone2",
         "email",
     ]
     success_url = reverse_lazy("account:list_organisation")

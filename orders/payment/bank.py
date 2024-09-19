@@ -9,8 +9,11 @@ load_dotenv(find_dotenv())
 
 class Bank:
     url = 'https://enter.tochka.com/sandbox/v2/invoice/v1.0/bills'
+    customerCode = '300000092'
+    documentId = ''
+    url_get = "https://enter.tochka.com/sandbox/v2/invoice/v1.0/bills/300000092/1cf95c4f-e794-4407-bac4-0829f19bd2be/file"
 
-    def create_bank_order(self):
+    def create_invoice(self):
         payload = json.dumps({
             "Data": {
                 "accountId": os.getenv('BANK_ACCOUNT_ID'),
@@ -57,3 +60,32 @@ class Bank:
         response = requests.request("POST", self.url, headers=headers, data=payload)
 
         print(response.text)
+
+    def get_invoice(self):
+        url = "https://enter.tochka.com/sandbox/v2/invoice/v1.0/bills/300000092/da408a57-bcfa-404c-8f2f-64446a1fa0ba/file"
+        # da408a57-bcfa-404c-8f2f-64446a1fa0ba
+        payload = {}
+        headers = {
+            'Authorization': 'Bearer working_token'
+        }
+
+        response = requests.request("GET", url, headers=headers, data=payload)
+
+        with open('test.pdf', 'wb') as file:
+            file.write(response.content)
+
+    def get_customers_list(self):
+        url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
+        payload = {}
+        headers = {
+            'Authorization': 'Bearer <token>'
+        }
+        response = requests.request("GET", url, headers=headers, data=payload)
+        print(response.text)
+
+
+if __name__ == '__main__':
+    order = Bank()
+    # order.create_invoice()
+    order.get_invoice()
+    # order.get_customers_list()
