@@ -2,80 +2,79 @@
 {% block title %}Dashboard{% endblock %}
 {% block body %}
 
-<h1>Дашборд</h1>
-
 
 <div class="row">
 
 
-       <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            <p><a href=" {% url 'files:create_inter' %}">Загрузка файлов для Интерьерной печати</a></p>
+    <!-- Earnings (Annual) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            <p><a href=" {% url 'files:create_inter' %}">Загрузка файлов для Интерьерной печати</a></p>
 
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">от 350 руб.</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 350 руб.</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
- <!-- Tasks Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                <p><a href=" {% url 'files:create_large' %}">Загрузка файлов для Широкоформатной печати</a></p>
+    <!-- Tasks Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            <p><a href=" {% url 'files:create_large' %}">Загрузка файлов для Широкоформатной печати</a>
+                            </p>
 
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">от 1000 руб.</div>
-                                                </div>
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-<p><a href=" {% url 'files:create_uv' %}">Загрузка файлов для UV-печати</a></p>
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">от 900 руб.</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">от 1000 руб.</div>
+                            </div>
+                            <div class="progress progress-sm mr-2">
+                                <div class="progress-bar bg-info" role="progressbar"
+                                     style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                     aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <p><a href=" {% url 'files:create_uv' %}">Загрузка файлов для UV-печати</a></p>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 900 руб.</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <h3>Мои заказы</h3>
 <button type="submit" class="btn btn-primary"
         onClick="location.href='{% url 'orders:new_order' %}'">Создать заказ
@@ -98,10 +97,14 @@
             {% for order in Orders %}
             <tr>
 
-                 {% if order.status.id >= 2 %}
+                {% if order.status.id >= 2 %}
 
-                <td><button type="submit" class="btn btn-primary"
-                            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id }}</button></td>
+                <td>
+                    <button type="submit" class="btn btn-primary"
+                            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id
+                        }}
+                    </button>
+                </td>
 
                 {% else %}
                 <td>
@@ -171,7 +174,6 @@
         </table>
     </div>
 </div>
-
 
 
 {% endblock %}
