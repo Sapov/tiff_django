@@ -51,7 +51,11 @@ def new_order(request):
 
         delivery = Delivery.objects.get(id=delivery_id)
         logging.info(f"DELIVERY:  {delivery}")
-        organisation = Organisation.objects.get(id=request.POST['organisation_payer'])
+        organisation_id = request.POST['organisation_payer']
+        if organisation_id:
+            organisation = Organisation.objects.get(id=organisation_id)
+        else:
+            organisation = None
 
         neworder = Order.objects.create(
             Contractor=form.user,
