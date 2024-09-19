@@ -33,7 +33,7 @@ class Organisation(models.Model):
     email = models.EmailField(max_length=20, blank=True, verbose_name="Электронная почта")
     tax_сode = models.CharField(max_length=12, verbose_name="ИНН")
     kpp = models.CharField(max_length=9, verbose_name="КПП")
-    okpo = models.CharField(max_length=12, verbose_name="ОКПО")
+    okpo = models.CharField(max_length=12, null=True, blank=True, verbose_name="ОКПО")
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Опубликовано")
 
     # user = models.ForeignKey('auth.User', on_delete=models.CASCADE)

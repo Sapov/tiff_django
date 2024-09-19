@@ -86,14 +86,13 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
         "name_ul",
         "tax_сode",
         "kpp",
-        "okpo",
-        'bank_account',
         'bank_name',
         'bik_bank',
+        'bank_account',
         'bankCorrAccount',
-
         "legalAddress",
         "address_post",
+        "okpo",
         "phone",
         "email",
     ]
@@ -129,13 +128,16 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     model = Organisation
     fields = (
         "name_ul",
-        "inn",
+        "tax_сode",
         "kpp",
-        "okpo",
-        "address_ur",
+        'bank_name',
+        'bik_bank',
+        'bank_account',
+        'bankCorrAccount',
+        "legalAddress",
         "address_post",
+        "okpo",
         "phone",
-        "phone2",
         "email",
     )
     template_name_suffix = "_update_form"
