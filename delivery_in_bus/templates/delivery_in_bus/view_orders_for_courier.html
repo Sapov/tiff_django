@@ -22,8 +22,12 @@
                 <td>{{ order.status }}</td>
                 <td>{{ order.created }}</td>
                 <td>{{ order.date_complete }}</td>
-                <td><a href="{% url 'orders:add_file_in_order' order.id %}">Детализация</a></td>
-                <td><a href="{% url 'orders:add_file_in_order' order.id %}">Кнопка В работе</a></td>
+                <td><a class="btn btn-success"
+                       href="{% url 'orders:add_file_in_order' order.id %}"
+                       role="button"
+                       aria-expanded="false">
+                    Доставка
+                </a></td>
 
                 {% endfor %}
             </tbody>

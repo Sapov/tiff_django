@@ -417,3 +417,11 @@ def set_status_order(request, status_oder: int, pk: int, hash_code: str):
         return render(request, "files/confirm_order_to_work.html")
     else:
         return render(request, "files/no_confirm_order_to_work.html")
+
+
+def change_status_order(status_oder: int, pk: int):
+    order = Order.objects.get(id=pk)  # получаем заказ по id заказа
+    status = StatusOrder.objects.get(id=status_oder)  # меняем статус заказа
+    logger.info(f"МЕНЯЮ СТАТУС НА {status}")
+    order.status = status
+    order.save()
