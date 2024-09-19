@@ -24,6 +24,7 @@ Users = get_user_model()
 def dashboard(request):
     """Вывод Заказов только авторизованного пользователя"""
     Orders = Order.objects.filter(Contractor=request.user).order_by("-id")
+    object_list = Order.objects.filter(status_id=5).filter(delivery_id=2).order_by("-id")
     logger.info(f"Orders:  {Orders}")
 
     paginator = Paginator(Orders, 2)
@@ -38,7 +39,7 @@ def dashboard(request):
     return render(
         request,
         "account/dashboard.html",
-        {"Orders": Orders, "title": "Заказы", "page_obj": page_obj, "section": "dashboard"},
+        {"Orders": Orders, 'object_list': object_list, "title": "Заказы", "page_obj": page_obj, "section": "dashboard"},
     )
 
 
