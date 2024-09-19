@@ -58,7 +58,7 @@ class Contractor(models.Model):
 
     class Meta:
         verbose_name_plural = "Подрядчики"
-        verbose_name = "Подрядчикии"
+        verbose_name = "Подрядчик"
         ordering = ["name"]
 
     def __str__(self):

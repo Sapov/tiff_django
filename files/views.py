@@ -232,7 +232,7 @@ class MaterialViewSet(viewsets.ModelViewSet):
 
 
 def calculator_large_print_out(request):
-    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    last_five_string = UseCalculator.objects.order_by('-id')[:10]
     title = "Калькулятор широкоформатной печати"
     template_name = "files/calculator_large.html"
 
@@ -270,7 +270,7 @@ def add_user_calculator(cd):
 
 
 def calculator_interior_print(request):
-    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    last_five_string = UseCalculator.objects.order_by('-id')[:10]
     title = "Калькулятор Интерьерной печати"
     template_name = "files/calculator_interior_print.html"
 
@@ -303,7 +303,7 @@ def calculator_interior_print(request):
 
 def calculator_uv_print_out(request):
     """ Калькулятор для УФ печати"""
-    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    last_five_string = UseCalculator.objects.order_by('-id')[:10]
     title = 'Калькулятор UV печати'
     template_name = "files/calculator_uv_print.html"
 
@@ -336,7 +336,7 @@ def calculator_uv_print_out(request):
 
 def calculator_blank_out(request):
     """ Калькулятор чистого материала"""
-    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    last_five_string = UseCalculator.objects.order_by('-id')[:10]
     title = 'Калькулятор Чистый материал'
     template_name = "files/calculator_blank_material.html"
 

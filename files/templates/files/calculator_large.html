@@ -35,6 +35,7 @@
         <th scope="col">Обработка</th>
         <th scope="col">Дата:</th>
         <th scope="col">Стоимость</th>
+        <th scope="col">Написать в WhatsApp</th>
     </tr>
     </thead>
 {% for string in last_five_string %}
@@ -48,7 +49,11 @@
         <td> {{ string.FinishWork }} </td>
         <td> {{ string.created_at }}</td>
         <td> {{ string.results }} руб. </td>
+        <td><a href="https://wa.me/79531193367?text=Здравствуйте,%20хочу%20разместить%20заказ:%20Материал: %20{{ string.material }},
+%20Количество: {{ string.quantity }}шт.%20Ширина Х Длина: {{ string.width }}х{{ string.length }}м,%20
+Финишная обработка: {{ string.FinishWork }},%20Стоимостью: {{ string.results }} руб.">
 
+<img src="https://www.san-cd.ru/wp-content/themes/sancd/images/icon-whatsapp-big.png" alt="whatsapp" title="Написать в WhatsApp"></a></td>
     </tr>
 
     {% endfor %}
