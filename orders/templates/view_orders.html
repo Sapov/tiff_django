@@ -82,6 +82,9 @@
                     {% elif order.status.id == 2 %}
                     <div class="text-primary mb-2">Оформлен
                     </div>
+                    {% elif order.status.id == 4 %}
+                    <div class="text-warning mb-2">Доставка
+                    </div>
 
                     {% endif %}
                 </td>
