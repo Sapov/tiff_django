@@ -19,11 +19,9 @@
 
                                                     <th scope="col">№</th>
                                                     <th scope="col">Название</th>
-                                                    <th scope="col">Адрес</th>
                                                     <th scope="col">Тел</th>
                                                     <th scope="col">ИНН</th>
                                                     <th scope="col">КПП</th>
-                                                    <th scope="col">ОКПО:</th>
                                                 </tr>
                                             </thead>
 
@@ -33,11 +31,9 @@
                                                 <tr>
                                                     <td>{{ oraganisation.id }}</td>
                                                     <td>{{ oraganisation.name_ul }}</td>
-                                                    <td>{{ oraganisation.address_ur }}</td>
                                                     <td>{{ oraganisation.phone }}</td>
-                                                    <td>{{ oraganisation.inn }}</td>
+                                                    <td>{{ oraganisation.tax_сode }}</td>
                                                     <td>{{ oraganisation.kpp }}</td>
-                                                    <td>{{ oraganisation.okpk }}</td>
                                                     <td><a href="{% url 'account:update_organisation_user' oraganisation.id %}">Изменить</a></td>
                                                     <td><a href="{% url 'account:delete_organisation_user' oraganisation.id %}">Удалить</a></td>
                 </tr>

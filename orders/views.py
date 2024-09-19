@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django_celery_beat.models import PeriodicTask
 
-from account.models import Delivery
+from account.models import Delivery, Organisation
 
 # from account.models import Organisation
 from files.models import Product
@@ -47,14 +47,16 @@ def new_order(request):
         logging.info(f"date_complite {date_complite} - {type(date_complite)}")
         delivery_id = request.POST["delivery"]
         logging.info(f"DELIV ID:  {delivery_id}")
+        logging.info(f"ORGANISATION:  {request.POST['organisation_payer']}")
 
         delivery = Delivery.objects.get(id=delivery_id)
         logging.info(f"DELIVERY:  {delivery}")
+        organisation = Organisation.objects.get(id=request.POST['organisation_payer'])
 
         neworder = Order.objects.create(
             Contractor=form.user,
             date_complete=date_complite,
-            # organisation_payer=organisation,
+            organisation_payer=organisation,
             delivery=delivery,
         )
 
