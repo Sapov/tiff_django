@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'django_extensions',
     'django_celery_beat',
+    'delivery_in_bus',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"

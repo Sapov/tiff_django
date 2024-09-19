@@ -1,8 +1,7 @@
 {% extends 'base.html'%}
-    <title>{% block title %}Главная страница{% endblock %}</title>
+<title>{% block title %}Главная страница{% endblock %}</title>
 {% block body %}
 {% if object_list.count > 0 %}
-
 
 
 <h2>Список файлов: </h2>
@@ -21,63 +20,64 @@
                 <th>Стоимость</th>
                 <th>Статус</th>
                 <th>Дата загрузки</th>
-       </thead>
+            </thead>
             <tbody>
 
             {% for product in page_obj %}
-                <tr>
-                    <td>{{ product.id }}</td>
-                    <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>
-                    <td>{{ product.material }}</td>
-                    <td>{{ product.quantity }} шт.</td>
-                    <td>{{ product.width }} х {{ product.length }} м</td>
-                    <td>{{ product.FinishWork }}</td>
-                    <td>{{ product.price }} руб.</td>
-                    <td>{{ product.status_product }}</td>
-                    <td>{{ product.created_at }}</td>
-                     {% if product.status_product.id == 1 %}
-                    <td><a href="edit/{{product.id}}">Изменить</a></td>
-                    <td><a href="delete/{{product.id}}">Удалить</a></td>
-                        <td></td>
-                        <td></td>
-                    {% else %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a>
+                </td>
+                <td>{{ product.material }}</td>
+                <td>{{ product.quantity }} шт.</td>
+                <td>{{ product.width }} х {{ product.length }} м</td>
+                <td>{{ product.FinishWork }}</td>
+                <td>{{ product.price }} руб.</td>
+                <td>{{ product.status_product }}</td>
+                <td>{{ product.created_at }}</td>
+                {% if product.status_product.id == 1 %}
+                <td><a href="{% url 'files:edit_files' product.id %}">Изменить</a></td>
+                <td><a href="{% url 'files:delete_files' product.id %}">Удалить</a></td>
+                <td></td>
+                <td></td>
+                {% else %}
 
-                    <td></td>
-                        <td></td>
-                      {% endif %}
+                <td></td>
+                <td></td>
+                {% endif %}
 
 
-                </tr>
-        {% endfor %}
+            </tr>
+            {% endfor %}
             </tbody>
-    </table>
+        </table>
     </div>
 </div>
 
-    {% if page_obj.has_other_pages %}
-    <nav aria-label="...">
-        <ul class="pagination">
-            {% if page_obj.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{page_obj.previous_page_number}}">Предыдущая</a>
-            </li>
-            {% endif %}
-            {% for p in page_obj.paginator.page_range %}
-            {% if page_obj.number == p %}
-            <li class="page-item active" aria-current="page"><a class="page-link" href="{{ p }}">{{ p }}</a></li>
-            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
-            <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
-            {% endif %}
-            {% endfor %}
-            {% if page_obj.has_next %}
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{page_obj.next_page_number}}">Следующая</a>
-            </li>
-            {% endif %}
+{% if page_obj.has_other_pages %}
+<nav aria-label="...">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.previous_page_number}}">Предыдущая</a>
+        </li>
+        {% endif %}
+        {% for p in page_obj.paginator.page_range %}
+        {% if page_obj.number == p %}
+        <li class="page-item active" aria-current="page"><a class="page-link" href="{{ p }}">{{ p }}</a></li>
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+        <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{page_obj.next_page_number}}">Следующая</a>
+        </li>
+        {% endif %}
 
-        </ul>
-    </nav>
-    {% endif %}
+    </ul>
+</nav>
+{% endif %}
 
-    {% endif %}
-    {% endblock %}
+{% endif %}
+{% endblock %}

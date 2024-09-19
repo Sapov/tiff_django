@@ -31,8 +31,8 @@ urlpatterns = [
     path("create_uv/", FilesCreateViewUV.as_view(), name="create_uv"),
     path("create_rollup/", FilesCreateViewRollUp.as_view(), name="create_rollup"),
     # форма редактирования файла
-    path("edit/<pk>", FilesUpdateView.as_view(), name="update_files"),
-    path("delete/<int:id>/", delete),
+    path("edit/<pk>", FilesUpdateView.as_view(), name="edit_files"),
+    path("delete/<int:id>/", delete, name='delete_files'),
     path("price/", price, name="price"),  # прайс-лист
     path("upload/", upload_arh, name="upload_arh"),  # загрузка архива файла
     # --------------calculators--------------

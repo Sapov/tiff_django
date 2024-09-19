@@ -15,7 +15,7 @@ from .views import (
     report_complite_orders,
     new_order,
     OrdersViewList,
-    AllOrdersListView, result, success_pay, fail, report_day, set_status_order, ViewAllCompleteOrders
+    AllOrdersListView, result, success_pay, fail, report_day, set_status_order
 )
 
 app_name = "orders"
@@ -52,6 +52,4 @@ urlpatterns = [
     path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
     path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
 
-    # для Курьеров
-    path("courier/", ViewAllCompleteOrders.as_view(), name='orders_complete')
 ]

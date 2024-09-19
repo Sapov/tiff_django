@@ -29,14 +29,11 @@
 
                  {% if order.status.id >= 2 %}
 
-                <td><button type="submit" class="btn btn-primary"
-                            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id }}</button></td>
+            <td><button type="submit" class="btn btn-primary"
+            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id }}</button></td>
 
                 {% else %}
                 <td>
-                    <!--                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">-->
-                    <!--                    <ul class="navbar-nav ml-auto">-->
-                    <!--                                            <li class="nav-item dropdown">-->
                     <a class="btn btn-success nav-link dropdown-toggle"
                        href="{% url 'orders:add_file_in_order' order.id %}" id="navbarDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -81,6 +78,9 @@
                     </div>
                     {% elif order.status.id == 2 %}
                     <div class="text-primary mb-2">Оформлен
+                    </div>
+                    {% elif order.status.id == 4 %}
+                    <div class="text-warning mb-2">Доставка
                     </div>
 
                     {% endif %}

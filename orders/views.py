@@ -136,7 +136,7 @@ def add_files_in_order(request, order_id):
     Orders = Order.objects.get(id=order_id)
     items = Product.objects.filter(
         in_order=False, Contractor=request.user
-    )  # Только те файлы которые еще были добавлены в заказ(ы) , только файлы юзера
+    )  # Только те файлы которые еще были добавлены в заказ(ы), только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     current_order = Order.objects.get(pk=order_id)
 
@@ -264,13 +264,6 @@ class ViewAllPayOrders(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Order.objects.filter(paid=True).order_by("id")
         return queryset
-
-
-class ViewAllCompleteOrders(ViewAllPayOrders):
-    template_name = "view_orders_for_courier.html"
-
-    def get_queryset(self):
-        return Order.objects.filter(status_id=5).order_by("-id")
 
 
 def about_file(request, file_id):
@@ -424,3 +417,11 @@ def set_status_order(request, status_oder: int, pk: int, hash_code: str):
         return render(request, "files/confirm_order_to_work.html")
     else:
         return render(request, "files/no_confirm_order_to_work.html")
+
+
+def change_status_order(status_oder: int, pk: int):
+    order = Order.objects.get(id=pk)  # получаем заказ по id заказа
+    status = StatusOrder.objects.get(id=status_oder)  # меняем статус заказа
+    logger.info(f"МЕНЯЮ СТАТУС НА {status}")
+    order.status = status
+    order.save()

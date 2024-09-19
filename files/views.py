@@ -58,6 +58,7 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = Product.objects.filter(Contractor=self.request.user).order_by("-id")
+        return queryset
 
 
 def delete(request, id):
