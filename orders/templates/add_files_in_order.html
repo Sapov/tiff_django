@@ -242,9 +242,9 @@
         </button>
     </td>
     <td>
-        <button type="submit" class="btn btn-primary"
-                onClick="location.href='{{Orders.pay_link}}'">Получить счет
-        </button>
+        <button type="submit" class="btn btn-success"
+                    onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">Получить счет</button>
+
     </td>
 
     {% endif %}

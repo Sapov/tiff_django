@@ -1,9 +1,12 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.conf import settings
 
+User = get_user_model()
+
 
 class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     # date_of_birth = models.DateField(
     #     blank=True, null=True, verbose_name="Дата рождения"
     # )

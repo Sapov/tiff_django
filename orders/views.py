@@ -12,7 +12,6 @@ from django_celery_beat.models import PeriodicTask
 
 from account.models import Delivery, Organisation
 
-# from account.models import Organisation
 from files.models import Product
 from files.pay import Robokassa
 from .alerts import Alerts
@@ -21,6 +20,8 @@ from .models import Order, OrderItem, UtilsModel, StatusOrder
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
 from django.core.paginator import Paginator
+
+from .payment.bank import Bank
 from .tasks import arh_for_mail
 import logging
 
@@ -431,3 +432,12 @@ def change_status_order(status_oder: int, pk: int):
     logger.info(f"МЕНЯЮ СТАТУС НА {status}")
     order.status = status
     order.save()
+
+
+def create_invoice(request, order_id):
+    order = Bank(order_id)
+    order.create_invoice()
+
+
+    context = {'title': 'Счет на оплату услуг'}
+    return render(request, 'orders/create_invoice.html', context)
