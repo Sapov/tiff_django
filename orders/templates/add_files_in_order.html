@@ -241,11 +241,13 @@
                 onClick="location.href='{{Orders.pay_link}}'">Оплатить картой
         </button>
     </td>
+    {% if Orders.organisation_payer %}
     <td>
         <button type="submit" class="btn btn-success"
                     onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">Получить счет</button>
 
     </td>
+    {% endif %}
 
     {% endif %}
 

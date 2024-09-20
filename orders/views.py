@@ -222,7 +222,10 @@ def order_pay(request, order_id):
         # logger.info(f'Генерим платежную ссылку: ', link_pay)
         context = {"Orders": Orders, 'link_pay': link_pay}
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
-        create_order_pdf.delay(order_id)
+        # только если была выбрана организация
+        if Orders.organisation_payer:
+            print('Генерим счет')
+            create_order_pdf.delay(order_id)
 
         os.chdir(current_path)  # перейти обратно
 

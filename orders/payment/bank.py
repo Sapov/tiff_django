@@ -51,7 +51,6 @@ class Bank:
                 "SecondSide": {
                     "accountId": f'{payer.organisation_payer.bank_account}/{payer.organisation_payer.bik_bank}',
                     "legalAddress": payer.organisation_payer.legalAddress,
-                    # "624205, РОССИЯ, СВЕРДЛОВСКАЯ обл, ЛЕСНОЙ г, ЛЕНИНА ул, ДОМ 96, офис КВ. 19",
                     "kpp": payer.organisation_payer.kpp,
                     "bankName": payer.organisation_payer.bank_name,
                     "bankCorrAccount": payer.organisation_payer.bankCorrAccount,
@@ -62,23 +61,12 @@ class Bank:
                 "Content": {
                     "Invoice": {
                         "Positions": self.__create_list_position(),
-                        # [
-                        #     {
-                        #         "positionName": "Название товара",
-                        #         "unitCode": "шт.",
-                        #         "ndsKind": "nds_0",
-                        #         "price": "1234.56",
-                        #         "quantity": "1234.567",
-                        #         "totalAmount": "1234.56",
-                        #         "totalNds": "1234.56"
-                        #     }
-                        # ],
                         "date": str(datetime.now().date()),
                         "totalAmount": self.total_amount_order,
                         "totalNds": "0",
                         "number": self.order_id,
-                        "basedOn": "Основание платежа",
-                        "comment": "Комментарий к платежу",
+                        # "basedOn": "Основание платежа",
+                        # "comment": "Комментарий к платежу",
                     }
                 }
             }
@@ -111,12 +99,6 @@ class Bank:
             positions.append(new_dict)
         return positions
 
-    # def _go_media(self):
-    #     self.current_path = os.getcwd()
-    #     os.chdir(f"{settings.MEDIA_ROOT}/orders")
-    #
-    # def _go_back(self):
-    #     os.chdir(self.current_path)  # перейти обратно
     @goto_media_orders
     def get_invoice(self):
         url = f"https://enter.tochka.com/uapi/invoice/v1.0/bills/{self.customer_code}/{self.document_id}/file"
@@ -148,6 +130,7 @@ class Bank:
         order.save()
 
     def run(self):
+        logging.info(f'ГЕНЕРИМ СЧЕТ ОТ БАНКА')
         self.__get_customer_code()
         self.create_invoice()
         self.get_invoice()
