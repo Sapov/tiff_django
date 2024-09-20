@@ -22,7 +22,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.bank import Bank
-from .tasks import arh_for_mail
+from .tasks import arh_for_mail, create_order_pdf
 import logging
 
 logger = logging.getLogger(__name__)
@@ -204,10 +204,6 @@ def order_pay(request, order_id):
     current_path = os.getcwd()
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
 
-    # --------------- Формирование счета---------
-    # create_order_pdf.delay(order_id)
-    # order_pdf = DrawOrder(order_id)  #
-    # order_pdf.run()
     order = Order.objects.get(id=order_id)
 
     if str(order.status) != 'Оформлен':  # предотвращаем повторную отправку заказа
@@ -225,6 +221,9 @@ def order_pay(request, order_id):
         link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
         # logger.info(f'Генерим платежную ссылку: ', link_pay)
         context = {"Orders": Orders, 'link_pay': link_pay}
+        # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
+        create_order_pdf.delay(order_id)
+
         os.chdir(current_path)  # перейти обратно
 
         return render(request, "orderpay.html", context)
@@ -435,9 +434,9 @@ def change_status_order(status_oder: int, pk: int):
 
 
 def create_invoice(request, order_id):
-    order = Bank(order_id)
-    order.create_invoice()
-
-
-    context = {'title': 'Счет на оплату услуг'}
+    domain = str(get_domain(request))
+    # order = Bank(order_id)
+    # order.run()
+    item = Order.objects.get(id=order_id)
+    context = {'title': 'Счет на оплату услуг', 'link_pdf': f"http://{domain}/media/{str(item.order_pdf_file)}"}
     return render(request, 'orders/create_invoice.html', context)

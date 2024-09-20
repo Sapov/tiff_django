@@ -1,6 +1,4 @@
 import os
-# from os import path
-
 import zipfile
 from datetime import date
 import shutil
