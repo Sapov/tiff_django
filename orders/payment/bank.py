@@ -3,8 +3,9 @@ from datetime import datetime, date
 import json
 import os
 import requests
+from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from dotenv import load_dotenv, find_dotenv
-
+from django.utils import timezone
 from mysite import settings
 from orders.models import Order, OrderItem
 import logging
@@ -119,6 +120,7 @@ class Bank:
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
+        print(response)
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
         logging.info(f'CUSTOMERCODE {self.customer_code}')
 
@@ -129,9 +131,37 @@ class Bank:
         order.order_pdf_file = f'orders/Order_{self.order_id}.pdf'
         order.save()
 
+    def get_status_invoice(self):
+        url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/{self.customer_code}/{self.document_id}/payment-status'
+
+        payload = ""
+        headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+                   }
+
+        response = requests.request("GET", url, headers=headers, data=payload)
+
+        print(response.text)
+
+    @classmethod
+    def check_payment(cls, domain, order_id):
+        Orders = Order.objects.get(id=order_id)
+        print('ДАТА ГОТОВНСТИ', Orders.date_complete)
+        PeriodicTask.objects.create(
+            name=f'Check payment order №{order_id}',
+            task='check_payment_order',
+            # interval=IntervalSchedule.objects.get(every=1, period='hours'),
+            interval=IntervalSchedule.objects.get(every=2, period='minutes'),
+            args=json.dumps([order_id, domain]),
+            # start_time=Orders.date_complete - datetime.timedelta(hours=3),  # за три часа до дедлайна пишем письма
+            start_time=timezone.now()
+        )
+
     def run(self):
         logging.info(f'ГЕНЕРИМ СЧЕТ ОТ БАНКА')
         self.__get_customer_code()
         self.create_invoice()
         self.get_invoice()
         self.add_pdf_in_order()
+        self.get_status_invoice()
+# Запустить фоновую проверку оплаты счета
+# Создать таблицу счетов и брать номер документа из таблицы счетов

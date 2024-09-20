@@ -226,6 +226,8 @@ def order_pay(request, order_id):
         if Orders.organisation_payer:
             print('Генерим счет')
             create_order_pdf.delay(order_id)
+            # запускаем ежечастную проверку оплаты
+            Bank.check_payment(domain, order_id)
 
         os.chdir(current_path)  # перейти обратно
 

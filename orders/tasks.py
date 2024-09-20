@@ -24,3 +24,11 @@ def create_order_pdf(order_id):
     '''Формирования счета для организаций'''
     order = Bank(order_id)
     order.run()
+
+
+@shared_task(name='check_payment_order')
+def check_payment_order(*args):
+    order_id, domain = args
+    print(f'[INFO]-------------Проверяем оплату в банке--№ {order_id}---------')
+    order = Bank(order_id)
+    order.get_status_invoice()

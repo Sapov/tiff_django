@@ -55,6 +55,7 @@ class Order(models.Model):
         help_text="Выберите организацию платильщик",
         null=True,
         blank=True,
+        default=1
     )
     paid = models.BooleanField(verbose_name="заказ оплачен", default=False)
     date_complete = models.DateTimeField(
@@ -430,3 +431,9 @@ class UtilsModel:
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
         self.send_mail_order()  # отправил письмо
+
+
+class BankInvoices(models.Model):
+    order_id = models.IntegerField(verbose_name='Номер заказа')
+    document_id = models.CharField(verbose_name='Номер выставленного документа в банке')
+    payment_Status = models.CharField(verbose_name='Статус оплаты')
