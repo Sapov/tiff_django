@@ -1,5 +1,8 @@
 import os
 from dotenv import load_dotenv, find_dotenv
+
+from orders.models import BankInvoices
+
 load_dotenv(find_dotenv())
 
 import requests
@@ -19,16 +22,16 @@ import requests
 # get_customer_code()
 
 
-def get_status_invoice():
-    url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/301576470/b20791fa-f119-45e2-a34f-1b307e2b9279/payment-status'
-
-    payload = ""
-    headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-               }
-
-    response = requests.request("GET", url, headers=headers, data=payload)
-
-    print(response.text)
-
-
-get_status_invoice()
+# def get_status_invoice():
+#     url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/301576470/b20791fa-f119-45e2-a34f-1b307e2b9279/payment-status'
+#
+#     payload = ""
+#     headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+#                }
+#
+#     response = requests.request("GET", url, headers=headers, data=payload)
+#
+#     print(response.text)
+#
+#
+# get_status_invoice()

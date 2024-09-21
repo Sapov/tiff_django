@@ -435,5 +435,8 @@ class UtilsModel:
 
 class BankInvoices(models.Model):
     order_id = models.IntegerField(verbose_name='Номер заказа')
-    document_id = models.CharField(verbose_name='Номер выставленного документа в банке')
-    payment_Status = models.CharField(verbose_name='Статус оплаты')
+    document_id = models.CharField(max_length=40,  verbose_name='Номер выставленного документа в банке')
+    payment_Status = models.CharField(max_length=40, verbose_name='Статус оплаты', blank=True, null=True)
+    created = models.DateTimeField(auto_created=True)
+    update = models.DateTimeField(auto_now=True)
+

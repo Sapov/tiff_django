@@ -7,7 +7,7 @@ from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from dotenv import load_dotenv, find_dotenv
 from django.utils import timezone
 from mysite import settings
-from orders.models import Order, OrderItem
+from orders.models import Order, OrderItem, BankInvoices
 import logging
 
 logger = logging.getLogger(__name__)
@@ -81,6 +81,10 @@ class Bank:
         self.document_id = response.json()['Data']['documentId']
         logging.info(f'document_id  {self.document_id}')
 
+    def __add_base_document_id(self):
+        BankInvoices.objects.create(order_id=self.order_id,
+                                    document_id=self.document_id)
+
     def __create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
         order_items = OrderItem.objects.filter(order=self.order_id)
@@ -132,27 +136,35 @@ class Bank:
         order.save()
 
     def get_status_invoice(self):
-        url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/{self.customer_code}/{self.document_id}/payment-status'
+        document = BankInvoices.objects.get(order_id=self.order_id)
+        customer_code = 301576470
+        url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/{customer_code}/{document.document_id}/payment-status'
 
         payload = ""
         headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
                    }
-
         response = requests.request("GET", url, headers=headers, data=payload)
-
         print(response.text)
+        payment_status = response.json()['Data']['paymentStatus']
+        logging.info(f'PAYMENT STATUS {payment_status}')
+        document.payment_Status = payment_status
+        document.save()
+
+    def set_status_payment(self):
+        '''Меняем статус оплаты'''
+        'payment_waiting — оплаты счёта ещё не было;'
+        'payment_expired — оплата счёта просрочена. '
+        'payment_paid — оплата по счёту прошла.'
+        pass
 
     @classmethod
     def check_payment(cls, domain, order_id):
-        Orders = Order.objects.get(id=order_id)
-        print('ДАТА ГОТОВНСТИ', Orders.date_complete)
         PeriodicTask.objects.create(
             name=f'Check payment order №{order_id}',
             task='check_payment_order',
-            # interval=IntervalSchedule.objects.get(every=1, period='hours'),
-            interval=IntervalSchedule.objects.get(every=2, period='minutes'),
+            interval=IntervalSchedule.objects.get(every=1, period='hours'),
+            # interval=IntervalSchedule.objects.get(every=2, period='minutes'),
             args=json.dumps([order_id, domain]),
-            # start_time=Orders.date_complete - datetime.timedelta(hours=3),  # за три часа до дедлайна пишем письма
             start_time=timezone.now()
         )
 
@@ -160,8 +172,8 @@ class Bank:
         logging.info(f'ГЕНЕРИМ СЧЕТ ОТ БАНКА')
         self.__get_customer_code()
         self.create_invoice()
+        self.__add_base_document_id()
         self.get_invoice()
         self.add_pdf_in_order()
-        self.get_status_invoice()
 # Запустить фоновую проверку оплаты счета
 # Создать таблицу счетов и брать номер документа из таблицы счетов
