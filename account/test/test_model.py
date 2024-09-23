@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from unittest import TestCase
+from account.models import Organisation, Delivery
 
 User = get_user_model()
 
@@ -37,34 +38,6 @@ class TestModelDelivery(TestCase):
     def test_model_ordering(self):
         self.assertEqual(Delivery._meta.ordering, ['type_delivery'])
 
-#
-# class TestModelProfile(TestCase):
-#
-#     def setUp(self):
-#         self.guest_client = Client()
-#         self.user = User.objects.create_user(username='auth')
-#         self.authorized_client = Client()
-#         self.authorized_client.force_login(self.user)
-#         # Set up non-modified objects used by all
-#         # test methods
-#         Profile.objects.create(
-#             user=User.objects.create(username='vasa'),
-#             organisation=Organisation.objects.create(
-#                 Contractor=self.user,
-#                 name_ul='Test Company',
-#                 address_ur='Test Address',
-#                 address_post='Test Post Address',
-#                 phone='123456',
-#                 email='test@example.com',
-#                 inn='123456789012',
-#                 kpp='123456789',
-#                 okpo='123456789012',
-#             ),
-#         )
-#
-
-from account.models import Organisation, Delivery
-
 
 class TestModelOrganisation(TestCase):
 
@@ -87,15 +60,15 @@ class TestModelOrganisation(TestCase):
     #     org = Organisation.objects.get(id=1)
     #     field_label = org._meta.get_field('Contractor').verbose_name
     #     expected_verbose_name = 'ЗАКАЗЧИК!!'
-    #     self.assertEquals(field_label, expected_verbose_name)
+    #     self.assertEqual(field_label, expected_verbose_name)
 
     def test_inn_verbose_name(self):
         org = Organisation.objects.get(id=1)  # Получение объекта для тестирования
         max_length = org._meta.get_field(
             'inn').verbose_name  # Получение метаданных поля для получения необходимых значений
-        self.assertEquals(max_length, 'ИНН')  # Сравнить значение с ожидаемым результатом
+        self.assertEqual(max_length, 'ИНН')  # Сравнить значение с ожидаемым результатом
 
     # def test_max_length_inn(self):
     #     org = Organisation.objects.get(id=1)  # Получение объекта для тестирования
     #     max_length = org._meta.get_field('inn').max_length
-    #     self.assertEquals(max_length, 100)
+    #     self.assertEqual(max_length, 100)

@@ -19,7 +19,7 @@
                 <td>{{ Orders.organisation_payer }}</td>
 
 
-                    <td>{% if Orders.paid == False %}
+                <td>{% if Orders.paid == False %}
                     <div class="mb-2">
                         <code>Не оплачено!</code>
 
@@ -31,15 +31,27 @@
 
                 <td>{{ Orders.total_price }} руб.</td>
                 <td>{{ Orders.status }}</td>
-<!--                <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>-->
+                <!--                <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>-->
 
-                <td>
-                    <button type="submit" class="btn btn-primary"
-                            onClick="location.href='{{link_pay}}'">Оплатить
-                    </button>
-                </td>
+
             </tr>
         </table>
+        <table>
+            <td>
+                <button type="submit" class="btn btn-primary"
+                        onClick="location.href='{{link_pay}}'">Оплатить картой
+                </button>
+            </td>
+            {% if Orders.organisation_payer %}
+            <td>
+                <button type="submit" class="btn btn-success"
+                        onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">Получить счет
+                </button>
+
+            </td>
+            {% endif %}
+        </table>
+
         </tbody>
     </div>
 </div>

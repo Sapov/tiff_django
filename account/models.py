@@ -23,7 +23,7 @@ class Profile(models.Model):
 
 
 class Organisation(models.Model):
-    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!",
+    Contractor = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!",
                                    default=1, )
     name_full = models.CharField(max_length=200, verbose_name="Имя юр. лица", help_text="Форма собственности и название")
     inn = models.CharField(max_length=12, verbose_name="ИНН")
