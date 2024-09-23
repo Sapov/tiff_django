@@ -91,7 +91,7 @@ class Command(BaseCommand):
             StatusOrder.objects.get_or_create(name=status[0])
 
         print('*' * 30, 'заполняем Типы доставки ', '*' * 30)
-        for type_delivery in load_excel('delivery', 'b2:b2'):
+        for type_delivery in load_excel('delivery', 'b2:b3'):
             print(type_delivery)
             Delivery.objects.get_or_create(type_delivery=type_delivery[0])
 

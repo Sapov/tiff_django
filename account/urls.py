@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import add_organisation, OrganisationCreateViewTest
 
 app_name = 'account'
 
@@ -10,6 +11,7 @@ urlpatterns = [
 
     # -------------------------CRUD ORGANISATION-----------------------------------------------
     path('add_organisation/', views.OrganisationCreateView.as_view(), name='create_organisation'),
+    path('add_organisation_test/', OrganisationCreateViewTest.as_view(), name='add_organisation_test'),
     path('list_organisation/', views.ListOrganisation.as_view(), name='list_organisation'),
     path('delete_organisation_user/<pk>', views.OrganisationDeleteView.as_view(), name='delete_organisation_user'),
     path('update_organisation_user/<pk>', views.OrganisationUpdateView.as_view(), name='update_organisation_user'),

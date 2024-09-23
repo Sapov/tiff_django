@@ -25,18 +25,17 @@ class Profile(models.Model):
 class Organisation(models.Model):
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!",
                                    default=1, )
-    name_ul = models.CharField(max_length=70, verbose_name="Имя юр. лица", help_text="Форма собственности и название")
-    bank_account = models.CharField(max_length=20, verbose_name='Расчетный счет', )
-    bank_name = models.CharField(max_length=120, verbose_name='Название Банка', )
-    bik_bank = models.CharField(max_length=9, verbose_name='БИК Банка', )
-    bankCorrAccount = models.CharField(max_length=20, verbose_name='Кор.счет')
-    legalAddress = models.TextField(verbose_name="Юр. Адрес", help_text="Полный почтовый адрес", )
-    address_post = models.TextField(null=True, blank=True, verbose_name="Почтовый Адрес")
+    name_full = models.CharField(max_length=200, verbose_name="Имя юр. лица", help_text="Форма собственности и название")
+    inn = models.CharField(max_length=12, verbose_name="ИНН")
+    kpp = models.CharField(max_length=9, verbose_name="КПП")
+    address = models.CharField(max_length=256, verbose_name="Юр. Адрес", help_text="Полный почтовый адрес", )
+    bank_account = models.CharField(max_length=20, verbose_name='Расчетный счет', null=True, blank=True, )
+    bank_name = models.CharField(max_length=120, verbose_name='Название Банка', null=True, blank=True, )
+    bik_bank = models.CharField(max_length=9, verbose_name='БИК Банка', null=True, blank=True, )
+    bankCorrAccount = models.CharField(max_length=20, verbose_name='Кор.счет', null=True, blank=True, )
+    address_post = models.CharField(max_length=256, null=True, blank=True, verbose_name="Почтовый Адрес")
     phone = models.CharField(max_length=20, blank=True, verbose_name="Телефон")
     email = models.EmailField(max_length=20, blank=True, verbose_name="Электронная почта")
-    tax_сode = models.CharField(max_length=12, verbose_name="ИНН")
-    kpp = models.CharField(max_length=9, verbose_name="КПП")
-    okpo = models.CharField(max_length=12, null=True, blank=True, verbose_name="ОКПО")
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Опубликовано")
 
     # user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -44,10 +43,10 @@ class Organisation(models.Model):
     class Meta:
         verbose_name_plural = "Организации"
         verbose_name = "Организация"
-        ordering = ["name_ul"]
+        ordering = ["name_full"]
 
     def __str__(self):
-        return self.name_ul
+        return self.name_full
 
 
 class Delivery(models.Model):

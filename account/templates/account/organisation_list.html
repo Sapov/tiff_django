@@ -2,13 +2,21 @@
 <title>{% block title %} Организации: {% endblock %}</title>
 {% block body %}
 
-    <h1>Мои организации: </h1>
- <a href="{% url 'account:create_organisation' %}" class="btn btn-primary btn-icon-split">
+<h1>Мои организации: </h1>
+<a href="{% url 'account:create_organisation' %}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">Добавить организацию</span>
-                                    </a>
+    <span class="text">Добавить организацию</span>
+</a>
+
+<hr>
+<a href="{% url 'account:add_organisation_test' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+    <span class="text">Тест форма Добавить</span>
+</a>
 
 <hr>
 <div class="row">
@@ -17,29 +25,29 @@
             <thead>
             <tr>
 
-                                                    <th scope="col">№</th>
-                                                    <th scope="col">Название</th>
-                                                    <th scope="col">Тел</th>
-                                                    <th scope="col">ИНН</th>
-                                                    <th scope="col">КПП</th>
-                                                </tr>
-                                            </thead>
+                <th scope="col">№</th>
+                <th scope="col">Название</th>
+                <th scope="col">Тел</th>
+                <th scope="col">ИНН</th>
+                <th scope="col">КПП</th>
+            </tr>
+            </thead>
 
-     {% for oraganisation in object_list %}
+            {% for organisation in object_list %}
 
-                                            <tbody>
-                                                <tr>
-                                                    <td>{{ oraganisation.id }}</td>
-                                                    <td>{{ oraganisation.name_ul }}</td>
-                                                    <td>{{ oraganisation.phone }}</td>
-                                                    <td>{{ oraganisation.tax_сode }}</td>
-                                                    <td>{{ oraganisation.kpp }}</td>
-                                                    <td><a href="{% url 'account:update_organisation_user' oraganisation.id %}">Изменить</a></td>
-                                                    <td><a href="{% url 'account:delete_organisation_user' oraganisation.id %}">Удалить</a></td>
-                </tr>
-        {% endfor %}
+            <tbody>
+            <tr>
+                <td>{{ organisation.id }}</td>
+                <td>{{ organisation.name_full }}</td>
+                <td>{{ organisation.phone }}</td>
+                <td>{{ organisation.inn }}</td>
+                <td>{{ organisation.kpp }}</td>
+                <td><a href="{% url 'account:update_organisation_user' organisation.id %}">Изменить</a></td>
+                <td><a href="{% url 'account:delete_organisation_user' organisation.id %}">Удалить</a></td>
+            </tr>
+            {% endfor %}
             </tbody>
-    </table>
+        </table>
     </div>
 </div>
 

@@ -51,13 +51,13 @@ class Bank:
                 "customerCode": self.customer_code,
                 "SecondSide": {
                     "accountId": f'{payer.organisation_payer.bank_account}/{payer.organisation_payer.bik_bank}',
-                    "legalAddress": payer.organisation_payer.legalAddress,
+                    "legalAddress": payer.organisation_payer.address,
                     "kpp": payer.organisation_payer.kpp,
                     "bankName": payer.organisation_payer.bank_name,
                     "bankCorrAccount": payer.organisation_payer.bankCorrAccount,
-                    "taxCode": payer.organisation_payer.tax_сode,
+                    "taxCode": payer.organisation_payer.inn,
                     "type": "company",
-                    "secondSideName": payer.organisation_payer.name_ul
+                    "secondSideName": payer.organisation_payer.name_full
                 },
                 "Content": {
                     "Invoice": {
@@ -79,11 +79,12 @@ class Bank:
         response = requests.request("POST", self.url, headers=headers, data=payload)
         logging.info(f'RESPONSE  {response}')
         self.document_id = response.json()['Data']['documentId']
-        logging.info(f'document_id  {self.document_id}')
+        logging.info(f'СГЕНЕРИРОВАЛИ СЧЕТ ПОЛУЧИЛИ DOC ID {self.document_id}')
 
     def __add_base_document_id(self):
         BankInvoices.objects.create(order_id=self.order_id,
                                     document_id=self.document_id)
+        logging.info(f'ЗАПИСАЛИ В БАЗУ ID документа')
 
     def __create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
@@ -169,7 +170,6 @@ class Bank:
         )
 
     def run(self):
-        logging.info(f'ГЕНЕРИМ СЧЕТ ОТ БАНКА')
         self.__get_customer_code()
         self.create_invoice()
         self.__add_base_document_id()
