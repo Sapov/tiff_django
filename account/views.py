@@ -83,11 +83,11 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
         "name_full",
         "inn",
         "kpp",
-        'bank_name',
+        "address",
         'bik_bank',
+        'bank_name',
         'bank_account',
         'bankCorrAccount',
-        "address",
         "address_post",
         "phone",
         "email",
@@ -185,44 +185,3 @@ class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
     model = DeliveryAddress
     fields = "__all__"
     success_url = reverse_lazy("account:delivery_list")
-
-
-class OrganisationCreateViewTest(LoginRequiredMixin, CreateView):
-    """
-    добавление организации пользователем
-    """
-
-    model = Organisation
-    fields = [
-        "name_full",
-        "inn",
-        "kpp",
-        "address",
-        'bank_name',
-        'bik_bank',
-        'bank_account',
-        'bankCorrAccount',
-        "address_post",
-        "phone",
-        "email",
-    ]
-    template_name = 'account/organisation_form_test_form.html'
-    success_url = reverse_lazy("account:list_organisation")
-
-    # только для текущего юзера
-    def form_valid(self, form):
-        form.instance.Contractor = self.request.user
-        return super().form_valid(form)
-
-
-def add_organisation(request):
-    print(request.__dict__)
-    if request.method == 'POST':
-        form = OrganisationForm(request.POST)
-        print(form)
-        if form.is_valid():
-            form.save()
-            return redirect("account:list_organisation")
-    else:
-        form = OrganisationForm()
-    return render(request, 'account/organisation_form_test_form.html', {'form': form})
