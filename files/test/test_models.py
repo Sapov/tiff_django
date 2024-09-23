@@ -121,6 +121,8 @@ class TestModelsFinishWork(TestCase):
         self.assertEqual(FinishWork._meta.verbose_name_plural, 'Финишные обработки')
 
 
+
+
 class TestModelContractor(TestCase):
     @classmethod
     def setUpTestData(cls):

@@ -52,7 +52,6 @@ class TestAccount(TestCase):
 
 
 class TestModelProfile(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all

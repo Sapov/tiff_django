@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 
-from account.models import Organisation, DeliveryAddress
+from account.models import Organisation
 
 User = get_user_model()
 
