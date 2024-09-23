@@ -27,7 +27,7 @@ class Organisation(models.Model):
                                    default=1, )
     name_full = models.CharField(max_length=200, verbose_name="Имя юр. лица", help_text="Форма собственности и название")
     inn = models.CharField(max_length=12, verbose_name="ИНН")
-    kpp = models.CharField(max_length=9, verbose_name="КПП")
+    kpp = models.CharField(max_length=9, blank=True, verbose_name="КПП")
     address = models.CharField(max_length=256, verbose_name="Юр. Адрес", help_text="Полный почтовый адрес", )
     bank_account = models.CharField(max_length=20, verbose_name='Расчетный счет', null=True, blank=True, )
     bank_name = models.CharField(max_length=120, verbose_name='Название Банка', null=True, blank=True, )
