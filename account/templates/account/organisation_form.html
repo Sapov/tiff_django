@@ -20,6 +20,8 @@
                 <h1>Добавить организацию</h1>
                 <input class="form-control" id="party" name="party" type="text"
                        placeholder="Введите название, ИНН, ОГРН или адрес организации"/>
+                <input class="form-control" id="bank" name="bank" type="text" autocomplete="off"
+                       placeholder="Введите название БИК банка или название"/>
             </div>
         </section>
         {{ form|crispy }}
@@ -31,6 +33,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/dadata_script_bic.js' %}"></script>
 
 
 </div>
