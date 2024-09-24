@@ -1,6 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from orders.models import BankInvoices
+from account.models import Delivery
+from orders.models import BankInvoices, Order, StatusOrder
+
+User = get_user_model()
 
 
 class TestModelBankInvoices(TestCase):
@@ -50,3 +54,35 @@ class TestModelBankInvoices(TestCase):
         name = invoice._meta.get_field('payment_Status').null
         expected_verbose_name = True
         self.assertEqual(name, expected_verbose_name)
+
+
+class TestOrderModel(TestCase):
+    def setUp(self):
+        Delivery.objects.create(type_delivery='Паровозом')
+        Order.objects.create(delivery=Delivery.objects.get(id=1),
+                             cost_total_price=4,
+                             organisation_payer=None,
+                             paid=True,
+                             date_complete=None,
+                             comments='',
+                             status=StatusOrder.objects.create(name='sdfsdf',
+                                                               is_active=True),
+                             Contractor=User.objects.create(username='Basa'), )
+
+    def test_delivery_verbose_name(self):
+        order = Order.objects.get(id=1)
+        name = order._meta.get_field('delivery').verbose_name
+        expected_verbose_name = 'Доставка'
+        self.assertEqual(name, expected_verbose_name)
+
+    def test_delivery_null(self):
+        order = Order.objects.get(id=1)
+        name = order._meta.get_field('delivery').null
+        expected_null = True
+        self.assertEqual(name, expected_null)
+
+    def test_delivery_default(self):
+        order = Order.objects.get(id=1)
+        name = order._meta.get_field('delivery').default
+        expected_default = 3
+        self.assertEqual(name, expected_default)

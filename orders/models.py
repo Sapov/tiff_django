@@ -34,13 +34,8 @@ class StatusOrder(models.Model):
 
 class Order(models.Model):
     delivery = models.ForeignKey(Delivery, on_delete=models.PROTECT, verbose_name='Доставка', null=True, default=3)
-    total_price = models.FloatField(
-        max_length=10,
-        null=True,
-        help_text="Стоимость заказа",
-        verbose_name="Общая Стоимость ",
-        blank=True,
-    )
+    total_price = models.FloatField(max_length=10, null=True, help_text="Стоимость заказа",
+                                    verbose_name="Общая Стоимость ", blank=True, )
     cost_total_price = models.FloatField(
         max_length=10,
         null=True,
@@ -435,8 +430,7 @@ class UtilsModel:
 
 class BankInvoices(models.Model):
     order_id = models.IntegerField(verbose_name='Номер заказа')
-    document_id = models.CharField(max_length=40,  verbose_name='Номер выставленного документа в банке')
+    document_id = models.CharField(max_length=40, verbose_name='Номер выставленного документа в банке')
     payment_Status = models.CharField(max_length=40, verbose_name='Статус оплаты', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
-
