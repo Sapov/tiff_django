@@ -46,8 +46,8 @@ class Order(models.Model):
     organisation_payer = models.ForeignKey(
         Organisation,
         on_delete=models.CASCADE,
-        verbose_name="организация платильщик",
-        help_text="Выберите организацию платильщик",
+        verbose_name="Организация плательщик",
+        help_text="Выберите организацию плательщик",
         null=True,
         blank=True,
         default=1
@@ -59,31 +59,36 @@ class Order(models.Model):
         null=True,
         blank=True,
     )
-    comments = models.TextField(verbose_name="Comments", blank=True)
-    status = models.ForeignKey(
-        StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1
-    )
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    Contractor = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        verbose_name="ЗАКАЗЧИК!!",
-        default=1,
-    )
-    order_arhive = models.FileField(upload_to=f"arhive/{id}", null=True, blank=True)
-    order_pdf_file = models.FileField(upload_to=f"orders/", null=True, blank=True)
-    pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
 
-    def __str__(self):
-        return f"Заказ № {self.id}"
 
-    class Meta:
-        verbose_name_plural = "Заказы"
-        verbose_name = "Заказ"
+comments = models.TextField(verbose_name="Comments", blank=True)
+status = models.ForeignKey(
+    StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1
+)
+created = models.DateTimeField(auto_now_add=True)
+updated = models.DateTimeField(auto_now=True)
+Contractor = models.ForeignKey(
+    settings.AUTH_USER_MODEL,
+    on_delete=models.CASCADE,
+    verbose_name="ЗАКАЗЧИК!!",
+    default=1,
+)
+order_arhive = models.FileField(upload_to=f"arhive/{id}", null=True, blank=True)
+order_pdf_file = models.FileField(upload_to=f"orders/", null=True, blank=True)
+pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
 
-    def get_absolute_url(self):
-        return reverse("orders:add_file_in_order", args=[self.id])
+
+def __str__(self):
+    return f"Заказ № {self.id}"
+
+
+class Meta:
+    verbose_name_plural = "Заказы"
+    verbose_name = "Заказ"
+
+
+def get_absolute_url(self):
+    return reverse("orders:add_file_in_order", args=[self.id])
 
 
 # def order_post_save(sender, instance, created, **kwargs):

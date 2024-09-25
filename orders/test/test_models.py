@@ -146,3 +146,39 @@ class TestOrderModel(TestCase):
         blank = order._meta.get_field('cost_total_price').blank
         expected_blank = True
         self.assertEqual(blank, expected_blank)
+
+    def test_organisation_payer_blank(self):
+        order = Order.objects.get(id=1)
+        blank = order._meta.get_field('organisation_payer').blank
+        expected_blank = True
+        self.assertEqual(blank, expected_blank)
+
+    def test_organisation_payer_verbose_name(self):
+        order = Order.objects.get(id=1)
+        verbose_name = order._meta.get_field('organisation_payer').verbose_name
+        expected_verbose_name = 'Организация плательщик'
+        self.assertEqual(verbose_name, expected_verbose_name)
+
+    def test_organisation_payer_null(self):
+        order = Order.objects.get(id=1)
+        null = order._meta.get_field('organisation_payer').null
+        expected_null = True
+        self.assertEqual(null, expected_null)
+
+    def test_organisation_payer_help_text(self):
+        order = Order.objects.get(id=1)
+        help_text = order._meta.get_field('organisation_payer').help_text
+        expected_help_text = 'Выберите организацию плательщик'
+        self.assertEqual(help_text, expected_help_text)
+
+    def test_organisation_payer_field_blank(self):
+        order = Order.objects.get(id=1)
+        blank = order._meta.get_field('organisation_payer').blank
+        expected_blank = True
+        self.assertEqual(blank, expected_blank)
+
+    def test_organisation_payer_field_default(self):
+        order = Order.objects.get(id=1)
+        default_field = order._meta.get_field('organisation_payer').default
+        expected_default = 1
+        self.assertEqual(default_field, expected_default)
