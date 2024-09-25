@@ -68,7 +68,7 @@ class Order(models.Model):
     Contractor = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        verbose_name="ЗАКАЗЧИК!!",
+        verbose_name="Заказчик",
         default=1,
     )
     order_arhive = models.FileField(upload_to=f"arhive/{id}", null=True, blank=True)

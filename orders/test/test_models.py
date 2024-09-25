@@ -254,3 +254,33 @@ class TestOrderModel(TestCase):
         auto_now_field = order._meta.get_field('updated').auto_now
         expected_auto_now = True
         self.assertEqual(auto_now_field, expected_auto_now)
+
+    def test_Contractor_verbose_name(self):
+        order = Order.objects.get(id=1)
+        verbose_name_field = order._meta.get_field('Contractor').verbose_name
+        expected_verbose_name = 'Заказчик'
+        self.assertEqual(verbose_name_field, expected_verbose_name)
+
+    def test_Contractor_default_field(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('Contractor').default
+        expected = 1
+        self.assertEqual(field, expected)
+
+    def test_order_arhive_upload_to(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('order_arhive').upload_to
+        expected = f"arhive/{id}"
+        self.assertEqual(field, expected)
+
+    def test_order_arhive_null(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('order_arhive').null
+        expected = True
+        self.assertEqual(field, expected)
+
+    def test_order_arhive_blank(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('order_arhive').blank
+        expected = True
+        self.assertEqual(field, expected)
