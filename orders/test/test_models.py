@@ -242,3 +242,15 @@ class TestOrderModel(TestCase):
         default_field = order._meta.get_field('status').default
         expected_default = 1
         self.assertEqual(default_field, expected_default)
+
+    def test_created_field_auto_now_add(self):
+        order = Order.objects.get(id=1)
+        auto_now_add_field = order._meta.get_field('created').auto_now_add
+        expected_auto_now_add = True
+        self.assertEqual(auto_now_add_field, expected_auto_now_add)
+
+    def test_updated_field_auto_now(self):
+        order = Order.objects.get(id=1)
+        auto_now_field = order._meta.get_field('updated').auto_now
+        expected_auto_now = True
+        self.assertEqual(auto_now_field, expected_auto_now)
