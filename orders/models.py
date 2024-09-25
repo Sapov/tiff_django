@@ -35,7 +35,7 @@ class StatusOrder(models.Model):
 class Order(models.Model):
     delivery = models.ForeignKey(Delivery, on_delete=models.PROTECT, verbose_name='Доставка', null=True, default=3)
     total_price = models.FloatField(max_length=10, null=True, help_text="Стоимость заказа",
-                                    verbose_name="Общая Стоимость ", blank=True, )
+                                    verbose_name="Общая Стоимость", blank=True, )
     cost_total_price = models.FloatField(
         max_length=10,
         null=True,

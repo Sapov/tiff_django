@@ -86,3 +86,33 @@ class TestOrderModel(TestCase):
         name = order._meta.get_field('delivery').default
         expected_default = 3
         self.assertEqual(name, expected_default)
+
+    def test_total_price_verbose_name(self):
+        order = Order.objects.get(id=1)
+        verobose_name = order._meta.get_field('total_price').verbose_name
+        expected_verbose_name = 'Общая Стоимость'
+        self.assertEqual(verobose_name, expected_verbose_name)
+
+    def test_total_price_max_length(self):
+        order = Order.objects.get(id=1)
+        max_length = order._meta.get_field('total_price').max_length
+        expected_max_length = 10
+        self.assertEqual(max_length, expected_max_length)
+
+    def test_total_price_max_null(self):
+        order = Order.objects.get(id=1)
+        null = order._meta.get_field('total_price').null
+        expected_null = True
+        self.assertEqual(null, expected_null)
+
+    def test_total_price_help_text(self):
+        order = Order.objects.get(id=1)
+        help_text = order._meta.get_field('total_price').help_text
+        expected_help_text = 'Стоимость заказа'
+        self.assertEqual(help_text, expected_help_text)
+
+    def test_total_price_blank(self):
+        order = Order.objects.get(id=1)
+        blank = order._meta.get_field('total_price').blank
+        expected_blank = True
+        self.assertEqual(blank, expected_blank)
