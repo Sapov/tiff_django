@@ -302,3 +302,21 @@ class TestOrderModel(TestCase):
         field = order._meta.get_field('order_pdf_file').blank
         expected = True
         self.assertEqual(field, expected)
+
+    def test_pay_link_vrebose_name(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('pay_link').verbose_name
+        expected = 'Ссылка для оплаты'
+        self.assertEqual(field, expected)
+
+    def test_pay_link_null(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('pay_link').null
+        expected = True
+        self.assertEqual(field, expected)
+
+    def test_pay_link_blank(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('pay_link').blank
+        expected = True
+        self.assertEqual(field, expected)

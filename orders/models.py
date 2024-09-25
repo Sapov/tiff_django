@@ -73,7 +73,7 @@ class Order(models.Model):
     )
     order_arhive = models.FileField(upload_to=f"arhive/{id}", null=True, blank=True)
     order_pdf_file = models.FileField(upload_to=f"orders/", null=True, blank=True)
-    pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
+    pay_link = models.TextField(verbose_name='Ссылка для оплаты', null=True, blank=True)
 
     def __str__(self):
         return f"Заказ № {self.id}"
