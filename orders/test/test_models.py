@@ -320,3 +320,16 @@ class TestOrderModel(TestCase):
         field = order._meta.get_field('pay_link').blank
         expected = True
         self.assertEqual(field, expected)
+
+    def test_model_verbose_name(self):
+        """Тест поля verbose_name модели FinishWork"""
+        self.assertEqual(Order._meta.verbose_name, 'Заказ')
+
+    def test_model_verbose_name_plural(self):
+        """Тест поля verbose_name_plural модели TriFinishWorkal"""
+        self.assertEqual(Order._meta.verbose_name_plural, 'Заказы')
+
+    def test_get_absolute_url(self):
+        author = Order.objects.get(id=1)
+        # This will also fail if the urlconf is not defined.
+        self.assertEqual(author.get_absolute_url(), '/orders/add_files_in_order/1')
