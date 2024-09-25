@@ -40,7 +40,7 @@ class Order(models.Model):
         max_length=10,
         null=True,
         help_text="Себестоимость заказа",
-        verbose_name="Общая Себестоимость ",
+        verbose_name="Общая Себестоимость",
         blank=True,
     )
     organisation_payer = models.ForeignKey(
