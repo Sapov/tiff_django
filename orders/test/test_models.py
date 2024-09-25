@@ -5,9 +5,13 @@ from account.models import Delivery
 from orders.models import BankInvoices, Order, StatusOrder
 
 User = get_user_model()
+'''Test Model BlankInvoces'''
+'''Test Model Order'''
 
 
 class TestModelBankInvoices(TestCase):
+    '''Test Model BlankInvoces'''
+
     def setUp(self):
         BankInvoices.objects.create(order_id=1,
                                     document_id='2342342-234234-234',
@@ -333,3 +337,39 @@ class TestOrderModel(TestCase):
         author = Order.objects.get(id=1)
         # This will also fail if the urlconf is not defined.
         self.assertEqual(author.get_absolute_url(), '/orders/add_files_in_order/1')
+
+
+class TestModelStatusOrder(TestCase):
+    def setUp(self):
+        StatusOrder.objects.create(name='Готов', is_active=True)
+
+    def test_name_field_verbose_name(self):
+        item = StatusOrder.objects.get(id=1)
+        field_name = item._meta.get_field('name').verbose_name
+        expected_filed_name = 'Статус заказа'
+        self.assertEqual(field_name, expected_filed_name)
+
+    def test_name_field_max_length(self):
+        item = StatusOrder.objects.get(id=1)
+        filed_length = item._meta.get_field('name').max_length
+        expected_filed_name = 48
+        self.assertEqual(filed_length, expected_filed_name)
+
+    #     self.assertEqual(filed_length, expected_filed_name)
+
+    def test_is_active_field_verbose_name(self):
+        item = StatusOrder.objects.get(id=1)
+        field_name = item._meta.get_field('is_active').default
+        expected_filed_name = True
+        self.assertEqual(field_name, expected_filed_name)
+
+    def test_created_field_auto_now_add(self):
+        item = StatusOrder.objects.get(id=1)
+        filed_length = item._meta.get_field('created').auto_now_add
+        expected_filed_name = True
+        self.assertEqual(filed_length, expected_filed_name)
+
+    def test_updated_auto_now(self):
+        item = StatusOrder.objects.get(id=1)
+        filed_length = item._meta.get_field('updated').auto_now
+        expected_filed_name = True

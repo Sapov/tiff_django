@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 class StatusOrder(models.Model):
-    name = models.CharField(max_length=48, verbose_name="Status")
+    name = models.CharField(max_length=48, verbose_name="Статус заказа")
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
