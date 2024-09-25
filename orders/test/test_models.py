@@ -195,3 +195,27 @@ class TestOrderModel(TestCase):
         expected_default = False
         self.assertEqual(default_field, expected_default)
 
+    def test_date_complete_verbose_name(self):
+        order = Order.objects.get(id=1)
+        verbose_name_field = order._meta.get_field('date_complete').verbose_name
+        expected_verbose_name = 'Дата готовности заказа'
+        self.assertEqual(verbose_name_field, expected_verbose_name)
+
+    def test_date_complete_help_text(self):
+        order = Order.objects.get(id=1)
+        help_text = order._meta.get_field('date_complete').help_text
+        expected_help_text = 'Введите дату к которой нужен заказ'
+        self.assertEqual(help_text, expected_help_text)
+
+    def test_date_complete_field_blank(self):
+        order = Order.objects.get(id=1)
+        blank = order._meta.get_field('date_complete').blank
+        expected_blank = True
+        self.assertEqual(blank, expected_blank)
+
+    def test_date_complete_field_null(self):
+        order = Order.objects.get(id=1)
+        null_field = order._meta.get_field('date_complete').null
+        expected_null = True
+        self.assertEqual(null_field, expected_null)
+
