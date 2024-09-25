@@ -230,3 +230,15 @@ class TestOrderModel(TestCase):
         blank = order._meta.get_field('comments').blank
         expected_blank = True
         self.assertEqual(blank, expected_blank)
+
+    def test_status_field_verbose_name(self):
+        order = Order.objects.get(id=1)
+        verbose_name_filed = order._meta.get_field('status').verbose_name
+        expected_verbose_name = 'Статус заказа'
+        self.assertEqual(verbose_name_filed, expected_verbose_name)
+
+    def test_status_field_default(self):
+        order = Order.objects.get(id=1)
+        default_field = order._meta.get_field('status').default
+        expected_default = 1
+        self.assertEqual(default_field, expected_default)
