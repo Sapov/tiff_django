@@ -284,3 +284,21 @@ class TestOrderModel(TestCase):
         field = order._meta.get_field('order_arhive').blank
         expected = True
         self.assertEqual(field, expected)
+
+    def test_order_pdf_file_upload_to(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('order_pdf_file').upload_to
+        expected = f"orders/"
+        self.assertEqual(field, expected)
+
+    def test_order_pdf_file_null(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('order_pdf_file').null
+        expected = True
+        self.assertEqual(field, expected)
+
+    def test_order_pdf_file_blank(self):
+        order = Order.objects.get(id=1)
+        field = order._meta.get_field('order_pdf_file').blank
+        expected = True
+        self.assertEqual(field, expected)
