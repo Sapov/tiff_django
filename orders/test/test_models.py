@@ -182,3 +182,16 @@ class TestOrderModel(TestCase):
         default_field = order._meta.get_field('organisation_payer').default
         expected_default = 1
         self.assertEqual(default_field, expected_default)
+
+    def test_paid_verbose_name(self):
+        order = Order.objects.get(id=1)
+        verbose_name_field = order._meta.get_field('paid').verbose_name
+        expected_verbose_name = 'Заказ оплачен'
+        self.assertEqual(verbose_name_field, expected_verbose_name)
+
+    def test_paid_default(self):
+        order = Order.objects.get(id=1)
+        default_field = order._meta.get_field('paid').default
+        expected_default = False
+        self.assertEqual(default_field, expected_default)
+

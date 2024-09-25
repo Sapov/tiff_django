@@ -52,43 +52,38 @@ class Order(models.Model):
         blank=True,
         default=1
     )
-    paid = models.BooleanField(verbose_name="заказ оплачен", default=False)
+    paid = models.BooleanField(verbose_name="Заказ оплачен", default=False)
     date_complete = models.DateTimeField(
         verbose_name="Дата готовности заказа",
         help_text="Введите дату к которой нужен заказ",
         null=True,
         blank=True,
     )
+    comments = models.TextField(verbose_name="Comments", blank=True)
+    status = models.ForeignKey(
+        StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    Contractor = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="ЗАКАЗЧИК!!",
+        default=1,
+    )
+    order_arhive = models.FileField(upload_to=f"arhive/{id}", null=True, blank=True)
+    order_pdf_file = models.FileField(upload_to=f"orders/", null=True, blank=True)
+    pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
 
+    def __str__(self):
+        return f"Заказ № {self.id}"
 
-comments = models.TextField(verbose_name="Comments", blank=True)
-status = models.ForeignKey(
-    StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1
-)
-created = models.DateTimeField(auto_now_add=True)
-updated = models.DateTimeField(auto_now=True)
-Contractor = models.ForeignKey(
-    settings.AUTH_USER_MODEL,
-    on_delete=models.CASCADE,
-    verbose_name="ЗАКАЗЧИК!!",
-    default=1,
-)
-order_arhive = models.FileField(upload_to=f"arhive/{id}", null=True, blank=True)
-order_pdf_file = models.FileField(upload_to=f"orders/", null=True, blank=True)
-pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
+    class Meta:
+        verbose_name_plural = "Заказы"
+        verbose_name = "Заказ"
 
-
-def __str__(self):
-    return f"Заказ № {self.id}"
-
-
-class Meta:
-    verbose_name_plural = "Заказы"
-    verbose_name = "Заказ"
-
-
-def get_absolute_url(self):
-    return reverse("orders:add_file_in_order", args=[self.id])
+    def get_absolute_url(self):
+        return reverse("orders:add_file_in_order", args=[self.id])
 
 
 # def order_post_save(sender, instance, created, **kwargs):
