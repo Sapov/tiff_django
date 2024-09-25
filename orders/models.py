@@ -59,7 +59,7 @@ class Order(models.Model):
         null=True,
         blank=True,
     )
-    comments = models.TextField(verbose_name="Comments", blank=True)
+    comments = models.TextField(verbose_name="Комментарии к заказу", blank=True)
     status = models.ForeignKey(
         StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1
     )
