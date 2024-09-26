@@ -368,6 +368,8 @@ class TestModelStatusOrder(TestCase):
         expected_filed_name = True
         self.assertEqual(filed_length, expected_filed_name)
 
+
+
     def test_updated_auto_now(self):
         item = StatusOrder.objects.get(id=1)
         filed_length = item._meta.get_field('updated').auto_now
