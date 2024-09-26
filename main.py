@@ -1,54 +1,37 @@
-from string import digits, ascii_lowercase
+import os
+from dotenv import load_dotenv, find_dotenv
+
+from orders.models import BankInvoices
+
+load_dotenv(find_dotenv())
+
+import requests
 
 
-class TextInput:
-    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + ascii_lowercase
-    CHARS_CORRECT = CHARS + CHARS.upper() + digits
-
-    def __init__(self, name: str, size: int = 10):
-        self.check_name(name)
-        self.size = size
-        self.name = name
-
-    def get_html(self):
-        return f"<p class='login'>{self.name}: <input type='text' size={self.size} />"
-
-    @classmethod
-    def check_name(cls, name):
-        if type(name) != str or len(name) < 3 or len(name) > 50:
-            ValueError("некорректное поле name")
-        if not set(name) < set(cls.CHARS_CORRECT):
-            ValueError("некорректное поле name")
+# def get_customer_code():
+#     url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
+#     payload = {}
+#     headers = {
+#         'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+#     }
+#     response = requests.request("GET", url, headers=headers, data=payload)
+#     customer_code = response.json()['Data']['Customer'][0]['customerCode']
+#     print(response.json())
+#     print(customer_code)
+#
+# get_customer_code()
 
 
-class PasswordInput:
-    CHARS = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя " + ascii_lowercase
-    CHARS_CORRECT = CHARS + CHARS.upper() + digits
+def get_status_invoice():
+    url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/00825922-fe8e-47ed-a29d-496ed331ad18/payment-status'
 
-    def __init__(self, name: str, size: int = 10):
-        self.check_name(name)
-        self.size = size
-        self.name = name
+    payload = ""
+    headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+               }
 
-    def get_html(self):
-        return f"<p class='password'>{self.name}: <input type='text' size={self.size} />"
+    response = requests.request("GET", url, headers=headers, data=payload)
 
-    @classmethod
-    def check_name(cls, name):
-        if type(name) != str or len(name) < 3 or len(name) > 50:
-            ValueError("некорректное поле name")
-        if not set(name) < set(cls.CHARS_CORRECT):
-            ValueError("некорректное поле name")
+    print(response.text)
 
 
-class FormLogin:
-    def __init__(self, lgn, psw):
-        self.login = lgn
-        self.password = psw
-
-    def render_template(self):
-        return "\n".join(['<form action="#">', self.login.get_html(), self.password.get_html(), '</form>'])
-
-
-login = FormLogin(TextInput("Логин"), PasswordInput("Пароль"))
-html = login.render_template()
+get_status_invoice()

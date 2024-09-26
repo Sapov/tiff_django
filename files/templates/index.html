@@ -5,7 +5,15 @@
 
 
 <h2>Список файлов: </h2>
-<!--<hr>-->
+
+<hr>
+<button type="submit" class="btn btn-success"
+        onClick="location.href='{% url 'account:dashboard' %}'">Загрузить файл</button>
+
+<button type="submit" class="btn btn-primary"
+        onClick="location.href='{% url 'orders:new_order' %}'">Создать заказ
+</button>
+
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped table-hover">

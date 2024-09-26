@@ -15,7 +15,7 @@ from .views import (
     report_complite_orders,
     new_order,
     OrdersViewList,
-    AllOrdersListView, result, success_pay, fail, report_day, set_status_order
+    AllOrdersListView, result, success_pay, fail, report_day, set_status_order, create_invoice
 )
 
 app_name = "orders"
@@ -33,7 +33,7 @@ urlpatterns = [
     path("add_files_in_order/<int:order_id>", add_files_in_order, name="add_file_in_order", ),
     path("add_item_in_order/<int:order_id>/<int:item_id>", add_item_in_order, name="add"),
     path("del_item_in_order/<int:order_id>/<int:item_id>", del_item_in_order, name="del_item_in_order", ),
-    #--------------------Изменяем статус заказа------------------
+    # --------------------Изменяем статус заказа------------------
     path('set_status_order/<int:status_order>/<int:order_id>/<str:hash>', set_status_order),
 
     # Посмотреть все заказы
@@ -51,5 +51,7 @@ urlpatterns = [
     path("result/", result, name="result"),  # для робокассы проверкаe
     path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
     path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
+    # BANK
+    path('create_invoice/<int:order_id>', create_invoice, name='create_invoice'),
 
 ]

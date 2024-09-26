@@ -1,19 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
 from orders.models import Order
-from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
+from .forms import UserEditForm, ProfileEditForm, OrganisationForm
 
-# from .models import Profile
-from files.models import TypePrint
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView
-from .models import Organisation, Profile, Delivery, DeliveryAddress
-from django.urls import reverse_lazy, reverse
-from django.contrib.auth.models import User
+from .models import Organisation, DeliveryAddress
+from django.urls import reverse_lazy
 import logging
 
 logger = logging.getLogger(__name__)
@@ -83,14 +80,16 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
 
     model = Organisation
     fields = [
-        "name_ul",
+        "name_full",
         "inn",
         "kpp",
-        "okpo",
-        "address_ur",
+        "address",
+        'bik_bank',
+        'bank_name',
+        'bank_account',
+        'bankCorrAccount',
         "address_post",
         "phone",
-        "phone2",
         "email",
     ]
     success_url = reverse_lazy("account:list_organisation")
@@ -124,14 +123,16 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Organisation
     fields = (
-        "name_ul",
+        "name_full",
         "inn",
         "kpp",
-        "okpo",
-        "address_ur",
+        'bank_name',
+        'bik_bank',
+        'bank_account',
+        'bankCorrAccount',
+        "address",
         "address_post",
         "phone",
-        "phone2",
         "email",
     )
     template_name_suffix = "_update_form"

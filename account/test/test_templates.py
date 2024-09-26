@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 
-from account.models import Organisation, DeliveryAddress
+from account.models import Organisation
 
 User = get_user_model()
 
@@ -76,14 +76,14 @@ class AccountTemplatesOrganisationTests(TestCase):
     def test_delete_organisation_template(self):
         '''Шаблон подтверждения удаления организации НЕ ЧЕГО УДАЛЯТЬ НУЖНО СНАЧАЛА ДОБАВИТЬ'''
 
-        Organisation.objects.create(name_ul="OOO Рога и Копыты")
+        Organisation.objects.create(name_full="OOO Рога и Копыты")
         response = self.authorized_client.get('/account/delete_organisation_user/1')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/organisation_confirm_delete.html')
 
     def test_update_organisations_template(self):
         ''' тест шаблона изменения записи Организации'''
-        Organisation.objects.create(name_ul='Рога и копыта')
+        Organisation.objects.create(name_full='Рога и копыта')
         response = self.authorized_client.get('/account/update_organisation_user/1')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account/organisation_update_form.html')
@@ -100,6 +100,6 @@ class ItemModelTest(TestCase):
 
     def test_saving_and_retrieving_item(self):
         '''Тест сохранения и получения элемента списка'''
-        Organisation.objects.create(name_ul="OOO Рога и Копыты")
+        Organisation.objects.create(name_full="OOO Рога и Копыты")
         saved_organisation = Organisation.objects.all()
         self.assertEqual(saved_organisation.count(), 1)

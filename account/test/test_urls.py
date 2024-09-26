@@ -17,14 +17,13 @@ class AccountURLTests(TestCase):
 
         self.organisation = Organisation.objects.create(
             Contractor=self.user,
-            name_ul='Test Company',
-            address_ur='Test Address',
+            name_full='Test Company',
+            address='Test Address',
             address_post='Test Post Address',
             phone='123456',
             email='test@example.com',
             inn='123456789012',
             kpp='123456789',
-            okpo='123456789012',
         )
 
     def test_add_organisation(self):
@@ -53,7 +52,6 @@ class TestAccount(TestCase):
 
 
 class TestModelProfile(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all

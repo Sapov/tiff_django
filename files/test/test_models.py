@@ -4,6 +4,8 @@ from files.models import FinishWork, TypePrint, Material, UseCalculator, Contrac
 from django.test import TestCase
 from django.urls import reverse
 
+from orders.models import StatusOrder
+
 User = get_user_model()
 
 
@@ -337,7 +339,6 @@ class TestStatusProduct(TestCase):
         self.assertEqual(field_label, expected_verbose_name)
 
 
-
 class TestModelsUseCalculator(TestCase):
     """Тесты для модели UseCalculator"""
 
@@ -479,9 +480,11 @@ class TestModelsUseCalculator(TestCase):
     def test_string_representation(self):
         """Тест строкового отображения"""
         work = UseCalculator.objects.get(id=1)  # Получение объекта для тестирования
-        # expected_object_name = '%s, %s, %s' % (work.work, work.price_contractor, work.price)
         expected_object_name = (f'Дата: {str(work.created_at)[:16]} /{str(work.material)[:10]}/ '
                                 f'Кол-во: {work.quantity}шт./Размер: {work.width}x{work.length}м./Стоимость: '
                                 f'{work.results} руб.')
 
         self.assertEquals(expected_object_name, str(work))
+
+
+

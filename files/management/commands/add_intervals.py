@@ -19,4 +19,4 @@ class Command(BaseCommand):
         print('*' * 20, 'ПОВТОРЕНИЕ ЧЕРЕЗ ЧАС ', "*" * 20)
         IntervalSchedule.objects.create(every=1, period='hours')
         print('*' * 20, 'ПОВТОРЕНИЕ ЧЕРЕЗ 2 МИНУТЫ ', "*" * 20)
-        IntervalSchedule.objects.get(every=2, period='minutes')  # for test
+        IntervalSchedule.objects.create(every=2, period='minutes')  # for test

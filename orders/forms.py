@@ -38,7 +38,7 @@ class NewOrder(forms.ModelForm):
     class Meta:
         model = Order
         fields = [
-            # "organisation_payer",
+            "organisation_payer",
             # "delivery_address",
             'delivery',
             # "date_complete",

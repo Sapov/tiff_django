@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 class StatusOrder(models.Model):
-    name = models.CharField(max_length=48, verbose_name="Status")
+    name = models.CharField(max_length=48, verbose_name="Статус заказа")
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -34,36 +34,32 @@ class StatusOrder(models.Model):
 
 class Order(models.Model):
     delivery = models.ForeignKey(Delivery, on_delete=models.PROTECT, verbose_name='Доставка', null=True, default=3)
-    total_price = models.FloatField(
-        max_length=10,
-        null=True,
-        help_text="Стоимость заказа",
-        verbose_name="Общая Стоимость ",
-        blank=True,
-    )
+    total_price = models.FloatField(max_length=10, null=True, help_text="Стоимость заказа",
+                                    verbose_name="Общая Стоимость", blank=True, )
     cost_total_price = models.FloatField(
         max_length=10,
         null=True,
         help_text="Себестоимость заказа",
-        verbose_name="Общая Себестоимость ",
+        verbose_name="Общая Себестоимость",
         blank=True,
     )
     organisation_payer = models.ForeignKey(
         Organisation,
         on_delete=models.CASCADE,
-        verbose_name="организация платильщик",
-        help_text="Выберите организацию платильщик",
+        verbose_name="Организация плательщик",
+        help_text="Выберите организацию плательщик",
         null=True,
         blank=True,
+        default=1
     )
-    paid = models.BooleanField(verbose_name="заказ оплачен", default=False)
+    paid = models.BooleanField(verbose_name="Заказ оплачен", default=False)
     date_complete = models.DateTimeField(
         verbose_name="Дата готовности заказа",
         help_text="Введите дату к которой нужен заказ",
         null=True,
         blank=True,
     )
-    comments = models.TextField(verbose_name="Comments", blank=True)
+    comments = models.TextField(verbose_name="Комментарии к заказу", blank=True)
     status = models.ForeignKey(
         StatusOrder, on_delete=models.CASCADE, verbose_name="Статус заказа", default=1
     )
@@ -72,12 +68,12 @@ class Order(models.Model):
     Contractor = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        verbose_name="ЗАКАЗЧИК!!",
+        verbose_name="Заказчик",
         default=1,
     )
     order_arhive = models.FileField(upload_to=f"arhive/{id}", null=True, blank=True)
     order_pdf_file = models.FileField(upload_to=f"orders/", null=True, blank=True)
-    pay_link = models.TextField(verbose_name='ссылка для оплаты', null=True, blank=True)
+    pay_link = models.TextField(verbose_name='Ссылка для оплаты', null=True, blank=True)
 
     def __str__(self):
         return f"Заказ № {self.id}"
@@ -430,3 +426,11 @@ class UtilsModel:
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
         self.send_mail_order()  # отправил письмо
+
+
+class BankInvoices(models.Model):
+    order_id = models.IntegerField(verbose_name='Номер заказа')
+    document_id = models.CharField(max_length=40, verbose_name='Номер выставленного документа в банке')
+    payment_Status = models.CharField(max_length=40, verbose_name='Статус оплаты', blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)

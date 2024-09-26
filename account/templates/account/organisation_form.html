@@ -1,20 +1,43 @@
 {% extends "base.html" %}
-{% block title %} Добавить организацию{% endblock %}
+
+{% load static %}
 {% load crispy_forms_tags %}
 
+{% block title %} Добавить организацию{% endblock %}
+
 {% block body %}
-<form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/css/suggestions.min.css'>
+<!--<link rel="stylesheet" href="./style.css">-->
+<div class="well well-sm col-md-6">
+
+    <form action="{% url 'account:create_organisation' %}" method="post">
+
+        <section class="container">
+            <div class="form-group">
+                {% csrf_token %}
+                <h1>Добавить организацию</h1>
+                <input class="form-control" id="party" name="party" type="text"
+                       placeholder="Введите название, ИНН, ОГРН или адрес организации"/>
+                <input class="form-control" id="bank" name="bank" type="text" autocomplete="off"
+                       placeholder="Введите название БИК банка или название"/>
+            </div>
+        </section>
+        {{ form|crispy }}
+        </section>
+        <input type="submit" value="Save">
+
+    </form>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/dadata_script_bic.js' %}"></script>
 
 
-    <input type="submit" value="Save">
-</form>
+</div>
+
 {% endblock %}
 
 
 
 
-
-
-<!--  <input type="email"  id="id_name_ul >-->

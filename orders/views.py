@@ -10,9 +10,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django_celery_beat.models import PeriodicTask
 
-from account.models import Delivery
+from account.models import Delivery, Organisation
 
-# from account.models import Organisation
 from files.models import Product
 from files.pay import Robokassa
 from .alerts import Alerts
@@ -21,7 +20,9 @@ from .models import Order, OrderItem, UtilsModel, StatusOrder
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
 from django.core.paginator import Paginator
-from .tasks import arh_for_mail
+
+from .payment.bank import Bank
+from .tasks import arh_for_mail, create_order_pdf
 import logging
 
 logger = logging.getLogger(__name__)
@@ -47,14 +48,20 @@ def new_order(request):
         logging.info(f"date_complite {date_complite} - {type(date_complite)}")
         delivery_id = request.POST["delivery"]
         logging.info(f"DELIV ID:  {delivery_id}")
+        logging.info(f"ORGANISATION:  {request.POST['organisation_payer']}")
 
         delivery = Delivery.objects.get(id=delivery_id)
         logging.info(f"DELIVERY:  {delivery}")
+        organisation_id = request.POST['organisation_payer']
+        if organisation_id:
+            organisation = Organisation.objects.get(id=organisation_id)
+        else:
+            organisation = None
 
         neworder = Order.objects.create(
             Contractor=form.user,
             date_complete=date_complite,
-            # organisation_payer=organisation,
+            organisation_payer=organisation,
             delivery=delivery,
         )
 
@@ -197,10 +204,6 @@ def order_pay(request, order_id):
     current_path = os.getcwd()
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
 
-    # --------------- Формирование счета---------
-    # create_order_pdf.delay(order_id)
-    # order_pdf = DrawOrder(order_id)  #
-    # order_pdf.run()
     order = Order.objects.get(id=order_id)
 
     if str(order.status) != 'Оформлен':  # предотвращаем повторную отправку заказа
@@ -218,6 +221,14 @@ def order_pay(request, order_id):
         link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
         # logger.info(f'Генерим платежную ссылку: ', link_pay)
         context = {"Orders": Orders, 'link_pay': link_pay}
+        # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
+        # только если была выбрана организация
+        if Orders.organisation_payer:
+            print('Генерим счет')
+            create_order_pdf.delay(order_id)
+            # запускаем ежечастную проверку оплаты
+            Bank.check_payment(domain, order_id)
+
         os.chdir(current_path)  # перейти обратно
 
         return render(request, "orderpay.html", context)
@@ -425,3 +436,12 @@ def change_status_order(status_oder: int, pk: int):
     logger.info(f"МЕНЯЮ СТАТУС НА {status}")
     order.status = status
     order.save()
+
+
+def create_invoice(request, order_id):
+    domain = str(get_domain(request))
+    # order = Bank(order_id)
+    # order.run()
+    item = Order.objects.get(id=order_id)
+    context = {'title': 'Счет на оплату услуг', 'link_pdf': f"http://{domain}/media/{str(item.order_pdf_file)}"}
+    return render(request, 'orders/create_invoice.html', context)

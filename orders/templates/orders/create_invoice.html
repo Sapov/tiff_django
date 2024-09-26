@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+<title>{% block title %} {{ title }} {% endblock %}</title>
+{% block body %}
+<h3>{{ title }} </h3>
+<button type="submit" class="btn btn-success"
+        onClick="location.href='{{link_pdf}}'">Скачайте счет
+</button>
+
+Отправьте себе на email
+Отправить себе на WhatsApp
+
+{% endblock %}
