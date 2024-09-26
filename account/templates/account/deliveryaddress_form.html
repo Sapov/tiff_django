@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block title %} Добавить адрес:{% endblock %}
 {% load crispy_forms_tags %}
 
@@ -12,4 +14,7 @@
 
     <input type="submit" value="Добавить">
 </form>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
+    <script src="{% static 'js/dadata_address.js' %}"></script>
 {% endblock %}
