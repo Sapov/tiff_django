@@ -335,7 +335,6 @@ class TestOrderModel(TestCase):
 
     def test_get_absolute_url(self):
         author = Order.objects.get(id=1)
-        # This will also fail if the urlconf is not defined.
         self.assertEqual(author.get_absolute_url(), '/orders/add_files_in_order/1')
 
 
@@ -373,3 +372,4 @@ class TestModelStatusOrder(TestCase):
         item = StatusOrder.objects.get(id=1)
         filed_length = item._meta.get_field('updated').auto_now
         expected_filed_name = True
+        self.assertEqual(filed_length, expected_filed_name)
