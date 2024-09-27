@@ -3,6 +3,7 @@ from datetime import date, datetime
 import datetime
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
@@ -22,8 +23,10 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.bank import Bank
-from .tasks import arh_for_mail, create_order_pdf
+from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp
 import logging
+
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
@@ -211,7 +214,7 @@ def order_pay(request, order_id):
         # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
         domain = str(get_domain(request))
         arh_for_mail.delay(order_id, domain=domain)
-        # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправлякем письмо с вопросом о готовности----------------
+        # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправляем письмо с вопросом о готовности----------------
         # получаем дату готовности из базы
 
         Alerts.start_count_down(domain, order_id)
@@ -228,6 +231,9 @@ def order_pay(request, order_id):
             create_order_pdf.delay(order_id)
             # запускаем ежечастную проверку оплаты
             Bank.check_payment(domain, order_id)
+        # оповещаем в whatsapp
+        item_user = User.objects.get(email=user)
+        send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
 
         os.chdir(current_path)  # перейти обратно
 

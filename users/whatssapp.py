@@ -6,9 +6,9 @@ load_dotenv(find_dotenv())
 url = f"https://api.green-api.com/waInstance{os.getenv('GREENAPI_INSATANCE')}/sendMessage/{os.getenv('GREENAPI_TOKEN')}"
 
 
-def send_message(text: str):
+def send_message(phone_number: str, text: str):
     payload = {
-        "chatId": f"{os.getenv('PHONE_NUMBER')}@c.us",
+        "chatId": f"{phone_number}@c.us",
         "message": text
     }
     headers = {
@@ -20,4 +20,3 @@ def send_message(text: str):
     print(response.text.encode('utf8'))
 
 
-send_message('Текст сообщения')
