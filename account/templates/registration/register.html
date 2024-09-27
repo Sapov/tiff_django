@@ -37,7 +37,7 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Создать акаунт!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Создать аккаунт!</h1>
                         </div>
                         <form class="user" action="{% url 'register' %}" method="post">
 
@@ -69,8 +69,11 @@
 
                                 </div>
                             </div>
+    <input id="checkbox" type="checkbox" name="checkbox" onchange="document.getElementById('submit').disabled = !this.checked;" />
+    <label for="checkbox"> <a class="small" href="{% url 'password_reset' %}">Я соглашаюсь с пользовательским соглашением и политикой конфиденциальности</a></label>
 
-                            <button type="submit" class="btn btn-primary btn-user btn-block">Зарегистрироваться
+
+                            <button type="submit" disabled="disabled" name="submit" id="submit" value="Отправить" class="btn btn-primary btn-user btn-block">Зарегистрироваться
                             </button>
 
 
