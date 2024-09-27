@@ -7,9 +7,6 @@ User = get_user_model()
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # date_of_birth = models.DateField(
-    #     blank=True, null=True, verbose_name="Дата рождения"
-    # )
     photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True)
     # phone = models.CharField(
     #     max_length=15, blank=True, null=True, verbose_name="Мобильный телефон"
