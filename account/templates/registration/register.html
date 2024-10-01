@@ -70,7 +70,7 @@
                                 </div>
                             </div>
     <input id="checkbox" type="checkbox" name="checkbox" onchange="document.getElementById('submit').disabled = !this.checked;" />
-    <label for="checkbox"> <a class="small" href="{% url 'password_reset' %}">Я соглашаюсь с пользовательским соглашением и политикой конфиденциальности</a></label>
+    <label for="checkbox"> <a class="small" href="{% url 'account:politics' %}">Я соглашаюсь с пользовательским соглашением и политикой конфиденциальности</a></label>
 
 
                             <button type="submit" disabled="disabled" name="submit" id="submit" value="Отправить" class="btn btn-primary btn-user btn-block">Зарегистрироваться

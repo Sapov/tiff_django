@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import politics
 
 app_name = 'account'
 
@@ -7,6 +8,7 @@ urlpatterns = [
     # ----------profile--------------
     path('edit/', views.edit_profile, name='edit_profile'),
     path('list_profile/', views.ListProfile.as_view(), name='list_profile'),
+    path('politics/', politics, name='politics'),
 
     # -------------------------CRUD ORGANISATION-----------------------------------------------
     path('add_organisation/', views.OrganisationCreateView.as_view(), name='create_organisation'),

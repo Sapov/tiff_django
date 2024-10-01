@@ -185,3 +185,7 @@ class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
     model = DeliveryAddress
     fields = "__all__"
     success_url = reverse_lazy("account:delivery_list")
+
+
+def politics(request):
+    return render(request, 'registration/politics.html')
