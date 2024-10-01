@@ -24,7 +24,9 @@ class User(AbstractUser):
     email_verify = models.BooleanField(default=False)
     phone_number = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
                                     null=True)
-    whatsapp = models.BooleanField(verbose_name='Whatsapp', help_text='На телефоне установлен whatsapp', null=True,
+    whatsapp = models.BooleanField(verbose_name='Присылать уведомления на Whatsapp', help_text='Установите Да если '
+                                                                                               'к номеру телефона подключен Whatsapp',
+                                   null=True,
                                    blank=True)
 
     USERNAME_FIELD = "email"
