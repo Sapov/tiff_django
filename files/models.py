@@ -50,11 +50,13 @@ class Contractor(models.Model):
     '''Организации исполнители работ'''
     name = models.CharField(max_length=100, verbose_name="Наименование организации")
     description = models.CharField(max_length=200, verbose_name="Описание направления деятельности")
-    email_contractor = models.EmailField(verbose_name="Email организации")
+    email_contractor = models.EmailField(verbose_name="Email организации для приема заказов")
     phone_contractor = models.CharField(max_length=11, verbose_name="Телефон организации")
-    phone_contractor_2 = models.CharField(max_length=11, verbose_name="Телефон организации")
+    phone_contractor_2 = models.CharField(max_length=11, verbose_name="Телефон whatsapp")
+    whatsapp = models.BooleanField(default=False, verbose_name='Отсылать уведомления на Whatsapp')
     address = models.CharField(verbose_name="Адрес", max_length=200)
     contact_contractor = models.CharField(max_length=23, verbose_name="Контактное лицо")
+    time_work_order = models.CharField(max_length=24, verbose_name='Время обработки заказов в часах', default='24')
 
     class Meta:
         verbose_name_plural = "Подрядчики"

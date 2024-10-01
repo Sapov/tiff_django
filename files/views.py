@@ -438,5 +438,3 @@ def confirm_order_to_completed(request, pk: int, hash_code):
         return render(request, "files/confirm_order_to_completed.html")
     else:
         return render(request, "files/no_confirm_order_to_completed.html")
-
-
