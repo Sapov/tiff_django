@@ -161,9 +161,10 @@ class UploadFilesRollUp(forms.ModelForm):
     """Форма загрузки файлов для интерьерной печати полотна для Роллапа"""
 
     material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=2),
+        queryset=Material.objects.filter(id=21),
+        #id=21  это литой баннер Интрьерная печать для Ролапа
         label="Выберите материал для печати",
-        initial=20,  # по умолчанию литой 450 грамм
+        initial=22,  # по умолчанию литой 450 грамм
     )
     FinishWork = forms.ModelChoiceField(
         queryset=FinishWork.objects.filter(id=2),
@@ -173,12 +174,7 @@ class UploadFilesRollUp(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = [
-            "quantity",
-            "images",
-            # "FinishWork",
-            "material",
-        ]
+        fields = ["quantity"]
 
 
 class CreateContractor(forms.ModelForm):

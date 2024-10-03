@@ -5,10 +5,12 @@ from django.test import TestCase
 import datetime
 from django.utils import timezone
 from files.forms import CalculatorLargePrint
+from files.models import Material
 
 
 class CalculatorLargePrintFormTest(TestCase):
     '''тест для формы CalculatorLargePrint'''
+
     def test_CalculatorLargePrint_form_field_label_quantity(self):
         form = CalculatorLargePrint()
         self.assertTrue(
@@ -47,3 +49,10 @@ class CalculatorLargePrintFormTest(TestCase):
         form = CalculatorLargePrint()
         self.assertTrue(
             form.fields['width'].label == None or form.fields['width'].label == 'Ширина в метрах')
+
+# class TestFormUploadFilesRollUp(TestCase):
+#     #сначала нудно загрузить все позиции из прайс листа
+#     def test_material_number(self):
+#         material = Material.objects.get(id=21)
+#         expexted_material = '<Material: Баннер 510 грамм литой Интерьерная печать>'
+#         self.assertEqual(material, expexted_material)
