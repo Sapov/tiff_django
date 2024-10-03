@@ -182,3 +182,4 @@ class CreateContractor(forms.ModelForm):
         model = Contractor
         fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
                   'address', 'contact_contractor']
+
