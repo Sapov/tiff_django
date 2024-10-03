@@ -76,7 +76,7 @@ class TestModelOrganisation(TestCase):
 
 class TestModelDeliveryAddress(TestCase):
     def setUp(self):
-        User.objects.create(username='vasa3', email='vasa3@mail.ru')
+        User.objects.create(email='vasa3sdf@mail.ru')
         DeliveryAddress.objects.create(user=User.objects.get(id=1),
                                        region='Воронежская область',
                                        city='Воронеж',
