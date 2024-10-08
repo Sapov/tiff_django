@@ -109,7 +109,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name="Ордер")
-    product = models.OneToOneField(
+    product = models.ForeignKey(
         Product, on_delete=models.CASCADE, verbose_name="Продукт"
     )
     price_per_item = models.FloatField(
