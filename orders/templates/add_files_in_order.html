@@ -213,7 +213,7 @@
                 <td>{{ items.product.FinishWork }}</td>
                 <td>{{ items.product.price }} руб.</td>
                 {% if Orders.status.id == 1 %}
-                <td><a href="/orders/del_item_in_order/{{order_id}}/{{items.id}}">Удалить файл</a></td>
+                <td><a href="/orders/del_item_in_order/{{order_id}}/{{items.id}}/{{items.product.id}}">Удалить файл</a></td>
 
 
                 {% else %}
