@@ -168,9 +168,8 @@ def add_item_in_order(request, item_id, order_id):
     item = Product.objects.get(id=item_id)
     new_ord.product = item
     new_ord.save()
-    instanse_status = StatusProduct.objects.get(id=2)  # файл в работе
-    item.status_product = instanse_status
-    item.save()
+
+    set_status_file(item, 2)
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {
@@ -181,23 +180,21 @@ def add_item_in_order(request, item_id, order_id):
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
+def set_status_file(item, status_id: int):
+    instance_status = StatusProduct.objects.get(id=status_id)  # файл в работе
+    item.status_product = instance_status
+    item.save()
+
+
 def del_item_in_order(request, order_id: int, item_id: int, item_product_id: int):
-    '''Удаляет файл из заказа но оствляет его в списке файлов'''
+    '''Удаляет файл из заказа но оставляет его в списке файлов'''
     Orders = Order.objects.get(id=order_id)
     old_item = OrderItem.objects.get(id=item_id)  # строка заказа
     old_item.delete()
 
     item = Product.objects.get(id=item_product_id)
-
-    instanse_status = StatusProduct.objects.get(id=1)  # файл в загружен
-    item.status_product = instanse_status
-    item.save()
-    # product = Product.objects.get(id=old_item.product_id)
+    set_status_file(item, 1) # файл в загружен
     logging.info(f'[Удаляем из OrderItems] {old_item}')
-
-    # product.delete()
-    # logging.info(f'[Удаляем из Product] {product}')
-    # os.remove(f"media/{str(product.images)}")  # Удаление файла
 
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
@@ -238,7 +235,7 @@ def order_pay(request, order_id):
         if Orders.organisation_payer:
             print('Генерим счет')
             create_order_pdf.delay(order_id)
-            # запускаем ежечастную проверку оплаты
+            # запускаем ежечасную проверку оплаты
             Bank.check_payment(domain, order_id)
         # оповещаем в whatsapp
         item_user = User.objects.get(email=user)
@@ -248,8 +245,6 @@ def order_pay(request, order_id):
 
         return render(request, "orderpay.html", context)
     else:
-        # context = {"Orders": order}
-
         return render(request, "orderpay.html")
 
 
