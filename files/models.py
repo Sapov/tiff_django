@@ -177,7 +177,6 @@ class Product(models.Model):
                                    default=1,
                                    )
 
-    in_order = models.BooleanField(verbose_name="Позиция в заказе", default=0, blank=True, null=True)
     status_product = models.ForeignKey(
         "StatusProduct",
         on_delete=models.PROTECT,

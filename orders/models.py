@@ -181,8 +181,6 @@ def product_in_order_post_save(instance, **kwargs):
 
     # -----------
     """Меняем состояние файла (в заказе)"""
-    instance.product.in_order = True
-    instance.product.save(force_update=True)
 
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)
