@@ -4,6 +4,9 @@ from django.conf import settings
 
 
 class Organisation(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
+    )
     name_full = models.CharField(max_length=200, verbose_name="Имя юр. лица", help_text="Форма собственности и название")
     inn = models.CharField(max_length=12, verbose_name="ИНН")
     kpp = models.CharField(max_length=9, blank=True, verbose_name="КПП")
