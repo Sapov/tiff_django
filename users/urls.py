@@ -21,7 +21,7 @@ urlpatterns = [
     path('confirm_email/', TemplateView.as_view(template_name='registration/confirm_email.html'),
          name='confirm_email'),
     path('register/', Register.as_view(), name='register'),
-    # __________CRUD------------USERS-----
+    # ---------------CRUD--USERS----------------
     path('users_lists/', UserListsView.as_view(), name='users_list'),
     path('users_create/', UsersCreateView.as_view(), name='users_create'),
     path('users_update/<int:pk>', UserUpdateLIst.as_view(), name='users_update'),
