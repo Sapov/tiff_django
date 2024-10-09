@@ -2,7 +2,8 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from users.views import Register, EmailVerify, MyLoginView, UserListsView, UsersCreateView, UserUpdateLIst
+from users.views import Register, EmailVerify, MyLoginView, UserListsView, UsersCreateView, UserUpdateLIst, \
+    UserDeleteView
 
 # app_name = "users"
 
@@ -24,6 +25,6 @@ urlpatterns = [
     path('users_lists/', UserListsView.as_view(), name='users_list'),
     path('users_create/', UsersCreateView.as_view(), name='users_create'),
     path('users_update/<int:pk>', UserUpdateLIst.as_view(), name='users_update'),
-    path('users_delete/<int:pk>', UserUpdateLIst.as_view(), name='users_delete'),
+    path('users_delete/<int:pk>', UserDeleteView.as_view(), name='users_delete'),
 
 ]
