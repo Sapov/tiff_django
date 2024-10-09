@@ -37,3 +37,9 @@ class OrganisationForm(forms.ModelForm):
     class Meta:
         model = Organisation
         fields = ["name_full", "inn", "kpp", "address", ]
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'

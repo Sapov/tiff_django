@@ -101,3 +101,28 @@ class UserUpdateLIst(LoginRequiredMixin, UpdateView):
 class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = User
     success_url = reverse_lazy('users_list')
+
+
+class ListProfile(LoginRequiredMixin, ListView):
+    template_name = "account/profile_list.html"
+    model = User
+    paginate_by = 5
+
+    def get_queryset(self):
+        "организации только этого юзера"
+        # queryset = []
+        queryset = User.objects.filter(email=self.request.user)
+        #     q = User.objects.filter(user=self.request.user)
+        return queryset
+
+
+class ProfileUpdateLIst(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = [
+        'username',
+        'first_name',
+        'last_name',
+        'phone_number'
+    ]
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('profile_list')

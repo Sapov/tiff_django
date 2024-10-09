@@ -2,8 +2,9 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from account.views import edit_profile
 from users.views import Register, EmailVerify, MyLoginView, UserListsView, UsersCreateView, UserUpdateLIst, \
-    UserDeleteView
+    UserDeleteView, ListProfile, ProfileUpdateLIst
 
 # app_name = "users"
 
@@ -26,5 +27,8 @@ urlpatterns = [
     path('users_create/', UsersCreateView.as_view(), name='users_create'),
     path('users_update/<int:pk>', UserUpdateLIst.as_view(), name='users_update'),
     path('users_delete/<int:pk>', UserDeleteView.as_view(), name='users_delete'),
+    # --------------CRUD PROFILE------------
+    path('profile_list/', ListProfile.as_view(), name='profile_list'),
+    path('profile_edit/', edit_profile, name='profile_edit'),
 
 ]

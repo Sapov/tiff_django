@@ -17,7 +17,6 @@ class Organisation(models.Model):
     email = models.EmailField(max_length=20, blank=True, verbose_name="Электронная почта")
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Опубликовано")
 
-    # user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Организации"
