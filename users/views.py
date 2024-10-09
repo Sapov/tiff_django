@@ -10,7 +10,6 @@ from django.contrib.auth.tokens import default_token_generator as \
     token_generator
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
-from account.models import Profile
 from users.forms import UserCreationForm, AuthenticationForm
 from users.utils import send_email_for_verify
 

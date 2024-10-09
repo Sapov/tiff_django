@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
 from orders.models import Order
-from .forms import UserEditForm, ProfileEditForm, OrganisationForm
+from .forms import UserEditForm, OrganisationForm
 
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView
@@ -40,37 +40,37 @@ def dashboard(request):
     )
 
 
-class ListProfile(LoginRequiredMixin, ListView):
-    template_name = "account/profile_list.html"
-    model = Users
-    paginate_by = 5
+# class ListProfile(LoginRequiredMixin, ListView):
+#     template_name = "account/profile_list.html"
+#     model = Users
+#     paginate_by = 5
+#
+#     def get_queryset(self):
+#         "организации только этого юзера"
+#         # queryset = []
+#         queryset = Users.objects.filter(email=self.request.user)
+#         #     q = User.objects.filter(user=self.request.user)
+#         return queryset
 
-    def get_queryset(self):
-        "организации только этого юзера"
-        # queryset = []
-        queryset = Users.objects.filter(email=self.request.user)
-        #     q = User.objects.filter(user=self.request.user)
-        return queryset
 
-
-@login_required
-def edit_profile(request):
-    if request.method == "POST":
-        user_form = UserEditForm(instance=request.user, data=request.POST)
-        profile_form = ProfileEditForm(
-            instance=request.user.profile, data=request.POST, files=request.FILES)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-        return redirect('account:list_profile')
-    else:
-        user_form = UserEditForm(instance=request.user)
-        profile_form = ProfileEditForm(instance=request.user.profile)
-    return render(
-        request,
-        "account/edit.html",
-        {"user_form": user_form, "profile_form": profile_form},
-    )
+# @login_required
+# def edit_profile(request):
+#     if request.method == "POST":
+#         user_form = UserEditForm(instance=request.user, data=request.POST)
+#         profile_form = ProfileEditForm(
+#             instance=request.user.profile, data=request.POST, files=request.FILES)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user_form.save()
+#             profile_form.save()
+#         return redirect('account:list_profile')
+#     else:
+#         user_form = UserEditForm(instance=request.user)
+#         profile_form = ProfileEditForm(instance=request.user.profile)
+#     return render(
+#         request,
+#         "account/edit.html",
+#         {"user_form": user_form, "profile_form": profile_form},
+#     )
 
 
 class OrganisationCreateView(LoginRequiredMixin, CreateView):
