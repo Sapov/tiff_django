@@ -2,7 +2,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from users.views import Register, EmailVerify, MyLoginView, UserListsView, UsersCreateView
+from users.views import Register, EmailVerify, MyLoginView, UserListsView, UsersCreateView, UserUpdateLIst
 
 # app_name = "users"
 
@@ -23,5 +23,7 @@ urlpatterns = [
     # __________CRUD------------USERS-----
     path('users_lists/', UserListsView.as_view(), name='users_list'),
     path('users_create/', UsersCreateView.as_view(), name='users_create'),
+    path('users_update/<int:pk>', UserUpdateLIst.as_view(), name='users_update'),
+    path('users_delete/<int:pk>', UserUpdateLIst.as_view(), name='users_delete'),
 
 ]

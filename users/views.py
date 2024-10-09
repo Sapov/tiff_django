@@ -8,7 +8,7 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.contrib.auth.tokens import default_token_generator as \
     token_generator
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 from users.forms import UserCreationForm, AuthenticationForm
 from users.utils import send_email_for_verify
@@ -24,7 +24,6 @@ class EmailVerify(View):
 
     def get(self, request, uidb64, token):
         user = self.get_user(uidb64)
-
         if user is not None and token_generator.check_token(user, token):
             user.email_verify = True
             user.save()
@@ -71,11 +70,34 @@ class Register(View):
 
 class UsersCreateView(LoginRequiredMixin, CreateView):
     model = User
-    fields = '__all__'
+    fields = [
+        'password',
+        'email',
+        'username',
+        'last_name',
+        'phone_number',
+    ]
     success_url = reverse_lazy("users_list")
 
 
 class UserListsView(LoginRequiredMixin, ListView):
     template_name = "users/users_list.html"
     model = User
-    paginate_by = 5
+
+
+class UserUpdateLIst(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = [
+        'password',
+        'email',
+        'username',
+        'last_name',
+        'phone_number'
+    ]
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('users_list')
+
+
+class UserDeleteView(LoginRequiredMixin, DeleteView):
+    model = User
+    success_url = reverse_lazy('users_list')
