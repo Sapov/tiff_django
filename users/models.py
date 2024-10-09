@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
+from account.models import Organisation
+
 
 class Role(models.TextChoices):
     """Роли пользователей"""
@@ -28,7 +30,7 @@ class User(AbstractUser):
                                    null=True, blank=True)
     photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True)
     telegram = models.CharField(max_length=15, blank=True, null=True)
-    # organisation = models.ForeignKey('Organisation', on_delete=models.CASCADE, null=True)
+    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
