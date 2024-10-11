@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 <title>{% block title %} {{current_order}} {% endblock %}</title>
 {% block body %}
-
+<!--FOR COURIER -->
 {% if request.user.role == 'COURIER' %}
 <h1>Отправить автобусом {{current_order}}</h1>
 <hr>
@@ -77,15 +77,17 @@
 
             </tbody>
         </table>
-            <button type="submit" class="btn btn-success"
-                    onClick="location.href='{% url 'delivery_in_bus:instruction_for_courier' Orders.id %}'">Начать отправку заказа</button>
+        <button type="submit" class="btn btn-success"
+                onClick="location.href='{% url 'delivery_in_bus:instruction_for_courier' Orders.id %}'">Начать отправку
+            заказа
+        </button>
 
     </div>
 
 
 </div>
 {% endif %}
-
+<!--ДЛЯ КЛИЕНТА-->
 {% else %}
 
 <h1>{{current_order}}</h1>
@@ -102,13 +104,11 @@
                 <th>Доставка</th>
             </thead>
             <tbody>
-
             <tr>
                 <td>{{ Orders.created }}</td>
                 <td> {% if Orders.paid == False %}
                     <div class="mb-2">
                         <code>Не оплачено</code>
-
                     </div>
                     {% else%}
                     <div class="text-success mb-2">Оплачено
@@ -162,6 +162,8 @@
             </thead>
             <tbody>
             {% for item in items %}
+            {% if item.status_product.id == 1 %}
+
             <tr>
                 <td><a>{% load thumbnail %} <img src="{% thumbnail item.images 100x0 %}" class="image-detail"></a></td>
                 <td>{{ item.material }}</td>
@@ -171,6 +173,7 @@
                 <td>{{ item.price }}</td>
                 <td><a href="/orders/add_item_in_order/{{order_id}}/{{item.id}}">Добавить в заказ</a></td>
             </tr>
+            {% endif %}
             {% endfor %}
             </tbody>
 
@@ -213,7 +216,8 @@
                 <td>{{ items.product.FinishWork }}</td>
                 <td>{{ items.product.price }} руб.</td>
                 {% if Orders.status.id == 1 %}
-                <td><a href="/orders/del_item_in_order/{{order_id}}/{{items.id}}/{{items.product.id}}">Удалить файл</a></td>
+                <td><a href="/orders/del_item_in_order/{{order_id}}/{{items.id}}/{{items.product.id}}">Удалить файл</a>
+                </td>
 
 
                 {% else %}
@@ -244,7 +248,8 @@
     {% if Orders.organisation_payer %}
     <td>
         <button type="submit" class="btn btn-success"
-                    onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">Получить счет</button>
+                onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">Получить счет
+        </button>
 
     </td>
     {% endif %}
