@@ -5,9 +5,8 @@ from account.models import Organisation, Delivery, DeliveryAddress
 User = get_user_model()
 
 
-#
-
 class TestModelDelivery(TestCase):
+    '''Тест значений полей модель доставка'''
     def setUp(self):
         Delivery.objects.create(type_delivery='На ослах')
 
@@ -42,7 +41,7 @@ class TestModelDelivery(TestCase):
 class TestModelOrganisation(TestCase):
 
     def setUp(self):
-        Organisation.objects.create(Contractor=User.objects.create(username='vasa'),
+        Organisation.objects.create(user=User.objects.create(username='vasa1', email='sasah@na.ru'),
                                     name_full='ООО Ромашка',
                                     inn=123456789012,
                                     kpp=1234567,
@@ -55,12 +54,6 @@ class TestModelOrganisation(TestCase):
                                     phone='2342342342',
                                     email='sa@ds.ru'
                                     )
-
-    # def test_Contractor_verbose_name(self):
-    #     org = Organisation.objects.get(id=1)
-    #     field_label = org._meta.get_field('Contractor').verbose_name
-    #     expected_verbose_name = 'ЗАКАЗЧИК!!'
-    #     self.assertEqual(field_label, expected_verbose_name)
 
     def test_inn_verbose_name(self):
         org = Organisation.objects.get(id=1)  # Получение объекта для тестирования
@@ -76,7 +69,7 @@ class TestModelOrganisation(TestCase):
 
 class TestModelDeliveryAddress(TestCase):
     def setUp(self):
-        User.objects.create(email='vasa3sdf@mail.ru')
+        User.objects.create(username='er', email='vasa3sdf@mail.ru')
         DeliveryAddress.objects.create(user=User.objects.get(id=1),
                                        region='Воронежская область',
                                        city='Воронеж',
