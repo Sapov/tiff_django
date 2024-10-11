@@ -37,6 +37,6 @@ def check_payment_order(*args):
 
 
 @shared_task
-def send_message_whatsapp(phone_number: str, text: str):
+def send_message_whatsapp(user: str, text: str):
     '''Отсылаем сообщение в whatsapp'''
-    users.whatssapp.send_message(phone_number, text)
+    users.whatssapp.send_message(user, text)
