@@ -28,7 +28,7 @@ class User(AbstractUser):
                                    help_text='Установите Да если '
                                              'к номеру телефона подключен Whatsapp',
                                    null=True, blank=True)
-    photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True)
+    photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True, null=True)
     telegram = models.BooleanField(verbose_name='Присылать уведомления в Telegram',
                                    help_text='Установите Да если '
                                              'к номеру телефона подключен Telegram',
