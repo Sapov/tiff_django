@@ -96,4 +96,5 @@ class TestModelDeliveryAddress(TestCase):
         self.assertEqual(fild_max_length, expected_max_length)
 
     def tearDown(self):
+
         pass
