@@ -2,26 +2,11 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.conf import settings
 
-User = get_user_model()
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True)
-    # phone = models.CharField(
-    #     max_length=15, blank=True, null=True, verbose_name="Мобильный телефон"
-    # )
-    telegram = models.CharField(max_length=15, blank=True, null=True)
-    organisation = models.ForeignKey(
-        "Organisation", on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return f"Profile of {self.user.username}"
-
 
 class Organisation(models.Model):
-    Contractor = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!",
-                                   default=1, )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
+    )
     name_full = models.CharField(max_length=200, verbose_name="Имя юр. лица", help_text="Форма собственности и название")
     inn = models.CharField(max_length=12, verbose_name="ИНН")
     kpp = models.CharField(max_length=9, blank=True, verbose_name="КПП")
@@ -35,7 +20,6 @@ class Organisation(models.Model):
     email = models.EmailField(max_length=20, blank=True, verbose_name="Электронная почта")
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Опубликовано")
 
-    # user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Организации"

@@ -1,14 +1,14 @@
 {% extends 'base.html'%}
-<title>{% block title %} Организации: {% endblock %}</title>
+<title>{% block title %} Профиль: {% endblock %}</title>
 {% block body %}
 
 <h1>Мои профиль: </h1>
- <a href="{% url 'account:edit_profile' %}" class="btn btn-primary btn-icon-split">
+<a href="{% url 'profile_edit' %}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">Редактировать</span>
-                                    </a>
+    <span class="text">Редактировать</span>
+</a>
 
 <hr>
 <div class="row">
@@ -17,12 +17,11 @@
             <thead>
             <tr>
 
-                <th scope="col">№</th>
                 <th scope="col">Email</th>
-                <th scope="col">Тел</th>
-                <th scope="col">Whatsapp</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Отсылать сообщения на Whatsapp</th>
+                <th scope="col">Отсылать сообщения в Telegram</th>
                 <th scope="col">Статус</th>
-                <th scope="col">ОКПО:</th>
             </tr>
             </thead>
 
@@ -30,13 +29,14 @@
 
             <tbody>
             <tr>
-                <td>{{ item.id }}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.phone_number }}</td>
                 <td>{{ item.whatsapp }}</td>
-                <td>{{ item.role }}</td>
                 <td>{{ item.telegram }}</td>
-                <!--                                                    <td>{{ oraganisation.okpk }}</td>-->
+                <td>{{ item.role }}</td>
+                <td>
+                    <a href="{% url 'profile_edit' %}">Изменить</a>
+                </td>
             </tr>
             {% endfor %}
             </tbody>

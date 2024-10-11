@@ -109,7 +109,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name="Ордер")
-    product = models.OneToOneField(
+    product = models.ForeignKey(
         Product, on_delete=models.CASCADE, verbose_name="Продукт"
     )
     price_per_item = models.FloatField(
@@ -181,8 +181,6 @@ def product_in_order_post_save(instance, **kwargs):
 
     # -----------
     """Меняем состояние файла (в заказе)"""
-    instance.product.in_order = True
-    instance.product.save(force_update=True)
 
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)

@@ -6,8 +6,6 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator as \
     token_generator
 
-from account.models import Profile
-
 
 def send_email_for_verify(request, user):
     current_site = get_current_site(request)
@@ -26,5 +24,4 @@ def send_email_for_verify(request, user):
         message,
         to=[user.email],
     )
-    Profile.objects.create(user=user)
     email.send()

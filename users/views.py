@@ -1,11 +1,15 @@
 from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.core.exceptions import ValidationError
+from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
 from django.shortcuts import render, redirect
 from django.contrib.auth.tokens import default_token_generator as \
     token_generator
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+
 from users.forms import UserCreationForm, AuthenticationForm
 from users.utils import send_email_for_verify
 
@@ -20,7 +24,6 @@ class EmailVerify(View):
 
     def get(self, request, uidb64, token):
         user = self.get_user(uidb64)
-
         if user is not None and token_generator.check_token(user, token):
             user.email_verify = True
             user.save()
@@ -63,3 +66,63 @@ class Register(View):
             'form': form
         }
         return render(request, self.template_name, context)
+
+
+class UsersCreateView(LoginRequiredMixin, CreateView):
+    model = User
+    fields = [
+        'password',
+        'email',
+        'username',
+        'last_name',
+        'phone_number',
+    ]
+    success_url = reverse_lazy("users_list")
+
+
+class UserListsView(LoginRequiredMixin, ListView):
+    template_name = "users/users_list.html"
+    model = User
+
+
+class UserUpdateLIst(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = [
+        'password',
+        'email',
+        'username',
+        'last_name',
+        'phone_number'
+    ]
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('users_list')
+
+
+class UserDeleteView(LoginRequiredMixin, DeleteView):
+    model = User
+    success_url = reverse_lazy('users_list')
+
+
+class ListProfile(LoginRequiredMixin, ListView):
+    template_name = "account/profile_list.html"
+    model = User
+    paginate_by = 5
+
+    def get_queryset(self):
+        "организации только этого юзера"
+        # queryset = []
+        queryset = User.objects.filter(email=self.request.user)
+        #     q = User.objects.filter(user=self.request.user)
+        return queryset
+
+
+class ProfileUpdateLIst(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = [
+        'username',
+        'first_name',
+        'last_name',
+        'phone_number'
+    ]
+    template_name_suffix = '_update_form'
+    success_url = reverse_lazy('profile_list')

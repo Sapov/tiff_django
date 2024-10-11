@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} Добавить пользователя{% endblock %}
+
+{% block body %}
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/css/suggestions.min.css'>
+<!--<link rel="stylesheet" href="./style.css">-->
+<div class="well well-sm col-md-6">
+
+    <form action="{% url 'users_create' %}" method="post">
+
+        <section class="container">
+            <div class="form-group">
+                {% csrf_token %}
+                <h1>Добавить пользователя</h1>
+            </div>
+        </section>
+        {{ form|crispy }}
+        </section>
+        <input type="submit" value="Save">
+
+    </form>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/dadata_script_bic.js' %}"></script>
+
+
+</div>
+
+{% endblock %}
+
+
+
+

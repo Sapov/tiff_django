@@ -174,7 +174,7 @@ class UploadFilesRollUp(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ["quantity"]
+        fields = ["quantity", 'images']
 
 
 class CreateContractor(forms.ModelForm):

@@ -2,7 +2,7 @@ from django import forms
 # from django.contrib.auth.models import User
 from phonenumber_field.formfields import PhoneNumberField
 
-from .models import Profile, Organisation
+from .models import Organisation
 from users.models import User
 
 
@@ -30,16 +30,16 @@ class UserRegistrationForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["first_name", "last_name", "email", 'phone_number', 'whatsapp']
-
-
-class ProfileEditForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ["photo"]
+        fields = ["first_name", "last_name", 'phone_number', 'whatsapp']
 
 
 class OrganisationForm(forms.ModelForm):
     class Meta:
         model = Organisation
         fields = ["name_full", "inn", "kpp", "address", ]
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'

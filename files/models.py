@@ -168,7 +168,7 @@ class Product(models.Model):
     size = models.FloatField(default=0, verbose_name="Размер в Мб")
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
     cost_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
-    images = models.FileField(upload_to="image", verbose_name="Загрузка файла")
+    images = models.ImageField(upload_to="image", verbose_name="Загрузка файла")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")  # date created
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
     FinishWork = models.ForeignKey("FinishWork",
@@ -177,7 +177,6 @@ class Product(models.Model):
                                    default=1,
                                    )
 
-    in_order = models.BooleanField(verbose_name="Позиция в заказе", default=0, blank=True, null=True)
     status_product = models.ForeignKey(
         "StatusProduct",
         on_delete=models.PROTECT,

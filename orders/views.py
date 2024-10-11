@@ -13,7 +13,7 @@ from django_celery_beat.models import PeriodicTask
 
 from account.models import Delivery, Organisation
 
-from files.models import Product
+from files.models import Product, StatusProduct
 from files.pay import Robokassa
 from .alerts import Alerts
 from .forms import NewOrder, ReportForm
@@ -145,7 +145,7 @@ class DeleteOrderView(DeleteView):
 def add_files_in_order(request, order_id):
     Orders = Order.objects.get(id=order_id)
     items = Product.objects.filter(
-        in_order=False, Contractor=request.user
+        Contractor=request.user
     )  # Только те файлы которые еще были добавлены в заказ(ы), только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     current_order = Order.objects.get(pk=order_id)
@@ -168,6 +168,8 @@ def add_item_in_order(request, item_id, order_id):
     item = Product.objects.get(id=item_id)
     new_ord.product = item
     new_ord.save()
+
+    set_status_file(item, 2)
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {
@@ -178,17 +180,21 @@ def add_item_in_order(request, item_id, order_id):
     return redirect(f"/orders/add_files_in_order/{order_id}")  # редирект на заказ
 
 
-def del_item_in_order(request, order_id: int, item_id: int):
-    Orders = Order.objects.get(id=order_id)
-    old_ord = OrderItem.objects.get(id=item_id)  # строка заказа
-    print('PRODNUM', old_ord.product_id)
-    product = Product.objects.get(id=old_ord.product_id)
-    old_ord.delete()
-    logging.info(f'[Удаляем из OrderItems] {old_ord}')
+def set_status_file(item, status_id: int):
+    instance_status = StatusProduct.objects.get(id=status_id)  # файл в работе
+    item.status_product = instance_status
+    item.save()
 
-    product.delete()
-    logging.info(f'[Удаляем из Product] {product}')
-    # os.remove(f"media/{str(product.images)}")  # Удаление файла
+
+def del_item_in_order(request, order_id: int, item_id: int, item_product_id: int):
+    '''Удаляет файл из заказа но оставляет его в списке файлов'''
+    Orders = Order.objects.get(id=order_id)
+    old_item = OrderItem.objects.get(id=item_id)  # строка заказа
+    old_item.delete()
+
+    item = Product.objects.get(id=item_product_id)
+    set_status_file(item, 1) # файл в загружен
+    logging.info(f'[Удаляем из OrderItems] {old_item}')
 
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
@@ -229,7 +235,7 @@ def order_pay(request, order_id):
         if Orders.organisation_payer:
             print('Генерим счет')
             create_order_pdf.delay(order_id)
-            # запускаем ежечастную проверку оплаты
+            # запускаем ежечасную проверку оплаты
             Bank.check_payment(domain, order_id)
         # оповещаем в whatsapp
         item_user = User.objects.get(email=user)
@@ -239,8 +245,6 @@ def order_pay(request, order_id):
 
         return render(request, "orderpay.html", context)
     else:
-        # context = {"Orders": order}
-
         return render(request, "orderpay.html")
 
 

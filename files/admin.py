@@ -36,6 +36,13 @@ admin.site.register(Organisation)
 admin.site.register(Contractor)
 
 
+class ContractorAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Contractor._meta.fields]
+
+    class Meta:
+        model = Contractor
+
+
 class UseCalculatorAdmin(admin.ModelAdmin):
     list_display = [field.name for field in UseCalculator._meta.fields]
     # list_editable = ["price_contractor", "price", "price_customer_retail", "is_active"]
@@ -47,9 +54,6 @@ class UseCalculatorAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UseCalculator, UseCalculatorAdmin)
-
-
-# admin.site.register(FinishWork)
 
 
 class FinishWorkAdmin(admin.ModelAdmin):
