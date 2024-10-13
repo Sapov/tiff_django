@@ -238,8 +238,9 @@ def order_pay(request, order_id):
             # запускаем ежечасную проверку оплаты
             Bank.check_payment(domain, order_id)
         # оповещаем в whatsapp
-        # item_user = User.objects.get(email=user)
-        # send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
+        item_user = User.objects.get(email=user)
+        if item_user.phone_number:
+            send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
 
         os.chdir(current_path)  # перейти обратно
 

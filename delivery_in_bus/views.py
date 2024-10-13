@@ -21,7 +21,6 @@ class ViewAllCompleteOrdersForBus(LoginRequiredMixin, ListView):
 def render_instruction(request, order_id):
     if request.method == 'POST':
         # меняем статус заказа
-        # начисляем баланс курьеру
         # Отправляем фото клиенту
         form = FormLoadImgCourier(request.POST, request.FILES)
         if form.is_valid():
@@ -54,6 +53,5 @@ def complete(request, order_id):
     if request.method == 'POST':
         # меняем статус заказа
         change_status_order(status_oder=4, pk=order_id)
-        # начисляем баланс курьеру
         # Отправляем фото клиенту
         return redirect('delivery_in_bus:orders_for_courier_in_bus')

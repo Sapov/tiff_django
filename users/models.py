@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 # from account.models import Organisation
 
 
@@ -27,7 +28,7 @@ class User(AbstractUser):
     whatsapp = models.BooleanField(verbose_name='Присылать уведомления на Whatsapp',
                                    help_text='Установите Да если '
                                              'к номеру телефона подключен Whatsapp',
-                                   null=True, blank=True)
+                                   default=False)
     photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True, null=True)
     telegram = models.BooleanField(verbose_name='Присылать уведомления в Telegram',
                                    help_text='Установите Да если '
