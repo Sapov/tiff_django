@@ -316,7 +316,7 @@ class UtilsModel:
             logger.info(f'[archive]: Архивируем файлы:", {all_products_in_order}')
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
-                self._draw_outline_image(file)
+
                 logger.info(f"FILE: {file}")
                 self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
@@ -330,8 +330,9 @@ class UtilsModel:
 
                 logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
                 old_name = str(file.images)[str(file.images).rindex("/") + 1:]
+                logger.info(f'[INFO] Обводим картинку контуром')
+                self._draw_outline_image(old_name)
 
-                # os.rename(old_name, new_name_file)
                 shutil.copy(old_name, new_name_file)
                 new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
@@ -418,9 +419,9 @@ class UtilsModel:
 
     @classmethod
     def _draw_outline_image(cls, file):
-        #Делаем обводку вокург файла, часто файлы имею много белого  - непонятно как его разрезать
+        # Делаем обводку вокург файла, часто файлы имею много белого  - непонятно как его разрезать
         img = Image.open(file)
-        img_border = ImageOps.expand(img, border=20, fill='black')
+        img_border = ImageOps.expand(img, border=2, fill='black')
         img_border.save(file)
 
     def run(self):
