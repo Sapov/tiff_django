@@ -3,6 +3,7 @@ import logging
 import os
 import shutil
 import zipfile
+from PIL import Image, ImageOps
 from datetime import date, datetime
 import datetime
 from django.conf import settings
@@ -315,6 +316,7 @@ class UtilsModel:
             logger.info(f'[archive]: Архивируем файлы:", {all_products_in_order}')
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
+                self._draw_outline_image(file)
                 logger.info(f"FILE: {file}")
                 self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
@@ -413,6 +415,13 @@ class UtilsModel:
         self.confirm_link_to_work = (f'http://{self.domain}/files/confirm_order_to_work/{self.order_id}/'
                                      f'{self.calculate_signature(self.order_id)}')
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
+
+    @classmethod
+    def _draw_outline_image(cls, file):
+        #Делаем обводку вокург файла, часто файлы имею много белого  - непонятно как его разрезать
+        img = Image.open(file)
+        img_border = ImageOps.expand(img, border=20, fill='black')
+        img_border.save(file)
 
     def run(self):
         self.create_text_file()
