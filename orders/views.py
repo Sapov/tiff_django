@@ -239,7 +239,7 @@ def order_pay(request, order_id):
             Bank.check_payment(domain, order_id)
         # оповещаем в whatsapp
         item_user = User.objects.get(email=user)
-        if item_user.whatsapp:
+        if item_user.whatsapp and item_user.phone_number:
             send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
 
         os.chdir(current_path)  # перейти обратно
