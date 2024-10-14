@@ -317,6 +317,7 @@ class UtilsModel:
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
 
+
                 logger.info(f"FILE: {file}")
                 self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
@@ -332,6 +333,7 @@ class UtilsModel:
                 old_name = str(file.images)[str(file.images).rindex("/") + 1:]
                 logger.info(f'[INFO] Обводим картинку контуром')
                 self._draw_outline_image(old_name)
+                # self._add_white_border(old_name, int(file.resolution))
 
                 shutil.copy(old_name, new_name_file)
                 new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
@@ -418,11 +420,20 @@ class UtilsModel:
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
 
     @classmethod
-    def _draw_outline_image(cls, file):
-        # Делаем обводку вокург файла, часто файлы имею много белого  - непонятно как его разрезать
-        img = Image.open(file)
+    def _draw_outline_image(cls, file_name):
+        # Делаем обводку вокруг файла, часто файлы имею много белого  - непонятно как его разрезать
+        img = Image.open(file_name)
         img_border = ImageOps.expand(img, border=2, fill='black')
-        img_border.save(file)
+        img_border.save(file_name)
+
+    @classmethod
+    def _add_white_border(cls, file_name, resolution):
+        logger.info(f'[info] Увеличиваем поля на 5 см resolution {resolution} RESP {5 * resolution / 2.54}')
+        img = Image.open(file_name)
+        print('RES', resolution)
+        border = int(5 * resolution / 2.54)   # на 5 см с каждой стороны увеличим картинку
+        img_border = ImageOps.expand(img, border=border, fill='#ffffff')
+        img_border.save(file_name)
 
     def run(self):
         self.create_text_file()
