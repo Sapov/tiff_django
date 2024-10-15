@@ -15,7 +15,6 @@ from django.urls import reverse
 
 from account.models import Organisation, Delivery
 from files.models import Product
-
 logger = logging.getLogger(__name__)
 
 
