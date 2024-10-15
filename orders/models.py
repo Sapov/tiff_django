@@ -317,19 +317,17 @@ class UtilsModel:
             for item in all_products_in_order:
                 self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
-
-                new_name_file, old_name = self._rename_files(item)
+                new_name_file = self._rename_files(item)
 
                 logger.info(f'[INFO] Обводим картинку контуром')
-                self._draw_outline_image(old_name)
+                self._draw_outline_image(new_name_file)
 
-                shutil.copy(old_name, new_name_file)
                 new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
         os.chdir(current_path)  # перейти обратно
         return self.arh_name
 
-    def _rename_files(self, item):
+    def _rename_files(self, item) -> str:
         logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
         file = Product.objects.get(id=item.product.id)
         new_name_file = (f"{file.quantity}_шт_{float(file.width)}x{float(file.length)}_"
@@ -339,7 +337,8 @@ class UtilsModel:
         logger.info(f'file.images: {file.images}')
         logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
         old_name = str(file.images)[str(file.images).rindex("/") + 1:]
-        return new_name_file, old_name
+        shutil.copy(old_name, new_name_file)
+        return new_name_file
 
     def create_folder_server(self):
         """Добавляем фолдер  Директория номер заказа"""
