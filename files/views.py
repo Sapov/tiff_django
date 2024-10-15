@@ -28,7 +28,6 @@ from .serializers import MaterlailSerializer
 
 from orders.tasks import send_message_whatsapp
 
-
 import logging
 
 logger = logging.getLogger(__name__)
@@ -437,3 +436,4 @@ def confirm_order_to_completed(request, pk: int, hash_code):
         return render(request, "files/confirm_order_to_completed.html")
     else:
         return render(request, "files/no_confirm_order_to_completed.html")
+
