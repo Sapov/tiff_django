@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from pathlib import Path
+
+from django.urls import reverse_lazy
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
@@ -168,7 +170,9 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = "account:dashboard"
 LOGIN_URL = "login"
-LOGOUT_URL = "logout"
+# LOGOUT_URL = "logout"
+LOGOUT_URL = reverse_lazy('logout')
+
 LOGOUT_REDIRECT_URL = 'login'
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
