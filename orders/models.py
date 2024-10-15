@@ -315,31 +315,31 @@ class UtilsModel:
             )
             logger.info(f'[archive]: Архивируем файлы:", {all_products_in_order}')
             for item in all_products_in_order:
-                file = Product.objects.get(id=item.product.id)
-
-
-                logger.info(f"FILE: {file}")
                 self.arh_name = f"Order_№_{self.order_id}_{date.today()}.zip"
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
 
-                logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
-                new_name_file = (f"{file.quantity}_шт_{float(file.width)}x{float(file.length)}_"
-                                 f"{'_'.join(str(file.material).split())}_"
-                                 f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
-                logger.info(f'[new Name] {new_name_file}')
-                logger.info(f'file.images: {file.images}')
+                new_name_file, old_name = self._rename_files(item)
 
-                logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
-                old_name = str(file.images)[str(file.images).rindex("/") + 1:]
                 logger.info(f'[INFO] Обводим картинку контуром')
                 self._draw_outline_image(old_name)
-                # self._add_white_border(old_name, int(file.resolution))
 
                 shutil.copy(old_name, new_name_file)
                 new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
         os.chdir(current_path)  # перейти обратно
         return self.arh_name
+
+    def _rename_files(self, item):
+        logger.info(f'----------------Формируем имя файла типа | 5_шт_100х200_Баннер_510_грамм_|------------')
+        file = Product.objects.get(id=item.product.id)
+        new_name_file = (f"{file.quantity}_шт_{float(file.width)}x{float(file.length)}_"
+                         f"{'_'.join(str(file.material).split())}_"
+                         f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
+        logger.info(f'[new Name] {new_name_file}')
+        logger.info(f'file.images: {file.images}')
+        logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
+        old_name = str(file.images)[str(file.images).rindex("/") + 1:]
+        return new_name_file, old_name
 
     def create_folder_server(self):
         """Добавляем фолдер  Директория номер заказа"""
@@ -431,7 +431,7 @@ class UtilsModel:
         logger.info(f'[info] Увеличиваем поля на 5 см resolution {resolution} RESP {5 * resolution / 2.54}')
         img = Image.open(file_name)
         print('RES', resolution)
-        border = int(5 * resolution / 2.54)   # на 5 см с каждой стороны увеличим картинку
+        border = int(5 * resolution / 2.54)  # на 5 см с каждой стороны увеличим картинку
         img_border = ImageOps.expand(img, border=border, fill='#ffffff')
         img_border.save(file_name)
 
