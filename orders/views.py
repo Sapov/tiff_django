@@ -212,7 +212,6 @@ def order_pay(request, order_id):
     """
     current_path = os.getcwd()
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
-
     order = Order.objects.get(id=order_id)
 
     if str(order.status) != 'Оформлен':  # предотвращаем повторную отправку заказа

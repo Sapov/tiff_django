@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 
 from orders.models import UtilsModel, Order, StatusOrder, OrderItem
-from orders.views import stop_count_down
+from orders.views import stop_count_down, change_status_order
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     UploadArhive,
@@ -25,6 +25,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin  # new
 from .tiff_file import WorkZip, Calculator
 from rest_framework import viewsets
 from .serializers import MaterlailSerializer
+
+from orders.tasks import send_message_whatsapp
+
 
 import logging
 
@@ -401,24 +404,20 @@ class ContractorDeleteView(DeleteView):
 
 
 def confirm_order_to_work(request, pk: int, hash_code: str):
-    # print(f'id_status_order P{id_status_order} type {type(id_status_order)}')
     ''' Подтверждение приема заказа менеджером типографии'''
     if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш равен коду от хеша номера заказа
         """Меняем статус заказа"""
-        order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
-        status = StatusOrder.objects.get(id=3)  # меняем статус заказак)  # меняю стаус 3
-        logger.info(f"МЕНЯЮ СТАТУС нА В Работе")
-        order.status = status
-        order.save()
+        change_status_order(3, pk)
+        # оповещаем в whatsapp
+        send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}', f'Заказ № {pk} Принят типографией')
+
         # отобразить файлы в заказе
         items_in_order = OrderItem.objects.filter(order=pk)  # файлы в заказе
         context = {
-            # "Orders": Orders,
-            # "items": items,
             "items_in_order": items_in_order,
-            # "current_order": current_order,
             "order_id": pk,
         }
+
         return render(request, "files/confirm_order_to_work.html", context)
     else:
         return render(request, "files/no_confirm_order_to_work.html")
