@@ -246,12 +246,13 @@ class UtilsModel:
         return self.hash_num
 
     def create_text_file(self):
-        """Создаем файл с харaктеристеками файла для печати"""
+        """Создаем файл с характеристиками файла для печати"""
         current_path = os.getcwd()
         os.chdir(f"{settings.MEDIA_ROOT}/image/")
 
         all_products_in_order = OrderItem.objects.filter(order=self.order_id, is_active=True)
         order = Order.objects.get(id=self.order_id)
+        # это нужно переписать на нормальный алгоритм с учетом выходных
         self.order_complete = order.date_complete - datetime.timedelta(hours=24)  # Типография от дает на сутки раньше
 
         self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
@@ -444,6 +445,7 @@ class UtilsModel:
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
         self.send_mail_order()  # отправил письмо
+        # Отправить администратору сообщение whatsapp
 
 
 class BankInvoices(models.Model):

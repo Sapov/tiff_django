@@ -10,7 +10,6 @@ from .payment.bank import Bank
 def arh_for_mail(order_id: int, domain: str):
     order_item = UtilsModel(order_id, domain)
     order_item.run()
-    # send_mail_order(order_id, domain)
 
 
 @shared_task(name='timer_order_complete')

@@ -13,8 +13,7 @@ url = f"https://api.green-api.com/waInstance{os.getenv('GREENAPI_INSATANCE')}/se
 
 
 def send_message(phone_number: str, text: str):
-    print('FOR WAP', phone_number)
-    logger.info(f'[INFO] Отправляем сообщение в WhatsApp на номер: {phone_number}')
+    logger.info(f'[INFO] Отправляем сообщение {text} в WhatsApp на номер: {phone_number}')
     payload = {
         "chatId": f"{phone_number}@c.us",
         "message": text
@@ -24,5 +23,5 @@ def send_message(phone_number: str, text: str):
     }
 
     response = requests.post(url, json=payload)
+    logger.info(f'[RESPONSE WHTASAPP SERVER]: {response.text.encode("utf8")}')
 
-    print(response.text.encode('utf8'))
