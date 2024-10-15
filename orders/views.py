@@ -187,13 +187,13 @@ def set_status_file(item, status_id: int):
 
 
 def del_item_in_order(request, order_id: int, item_id: int, item_product_id: int):
-    '''Удаляет файл из заказа но оставляет его в списке файлов'''
+    '''Удаляет файл из заказа, но оставляет его в списке файлов'''
     Orders = Order.objects.get(id=order_id)
     old_item = OrderItem.objects.get(id=item_id)  # строка заказа
     old_item.delete()
 
     item = Product.objects.get(id=item_product_id)
-    set_status_file(item, 1) # файл в загружен
+    set_status_file(item, 1)  # файл в загружен
     logging.info(f'[Удаляем из OrderItems] {old_item}')
 
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
@@ -221,11 +221,11 @@ def order_pay(request, order_id):
         domain = str(get_domain(request))
         arh_for_mail.delay(order_id, domain=domain)
 
-        #----------''' Сообщение администратору'''--------------
+        # ----------''' Сообщение администратору'''--------------
         ''' В будущем - -Сообщение менеджеру типографии'''
         admin_phone = os.getenv('PHONE_NUMBER')
         send_message_whatsapp.delay(f'{admin_phone}', f'Письмо отправлено в типографию. '
-                                                       f'Заказ № {order_id} оформлен')
+                                                      f'Заказ № {order_id} оформлен')
 
         # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправляем письмо с вопросом о готовности----------------
         # получаем дату готовности из базы
@@ -431,21 +431,6 @@ def report_day(request):
             }
 
     return render(request, "orders/report_day.html", context=context)
-
-
-def set_status_order(request, status_oder: int, pk: int, hash_code: str):
-    ''' Подтверждение приема заказа менеджером типографии'''
-    if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
-        """Меняем статус заказа"""
-        order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
-        status = StatusOrder.objects.get(id=status_oder)  # меняем статус заказа )  # меняю стаус
-        logger.info(f"МЕНЯЮ СТАТУС нА В Работе")
-        order.status = status
-        order.save()
-
-        return render(request, "files/confirm_order_to_work.html")
-    else:
-        return render(request, "files/no_confirm_order_to_work.html")
 
 
 def change_status_order(status_oder: int, pk: int):

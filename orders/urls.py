@@ -15,27 +15,25 @@ from .views import (
     report_complite_orders,
     new_order,
     OrdersViewList,
-    AllOrdersListView, result, success_pay, fail, report_day, set_status_order, create_invoice
+    AllOrdersListView, result, success_pay, fail, report_day, create_invoice
 )
 
 app_name = "orders"
 
 urlpatterns = [
-    # path('new_order/', OrderCreateView.as_view(), name="new_order"), # Добавть новый зааказ
-    path("neworder/", new_order, name="new_order"),  # Добавить новый зааказ
+    # path('new_order/', OrderCreateView.as_view(), name="new_order"), # Добавить новый заказ
+    path("neworder/", new_order, name="new_order"),  # Добавить новый заказ
     path(
         "create/<pk>", OrderUpdateView.as_view(), name="update_order"),
     # Редактировать заказ
-    path("view_orders/", view_order, name="view_orders"),  # посмотерть мои заказы
-    path("view_orders1/", OrdersViewList.as_view(), name="view_orders1"),  # посмотерть мои заказы
+    path("view_orders/", view_order, name="view_orders"),  # посмотреть мои заказы
+    path("view_orders1/", OrdersViewList.as_view(), name="view_orders1"),  # посмотреть мои заказы
     path("view_order_item/<pk>", View_order_item.as_view(), name="view_order_items"),
     path("delete_order/<pk>", DeleteOrderView.as_view(), name="Delete_order"),
     path("add_files_in_order/<int:order_id>", add_files_in_order, name="add_file_in_order", ),
     path("add_item_in_order/<int:order_id>/<int:item_id>", add_item_in_order, name="add"),
     path("del_item_in_order/<int:order_id>/<int:item_id>/<int:item_product_id>", del_item_in_order,
          name="del_item_in_order", ),
-    # --------------------Изменяем статус заказа------------------
-    path('set_status_order/<int:status_order>/<int:order_id>/<str:hash>', set_status_order),
 
     # Посмотреть все заказы
     path("view_all_orders/", AllOrdersListView.as_view(), name="view_all_orders"),
