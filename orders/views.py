@@ -326,7 +326,7 @@ def view_all_files_for_work_in_orders(request):
 #     return render(request, "user_organization.html", {"form": form})
 
 
-def report_complite_orders(request):
+def report_complete_orders(request):
     """Отчет оп выполненным заказам"""
 
     if request.method == "POST":

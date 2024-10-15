@@ -12,7 +12,7 @@ from .views import (
     view_all_files_for_work_in_orders,
     ViewAllPayOrders,
     about_file,
-    report_complite_orders,
+    report_complete_orders,
     new_order,
     OrdersViewList,
     AllOrdersListView, result, success_pay, fail, report_day, create_invoice
@@ -44,7 +44,7 @@ urlpatterns = [
     path("about_file/<int:file_id>", about_file, name="about_file"),
     # --------отчеты
     path('report_day/', report_day, name='report_day'),
-    path("report/", report_complite_orders, name="report_complite_orders"),
+    path("report/", report_complete_orders, name="report_complete_orders"),
 
     # https://docs.robokassa.ru/pay-interface/#notification
     path("result/", result, name="result"),  # для робокассы проверкаe
