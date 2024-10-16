@@ -53,7 +53,7 @@ def edit_profile(request):
         user_form = UserEditForm(instance=request.user)
     return render(
         request,
-        "account/edit.html",
+        "users/edit_profile.html",
         {"user_form": user_form},
     )
 

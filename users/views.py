@@ -104,7 +104,7 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class ListProfile(LoginRequiredMixin, ListView):
-    template_name = "account/profile_list.html"
+    template_name = "users/profile_list.html"
     model = User
     paginate_by = 5
 
