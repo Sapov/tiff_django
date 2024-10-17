@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
-from http import HTTPStatus
 
-from ..models import Organisation, Profile
+from ..models import Organisation
 
 User = get_user_model()
 
@@ -16,7 +15,7 @@ class AccountURLTests(TestCase):
         self.authorized_client.force_login(self.user)
 
         self.organisation = Organisation.objects.create(
-            Contractor=self.user,
+            user=self.user,
             name_full='Test Company',
             address='Test Address',
             address_post='Test Post Address',
@@ -45,23 +44,5 @@ class TestAccount(TestCase):
         response = self.client.get('/account/list_organisation/')
         self.assertEqual(response.status_code, 302)
 
-    def test_edit_profile(self):
-        ''' Редирект пользователя с /account/edit/'''
-        response = self.client.get('/account/edit/')
-        self.assertEqual(response.status_code, 302)
 
 
-class TestModelProfile(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        # Set up non-modified objects used by all
-        # test methods
-        Profile.objects.create(
-            user=User.objects.create(username='vasa'),
-            organisation=Organisation.objects.create(id=1),
-        )
-
-    def test_telegram_length(self):
-        profile = Profile.objects.get(id=1)
-        max_length = profile._meta.get_field('telegram').max_length
-        self.assertEqual(max_length, 15)

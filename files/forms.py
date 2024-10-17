@@ -165,6 +165,7 @@ class UploadFilesRollUp(forms.ModelForm):
         #id=21  это литой баннер Интрьерная печать для Ролапа
         label="Выберите материал для печати",
         initial=22,  # по умолчанию литой 450 грамм
+
     )
     FinishWork = forms.ModelChoiceField(
         queryset=FinishWork.objects.filter(id=2),

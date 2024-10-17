@@ -218,7 +218,6 @@ class FilesCreateViewUV(LoginRequiredMixin, CreateView):
 
 class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
     """Загрузка файлов только для Rollup"""
-
     model = Product
     form_class = UploadFilesRollUp
     template_name = "files/rollup_print.html"

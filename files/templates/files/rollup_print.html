@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{% load crispy_forms_tags %}
+<!--{% load crispy_forms_tags %}-->
 
 {% block title %}Загрузка макета для Ролл-апа{% endblock %}
 
@@ -17,11 +17,11 @@
 
                     {% csrf_token %}
 
-                    {{ form|crispy }}
-                    <!--        <p>{{form.material}}</p>-->
-<!--                           <p> {{form.quantity}}</p>-->
-<!--                           <p> {{form.FinishWork}}</p>-->
-<!--                           <p> {{form.images}}</p>-->
+                                        {{ form|crispy }}
+<!--                    <p>{{form.material}}</p>-->
+<!--                    <p> {{form.quantity}}</p>-->
+<!--                    <p> {{form.FinishWork}}</p>-->
+<!--                    <p> {{form.images}}</p>-->
                     <button type="submit" class="btn btn-primary">Загрузить</button>
 
                 </form>
