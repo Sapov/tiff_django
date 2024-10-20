@@ -26,7 +26,6 @@ from django.core.paginator import Paginator
 from .payment.bank import Bank
 from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp
 import logging
-from aiohttp import web
 import jwt
 from jwt import exceptions
 

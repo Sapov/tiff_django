@@ -8,7 +8,7 @@ load_dotenv(find_dotenv())
 
 class WebHook:
     url_bank = 'https://enter.tochka.com/uapi/webhook/v1.0/'
-    client_id = os.getenv('TOCHKA_CLIENT_ID')
+    client_id = os.getenv('BANK_CLIENT_ID')
     url_webhook_bank = url_bank + client_id
     url_webhook_service = 'https://orders.san-cd.ru/orders/web_hook'
     headers = {
@@ -29,7 +29,7 @@ class WebHook:
             "webhooksList": [
                 "incomingPayment"
             ],
-            "url": "https://orders.san-cd.ru/orders/web_hook"
+            "url": self.url_webhook_service
         })
         headers = {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ class WebHook:
             "webhooksList": [
                 "incomingPayment"
             ],
-            "url": "https://orders.san-cd.ru/orders/web_hook"
+            "url": self.url_webhook_service
 
         })
         headers = {
@@ -61,7 +61,7 @@ class WebHook:
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
-        response = requests.request("DELETE", url = self.url_webhook_bank, headers=headers, data=payload)
+        response = requests.request("DELETE", url=self.url_webhook_bank, headers=headers, data=payload)
         print(response.text)
 
     def send_web_hook(self):
