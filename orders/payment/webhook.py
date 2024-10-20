@@ -7,13 +7,13 @@ load_dotenv(find_dotenv())
 
 
 class WebHook:
-    url_bank = 'https://enter.tochka.com/uapi/webhook/v1.0/'
+    # url_bank = 'https://enter.tochka.com/uapi/webhook/v1.0/'
+
+    url_bank = 'https://enter.tochka.com/sandbox/v2/webhook/v1.0/'
     client_id = os.getenv('TOCHKA_CLIENT_ID')
     url_webhook_bank = url_bank + client_id
     url_webhook = os.getenv('WEBHOOK_URL')
-    headers = {
-        'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-    }
+    token = 'working_token'
 
     def get_webhook(self):
         payload = {}
@@ -33,13 +33,13 @@ class WebHook:
         })
         headers = {
             'Content-Type': 'application/json',
-            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+            'Authorization': f"Bearer {self.token}"
 
         }
+        print(self.url_webhook_bank)
+        print(payload)
         response = requests.request("PUT", url=self.url_webhook_bank, headers=headers, data=payload)
         print(response.text)
-
-    # EDIT WEB HOOK
 
     def edit_web_hook(self):
         payload = json.dumps({
@@ -80,3 +80,4 @@ if __name__ == '__main__':
     # WebHook().get_webhook()
     hook = WebHook()
     hook.create_webhook()
+

@@ -29,6 +29,13 @@ import logging
 import jwt
 from jwt import exceptions
 
+import json
+
+from django.db.transaction import atomic, non_atomic_requests
+from django.http import HttpResponse, HttpResponseForbidden
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
@@ -452,23 +459,29 @@ def create_invoice(request, order_id):
     return render(request, 'orders/create_invoice.html', context)
 
 
+@csrf_exempt
+@require_POST
+@non_atomic_requests
 def web_hook(request):
-    # Публичный ключ Точки. Может быть получен из https://enter.tochka.com/doc/openapi/static/keys/public
-    public_key_bank = os.getenv('PUBLIC_KEY_BANK')
-    key_json = public_key_bank
-    key = json.loads(key_json)
-    jwk_key = jwt.jwk_from_dict(key)
-    payload = request.text()
+    if request.method == 'POST':
+        # Публичный ключ Точки. Может быть получен из https://enter.tochka.com/doc/openapi/static/keys/public
+        public_key_bank = os.getenv('PUBLIC_KEY_BANK')
+        print(request)
+        key_json = public_key_bank
+        key = json.loads(key_json)
+        jwk_key = jwt.jwk_from_dict(key)
+        payload = request.text()
+        print(payload)
 
-    try:
-        # тело вебхука
-        webhook_jwt = jwt.JWT().decode(
-            message=payload,
-            key=jwk_key,
-        )
-        print(f'webhook_jwt: {webhook_jwt}')
-    except exceptions.JWTDecodeError:
-        # Неверная подпись, вебхук не от Точки или с ним что-то не так
-        pass
+        try:
+            # тело вебхука
+            webhook_jwt = jwt.JWT().decode(
+                message=payload,
+                key=jwk_key,
+            )
+            print(f'webhook_jwt: {webhook_jwt}')
+        except exceptions.JWTDecodeError:
+            # Неверная подпись, вебхук не от Точки или с ним что-то не так
+            pass
 
-    return HttpResponse(status=200)
+        return HttpResponse(status=200)
