@@ -15,43 +15,39 @@ class WebHook:
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f"Bearer {token}"
-
     }
 
-    def get_webhook(self):
+    @classmethod
+    def get_webhook(cls):
         payload = {}
-        headers = self.headers
-        response = requests.request("GET", url=self.url_webhook_bank, headers=headers, data=payload)
+        headers = cls.headers
+        response = requests.request("GET", url=cls.url_webhook_bank, headers=headers, data=payload)
         print(response.text)
 
-    def create_webhook(self):
-        # Создание веб хука
-        # для адреса "url": "https://orders.san-cd.ru/orders/web_hook"
+    @classmethod
+    def create_webhook(cls):
+        # Создание веб хука # для адреса "url":
         payload = json.dumps({
             "webhooksList": [
                 "incomingPayment"
             ],
-            "url": self.url_webhook
+            "url": cls.url_webhook
         })
-        headers = self.headers
-        print(self.url_webhook_bank)
-        print(payload)
-        response = requests.request("PUT", url=self.url_webhook_bank, headers=headers, data=payload)
+        headers = cls.headers
+        response = requests.request("PUT", url=cls.url_webhook_bank, headers=headers, data=payload)
         print(response.text)
 
-    def edit_web_hook(self):
+    @classmethod
+    def edit_web_hook(cls):
         payload = json.dumps({
             "webhooksList": [
                 "incomingPayment"
             ],
-            "url": self.url_webhook
+            "url": cls.url_webhook
 
         })
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-        }
-        response = requests.request("POST", url=self.url_webhook_bank, headers=headers, data=payload)
+        headers = cls.headers
+        response = requests.request("POST", url=cls.url_webhook_bank, headers=headers, data=payload)
         print(response.text)
 
     def delete_web_hook(self):
@@ -71,7 +67,4 @@ class WebHook:
 
 
 if __name__ == '__main__':
-    # WebHook().get_webhook()
-    # WebHook().delete_web_hook()
-    # WebHook().create_webhook()
-    WebHook.send_web_hook()
+    WebHook.get_webhook()

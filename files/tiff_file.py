@@ -1,6 +1,4 @@
 import os
-import shutil
-import zipfile
 from datetime import date
 import PIL
 import data
@@ -9,7 +7,6 @@ from PIL import Image as Image_pil, ImageOps
 from mysite import settings
 
 import logging
-
 logger = logging.getLogger(__name__)
 
 

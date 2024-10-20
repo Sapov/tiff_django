@@ -112,9 +112,7 @@ class Bank:
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
-
         response = requests.request("GET", url, headers=headers, data=payload)
-
         with open(f'Order_{self.order_id}.pdf', 'wb') as file:
             file.write(response.content)
 
