@@ -8,7 +8,7 @@ load_dotenv(find_dotenv())
 
 class WebHook:
     url_bank = 'https://enter.tochka.com/uapi/webhook/v1.0/'
-    client_id = os.getenv('BANK_CLIENT_ID')
+    client_id = os.getenv('TOCHKA_CLIENT_ID')
     url_webhook_bank = url_bank + client_id
     url_webhook_service = 'https://orders.san-cd.ru/orders/web_hook'
     headers = {
