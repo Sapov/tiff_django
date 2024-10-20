@@ -28,6 +28,7 @@ from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp
 import logging
 import jwt
 from jwt import exceptions
+from jwt import jwk_from_dict
 
 import json
 
