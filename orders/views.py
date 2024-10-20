@@ -467,14 +467,12 @@ def web_hook(request):
     if request.method == 'POST':
         # Публичный ключ Точки. Может быть получен из https://enter.tochka.com/doc/openapi/static/keys/public
         public_key_bank = os.getenv('PUBLIC_KEY_BANK')
-        print(request.headers)
-        print(request.POST.get('data'))
-        print(request.POST['data'])
-        key_json = public_key_bank
-        key = json.loads(key_json)
-        jwk_key = jwt.jwk_from_dict(key)
-        payload = request.POST['data']
-        print(payload)
+        print(request.POST)
+        # key_json = public_key_bank
+        # key = json.loads(key_json)
+        # jwk_key = jwt.jwk_from_dict(key)
+        # payload = request.POST['data']
+        # print(payload)
         #
         # try:
         #  #    тело вебхука
