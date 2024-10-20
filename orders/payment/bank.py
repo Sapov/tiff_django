@@ -160,6 +160,7 @@ class Bank:
 
     @classmethod
     def check_payment(cls, domain, order_id):
+        '''Запускаем ежечасную проверку оплаты '''
         PeriodicTask.objects.create(
             name=f'Check payment order №{order_id}',
             task='check_payment_order',

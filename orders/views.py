@@ -252,8 +252,6 @@ def order_pay(request, order_id):
         if Orders.organisation_payer:
             print('Генерим счет')
             create_order_pdf.delay(order_id)
-            # запускаем ежечасную проверку оплаты
-            Bank.check_payment(domain, order_id)
         # оповещаем в whatsapp
         item_user = User.objects.get(email=user)
         if item_user.whatsapp and item_user.phone_number:
@@ -479,7 +477,7 @@ def web_hook(request):
                 key=jwk_key,
             )
             print(webhook_jwt)
-            print(json.dumps(webhook_jwt, indent=4, ensure_ascii=True))
+            print(json.dumps(webhook_jwt, indent=4, ensure_ascii=False))
 
         except exceptions.JWTDecodeError:
             # Неверная подпись, вебхук не от Точки или с ним что-то не так
