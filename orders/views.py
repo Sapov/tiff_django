@@ -472,8 +472,6 @@ def web_hook(request):
         key_json = public_key_bank
         key = json.loads(key_json)
         jwk_key = jwt.jwk_from_dict(key)
-
-
         try:
             # тело вебхука
             webhook_jwt = jwt.JWT().decode(
@@ -481,7 +479,7 @@ def web_hook(request):
                 key=jwk_key,
             )
             print(webhook_jwt)
-            print(json.dumps(webhook_jwt, indent=4, encoding='utf-8'))
+            print(json.dumps(webhook_jwt, indent=4, ensure_ascii=True))
 
         except exceptions.JWTDecodeError:
             # Неверная подпись, вебхук не от Точки или с ним что-то не так
