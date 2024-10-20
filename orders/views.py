@@ -467,22 +467,23 @@ def web_hook(request):
     if request.method == 'POST':
         # Публичный ключ Точки. Может быть получен из https://enter.tochka.com/doc/openapi/static/keys/public
         public_key_bank = os.getenv('PUBLIC_KEY_BANK')
-        print(request)
-        key_json = public_key_bank
-        key = json.loads(key_json)
-        jwk_key = jwt.jwk_from_dict(key)
-        payload = request.text()
-        print(payload)
-
-        try:
-            # тело вебхука
-            webhook_jwt = jwt.JWT().decode(
-                message=payload,
-                key=jwk_key,
-            )
-            print(f'webhook_jwt: {webhook_jwt}')
-        except exceptions.JWTDecodeError:
-            # Неверная подпись, вебхук не от Точки или с ним что-то не так
-            pass
+        print(request.headers)
+        print(request.POST)
+        # key_json = public_key_bank
+        # key = json.loads(key_json)
+        # jwk_key = jwt.jwk_from_dict(key)
+        # payload = request.body()
+        # print(payload)
+        #
+        # try:
+        #  #    тело вебхука
+            # webhook_jwt = jwt.JWT().decode(
+            #     message=payload,
+            #     key=jwk_key,
+            # )
+            # print(f'webhook_jwt: {webhook_jwt}')
+        # except exceptions.JWTDecodeError:
+        #    #  Неверная подпись, вебхук не от Точки или с ним что-то не так
+            # pass
 
         return HttpResponse(status=200)
