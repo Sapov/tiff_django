@@ -10,7 +10,7 @@ class WebHook:
     url_bank = 'https://enter.tochka.com/uapi/webhook/v1.0/'
     client_id = os.getenv('TOCHKA_CLIENT_ID')
     url_webhook_bank = url_bank + client_id
-    url_webhook_service = 'https://orders.san-cd.ru/orders/web_hook'
+    url_webhook = os.getenv('WEBHOOK_URL')
     headers = {
         'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
     }
@@ -29,7 +29,7 @@ class WebHook:
             "webhooksList": [
                 "incomingPayment"
             ],
-            "url": self.url_webhook_service
+            "url": self.url_webhook
         })
         headers = {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ class WebHook:
             "webhooksList": [
                 "incomingPayment"
             ],
-            "url": self.url_webhook_service
+            "url": self.url_webhook
 
         })
         headers = {
@@ -77,7 +77,6 @@ class WebHook:
 
 
 if __name__ == '__main__':
-    # create_web_hook()
-    WebHook().get_webhook()
-    # hook = WebHook
-    # hook.get_webhook()
+    # WebHook().get_webhook()
+    hook = WebHook()
+    hook.create_webhook()
