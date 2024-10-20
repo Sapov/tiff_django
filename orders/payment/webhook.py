@@ -1,0 +1,83 @@
+import json
+import os
+import requests
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+
+
+class WebHook:
+    url_bank = 'https://enter.tochka.com/uapi/webhook/v1.0/'
+    client_id = os.getenv('TOCHKA_CLIENT_ID')
+    url_webhook_bank = url_bank + client_id
+    url_webhook_service = 'https://orders.san-cd.ru/orders/web_hook'
+    headers = {
+        'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+    }
+
+    def get_webhook(self):
+        payload = {}
+        headers = self.headers
+        print(self.url_webhook_bank)
+        response = requests.request("GET", url=self.url_webhook_bank, headers=headers, data=payload)
+        print(response.text)
+
+    def create_webhook(self):
+        # Создание веб хука
+        # для адреса "url": "https://orders.san-cd.ru/orders/web_hook"
+        payload = json.dumps({
+            "webhooksList": [
+                "incomingPayment"
+            ],
+            "url": "https://orders.san-cd.ru/orders/web_hook"
+        })
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+
+        }
+        response = requests.request("PUT", url=self.url_webhook_bank, headers=headers, data=payload)
+        print(response.text)
+
+    # EDIT WEB HOOK
+
+    def edit_web_hook(self):
+        payload = json.dumps({
+            "webhooksList": [
+                "incomingPayment"
+            ],
+            "url": "https://orders.san-cd.ru/orders/web_hook"
+
+        })
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+        }
+        response = requests.request("POST", url=self.url_webhook_bank, headers=headers, data=payload)
+        print(response.text)
+
+    def delete_web_hook(self):
+        payload = {}
+        headers = {
+            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+        }
+        response = requests.request("DELETE", url = self.url_webhook_bank, headers=headers, data=payload)
+        print(response.text)
+
+    def send_web_hook(self):
+        payload = json.dumps({
+            "webhookType": "incomingPayment"
+        })
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+        }
+        response = requests.request("POST", url=self.url_webhook_bank, headers=headers, data=payload)
+        print(response.text)
+
+
+if __name__ == '__main__':
+    # create_web_hook()
+    WebHook().get_webhook()
+    # hook = WebHook
+    # hook.get_webhook()

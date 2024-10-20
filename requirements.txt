@@ -83,3 +83,5 @@ vine==5.0.0
 wcwidth==0.2.8
 websocket-client==1.8.0
 wsproto==1.2.0
+
+PyJWT~=2.9.0

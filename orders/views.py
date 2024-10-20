@@ -1,12 +1,13 @@
 import os
 from datetime import date, datetime
 import datetime
-
+import json
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django_celery_beat.models import PeriodicTask
@@ -17,7 +18,7 @@ from files.models import Product, StatusProduct
 from files.pay import Robokassa
 from .alerts import Alerts
 from .forms import NewOrder, ReportForm
-from .models import Order, OrderItem, UtilsModel, StatusOrder
+from .models import Order, OrderItem, StatusOrder
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
 from django.core.paginator import Paginator
@@ -25,6 +26,9 @@ from django.core.paginator import Paginator
 from .payment.bank import Bank
 from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp
 import logging
+from aiohttp import web
+import jwt
+from jwt import exceptions
 
 User = get_user_model()
 
@@ -447,3 +451,25 @@ def create_invoice(request, order_id):
     item = Order.objects.get(id=order_id)
     context = {'title': 'Счет на оплату услуг', 'link_pdf': f"http://{domain}/media/{str(item.order_pdf_file)}"}
     return render(request, 'orders/create_invoice.html', context)
+
+
+def web_hook(request):
+    # Публичный ключ Точки. Может быть получен из https://enter.tochka.com/doc/openapi/static/keys/public
+    public_key_bank = os.getenv('PUBLIC_KEY_BANK')
+    key_json = public_key_bank
+    key = json.loads(key_json)
+    jwk_key = jwt.jwk_from_dict(key)
+    payload = request.text()
+
+    try:
+        # тело вебхука
+        webhook_jwt = jwt.JWT().decode(
+            message=payload,
+            key=jwk_key,
+        )
+        print(f'webhook_jwt: {webhook_jwt}')
+    except exceptions.JWTDecodeError:
+        # Неверная подпись, вебхук не от Точки или с ним что-то не так
+        pass
+
+    return HttpResponse(status=200)
