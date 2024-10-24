@@ -29,22 +29,4 @@
 # т.к. width - 4 /
 #
 # '''
-import asyncio
 
-
-async def one():
-    await asyncio.sleep(3)
-    print('finish one')
-
-
-async def two():
-    await asyncio.sleep(3)
-    print('finish two')
-
-
-async def main():
-    await one()
-    await two()
-
-
-asyncio.run(main())

@@ -423,16 +423,17 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
 
 def confirm_order_to_completed(request, pk: int, hash_code):
     ''' Подтверждение готовнасти заказа менеджером типографии'''
-    if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
-        """Меняем статус заказа"""
-        order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
-        status = StatusOrder.objects.get(id=5)  # меняем статус заказак)  # меняю стаус ГОТОВ
-        logger.info(f"МЕНЯЮ СТАТУС НА В ГОТОВ")
-        order.status = status
-        order.save()
-        stop_count_down(pk)
+    if request.method == 'GET':
+        if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
+            """Меняем статус заказа"""
+            order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
+            status = StatusOrder.objects.get(id=5)  # меняем статус заказак)  # меняю стаус ГОТОВ
+            logger.info(f"МЕНЯЮ СТАТУС НА В ГОТОВ")
+            order.status = status
+            order.save()
+            stop_count_down(pk)
 
-        return render(request, "files/confirm_order_to_completed.html")
-    else:
-        return render(request, "files/no_confirm_order_to_completed.html")
+            return render(request, "files/confirm_order_to_completed.html")
+        else:
+            return render(request, "files/no_confirm_order_to_completed.html")
 
