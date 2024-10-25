@@ -138,8 +138,7 @@ class Bank:
         url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/{self.customer_code}/{document.document_id}/payment-status'
 
         payload = ""
-        headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-                   }
+        headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"}
         response = requests.request("GET", url, headers=headers, data=payload)
         print(response.text)
         payment_status = response.json()['Data']['paymentStatus']
@@ -172,6 +171,5 @@ class Bank:
         self.__add_base_document_id()
         self.get_invoice()
         self.add_pdf_in_order()
-
 
 # Запустить фоновую проверку оплаты счета

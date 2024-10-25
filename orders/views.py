@@ -471,7 +471,6 @@ def web_hook(request):
         key = json.loads(key_json)
         jwk_key = jwt.jwk_from_dict(key)
         try:
-            # тело вебхука
             webhook_jwt = jwt.JWT().decode(
                 message=st,
                 key=jwk_key,
@@ -480,7 +479,6 @@ def web_hook(request):
             print(json_hook)
             admin_phone = os.getenv('PHONE_NUMBER')
             send_message_whatsapp.delay(f'{admin_phone}', f'Пришло оповещение о оплате: {json_hook}')
-
 
         except exceptions.JWTDecodeError:
             # Неверная подпись, вебхук не от Точки или с ним что-то не так
