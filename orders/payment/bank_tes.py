@@ -3,11 +3,11 @@ from datetime import datetime, date
 import json
 import os
 import requests
-from django_celery_beat.models import PeriodicTask, IntervalSchedule
+# from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from dotenv import load_dotenv, find_dotenv
 from django.utils import timezone
 from mysite import settings
-from orders.models import Order, OrderItem, BankInvoices
+# from orders.models import Order, OrderItem, BankInvoices
 import logging
 
 logger = logging.getLogger(__name__)
@@ -56,7 +56,7 @@ class Bank:
                     "bankName": payer.organisation_payer.bank_name,
                     "bankCorrAccount": payer.organisation_payer.bankCorrAccount,
                     "taxCode": payer.organisation_payer.inn,
-                    "type": 'ip' if len(payer.organisation_payer.inn) == 12 else 'company',
+                    "type": "company",
                     "secondSideName": payer.organisation_payer.name_full
                 },
                 "Content": {
@@ -116,15 +116,18 @@ class Bank:
         with open(f'Order_{self.order_id}.pdf', 'wb') as file:
             file.write(response.content)
 
-    def __get_customer_code(self):
+    def get_customer_code(self):
         url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
         payload = {}
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
+        print(response.status_code)
+
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
-        logging.info(f'CUSTOMER_CODE {self.customer_code}')
+        logger.info(f'CUSTOMER_CODE {self.customer_code}')
+        return self.customer_code
 
     def add_pdf_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
@@ -135,7 +138,8 @@ class Bank:
 
     def get_status_invoice(self):
         document = BankInvoices.objects.get(order_id=self.order_id)
-        url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/{self.customer_code}/{document.document_id}/payment-status'
+        customer_code = 301576470
+        url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/{customer_code}/{document.document_id}/payment-status'
 
         payload = ""
         headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
@@ -167,7 +171,7 @@ class Bank:
         )
 
     def run(self):
-        self.__get_customer_code()
+        self.get_customer_code()
         self.create_invoice()
         self.__add_base_document_id()
         self.get_invoice()
@@ -175,3 +179,8 @@ class Bank:
 
 
 # Запустить фоновую проверку оплаты счета
+
+
+if __name__ == "__main__":
+    a = Bank(1)
+    a.get_customer_code()

@@ -50,10 +50,11 @@ class WebHook:
         response = requests.request("POST", url=cls.url_webhook_bank, headers=headers, data=payload)
         print(response.text)
 
-    def delete_web_hook(self):
+    @classmethod
+    def delete_web_hook(cls):
         payload = {}
-        headers = self.headers
-        response = requests.request("DELETE", url=self.url_webhook_bank, headers=headers, data=payload)
+        headers = cls.headers
+        response = requests.request("DELETE", url=cls.url_webhook_bank, headers=headers, data=payload)
         print(response.text)
 
     @classmethod
