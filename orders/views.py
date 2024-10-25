@@ -451,8 +451,6 @@ def change_status_order(status_oder: int, pk: int):
 
 def create_invoice(request, order_id):
     domain = str(get_domain(request))
-    # order = Bank(order_id)
-    # order.run()
     item = Order.objects.get(id=order_id)
     context = {'title': 'Счет на оплату услуг', 'link_pdf': f"http://{domain}/media/{str(item.order_pdf_file)}"}
     return render(request, 'orders/create_invoice.html', context)
@@ -485,3 +483,7 @@ def web_hook(request):
             pass
 
         return HttpResponse(status=200)
+
+def add_time_order():
+    '''Добавление времени на исполнение текущего заказа'''
+    pass

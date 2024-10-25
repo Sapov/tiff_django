@@ -26,6 +26,7 @@ class Alerts:
             "data_order_complete": order.date_complete - datetime.timedelta(hours=24),  # Типог-я отдает на сутки раньше
             "confirm_status_complete": self.confirm_link_to_completed,
             "order_id": self.order_id,
+            "add_time_order" : add_time_order,
         }
 
         html_message = render_to_string("mail/mail_order_for_typography_alert_complete.html", data)
@@ -46,6 +47,7 @@ class Alerts:
 
     @classmethod
     def start_count_down(cls, domain, order_id):
+        '''Не присылать письма во вне рабочее время'''
         Orders = Order.objects.get(id=order_id)
         print('ДАТА ГОТОВНСТИ', Orders.date_complete)
         PeriodicTask.objects.create(
