@@ -216,7 +216,6 @@ class UtilsModel:
         self.path_arhive = f"{settings.MEDIA_ROOT}/arhive"
         self.domain = domain
         self.confirm_link_to_work = None
-        self.confirm_link_to_complited = None
 
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
@@ -226,7 +225,6 @@ class UtilsModel:
             "order_item": self.order_list,
             "order_archive_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
             "confirm_link": self.confirm_link_to_work,
-            "confirm_status_complete": self.confirm_link_to_complited,
             "order_id": self.order_id,
         }
         html_message = render_to_string("mail/mail_order_for_typografyl.html", data)
@@ -333,15 +331,15 @@ class UtilsModel:
         new_name_file = (f"{file.quantity}_шт_{float(file.width)}x{float(file.length)}_"
                          f"{'_'.join(str(file.material).split())}_"
                          f"{'_'.join(str(file.FinishWork).split())}_{file.id}{str(file.images)[-4:]}")
-        logger.info(f'[new Name] {new_name_file}')
+        logger.info(f'[new Name FILE] {new_name_file}')
         logger.info(f'file.images: {file.images}')
-        logger.info(f'[OLD name] {str(file.images)[str(file.images).rindex("/") + 1:]}')
+        logger.info(f'[OLD name FILE] {str(file.images)[str(file.images).rindex("/") + 1:]}')
         old_name = str(file.images)[str(file.images).rindex("/") + 1:]
         shutil.copy(old_name, new_name_file)
         return new_name_file
 
     def create_folder_server(self):
-        """Добавляем фолдер  Директория номер заказа"""
+        """Добавляем фолдер Директория номер заказа"""
         current_path = os.getcwd()
         os.chdir(f"{settings.MEDIA_ROOT}/arhive")  # перейти в директорию orders
         logger.info(f"[INFO DECORATOR] Мы Выбрали: {os.getcwd()}")

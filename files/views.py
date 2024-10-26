@@ -7,8 +7,9 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 
+from orders.alerts import Alerts
 from orders.models import UtilsModel, Order, StatusOrder, OrderItem
-from orders.views import stop_count_down, change_status_order
+from orders.views import change_status_order, get_domain
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
     UploadArhive,
@@ -114,15 +115,6 @@ def price(request):
             "title": "Прайс-лист",
         },
     )
-
-
-def add_files_in_base():
-    print("где я", os.getcwd())
-    os.path.relpath("unzip")
-    list_files = os.listdir("unzip")
-    print(list_files)
-    print(os.path.relpath("unzip"))
-    return list_files
 
 
 def upload_arh(request):
@@ -422,17 +414,12 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
 
 
 def confirm_order_to_completed(request, pk: int, hash_code):
-    ''' Подтверждение готовнасти заказа менеджером типографии'''
+    ''' Подтверждение готовности заказа менеджером типографии'''
     if request.method == 'GET':
         if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
             """Меняем статус заказа"""
-            order = Order.objects.get(id=pk)  # получаем заказ по id заказа
-            status = StatusOrder.objects.get(id=5)  # меняем статус заказак)  # меняю стаус ГОТОВ
-            logger.info(f"МЕНЯЮ СТАТУС НА В ГОТОВ")
-            order.status = status
-            order.save()
-            stop_count_down(pk)
-
+            change_status_order(5, pk)  # Статус Готов
+            Alerts.stop_count_down(pk)
             return render(request, "files/confirm_order_to_completed.html")
         else:
             return render(request, "files/no_confirm_order_to_completed.html")
@@ -449,26 +436,21 @@ def add_time_order(request, pk: int, hash_code):
                 "order_id": pk,
                 'old_data': order.date_complete,
                 'today': datetime.today().strftime('%Y-%m-%dT%H:%M')
-
             }
             return render(request, 'files/add_time_order.html', context)
-    else:
-
-        if request.method == 'POST':
-            my_date = request.POST["date"]
-            # print('date', my_date, type(my_date))
-            order = Order.objects.get(id=pk)
-            old_data = order.date_complete
-            # print('OLD DATA', order.date_complete, type(order.date_complete))
-            set_data = datetime.strptime(my_date, '%Y-%m-%dT%H:%M')
-            # print('set_data', set_data, type(set_data))
-            order.date_complete = set_data
-            order.save()
-            # new_data = datetime.strptime(order.date_complete, '%Y-%m-%dT%H:%M')
-            new_data = order.date_complete
-            context = {
-                'old_data': old_data,
-                'new_data': new_data,
-                "order_id": pk,
-            }
-            return render(request, 'files/add_time_order_set.html', context)
+    elif request.method == 'POST':
+        my_date = request.POST["date"]
+        order = Order.objects.get(id=pk)
+        old_data = order.date_complete
+        set_data = datetime.strptime(my_date, '%Y-%m-%dT%H:%M')
+        order.date_complete = set_data
+        order.save()
+        new_data = order.date_complete
+        context = {
+            'old_data': old_data,
+            'new_data': new_data,
+            "order_id": pk,
+        }
+        domain = str(get_domain(request))
+        Alerts.set_time_count_down(pk, domain)
+        return render(request, 'files/add_time_order_set.html', context)

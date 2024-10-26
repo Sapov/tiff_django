@@ -8,7 +8,7 @@
 <title>Заказ изменил статус</title>
 
 
-<h5 style="text-align: center; ">Заказ изменил статус на "В работе"</h5>
+<h5 style="text-align: center; ">Заказ № {{order_id}} изменил статус на "В работе"</h5>
 
 
 <h5> Файлы заказа № {{order_id}}: </h5>
@@ -43,6 +43,7 @@
             </tbody>
         </table>
     </div>
-<button onclick="window.close()">Закрыть окно</button>
 
+<p style="text-align: center;">
+<button type="button" class="btn btn-success" onclick="window.close()">Закрыть окно</button></p>
     {% endblock %}

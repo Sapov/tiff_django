@@ -264,17 +264,6 @@ def order_pay(request, order_id):
         return render(request, "orderpay.html")
 
 
-def stop_count_down(order_id: int):
-    '''Останавливаем отсылку писем с вопросами о готовности заказа'''
-    try:
-        item_periodic_task = PeriodicTask.objects.get(name=f'Timer count Down order №{order_id}')
-        item_periodic_task.enabled = False
-        item_periodic_task.save()
-        item_periodic_task.delete()
-    except Exception as Ex:
-        print('Нет уже задачи', Ex)
-
-
 def get_domain(request):
     logger.info(f"DOMAIN: {get_current_site(request)}")
     return str(get_current_site(request))
@@ -315,24 +304,16 @@ def view_all_files_for_work_in_orders(request):
     """Посмотреть все файлы в заказах в статусе paid"""
 
     num = []
-    Orders = Order.objects.filter(paid=True).order_by("-id")
-    for order in Orders:
+    orders = Order.objects.filter(paid=True).order_by("-id")
+    for order in orders:
         items_in_order = OrderItem.objects.filter(order=order.id)  # файлы в заказе
         num.append(items_in_order)
 
     return render(
         request,
         "view_all_files_for_work_in_orders.html",
-        {"Orders": Orders, "num": num, "title": "Заказы в работе"},
+        {"Orders": orders, "num": num, "title": "Заказы в работе"},
     )
-
-
-# def user_organization_view(request):
-#     # if request.method == 'POST':
-#     user = request.user
-#     form = UserOrganisationForm(user=user)
-#     # a1 = Order.objects.create(**form.cleaned_data)
-#     return render(request, "user_organization.html", {"form": form})
 
 
 def report_complete_orders(request):
@@ -381,8 +362,6 @@ def report_complete_orders(request):
                            'date_finish': date_finish}
 
             return render(request, "report_complete_orders.html", context=context_dic)
-
-
     else:
         form = ReportForm()
         return render(request, "report_complete_orders.html", {'form': form})
