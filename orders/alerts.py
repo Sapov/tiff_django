@@ -1,10 +1,8 @@
 import json
-from datetime import date, datetime
+from datetime import datetime
 import datetime
-
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from django.utils import timezone
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 from .models import Order, UtilsModel
@@ -55,12 +53,12 @@ class Alerts:
     def start_count_down(cls, domain, order_id: int):
         '''Не присылать письма во вне рабочее время'''
         order = Order.objects.get(id=order_id)
-        print('ДАТА ГОТОВНОСТИ', order.date_complete)
+        logger.info(f'Старт обратного отсчета ДАТА ГОТОВНОСТИ, {order.date_complete}')
         PeriodicTask.objects.create(
             name=f'Timer count Down order №{order_id}',
             task='timer_order_complete',
-            # interval=IntervalSchedule.objects.get(every=1, period='hours'),
-            interval=IntervalSchedule.objects.get(every=2, period='minutes'),
+            interval=IntervalSchedule.objects.get(every=1, period='hours'),
+            # interval=IntervalSchedule.objects.get(every=2, period='minutes'),
             args=json.dumps([order_id, domain]),
             start_time=order.date_complete - datetime.timedelta(hours=1),  # оповестить за час до дедлайна
         )
@@ -72,15 +70,12 @@ class Alerts:
         PeriodicTask.objects.create(
             name=f'Timer count Down order №{order_id}',
             task='timer_order_complete',
-            # interval=IntervalSchedule.objects.get(every=1, period='hours'),
-            interval=IntervalSchedule.objects.get(every=2, period='minutes'),
+            interval=IntervalSchedule.objects.get(every=1, period='hours'),
+            # interval=IntervalSchedule.objects.get(every=2, period='minutes'),
             args=json.dumps([order_id, domain]),
             start_time=order.date_complete - datetime.timedelta(hours=1),  # ЗА час до дедлайна
         )
 
-        # task_object = PeriodicTask.objects.get(name=f'Timer count Down order №{order_id}')
-        #Удалить задачу
-        #Создать новую задачу создать оповещения за 1 час до дедлайна
     @classmethod
     def stop_count_down(cls, order_id: int):
         '''Останавливаем отсылку писем с вопросами о готовности заказа'''
