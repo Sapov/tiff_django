@@ -30,7 +30,7 @@ class Alerts:
 
         html_message = render_to_string("mail/mail_order_for_typography_alert_complete.html", data)
         msg = EmailMultiAlternatives(
-            subject=f"Готов ли заказ от REDS № {self.order_id}",
+            subject=f"Подтвердите готовность заказа № {self.order_id}",
             to=[
                 "rpk.reds@ya.ru",
             ],
