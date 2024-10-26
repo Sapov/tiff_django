@@ -184,7 +184,3 @@ class CreateContractor(forms.ModelForm):
         fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
                   'address', 'contact_contractor']
 
-
-class SetTimeForm(forms.Form):
-    date = forms.DateTimeField(label="Дата")
-    d = forms.DateTimeInput()
