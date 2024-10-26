@@ -1,5 +1,5 @@
 import os
-
+from datetime import date, datetime
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, HttpResponseNotFound, request
@@ -17,6 +17,7 @@ from .forms import (
     UploadFilesLarge,
     UploadFilesUV,
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
+    SetTimeForm,
 
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
@@ -426,7 +427,7 @@ def confirm_order_to_completed(request, pk: int, hash_code):
     if request.method == 'GET':
         if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
             """Меняем статус заказа"""
-            order = Order.objects.get(id=pk)  # получаем заказ по id заказаки
+            order = Order.objects.get(id=pk)  # получаем заказ по id заказа
             status = StatusOrder.objects.get(id=5)  # меняем статус заказак)  # меняю стаус ГОТОВ
             logger.info(f"МЕНЯЮ СТАТУС НА В ГОТОВ")
             order.status = status
@@ -437,3 +438,42 @@ def confirm_order_to_completed(request, pk: int, hash_code):
         else:
             return render(request, "files/no_confirm_order_to_completed.html")
 
+
+def add_time_order(request, pk: int, hash_code):
+    '''Добавление времени на исполнение текущего заказа'''
+    if request.method == 'GET':
+        if hash_code == UtilsModel.calculate_signature(pk):  # коду от хеша номера заказа
+            items_in_order = OrderItem.objects.filter(order=pk)  # файлы в заказе
+            order = Order.objects.get(id=pk)
+            context = {
+                "items_in_order": items_in_order,
+                "order_id": pk,
+                'old_data': order.date_complete,
+                'today': datetime.today().strftime('%Y-%m-%dT%H:%M')
+
+            }
+            return render(request, 'files/add_time_order.html', context)
+    else:
+
+        if request.method == 'POST':
+            my_date = request.POST["date"]
+            print('date', my_date, type(my_date))
+            order = Order.objects.get(id=pk)
+            old_data = order.date_complete
+            print('OLD DATA', order.date_complete, type(order.date_complete))
+            set_data = datetime.strptime(my_date, '%Y-%m-%dT%H:%M')
+            print('set_data', set_data, type(set_data))
+            order.date_complete = my_date
+            order.save()
+            new_data = datetime.strptime(order.date_complete, '%Y-%m-%dT%H:%M')
+
+            context = {
+                'old_data': old_data,
+                'new_data': new_data,
+                "order_id": pk,
+
+            }
+            return render(request, 'files/add_time_order_set.html', context)
+
+            # order = Order.objects.get(id=order_id)
+            # order.date_complete = order.date_complete +

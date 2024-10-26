@@ -16,7 +16,7 @@ from .views import (
     FilesCreateViewUV,
     FilesCreateViewRollUp, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     ViewContractorListView, ContractorCreateView, ContractorUpdateView,
-    ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed, calculator_interior_print,
+    ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed, calculator_interior_print, add_time_order,
 )
 
 app_name = "files"
@@ -52,5 +52,8 @@ urlpatterns = [
     path("confirm_order_to_work/<pk>/<hash_code>/", confirm_order_to_work, name="confirm_order_to_work"),
     # подтверждение готовности заказа
     path("confirm_order_to_competed/<pk>/<hash_code>/", confirm_order_to_completed, name="confirm_order_to_completed"),
+    path('add_time_order/<int:pk>/<hash_code>/', add_time_order, name='add_time_order'),
+    # path('add_time_order_set/', add_time_order_set, name='add_time_order_set'),
+
 
 ]

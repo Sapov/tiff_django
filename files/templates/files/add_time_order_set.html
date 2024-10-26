@@ -1,0 +1,17 @@
+{% extends 'files/base_site.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+
+
+<title>Дата готовности заказа Изменена</title>
+
+
+<h3 style="text-align: center; ">Заказ № {{order_id}}</h3>
+<h5 style="text-align: center; ">Дата готовности заказа перенесена на: {{new_data}}</h5>
+<button type="button" class="btn btn-success" onclick="window.close()">Закрыть окно</button>
+
+
+
+    {% endblock %}

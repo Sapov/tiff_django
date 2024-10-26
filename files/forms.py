@@ -162,7 +162,7 @@ class UploadFilesRollUp(forms.ModelForm):
 
     material = forms.ModelChoiceField(
         queryset=Material.objects.filter(id=21),
-        #id=21  это литой баннер Интрьерная печать для Ролапа
+        # id=21  это литой баннер Интрьерная печать для Ролапа
         label="Выберите материал для печати",
         initial=22,  # по умолчанию литой 450 грамм
 
@@ -184,3 +184,7 @@ class CreateContractor(forms.ModelForm):
         fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
                   'address', 'contact_contractor']
 
+
+class SetTimeForm(forms.Form):
+    date = forms.DateTimeField(label="Дата")
+    d = forms.DateTimeInput()

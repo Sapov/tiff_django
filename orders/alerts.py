@@ -22,11 +22,12 @@ class Alerts:
         """отправляем письмо с запросом о готовности заказа подрядчику"""
         order = Order.objects.get(id=self.order_id)
         self.__generate_link_to_completed()
+        self.__generate_link_add_time_order()
         data = {
             "data_order_complete": order.date_complete - datetime.timedelta(hours=24),  # Типог-я отдает на сутки раньше
             "confirm_status_complete": self.confirm_link_to_completed,
             "order_id": self.order_id,
-            "add_time_order" : add_time_order,
+            "add_time_order": self.add_time_order,
         }
 
         html_message = render_to_string("mail/mail_order_for_typography_alert_complete.html", data)
@@ -45,6 +46,11 @@ class Alerts:
                                           f'{UtilsModel.calculate_signature(self.order_id)}')
         logger.info(f'[Генерирую ссылку ПЕРЕВОД С СОСТОЯНИЕ ГОТОВ] CONFIRM LINK: {self.confirm_link_to_completed}')
 
+    def __generate_link_add_time_order(self):
+        self.add_time_order = (f'http://{self.domain}/files/add_time_order/{self.order_id}/'
+                               f'{UtilsModel.calculate_signature(self.order_id)}')
+        logger.info(f'[Генерирую ссылку Добавочное время] : {self.add_time_order}')
+
     @classmethod
     def start_count_down(cls, domain, order_id):
         '''Не присылать письма во вне рабочее время'''
@@ -53,9 +59,8 @@ class Alerts:
         PeriodicTask.objects.create(
             name=f'Timer count Down order №{order_id}',
             task='timer_order_complete',
-            interval=IntervalSchedule.objects.get(every=1, period='hours'),
-            # interval=IntervalSchedule.objects.get(every=2, period='minutes'),
+            # interval=IntervalSchedule.objects.get(every=1, period='hours'),
+            interval=IntervalSchedule.objects.get(every=2, period='minutes'),
             args=json.dumps([order_id, domain]),
-            # start_time=Orders.date_complete - datetime.timedelta(hours=3),  # за три часа до дедлайна пишем письма
             start_time=timezone.now() + datetime.timedelta(hours=21),  # за три часа до дедлайна пишем письма
         )

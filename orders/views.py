@@ -349,7 +349,7 @@ def report_complete_orders(request):
             # проверяем что выбрали дату и строка пришла не пустая
             if len(date_start) == 0 or len(date_finish) == 0:
                 form = ReportForm()
-                return render(request, "report_complite_orders.html", {'form': form})
+                return render(request, "report_complete_orders.html", {'form': form})
 
             '''
             events_within_date_range = Event.objects.filter(
@@ -380,12 +380,12 @@ def report_complete_orders(request):
                            'date_start': date_start,
                            'date_finish': date_finish}
 
-            return render(request, "report_complite_orders.html", context=context_dic)
+            return render(request, "report_complete_orders.html", context=context_dic)
 
 
     else:
         form = ReportForm()
-        return render(request, "report_complite_orders.html", {'form': form})
+        return render(request, "report_complete_orders.html", {'form': form})
 
 
 def result(request):
@@ -483,7 +483,3 @@ def web_hook(request):
             pass
 
         return HttpResponse(status=200)
-
-def add_time_order():
-    '''Добавление времени на исполнение текущего заказа'''
-    pass

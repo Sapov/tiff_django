@@ -5,12 +5,6 @@ from account.models import Organisation, DeliveryAddress
 from users.models import User
 from .models import Order
 
-# class AddNewOrder(forms.Form):
-#     organisation_payer = forms.ModelChoiceField(queryset=Order.objects.filter(user=request.user))
-
-from django.contrib.auth import get_user_model
-from account.models import Organisation
-
 
 # class NewOrder(forms.ModelForm):
 #     class Meta:
@@ -28,10 +22,6 @@ from account.models import Organisation
 class ReportForm(forms.Form):
     date_start = forms.DateTimeInput()
     date_finish = forms.DateTimeInput()
-
-
-# class AddNewOrder(forms.Form):
-#     organisation_payer = forms.ModelChoiceField(queryset=Order.objects.filter(user=request.user))
 
 
 class NewOrder(forms.ModelForm):

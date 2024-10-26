@@ -52,6 +52,5 @@ urlpatterns = [
     path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
     # BANK
     path('create_invoice/<int:order_id>', create_invoice, name='create_invoice'),
-    # path('create_web_hook/', create_web_hook, name='create_web_hook',)
     path('web_hook/', web_hook, name='web_hook',)
 ]
