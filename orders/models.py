@@ -427,6 +427,7 @@ class UtilsModel:
 
     @classmethod
     def file_lzw_compress(cls, file_name):
+        ''' Просто пересохраняем файл с компрессией'''
         img = Image.open(file_name)
         img.save(file_name)
         cls.file_lzw_compress(file_name)
