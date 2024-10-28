@@ -15,6 +15,7 @@ from django.urls import reverse
 
 from account.models import Organisation, Delivery
 from files.models import Product
+
 logger = logging.getLogger(__name__)
 
 
@@ -421,8 +422,14 @@ class UtilsModel:
         # Делаем обводку вокруг файла, часто файлы имею много белого  - непонятно как его разрезать
         img = Image.open(file_name)
         img_border = ImageOps.expand(img, border=2, fill='black')
-        img_border.save(file_name, compression='tiff_lzw')
+        img_border.save(file_name)
+        cls.file_lzw_compress(file_name)
 
+    @classmethod
+    def file_lzw_compress(cls, file_name):
+        img = Image.open(file_name)
+        img.save(file_name)
+        cls.file_lzw_compress(file_name)
     @classmethod
     def _add_white_border(cls, file_name, resolution):
         logger.info(f'[info] Увеличиваем поля на 5 см resolution {resolution} RESP {5 * resolution / 2.54}')
