@@ -72,8 +72,8 @@ class Alerts:
         PeriodicTask.objects.create(
             name=f'Timer count Down order №{order_id}',
             task='timer_order_complete',
-            interval=IntervalSchedule.objects.get(every=1, period='hours'),
-            # interval=IntervalSchedule.objects.get(every=2, period='minutes'),
+            # interval=IntervalSchedule.objects.get(every=1, period='hours'),
+            interval=IntervalSchedule.objects.get(every=2, period='minutes'),
             args=json.dumps([order_id, domain]),
             start_time=order.date_complete - datetime.timedelta(hours=1),  # ЗА час до дедлайна
         )

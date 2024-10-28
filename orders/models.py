@@ -317,7 +317,7 @@ class UtilsModel:
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
                 new_name_file = self._rename_files(item)
 
-                logger.info(f'[INFO] Обводим картинку контуром')
+                # logger.info(f'[INFO] Обводим картинку контуром')
                 self._draw_outline_image(new_name_file)
 
                 new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
@@ -421,7 +421,7 @@ class UtilsModel:
         # Делаем обводку вокруг файла, часто файлы имею много белого  - непонятно как его разрезать
         img = Image.open(file_name)
         img_border = ImageOps.expand(img, border=2, fill='black')
-        img_border.save(file_name)
+        img_border.save(file_name, compression='tiff_lzw')
 
     @classmethod
     def _add_white_border(cls, file_name, resolution):
