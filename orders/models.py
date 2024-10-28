@@ -430,7 +430,7 @@ class UtilsModel:
         print('RES', resolution)
         border = int(5 * resolution / 2.54)  # на 5 см с каждой стороны увеличим картинку
         img_border = ImageOps.expand(img, border=border, fill='#ffffff')
-        img_border.save(file_name)
+        img_border.save(file_name, compression='tiff_lzw')
 
     def run(self):
         self.create_text_file()
