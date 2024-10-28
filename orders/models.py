@@ -429,7 +429,7 @@ class UtilsModel:
     def file_lzw_compress(cls, file_name):
         ''' Просто пересохраняем файл с компрессией'''
         img = Image.open(file_name)
-        img.save(file_name)
+        img.save(file_name, compression='tiff_lzw')
 
     @classmethod
     def _add_white_border(cls, file_name, resolution):
@@ -438,7 +438,7 @@ class UtilsModel:
         print('RES', resolution)
         border = int(5 * resolution / 2.54)  # на 5 см с каждой стороны увеличим картинку
         img_border = ImageOps.expand(img, border=border, fill='#ffffff')
-        img_border.save(file_name, compression='tiff_lzw')
+        img_border.save(file_name)
         cls.file_lzw_compress(file_name)
 
     def run(self):
