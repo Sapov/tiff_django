@@ -5,7 +5,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
-from .models import Order, UtilsModel
+from .models import Order, UtilsModel, OrderItem
 import logging
 
 logger = logging.getLogger(__name__)
@@ -21,13 +21,15 @@ class Alerts:
         order = Order.objects.get(id=self.order_id)
         self.__generate_link_to_completed()
         self.__generate_link_add_time_order()
+        context = self.view_items_in_order(pk=self.order_id)
+
         data = {
             "data_order_complete": order.date_complete - datetime.timedelta(hours=24),  # Типог-я отдает на сутки раньше
             "confirm_status_complete": self.confirm_link_to_completed,
             "order_id": self.order_id,
             "add_time_order": self.add_time_order,
         }
-
+        data.update(context)
         html_message = render_to_string("mail/mail_order_for_typography_alert_complete.html", data)
         msg = EmailMultiAlternatives(
             subject=f"Подтвердите готовность заказа № {self.order_id}",
@@ -57,8 +59,8 @@ class Alerts:
         PeriodicTask.objects.create(
             name=f'Timer count Down order №{order_id}',
             task='timer_order_complete',
-            interval=IntervalSchedule.objects.get(every=1, period='hours'),
-            # interval=IntervalSchedule.objects.get(every=2, period='minutes'),
+            # interval=IntervalSchedule.objects.get(every=1, period='hours'),
+            interval=IntervalSchedule.objects.get(every=2, period='minutes'),
             args=json.dumps([order_id, domain]),
             start_time=order.date_complete - datetime.timedelta(hours=24),  # оповестить за 24 до дедлайна
         )
@@ -86,3 +88,13 @@ class Alerts:
             item_periodic_task.delete()
         except Exception as Ex:
             print('Нет уже задачи', Ex)
+
+    @classmethod
+    def view_items_in_order(cls, pk):
+        # отобразить файлы в заказе
+        items_in_order = OrderItem.objects.filter(order=pk)  # файлы в заказе
+        context = {
+            "items_in_order": items_in_order,
+            "order_id": pk,
+        }
+        return context

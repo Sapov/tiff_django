@@ -401,16 +401,13 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
         # оповещаем в whatsapp
         send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}', f'Заказ № {pk} Принят типографией')
 
-        # отобразить файлы в заказе
-        items_in_order = OrderItem.objects.filter(order=pk)  # файлы в заказе
-        context = {
-            "items_in_order": items_in_order,
-            "order_id": pk,
-        }
+        context = Alerts.view_items_in_order(pk)
 
         return render(request, "files/confirm_order_to_work.html", context)
     else:
         return render(request, "files/no_confirm_order_to_work.html")
+
+
 
 
 def confirm_order_to_completed(request, pk: int, hash_code):

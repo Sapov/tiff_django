@@ -473,8 +473,8 @@ display: inline !important;
                                                             <td class=""
                                                                 style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 100%; color: #222222; font-family: Arial, sans-serif; font-weight: normal; font-size: 16px; background: transparent repeat center center; margin: 0; padding: 10px 10px 5px;"
                                                                 align="left" bgcolor="transparent" valign="top">
-                                                              
-                                                                
+
+
                                                                 <h1 style="text-align: center; color: #1d2120; font-family: Arial, sans-serif; font-weight: normal; font-size: 28px; line-height: 1.3; word-break: normal; margin: 0; padding: 0;"
                                                                     align="center"><span
                                                                         style="background-color: transparent;">Заказ № {{order_id}}</span>
@@ -560,6 +560,38 @@ display: inline !important;
                                                         </tr>
                                                         </tbody>
                                                     </table>
+
+                                                    <div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Материал</th>
+                <th>Размер</th>
+                <th>Количество</th>
+                <th>Финишная обработка</th>
+            </thead>
+            <tbody>
+            {% for items in items_in_order %}
+
+            <tr>
+                <td>{{ items.product.id }}</td>
+
+                <td>{{ items.product.material }}</td>
+                <td>{{ items.product.width }}x{{ items.product.length }}м</td>
+                <td>{{ items.product.quantity }} шт.</td>
+                <td>{{ items.product.FinishWork }}</td>
+
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
 
 
                                                     <table class="table-block" width="100%"
@@ -791,7 +823,7 @@ display: inline !important;
 
                                                                 <a href={{confirm_status_complete}}
                                                                 style="line-height: 16px; font-size: 16px !important; display: inline-block; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; color: #ffffff; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif; text-align: center; height: 100%; width: auto; background: #00b561 repeat center center; padding: 11px 20px;">Заказ готов
-                                                                 
+
                                                              </a>
                                                             </td>
                                                         </tr>
