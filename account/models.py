@@ -17,7 +17,7 @@ class Organisation(models.Model):
     bankCorrAccount = models.CharField(max_length=20, verbose_name='Кор.счет', null=True, blank=True, )
     address_post = models.CharField(max_length=256, null=True, blank=True, verbose_name="Почтовый Адрес")
     phone = models.CharField(max_length=20, blank=True, verbose_name="Телефон")
-    email = models.EmailField(max_length=20, blank=True, verbose_name="Электронная почта")
+    email = models.EmailField(max_length=40, blank=True, verbose_name="Электронная почта")
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Опубликовано")
 
 
