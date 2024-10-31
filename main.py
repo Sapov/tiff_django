@@ -29,24 +29,3 @@
 # т.к. width - 4 /
 #
 # '''
-# n = int(input())
-from PIL import ImageOps
-from PIL.Image import Image
-
-
-def _draw_outline_image(file_name):
-    # Делаем обводку вокруг файла, часто файлы имею много белого  - непонятно как его разрезать
-    img = Image.open(file_name)
-    img_border = ImageOps.expand(img, border=2, fill='black')
-    img_border.save(file_name)
-
-
-def te_tif(f_name):
-    from PIL import Image, TiffTags
-    # TiffTags.LIBTIFF_CORE.add(317)
-    img = Image.open(f_name)
-    img.save(f_name, compression='tiff_lzw')
-    # img.save(f_name, compression='tiff_lzw', tiffinfo={317: 2})
-
-
-te_tif('test9.tif')

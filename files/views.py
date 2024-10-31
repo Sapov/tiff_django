@@ -265,7 +265,7 @@ def add_user_calculator(cd):
 def calculator_interior_print(request):
     last_five_string = UseCalculator.objects.order_by('-id')[:10]
     title = "Калькулятор Интерьерной печати"
-    template_name = "files/calculator_interior_print.html"
+    template_name = "files/calculator_large.html"
 
     if request.method == 'POST':
         form = CalculatorInterierPrint(request.POST)
@@ -298,7 +298,7 @@ def calculator_uv_print_out(request):
     """ Калькулятор для УФ печати"""
     last_five_string = UseCalculator.objects.order_by('-id')[:10]
     title = 'Калькулятор UV печати'
-    template_name = "files/calculator_uv_print.html"
+    template_name = "files/calculator_large.html"
 
     if request.method == 'POST':
         form = CalculatorUVPrint(request.POST)
@@ -331,7 +331,7 @@ def calculator_blank_out(request):
     """ Калькулятор чистого материала"""
     last_five_string = UseCalculator.objects.order_by('-id')[:10]
     title = 'Калькулятор Чистый материал'
-    template_name = "files/calculator_blank_material.html"
+    template_name = "files/calculator_large.html"
 
     if request.method == 'POST':
         form = CalculatorBlankMaterial(request.POST)
@@ -406,8 +406,6 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
         return render(request, "files/confirm_order_to_work.html", context)
     else:
         return render(request, "files/no_confirm_order_to_work.html")
-
-
 
 
 def confirm_order_to_completed(request, pk: int, hash_code):

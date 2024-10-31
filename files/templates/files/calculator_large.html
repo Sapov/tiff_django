@@ -5,6 +5,8 @@
 {% block content %}
 
 <h1 style="text-align: center">{{title}}</h1>
+<h3 style="text-align: center">Минимальная сумма заказа 1000 руб.</h3>
+
 
 
  <div class="row">
@@ -13,7 +15,9 @@
 <form action="{% url 'files:calculator_large_print' %}" method="post">
 {% csrf_token %}
 {{ form|crispy }}
+    <div style="text-align: center">
 <button type="submit" class="btn btn-primary">Рассчитать</button>
+        </div>
 </form>
 
 <div > {{form.non_field_errors }}</div>
@@ -35,7 +39,7 @@
         <th scope="col">Обработка</th>
         <th scope="col">Дата:</th>
         <th scope="col">Стоимость</th>
-        <th scope="col">Написать в WhatsApp</th>
+        <th scope="col">Отправить заказ менеджеру в WhatsApp</th>
     </tr>
     </thead>
 {% for string in last_five_string %}
