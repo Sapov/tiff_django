@@ -38,7 +38,7 @@ class Robokassa:
         """
         return hashlib.md5(':'.join(str(arg) for arg in args).encode()).hexdigest()
 
-    def resept(self) -> list[dict]:
+    def receipt(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
         order_items = OrderItem.objects.filter(order=self.order_number)
         list_items = []
@@ -60,7 +60,7 @@ class Robokassa:
         https://docs.robokassa.ru/fiscalization/
         Формируем все позиции заказа в робочек
         '''
-        list_items = self.resept()
+        list_items = self.receipt()
         j = {"sno": os.getenv('SNO'),  # система налогообложения
              "items": list_items
              }
