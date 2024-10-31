@@ -172,4 +172,3 @@ class Bank:
         self.get_invoice()
         self.add_pdf_in_order()
 
-# Запустить фоновую проверку оплаты счета

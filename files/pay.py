@@ -73,12 +73,13 @@ class Robokassa:
         # Если is_test=0 - реальная оплата is_test=1 - тестовая оплата
         URL for redirection of the customer to the service.
         """
-        reciept = self.generate_receipt()
+
+        receipt = self.generate_receipt()
         signature = self.calculate_signature(
             self.MerchantLogin,  # Merchant login
             self.received_sum,  # Cost of goods, RU
             self.order_number,  # Invoice number
-            reciept,  # Receipt
+            receipt,  # Receipt
             self.merchant_password_1  # Merchant password
         )
 
@@ -86,7 +87,7 @@ class Robokassa:
             'MerchantLogin': self.MerchantLogin,
             'OutSum': self.received_sum,
             'InvId': self.order_number,
-            'Receipt': reciept,
+            'Receipt': receipt,
             'Description': self.description,  # Description of the purchase
             'SignatureValue': signature,
             'IsTest': is_test,
