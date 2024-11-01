@@ -5,6 +5,7 @@ import os
 import logging
 from urllib import parse
 
+import requests
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.datastructures import MultiValueDictKeyError
@@ -94,7 +95,7 @@ class Robokassa:
             'Email': self.user
 
         }
-        self.pay_link = f'{self.robokassa_payment_url}?{parse.urlencode(data)}'
+        self.pay_link = f'{parse.urlencode(data)}'
         self._add_pay_link_in_table_order()  # добавляем ссылку в базу
         return self.pay_link
 
@@ -120,11 +121,18 @@ class Robokassa:
         order.pay_link = self.pay_link
         order.save()
 
+    def post_for_kassa(self):
+        # url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
+        headers = {
+        }
+        response = requests.request("POST", self.generate_payment_link(), headers=headers, data=self.pay_link)
+        print(response.status_code)
+
     def run(self):
         return self.generate_payment_link()
+
 
 
 if __name__ == '__main__':
     test = Robokassa(100, 'Print banner', 1, 'rpk.reds@yandex.ru')
     print(test.generate_payment_link())
-

@@ -238,14 +238,14 @@ def order_pay(request, order_id):
 
         Alerts.start_count_down(domain, order_id)
         # -----------------------create_link_pay-----------------------------------
-        Orders = Order.objects.get(id=order_id)
+        # Orders = Order.objects.get(id=order_id)
         user = request.user
-        link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
+        link_pay = Robokassa(order.total_price, f'Оплата заказа № {order.id}', order_id, user).run()
         # logger.info(f'Генерим платежную ссылку: ', link_pay)
-        context = {"Orders": Orders, 'link_pay': link_pay}
+        context = {"Orders": order, 'link_pay': link_pay}
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
-        if Orders.organisation_payer:
+        if order.organisation_payer:
             print('Генерим счет')
             create_order_pdf.delay(order_id)
         # оповещаем в whatsapp
@@ -458,3 +458,6 @@ def web_hook(request):
             pass
 
         return HttpResponse(status=200)
+
+
+def post_kassa():
