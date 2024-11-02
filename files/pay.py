@@ -121,7 +121,7 @@ class Robokassa:
         order.pay_link = self.pay_link
         order.save()
 
-    def post_for_kassa(self):
+    def post_for_cassa(self):
         # url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
         headers = {
         }
@@ -130,7 +130,6 @@ class Robokassa:
 
     def run(self):
         return self.generate_payment_link()
-
 
 
 if __name__ == '__main__':

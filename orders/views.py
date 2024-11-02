@@ -2,6 +2,8 @@ import os
 from datetime import date, datetime
 import datetime
 import json
+
+import requests
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -21,6 +23,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
 from django.core.paginator import Paginator
 
+from .payment.acquiring import Acquiring
 from .payment.bank import Bank
 from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp
 import logging
@@ -150,7 +153,7 @@ class DeleteOrderView(DeleteView):
 
 
 def add_files_in_order(request, order_id):
-    Orders = Order.objects.get(id=order_id)
+    order = Order.objects.get(id=order_id)
     items = Product.objects.filter(
         Contractor=request.user
     )  # Только те файлы которые еще были добавлены в заказ(ы), только файлы юзера
@@ -158,11 +161,12 @@ def add_files_in_order(request, order_id):
     current_order = Order.objects.get(pk=order_id)
 
     context = {
-        "Orders": Orders,
+        "Orders": order,
         "items": items,
         "items_in_order": items_in_order,
         "current_order": current_order,
         "order_id": order_id,
+        "order_data_pay": order.pay_link
     }
     return render(request, "add_files_in_order.html", context)
 
@@ -243,6 +247,8 @@ def order_pay(request, order_id):
         link_pay = Robokassa(order.total_price, f'Оплата заказа № {order.id}', order_id, user).run()
         # logger.info(f'Генерим платежную ссылку: ', link_pay)
         context = {"Orders": order, 'link_pay': link_pay}
+        #=============Платежная ссылка от точки===========
+        links_pay = Acquiring(order.total_price, order_id, user).a_run()
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
         if order.organisation_payer:
@@ -452,12 +458,17 @@ def web_hook(request):
             print(json_hook)
             admin_phone = os.getenv('PHONE_NUMBER')
             send_message_whatsapp.delay(f'{admin_phone}', f'Пришло оповещение о оплате: {json_hook}')
-
         except exceptions.JWTDecodeError:
-            # Неверная подпись, вебхук не от Точки или с ним что-то не так
-            pass
-
+            logger.info(f'Неверная подпись, вебхук не от Точки или с ним что-то не так')
         return HttpResponse(status=200)
 
 
-def post_kassa():
+# def post_cassa(request, order_id):
+#     order = Order.objects.get(id=order_id)
+#     data_pay = order.pay_link
+#     # url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
+#
+#     headers = {
+#     }
+#     response = requests.request("POST", 'https://auth.robokassa.ru/Merchant/Index.aspx', headers=headers, data=data_pay)
+#     print(response.status_code)

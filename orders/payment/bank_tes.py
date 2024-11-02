@@ -123,7 +123,6 @@ class Bank:
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
-        print(response.status_code)
 
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
         logger.info(f'CUSTOMER_CODE {self.customer_code}')
@@ -170,12 +169,26 @@ class Bank:
             start_time=timezone.now()
         )
 
+    def get_retailers(self):
+        url = f'https://enter.tochka.com/uapi/acquiring/v1.0/retailers?customerCode={self.customer_code}'
+
+        # url = "https://enter.tochka.com/uapi/acquiring/v1.0/retailers?customerCode="
+
+        payload = {}
+        headers = {
+            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+        }
+        response = requests.request("GET", url, headers=headers, data=payload)
+        # print(response.status_code)
+        print(response.json())
+        self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
     def run(self):
         self.get_customer_code()
-        self.create_invoice()
-        self.__add_base_document_id()
-        self.get_invoice()
-        self.add_pdf_in_order()
+        self.get_retailers()
+        # self.create_invoice()
+        # self.__add_base_document_id()
+        # self.get_invoice()
+        # self.add_pdf_in_order()
 
 
 # Запустить фоновую проверку оплаты счета
@@ -183,4 +196,4 @@ class Bank:
 
 if __name__ == "__main__":
     a = Bank(1)
-    a.get_customer_code()
+    a.run()
