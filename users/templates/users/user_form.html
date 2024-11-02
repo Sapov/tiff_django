@@ -6,8 +6,9 @@
 {% block title %} Добавить пользователя{% endblock %}
 
 {% block body %}
+{% if request.user.role == 'MANAGER' %}
+
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/css/suggestions.min.css'>
-<!--<link rel="stylesheet" href="./style.css">-->
 <div class="well well-sm col-md-6">
 
     <form action="{% url 'users_create' %}" method="post">
@@ -31,7 +32,7 @@
 
 
 </div>
-
+{% endif %}
 {% endblock %}
 
 
