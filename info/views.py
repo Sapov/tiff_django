@@ -9,6 +9,16 @@ def index(request):
     return render(request, template_name='info/index.html', context=context)
 
 
+def help_info(request):
+    menu = Menu.objects.all()
+    context = {'menu': menu}
+    return render(request, template_name='info/help.html', context=context)
+
+
+def finishing(request):
+    return render(request, template_name='info/finishing.html')
+
+
 def banner(request):
     menu = Menu.objects.filter(pk=1)
     info = Info.objects.filter(pk=1)
