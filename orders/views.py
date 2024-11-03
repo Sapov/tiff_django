@@ -245,11 +245,11 @@ def order_pay(request, order_id):
         # Orders = Order.objects.get(id=order_id)
         user = request.user
         link_pay = Robokassa(order.total_price, f'Оплата заказа № {order.id}', order_id, user).run()
-        # logger.info(f'Генерим платежную ссылку: ', link_pay)
+        # =============Платежная ссылка от точки===========
+        link_pay = Acquiring(order_id).a_run()
+
         context = {"Orders": order, 'link_pay': link_pay}
-        #=============Платежная ссылка от точки===========
-        links_pay = Acquiring(order.total_price, order_id, user).a_run()
-        # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
+                # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
         if order.organisation_payer:
             print('Генерим счет')

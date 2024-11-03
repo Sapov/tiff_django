@@ -1,6 +1,8 @@
 import json
 import os
 import requests
+
+from orders.models import Order, OrderItem
 # from orders.models import Order, OrderItem
 from orders.payment.bank_tes import Bank
 
@@ -11,62 +13,63 @@ class Acquiring(Bank):
         'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
     }
 
-    def __init__(self, total_price: int, user: str, order_id: int):
-        super().__init__(order_id)
+    def __init__(self, order_id: int):
+        # super().__init__(order_id)
+        self.pay_link = None
+        self.order_id = order_id
         self.terminalId = None
         self.merchantId = None
-        self.user = user
-        self.total_price = total_price
+        # self.user = user
+        # self.total_price = total_price
+        self.total_amount_order = 0
 
     def get_retailers(self):
-        url = f'https://enter.tochka.com/uapi/acquiring/v1.0/retailers?customerCode={self.customer_code}'
-
-        # url = "https://enter.tochka.com/uapi/acquiring/v1.0/retailers?customerCode="
-
+        ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami#create_payment_operation_with_receipt_acquiring__apiVersion__payments_with_receipt_post'''
+        url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/retailers?customerCode={self.customer_code}'
         payload = {}
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
-        # print(response.status_code)
         print(response.json())
         self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
         self.terminalId = (response.json()['Data']['Retailer'][0]['terminalId'])
         print('self.merchantId', self.merchantId)
         print('self.terminalId', self.terminalId)
 
-    def create_payment_link_with_receipt_test(self):
-        # url = "https://enter.tochka.com/uapi/acquiring/v1.0/payments_with_receipt"
-        url = 'https://enter.tochka.com/sandbox/v2/acquiring/v1.0/payments_with_receipt'
-        # payer = Order.objects.get(id=self.order_id)
+    def create_payment_operation_with_receipt_link(self):
+        ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
+        url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
+        payer = Order.objects.get(id=self.order_id)
 
         payload = {
             "Data": {
                 "customerCode": self.customer_code,
-                "amount": 100,
-                "purpose": f"Оплата заказа № ",
-                "redirectUrl": "https://san-cd.ru",
+                "amount": payer.total_price,
+                "purpose": f"Оплата заказа № {payer.id}",
+                "redirectUrl": "https://san-cd.ru/succes",
                 "failRedirectUrl": "https://san-cd.ru/fail",
                 "paymentMode": [
                     "sbp",
                     "card"
                 ],
                 "saveCard": True,
-                "consumerId": 'email@mail.ru',
+                "consumerId": str(payer.Contractor),
                 "taxSystemCode": "usn_income",
                 "merchantId": self.merchantId,
                 "Client": {
-                    "name": 'Петр Петрович',  # self.user.first_name + self.user.last_name,
-                    "email": 'test@mail.ru',
-                    "phone": '79202423868',
+                    "name": f'{str(payer.Contractor.first_name)} {payer.Contractor.last_name}',
+                    "email": str(payer.Contractor),
+                    "phone": f"+7{payer.Contractor.phone_number.national_number}",
                 },
-                "Items": self.__create_list_position_test()
-
+                "Items": self.__create_list_position()
             }
         }
-        print(payload)
+        print('PAYLOAD', json.dumps(payload, indent=4))
         response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
         print(response.text)
+        self.pay_link = response.json()['Data']['paymentLink']
+        self._add_pay_link_in_table_order()
 
     def __create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
@@ -80,34 +83,57 @@ class Acquiring(Bank):
                 "amount": v.price_per_item,
                 "quantity": v.product.quantity,
                 "paymentMethod": "full_payment",
-                "paymentObject": "service",
+                "paymentObject": "goods",
                 "measure": "шт."
             }
             self.total_amount_order += total_amount
             positions.append(new_dict)
+        print(f'Посчитанный тотал pice {self.total_amount_order}')
+        print('positions', positions)
         return positions
 
-    def __create_list_position_test(self) -> list[dict]:
-        ''' формируем dict по каждой позиции и кладем в list'''
-        positions = []
-        new_dict = {
-            "vatType": "none",
-            "name": f'Баннер 440 грамм 3х3  м',
-            "amount": 100,
-            "quantity": 1,
-            "paymentMethod": "full_payment",
-            "paymentObject": "service",
-            "measure": "шт."
+    def check(self):
+        ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-razresheniyami#get_all_consents_list_consent__apiVersion__consents_get'''
+        url = f"https://enter.tochka.com/uapi/{self.apiVersion}/consents"
+        payload = {}
+        response = requests.request("GET", url, headers=self.headers, data=payload)
+        print(response.text)
+
+    def create_payment_operation(self):
+        '''https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami#get_payment_operation_list_acquiring__apiVersion__payments_get'''
+        url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments'
+        payload = {
+            "Data": {
+                "customerCode": self.customer_code,
+                "amount": "1234.00",
+                "purpose": "Перевод за оказанные услуги",
+                "redirectUrl": "https://example.com",
+                "failRedirectUrl": "https://example.com/fail",
+                "paymentMode": [
+                    "sbp",
+                    "card"
+                ],
+                "saveCard": True,
+                "consumerId": "fedac807-078d-45ac-a43b-5c01c57edbf8"
+            }
         }
-        self.total_amount_order += 100
-        positions.append(new_dict)
+        response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
+        print(response.text)
 
-        return positions
+    def _add_pay_link_in_table_order(self):
+        '''Добавим ссылку об оплате в таблицу с ордером'''
+        order = Order.objects.get(id=self.order_id)
+        print(f'SAVE PAY-LINK: {self.pay_link}')
+        order.pay_link = self.pay_link
+        order.save()
 
     def a_run(self):
         super().get_customer_code()
-        self.get_retailers()
-        self.create_payment_link_with_receipt_test()
+        self.create_payment_operation_with_receipt_link()
+        # self.get_retailers()
+        # self.check()
+        # self.create_payment_operation()
+        # self.create_payment_link_with_receipt_test()
         # self.create_payment_link_with_receipt()
 
 
