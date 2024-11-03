@@ -29,8 +29,8 @@ class Acquiring(Bank):
         print(response.json())
         self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
         self.terminalId = (response.json()['Data']['Retailer'][0]['terminalId'])
-        print('self.merchantId', self.merchantId)
-        print('self.terminalId', self.terminalId)
+        print('MerchantId', self.merchantId)
+        print('TerminalId', self.terminalId)
 
     def create_payment_operation_with_receipt_link(self, organisation_flag):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
@@ -129,8 +129,3 @@ class Acquiring(Bank):
         return self.pay_link
         # self.get_retailers()
         # self.check()
-
-
-if __name__ == "__main__":
-    t = Acquiring(123, 'sasha', 1)
-    t.run()
