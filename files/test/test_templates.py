@@ -43,14 +43,14 @@ class FileTemplateTest(TestCase):
     def test_templates_calculator_interior_print_out(self):
         response = self.authorized_client.get('/files/calculator_interior_print/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'files/calculator_interior_print.html')
+        self.assertTemplateUsed(response, 'files/calculator_large.html')
 
     def test_templates_calculator_UV_print(self):
         response = self.authorized_client.get('/files/calculator_uv_print_out/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'files/calculator_uv_print.html')
+        self.assertTemplateUsed(response, 'files/calculator_large.html')
 
     def test_templates_calculator_blank_material(self):
         response = self.authorized_client.get('/files/calculator_blank/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'files/calculator_blank_material.html')
+        self.assertTemplateUsed(response, 'files/calculator_large.html')

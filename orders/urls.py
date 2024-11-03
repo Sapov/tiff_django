@@ -48,8 +48,8 @@ urlpatterns = [
 
     # https://docs.robokassa.ru/pay-interface/#notification
     path("result/", result, name="result"),  # для робокассы проверкаe
-    path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
-    path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
+    # path("success/", success_pay, name="success_pay"),  # заказ успешно оплачен
+    # path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
     # BANK
     path('create_invoice/<int:order_id>', create_invoice, name='create_invoice'),
     path('web_hook/', web_hook, name='web_hook'),
