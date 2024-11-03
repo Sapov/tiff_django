@@ -244,16 +244,22 @@ def order_pay(request, order_id):
         # -----------------------create_link_pay-----------------------------------
         # Orders = Order.objects.get(id=order_id)
         user = request.user
-        link_pay = Robokassa(order.total_price, f'Оплата заказа № {order.id}', order_id, user).run()
-        # =============Платежная ссылка от точки===========
-        link_pay = Acquiring(order_id).a_run()
 
-        context = {"Orders": order, 'link_pay': link_pay}
-                # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
+        # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
         if order.organisation_payer:
-            print('Генерим счет')
+            logger.info(f'[Выбрана организация - генерим счет]')
             create_order_pdf.delay(order_id)
+            logger.info(f'[Выбрана организация - генерим платежную ссылку на организацию]')
+            link_pay = Acquiring(order_id).run(organisation_flag=True)
+            context = {"Orders": order, 'link_pay': link_pay}
+
+        else:
+            logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
+            # =============Платежная ссылка от точки===========
+            link_pay = Acquiring(order_id).run(organisation_flag=False)
+            context = {"Orders": order, 'link_pay': link_pay}
+
         # оповещаем в whatsapp
         item_user = User.objects.get(email=user)
         if item_user.whatsapp and item_user.phone_number:
@@ -463,12 +469,9 @@ def web_hook(request):
         return HttpResponse(status=200)
 
 
-# def post_cassa(request, order_id):
-#     order = Order.objects.get(id=order_id)
-#     data_pay = order.pay_link
-#     # url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
-#
-#     headers = {
-#     }
-#     response = requests.request("POST", 'https://auth.robokassa.ru/Merchant/Index.aspx', headers=headers, data=data_pay)
-#     print(response.status_code)
+def fail_payment(request):
+    return render(request, template_name='orders/')
+
+
+def success_payment(request):
+    pass

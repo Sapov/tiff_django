@@ -37,7 +37,7 @@ class Acquiring(Bank):
         print('self.merchantId', self.merchantId)
         print('self.terminalId', self.terminalId)
 
-    def create_payment_operation_with_receipt_link(self):
+    def create_payment_operation_with_receipt_link(self, organisation_flag):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
         payer = Order.objects.get(id=self.order_id)
@@ -47,8 +47,8 @@ class Acquiring(Bank):
                 "customerCode": self.customer_code,
                 "amount": payer.total_price,
                 "purpose": f"Оплата заказа № {payer.id}",
-                "redirectUrl": "https://san-cd.ru/succes",
-                "failRedirectUrl": "https://san-cd.ru/fail",
+                "redirectUrl": "https://san-cd.ru/orders/success",
+                "failRedirectUrl": "https://san-cd.ru/orders/fail",
                 "paymentMode": [
                     "sbp",
                     "card"
@@ -58,7 +58,8 @@ class Acquiring(Bank):
                 "taxSystemCode": "usn_income",
                 "merchantId": self.merchantId,
                 "Client": {
-                    "name": f'{str(payer.Contractor.first_name)} {payer.Contractor.last_name}',
+                    "name": f'{str(payer.Contractor.first_name)} {payer.Contractor.last_name}' if organisation_flag else str(
+                        payer.organisation_payer),
                     "email": str(payer.Contractor),
                     "phone": f"+7{payer.Contractor.phone_number.national_number}",
                 },
@@ -67,7 +68,7 @@ class Acquiring(Bank):
         }
         print('PAYLOAD', json.dumps(payload, indent=4))
         response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
-        print(response.text)
+        print(response.json())
         self.pay_link = response.json()['Data']['paymentLink']
         self._add_pay_link_in_table_order()
 
@@ -127,16 +128,14 @@ class Acquiring(Bank):
         order.pay_link = self.pay_link
         order.save()
 
-    def a_run(self):
+    def run(self, organisation_flag):
         super().get_customer_code()
-        self.create_payment_operation_with_receipt_link()
+        self.create_payment_operation_with_receipt_link(organisation_flag)
+        return self.pay_link
         # self.get_retailers()
         # self.check()
-        # self.create_payment_operation()
-        # self.create_payment_link_with_receipt_test()
-        # self.create_payment_link_with_receipt()
 
 
 if __name__ == "__main__":
     t = Acquiring(123, 'sasha', 1)
-    t.a_run()
+    t.run()

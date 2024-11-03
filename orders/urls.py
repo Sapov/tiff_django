@@ -15,7 +15,7 @@ from .views import (
     report_complete_orders,
     new_order,
     OrdersViewList,
-    AllOrdersListView, result, success_pay, fail, report_day, create_invoice, web_hook
+    AllOrdersListView, result, success_pay, fail, report_day, create_invoice, web_hook, fail_payment, success_payment,
 )
 
 app_name = "orders"
@@ -52,5 +52,8 @@ urlpatterns = [
     path("fail/", fail, name="fail_pay"),  # заказ НЕуспешно оплачен
     # BANK
     path('create_invoice/<int:order_id>', create_invoice, name='create_invoice'),
-    path('web_hook/', web_hook, name='web_hook', )
+    path('web_hook/', web_hook, name='web_hook'),
+    path('fail/', fail_payment, name='fail_payment'),
+    path('success/', success_payment, name='success_payment'),
+
 ]
