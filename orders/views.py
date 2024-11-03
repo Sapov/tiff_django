@@ -470,8 +470,9 @@ def web_hook(request):
 
 
 def fail_payment(request):
-    return render(request, template_name='orders/')
+    return render(request, template_name='orders/fail_payment.html')
 
 
 def success_payment(request):
-    pass
+    return render(request, template_name='orders/success_payment.html')
+
