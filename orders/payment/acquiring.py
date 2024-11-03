@@ -1,9 +1,7 @@
 import json
 import os
 import requests
-
 from orders.models import Order, OrderItem
-# from orders.models import Order, OrderItem
 from orders.payment.bank_tes import Bank
 
 
@@ -14,13 +12,10 @@ class Acquiring(Bank):
     }
 
     def __init__(self, order_id: int):
-        # super().__init__(order_id)
         self.pay_link = None
         self.order_id = order_id
         self.terminalId = None
         self.merchantId = None
-        # self.user = user
-        # self.total_price = total_price
         self.total_amount_order = 0
 
     def get_retailers(self):
@@ -121,14 +116,14 @@ class Acquiring(Bank):
         response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
         print(response.text)
 
-    def _add_pay_link_in_table_order(self):
+    def _add_pay_link_in_table_order(self) -> None:
         '''Добавим ссылку об оплате в таблицу с ордером'''
         order = Order.objects.get(id=self.order_id)
         print(f'SAVE PAY-LINK: {self.pay_link}')
         order.pay_link = self.pay_link
         order.save()
 
-    def run(self, organisation_flag):
+    def run(self, organisation_flag) -> str:
         super().get_customer_code()
         self.create_payment_operation_with_receipt_link(organisation_flag)
         return self.pay_link
