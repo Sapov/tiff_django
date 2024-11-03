@@ -33,8 +33,8 @@ def goto_media_orders(foo):
 
 
 class Bank:
-    # url = 'https://enter.tochka.com/sandbox/v2/invoice/v1.0/bills'
-    url = "https://enter.tochka.com/uapi/invoice/v1.0/bills"
+    apiVersion = 'v1.0'
+    url = f"https://enter.tochka.com/uapi/invoice/{apiVersion}/bills"
 
     def __init__(self, order_id: int):
         self.document_id = None
