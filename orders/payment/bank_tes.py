@@ -33,8 +33,8 @@ def goto_media_orders(foo):
 
 
 class Bank:
-    url = "https://enter.tochka.com/uapi/invoice/v1.0/bills"
     apiVersion = 'v1.0'
+    url = f"https://enter.tochka.com/uapi/invoice/{apiVersion}/bills"
 
     def __init__(self, order_id: int):
         self.document_id = None
@@ -150,13 +150,6 @@ class Bank:
         document.payment_Status = payment_status
         document.save()
 
-    def set_status_payment(self):
-        '''Меняем статус оплаты'''
-        'payment_waiting — оплаты счёта ещё не было;'
-        'payment_expired — оплата счёта просрочена. '
-        'payment_paid — оплата по счёту прошла.'
-        pass
-
     @classmethod
     def check_payment(cls, domain, order_id):
         '''Запускаем ежечасную проверку оплаты '''
@@ -170,16 +163,12 @@ class Bank:
         )
 
     def get_retailers(self):
-        url = f'https://enter.tochka.com/uapi/acquiring/v1.0/retailers?customerCode={self.customer_code}'
-
-        # url = "https://enter.tochka.com/uapi/acquiring/v1.0/retailers?customerCode="
-
+        url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/retailers?customerCode={self.customer_code}'
         payload = {}
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
-        # print(response.status_code)
         print(response.json())
         self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
 
