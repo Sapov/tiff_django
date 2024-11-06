@@ -41,7 +41,7 @@ class Bank:
         self.document_id = None
         self.total_amount_order = 0
         self.order_id = order_id
-        self.customer_code = None
+        self.customer_code = os.getenv('CUSTOMER_COD')
 
     def create_invoice(self):
         payer = Order.objects.get(id=self.order_id)
@@ -123,7 +123,7 @@ class Bank:
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
-        print(response)
+        print(response.json())
         print('get_customer_code', response.json()['Data']['Customer'][0]['customerCode'])
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
         return self.customer_code
@@ -161,7 +161,7 @@ class Bank:
         )
 
     def run(self):
-        self.get_customer_code()
+        # self.get_customer_code()
         self.create_invoice()
         self.__add_base_document_id()
         self.get_invoice()
