@@ -162,10 +162,10 @@ class Bank:
 
     def run(self):
         self.get_customer_code()
-        # self.create_invoice()
-        # self.__add_base_document_id()
-        # self.get_invoice()
-        # self.add_pdf_in_order()
+        self.create_invoice()
+        self.__add_base_document_id()
+        self.get_invoice()
+        self.add_pdf_in_order()
 
 
 if __name__ == '__main__':
