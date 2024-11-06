@@ -7,7 +7,7 @@ import requests
 from dotenv import load_dotenv, find_dotenv
 from django.utils import timezone
 from mysite import settings
-# from orders.models import Order, OrderItem, BankInvoices
+from orders.models import Order, OrderItem, BankInvoices
 import logging
 
 logger = logging.getLogger(__name__)
@@ -33,8 +33,8 @@ def goto_media_orders(foo):
 
 
 class Bank:
-    # url = 'https://enter.tochka.com/sandbox/v2/invoice/v1.0/bills'
-    url = "https://enter.tochka.com/uapi/invoice/v1.0/bills"
+    apiVersion = 'v1.0'
+    url = f"https://enter.tochka.com/uapi/invoice/{apiVersion}/bills"
 
     def __init__(self, order_id: int):
         self.document_id = None
@@ -123,7 +123,6 @@ class Bank:
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
-        print(response.status_code)
 
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
         logger.info(f'CUSTOMER_CODE {self.customer_code}')
@@ -151,13 +150,6 @@ class Bank:
         document.payment_Status = payment_status
         document.save()
 
-    def set_status_payment(self):
-        '''Меняем статус оплаты'''
-        'payment_waiting — оплаты счёта ещё не было;'
-        'payment_expired — оплата счёта просрочена. '
-        'payment_paid — оплата по счёту прошла.'
-        pass
-
     @classmethod
     def check_payment(cls, domain, order_id):
         '''Запускаем ежечасную проверку оплаты '''
@@ -170,17 +162,26 @@ class Bank:
             start_time=timezone.now()
         )
 
+    def get_retailers(self):
+        url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/retailers?customerCode={self.customer_code}'
+        payload = {}
+        headers = {
+            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+        }
+        response = requests.request("GET", url, headers=headers, data=payload)
+        print(response.json())
+        self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
+
     def run(self):
         self.get_customer_code()
-        self.create_invoice()
-        self.__add_base_document_id()
-        self.get_invoice()
-        self.add_pdf_in_order()
+        self.get_retailers()
+        # self.create_invoice()
+        # self.__add_base_document_id()
+        # self.get_invoice()
+        # self.add_pdf_in_order()
 
-
-# Запустить фоновую проверку оплаты счета
 
 
 if __name__ == "__main__":
     a = Bank(1)
-    a.get_customer_code()
+    a.run()

@@ -2,6 +2,8 @@ import os
 from datetime import date, datetime
 import datetime
 import json
+
+import requests
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -21,6 +23,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
 from django.core.paginator import Paginator
 
+from .payment.acquiring import Acquiring
 from .payment.bank import Bank
 from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp
 import logging
@@ -150,7 +153,7 @@ class DeleteOrderView(DeleteView):
 
 
 def add_files_in_order(request, order_id):
-    Orders = Order.objects.get(id=order_id)
+    order = Order.objects.get(id=order_id)
     items = Product.objects.filter(
         Contractor=request.user
     )  # Только те файлы которые еще были добавлены в заказ(ы), только файлы юзера
@@ -158,11 +161,12 @@ def add_files_in_order(request, order_id):
     current_order = Order.objects.get(pk=order_id)
 
     context = {
-        "Orders": Orders,
+        "Orders": order,
         "items": items,
         "items_in_order": items_in_order,
         "current_order": current_order,
         "order_id": order_id,
+        "order_data_pay": order.pay_link
     }
     return render(request, "add_files_in_order.html", context)
 
@@ -238,16 +242,24 @@ def order_pay(request, order_id):
 
         Alerts.start_count_down(domain, order_id)
         # -----------------------create_link_pay-----------------------------------
-        Orders = Order.objects.get(id=order_id)
+        # Orders = Order.objects.get(id=order_id)
         user = request.user
-        link_pay = Robokassa(Orders.total_price, f'Оплата заказа № {Orders.id}', order_id, user).run()
-        # logger.info(f'Генерим платежную ссылку: ', link_pay)
-        context = {"Orders": Orders, 'link_pay': link_pay}
+
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
-        if Orders.organisation_payer:
-            print('Генерим счет')
+        if order.organisation_payer:
+            logger.info(f'[Выбрана организация - генерим счет]')
             create_order_pdf.delay(order_id)
+            logger.info(f'[Выбрана организация - генерим платежную ссылку на организацию]')
+            link_pay = Acquiring(order_id).run(organisation_flag=True)
+            context = {"Orders": order, 'link_pay': link_pay}
+
+        else:
+            logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
+            # =============Платежная ссылка от точки===========
+            link_pay = Acquiring(order_id).run(organisation_flag=False)
+            context = {"Orders": order, 'link_pay': link_pay}
+
         # оповещаем в whatsapp
         item_user = User.objects.get(email=user)
         if item_user.whatsapp and item_user.phone_number:
@@ -452,9 +464,14 @@ def web_hook(request):
             print(json_hook)
             admin_phone = os.getenv('PHONE_NUMBER')
             send_message_whatsapp.delay(f'{admin_phone}', f'Пришло оповещение о оплате: {json_hook}')
-
         except exceptions.JWTDecodeError:
-            # Неверная подпись, вебхук не от Точки или с ним что-то не так
-            pass
-
+            logger.info(f'Неверная подпись, вебхук не от Точки или с ним что-то не так')
         return HttpResponse(status=200)
+
+
+def fail_payment(request):
+    return render(request, 'orders/fail_payment.html')
+
+
+def success_payment(request):
+    return render(request, 'orders/success_payment.html')

@@ -7,7 +7,8 @@ load_dotenv(find_dotenv())
 
 
 class WebHook:
-    url_bank = 'https://enter.tochka.com/uapi/webhook/v1.0/'
+    apiVersion = 'v1.0'
+    url_bank = f'https://enter.tochka.com/uapi/webhook/{apiVersion}/'
     client_id = os.getenv('TOCHKA_CLIENT_ID')
     url_webhook_bank = url_bank + client_id
     url_webhook = os.getenv('WEBHOOK_URL')

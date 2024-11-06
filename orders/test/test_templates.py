@@ -16,3 +16,15 @@ class TestTemplatesOrders(TestCase):
         response = self.authorized_client.get('/orders/neworder/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'neworder.html')
+
+    def test_template_fail_payment(self):
+        ''' Тест шаблона заглушки ОПЛАТА не УДАЛАСЬ'''
+        response = self.authorized_client.get('/orders/fail/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'orders/fail_payment.html')
+
+    def test_template_success_payment(self):
+        ''' Тест шаблона заглушки ОПЛАТА ПРОШЛА'''
+        response = self.authorized_client.get('/orders/success/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'orders/success_payment.html')
