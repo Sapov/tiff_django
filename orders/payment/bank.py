@@ -33,8 +33,8 @@ def goto_media_orders(foo):
 
 
 class Bank:
-    # url = 'https://enter.tochka.com/sandbox/v2/invoice/v1.0/bills'
-    url = "https://enter.tochka.com/uapi/invoice/v1.0/bills"
+    apiVersion = 'v1.0'
+    url = f"https://enter.tochka.com/uapi/invoice/{apiVersion}/bills"
 
     def __init__(self, order_id: int):
         self.document_id = None
@@ -44,7 +44,6 @@ class Bank:
 
     def create_invoice(self):
         payer = Order.objects.get(id=self.order_id)
-
         payload = json.dumps({
             "Data": {
                 "accountId": os.getenv('BANK_ACCOUNT_ID'),
@@ -146,13 +145,6 @@ class Bank:
         document.payment_Status = payment_status
         document.save()
 
-    def set_status_payment(self):
-        '''Меняем статус оплаты'''
-        'payment_waiting — оплаты счёта ещё не было;'
-        'payment_expired — оплата счёта просрочена. '
-        'payment_paid — оплата по счёту прошла.'
-        pass
-
     @classmethod
     def check_payment(cls, domain, order_id):
         '''Запускаем ежечасную проверку оплаты '''
@@ -171,5 +163,3 @@ class Bank:
         self.__add_base_document_id()
         self.get_invoice()
         self.add_pdf_in_order()
-
-# Запустить фоновую проверку оплаты счета

@@ -29,3 +29,22 @@
 # т.к. width - 4 /
 #
 # '''
+def shortener(message):
+    message = message[::-1]
+    while ' ' in message and len(message) >= 161:
+        ind = message.find(' ')
+        message = message[:ind - 1] + message[ind - 1].upper() + message[ind + 1:]
+        print(message[::-1])
+    print(message[::-1])
+    print(len(message))
+
+
+s = 'No one expects the Spanish Inquisition! Our chief weapon is surprise, fear and surprise; two chief weapons, fear, surprise, and ruthless efficiency! And that will be it.'
+# shortener(
+#     'No one expects the Spanish Inquisition! Our chief weapon is surprise, fear and surprise; two chief weapons, fear, surprise, and ruthless efficiency! And that will be it.')
+shortener(s)
+assert shortener(
+    s) == 'No one expects the Spanish Inquisition! Our chief weapon is surprise, fear and surprise; two chief weapons, fear,Surprise,AndRuthlessEfficiency!AndThatWillBeIt.'
+
+my = 'No one expects the Spanish Inquisition! Our chief weapon is surprise, fear and surprise; two chief weapons,Fear,Surprise,AndRuthlessEfficiency!AndThatWillBeIt.'
+r == 'No one expects the Spanish Inquisition! Our chief weapon is surprise, fear and surprise; two chief weapons, fear,Surprise,AndRuthlessEfficiency!AndThatWillBeIt.'
