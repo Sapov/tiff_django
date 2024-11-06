@@ -78,8 +78,9 @@ class Bank:
         }
         response = requests.request("POST", self.url, headers=headers, data=payload)
         logging.info(f'RESPONSE  {response}')
-        self.document_id = response.json()['Data']['documentId']
-        logging.info(f'СГЕНЕРИРОВАЛИ СЧЕТ ПОЛУЧИЛИ DOC ID {self.document_id}')
+        if response:
+            self.document_id = response.json()['Data']['documentId']
+            logging.info(f'СГЕНЕРИРОВАЛИ СЧЕТ ПОЛУЧИЛИ DOC ID {self.document_id}')
 
     def __add_base_document_id(self):
         BankInvoices.objects.create(order_id=self.order_id,
@@ -124,6 +125,8 @@ class Bank:
         }
         response = requests.request("GET", url, headers=headers, data=payload)
         print(response.json())
+        print(type(response.json()))
+        print(type(response.text))
         print('get_customer_code', response.json()['Data']['Customer'][0]['customerCode'])
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
         return self.customer_code
