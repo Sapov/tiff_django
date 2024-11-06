@@ -116,7 +116,7 @@ class Bank:
         with open(f'Order_{self.order_id}.pdf', 'wb') as file:
             file.write(response.content)
 
-    def get_customer_code(self, response=None) -> str:
+    def get_customer_code(self) -> str:
         url = f"https://enter.tochka.com/uapi/open-banking/{self.apiVersion}/customers"
         payload = {}
         headers = {
@@ -162,7 +162,12 @@ class Bank:
 
     def run(self):
         self.get_customer_code()
-        self.create_invoice()
-        self.__add_base_document_id()
-        self.get_invoice()
-        self.add_pdf_in_order()
+        # self.create_invoice()
+        # self.__add_base_document_id()
+        # self.get_invoice()
+        # self.add_pdf_in_order()
+
+
+if __name__ == '__main__':
+    a = Bank(3)
+    a.get_customer_code()
