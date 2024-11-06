@@ -3,6 +3,7 @@ from celery import shared_task
 import users.whatssapp
 from orders.models import UtilsModel
 from .alerts import Alerts
+from .payment.acquiring import Acquiring
 from .payment.bank import Bank
 
 
@@ -21,10 +22,17 @@ def timer_order_complete(*args):
 
 
 @shared_task
-def create_order_pdf(order_id):
+def create_order_pdf(order_id: int):
     '''Формирования счета для организаций'''
     order = Bank(order_id)
     order.run()
+
+
+@shared_task
+def create_pay_link(order_id: int, organisation: bool):
+    '''Формирования ссылки для организаций и для физ лиц'''
+    order = Acquiring(order_id)
+    order.run(organisation)
 
 
 @shared_task(name='check_payment_order')

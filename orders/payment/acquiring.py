@@ -133,7 +133,3 @@ class Acquiring(Bank):
         # self.get_retailers()
         # self.check()
 
-
-if __name__ == '__main__':
-    a = Acquiring(4)
-    a.run(True)

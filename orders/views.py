@@ -1,9 +1,6 @@
 import os
 from datetime import date, datetime
 import datetime
-import json
-
-import requests
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -24,8 +21,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
-from .payment.bank import Bank
-from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp
+from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp, create_pay_link
 import logging
 import jwt
 from jwt import exceptions
@@ -251,13 +247,15 @@ def order_pay(request, order_id):
             logger.info(f'[Выбрана организация - генерим счет]')
             create_order_pdf.delay(order_id)
             logger.info(f'[Выбрана организация - генерим платежную ссылку на организацию]')
-            link_pay = Acquiring(order_id).run(organisation_flag=True)
+            link_pay = create_pay_link.delay(order_id, True)
+            # link_pay = Acquiring(order_id).run(organisation_flag=True)
             context = {"Orders": order, 'link_pay': link_pay}
 
         else:
             logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
             # =============Платежная ссылка от точки===========
-            link_pay = Acquiring(order_id).run(organisation_flag=False)
+            link_pay = create_pay_link.delay(order_id, True)
+            # link_pay = Acquiring(order_id).run(organisation_flag=False)
             context = {"Orders": order, 'link_pay': link_pay}
 
         # оповещаем в whatsapp
