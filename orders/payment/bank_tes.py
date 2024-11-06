@@ -181,8 +181,6 @@ class Bank:
         # self.add_pdf_in_order()
 
 
-# Запустить фоновую проверку оплаты счета
-
 
 if __name__ == "__main__":
     a = Bank(1)
