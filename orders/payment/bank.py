@@ -34,6 +34,7 @@ def goto_media_orders(foo):
 
 class Bank:
     apiVersion = 'v1.0'
+    host = 'https://enter.tochka.com/uapi/'
     url = f"https://enter.tochka.com/uapi/invoice/{apiVersion}/bills"
 
     def __init__(self, order_id: int):
@@ -105,8 +106,8 @@ class Bank:
         return positions
 
     @goto_media_orders
-    def get_invoice(self):
-        url = f"https://enter.tochka.com/uapi/invoice/v1.0/bills/{self.customer_code}/{self.document_id}/file"
+    def get_invoice(self) -> None:
+        url = f"https://enter.tochka.com/uapi/invoice/{self.apiVersion}/bills/{self.customer_code}/{self.document_id}/file"
         payload = {}
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
@@ -115,8 +116,8 @@ class Bank:
         with open(f'Order_{self.order_id}.pdf', 'wb') as file:
             file.write(response.content)
 
-    def __get_customer_code(self):
-        url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
+    def get_customer_code(self) -> str:
+        url = f"https://enter.tochka.com/uapi/open-banking/{self.apiVersion}/customers"
         payload = {}
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
@@ -124,6 +125,7 @@ class Bank:
         response = requests.request("GET", url, headers=headers, data=payload)
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
         logging.info(f'CUSTOMER_CODE {self.customer_code}')
+        return self.customer_code
 
     def add_pdf_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
@@ -134,7 +136,7 @@ class Bank:
 
     def get_status_invoice(self):
         document = BankInvoices.objects.get(order_id=self.order_id)
-        url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/{self.customer_code}/{document.document_id}/payment-status'
+        url = f'https://enter.tochka.com/uapi/invoice/{self.apiVersion}/bills/{self.customer_code}/{document.document_id}/payment-status'
 
         payload = ""
         headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"}
@@ -158,7 +160,7 @@ class Bank:
         )
 
     def run(self):
-        self.__get_customer_code()
+        self.get_customer_code()
         self.create_invoice()
         self.__add_base_document_id()
         self.get_invoice()

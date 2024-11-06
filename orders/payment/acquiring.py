@@ -2,7 +2,7 @@ import json
 import os
 import requests
 from orders.models import Order, OrderItem
-from orders.payment.bank_tes import Bank
+from orders.payment.bank import Bank
 
 
 class Acquiring(Bank):
@@ -125,7 +125,15 @@ class Acquiring(Bank):
 
     def run(self, organisation_flag) -> str:
         super().get_customer_code()
+        print(self.customer_code, type(self.customer_code))
         self.create_payment_operation_with_receipt_link(organisation_flag)
         return self.pay_link
+
+
         # self.get_retailers()
         # self.check()
+
+
+if __name__ == '__main__':
+    a = Acquiring(4)
+    a.run(True)
