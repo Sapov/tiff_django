@@ -248,16 +248,16 @@ def order_pay(request, order_id):
             create_order_pdf.delay(order_id)
             # logger.info(f'[Выбрана организация - генерим платежную ссылку на организацию]')
             # link_pay = create_pay_link.delay(order_id, True)
-            link_pay = Acquiring(order_id).run(organisation_flag=True)
-            context = {"Orders": order, 'link_pay': link_pay}
+            # link_pay = Acquiring(order_id).run(organisation_flag=True)
+            # context = {"Orders": order, 'link_pay': link_pay}
             context = {"Orders": order}
 
         else:
             logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
             # =============Платежная ссылка от точки===========
             # link_pay = create_pay_link.delay(order_id, True)
-            link_pay = Acquiring(order_id).run(organisation_flag=False)
-            context = {"Orders": order, 'link_pay': link_pay}
+            # link_pay = Acquiring(order_id).run(organisation_flag=False)
+            # context = {"Orders": order, 'link_pay': link_pay}
             context = {"Orders": order}
 
         # оповещаем в whatsapp

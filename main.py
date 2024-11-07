@@ -30,3 +30,12 @@
 #
 # '''
 
+s = {'Data': {'Customer': [
+    {'customerCode': '301576470', 'customerType': 'Business', 'isResident': True, 'taxCode': '366202910465',
+     'shortName': 'Индивидуальный предприниматель Сапов Александр Николаевич',
+     'fullName': 'Индивидуальный предприниматель Сапов Александр Николаевич', 'customerOgrn': '319366800019380'},
+    {'customerCode': '301576474', 'customerType': 'Personal', 'isResident': True, 'taxCode': '366202910465',
+     'shortName': 'Сапов А.Н.', 'fullName': 'Сапов Александр Николаевич'}]},
+     'Links': {'self': 'https://enter.tochka.com/uapi/open-banking/v1.0/customers'}, 'Meta': {'totalPages': 1}}
+
+print(s['Data']['Customer'][0]['customerCode'])

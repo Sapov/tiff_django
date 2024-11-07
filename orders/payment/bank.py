@@ -124,8 +124,14 @@ class Bank:
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
-        print('get_customer_code', response.json()['Data']['Customer'][0]['customerCode'])
-        self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
+        print('get_customer_code', type(response.json()))
+        print('get_customer_code', type(response.text))
+        st = response.text
+        s = json.loads(st)
+        print('s', s)
+        print(type(s))
+        self.customer_code = s['Data']['Customer'][0]['customerCode']
+        # print(response.json()['Data']['Customer'][0]['customerCode'])
         return self.customer_code
 
     def add_pdf_in_order(self):
