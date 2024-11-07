@@ -30,15 +30,3 @@
 #
 # '''
 
-def narcissistic(value):
-    print(sum(int(x) ** len(str(value)) for x in str(value)))
-
-    # value = str(value)
-    # l = len(str(value))
-    # char = 0
-    # for i in range(l):
-    #     char += int(value[i]) ** l
-    # print(char)
-
-
-narcissistic(371)

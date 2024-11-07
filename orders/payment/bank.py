@@ -124,9 +124,6 @@ class Bank:
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
-        print(response.json())
-        print(type(response.json()))
-        print(type(response.text))
         print('get_customer_code', response.json()['Data']['Customer'][0]['customerCode'])
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
         return self.customer_code
@@ -164,7 +161,7 @@ class Bank:
         )
 
     def run(self):
-        # self.get_customer_code()
+        self.get_customer_code()
         self.create_invoice()
         self.__add_base_document_id()
         self.get_invoice()

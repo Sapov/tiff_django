@@ -7,7 +7,7 @@ import requests
 from dotenv import load_dotenv, find_dotenv
 from django.utils import timezone
 from mysite import settings
-from orders.models import Order, OrderItem, BankInvoices
+# from orders.models import Order, OrderItem, BankInvoices
 import logging
 
 logger = logging.getLogger(__name__)
@@ -34,17 +34,17 @@ def goto_media_orders(foo):
 
 class Bank:
     apiVersion = 'v1.0'
+    host = 'https://enter.tochka.com/uapi/'
     url = f"https://enter.tochka.com/uapi/invoice/{apiVersion}/bills"
 
     def __init__(self, order_id: int):
         self.document_id = None
         self.total_amount_order = 0
         self.order_id = order_id
-        self.customer_code = None
+        self.customer_code = os.getenv('CUSTOMER_COD')
 
     def create_invoice(self):
         payer = Order.objects.get(id=self.order_id)
-
         payload = json.dumps({
             "Data": {
                 "accountId": os.getenv('BANK_ACCOUNT_ID'),
@@ -56,7 +56,7 @@ class Bank:
                     "bankName": payer.organisation_payer.bank_name,
                     "bankCorrAccount": payer.organisation_payer.bankCorrAccount,
                     "taxCode": payer.organisation_payer.inn,
-                    "type": "company",
+                    "type": 'ip' if len(payer.organisation_payer.inn) == 12 else 'company',
                     "secondSideName": payer.organisation_payer.name_full
                 },
                 "Content": {
@@ -78,8 +78,9 @@ class Bank:
         }
         response = requests.request("POST", self.url, headers=headers, data=payload)
         logging.info(f'RESPONSE  {response}')
-        self.document_id = response.json()['Data']['documentId']
-        logging.info(f'СГЕНЕРИРОВАЛИ СЧЕТ ПОЛУЧИЛИ DOC ID {self.document_id}')
+        if response:
+            self.document_id = response.json()['Data']['documentId']
+            logging.info(f'СГЕНЕРИРОВАЛИ СЧЕТ ПОЛУЧИЛИ DOC ID {self.document_id}')
 
     def __add_base_document_id(self):
         BankInvoices.objects.create(order_id=self.order_id,
@@ -106,8 +107,8 @@ class Bank:
         return positions
 
     @goto_media_orders
-    def get_invoice(self):
-        url = f"https://enter.tochka.com/uapi/invoice/v1.0/bills/{self.customer_code}/{self.document_id}/file"
+    def get_invoice(self) -> None:
+        url = f"https://enter.tochka.com/uapi/invoice/{self.apiVersion}/bills/{self.customer_code}/{self.document_id}/file"
         payload = {}
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
@@ -116,16 +117,15 @@ class Bank:
         with open(f'Order_{self.order_id}.pdf', 'wb') as file:
             file.write(response.content)
 
-    def get_customer_code(self):
-        url = "https://enter.tochka.com/uapi/open-banking/v1.0/customers"
+    def get_customer_code(self) -> str:
+        url = f"https://enter.tochka.com/uapi/open-banking/{self.apiVersion}/customers"
         payload = {}
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
         response = requests.request("GET", url, headers=headers, data=payload)
-
+        print('get_customer_code', response.json()['Data']['Customer'][0]['customerCode'])
         self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
-        logger.info(f'CUSTOMER_CODE {self.customer_code}')
         return self.customer_code
 
     def add_pdf_in_order(self):
@@ -137,12 +137,10 @@ class Bank:
 
     def get_status_invoice(self):
         document = BankInvoices.objects.get(order_id=self.order_id)
-        customer_code = 301576470
-        url = f'https://enter.tochka.com/uapi/invoice/v1.0/bills/{customer_code}/{document.document_id}/payment-status'
+        url = f'https://enter.tochka.com/uapi/invoice/{self.apiVersion}/bills/{self.customer_code}/{document.document_id}/payment-status'
 
         payload = ""
-        headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-                   }
+        headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"}
         response = requests.request("GET", url, headers=headers, data=payload)
         print(response.text)
         payment_status = response.json()['Data']['paymentStatus']
@@ -162,25 +160,14 @@ class Bank:
             start_time=timezone.now()
         )
 
-    def get_retailers(self):
-        url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/retailers?customerCode={self.customer_code}'
-        payload = {}
-        headers = {
-            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-        }
-        response = requests.request("GET", url, headers=headers, data=payload)
-        print(response.json())
-        self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
-
     def run(self):
         self.get_customer_code()
-        self.get_retailers()
-        # self.create_invoice()
-        # self.__add_base_document_id()
-        # self.get_invoice()
-        # self.add_pdf_in_order()
+        self.create_invoice()
+        self.__add_base_document_id()
+        self.get_invoice()
+        self.add_pdf_in_order()
 
 
-if __name__ == "__main__":
-    a = Bank(1)
-    a.run()
+if __name__ == '__main__':
+    a = Bank(3)
+    a.get_customer_code()
