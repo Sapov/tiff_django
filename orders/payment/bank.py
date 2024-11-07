@@ -124,7 +124,7 @@ class Bank:
         url = f"https://enter.tochka.com/uapi/open-banking/{self.apiVersion}/customers"
         payload = {}
 
-        response: Response = requests.request("GET", url, headers=self.headers, data=payload)
+        response = requests.request("GET", url, headers=self.headers, data=payload)
         if response:
             print('CUSTOMER_ID', response['Data']['Customer'][0]['customerCode'])
             # self.customer_code = response['Data']['Customer'][0]['customerCode']
