@@ -6,6 +6,8 @@ import requests
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from dotenv import load_dotenv, find_dotenv
 from django.utils import timezone
+from requests import Response
+
 from mysite import settings
 from orders.models import Order, OrderItem, BankInvoices
 import logging
@@ -36,6 +38,7 @@ class Bank:
     apiVersion = 'v1.0'
     host = 'https://enter.tochka.com/uapi/'
     url = f"https://enter.tochka.com/uapi/invoice/{apiVersion}/bills"
+    headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"}
 
     def __init__(self, order_id: int):
         self.document_id = None
@@ -120,19 +123,13 @@ class Bank:
     def get_customer_code(self) -> str:
         url = f"https://enter.tochka.com/uapi/open-banking/{self.apiVersion}/customers"
         payload = {}
-        headers = {
-            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-        }
-        response = requests.request("GET", url, headers=headers, data=payload)
-        print('get_customer_code', type(response.json()))
-        print('get_customer_code', type(response.text))
-        st = response.text
-        s = json.loads(st)
-        print('s', s)
-        print(type(s))
-        self.customer_code = s['Data']['Customer'][0]['customerCode']
-        # print(response.json()['Data']['Customer'][0]['customerCode'])
-        return self.customer_code
+
+        response: Response = requests.request("GET", url, headers=self.headers, data=payload)
+        if response:
+            print('CUSTOMER_ID', response['Data']['Customer'][0]['customerCode'])
+            # self.customer_code = response['Data']['Customer'][0]['customerCode']
+            # print(response.json()['Data']['Customer'][0]['customerCode'])
+            # return self.customer_code
 
     def add_pdf_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
@@ -146,8 +143,7 @@ class Bank:
         url = f'https://enter.tochka.com/uapi/invoice/{self.apiVersion}/bills/{self.customer_code}/{document.document_id}/payment-status'
 
         payload = ""
-        headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"}
-        response = requests.request("GET", url, headers=headers, data=payload)
+        response = requests.request("GET", url, headers=self.headers, data=payload)
         print(response.text)
         payment_status = response.json()['Data']['paymentStatus']
         logging.info(f'PAYMENT STATUS {payment_status}')
