@@ -30,12 +30,21 @@
 #
 # '''
 
-s = {'Data': {'Customer': [
-    {'customerCode': '301576470', 'customerType': 'Business', 'isResident': True, 'taxCode': '366202910465',
-     'shortName': 'Индивидуальный предприниматель Сапов Александр Николаевич',
-     'fullName': 'Индивидуальный предприниматель Сапов Александр Николаевич', 'customerOgrn': '319366800019380'},
-    {'customerCode': '301576474', 'customerType': 'Personal', 'isResident': True, 'taxCode': '366202910465',
-     'shortName': 'Сапов А.Н.', 'fullName': 'Сапов Александр Николаевич'}]},
-     'Links': {'self': 'https://enter.tochka.com/uapi/open-banking/v1.0/customers'}, 'Meta': {'totalPages': 1}}
+import asyncio
+import aiohttp
+from aiohttp import ClientSession
 
-print(s['Data']['Customer'][0]['customerCode'])
+
+async def fetch_status(session: ClientSession, url: str) -> int:
+    async with session.get(url) as result:
+        return result.status
+
+
+async def main():
+    async with aiohttp.ClientSession() as session:
+        url = 'https://san-cd.ru'
+        status = await fetch_status(session, url)
+        print(f'Состояние для {url} было равно {status}')
+
+
+asyncio.run(main())
