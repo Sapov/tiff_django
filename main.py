@@ -34,17 +34,27 @@ import asyncio
 import aiohttp
 from aiohttp import ClientSession
 
+from collections import deque
 
-async def fetch_status(session: ClientSession, url: str) -> int:
-    async with session.get(url) as result:
-        return result.status
+dp = deque([1, 2, 3, 4])
+print(dp)
+dp.append('5)')
+print(dp)
 
+print(dp.popleft())
+print(dp)
+print(dp.appendleft(88))
+print(dp)
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        url = 'https://san-cd.ru'
-        status = await fetch_status(session, url)
-        print(f'Состояние для {url} было равно {status}')
-
-
-asyncio.run(main())
+# async def fetch_status(session: ClientSession, url: str) -> int:
+#     async with session.get(url) as result:
+#         return result.status
+#
+# async def main():
+#     async with aiohttp.ClientSession() as session:
+#         url = 'https://san-cd.ru'
+#         status = await fetch_status(session, url)
+#         print(f'Состояние для {url} было равно {status}')
+#
+#
+# asyncio.run(main())

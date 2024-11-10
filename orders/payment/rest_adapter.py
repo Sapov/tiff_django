@@ -25,7 +25,7 @@ class RestAdapter:
         @param retries:         Additional attempt
         @param logger:          optional logger instance
         """
-        self.hostname = f'https://{hostname}/{ver}'
+        self.url = f'https://{hostname}/{ver}'
         self.content_type = content_type
         self.accept_language = accept_language
         self._api_key = api_key
@@ -35,7 +35,7 @@ class RestAdapter:
         self._logger = logger or logging.getLogger(__package__)
 
     async def _do(self,
-                  method: str,
+                  http_method: str,
                   endpoint: str,
                   params: dict[str, str] = None,
                   payload: dict = None) -> Result:
@@ -47,5 +47,8 @@ class RestAdapter:
         @param payload:     Dictionary with payload
         @return: Result instance
         """
-
-
+        full_url = self.url + endpoint
+        headers = {'content-type': self.content_type, 'Accept-Language': self.accept_language,
+                   'Authorization': f"Bearer {self._api_key}"}
+        log_line_pre = f'method={http_method}, url={full_url}, params={params}'
+        log_line_post = ', '.join((log_line_pre, "success={}, status_code={}, message={}"))

@@ -127,8 +127,8 @@ class Bank:
         response = requests.request("GET", url, headers=self.headers, data=payload)
         logger.info(f'CUSTOMER_ID', response.json())
         if response:
-            print('CUSTOMER_ID', response.json()['Data']['Customer'][0]['customerCode'])
-            # self.customer_code = response['Data']['Customer'][0]['customerCode']
+            logger.info('RESPONSE__CUSTOMER_ID', response.json()['Data']['Customer'][0]['customerCode'])
+            self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
             # print(response.json()['Data']['Customer'][0]['customerCode'])
             # return self.customer_code
 
