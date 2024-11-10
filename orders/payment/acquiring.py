@@ -3,6 +3,9 @@ import os
 import requests
 from orders.models import Order, OrderItem
 from orders.payment.bank import Bank
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Acquiring(Bank):
@@ -22,10 +25,7 @@ class Acquiring(Bank):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami#create_payment_operation_with_receipt_acquiring__apiVersion__payments_with_receipt_post'''
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/retailers?customerCode={self.customer_code}'
         payload = {}
-        headers = {
-            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-        }
-        response = requests.request("GET", url, headers=headers, data=payload)
+        response = requests.request("GET", url, headers=self.headers, data=payload)
         print(response.json())
         self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
         self.terminalId = (response.json()['Data']['Retailer'][0]['terminalId'])
@@ -62,10 +62,13 @@ class Acquiring(Bank):
             }
         }
         print('PAYLOAD', json.dumps(payload, indent=4))
-        response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
-        print(response.json())
-        self.pay_link = response.json()['Data']['paymentLink']
-        self._add_pay_link_in_table_order()
+        try:
+            response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
+            print(response.json())
+            self.pay_link = response.json()['Data']['paymentLink']
+            self._add_pay_link_in_table_order()
+        except requests.exceptions.RequestException as e:
+            logger.error(f' Error create payment link {e}')
 
     def __create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
@@ -92,29 +95,11 @@ class Acquiring(Bank):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-razresheniyami#get_all_consents_list_consent__apiVersion__consents_get'''
         url = f"https://enter.tochka.com/uapi/{self.apiVersion}/consents"
         payload = {}
-        response = requests.request("GET", url, headers=self.headers, data=payload)
-        print(response.text)
-
-    def create_payment_operation(self):
-        '''https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami#get_payment_operation_list_acquiring__apiVersion__payments_get'''
-        url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments'
-        payload = {
-            "Data": {
-                "customerCode": self.customer_code,
-                "amount": "1234.00",
-                "purpose": "Перевод за оказанные услуги",
-                "redirectUrl": "https://example.com",
-                "failRedirectUrl": "https://example.com/fail",
-                "paymentMode": [
-                    "sbp",
-                    "card"
-                ],
-                "saveCard": True,
-                "consumerId": "fedac807-078d-45ac-a43b-5c01c57edbf8"
-            }
-        }
-        response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
-        print(response.text)
+        try:
+            response = requests.request("GET", url, headers=self.headers, data=payload)
+            print(response.text)
+        except requests.exceptions.RequestException as e:
+            logger.error(f'Error as {e}')
 
     def _add_pay_link_in_table_order(self) -> None:
         '''Добавим ссылку об оплате в таблицу с ордером'''
@@ -129,7 +114,5 @@ class Acquiring(Bank):
         self.create_payment_operation_with_receipt_link(organisation_flag)
         return self.pay_link
 
-
         # self.get_retailers()
         # self.check()
-
