@@ -131,14 +131,13 @@ class Bank:
         try:
             response = requests.request("GET", url, headers=self.headers, data=payload)
 
-            logger.info(f'CUSTOMER_ID', response.text)
             print(f'CUSTOMER_ID', response.text)
-            logger.info('RESPONSE__CUSTOMER_ID', response.json()['Data']['Customer'][0]['customerCode'])
             print('RESPONSE__CUSTOMER_ID', response.json()['Data']['Customer'][0]['customerCode'])
             self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
             # print(response.json()['Data']['Customer'][0]['customerCode'])
             return self.customer_code
         except requests.exceptions.RequestException as e:
+            print(f'ERROR sending message: {e}')
             logger.error(f'ERROR sending messag: {e}')
 
     def add_pdf_in_order(self):
