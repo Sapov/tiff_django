@@ -67,6 +67,11 @@ class Alerts:
 
     @classmethod
     def set_time_count_down(cls, order_id: int, domain):
+        """
+
+        @param order_id: номер заказа
+        @param domain: домен
+        """
         cls.stop_count_down(order_id)
         order = Order.objects.get(id=order_id)
         PeriodicTask.objects.create(
