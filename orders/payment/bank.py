@@ -79,11 +79,13 @@ class Bank:
             'Content-Type': 'application/json',
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
-        response = requests.request("POST", self.url, headers=headers, data=payload)
-        logging.info(f'RESPONSE  {response}')
-        if response:
+        try:
+            response = requests.request("POST", self.url, headers=headers, data=payload)
+            logging.info(f'RESPONSE  {response}')
             self.document_id = response.json()['Data']['documentId']
             logging.info(f'СГЕНЕРИРОВАЛИ СЧЕТ ПОЛУЧИЛИ DOC ID {self.document_id}')
+        except requests.exceptions.RequestException as e:
+            logger.error(f'Error message create invoice {e}')
 
     def __add_base_document_id(self):
         BankInvoices.objects.create(order_id=self.order_id,
@@ -116,21 +118,28 @@ class Bank:
         headers = {
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
-        response = requests.request("GET", url, headers=headers, data=payload)
-        with open(f'Order_{self.order_id}.pdf', 'wb') as file:
-            file.write(response.content)
+        try:
+            response = requests.request("GET", url, headers=headers, data=payload)
+            with open(f'Order_{self.order_id}.pdf', 'wb') as file:
+                file.write(response.content)
+        except requests.exceptions.RequestException as e:
+            logger.error(f' Error create PDF as {e}')
 
     def get_customer_code(self) -> str:
         url = f"https://enter.tochka.com/uapi/open-banking/{self.apiVersion}/customers"
         payload = {}
+        try:
+            response = requests.request("GET", url, headers=self.headers, data=payload)
 
-        response = requests.request("GET", url, headers=self.headers, data=payload)
-        logger.info(f'CUSTOMER_ID', response.json())
-        if response:
+            logger.info(f'CUSTOMER_ID', response.text)
+            print(f'CUSTOMER_ID', response.text)
             logger.info('RESPONSE__CUSTOMER_ID', response.json()['Data']['Customer'][0]['customerCode'])
+            print('RESPONSE__CUSTOMER_ID', response.json()['Data']['Customer'][0]['customerCode'])
             self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
             # print(response.json()['Data']['Customer'][0]['customerCode'])
-            # return self.customer_code
+            return self.customer_code
+        except requests.exceptions.RequestException as e:
+            logger.error(f'ERROR sending messag: {e}')
 
     def add_pdf_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
