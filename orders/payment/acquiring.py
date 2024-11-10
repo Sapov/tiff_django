@@ -36,7 +36,7 @@ class Acquiring(Bank):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
         payer = Order.objects.get(id=self.order_id)
-
+        tel = payer.Contractor.phone_number.national_number
         payload = {
             "Data": {
                 "customerCode": self.customer_code,
@@ -53,10 +53,11 @@ class Acquiring(Bank):
                 "taxSystemCode": "usn_income",
                 "merchantId": self.merchantId,
                 "Client": {
-                    "name": f'{str(payer.Contractor.first_name)} {payer.Contractor.last_name}' if organisation_flag else str(
+                    "name": f'{str(payer.Contractor.first_nam0e)} {payer.Contractor.last_name}' if organisation_flag else str(
                         payer.organisation_payer),
                     "email": str(payer.Contractor),
-                    "phone": f"+7{payer.Contractor.phone_number.national_number}",
+
+                    "phone": f"+7{tel}" if tel else None,
                 },
                 "Items": self.__create_list_position()
             }

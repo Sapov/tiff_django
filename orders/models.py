@@ -66,7 +66,7 @@ class Order(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    Contractor = models.ForeignKey(
+    Contractor = models.ForeignKey( # переименовать в юзера!!!!!
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name="Заказчик",
