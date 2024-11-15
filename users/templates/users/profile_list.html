@@ -19,6 +19,9 @@
 
                 <th scope="col">Email</th>
                 <th scope="col">Телефон</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Отечество</th>
                 <th scope="col">Отсылать сообщения на Whatsapp</th>
             </tr>
             </thead>
@@ -29,6 +32,9 @@
             <tr>
                 <td>{{ item.email }}</td>
                 <td>{{ item.phone_number }}</td>
+                <td>{{ item.last_name }}</td>
+                <td>{{ item.first_name }}</td>
+                <td>{{ item.patronymic }}</td>
                 <td>{{ item.whatsapp }}</td>
                 <td>
                     <a href="{% url 'profile_edit' %}">Изменить</a>

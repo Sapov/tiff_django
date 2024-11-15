@@ -34,18 +34,6 @@ import asyncio
 import aiohttp
 from aiohttp import ClientSession
 
-from collections import deque
-
-dp = deque([1, 2, 3, 4])
-print(dp)
-dp.append('5)')
-print(dp)
-
-print(dp.popleft())
-print(dp)
-print(dp.appendleft(88))
-print(dp)
-
 # async def fetch_status(session: ClientSession, url: str) -> int:
 #     async with session.get(url) as result:
 #         return result.status
@@ -58,3 +46,18 @@ print(dp)
 #
 #
 # asyncio.run(main())
+
+
+from string import ascii_letters, digits
+
+
+def check(mail: str):
+    l = [i for i in mail if i in ascii_letters + '@._' + digits]
+    if '.' in l and '@' in l:
+
+        print("ДА" if mail == ''.join(l) else 'НЕТ')
+    else:
+        print('НЕТ')
+
+check('sc_lib@list_ru')
+

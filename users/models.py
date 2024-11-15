@@ -34,6 +34,7 @@ class User(AbstractUser):
                                    help_text='Установите Да если '
                                              'к номеру телефона подключен Telegram',
                                    null=True, blank=True)
+    patronymic = models.CharField(max_length=200, verbose_name="Отчество")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]

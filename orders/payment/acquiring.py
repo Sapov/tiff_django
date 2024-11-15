@@ -115,5 +115,3 @@ class Acquiring(Bank):
         self.create_payment_operation_with_receipt_link(organisation_flag)
         return self.pay_link
 
-        # self.get_retailers()
-        # self.check()
