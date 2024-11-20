@@ -4,6 +4,8 @@ import os
 import shutil
 import zipfile
 from PIL import Image, ImageOps
+
+
 from datetime import date, datetime
 import datetime
 from django.conf import settings
@@ -17,6 +19,7 @@ from account.models import Organisation, Delivery
 from files.models import Product
 
 logger = logging.getLogger(__name__)
+Image.MAX_IMAGE_PIXELS = None # отключаем проверку разрешения
 
 
 class StatusOrder(models.Model):
