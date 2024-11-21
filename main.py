@@ -44,20 +44,12 @@ from aiohttp import ClientSession
 #         status = await fetch_status(session, url)
 #         print(f'Состояние для {url} было равно {status}')
 #
-#
-# asyncio.run(main())
 
+l = ['8 11 -5',
+     '3 4 10',
+     '-1 -2 3',
+     '4 5 6']
 
-from string import ascii_letters, digits
+ll = list(map(lambda x: list(map(int, x.split())), l))
 
-
-def check(mail: str):
-    l = [i for i in mail if i in ascii_letters + '@._' + digits]
-    if '.' in l and '@' in l:
-
-        print("ДА" if mail == ''.join(l) else 'НЕТ')
-    else:
-        print('НЕТ')
-
-check('sc_lib@list_ru')
-
+print(ll)

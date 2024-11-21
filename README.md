@@ -4,39 +4,16 @@
 Как запустить: 
 git clone https://github.com/Sapov/tiff_django.git
 
-python -m venv myenv
+ЛОКАЛЬНО:
 
-source /myenv/bin/activate
+PYTHONUNBUFFERED=1;DJANGO_SETTINGS_MODULE=mysite.settings_dev python3 manage.py runserver
+docker run -d -p 6379:6379  redis      
+DJANGO_SETTINGS_MODULE=mysite.settings_dev celery -A mysite worker -l info
 
-pip install -r requirements.txt
-
-touch .env
-
-python manage.py makemigrations
-
-python manage.py migrate
-
-python manage.py add_price
-
-python manage.py createsuperuser
-
-mkdir media/orders
-
-mkdir media/arhive
-
-python3 manage.py runserver
+DJANGO_SETTINGS_MODULE=mysite.settings_dev celery -A mysite beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
 
-для отладки запустить redis:
-Новая Консоль:
-docker run -d -p 6379:6379 redis
 
-Запускаем Celery:
-celery -A mysite worker -l info
-
-Запускаем RUNSERVER:
-python manage.py runserver
-   
 ---------------- .env ---------------------------------
 
 POSTGRES_HOST=(postgres_db) - такой же как в docker compose (container_name: postgres_db)
@@ -66,26 +43,6 @@ EMAIL_USE_TLS=True
 
 SECRET_KEY='SecRet_Key' 
 
-#--------------для генерации счета-----------------
-
-BANK_NAME="имя банка" 
-
-BIK_NUMBER=Бик номер 
-
-ORDER_KOR='Кор. счет'
-
-INN='инн номер'
-
-NUM_ORDER='номер счета'
-
-NAME_ORGANISATION='Название оранизации'
-
-ADDRESS_1='Юр. Адрес'
-
-ADDRESS_2='Почтовый Адрес'
-
-_____________________________________________________
-
 
 Остановить: docker compose down
 
@@ -95,5 +52,3 @@ docker run -d -p 6379:6379 redis
 Запускаем Celery:
 celery -A mysite worker -l info
 
-Запускаем RUNSERVER:
-python manage.py runserver
