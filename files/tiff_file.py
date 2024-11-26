@@ -7,29 +7,8 @@ from PIL import Image as Image_pil, ImageOps
 from mysite import settings
 
 import logging
+
 logger = logging.getLogger(__name__)
-
-
-def check_tiff(file_name: str):
-    '''
-    :param file_name: принимает имя файла
-    :return: возвращает кортеж (длина ширина (см) и разрешение файла (dpi)
-    '''
-
-    try:
-        Image_pil.MAX_IMAGE_PIXELS = None
-        with Image_pil.open(file_name) as img:
-            width, length = img.size
-            resolution = round(img.info['dpi'][0], 0)
-            width = round(2.54 * width / resolution, 0)
-            length = round(2.54 * length / resolution, 0)
-
-    except PIL.UnidentifiedImageError:
-
-        return print('''!!! -- Это ошибка: Не сведенный файл Tif --- !!!
-Решение: Photoshop / слои / выполнить сведение''')
-
-    return width, length, resolution
 
 
 class Calculation:
@@ -97,18 +76,18 @@ class WorkWithFile:
             with Image_pil.open(file_name) as img:
                 logger.info(img)
                 width_px, length_px = img.size
-                logger.info(f'{width_px}, {length_px}')
+                logger.info(f'[info] width: {width_px} px, length: {length_px} px')
                 resolution = round(img.info['dpi'][0], 0)
-                logger.info(f'resolution:{resolution}')
+                logger.info(f'[info] Resolution: {resolution} dpi')
                 persent_resize = float(new_dpi / resolution)
                 logger.info(f'persent_resize {persent_resize}')
                 width_new_px = round(float(persent_resize * width_px), 0)
                 length_new_px = round((width_new_px / width_px) * length_px, 0)
-                print('width_new_px', width_new_px, 'length_new_px', length_new_px)
+                print(f'[INFO] width_new_px: {width_new_px} px, length_new: {length_new_px} px')
                 img = img.resize((int(width_new_px), int(length_new_px)))
                 logger.info(img)
-                img.save('new_file.tif', compression='tiff_lzw',
-                         dpi=(new_dpi, new_dpi))  # f'{file_name}',  dpi=(new_dpi, new_dpi)
+                img.save('new_file.tif', compression='tiff_lzw', dpi=(new_dpi, new_dpi))
+                # img.thumbnail(width_new_px)
                 logger.info(f' МЫ тут{os.getcwd()}')
             logger.info(f'[INFO] Изменил размер файла {file_name} c {resolution} dpi на {new_dpi} dpi\n')
             os.remove(str(file_name))
@@ -304,7 +283,7 @@ class WorkZip:
             # Product.objects.create(Contractor=request.user, images=i)
 
 
-class Image:
+class ImageFile:
     '''Работа с загруженным файлом'''
 
     def __init__(self, image):
@@ -316,7 +295,7 @@ class Image:
     def dimensions(self):
         '''
         :param self.image принимает имя файла
-        :return: возращает кортеж (длина, ширина (см) и разрешение файла (dpi)
+        :return: возвращает кортеж (длина, ширина (см) и разрешение файла (dpi)
         '''
 
         try:
@@ -376,7 +355,7 @@ class Calculator:
         return self.value_material_price, self.value_finishing_price
 
     def calculate(self):
-        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
+        return self.__print_calculator() + self.__finishing_calculator() * self.quantity
 
     def calculate_cost(self):
         # СЕБЕСТОИМОСТЬ

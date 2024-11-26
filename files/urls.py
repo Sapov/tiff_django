@@ -8,7 +8,6 @@ from .views import (
     FilesUpdateView,
     FilesCreateView,
     price,
-    upload_arh,
     calculator,
     ViewFilesUserListView,
     FilesCreateViewInter,
@@ -34,7 +33,6 @@ urlpatterns = [
     path("edit/<pk>", FilesUpdateView.as_view(), name="edit_files"),
     path("delete/<int:id>/", delete, name='delete_files'),
     path("price/", price, name="price"),  # прайс-лист
-    path("upload/", upload_arh, name="upload_arh"),  # загрузка архива файла
     # --------------calculators--------------
     # calc outer
     path("calculator/", calculator, name="calculator"),  # Calculator

@@ -90,27 +90,6 @@ class Order(models.Model):
         return reverse("orders:add_file_in_order", args=[self.id])
 
 
-# def order_post_save(sender, instance, created, **kwargs):
-#     """Если статус заказа (В работе) - меняем все файлы в заказе на статус в работе"""
-#     status = instance.status
-#     id_order = instance.id
-#     if status.id == 2:  # Если статус "В работе"
-#         logger.info("in Work")
-#         # меняем все файлы в заказе на статус в работе
-#         all_products_in_order = OrderItem.objects.filter(order=id_order, is_active=True)
-#         for item in all_products_in_order:
-#             file = Product.objects.get(id=item.product.id)
-#             status = StatusProduct.objects.get(id=2)
-#             file.status_product = status
-#             file.save()
-#         # ______________ SEND FILES__________________
-#         # order_item = UtilsModel(id_order)
-#         # order_item.run()
-#
-#
-# post_save.connect(order_post_save, sender=Order)
-
-
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name="Ордер")
     product = models.ForeignKey(
@@ -152,6 +131,7 @@ class OrderItem(models.Model):
 
     def save(self, *args, **kwargs):
         price_per_item = self.product.price
+        self.quantity = self.product.quantity
         logger.info(price_per_item)
         self.price_per_item = price_per_item
         self.total_price = self.price_per_item * self.quantity

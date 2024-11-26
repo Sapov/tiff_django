@@ -19,13 +19,6 @@ class AddFiles(forms.Form):
     quantity = forms.CharField(max_length=29)
 
 
-class UploadArhive(forms.ModelForm):
-    class Meta:
-        model = UploadArh
-        fields = "__all__"
-
-
-###
 class CalculatorForm(forms.Form):
     quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
     material = forms.ModelChoiceField(

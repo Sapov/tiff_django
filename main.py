@@ -31,6 +31,8 @@
 # '''
 
 import asyncio
+
+import PIL
 import aiohttp
 from aiohttp import ClientSession
 
@@ -44,12 +46,16 @@ from aiohttp import ClientSession
 #         status = await fetch_status(session, url)
 #         print(f'Состояние для {url} было равно {status}')
 #
-
-l = ['8 11 -5',
-     '3 4 10',
-     '-1 -2 3',
-     '4 5 6']
-
-ll = list(map(lambda x: list(map(int, x.split())), l))
-
-print(ll)
+'''Проверяем разрешение файла в соответстви стребованиясми для печати и уменьшаем разрешение файла сохраняя пропорции
+'''
+rang = ['рядовой', 'сержант', 'старшина', 'прапорщик', 'лейтенант', 'капитан', 'майор', 'подполковник', 'полковник']
+lst_in = [
+    'Атос=лейтенант',
+    'Портос=прапорщик',
+    "д'Артаньян=капитан",
+    'Арамис=лейтенант',
+    'Балакирев=рядовой', ]
+l = [i.split('=') for i in lst_in]
+lst = sorted(l, key=lambda x: rang.index(x[1]))
+print(l)
+print(lst)

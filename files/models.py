@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
 from django.urls import reverse
-from .tiff_file import WorkWithFile, Calculator, Image
+from .tiff_file import WorkWithFile, Calculator, ImageFile
 
 import logging
 
@@ -195,7 +195,7 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         """Расчет и запись стоимости баннера"""
-        image_parameters = Image(self.images)
+        image_parameters = ImageFile(self.images)
         self.width, self.length, self.resolution = image_parameters.dimensions()
         dict_param = {'quantity': self.quantity,
                       'material': self.material,
@@ -219,10 +219,6 @@ def product_post_save(sender, instance, created, **kwargs):
 
 
 post_save.connect(product_post_save, sender=Product)
-
-
-class UploadArh(models.Model):
-    path_file = models.FileField(upload_to="upload_arhive")
 
 
 class UseCalculator(models.Model):

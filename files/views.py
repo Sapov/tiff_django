@@ -12,7 +12,6 @@ from orders.models import UtilsModel, Order, StatusOrder, OrderItem
 from orders.views import change_status_order, get_domain
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
-    UploadArhive,
     CalculatorForm,
     UploadFilesInter,
     UploadFilesLarge,
@@ -23,7 +22,7 @@ from .forms import (
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 
-from .tiff_file import WorkZip, Calculator
+from .tiff_file import Calculator
 from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 

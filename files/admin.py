@@ -6,7 +6,7 @@ from .models import (
     TypePrint,
     FinishWork,
     StatusProduct,
-    UploadArh, UseCalculator,
+    UseCalculator,
 )
 from account.models import Organisation
 
@@ -76,4 +76,3 @@ class TypePrintAdmin(admin.ModelAdmin):
 
 admin.site.register(TypePrint, TypePrintAdmin)
 admin.site.register(StatusProduct)
-admin.site.register(UploadArh)
