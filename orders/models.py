@@ -130,10 +130,8 @@ class OrderItem(models.Model):
         verbose_name = "Товар в заказе"
 
     def save(self, *args, **kwargs):
-        price_per_item = self.product.price
         self.quantity = self.product.quantity
-        logger.info(price_per_item)
-        self.price_per_item = price_per_item
+        self.price_per_item = self.product.price
         self.total_price = self.price_per_item * self.quantity
         # Cost
         cost_price_per_item = self.product.cost_price
