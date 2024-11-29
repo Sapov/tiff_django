@@ -300,7 +300,7 @@ class UtilsModel:
                 new_name_file = self._rename_files(item)
 
                 # logger.info(f'[INFO] Обводим картинку контуром')
-                self._draw_outline_image(new_name_file)
+                # self._draw_outline_image(new_name_file)
 
                 new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
@@ -400,6 +400,7 @@ class UtilsModel:
 
     @classmethod
     def _draw_outline_image(cls, file_name):
+        '''прочитать разрешение файла и длинны сторон и пор сохранении задать их СНОВА!!!'''
         # Делаем обводку вокруг файла, часто файлы имею много белого  - непонятно как его разрезать
         img = Image.open(file_name)
         img_border = ImageOps.expand(img, border=2, fill='black')

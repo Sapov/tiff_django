@@ -33,6 +33,7 @@
 import asyncio
 
 import PIL
+from PIL import Image
 import aiohttp
 from aiohttp import ClientSession
 
@@ -46,16 +47,8 @@ from aiohttp import ClientSession
 #         status = await fetch_status(session, url)
 #         print(f'Состояние для {url} было равно {status}')
 #
-'''Проверяем разрешение файла в соответстви стребованиясми для печати и уменьшаем разрешение файла сохраняя пропорции
-'''
-rang = ['рядовой', 'сержант', 'старшина', 'прапорщик', 'лейтенант', 'капитан', 'майор', 'подполковник', 'полковник']
-lst_in = [
-    'Атос=лейтенант',
-    'Портос=прапорщик',
-    "д'Артаньян=капитан",
-    'Арамис=лейтенант',
-    'Балакирев=рядовой', ]
-l = [i.split('=') for i in lst_in]
-lst = sorted(l, key=lambda x: rang.index(x[1]))
-print(l)
-print(lst)
+img = Image.open('/home/sasha/Загрузки/Order_№_3_2024-11-22/test2.tif')
+print(img.size)
+print(img.width/2.54)
+
+
