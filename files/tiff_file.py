@@ -10,23 +10,23 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
-class Calculation:
-    def __init__(self, width, length):
-        self.width = width
-        self.length = length
-        self.resolution = None
-        self.price = None
-
-    def perimert(self):
-        return (self.width + self.length) * 2 / 100  # / 100 приводим к метрам
-
-    def price(self, quantity, material_price):
-        price = round(self.width / 100 * self.length / 100 * quantity * material_price)
-        # finishka = Calculation(self.width, self.length)
-        # self.price += finishka.perimert() * self.finishWork_price  # Добавляю стоимость фиишной обработки
-        logger.info(price)
-        return price
+#
+# class Calculation:
+#     def __init__(self, width, length):
+#         self.width = width
+#         self.length = length
+#         self.resolution = None
+#         self.price = None
+#
+#     def perimert(self):
+#         return (self.width + self.length) * 2 / 100  # / 100 приводим к метрам
+#
+#     def price(self, quantity, material_price):
+#         price = round(self.width / 100 * self.length / 100 * quantity * material_price)
+#         # finishka = Calculation(self.width, self.length)
+#         # self.price += finishka.perimert() * self.finishWork_price  # Добавляю стоимость фиишной обработки
+#         logger.info(price)
+#         return price
 
 
 def goto_media(foo):
