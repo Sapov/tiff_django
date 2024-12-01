@@ -455,4 +455,4 @@ def about_file(request, file_id):
     print(file_id)
     files = Product.objects.filter(id=file_id)
     print(files)
-    return render(request, "about_file.html", {"files": files})
+    return render(request, "files/about_file.html", {"files": files})
