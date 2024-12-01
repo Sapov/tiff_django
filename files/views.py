@@ -8,7 +8,8 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 
 from orders.alerts import Alerts
-from orders.models import UtilsModel, Order, StatusOrder, OrderItem
+from orders.models import Order, StatusOrder, OrderItem
+from .works_with_files.atchives_files import UtilsModel
 from orders.views import change_status_order, get_domain
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (

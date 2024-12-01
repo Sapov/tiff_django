@@ -1,7 +1,7 @@
 from celery import shared_task
 
 import users.whatssapp
-from orders.models import UtilsModel
+from files.works_with_files.atchives_files import UtilsModel
 from .alerts import Alerts
 from .payment.acquiring import Acquiring
 from .payment.bank import Bank

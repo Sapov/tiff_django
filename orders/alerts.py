@@ -5,7 +5,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
-from .models import Order, UtilsModel, OrderItem
+from .models import Order, OrderItem
+from files.works_with_files.atchives_files import UtilsModel
 import logging
 
 logger = logging.getLogger(__name__)
