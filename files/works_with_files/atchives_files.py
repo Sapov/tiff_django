@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from files.models import Product
 from files.works_with_files import image_tiff_file
 from orders.models import Order, logger, OrderItem, StatusOrder
+from orders.tasks import send_message_whatsapp
 
 
 class UtilsModel:
@@ -213,13 +214,7 @@ class UtilsModel:
         img_border = ImageOps.expand(img, border=border, fill='#ffffff')
         img_border.save(file_name)
 
-    def send_msg_whatsapp(self):
-        from .tasks import send_message_whatsapp
-        # ----------''' Сообщение дминистратору'''--------------
-        ''' В будущем - -Сообщение менеджеру типографии'''
-        admin_phone = os.getenv('PHONE_NUMBER')
-        send_message_whatsapp.delay(f'{admin_phone}', f'Письмо отправлено в типографию. '
-                                                      f'Заказ № {self.order_id} оформлен')
+
 
     def run(self):
         self.create_list()
