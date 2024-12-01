@@ -36,7 +36,7 @@
                 <!-- DataTales Example -->
                 <!--                    <div class="card shadow mb-4">-->
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Характеристики файла:</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Характеристики файла</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -59,7 +59,7 @@
                             </tr>
                             <tr>
                                 <td>Размер</td>
-                                <td>{{ file.width }} х {{ file.length }} см.</td>
+                                <td>{{ file.width }} х {{ file.length }} м</td>
                             </tr>
                             <tr>
                                 <td>Цветовая модель</td>
@@ -84,25 +84,40 @@
             </div>
         </div>
 
+        {% if file.status_product.id == 1 %}
+           <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+            <span class="text">Добавить файл</span>
         <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>
             <span class="text">Удалить файл</span> </a>
-
-        <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
+<!--        <td><a href="{% url 'files:edit_files' file.id %}">Изменить</a></td>-->
+        <td></td>
+        <td></td>
+        {% else %}
+     <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
                                         </span>
             <span class="text">Добавить файл</span>
         </a>
+        <td></td>
+        <td></td>
+        {% endif %}
+
+
     </div>
 </div>
 
 </div>
 
 
-{% endfor%}
+
+{% endfor %}
 {% endif %}
 
 {% endblock %}
