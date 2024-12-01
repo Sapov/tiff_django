@@ -16,6 +16,7 @@ from .views import (
     FilesCreateViewRollUp, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     ViewContractorListView, ContractorCreateView, ContractorUpdateView,
     ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed, calculator_interior_print, add_time_order,
+    about_file,
 )
 
 app_name = "files"
@@ -31,6 +32,8 @@ urlpatterns = [
     path("create_rollup/", FilesCreateViewRollUp.as_view(), name="create_rollup"),
     # форма редактирования файла
     path("edit/<pk>", FilesUpdateView.as_view(), name="edit_files"),
+    path("about_file/<int:file_id>", about_file, name="about_file"),
+
     path("delete/<int:id>/", delete, name='delete_files'),
     path("price/", price, name="price"),  # прайс-лист
     # --------------calculators--------------

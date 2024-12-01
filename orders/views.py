@@ -21,12 +21,11 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
-from .tasks import arh_for_mail, create_order_pdf, create_pay_link
+from .tasks import arh_for_mail, create_order_pdf
 from users.tasks import send_message_whatsapp
 import logging
 import jwt
 from jwt import exceptions
-from jwt import jwk_from_dict
 
 import json
 
@@ -292,13 +291,6 @@ class ViewAllPayOrders(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Order.objects.filter(paid=True).order_by("id")
         return queryset
-
-
-def about_file(request, file_id):
-    print(file_id)
-    files = Product.objects.filter(id=file_id)
-    print(files)
-    return render(request, "about_file.html", {"files": files})
 
 
 @login_required

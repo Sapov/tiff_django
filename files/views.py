@@ -449,3 +449,10 @@ def add_time_order(request, pk: int, hash_code):
         domain = str(get_domain(request))
         Alerts.set_time_count_down(pk, domain)
         return render(request, 'files/add_time_order_set.html', context)
+
+
+def about_file(request, file_id):
+    print(file_id)
+    files = Product.objects.filter(id=file_id)
+    print(files)
+    return render(request, "about_file.html", {"files": files})

@@ -187,7 +187,7 @@ class Product(models.Model):
         return f"{self.images}"
 
     def get_absolute_url(self):
-        return reverse("files:myfiles")
+        return reverse("files:about_file")
 
     class Meta:
         verbose_name_plural = "Файлы"
