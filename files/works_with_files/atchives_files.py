@@ -216,7 +216,7 @@ class UtilsModel:
 
     def send_msg_send_message(self):
         # ----------''' Сообщение дминистратору'''--------------
-        ''' В будущем - -Сообщение менеджеру типографии'''
+        ''' успешная отправка письма В будущем - -Сообщение менеджеру типографии'''
         admin_phone = os.getenv('PHONE_NUMBER')
         send_message_whatsapp.delay(f'{admin_phone}', f'Письмо отправлено в типографию. '
                                                       f'Заказ № {self.order_id} оформлен')
