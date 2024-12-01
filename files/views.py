@@ -28,7 +28,7 @@ from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 
 from users.tasks import send_message_whatsapp
-from files.works_with_files.image_tiff_file import ImageFile
+from .tasks import resize_image
 
 import logging
 
@@ -439,6 +439,8 @@ def about_file(request, file_id):
         message = (f"Файл не подходит для качественной печати. Разрешение файла {file.resolution} dpi меньше "
                    f"положенного {file.material.resolution_print} dpi")
     elif file.resolution > file.material.resolution_print:
+        # resize_image.delay(file)
+
         #Засунуть в Celery
         # item_file = ImageFile(file.images)
         # item_file.resolution_reduction(file.material.resolution_print)
