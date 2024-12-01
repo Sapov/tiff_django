@@ -459,6 +459,9 @@ def about_file(request, file_id):
     if file.resolution < file.material.resolution_print:
         message = (f"Файл не подходит для качественной печати. Разрешение файла {file.resolution} dpi меньше "
                    f"положенного {file.material.resolution_print} dpi")
+    elif file.resolution > file.material.resolution_print:
+        from files.works_with_files.image_tiff_file import ImageFile
+        ImageFile(file.images)
     else:
         message = ''
 

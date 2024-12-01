@@ -282,38 +282,6 @@ class WorkZip:
             print(i)
             # Product.objects.create(Contractor=request.user, images=i)
 
-
-class ImageFile:
-    '''Работа с загруженным файлом'''
-
-    def __init__(self, image):
-        self.image = image
-        self.length = None
-        self.width = None
-        self.resolution = None
-
-    def dimensions(self):
-        '''
-        :param self.image принимает имя файла
-        :return: возвращает кортеж (длина, ширина (см) и разрешение файла (dpi)
-        '''
-
-        try:
-            Image_pil.MAX_IMAGE_PIXELS = None
-            with Image_pil.open(self.image) as img:
-                width, length = img.size
-                self.resolution = round(img.info['dpi'][0], 0)
-                self.width = round(2.54 * width / self.resolution, 0) / 100
-                self.length = round(2.54 * length / self.resolution, 0) / 100
-
-        except PIL.UnidentifiedImageError:
-
-            return print('''!!! -- Это ошибка: Не сведенный файл Tiff --- !!!
-    Решение: Photoshop / слои / выполнить сведение''')
-
-        return self.width, self.length, self.resolution
-
-
 class Calculator:
     ''' Класс умеет рассчитывать стоимость печати по Image '''
 

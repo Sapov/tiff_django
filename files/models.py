@@ -2,7 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
 from django.urls import reverse
-from .tiff_file import WorkWithFile, Calculator, ImageFile
+from .tiff_file import WorkWithFile, Calculator
+from files.works_with_files.image_tiff_file import ImageFile
 
 import logging
 
