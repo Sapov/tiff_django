@@ -1,6 +1,5 @@
 from celery import shared_task
 
-import users.whatssapp
 from files.works_with_files.atchives_files import UtilsModel
 from .alerts import Alerts
 from .payment.acquiring import Acquiring
@@ -43,7 +42,3 @@ def check_payment_order(*args):
     order.get_status_invoice()
 
 
-@shared_task
-def send_message_whatsapp(phone_number: str, text: str):
-    '''Отсылаем сообщение в whatsapp'''
-    users.whatssapp.send_message(phone_number, text)

@@ -21,7 +21,8 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
-from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp, create_pay_link
+from .tasks import arh_for_mail, create_order_pdf, create_pay_link
+from users.tasks import send_message_whatsapp
 import logging
 import jwt
 from jwt import exceptions
@@ -230,11 +231,7 @@ def order_pay(request, order_id):
         # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправляем письмо с вопросом о готовности----------------
         # получаем дату готовности из базы
         Alerts.start_count_down(domain, order_id)
-        # ----------''' Сообщение дминистратору'''--------------
-        ''' В будущем - -Сообщение менеджеру типографии'''
-        admin_phone = os.getenv('PHONE_NUMBER')
-        send_message_whatsapp.delay(f'{admin_phone}', f'Письмо отправлено в типографию. '
-                                                      f'Заказ № {order_id} оформлен')
+
 
         # -----------------------create_link_pay-----------------------------------
         # Orders = Order.objects.get(id=order_id)

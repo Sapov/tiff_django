@@ -27,7 +27,7 @@ from .tiff_file import Calculator
 from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 
-from orders.tasks import send_message_whatsapp
+from users.tasks import send_message_whatsapp
 
 import logging
 
