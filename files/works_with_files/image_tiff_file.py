@@ -82,6 +82,7 @@ class ImageFile:
                 file = file.resize(size=(new_width_px, new_length_px))
                 file.save(self.image, compression='tiff_lzw',
                           dpi=(new_resolution, new_resolution))
+                logger.info(f'[Уменьшил разрешение до положенного] {new_resolution}')
 
         except Exception as Ex:
             print(Ex)

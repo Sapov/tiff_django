@@ -28,10 +28,9 @@ from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 
 from users.tasks import send_message_whatsapp
+from files.works_with_files.image_tiff_file import ImageFile
 
 import logging
-
-from .works_with_files.check_resolution import CheckResolution
 
 logger = logging.getLogger(__name__)
 
@@ -117,26 +116,6 @@ def price(request):
             "title": "Прайс-лист",
         },
     )
-
-
-def upload_arh(request):
-    if request.POST:
-        form = Uploadarchive(request.POST, request.FILES)
-        if form.is_valid():
-            # print(form.cleaned_data['path_file'])
-            file_name = form.cleaned_data["path_file"]
-            form.save()
-            WorkZip.print(file_name)
-            WorkZip.unzip(file_name)
-            WorkZip.unzip_files()
-
-            return HttpResponseRedirect("/")
-    else:
-        form = UploadArhive
-
-    return render(
-        request, "files/upload_arh.html", {"form": form, "title": "Добавление файлов"}
-    )  # изменение данных в БД
 
 
 def calculator(request):
@@ -460,8 +439,12 @@ def about_file(request, file_id):
         message = (f"Файл не подходит для качественной печати. Разрешение файла {file.resolution} dpi меньше "
                    f"положенного {file.material.resolution_print} dpi")
     elif file.resolution > file.material.resolution_print:
-        from files.works_with_files.image_tiff_file import ImageFile
-        ImageFile(file.images)
+        #Засунуть в Celery
+        # item_file = ImageFile(file.images)
+        # item_file.resolution_reduction(file.material.resolution_print)
+
+        message = ''
+
     else:
         message = ''
 
