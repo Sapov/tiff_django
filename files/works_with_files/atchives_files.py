@@ -12,7 +12,6 @@ from django.template.loader import render_to_string
 from files.models import Product
 from files.works_with_files import image_tiff_file
 from orders.models import Order, logger, OrderItem, StatusOrder
-from orders.tasks import send_message_whatsapp
 
 
 class UtilsModel:
@@ -213,8 +212,6 @@ class UtilsModel:
         border = int(5 * resolution / 2.54)  # на 5 см с каждой стороны увеличим картинку
         img_border = ImageOps.expand(img, border=border, fill='#ffffff')
         img_border.save(file_name)
-
-
 
     def run(self):
         self.create_list()
