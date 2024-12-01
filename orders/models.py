@@ -341,7 +341,7 @@ class UtilsModel:
                     shutil.move(i, self.arhiv_order_path)
                     os.chdir(settings.MEDIA_ROOT)  # Возвращаемся в корень
 
-    def add_arhive_in_order(self):
+    def add_archive_in_order(self):
         """Записываем в таблицу ссылку на архив с файлами"""
         order = Order.objects.get(id=self.order_id)
         logger.info(
@@ -397,7 +397,7 @@ class UtilsModel:
         self.archive()  # архивация заказа
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
-        self.add_arhive_in_order()
+        self.add_archive_in_order()
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
         self.send_mail_order()  # отправил письмо
