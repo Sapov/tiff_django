@@ -248,7 +248,7 @@ class UtilsModel:
                 length_width = f"Ширина: {file.width} м\nДлина: {file.length} м\nРазрешение: {file.resolution} dpi"
                 color_model = f"Цветовая модель: {file.color_model}"
                 size = f"Размер: {file.size} Мб"
-                square = f"Площадь: {(file.length * file.width)} м2"
+                square = f"Площадь: {int(file.length * file.width)} м2"
                 finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
                 comments = f"Комментарии к файлу: {file.comments}"
                 self.order_list.append(file_name)
