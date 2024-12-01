@@ -31,6 +31,8 @@ from users.tasks import send_message_whatsapp
 
 import logging
 
+from .works_with_files.check_resolution import CheckResolution
+
 logger = logging.getLogger(__name__)
 
 
@@ -454,5 +456,8 @@ def add_time_order(request, pk: int, hash_code):
 def about_file(request, file_id):
     print(file_id)
     files = Product.objects.filter(id=file_id)
+    files = Product.objects.get(id=file_id)
+
     print(files)
-    return render(request, "files/about_file.html", {"files": files})
+    CheckResolution(file_id).checking()
+    return render(request, "files/about_file.html", {"file": files})

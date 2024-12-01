@@ -1,0 +1,14 @@
+table, td, th {
+    border-collapse: collapse;
+     align-content: center;
+
+
+  }
+
+  td, th {
+    /* делаем отступ в ячейках, выставляем выравнивание текста */
+    padding: 10px 20px;
+    text-align: center;
+     align-content: center;
+
+  }

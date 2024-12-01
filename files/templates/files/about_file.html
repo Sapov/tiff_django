@@ -1,12 +1,11 @@
 {% extends 'base.html'%}
 <title>{% block title %} Полные сведения о файле: {% endblock %}</title>
 {% block body %}
+<link rel="stylesheet" href="/static/css/table_pic.css"/>
 
 
-{% if files.count > 0 %}
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    {% for file in files %}
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -23,7 +22,26 @@
                     <h6 class="m-0 font-weight-bold text-primary">Изображение</h6>
                 </div>
                 <div class="card-body">
-                    <a>{% load thumbnail %} <img src="{% thumbnail file.images 350x0 %}" class="image-detail"></a>
+                    <table class="table">
+                        <tbody>
+
+                        <tr>
+                            <th>
+                                ширина: {{ file.width }} м.
+                            </th>
+
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td><a>{% load thumbnail %} <img src="{% thumbnail file.images 350x0 %}"
+                                                             class="image-detail"></a></td>
+                            <td>высота: {{ file.length }} м</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!--                    <a>{% load thumbnail %} <img src="{% thumbnail file.images 350x0 %}" class="image-detail"></a>-->
 
                 </div>
             </div>
@@ -85,39 +103,29 @@
         </div>
 
         {% if file.status_product.id == 1 %}
-           <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
+        <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
                                         </span>
             <span class="text">Добавить файл</span>
-        <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-icon-split">
+            <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>
-            <span class="text">Удалить файл</span> </a>
-<!--        <td><a href="{% url 'files:edit_files' file.id %}">Изменить</a></td>-->
-        <td></td>
-        <td></td>
-        {% else %}
-     <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
+                <span class="text">Удалить файл</span> </a>
+            <!--        <td><a href="{% url 'files:edit_files' file.id %}">Изменить</a></td>-->
+            {% else %}
+            <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
                                         </span>
-            <span class="text">Добавить файл</span>
-        </a>
-        <td></td>
-        <td></td>
-        {% endif %}
+                <span class="text">Список файлов</span>
+            </a>
+            {% endif %}
 
 
     </div>
 </div>
 
-</div>
-
-
-
-{% endfor %}
-{% endif %}
 
 {% endblock %}
