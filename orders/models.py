@@ -19,7 +19,7 @@ from account.models import Organisation, Delivery
 from files.models import Product
 
 logger = logging.getLogger(__name__)
-Image.MAX_IMAGE_PIXELS = None # отключаем проверку разрешения
+Image.MAX_IMAGE_PIXELS = None  # отключаем проверку разрешения
 
 
 class StatusOrder(models.Model):
@@ -69,7 +69,7 @@ class Order(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    Contractor = models.ForeignKey( # переименовать в юзера!!!!!
+    Contractor = models.ForeignKey(  # переименовать в юзера!!!!!
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name="Заказчик",
@@ -224,8 +224,8 @@ class UtilsModel:
         logger.info(f"GENERATE HASH {self.hash_num}TYPE {type(self.hash_num)}")
         return self.hash_num
 
-    def create_text_file(self):
-        """Создаем файл с характеристиками файла для печати"""
+    def create_list(self):
+        """Создаем list с характеристиками файла для печати"""
         current_path = os.getcwd()
         os.chdir(f"{settings.MEDIA_ROOT}/image/")
 
@@ -234,41 +234,31 @@ class UtilsModel:
         # это нужно переписать на нормальный алгоритм с учетом выходных
         self.order_complete = order.date_complete - datetime.timedelta(hours=24)  # Типография от дает на сутки раньше
 
-        self.text_file_name = f"Order_№{self.order_id}_for_print_{date.today()}.txt"
-        with open(self.text_file_name, "w") as text_file:
-            text_file.write(f'{"*" * 5}   Заказ № {self.order_id}   {"*" * 5}\n\n')
-            self.order_list = []
-            items_file = {}
-            for item in all_products_in_order:
-                file = Product.objects.get(id=item.product.id)
+        self.order_list = []
+        for item in all_products_in_order:
+            file = Product.objects.get(id=item.product.id)
+            file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
+            material_txt = f"Материал для печати: {file.material}"
+            quantity_print = f"Количество: {file.quantity} шт."
+            length_width = f"Ширина: {file.width} м\nДлина: {file.length} м\nРазрешение: {file.resolution} dpi"
+            color_model = f"Цветовая модель: {file.color_model}"
+            size = f"Размер: {file.size} Мб"
+            square = f"Площадь: {int(file.length * file.width)} м2"
+            finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
+            comments = f"Комментарии к файлу: {file.comments}"
+            self.order_list.append(file_name)
+            self.order_list.append(material_txt)
+            self.order_list.append(quantity_print)
+            self.order_list.append(length_width)
+            self.order_list.append(color_model)
+            # self.order_list.append(size)
+            self.order_list.append(square)
+            self.order_list.append(finish_work_rec_file)
 
-                file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
-                material_txt = f"Материал для печати: {file.material}"
-                quantity_print = f"Количество: {file.quantity} шт."
-                length_width = f"Ширина: {file.width} м\nДлина: {file.length} м\nРазрешение: {file.resolution} dpi"
-                color_model = f"Цветовая модель: {file.color_model}"
-                size = f"Размер: {file.size} Мб"
-                square = f"Площадь: {int(file.length * file.width)} м2"
-                finish_work_rec_file = f"Финишная обработка: {file.FinishWork}"
-                comments = f"Комментарии к файлу: {file.comments}"
-                self.order_list.append(file_name)
-                self.order_list.append(material_txt)
-                self.order_list.append(quantity_print)
-                self.order_list.append(length_width)
-                self.order_list.append(color_model)
-                # self.order_list.append(size)
-                self.order_list.append(square)
-                self.order_list.append(finish_work_rec_file)
+            if comments != "Комментарии к файлу: ":
+                self.order_list.append(comments)
+            self.order_list.append("-" * 40 + "\n")
 
-                if comments != "Комментарии к файлу: ":
-                    self.order_list.append(comments)
-                self.order_list.append("-" * 40 + "\n")
-
-                text_file.write(
-                    f"{file_name}\n{material_txt}\n{quantity_print}\n{length_width}\n{square}\n{color_model}\n{size}\n{finish_work_rec_file}\n{comments}\n"
-                )
-                text_file.write("-" * 40 + "\n")
-        logger.info(f"CREATE File, {self.text_file_name}")
         logger.info(f"CREATE LIST, {self.order_list}")
 
         os.chdir(current_path)
@@ -283,7 +273,7 @@ class UtilsModel:
 
             return self.new_str
 
-    def arhive(self):
+    def archive(self):
         current_path = os.getcwd()  # запоминаем где мы
         os.chdir(f"{settings.MEDIA_ROOT}/image/")  # перейти в директорию image
         """Архивируем заказ"""
@@ -300,8 +290,7 @@ class UtilsModel:
                 new_arh = zipfile.ZipFile(self.arh_name, "a")
                 new_name_file = self._rename_files(item)
 
-                # logger.info(f'[INFO] Обводим картинку контуром')
-                # self._draw_outline_image(new_name_file)
+                logger.info(f'[INFO] Обводим картинку контуром')
                 file = image_tiff_file.ImageFile(new_name_file)
                 file.draw_outline_image()
 
@@ -427,9 +416,9 @@ class UtilsModel:
         cls.file_lzw_compress(file_name)
 
     def run(self):
-        self.create_text_file()
+        self.create_list()
         self.read_file()
-        self.arhive()  # архивация заказа
+        self.archive()  # архивация заказа
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
         self.add_arhive_in_order()

@@ -118,7 +118,7 @@ def price(request):
 
 def upload_arh(request):
     if request.POST:
-        form = UploadArhive(request.POST, request.FILES)
+        form = Uploadarchive(request.POST, request.FILES)
         if form.is_valid():
             # print(form.cleaned_data['path_file'])
             file_name = form.cleaned_data["path_file"]
