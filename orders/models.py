@@ -193,7 +193,6 @@ class UtilsModel:
         self.arhiv_order_path = None
         self.new_str = None
         self.arh_name = None
-        self.text_file_name = None
         self.order_id = order_id
         self.path_arhive = f"{settings.MEDIA_ROOT}/arhive"
         self.domain = domain
@@ -262,16 +261,6 @@ class UtilsModel:
         logger.info(f"CREATE LIST, {self.order_list}")
 
         os.chdir(current_path)
-        return self.text_file_name
-
-    def read_file(self):
-        current_path = os.getcwd()  # запоминаем где мы
-        os.chdir(f"{settings.MEDIA_ROOT}/image/")  # перейти в директорию image
-        with open(self.text_file_name) as file:  # читаю файл txt
-            self.new_str = file.read()
-            os.chdir(current_path)  # перейти обратно
-
-            return self.new_str
 
     def archive(self):
         current_path = os.getcwd()  # запоминаем где мы
@@ -391,21 +380,6 @@ class UtilsModel:
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
 
     @classmethod
-    def _draw_outline_image(cls, file_name):
-        '''прочитать разрешение файла и длинны сторон и пор сохранении задать их СНОВА!!!'''
-        # Делаем обводку вокруг файла, часто файлы имею много белого  - непонятно как его разрезать
-        img = Image.open(file_name)
-        img_border = ImageOps.expand(img, border=2, fill='black')
-        img_border.save(file_name)
-        cls.file_lzw_compress(file_name)
-
-    @classmethod
-    def file_lzw_compress(cls, file_name):
-        ''' Просто пересохраняем файл с компрессией'''
-        img = Image.open(file_name)
-        img.save(file_name, compression='tiff_lzw')
-
-    @classmethod
     def _add_white_border(cls, file_name, resolution):
         logger.info(f'[info] Увеличиваем поля на 5 см resolution {resolution} RESP {5 * resolution / 2.54}')
         img = Image.open(file_name)
@@ -413,11 +387,17 @@ class UtilsModel:
         border = int(5 * resolution / 2.54)  # на 5 см с каждой стороны увеличим картинку
         img_border = ImageOps.expand(img, border=border, fill='#ffffff')
         img_border.save(file_name)
-        cls.file_lzw_compress(file_name)
+
+    def send_msg_whatsapp(self):
+        from .tasks import send_message_whatsapp
+        # ----------''' Сообщение дминистратору'''--------------
+        ''' В будущем - -Сообщение менеджеру типографии'''
+        admin_phone = os.getenv('PHONE_NUMBER')
+        send_message_whatsapp.delay(f'{admin_phone}', f'Письмо отправлено в типографию. '
+                                                      f'Заказ № {self.order_id} оформлен')
 
     def run(self):
         self.create_list()
-        self.read_file()
         self.archive()  # архивация заказа
         self.create_folder_server()  # Создаем папку на сервере
         self.copy_files_in_server()
@@ -425,7 +405,7 @@ class UtilsModel:
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
         self.send_mail_order()  # отправил письмо
-        # Отправить администратору сообщение whatsapp
+        self.send_msg_whatsapp()  # Отправить администратору сообщение whatsapp
 
 
 class BankInvoices(models.Model):

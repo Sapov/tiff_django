@@ -227,12 +227,6 @@ def order_pay(request, order_id):
         domain = str(get_domain(request))
         arh_for_mail.delay(order_id, domain=domain)
 
-        # ----------''' Сообщение администратору'''--------------
-        ''' В будущем - -Сообщение менеджеру типографии'''
-        admin_phone = os.getenv('PHONE_NUMBER')
-        send_message_whatsapp.delay(f'{admin_phone}', f'Письмо отправлено в типографию. '
-                                                      f'Заказ № {order_id} оформлен')
-
         # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправляем письмо с вопросом о готовности----------------
         # получаем дату готовности из базы
 
@@ -250,7 +244,6 @@ def order_pay(request, order_id):
             # link_pay = create_pay_link.delay(order_id, True)
             link_pay = Acquiring(order_id).run(organisation_flag=True)
             context = {"Orders": order, 'link_pay': link_pay}
-            # context = {"Orders": order}
 
         else:
             logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
@@ -258,7 +251,6 @@ def order_pay(request, order_id):
             # link_pay = create_pay_link.delay(order_id, True)
             link_pay = Acquiring(order_id).run(organisation_flag=False)
             context = {"Orders": order, 'link_pay': link_pay}
-            # context = {"Orders": order}
 
         # оповещаем в whatsapp
         item_user = User.objects.get(email=user)
