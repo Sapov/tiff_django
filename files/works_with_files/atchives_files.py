@@ -3,7 +3,7 @@ import os
 import shutil
 import zipfile
 from datetime import datetime, date
-
+import datetime
 from PIL import Image, ImageOps
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
