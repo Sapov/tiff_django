@@ -4,7 +4,7 @@ import os
 import shutil
 import zipfile
 from PIL import Image, ImageOps
-
+from files.works_with_files import image_tiff_file
 
 from datetime import date, datetime
 import datetime
@@ -241,6 +241,7 @@ class UtilsModel:
             items_file = {}
             for item in all_products_in_order:
                 file = Product.objects.get(id=item.product.id)
+
                 file_name = f'Имя файла: {str(file.images)[str(file.images).rindex("/") + 1:]}'  # обрезаем пути оставляем только имя файла
                 material_txt = f"Материал для печати: {file.material}"
                 quantity_print = f"Количество: {file.quantity} шт."
@@ -301,6 +302,8 @@ class UtilsModel:
 
                 # logger.info(f'[INFO] Обводим картинку контуром')
                 # self._draw_outline_image(new_name_file)
+                file = image_tiff_file.ImageFile(new_name_file)
+                file.draw_outline_image()
 
                 new_arh.write(new_name_file, compress_type=zipfile.ZIP_DEFLATED)
                 new_arh.close()
