@@ -222,4 +222,3 @@ class UtilsModel:
         self.set_status_order(2)  # меняю статус заказа на Оформлен (статус: 2)
         self.__generate_link_to_work()  # генерирую ссылку о подтверждении принятия в работу
         self.send_mail_order()  # отправил письмо
-        self.send_msg_whatsapp()  # Отправить администратору сообщение whatsapp
