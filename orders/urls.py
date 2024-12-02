@@ -11,12 +11,12 @@ from .views import (
     order_pay,
     view_all_files_for_work_in_orders,
     ViewAllPayOrders,
-    about_file,
     report_complete_orders,
     new_order,
     OrdersViewList,
     AllOrdersListView, result, success_pay, fail, report_day, create_invoice, web_hook, fail_payment, success_payment,
 )
+from files.views import about_file
 
 app_name = "orders"
 
@@ -41,7 +41,6 @@ urlpatterns = [
     path("view_all_files_for_work_in_orders/", view_all_files_for_work_in_orders,
          name="view_all_files_for_work_in_orders", ),  # все файлы в работе
     path("order_pay/<int:order_id>", order_pay, name="order_pay"),
-    path("about_file/<int:file_id>", about_file, name="about_file"),
     # --------отчеты
     path('report_day/', report_day, name='report_day'),
     path("report/", report_complete_orders, name="report_complete_orders"),

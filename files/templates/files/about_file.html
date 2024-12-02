@@ -1,0 +1,142 @@
+{% extends 'base.html'%}
+<title>{% block title %} Полные сведения о файле: {% endblock %}</title>
+{% block body %}
+<link rel="stylesheet" href="/static/css/table_pic.css"/>
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Файл № {{ file.id }}</h1>
+    </div>
+    <div class="mb-3">
+        <code>{{message}}</code>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <!-- Basic Card Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Изображение</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+
+                        <tr>
+                            <th>
+                                ширина: {{ file.width }} м.
+                            </th>
+
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td><a>{% load thumbnail %} <img src="{% thumbnail file.images 350x0 %}"
+                                                             class="image-detail"></a></td>
+                            <td>высота: {{ file.length }} м</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!--                    <a>{% load thumbnail %} <img src="{% thumbnail file.images 350x0 %}" class="image-detail"></a>-->
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <!-- Basic Card Example -->
+            <div class="card shadow mb-4">
+
+                <!-- DataTales Example -->
+                <!--                    <div class="card shadow mb-4">-->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Характеристики файла</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <!--                            <thead>-->
+                            <tbody>
+                            <tr>
+                                <th>Материал</th>
+                                <th>{{ file.material }}</th>
+                            </tr>
+                            <!--                            </thead>-->
+                            <tr>
+                                <td>Разрешение</td>
+                                <td>{{ file.resolution }} dpi</td>
+                            </tr>
+
+                            <tr>
+                                <td>Количество</td>
+                                <td>{{ file.quantity }} шт.</td>
+                            </tr>
+                            <tr>
+                                <td>Размер</td>
+                                <td>{{ file.width }} х {{ file.length }} м</td>
+                            </tr>
+                            <tr>
+                                <td>Цветовая модель</td>
+                                <td>{{ file.color_model }}</td>
+                            </tr>
+                            <tr>
+                                <td>Финишная обработка</td>
+                                <td>{{ file.FinishWork }}</td>
+                            </tr>
+                            <tr>
+                                <td>Добавлен</td>
+                                <td>{{ file.created_at }}</td>
+                            </tr>
+                            <tr>
+                                <td>Статус</td>
+                                <td>{{ file.status_product.status }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if message %}
+        <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+            <span class="text">Удалить файл</span> </a>
+        {% else %}
+
+
+        {% if file.status_product.id == 1 %}
+        <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+            <span class="text">Добавить файл</span>
+            <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                <span class="text">Удалить файл</span> </a>
+            <!--        <td><a href="{% url 'files:edit_files' file.id %}">Изменить</a></td>-->
+            {% else %}
+            <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                <span class="text">Список файлов</span>
+            </a>
+            {% endif %}
+            {% endif %}
+
+
+    </div>
+</div>
+
+
+{% endblock %}

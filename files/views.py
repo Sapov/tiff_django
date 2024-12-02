@@ -8,7 +8,8 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 
 from orders.alerts import Alerts
-from orders.models import UtilsModel, Order, StatusOrder, OrderItem
+from orders.models import Order, StatusOrder, OrderItem
+from .works_with_files.atchives_files import UtilsModel
 from orders.views import change_status_order, get_domain
 from .models import Product, Material, FinishWork, UseCalculator, Contractor
 from .forms import (
@@ -26,7 +27,8 @@ from .tiff_file import Calculator
 from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 
-from orders.tasks import send_message_whatsapp
+from users.tasks import send_message_whatsapp
+from .tasks import resize_image
 
 import logging
 
@@ -114,26 +116,6 @@ def price(request):
             "title": "Прайс-лист",
         },
     )
-
-
-def upload_arh(request):
-    if request.POST:
-        form = UploadArhive(request.POST, request.FILES)
-        if form.is_valid():
-            # print(form.cleaned_data['path_file'])
-            file_name = form.cleaned_data["path_file"]
-            form.save()
-            WorkZip.print(file_name)
-            WorkZip.unzip(file_name)
-            WorkZip.unzip_files()
-
-            return HttpResponseRedirect("/")
-    else:
-        form = UploadArhive
-
-    return render(
-        request, "files/upload_arh.html", {"form": form, "title": "Добавление файлов"}
-    )  # изменение данных в БД
 
 
 def calculator(request):
@@ -448,3 +430,24 @@ def add_time_order(request, pk: int, hash_code):
         domain = str(get_domain(request))
         Alerts.set_time_count_down(pk, domain)
         return render(request, 'files/add_time_order_set.html', context)
+
+
+def about_file(request, file_id):
+    file = Product.objects.get(id=file_id)
+    print(f'Разрешение файла {file.resolution} VS Разрешение печати {file.material.resolution_print}')
+    if file.resolution < file.material.resolution_print:
+        message = (f"Файл не подходит для качественной печати. Разрешение файла {file.resolution} dpi меньше "
+                   f"положенного {file.material.resolution_print} dpi")
+    elif file.resolution > file.material.resolution_print:
+        # resize_image.delay(file)
+
+        #Засунуть в Celery
+        # item_file = ImageFile(file.images)
+        # item_file.resolution_reduction(file.material.resolution_print)
+
+        message = ''
+
+    else:
+        message = ''
+
+    return render(request, "files/about_file.html", {"file": file, 'message': message})

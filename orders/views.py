@@ -21,11 +21,11 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
-from .tasks import arh_for_mail, create_order_pdf, send_message_whatsapp, create_pay_link
+from .tasks import arh_for_mail, create_order_pdf
+from users.tasks import send_message_whatsapp
 import logging
 import jwt
 from jwt import exceptions
-from jwt import jwk_from_dict
 
 import json
 
@@ -227,16 +227,11 @@ def order_pay(request, order_id):
         domain = str(get_domain(request))
         arh_for_mail.delay(order_id, domain=domain)
 
-        # ----------''' Сообщение администратору'''--------------
-        ''' В будущем - -Сообщение менеджеру типографии'''
-        admin_phone = os.getenv('PHONE_NUMBER')
-        send_message_whatsapp.delay(f'{admin_phone}', f'Письмо отправлено в типографию. '
-                                                      f'Заказ № {order_id} оформлен')
-
         # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправляем письмо с вопросом о готовности----------------
         # получаем дату готовности из базы
-
         Alerts.start_count_down(domain, order_id)
+
+
         # -----------------------create_link_pay-----------------------------------
         # Orders = Order.objects.get(id=order_id)
         user = request.user
@@ -250,7 +245,6 @@ def order_pay(request, order_id):
             # link_pay = create_pay_link.delay(order_id, True)
             link_pay = Acquiring(order_id).run(organisation_flag=True)
             context = {"Orders": order, 'link_pay': link_pay}
-            # context = {"Orders": order}
 
         else:
             logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
@@ -258,7 +252,6 @@ def order_pay(request, order_id):
             # link_pay = create_pay_link.delay(order_id, True)
             link_pay = Acquiring(order_id).run(organisation_flag=False)
             context = {"Orders": order, 'link_pay': link_pay}
-            # context = {"Orders": order}
 
         # оповещаем в whatsapp
         item_user = User.objects.get(email=user)
@@ -298,13 +291,6 @@ class ViewAllPayOrders(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Order.objects.filter(paid=True).order_by("id")
         return queryset
-
-
-def about_file(request, file_id):
-    print(file_id)
-    files = Product.objects.filter(id=file_id)
-    print(files)
-    return render(request, "about_file.html", {"files": files})
 
 
 @login_required
