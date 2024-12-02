@@ -333,14 +333,14 @@ class Calculator:
         self.value_finishing_price = self.finishing.price_contractor
         return self.calculate()
 
-    def __check_result(self):
-        if self.role == "CUSTOMER_AGENCY":
-            return self.calculate()
-        else:
-            if self.calculate() < 1000:
-                return 1000
-            return self.calculate()
+    # def __check_result(self):
+    #     if self.role == "CUSTOMER_AGENCY":
+    #         return self.calculate()
+    #     else:
+    #         if self.calculate() < 1000:
+    #             return 1000
+    #         return self.calculate()
 
     def calculate_price(self):
         self._change_role_user()
-        return self.__check_result()
+        return self.calculate()
