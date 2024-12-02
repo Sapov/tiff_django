@@ -214,6 +214,7 @@ def calculator_large_print_out(request):
         form = CalculatorLargePrint(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
+            print(f'cleaned_data////{cd}')
             cd['role'] = request.user  # Хочу передавать словарем
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)

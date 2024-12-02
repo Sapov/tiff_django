@@ -10,6 +10,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 #
 # class Calculation:
 #     def __init__(self, width, length):
@@ -282,6 +283,7 @@ class WorkZip:
             print(i)
             # Product.objects.create(Contractor=request.user, images=i)
 
+
 class Calculator:
     ''' Класс умеет рассчитывать стоимость печати по Image '''
 
@@ -323,7 +325,7 @@ class Calculator:
         return self.value_material_price, self.value_finishing_price
 
     def calculate(self):
-        return self.__print_calculator() + self.__finishing_calculator() * self.quantity
+        return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
 
     def calculate_cost(self):
         # СЕБЕСТОИМОСТЬ
@@ -331,14 +333,14 @@ class Calculator:
         self.value_finishing_price = self.finishing.price_contractor
         return self.calculate()
 
-    def __check_result(self):
-        if self.role == "CUSTOMER_AGENCY":
-            return self.calculate()
-        else:
-            if self.calculate() < 1000:
-                return 1000
-            return self.calculate()
+    # def __check_result(self):
+    #     if self.role == "CUSTOMER_AGENCY":
+    #         return self.calculate()
+    #     else:
+    #         if self.calculate() < 1000:
+    #             return 1000
+    #         return self.calculate()
 
     def calculate_price(self):
         self._change_role_user()
-        return self.__check_result()
+        return self.calculate()
