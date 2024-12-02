@@ -44,9 +44,9 @@ class ImageFile:
     def dimensions(self) -> tuple:
         """
         @return:
-        width: float
-        length: float
-        resolution: float
+        width: float Ширина
+        length: float Длина
+        resolution: float Разрешение
         """
         try:
             Image.MAX_IMAGE_PIXELS = None
