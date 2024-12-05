@@ -53,8 +53,8 @@ class Acquiring(Bank):
                 "taxSystemCode": "usn_income",
                 "merchantId": self.merchantId,
                 "Client": {
-                    "name": f'{str(payer.Contractor.first_name)} {payer.Contractor.last_name}' if organisation_flag else str(
-                        payer.organisation_payer),
+                    "name": f'{str(payer.Contractor.first_name)} {payer.Contractor.last_name}' if organisation_flag
+                    else str(payer.organisation_payer),
                     "email": str(payer.Contractor),
 
                     "phone": f"+7{tel}" if tel else None,
@@ -114,6 +114,3 @@ class Acquiring(Bank):
         print(self.customer_code, type(self.customer_code))
         self.create_payment_operation_with_receipt_link(organisation_flag)
         return self.pay_link
-
-
-
