@@ -42,8 +42,8 @@ class Acquiring(Bank):
                 "customerCode": self.customer_code,
                 "amount": payer.total_price,
                 "purpose": f"Оплата заказа № {payer.id}",
-                "redirectUrl": "https://san-cd.ru/orders/success",
-                "failRedirectUrl": "https://san-cd.ru/orders/fail",
+                "redirectUrl": "https://order.san-cd.ru/orders/success",
+                "failRedirectUrl": "https://order.san-cd.ru/orders/fail",
                 "paymentMode": [
                     "sbp",
                     "card"

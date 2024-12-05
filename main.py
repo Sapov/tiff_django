@@ -29,22 +29,25 @@
 # т.к. width - 4 /
 #
 # '''
-def find_primes():
-    primes = []
-    for possible_prime in range(2, 20):
-        is_prime = True
-        for num in range(2, int(possible_prime ** 0.5) + 1):
-            if possible_prime % num == 0:
-                is_prime = False
-                break
-        if is_prime:
-            primes.append(possible_prime)
-    yield primes
 
 
-# Example usage:
-# print(find_primes(30))  # Output: [2, 3, 5, 7, 11, 13, 17, 19,
+def to_list(*args):
+    print(args[0], type(args[0]))
+    # match args:
+    #     case tuple(args) as arg:
+    #         print('Кортеж аргументов:', arg)
+    #     case list() as args:
+    #         print('Список элементов:', args)
 
-a = find_primes()
-for i in range(20):
-    print(next(a))
+
+# to_list(1, (2,), 3, )
+to_list([([3, 4, 7], 8.3, True, 'Строка')])
+# to_list(1, 2, 3)
+# to_list('Молоко', 5, '2020 год')
+# to_list([3, 4, 7], 8.3, True, 'Строка')
+# Кортеж аргументов: (1, 2, 3)
+# Список элементов: [1, 2, 3] - тут
+# Кортеж аргументов: ('Молоко', 5, '2020 год')
+# Список элементов: ['Молоко', 5, '2020 год'] - тут
+# Кортеж аргументов: ([3, 4, 7], 8.3, True, 'Строка')
+# Список элементов: [[3, 4, 7], 8.3, True, 'Строка'] - и тут
