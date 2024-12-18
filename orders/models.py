@@ -123,12 +123,12 @@ class OrderItem(models.Model):
     def save(self, *args, **kwargs):
         self.quantity = self.product.quantity
         self.price_per_item = self.product.price
-        self.total_price = self.price_per_item * self.quantity
+        self.total_price = self.price_per_item  # Убрал * self.quantity
         # Cost
         cost_price_per_item = self.product.cost_price
         logger.info(f"cost_price_per_item {cost_price_per_item}")
         self.cost_price_per_item = cost_price_per_item
-        self.cost_total_price = self.cost_price_per_item * self.quantity
+        self.cost_total_price = self.cost_price_per_item # Убр ал  * self.quantity
 
         super(OrderItem, self).save(*args, **kwargs)
 
