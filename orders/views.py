@@ -68,7 +68,7 @@ def new_order(request):
             organisation = None
 
         neworder = Order.objects.create(
-            Contractor=form.user,
+            user=form.user,
             date_complete=date_complite,
             organisation_payer=organisation,
             delivery=delivery,
@@ -103,7 +103,7 @@ def select_time_complete(today: datetime) -> str:
 @login_required
 def view_order(request):
     """Вывод Заказов только авторизованного пользователя"""
-    Orders = Order.objects.filter(Contractor=request.user).order_by("-id")
+    Orders = Order.objects.filter(user=request.user).order_by("-id")
     logger.info(f"Orders:  {Orders}")
 
     paginator = Paginator(Orders, 2)
@@ -151,7 +151,7 @@ class DeleteOrderView(DeleteView):
 def add_files_in_order(request, order_id):
     order = Order.objects.get(id=order_id)
     items = Product.objects.filter(
-        Contractor=request.user
+        user=request.user
     )  # Только те файлы которые еще были добавлены в заказ(ы), только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     current_order = Order.objects.get(pk=order_id)
@@ -168,9 +168,9 @@ def add_files_in_order(request, order_id):
 
 
 def add_item_in_order(request, item_id, order_id):
-    Orders = Order.objects.get(id=order_id)
+    order = Order.objects.get(id=order_id)
     new_ord = OrderItem()
-    new_ord.order = Orders
+    new_ord.order = order
 
     item = Product.objects.get(id=item_id)
     new_ord.product = item
@@ -180,7 +180,7 @@ def add_item_in_order(request, item_id, order_id):
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     curent_order = Order.objects.get(pk=order_id)
     context = {
-        "Orders": Orders,
+        "Orders": order,
         "items_in_order": items_in_order,
         "curent_order": curent_order,
     }

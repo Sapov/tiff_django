@@ -150,7 +150,7 @@ class StatusProduct(models.Model):
 
 class Product(models.Model):
     objects = None
-    Contractor = models.ForeignKey(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
         verbose_name="ЗАКАЗЧИК!!",
@@ -205,7 +205,7 @@ class Product(models.Model):
                       'finishing': self.FinishWork,
                       'length': self.length,
                       'width': self.width,
-                      'role': self.Contractor.role}
+                      'role': self.user.role}
 
         image_price = Calculator(dict_param)
         self.price = image_price.calculate_price()
