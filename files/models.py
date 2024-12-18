@@ -122,8 +122,8 @@ class Material(models.Model):
     resolution_print = models.IntegerField(
         help_text="разрешение для печати на материале",
         verbose_name="DPI",
-        blank=True,
-        null=True,
+        # blank=True,
+        # null=True,
         default=None,
     )
     is_active = models.BooleanField(default=True, verbose_name="Активный ")
@@ -150,7 +150,7 @@ class StatusProduct(models.Model):
 
 class Product(models.Model):
     objects = None
-    Contractor = models.ForeignKey(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
         verbose_name="ЗАКАЗЧИК!!",
@@ -205,7 +205,7 @@ class Product(models.Model):
                       'finishing': self.FinishWork,
                       'length': self.length,
                       'width': self.width,
-                      'role': self.Contractor.role}
+                      'role': self.user.role}
 
         image_price = Calculator(dict_param)
         self.price = image_price.calculate_price()

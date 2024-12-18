@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 def index(request):
     """Вывод файлов только авторизованного пользователя"""
     # вывод в обратном порядке -id
-    object_list = Product.objects.filter(Contractor=request.user).order_by("-id")
+    object_list = Product.objects.filter(user=request.user).order_by("-id")
     """paginator"""
     paginator = Paginator(object_list, 5)  # Show 5 contacts per page.
     page_number = request.GET.get("page")
@@ -61,7 +61,7 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
     login_url = "login"
 
     def get_queryset(self):
-        queryset = Product.objects.filter(Contractor=self.request.user).order_by("-id")
+        queryset = Product.objects.filter(user=self.request.user).order_by("-id")
         return queryset
 
 
@@ -90,7 +90,7 @@ class FilesCreateView(LoginRequiredMixin, CreateView):
     fields = ["quantity", "material", "FinishWork", "images", "comments"]
 
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -162,7 +162,7 @@ class FilesCreateViewInter(LoginRequiredMixin, CreateView):
     template_name = "files/inter_print.html"
 
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -173,7 +173,7 @@ class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
     template_name = "files/large_print.html"
 
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -185,7 +185,7 @@ class FilesCreateViewUV(LoginRequiredMixin, CreateView):
     template_name = "files/uv_print.html"
 
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -196,7 +196,7 @@ class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
     template_name = "files/rollup_print.html"
 
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -359,7 +359,7 @@ class ContractorCreateView(LoginRequiredMixin, CreateView):
 
     # только для текущего юзера
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 

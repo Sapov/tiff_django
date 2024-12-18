@@ -20,7 +20,7 @@ Users = get_user_model()
 @login_required
 def dashboard(request):
     """Вывод Заказов только авторизованного пользователя"""
-    Orders = Order.objects.filter(Contractor=request.user).order_by("-id")
+    Orders = Order.objects.filter(user=request.user).order_by("-id")
     object_list = Order.objects.filter(status_id=5).filter(delivery_id=2).order_by("-id")
     logger.info(f"Orders:  {Orders}")
 
