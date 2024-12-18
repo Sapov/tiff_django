@@ -1,10 +1,14 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from dotenv import load_dotenv, find_dotenv
+
 load_dotenv(find_dotenv())
 import os
+
 User = get_user_model()
 
+
+#  DJANGO_SETTINGS_MODULE=mysite.settings_dev python3 manage.py add_default_admin
 
 class Command(BaseCommand):
     USER_NAME = os.getenv('USER_NAME')
