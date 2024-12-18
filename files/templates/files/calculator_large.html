@@ -3,64 +3,80 @@
 
 {% block title %} {{title}} {% endblock %}
 {% block content %}
+ <style>
+     .summa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 140%;
+    text-align: center;
+
+}
+    </style>
 
 <h1 style="text-align: center">{{title}}</h1>
 <h3 style="text-align: center">Минимальная сумма заказа 1000 руб.</h3>
 
 
+<div class="row">
+    <div class="col-sm">
 
- <div class="row">
-    <div class="col-12">
+        <form action='' method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div style="text-align: center">
+                <button type="submit" class="btn btn-primary">Рассчитать</button>
+            </div>
+        </form>
 
-<form action='' method="post">
-{% csrf_token %}
-{{ form|crispy }}
-    <div style="text-align: center">
-<button type="submit" class="btn btn-primary">Рассчитать</button>
-        </div>
-</form>
-
-<div > {{form.non_field_errors }}</div>
+        <div> {{form.non_field_errors }}</div>
     </div>
-    <div class="col-6">
 
-<h2>Сумма заказа: {{results}} руб.</h2>
+    <div class="col-sm summa">
+
+        <h2 class="summa">Сумма заказа:<br>{{results}} руб.</h2>
+
 
     </div>
-  </div>
-<h4 style="text-align: center; ">Последние посчитанные заказы</h4>
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th scope="col">Материал</th>
-        <th scope="col">Количество</th>
-        <th scope="col">Ширина</th>
-        <th scope="col">Длина</th>
-        <th scope="col">Обработка</th>
-        <th scope="col">Дата:</th>
-        <th scope="col">Стоимость</th>
-        <th scope="col">Отправить заказ менеджеру в WhatsApp</th>
-    </tr>
-    </thead>
-{% for string in last_five_string %}
 
-    <tbody>
-    <tr>
-        <td>{{ string.material }}</td>
-        <td>{{ string.quantity }} шт.</td>
-        <td> {{ string.width }} м</td>
-        <td> {{ string.length }} м</td>
-        <td> {{ string.FinishWork }} </td>
-        <td> {{ string.created_at }}</td>
-        <td> {{ string.results }} руб. </td>
-        <td><a href="https://wa.me/79531193367?text=Здравствуйте,%20хочу%20разместить%20заказ:%20Материал: %20{{ string.material }},
+
+</div>
+<div class="col-sm">
+    <h4 style="text-align: center; ">Посчитанные заказы</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Материал</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Ширина</th>
+            <th scope="col">Длина</th>
+            <th scope="col">Обработка</th>
+            <th scope="col">Дата:</th>
+            <th scope="col">Стоимость</th>
+            <th scope="col">Отправить заказ менеджеру в WhatsApp</th>
+        </tr>
+        </thead>
+        {% for string in last_five_string %}
+
+        <tbody>
+        <tr>
+            <td>{{ string.material }}</td>
+            <td>{{ string.quantity }} шт.</td>
+            <td> {{ string.width }} м</td>
+            <td> {{ string.length }} м</td>
+            <td> {{ string.FinishWork }}</td>
+            <td> {{ string.created_at }}</td>
+            <td> {{ string.results }} руб.</td>
+            <td><a href="https://wa.me/79531193367?text=Здравствуйте,%20хочу%20разместить%20заказ:%20Материал: %20{{ string.material }},
 %20Количество: {{ string.quantity }}шт.%20Ширина Х Длина: {{ string.width }}х{{ string.length }}м,%20
 Финишная обработка: {{ string.FinishWork }},%20Стоимостью: {{ string.results }} руб.">
 
-<img src="https://www.san-cd.ru/wp-content/themes/sancd/images/icon-whatsapp-big.png" alt="whatsapp" title="Написать в WhatsApp"></a></td>
-    </tr>
+                <img src="https://www.san-cd.ru/wp-content/themes/sancd/images/icon-whatsapp-big.png" alt="whatsapp"
+                     title="Написать в WhatsApp"></a></td>
+        </tr>
+        {% endfor %}
 
-    {% endfor %}
 
+        {% endblock %}
 
-{% endblock %}
+</div>

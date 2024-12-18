@@ -36,7 +36,7 @@ class Acquiring(Bank):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
         payer = Order.objects.get(id=self.order_id)
-        tel = payer.Contractor.phone_number.national_number
+        tel = payer.user.phone_number.national_number
         payload = {
             "Data": {
                 "customerCode": self.customer_code,
@@ -49,13 +49,13 @@ class Acquiring(Bank):
                     "card"
                 ],
                 "saveCard": True,
-                "consumerId": str(payer.Contractor),
+                "consumerId": str(payer.user),
                 "taxSystemCode": "usn_income",
                 "merchantId": self.merchantId,
                 "Client": {
-                    "name": f'{str(payer.Contractor.first_name)} {payer.Contractor.last_name}' if organisation_flag else str(
-                        payer.organisation_payer),
-                    "email": str(payer.Contractor),
+                    "name": f'{str(payer.user.first_name)} {payer.user.last_name}' if organisation_flag
+                    else str(payer.organisation_payer),
+                    "email": str(payer.user),
 
                     "phone": f"+7{tel}" if tel else None,
                 },
@@ -65,7 +65,7 @@ class Acquiring(Bank):
         print('PAYLOAD', json.dumps(payload, indent=4))
         try:
             response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
-            print(response.json())
+            print('RESPONSE FOR PAYMENT LINK', response.json())
             self.pay_link = response.json()['Data']['paymentLink']
             self._add_pay_link_in_table_order()
         except requests.exceptions.RequestException as e:
@@ -104,6 +104,7 @@ class Acquiring(Bank):
 
     def _add_pay_link_in_table_order(self) -> None:
         '''Добавим ссылку об оплате в таблицу с ордером'''
+        ''' добавим operationId'''
         order = Order.objects.get(id=self.order_id)
         print(f'SAVE PAY-LINK: {self.pay_link}')
         order.pay_link = self.pay_link
@@ -114,6 +115,3 @@ class Acquiring(Bank):
         print(self.customer_code, type(self.customer_code))
         self.create_payment_operation_with_receipt_link(organisation_flag)
         return self.pay_link
-
-
-
