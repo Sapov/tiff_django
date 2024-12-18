@@ -441,7 +441,6 @@ def about_file(request, file_id):
                    f"положенного {file.material.resolution_print} dpi")
     elif file.resolution > file.material.resolution_print:
         # resize_image.delay(file)
-
         #Засунуть в Celery
         # item_file = ImageFile(file.images)
         # item_file.resolution_reduction(file.material.resolution_print)
