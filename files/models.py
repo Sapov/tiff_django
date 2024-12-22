@@ -122,8 +122,8 @@ class Material(models.Model):
     resolution_print = models.IntegerField(
         help_text="разрешение для печати на материале",
         verbose_name="DPI",
-        # blank=True,
-        # null=True,
+        blank=True,
+        null=True,
         default=None,
     )
     is_active = models.BooleanField(default=True, verbose_name="Активный ")

@@ -325,7 +325,7 @@ class Calculator:
         return self.value_material_price, self.value_finishing_price
 
     def calculate(self):
-        return (self.__print_calculator() + self.__finishing_calculator()) #* self.quantity
+        return (self.__print_calculator() + self.__finishing_calculator())  # * self.quantity
 
     def calculate_cost(self):
         # СЕБЕСТОИМОСТЬ
