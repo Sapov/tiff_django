@@ -101,7 +101,7 @@ def price(request):
     price_interierka = Material.objects.filter(type_print=2)  # Только Интерьерная печать!!!
     price_UV = Material.objects.filter(type_print=3)  # Только UV печать!!!
     blank_material = Material.objects.filter(type_print=4)  # Только Чистый материал!!!
-    picturies = Material.objects.filter(type_print=5)  # Это картины на подрамнике!!!
+    pictures = Material.objects.filter(type_print=5)  # Это картины на подрамнике!!!
     finishka = FinishWork.objects.all()  # Только финишка печать!!!
     return render(
         request,
@@ -111,7 +111,7 @@ def price(request):
             "price_interierka": price_interierka,
             "price_UV": price_UV,
             "finishka": finishka,
-            "picturies": picturies,
+            "pictures": pictures,
             'blank_material': blank_material,
             "title": "Прайс-лист",
         },
@@ -451,3 +451,16 @@ def about_file(request, file_id):
         message = ''
 
     return render(request, "files/about_file.html", {"file": file, 'message': message})
+
+
+class PicturesListView(LoginRequiredMixin, ListView):
+    """Посмотреть все файлы пользователя"""
+
+    model = Material
+    # paginate_by = 5
+    template_name = "files/pictures.html"
+    login_url = "login"
+
+    def get_queryset(self):
+        return Material.objects.filter(type_print=5)  # Это картины на подрамнике!!!
+

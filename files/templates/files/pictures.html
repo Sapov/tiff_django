@@ -1,0 +1,38 @@
+{% extends 'files/templates_reds.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+ <style>
+     .summa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 140%;
+    text-align: center;
+
+}
+    </style>
+
+<h1 style="text-align: center">{{title}}</h1>
+
+
+<div class="col-sm">
+    <h4 style="text-align: center; ">Стоимость картин на подрамнике</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Размер</th>
+            <th scope="col">Стоимость</th>
+        </tr>
+        </thead>
+        {% for string in object_list %}
+        <tbody>
+        <tr>
+            <td>{{ string.name }}</td>
+            <td> {{ string.price }} м</td>
+        </tr>
+        {% endfor %}
+        {% endblock %}
+
+</div>
