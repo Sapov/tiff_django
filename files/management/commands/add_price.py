@@ -67,6 +67,17 @@ class Command(BaseCommand):
                 price_customer_retail=item[3],
                 resolution_print=item[4]
             )
+        print('*' * 30, 'Заполняю базу стоимости печати картин на холсте ', '*' * 30)
+        for item in load_excel('picturies', 'b2:f13'):
+            print(item)
+            Material.objects.get_or_create(
+                name=item[0],
+                type_print=TypePrint.objects.get_or_create(id=5)[0],
+                price_contractor=item[1],
+                price=item[2],
+                price_customer_retail=item[3],
+                resolution_print=item[4]
+            )
 
         # заполняем Финишку в таблицу FinishWork
         print('*' * 30, 'Заполняю Постпечатную обработку', '*' * 30)

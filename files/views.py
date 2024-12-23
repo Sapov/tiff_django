@@ -97,12 +97,11 @@ class FilesCreateView(LoginRequiredMixin, CreateView):
 @login_required
 def price(request):
     """Вывод прайс-листа"""
-    price_shirka = Material.objects.filter(
-        type_print=1
-    )  # Только широкоформатная печать!!!
+    price_shirka = Material.objects.filter(type_print=1)  # Только широкоформатная печать!!!
     price_interierka = Material.objects.filter(type_print=2)  # Только Интерьерная печать!!!
     price_UV = Material.objects.filter(type_print=3)  # Только UV печать!!!
     blank_material = Material.objects.filter(type_print=4)  # Только Чистый материал!!!
+    picturies = Material.objects.filter(type_print=5)  # Это картины на подрамнике!!!
     finishka = FinishWork.objects.all()  # Только финишка печать!!!
     return render(
         request,
@@ -112,6 +111,7 @@ def price(request):
             "price_interierka": price_interierka,
             "price_UV": price_UV,
             "finishka": finishka,
+            "picturies": picturies,
             'blank_material': blank_material,
             "title": "Прайс-лист",
         },
@@ -441,7 +441,7 @@ def about_file(request, file_id):
                    f"положенного {file.material.resolution_print} dpi")
     elif file.resolution > file.material.resolution_print:
         # resize_image.delay(file)
-        #Засунуть в Celery
+        # Засунуть в Celery
         # item_file = ImageFile(file.images)
         # item_file.resolution_reduction(file.material.resolution_print)
 
