@@ -411,10 +411,13 @@ def confirm_order_to_completed(request, pk: int, hash_code):
             """Меняем статус заказа"""
             change_status_order(5, pk)  # Статус Готов
             Alerts.stop_count_down(pk)
-            #Отослать сообщение админу и клиенту на месенджер
+            # Отослать сообщение админу и клиенту на месенджер
             send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}',
                                         f'Типография подтвердила готовность заказа № {pk}')
-
+            item = Order.objects.get(id=pk)
+            item.user.phone_number.national_number
+            send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}',
+                                        f'Заказ № {pk} готов ')
 
             return render(request, "files/confirm_order_to_completed.html")
         else:
