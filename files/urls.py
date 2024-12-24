@@ -16,7 +16,7 @@ from .views import (
     FilesCreateViewRollUp, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     ViewContractorListView, ContractorCreateView, ContractorUpdateView,
     ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed, calculator_interior_print, add_time_order,
-    about_file, PicturesListView,
+    about_file, PicturesListView, PicturesCreateViewInter,
 )
 
 app_name = "files"
@@ -30,6 +30,7 @@ urlpatterns = [
     path("create_inter/", FilesCreateViewInter.as_view(), name="create_inter"),
     path("create_uv/", FilesCreateViewUV.as_view(), name="create_uv"),
     path("create_rollup/", FilesCreateViewRollUp.as_view(), name="create_rollup"),
+    path("create_pictures/", PicturesCreateViewInter.as_view(), name="create_pictures"),
     # форма редактирования файла
     path("edit/<pk>", FilesUpdateView.as_view(), name="edit_files"),
     path("about_file/<int:file_id>", about_file, name="about_file"),
@@ -55,7 +56,7 @@ urlpatterns = [
     path("confirm_order_to_competed/<pk>/<hash_code>/", confirm_order_to_completed, name="confirm_order_to_completed"),
     path('add_time_order/<int:pk>/<hash_code>/', add_time_order, name='add_time_order'),
 
-        path('pictures/', PicturesListView.as_view(), name='pictures')
+    path('pictures/', PicturesListView.as_view(), name='pictures')
 
 
 ]

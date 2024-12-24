@@ -18,6 +18,7 @@ from .forms import (
     UploadFilesLarge,
     UploadFilesUV,
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
+    UploadFilesPictures,
 
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
@@ -170,6 +171,7 @@ class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
     """Загрузка файлов только для широкоформатной печати"""
     model = Product
     form_class = UploadFilesLarge
+    # form_class = UploadFiles(type_print=1)
     template_name = "files/large_print.html"
 
     def form_valid(self, form):
@@ -194,6 +196,18 @@ class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
     model = Product
     form_class = UploadFilesRollUp
     template_name = "files/rollup_print.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class PicturesCreateViewInter(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для интерьерной печати"""
+
+    model = Product
+    form_class = UploadFilesPictures
+    template_name = "files/pictures_print.html"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -397,6 +411,11 @@ def confirm_order_to_completed(request, pk: int, hash_code):
             """Меняем статус заказа"""
             change_status_order(5, pk)  # Статус Готов
             Alerts.stop_count_down(pk)
+            #Отослать сообщение админу и клиенту на месенджер
+            send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}',
+                                        f'Типография подтвердила готовность заказа № {pk}')
+
+
             return render(request, "files/confirm_order_to_completed.html")
         else:
             return render(request, "files/no_confirm_order_to_completed.html")
@@ -463,4 +482,3 @@ class PicturesListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Material.objects.filter(type_print=5)  # Это картины на подрамнике!!!
-
