@@ -55,8 +55,6 @@ urlpatterns = [
     # подтверждение готовности заказа
     path("confirm_order_to_competed/<pk>/<hash_code>/", confirm_order_to_completed, name="confirm_order_to_completed"),
     path('add_time_order/<int:pk>/<hash_code>/', add_time_order, name='add_time_order'),
-
     path('pictures/', PicturesListView.as_view(), name='pictures')
-
 
 ]
