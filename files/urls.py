@@ -58,3 +58,5 @@ urlpatterns = [
     path('pictures/', PicturesListView.as_view(), name='pictures')
 
 ]
+
+
