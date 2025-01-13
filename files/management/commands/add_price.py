@@ -98,41 +98,42 @@ class Command(BaseCommand):
             print(item)
             model.objects.get_or_create(field=item[0])
 
-        self._load_items_one_field('status_product',
-                                   'b2:b4',
-                                   'StatusProduct',
-                                   'заполняем Статус Продукта ',
-                                   'status')
+    _load_items_one_field('status_product',
+                          'b2:b4',
+                          'StatusProduct',
+                          'заполняем Статус Продукта ',
+                          'status')
 
-        # print('*' * 30, 'заполняем Статус Продукта ', '*' * 30)
-        # for status in load_excel('status_product', 'b2:b4'):
-        #     print(status)
-        #     StatusProduct.objects.get_or_create(status=status[0])
+    # print('*' * 30, 'заполняем Статус Продукта ', '*' * 30)
+    # for status in load_excel('status_product', 'b2:b4'):
+    #     print(status)
+    #     StatusProduct.objects.get_or_create(status=status[0])
 
-        # print('*' * 30, 'заполняем Статус Заказа ', '*' * 30)
-        # for status in load_excel('status_order', 'b2:b6'):
-        #     print(status)
-        #     StatusOrder.objects.get_or_create(name=status[0])
-        self._load_items_one_field('status_order',
-                                   'b2:b6',
-                                   'StatusOrder',
-                                   'заполняем Статус Заказа ',
-                                   'status')
+    # print('*' * 30, 'заполняем Статус Заказа ', '*' * 30)
+    # for status in load_excel('status_order', 'b2:b6'):
+    #     print(status)
+    #     StatusOrder.objects.get_or_create(name=status[0])
+    _load_items_one_field('status_order',
+                               'b2:b6',
+                               'StatusOrder',
+                               'заполняем Статус Заказа ',
+                               'status')
 
-        # print('*' * 30, 'заполняем Типы доставки ', '*' * 30)
-        # for type_delivery in load_excel('delivery', 'b2:b3'):
-        #     print(type_delivery)
-        #     Delivery.objects.get_or_create(type_delivery=type_delivery[0])
+    # print('*' * 30, 'заполняем Типы доставки ', '*' * 30)
+    # for type_delivery in load_excel('delivery', 'b2:b3'):
+    #     print(type_delivery)
+    #     Delivery.objects.get_or_create(type_delivery=type_delivery[0])
 
-        self._load_items_one_field('delivery',
-                                   'b2:b3',
-                                   'Delivery',
-                                   'заполняем Типы доставки',
-                                   'type_delivery')
+    _load_items_one_field('delivery',
+                               'b2:b3',
+                               'Delivery',
+                               'заполняем Типы доставки',
+                               'type_delivery')
 
-    def add_intervals_for_celery_beat(self):
-        print('[INFO] Добавляем интервалы для Celery beat')
-        print('*' * 20, 'ПОВТОРЕНИЕ ЧЕРЕЗ ЧАС ', "*" * 20)
-        IntervalSchedule.objects.create(every=1, period='hours')
-        print('*' * 20, 'ПОВТОРЕНИЕ ЧЕРЕЗ 2 МИНУТЫ ', "*" * 20)
-        IntervalSchedule.objects.get(every=2, period='minutes')  # for test
+
+def add_intervals_for_celery_beat(self):
+    print('[INFO] Добавляем интервалы для Celery beat')
+    print('*' * 20, 'ПОВТОРЕНИЕ ЧЕРЕЗ ЧАС ', "*" * 20)
+    IntervalSchedule.objects.create(every=1, period='hours')
+    print('*' * 20, 'ПОВТОРЕНИЕ ЧЕРЕЗ 2 МИНУТЫ ', "*" * 20)
+    IntervalSchedule.objects.get(every=2, period='minutes')  # for test
