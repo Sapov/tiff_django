@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'delivery_in_bus',
     'picturies',
+    'bforms',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"

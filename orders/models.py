@@ -1,13 +1,13 @@
 import logging
 from PIL import Image
-
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
 from django.urls import reverse
-
+# from .tasks import arh_for_mail
 from account.models import Organisation, Delivery
 from files.models import Product
+# from django.contrib.sites.models import Site
 
 logger = logging.getLogger(__name__)
 Image.MAX_IMAGE_PIXELS = None  # отключаем проверку разрешения
@@ -81,6 +81,20 @@ class Order(models.Model):
         return reverse("orders:add_file_in_order", args=[self.id])
 
 
+def send_order(instance, **kwargs):
+    order_id = instance.id
+    paid = instance.paid
+
+    if paid:
+        print('--ORDER PAID--')
+        # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
+        # domain = str(get_domain(request))
+        # arh_for_mail.delay(order_id, domain=domain)
+
+
+post_save.connect(send_order, sender=Order)
+
+
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name="Ордер")
     product = models.ForeignKey(
@@ -128,7 +142,7 @@ class OrderItem(models.Model):
         cost_price_per_item = self.product.cost_price
         logger.info(f"cost_price_per_item {cost_price_per_item}")
         self.cost_price_per_item = cost_price_per_item
-        self.cost_total_price = self.cost_price_per_item # Убр ал  * self.quantity
+        self.cost_total_price = self.cost_price_per_item  # Убр ал  * self.quantity
 
         super(OrderItem, self).save(*args, **kwargs)
 
@@ -182,3 +196,5 @@ class BankInvoices(models.Model):
     payment_Status = models.CharField(max_length=40, verbose_name='Статус оплаты', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
+
+
