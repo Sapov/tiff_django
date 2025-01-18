@@ -21,22 +21,15 @@
     <div class="col-sm">
 
         <form action="{% url 'bforms:sale_banner' %}" method="post", enctype="multipart/form-data">
-<!--    <form name='bob'>-->
-    <input type="radio" name="field" value="one" onchange='check_value(event)'>one
-    <input type="radio" name="field" value="two" onchange='check_value(event)'>two
-    <input type="radio" name="field" value="three" onchange='check_value(event)'>three
-<!--</form>-->
 
-<img id='imagetest'>
-</img>
         {% csrf_token %}
             {% for plan in form.name_banner%}
             <input type="radio" name="plan" id="choice{{ forloop.counter }}" value="{{ plan.id }}">
-            <label for="plan{{ forloop.counter }}">{{ plan }}</label><br>
+            <label>{{ plan }}</label><br>
         {% endfor %}
 
 
-            {{ form|crispy }}
+<!--            {{ form|crispy }}-->
             <div style="text-align: center">
                 <button type="submit" class="btn btn-primary">Отправить</button>
             </div>
@@ -49,7 +42,6 @@
              <!-- текст -->
           <text x="60" y="100" stroke="none" fill="#000000" style="font-size: 24px;">
 
-            {{ form.name_banner.field.choices.0.1 }}
           </text>
 </svg>
 {% endblock %}
