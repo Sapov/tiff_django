@@ -1,0 +1,24 @@
+{% extends 'files/templates_reds.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+
+
+<h1 style="text-align: center">Заявка на расчет полиграфической продукции</h1>
+
+
+<div class="row">
+    <div class="col-sm">
+        <form method="post">{% csrf_token %}
+            {% csrf_token %}
+            {{ form|crispy }}
+<!--            {{ form.as_p }}-->
+
+            <div style="text-align: center">
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </div>
+        </form>
+
+
+        {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'files/templates_reds.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+ <style>
+     .summa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 140%;
+    text-align: center;
+
+}
+    </style>
+
+<h1 style="text-align: center">{{title}}</h1>
+
+
+<div class="row">
+    <div class="col-sm">
+
+
+<!--        <form action="{% url 'bforms:sale_banner' %}" method="post", enctype="multipart/form-data">-->
+<!---->
+<!--            {% csrf_token %}-->
+<!--            {{ form|crispy }}-->
+<!--            <div style="text-align: center">-->
+<!--                <button type="submit" class="btn btn-primary">Отправить</button>-->
+<!--            </div>-->
+<!--        </form>-->
+
+<!--        <div> {{form.non_field_errors }}</div>-->
+<!--    </div>-->
+{% endblock %}
