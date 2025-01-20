@@ -11,8 +11,6 @@ class SiteOrderCreateView(CreateView):
     fields = '__all__'
 
 
-
-
 def sale_banner(request):
     title = 'Заявка на расчет баннера "Продам", "Сдам" или "Аренда"'
     if request.method == 'POST':

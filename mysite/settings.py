@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'delivery_in_bus',
     'picturies',
     'bforms',
+    'plotter',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
