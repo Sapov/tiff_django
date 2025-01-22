@@ -71,7 +71,7 @@ class Register(View):
 class UsersCreateView(LoginRequiredMixin, CreateView):
     model = User
     fields = [
-        'password',
+        # 'password',
         'email',
         'username',
         'last_name',

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'picturies',
     'bforms',
     'plotter',
+    'lids',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
