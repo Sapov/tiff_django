@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Lids, Interest
+
+admin.site.register(Lids)
+admin.site.register(Interest)

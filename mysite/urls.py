@@ -33,6 +33,7 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path("account/", include("account.urls")),
     path("bforms/", include("bforms.urls")),
+    path("lids/", include("lids.urls")),
     path("orders/", include("orders.urls")),
     path("info/", include("info.urls")),
     path("delivery_in_bus/", include("delivery_in_bus.urls")),

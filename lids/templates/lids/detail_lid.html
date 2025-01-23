@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+    <p><title>{% block title %} Новый лид {% endblock %}</title></p>
+
+{% block body %}
+    <p> лид</p>
+
+<h1>{{ object.name }}</h1>
+<h1>{{ object.email }}</h1>
+<h1>{{ object.phone_number }}</h1>
+<h1>{{ object.channel.values }}</h1>
+<h1>{{ object.interest }}</h1>
+
+    {% endblock %}
