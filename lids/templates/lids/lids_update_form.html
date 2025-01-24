@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+<p><title>{% block title %} Изменить лид {% endblock %}</title></p>
+{% load crispy_forms_tags %}
+
+{% block body %}
+{% block body %}
+<!--FOR MANGER -->
+{% if request.user.role == 'MANAGER' %}
+
+
+<form method="post">{% csrf_token %}
+    {{ form|crispy }}
+
+    <input type="submit" value="Редактировать">
+</form>
+
+{% endif %}
+{% endblock %}

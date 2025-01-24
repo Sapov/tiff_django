@@ -1,15 +1,18 @@
 {% extends 'base.html'%}
-    <p><title>{% block title %} Новый лид {% endblock %}</title></p>
+{% load crispy_forms_tags %}
+
+
+<p><title>{% block title %} Новый лид {% endblock %}</title></p>
 
 {% block body %}
-    <p>Новый лид</p>
-
+<p>Новый лид</p>
 
 
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
+
     <input type="submit" value="Добавить">
 </form>
 
-    {% endblock %}
+{% endblock %}

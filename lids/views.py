@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, ListView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
 
 from .models import Lids
 
@@ -18,3 +19,15 @@ class DetailLids(DetailView):
 
 class ListLids(ListView):
     model = Lids
+
+
+class UpdateLids(UpdateView):
+    model = Lids
+    fields = ['lid_status', 'name', 'email', 'phone_number', 'channel', 'interest', 'interest_text']
+
+    template_name_suffix = "_update_form"
+
+
+class DeleteLids(DeleteView):
+    model = Lids
+    success_url = reverse_lazy("lids:list_lids")

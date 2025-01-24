@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+<p><title>{% block title %}Удалить лид {% endblock %}</title></p>
+{% load crispy_forms_tags %}
+
+{% block body %}
+<!--FOR MANGER -->
+{% if request.user.role == 'MANAGER' %}
+
+<form method="post">{% csrf_token %}
+    <p>Действительно удаляем этот лид "{{ object }}"?</p>
+    {{ form }}
+    <input type="submit" value="Confirm">
+</form>
+{% endif %}
+{% endblock %}
