@@ -36,7 +36,8 @@ class Interest(models.Model):
 
 
 class Lids(models.Model):
-    lid_status = models.CharField(max_length=64, choices=LidStatus.choices, default=LidStatus.ANSWER, verbose_name='Статус лида')
+    lid_status = models.CharField(max_length=64, choices=LidStatus.choices, default=LidStatus.ANSWER,
+                                  verbose_name='Статус лида')
     name = models.CharField(max_length=255, verbose_name='Имя', blank=True, null=True)
     email = models.EmailField(auto_created='Email', blank=True, null=True)
     phone_number = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
@@ -59,7 +60,8 @@ class Lids(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("lids:detail_lid", args=[self.id])
+        return reverse("lids:list_lids")
+        # return reverse("lids:list_lids", args=[self.id])
 
     class Meta:
         verbose_name_plural = 'Лиды'

@@ -32,8 +32,12 @@
                             onClick="location.href='{% url 'lids:detail_lid' lid.id %}'">Лид № {{ lid.id }}
                     </button>
                 </td>
+                <td>
+                    <button type="submit" class="btn btn-primary"
+                            onClick="location.href='{% url 'lids:update_status' lid.id %}'">
+                        {{lid.get_lid_status_display}}
+                    </button>
                 </td>
-                <td> {{lid.get_lid_status_display}}</td>
                 <td>
 
                     {{ lid.name }}

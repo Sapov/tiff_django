@@ -30,7 +30,11 @@
                     </button>
                 </td>
 
-                <td> {{ object.get_lid_status_display }}</td>
+                <td>
+                    <button type="submit" class="btn btn-primary"
+                            onClick="location.href='{% url 'lids:update_status' object.id %}'">{{lid.get_lid_status_display}}
+                    </button>
+                </td>
                 <td>{{object.email}}</td>
                 <td>{{ object.phone_number }}</td>
                 <td>{{ object.get_channel_display }}</td>
