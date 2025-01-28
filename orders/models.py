@@ -14,7 +14,6 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-
 # from django.contrib.sites.models import Site
 
 logger = logging.getLogger(__name__)
@@ -103,9 +102,6 @@ def send_order(instance, **kwargs):
 
 
 post_save.connect(send_order, sender=Order)
-
-
-
 
 
 class OrderItem(models.Model):
