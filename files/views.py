@@ -499,7 +499,7 @@ def about_file(request, file_id):
 
 
 class PicturesListView(LoginRequiredMixin, ListView):
-    """Посмотреть все файлы пользователя"""
+    """Посмотреть стоимость печати картин на подрамнике"""
 
     model = Material
     # paginate_by = 5
