@@ -57,6 +57,8 @@ class Alerts:
         '''Не присылать письма во вне рабочее время'''
         order = Order.objects.get(id=order_id)
         logger.info(f'Старт обратного отсчета ДАТА ГОТОВНОСТИ, {order.date_complete}')
+        # if not PeriodicTask.objects.get(name=f'Timer count Down order №{order_id}'):
+
         PeriodicTask.objects.create(
             name=f'Timer count Down order №{order_id}',
             task='timer_order_complete',

@@ -225,6 +225,7 @@ def order_pay(request, order_id):
 
         # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправляем письмо с вопросом о готовности----------------
         # получаем дату готовности из базы
+        domain = get_domain(request)
         Alerts.start_count_down(domain, order_id)
 
 
@@ -255,6 +256,7 @@ def order_pay(request, order_id):
             send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
 
         os.chdir(current_path)  # перейти обратно
+        change_status_order(2, order_id)
 
         return render(request, "orderpay.html", context)
     else:

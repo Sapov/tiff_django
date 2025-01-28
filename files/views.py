@@ -316,7 +316,8 @@ def calculator_uv_print_out(request):
         form = CalculatorUVPrint(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            cd['role'] = request.user  # Хочу передавать словарем
+            cd['user'] = request.user  # Хочу передавать словарем
+            cd['role'] = request.user
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
@@ -349,7 +350,8 @@ def calculator_blank_out(request):
         form = CalculatorBlankMaterial(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            cd['role'] = request.user  # Хочу передавать словарем
+            cd['user'] = request.user  # Хочу передавать словарем
+            cd['role'] = request.user
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
