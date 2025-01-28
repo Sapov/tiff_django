@@ -30,9 +30,15 @@
 #
 # '''
 
-st = ['1 0 0 0 0',
-      '0 0 1 0 0',
-      '0 0 0 0 0',
-      '0 1 0 1 0',
-      '0 0 0 0 0']
-print([list(map(int, i.split())) for i in st])
+st = 'jfnmdbsdfnsjfqenfdssjdfhsdjlkppppppppppppppppppgggggxxzzzssswwwwwwwwwwwwwwwwwwfgdfxdfg'
+count = 0
+maxx = 0
+max_letter = ''
+letter = st[0]
+for i in st:
+    # print(st.count(i))
+    count = st.count(i)
+    if maxx < count:
+        maxx = count
+        max_letter = i
+print(max_letter)

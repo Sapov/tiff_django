@@ -120,7 +120,7 @@ def price(request):
 
 
 def calculator(request):
-    last_five_string = UseCalculator.objects.order_by('-id')[:5]
+    last_five_string = last_ten_string()
     title = "Калькулятор широкоформатной печати"
     template_name = "files/calculator.html"
 
@@ -128,13 +128,16 @@ def calculator(request):
         form = CalculatorForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            cd['role'] = request.user.role  # Хочу передавать словарем
+            cd['user'] = request.user  # Хочу передавать словарем
+            cd['role'] = request.user.role
+            print(cd['user'])
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
             cd['results'] = results
+            print('clenning data', cd)
             try:
-                add_user_calculator(cd)
+                add_item_calculator(cd)
                 return render(request, template_name, {"form": form,
                                                        "title": title,
                                                        "results": results,
@@ -220,22 +223,27 @@ class MaterialViewSet(viewsets.ModelViewSet):
 
 
 def calculator_large_print_out(request):
-    last_five_string = UseCalculator.objects.order_by('-id')[:10]
+    last_five_string = last_ten_string()
     title = "Калькулятор широкоформатной печати"
     template_name = "files/calculator_large.html"
 
     if request.method == 'POST':
         form = CalculatorLargePrint(request.POST)
+
         if form.is_valid():
             cd = form.cleaned_data
-            print(f'cleaned_data////{cd}')
-            cd['role'] = request.user  # Хочу передавать словарем
-            logger.info(f'[INFO CLEAN DATA] {cd}')
+            cd['user'] = request.user  # Хочу передавать словарем
+            cd['role'] = request.user
+
+            logger.info(f'[--INFO CLEAN DATA--] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
             cd['results'] = results
             try:
-                add_user_calculator(cd)
+                add_item_calculator(cd)
+            except:
+                print(ValueError)
+            try:
                 return render(request, template_name, {"form": form,
                                                        "title": title,
                                                        "results": results,
@@ -252,14 +260,21 @@ def calculator_large_print_out(request):
                        'last_five_string': last_five_string})
 
 
-def add_user_calculator(cd):
-    UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
-                                 width=cd['width'], length=cd['length'],
-                                 results=cd['results'], FinishWork=cd['finishing'])
+def add_item_calculator(cd):
+    if str(cd['user']) == "AnonymousUser":
+        UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
+                                     width=cd['width'], length=cd['length'],
+                                     results=cd['results'], FinishWork=cd['finishing'],
+                                     )
+    else:
+        UseCalculator.objects.create(material=cd['material'], quantity=int(cd['quantity']),
+                                     width=cd['width'], length=cd['length'],
+                                     results=cd['results'], FinishWork=cd['finishing'],
+                                     user=cd['user'])
 
 
 def calculator_interior_print(request):
-    last_five_string = UseCalculator.objects.order_by('-id')[:10]
+    last_five_string = last_ten_string()
     title = "Калькулятор Интерьерной печати"
     template_name = "files/calculator_large.html"
 
@@ -267,13 +282,14 @@ def calculator_interior_print(request):
         form = CalculatorInterierPrint(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            cd['role'] = request.user  # Хочу передавать словарем
+            cd['user'] = request.user  # Хочу передавать словарем
+            cd['role'] = request.user
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
             cd['results'] = results
             try:
-                add_user_calculator(cd)
+                add_item_calculator(cd)
                 return render(request, template_name, {"form": form,
                                                        "title": title,
                                                        "results": results,
@@ -292,7 +308,7 @@ def calculator_interior_print(request):
 
 def calculator_uv_print_out(request):
     """ Калькулятор для УФ печати"""
-    last_five_string = UseCalculator.objects.order_by('-id')[:10]
+    last_five_string = last_ten_string()
     title = 'Калькулятор UV печати'
     template_name = "files/calculator_large.html"
 
@@ -306,7 +322,7 @@ def calculator_uv_print_out(request):
             results = image_price.calculate_price()
             cd['results'] = results
             try:
-                add_user_calculator(cd)
+                add_item_calculator(cd)
                 return render(request, template_name, {"form": form,
                                                        "title": title,
                                                        "results": results,
@@ -325,7 +341,7 @@ def calculator_uv_print_out(request):
 
 def calculator_blank_out(request):
     """ Калькулятор чистого материала"""
-    last_five_string = UseCalculator.objects.order_by('-id')[:10]
+    last_five_string = last_ten_string()
     title = 'Калькулятор Чистый материал'
     template_name = "files/calculator_large.html"
 
@@ -339,7 +355,7 @@ def calculator_blank_out(request):
             results = image_price.calculate_price()
             cd['results'] = results
             try:
-                add_user_calculator(cd)
+                add_item_calculator(cd)
                 return render(request, template_name, {"form": form,
                                                        "title": title,
                                                        "results": results,
@@ -354,6 +370,11 @@ def calculator_blank_out(request):
         return render(request, template_name,
                       {"form": form, "title": title,
                        'last_five_string': last_five_string})
+
+
+def last_ten_string():
+    last_five_string = UseCalculator.objects.order_by('-id')[:10]
+    return last_five_string
 
 
 class ViewContractorListView(LoginRequiredMixin, ListView):
@@ -485,3 +506,16 @@ class PicturesListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Material.objects.filter(type_print=5)  # Это картины на подрамнике!!!
+
+
+class CalculatorLIst(LoginRequiredMixin, ListView):
+    '''Вывести расчеты тольео конкретного пользователя'''
+    model = UseCalculator
+    paginate_by = 5
+    template_name = "files/calculator_list.html"
+    login_url = "login"
+
+    def get_queryset(self):
+        print(self.request.user)
+        queryset = UseCalculator.objects.filter(user=self.request.user).order_by("-id")
+        return queryset

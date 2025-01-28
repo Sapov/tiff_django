@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models.signals import post_save
 from django.urls import reverse
@@ -6,6 +7,8 @@ from .tiff_file import WorkWithFile, Calculator
 from files.works_with_files.image_tiff_file import ImageFile
 
 import logging
+
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
@@ -235,6 +238,7 @@ class UseCalculator(models.Model):
     FinishWork = models.ForeignKey("FinishWork", on_delete=models.PROTECT, verbose_name="Финишная обработка",
                                    default=1)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', blank=True, null=True)
 
     def __str__(self):
         return f'Дата: {str(self.created_at)[:16]} /{str(self.material)[:10]}/ Кол-во: {self.quantity}шт./Размер: {self.width}x{self.length}м./Стоимость: {self.results} руб.'
