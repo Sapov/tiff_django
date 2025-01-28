@@ -294,7 +294,7 @@ class Calculator:
         self.value_finishing_price = None
         self.finishing = image_param['finishing']
         self.material = image_param['material']
-        self.user = image_param['user']
+        self.user = image_param['role']
         self.role = image_param['role']
         self.value_material_price = None
         logging.info(f'[INFO]. self.length:{self.length} TYPE{type(self.length)}\n'
