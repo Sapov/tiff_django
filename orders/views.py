@@ -21,7 +21,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
-from .tasks import arh_for_mail, create_order_pdf
+from .tasks import create_order_pdf
 from users.tasks import send_message_whatsapp
 import logging
 import jwt
@@ -265,6 +265,8 @@ def order_pay(request, order_id):
 
 def get_domain(request):
     logger.info(f"DOMAIN: {get_current_site(request)}")
+
+    # return request.get_host()
     return str(get_current_site(request))
 
 
