@@ -21,7 +21,7 @@ class Role(models.TextChoices):
 
 class User(AbstractUser):
     role = models.CharField(max_length=24, choices=Role.choices, default=Role.CUSTOMER_RETAIL)
-    email = models.EmailField(_("email address"), unique=True, )
+    email = models.EmailField(_("email address"), unique=True, blank=True, null=True)
     email_verify = models.BooleanField(default=False)
     phone_number = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
                                     null=True)
