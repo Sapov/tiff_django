@@ -11,10 +11,16 @@ class AddLids(CreateView):
     model = Lids
     fields = ['lid_status', 'name', 'email', 'phone_number', 'channel', 'interest', 'interest_text']
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class DetailLids(DetailView):
     model = Lids
     template_name = 'lids/detail_lid.html'
+
+
 
 
 class ListLids(ListView):

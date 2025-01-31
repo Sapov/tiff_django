@@ -54,7 +54,7 @@ class Lids(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name="Владелиц лида",
-        default=1,
+
     )
 
     def __str__(self):
