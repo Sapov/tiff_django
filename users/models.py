@@ -2,9 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
-
-
-# from account.models import Organisation
+from django.conf import settings
 
 
 class Role(models.TextChoices):
@@ -34,7 +32,6 @@ class User(AbstractUser):
                                    help_text='Установите Да если '
                                              'к номеру телефона подключен Telegram',
                                    null=True, blank=True)
-    patronymic = models.CharField(max_length=200, verbose_name="Отчество")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]

@@ -60,7 +60,6 @@ class Lids(models.Model):
     def __str__(self):
         return self.name
 
-
     def get_absolute_url(self):
         return reverse("lids:list_lids")
         # return reverse("lids:list_lids", args=[self.id])

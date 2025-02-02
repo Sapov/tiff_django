@@ -288,6 +288,7 @@ class Calculator:
     ''' Класс умеет рассчитывать стоимость печати по Image '''
 
     def __init__(self, image_param: dict):
+        self.calculator_result = None
         self.length = image_param['length']
         self.width = image_param['width']
         self.quantity = image_param['quantity']
@@ -325,6 +326,22 @@ class Calculator:
             self.value_material_price = self.material.price_customer_retail
             self.value_finishing_price = self.finishing.price_customer_retail
         return self.value_material_price, self.value_finishing_price
+
+    def discount(self):
+        self.calculator_result = self.calculate_price()
+
+        """10000 """
+        discount = 10000
+        discount_15 = 15000
+        if discount_15 > self.calculator_result > discount:
+            st_discount = 'Вам положена скидка 10 % для дополнительной информации свяжитесь с менеджером'
+            return self.calculator_result , st_discount
+        elif self.calculator_result > discount_15:
+            st_discount = ('Вам положена скидка 10 % и бесплатная доставка по городу '
+                           'для дополнительной информации свяжитесь с менеджером')
+            return self.calculator_result, st_discount
+        else:
+            return self.calculator_result, None
 
     def calculate(self):
         return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity

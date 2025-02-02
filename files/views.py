@@ -130,12 +130,10 @@ def calculator(request):
             cd = form.cleaned_data
             cd['user'] = request.user  # Хочу передавать словарем
             cd['role'] = request.user.role
-            print(cd['user'])
             logger.info(f'[INFO CLEAN DATA] {cd}')
             image_price = Calculator(cd)
             results = image_price.calculate_price()
             cd['results'] = results
-            print('clenning data', cd)
             try:
                 add_item_calculator(cd)
                 return render(request, template_name, {"form": form,
@@ -237,7 +235,7 @@ def calculator_large_print_out(request):
 
             logger.info(f'[--INFO CLEAN DATA--] {cd}')
             image_price = Calculator(cd)
-            results = image_price.calculate_price()
+            results , st_discount = image_price.discount()
             cd['results'] = results
             try:
                 add_item_calculator(cd)
@@ -247,6 +245,7 @@ def calculator_large_print_out(request):
                 return render(request, template_name, {"form": form,
                                                        "title": title,
                                                        "results": results,
+                                                       'st_discount': st_discount,
                                                        'last_five_string': last_five_string,
                                                        }, )
 
