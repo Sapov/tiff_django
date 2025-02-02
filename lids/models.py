@@ -15,7 +15,7 @@ class Channel(models.TextChoices):
 
 
 class LidStatus(models.TextChoices):
-    ANSWER = 'ANSWER', 'ответил на вопросы'
+    ANSWER = 'ANSWER', 'Ответил на вопросы'
     POSTING = 'POSTING', 'выслал дополнительную информацию'
     DESIGN_HOW = 'DESIGN_HOW', 'Отослал дизайнер для расчета'
     DESIGN = 'DESIGN', 'Разработка макета'

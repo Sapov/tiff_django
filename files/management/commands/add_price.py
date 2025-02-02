@@ -4,6 +4,7 @@ from django_celery_beat.models import IntervalSchedule
 from account.models import Delivery
 from files.models import Material, FinishWork, TypePrint, StatusProduct
 from orders.models import StatusOrder
+from lids.models import Interest
 from .from_excel import load_excel
 
 
@@ -91,19 +92,6 @@ class Command(BaseCommand):
                 # is_active=item[4]
             )
 
-    # def _load_items_one_field(self, sheet: str, range_cell: str, model: str, anotation: str, field: str):
-    #     print('*' * 30, anotation, '*' * 30)
-    #     '''Загружаю данные в базу'''
-    #     for item in load_excel(sheet, range_cell):
-    #         print(item)
-    #         model.objects.get_or_create(field=item[0])
-    #
-    # _load_items_one_field('status_product',
-    #                       'b2:b4',
-    #                       'StatusProduct',
-    #                       'заполняем Статус Продукта ',
-    #                       'status')
-
         print('*' * 30, 'заполняем Статус Продукта ', '*' * 30)
         for status in load_excel('status_product', 'b2:b4'):
             print(status)
@@ -114,21 +102,20 @@ class Command(BaseCommand):
             print(status)
             StatusOrder.objects.get_or_create(name=status[0])
         # _load_items_one_field('status_order',
-    #                            'b2:b6',
-    #                            'StatusOrder',
-    #                            'заполняем Статус Заказа ',
-    #                            'status')
+        #                            'b2:b6',
+        #                            'StatusOrder',
+        #                            'заполняем Статус Заказа ',
+        #                            'status')
 
         print('*' * 30, 'заполняем Типы доставки ', '*' * 30)
         for type_delivery in load_excel('delivery', 'b2:b3'):
             print(type_delivery)
             Delivery.objects.get_or_create(type_delivery=type_delivery[0])
 
-    # _load_items_one_field('delivery',
-    #                            'b2:b3',
-    #                            'Delivery',
-    #                            'заполняем Типы доставки',
-    #                            'type_delivery')
+        print('*' * 30, 'Заполняю Интересы лидов', '*' * 30)
+        for item in load_excel('lid_interes', 'b2:b8'):
+            print(item)
+            Interest.objects.get_or_create(name=item[0], )
 
 
 def add_intervals_for_celery_beat(self):
