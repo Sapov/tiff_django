@@ -235,7 +235,7 @@ def calculator_large_print_out(request):
 
             logger.info(f'[--INFO CLEAN DATA--] {cd}')
             image_price = Calculator(cd)
-            results , st_discount = image_price.discount()
+            results, st_discount = image_price.discount()
             cd['results'] = results
             try:
                 add_item_calculator(cd)

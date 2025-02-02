@@ -5,6 +5,7 @@ import data
 import patoolib
 from PIL import Image as Image_pil, ImageOps
 from mysite import settings
+from users.tasks import send_message_whatsapp
 
 import logging
 
@@ -333,12 +334,17 @@ class Calculator:
         """10000 """
         discount = 10000
         discount_15 = 15000
+
         if discount_15 > self.calculator_result > discount:
             st_discount = 'Вам положена скидка 10 % для дополнительной информации свяжитесь с менеджером'
-            return self.calculator_result , st_discount
+            admin_phone = os.getenv('PHONE_NUMBER')
+            send_message_whatsapp.delay(f'{admin_phone}', f'В калькуляторе посчитали скидку 10 %')
+            return self.calculator_result, st_discount
         elif self.calculator_result > discount_15:
             st_discount = ('Вам положена скидка 10 % и бесплатная доставка по городу '
                            'для дополнительной информации свяжитесь с менеджером')
+            admin_phone = os.getenv('PHONE_NUMBER')
+            send_message_whatsapp.delay(f'{admin_phone}', f'В калькуляторе посчитали скидку 10 % + бесплатная доставка')
             return self.calculator_result, st_discount
         else:
             return self.calculator_result, None
