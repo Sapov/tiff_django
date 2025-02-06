@@ -39,10 +39,7 @@ class Interest(models.Model):
 class Lids(models.Model):
     lid_status = models.CharField(max_length=64, choices=LidStatus.choices, default=LidStatus.ANSWER,
                                   verbose_name='Статус лида')
-    name = models.CharField(max_length=255, verbose_name='Имя', blank=True, null=True)
-    email = models.EmailField(auto_created='Email', blank=True, null=True)
-    phone_number = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
-                                    null=True)
+    owner = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='LID')
 
     channel = models.CharField(max_length=64, choices=Channel.choices, default=Channel.PHONE,
                                verbose_name='Канал продаж')

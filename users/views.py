@@ -88,7 +88,6 @@ class UserListsView(LoginRequiredMixin, ListView):
 class UserUpdateLIst(LoginRequiredMixin, UpdateView):
     model = User
     fields = [
-        'password',
         'email',
         'username',
         'last_name',

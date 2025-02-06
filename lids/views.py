@@ -7,7 +7,7 @@ from .models import Lids
 
 class AddLids(CreateView):
     model = Lids
-    fields = ['lid_status', 'name', 'email', 'phone_number', 'channel', 'interest', 'interest_text']
+    fields = ['lid_status', 'owner', 'channel', 'interest', 'interest_text']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -25,7 +25,7 @@ class ListLids(ListView):
 
 class UpdateLids(UpdateView):
     model = Lids
-    fields = ['lid_status', 'name', 'email', 'phone_number', 'channel', 'interest', 'interest_text']
+    fields = ['lid_status', 'channel', 'interest', 'interest_text']
     template_name_suffix = "_update_form"
 
 
