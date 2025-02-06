@@ -228,7 +228,7 @@ post_save.connect(product_post_save, sender=Product)
 
 
 class UseCalculator(models.Model):
-    ''' Расчеты пользователей сайта '''
+    ''' Расчеты пользователей сайта'''
 
     material = models.ForeignKey("Material", on_delete=models.PROTECT, verbose_name="Материал")
     quantity = models.IntegerField(default=1, help_text="Введите количество", verbose_name="Количество")
