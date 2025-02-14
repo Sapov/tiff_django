@@ -479,20 +479,14 @@ def add_time_order(request, pk: int, hash_code):
 
 def about_file(request, file_id):
     file = Product.objects.get(id=file_id)
-    print(f'Разрешение файла {file.resolution} VS Разрешение печати {file.material.resolution_print}')
-    if file.resolution < file.material.resolution_print:
-        message = (f"Файл не подходит для качественной печати. Разрешение файла {file.resolution} dpi меньше "
-                   f"положенного {file.material.resolution_print} dpi")
-    elif file.resolution > file.material.resolution_print:
-        # resize_image.delay(file)
-        # Засунуть в Celery
-        # item_file = ImageFile(file.images)
-        # item_file.resolution_reduction(file.material.resolution_print)
-
-        message = ''
-
-    else:
-        message = ''
+    # print(f'Разрешение файла {file.resolution} VS Разрешение печати {file.material.resolution_print}') file.material
+    # if file.resolution < file.material.resolution_print:
+    #     message = (f"Файл не подходит для качественной печати. Разрешение файла {file.resolution} dpi меньше "
+    #                f"положенного {file.material.resolution_print} dpi")
+    # elif file.resolution > file.material.resolution_print:
+    #
+    # else:
+    message = ''
 
     return render(request, "files/about_file.html", {"file": file, 'message': message})
 

@@ -88,20 +88,20 @@ class Order(models.Model):
         return reverse("orders:add_file_in_order", args=[self.id])
 
 
-def send_order(instance, **kwargs):
-    order_id = instance.id
-    paid = instance.paid
-
-    if paid:
-        print('--ORDER PAID--')
-        domain = os.getenv("DOMAIN")
-        from .tasks import arh_for_mail
-        # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
-        # domain = str(get_domain(request))
-        arh_for_mail.delay(order_id, domain=domain)
-
-
-post_save.connect(send_order, sender=Order)
+# def send_order(instance, **kwargs):
+#     order_id = instance.id
+#     paid = instance.paid
+#     status = instance.status.id
+#     if paid and status == 2:
+#         print('--ORDER PAID--')
+#         domain = os.getenv("DOMAIN")
+#         from .tasks import arh_for_mail
+#         # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
+#         # domain = str(get_domain(request))
+#         arh_for_mail.delay(order_id, domain=domain)
+#
+#
+# post_save.connect(send_order, sender=Order)
 
 
 class OrderItem(models.Model):

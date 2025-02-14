@@ -3,8 +3,8 @@ from django_celery_beat.models import IntervalSchedule
 
 from account.models import Delivery
 from files.models import Material, FinishWork, TypePrint, StatusProduct
-from orders.models import StatusOrder
 from lids.models import Interest
+from orders.models import StatusOrder
 from .from_excel import load_excel
 
 
@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
         '''заполняем ширку из первого  листа с диапазоном b2:f12 '''
         print('*' * 30, 'Заполняю базу стоимости Широкоформатная печать материалов из файла', '*' * 30)
-        for item in load_excel('shirka', 'b2:f12'):
+        for item in load_excel('shirka', 'b2:e12'):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],
@@ -31,7 +31,6 @@ class Command(BaseCommand):
                 price_contractor=item[1],
                 price=item[2],
                 price_customer_retail=item[3],
-                resolution_print=item[4]
             )
         '''заполняем стоимость пустого материала диапазоном b2:E9 '''
         print('*' * 30, 'Заполняю базу стоимости Пустого материала из файла', '*' * 30)
@@ -46,7 +45,7 @@ class Command(BaseCommand):
             )
 
         print('*' * 30, 'Заполняю базу стоимости Интерьерку печать материалов из файла', '*' * 30)
-        for item in load_excel('interierka', 'b2:f17'):
+        for item in load_excel('interierka', 'b2:e17'):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],
@@ -54,11 +53,10 @@ class Command(BaseCommand):
                 price_contractor=item[1],
                 price=item[2],
                 price_customer_retail=item[3],
-                resolution_print=item[4]
             )
 
         print('*' * 30, 'Заполняю базу стоимости UV print печать материалов ', '*' * 30)
-        for item in load_excel('uf-print', 'b2:f18'):
+        for item in load_excel('uf-print', 'b2:e18'):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],
@@ -66,10 +64,9 @@ class Command(BaseCommand):
                 price_contractor=item[1],
                 price=item[2],
                 price_customer_retail=item[3],
-                resolution_print=item[4]
             )
         print('*' * 30, 'Заполняю базу стоимости печати картин на холсте ', '*' * 30)
-        for item in load_excel('picturies', 'b2:f13'):
+        for item in load_excel('picturies', 'b2:e13'):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],
@@ -77,7 +74,6 @@ class Command(BaseCommand):
                 price_contractor=item[1],
                 price=item[2],
                 price_customer_retail=item[3],
-                resolution_print=item[4]
             )
 
         # заполняем Финишку в таблицу FinishWork
@@ -92,6 +88,19 @@ class Command(BaseCommand):
                 # is_active=item[4]
             )
 
+    # def _load_items_one_field(self, sheet: str, range_cell: str, model: str, anotation: str, field: str):
+    #     print('*' * 30, anotation, '*' * 30)
+    #     '''Загружаю данные в базу'''
+    #     for item in load_excel(sheet, range_cell):
+    #         print(item)
+    #         model.objects.get_or_create(field=item[0])
+    #
+    # _load_items_one_field('status_product',
+    #                       'b2:b4',
+    #                       'StatusProduct',
+    #                       'заполняем Статус Продукта ',
+    #                       'status')
+
         print('*' * 30, 'заполняем Статус Продукта ', '*' * 30)
         for status in load_excel('status_product', 'b2:b4'):
             print(status)
@@ -102,20 +111,20 @@ class Command(BaseCommand):
             print(status)
             StatusOrder.objects.get_or_create(name=status[0])
         # _load_items_one_field('status_order',
-        #                            'b2:b6',
-        #                            'StatusOrder',
-        #                            'заполняем Статус Заказа ',
-        #                            'status')
+    #                            'b2:b6',
+    #                            'StatusOrder',
+    #                            'заполняем Статус Заказа ',
+    #                            'status')
 
         print('*' * 30, 'заполняем Типы доставки ', '*' * 30)
         for type_delivery in load_excel('delivery', 'b2:b3'):
             print(type_delivery)
             Delivery.objects.get_or_create(type_delivery=type_delivery[0])
 
-        print('*' * 30, 'Заполняю Интересы лидов', '*' * 30)
-        for item in load_excel('lid_interes', 'b2:b8'):
-            print(item)
-            Interest.objects.get_or_create(name=item[0], )
+        print('*' * 30, 'заполняем Интересы лидов ', '*' * 30)
+        for name in load_excel('Interest', 'b2:b7'):
+            print(name)
+            Interest.objects.get_or_create(name=name[0])
 
 
 def add_intervals_for_celery_beat(self):

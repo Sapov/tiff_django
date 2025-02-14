@@ -21,7 +21,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
-from .tasks import create_order_pdf
+from .tasks import create_order_pdf, arh_for_mail
 from users.tasks import send_message_whatsapp
 import logging
 import jwt
@@ -227,6 +227,8 @@ def order_pay(request, order_id):
         # получаем дату готовности из базы
         domain = get_domain(request)
         Alerts.start_count_down(domain, order_id)
+        arh_for_mail.delay(order_id, domain=domain)
+
 
 
         # -----------------------create_link_pay-----------------------------------
