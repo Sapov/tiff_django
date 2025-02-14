@@ -12,6 +12,6 @@ class Command(BaseCommand):
         # заполняем Типы материалов в таблицу TypePrint
         print('[INFO] Добавляем интервалы для Celery beat')
         print('*' * 20, 'ПОВТОРЕНИЕ ЧЕРЕЗ ЧАС ', "*" * 20)
-        IntervalSchedule.objects.create(every=1, period='hours')
+        IntervalSchedule.objects.get_or_create(every=1, period='hours')
         print('*' * 20, 'ПОВТОРЕНИЕ ЧЕРЕЗ 2 МИНУТЫ ', "*" * 20)
-        IntervalSchedule.objects.create(every=2, period='minutes')  # for test
+        IntervalSchedule.objects.get_or_create(every=2, period='minutes')  # for test

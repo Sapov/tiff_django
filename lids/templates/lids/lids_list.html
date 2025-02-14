@@ -26,7 +26,6 @@
                 <th>Канал</th>
                 <th>Интерес</th>
                 <th>Дата</th>
-                <th>Владелец</th>
                 <ht></ht>
 
             </thead>
@@ -53,10 +52,10 @@
                 <td>{{ lid.channel }}</td>
                 <td>{{ lid.interest }}</td>
                 <td>{{ lid.created_at }}</td>
-                <td>{{ lid.user }}</td>
                 <td>
                     <button type="submit" class="btn btn-primary"
-                            onClick="location.href='{% url 'lids:delete_lids' lid.id %}'">Удалить                 </b
+                            onClick="location.href='{% url 'lids:delete_lids' lid.id %}'">Удалить
+                    </button>
                 </td>
 
 

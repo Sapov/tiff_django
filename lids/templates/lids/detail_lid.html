@@ -20,19 +20,18 @@
                 <th>Интерес</th>
                 <th>Заметки</th>
                 <th>Дата</th>
-                <th>Владелец</th>
             </thead>
             <tbody>
             <tr>
                 <td>
                     <button type="submit" class="btn btn-primary"
-                            onClick="location.href='{% url 'lids:edit_lids' object.id %}'">{{ object.name }}
+                            onClick="location.href='{% url 'lids:edit_lids' object.id %}'">{{ object.username }}
                     </button>
                 </td>
 
                 <td>
                     <button type="submit" class="btn btn-primary"
-                            onClick="location.href='{% url 'lids:update_status' object.id %}'">{{lid.get_lid_status_display}}
+                            onClick="location.href='{% url 'lids:update_status' object.id %}'">{{object.get_lid_status_display}}
                     </button>
                 </td>
                 <td>{{object.email}}</td>
@@ -41,7 +40,6 @@
                 <td>{{ object.interest }}</td>
                 <td>{{ object.interest_text }}</td>
                 <td>{{ object.created_at }}</td>
-                <td>{{ object.user }}</td>
 
             </tr>
             </tbody>

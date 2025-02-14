@@ -1,4 +1,3 @@
-import phonenumbers
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings
@@ -39,8 +38,10 @@ class Interest(models.Model):
 class Lids(models.Model):
     lid_status = models.CharField(max_length=64, choices=LidStatus.choices, default=LidStatus.ANSWER,
                                   verbose_name='Статус лида')
-    owner = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='LID')
-
+    username = models.CharField(max_length=255, verbose_name='Имя Фамилия', blank=True, null=True)
+    email = models.EmailField(verbose_name='Почта')
+    phone = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
+                                    null=True)
     channel = models.CharField(max_length=64, choices=Channel.choices, default=Channel.PHONE,
                                verbose_name='Канал продаж')
     interest = models.ForeignKey(Interest, on_delete=models.PROTECT, verbose_name='Интерес', default=1)
@@ -55,7 +56,7 @@ class Lids(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.username
 
     def get_absolute_url(self):
         return reverse("lids:list_lids")
