@@ -39,7 +39,7 @@ class Lids(models.Model):
     lid_status = models.CharField(max_length=64, choices=LidStatus.choices, default=LidStatus.ANSWER,
                                   verbose_name='Статус лида')
     username = models.CharField(max_length=255, verbose_name='Имя Фамилия', blank=True, null=True)
-    email = models.EmailField(verbose_name='Почта')
+    email = models.EmailField(verbose_name='Почта', blank=True, null=True)
     phone = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
                                     null=True)
     channel = models.CharField(max_length=64, choices=Channel.choices, default=Channel.PHONE,
