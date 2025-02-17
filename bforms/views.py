@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from bforms.forms import SaleBanner
 
@@ -32,4 +34,10 @@ def sale_banner(request):
 
 
 def order_complete(request):
+    # ----------''' Сообщение дминистратору'''--------------
+    ''' успешная отправка письма В будущем - -Сообщение менеджеру типографии'''
+    admin_phone = os.getenv('PHONE_NUMBER')
+    from users.tasks import send_message_whatsapp
+    send_message_whatsapp.delay(f'{admin_phone}', f'Новая заявка на сайте !')
+
     return render(request, 'bforms/order_complete.html')

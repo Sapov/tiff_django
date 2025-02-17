@@ -12,11 +12,10 @@ class SiteOrder(models.Model):
     phone_number = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
                                     null=True)
     email = models.EmailField(max_length=255, verbose_name='Email', blank=True, null=True)
-    material = models.ForeignKey(Material, on_delete=models.PROTECT, verbose_name='Материал для печати', blank=True,
-                                 null=True)
-    size_banner = models.CharField(max_length=255, verbose_name='Размер носителя', help_text='ширина Х высота в метрах',
-                                   blank=True, null=True)
-    info = models.TextField(verbose_name='Дополнительная информация', blank=True, null=True)
+    info = models.TextField(verbose_name='Информация о  заявке', blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse("bforms:order_complete")
+
+    def __str__(self):
+        return f'{self.id}  {self.name}'
