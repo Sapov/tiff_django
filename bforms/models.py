@@ -17,5 +17,8 @@ class SiteOrder(models.Model):
     def get_absolute_url(self):
         return reverse("bforms:order_complete")
 
+
     def __str__(self):
         return f'{self.id}  {self.name}'
+
+
