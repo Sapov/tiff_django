@@ -9,7 +9,7 @@ from files.models import Material
 class SiteOrder(models.Model):
     # Таблица заявок с сайте через форму
     name = models.CharField(max_length=255, verbose_name='Имя', blank=True, null=True)
-    phone_number = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
+    phone = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
                                     null=True)
     email = models.EmailField(max_length=255, verbose_name='Email', blank=True, null=True)
     info = models.TextField(verbose_name='Информация о  заявке', blank=True, null=True)
