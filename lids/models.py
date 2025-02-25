@@ -16,13 +16,15 @@ class Channel(models.TextChoices):
 
 class LidStatus(models.TextChoices):
     ANSWER = 'ANSWER', 'Ответил на вопросы'
-    POSTING = 'POSTING', 'выслал дополнительную информацию'
-    DESIGN_HOW = 'DESIGN_HOW', 'Отослал дизайнер для расчета'
+    REQUEST = 'REQUEST', 'Неотвеченный запрос'
+    POSTING = 'POSTING', 'Выслал дополнительную информацию'
+    DESIGN_HOW = 'DESIGN_HOW', 'Отослал дизайнеру для расчета'
     DESIGN = 'DESIGN', 'Разработка макета'
     ORDER = 'ORDER', 'Выставление счета'
     PRODUCTION = 'PRODUCTION', 'В работе'
     COMPLETE = 'COMPLETE', 'Cообщили о готовности'
     FEEDBACK = 'FEEDBACK', 'Отсылаем просьбу об отзыве'
+    CLOSED = 'CLOSED', 'Закрыт'
 
 
 class Interest(models.Model):
@@ -37,8 +39,8 @@ class Interest(models.Model):
 
 
 class Lids(models.Model):
-    lid_status = models.CharField(max_length=64, choices=LidStatus.choices, default=LidStatus.ANSWER,
-                                  verbose_name='Статус лида', db_default='DESIGN')
+    lid_status = models.CharField(max_length=64, choices=LidStatus.choices, default=LidStatus.REQUEST,
+                                  verbose_name='Статус лида')
     username = models.CharField(max_length=255, verbose_name='Имя', blank=True, null=True)
     email = models.EmailField(verbose_name='Почта', blank=True, null=True)
     phone = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
