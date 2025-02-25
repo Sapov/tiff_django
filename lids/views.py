@@ -1,8 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
 
-from .models import Lids
+from account.views import Users
+from .forms import UserLids
+from .models import Lids, Interest
 
 
 class AddLids(CreateView):
@@ -12,6 +15,51 @@ class AddLids(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class AddLidsSiteUser(CreateView):
+    model = Lids
+    fields = ['username', 'email', 'phone', 'interest', 'interest_text']
+    template_name = 'lids/user_site_order_form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+def add_user_lids(request):
+    title = 'Новая заявка'
+    template_name = 'lids/user_site_order_form.html'
+    """ Пользователь отправил форму"""
+    if request.method == 'POST':
+        form = UserLids(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            cd['user'] = request.user
+            cd['role'] = request.user
+            # cd['username'] = request.username
+            print(cd)
+            from lids.models import Lids
+            Users = get_user_model()
+
+            user = Users.objects.get(id=1)
+            interest = Interest.objects.get(name=cd['interest'])
+            Lids.objects.create(username=cd['username'], email=cd['email'], phone=cd['phone'], user=user,
+                                interest=interest, interest_text=cd['interest_text'])
+            try:
+                return render(request, 'lids/thanks.html', {"form": form,
+                                                            "title": title,
+                                                            "results": cd,
+                                                            }, )
+
+            except:
+                form.add_error(None, 'Ошибка расчета')
+
+    else:
+        form = UserLids()
+        return render(request, template_name,
+                      {"form": form, "title": title
+                       })
 
 
 class DetailLids(DetailView):

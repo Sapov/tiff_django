@@ -8056,3 +8056,378 @@ SELF.USER: MANAGER: TYPE <class 'str'>
 2025-02-14 20:42:50,421 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-02-14 20:43:08,325 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/models.py changed, reloading.
 2025-02-14 20:43:09,983 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 16:43:36,497 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:13:04,589 django.request WARNING  Not Found: /favicon.ico
+2025-02-24 23:13:14,396 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-02-24 23:13:14,397 account.views INFO     page_NUM: 1
+2025-02-24 23:13:14,398 account.views INFO     page_NUM: <Page 1 of 3>
+2025-02-24 23:18:30,336 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-24 23:18:31,427 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:22:38,052 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/urls.py changed, reloading.
+2025-02-24 23:22:39,141 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:24:29,275 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-24 23:24:30,646 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:24:59,355 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-24 23:25:00,656 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:28:02,573 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-24 23:28:03,657 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:30:02,685 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: lids/user_site_order_form.hrml
+2025-02-24 23:30:42,648 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: lids/user_site_order_form.hrml
+2025-02-24 23:32:26,265 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-24 23:32:27,372 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:33:23,115 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-24 23:33:24,341 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:34:09,470 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/models.py changed, reloading.
+2025-02-24 23:34:10,526 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:35:17,247 django.request WARNING  Not Found: /login/http://127.0.0.1:8000/lids/user_site_add/
+2025-02-24 23:36:18,683 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/lids/views.py", line 22, in form_valid
+    form.instance.user = self.request.user
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 284, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7036e02bbe20>>": "Lids.user" must be a "User" instance.
+2025-02-24 23:37:16,259 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/models.py changed, reloading.
+2025-02-24 23:37:17,916 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:40:21,685 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/models.py changed, reloading.
+2025-02-24 23:40:22,986 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-24 23:40:48,155 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/lids/views.py", line 22, in form_valid
+    form.instance.user = self.request.user
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 284, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x749ce7ccf2e0>>": "Lids.user" must be a "User" instance.
+2025-02-25 10:05:53,221 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 10:05:54,644 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 10:12:12,334 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 10:12:13,595 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 10:12:35,331 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/lids/views.py", line 38, in add_user_lids
+    cd['username'] = request.username
+AttributeError: 'WSGIRequest' object has no attribute 'username'
+2025-02-25 10:12:56,105 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 10:12:57,325 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 10:16:17,990 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 10:16:19,126 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 10:28:46,751 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/forms.py changed, reloading.
+2025-02-25 10:28:47,794 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 10:29:09,031 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/forms.py changed, reloading.
+2025-02-25 10:29:10,168 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 10:29:16,202 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view lids.views.add_user_lids didn't return an HttpResponse object. It returned None instead.
+2025-02-25 10:30:13,218 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/forms.py changed, reloading.
+2025-02-25 10:30:14,913 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 10:30:53,838 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/forms.py changed, reloading.
+2025-02-25 10:30:54,996 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 10:31:11,197 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view lids.views.add_user_lids didn't return an HttpResponse object. It returned None instead.
+2025-02-25 10:32:23,803 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/forms.py changed, reloading.
+2025-02-25 10:32:24,925 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 18:06:46,819 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 18:06:48,236 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 18:07:18,146 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: lids_lids.user_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/lids/views.py", line 41, in add_user_lids
+    Lids.objects.create(username = cd['username'], email = cd['email'], phone = cd['phone'])
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: lids_lids.user_id
+2025-02-25 18:08:03,272 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 18:08:04,571 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 18:08:19,218 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/lids/views.py", line 41, in add_user_lids
+    Lids.objects.create(username = cd['username'], email = cd['email'], phone = cd['phone'], user = 1)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 677, in create
+    obj = self.model(**kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 284, in __set__
+    raise ValueError(
+ValueError: Cannot assign "1": "Lids.user" must be a "User" instance.
+2025-02-25 18:11:51,667 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 18:11:53,061 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 18:12:08,094 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/lids/views.py", line 45, in add_user_lids
+    user = Users.object.get(id=1)
+AttributeError: type object 'User' has no attribute 'object'
+2025-02-25 18:12:19,627 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 18:12:20,973 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 18:15:17,357 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 18:15:18,600 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 18:18:30,337 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 18:18:31,602 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 18:18:44,933 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2117, in get_prep_value
+    return int(value)
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'Interest'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/lids/views.py", line 46, in add_user_lids
+    interest = Interest.objects.get(id=cd['interest'])
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 635, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1613, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1645, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1559, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1389, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/lookups.py", line 364, in get_prep_lookup
+    return super().get_prep_lookup()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/lookups.py", line 88, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py", line 2119, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <Interest: Баннера>.
+2025-02-25 18:19:42,834 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-02-25 18:19:44,591 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 18:21:38,233 django.request ERROR    Internal Server Error: /admin/lids/lids/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/options.py", line 681, in get_field
+    return self.fields_map[field_name]
+KeyError: 'action_checkbox'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/utils.py", line 289, in lookup_field
+    f = _get_non_gfk_field(opts, name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/utils.py", line 322, in _get_non_gfk_field
+    field = opts.get_field(name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/options.py", line 683, in get_field
+    raise FieldDoesNotExist(
+django.core.exceptions.FieldDoesNotExist: Lids has no field named 'action_checkbox'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/templatetags/base.py", line 45, in render
+    return super().render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/library.py", line 258, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/templatetags/admin_list.py", line 345, in result_list
+    "results": list(results(cl)),
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/templatetags/admin_list.py", line 321, in results
+    yield ResultList(None, items_for_result(cl, res, None))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/templatetags/admin_list.py", line 312, in __init__
+    super().__init__(*items)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/templatetags/admin_list.py", line 217, in items_for_result
+    f, attr, value = lookup_field(field_name, result, cl.model_admin)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/utils.py", line 298, in lookup_field
+    value = attr(obj)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/options.py", line 999, in action_checkbox
+    "aria-label": format_html(_("Select this object for an action - {}"), obj),
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/html.py", line 135, in format_html
+    return mark_safe(format_string.format(*args_safe, **kwargs_safe))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/html.py", line 117, in conditional_escape
+    return escape(text)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 231, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/html.py", line 50, in escape
+    return SafeString(html.escape(str(text)))
+TypeError: __str__ returned non-string (type NoneType)
+2025-02-25 18:22:20,797 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-02-25 18:22:20,798 account.views INFO     page_NUM: 1
+2025-02-25 18:22:20,799 account.views INFO     page_NUM: <Page 1 of 3>

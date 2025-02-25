@@ -11,6 +11,7 @@ class Channel(models.TextChoices):
     TELEGRAM = "TELEGRAM", "telegram"  # розничный клиент
     EMAIL = 'EMAIL', 'email'
     PHONE = 'PHONE', 'Телефонный звонок'
+    SITE = 'SITE', 'Сайт'
 
 
 class LidStatus(models.TextChoices):
@@ -37,14 +38,14 @@ class Interest(models.Model):
 
 class Lids(models.Model):
     lid_status = models.CharField(max_length=64, choices=LidStatus.choices, default=LidStatus.ANSWER,
-                                  verbose_name='Статус лида')
-    username = models.CharField(max_length=255, verbose_name='Имя Фамилия', blank=True, null=True)
+                                  verbose_name='Статус лида', db_default='DESIGN')
+    username = models.CharField(max_length=255, verbose_name='Имя', blank=True, null=True)
     email = models.EmailField(verbose_name='Почта', blank=True, null=True)
     phone = PhoneNumberField(blank=True, verbose_name='Номер телефона', help_text='В формате +7 953 119-33-67',
                                     null=True)
-    channel = models.CharField(max_length=64, choices=Channel.choices, default=Channel.PHONE,
+    channel = models.CharField(max_length=64, choices=Channel.choices, default=Channel.SITE,
                                verbose_name='Канал продаж')
-    interest = models.ForeignKey(Interest, on_delete=models.PROTECT, verbose_name='Интерес', default=1)
+    interest = models.ForeignKey(Interest, on_delete=models.PROTECT, verbose_name='Тема сообщения', default=1)
     interest_text = models.TextField(verbose_name='Дополнительная информация', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")
     update_at = models.DateTimeField(auto_now=True, verbose_name='Изменено')
@@ -59,6 +60,8 @@ class Lids(models.Model):
         return self.username
 
     def get_absolute_url(self):
+        print(self.user)
+
         return reverse("lids:list_lids")
         # return reverse("lids:list_lids", args=[self.id])
 
