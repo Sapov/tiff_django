@@ -73,7 +73,9 @@ class ListLids(ListView):
 
 class UpdateLids(UpdateView):
     model = Lids
-    fields = ['lid_status', 'username', 'channel', 'interest', 'interest_text']
+    fields = ['lid_status', 'username',
+              'phone', 'email',
+              'channel', 'interest', 'interest_text']
     template_name_suffix = "_update_form"
 
 
