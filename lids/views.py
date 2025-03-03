@@ -1,9 +1,10 @@
+import os
+from lids.models import Lids
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
-
-from account.views import Users
+from users.tasks import send_message_whatsapp
 from .forms import UserLids
 from .models import Lids, Interest
 
@@ -37,15 +38,18 @@ def add_user_lids(request):
             cd = form.cleaned_data
             cd['user'] = request.user
             cd['role'] = request.user
-            # cd['username'] = request.username
             print(cd)
-            from lids.models import Lids
+            thems = cd['interest']
             Users = get_user_model()
-
             user = Users.objects.get(id=1)
-            interest = Interest.objects.get(name=cd['interest'])
+            interest = Interest.objects.get(name=thems)
             Lids.objects.create(username=cd['username'], email=cd['email'], phone=cd['phone'], user=user,
                                 interest=interest, interest_text=cd['interest_text'])
+
+            text = f"Имя: {cd['username']}, \nТема: {thems}, \nИнформация: {cd['interest_text']}"
+            admin_phone = os.getenv('PHONE_NUMBER')
+            send_message_whatsapp.delay(f'{admin_phone}', f'Новая заявка на сайте: {text}')
+
             try:
                 return render(request, 'lids/thanks.html', {"form": form,
                                                             "title": title,
