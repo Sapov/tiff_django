@@ -45,20 +45,17 @@ def add_user_lids(request):
             interest = Interest.objects.get(name=thems)
             Lids.objects.create(username=cd['username'], email=cd['email'], phone=cd['phone'], user=user,
                                 interest=interest, interest_text=cd['interest_text'])
-
             text = f"Имя: {cd['username']}, \nТема: {thems}, \nИнформация: {cd['interest_text']}"
             admin_phone = os.getenv('PHONE_NUMBER')
-            send_message_whatsapp.delay(f'{admin_phone}', f'Новая заявка на сайте: {text}')
+            send_message_whatsapp.delay(f'{admin_phone}', f'Новая заявка на сайте: \n{text}')
 
             try:
                 return render(request, 'lids/thanks.html', {"form": form,
                                                             "title": title,
                                                             "results": cd,
                                                             }, )
-
             except:
                 form.add_error(None, 'Ошибка расчета')
-
     else:
         form = UserLids()
         return render(request, template_name,
