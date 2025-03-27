@@ -8431,3 +8431,91 @@ TypeError: __str__ returned non-string (type NoneType)
 2025-02-25 18:22:20,797 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
 2025-02-25 18:22:20,798 account.views INFO     page_NUM: 1
 2025-02-25 18:22:20,799 account.views INFO     page_NUM: <Page 1 of 3>
+2025-02-25 19:09:12,087 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/models.py changed, reloading.
+2025-02-25 19:09:13,293 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-02-25 19:09:42,109 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-02-25 19:09:42,110 account.views INFO     page_NUM: 1
+2025-02-25 19:09:42,112 account.views INFO     page_NUM: <Page 1 of 3>
+2025-03-02 10:27:05,876 django.request WARNING  Not Found: /favicon.ico
+2025-03-02 10:27:14,777 django.request WARNING  Not Found: /f0
+2025-03-02 10:29:03,484 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-02 10:31:03,574 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/forms.py changed, reloading.
+2025-03-02 10:31:04,848 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-02 10:31:35,373 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-02 10:32:21,256 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view lids.views.add_user_lids didn't return an HttpResponse object. It returned None instead.
+2025-03-02 10:33:47,898 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view lids.views.add_user_lids didn't return an HttpResponse object. It returned None instead.
+2025-03-02 10:35:23,537 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view lids.views.add_user_lids didn't return an HttpResponse object. It returned None instead.
+2025-03-02 10:42:37,827 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-03-02 10:42:39,137 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-02 10:42:52,053 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-03-02 10:42:52,053 account.views INFO     page_NUM: 1
+2025-03-02 10:42:52,055 account.views INFO     page_NUM: <Page 1 of 3>
+2025-03-02 14:28:05,609 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-03-02 14:28:06,856 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 19:50:30,626 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 19:50:35,996 django.request WARNING  Not Found: /favicon.ico
+2025-03-03 19:51:37,330 django.request ERROR    Internal Server Error: /lids/user_site_add/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/lids/views.py", line 48, in add_user_lids
+    admin_phone = os.getenv('PHONE_NUMBER')
+NameError: name 'os' is not defined
+2025-03-03 19:51:59,984 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-03-03 19:52:01,317 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 19:52:10,922 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2025-03-03 19:52:10,924 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2025-03-03 19:52:11,928 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2025-03-03 19:52:12,931 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2025-03-03 19:52:13,935 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2025-03-03 19:52:14,938 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2025-03-03 19:52:15,942 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2025-03-03 19:52:16,947 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2025-03-03 19:52:17,950 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2025-03-03 19:52:18,954 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2025-03-03 19:52:19,959 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2025-03-03 19:52:20,963 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2025-03-03 19:52:21,967 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2025-03-03 19:52:22,970 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2025-03-03 19:52:23,974 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2025-03-03 19:52:24,978 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2025-03-03 19:52:55,607 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 21:48:53,231 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-03-03 21:48:54,428 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 21:50:16,874 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-03-03 21:50:17,977 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 21:52:21,792 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-03-03 21:52:22,992 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 21:54:01,342 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-03-03 21:54:02,627 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 22:02:32,994 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
+2025-03-03 22:02:34,162 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-03-03 22:05:04,300 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-03-03 22:05:04,301 account.views INFO     page_NUM: 1
+2025-03-03 22:05:04,303 account.views INFO     page_NUM: <Page 1 of 3>
