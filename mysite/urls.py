@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.templatetags.static import static
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -27,12 +27,16 @@ from rest_framework import routers
 router = routers.SimpleRouter()
 router.register(r'material', MaterialViewSet)
 
+
+from django.views.static import serve
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path("files/", include("files.urls")),
     path("", include("users.urls")),
     path('', include('django.contrib.auth.urls')),
     path("account/", include("account.urls")),
-    path("bforms/", include("bforms.urls")),
     path("lids/", include("lids.urls")),
     path("orders/", include("orders.urls")),
     path("info/", include("info.urls")),
@@ -40,11 +44,14 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/", include(router.urls)), # api/v1/material
 
-]
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT})
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
 
 handler404 = page_not_found
 
-#
+
 # # включаем возможность обработки картинок
 if settings.DEBUG:
     # urlpatterns.append(path('static/<path:path>'))
