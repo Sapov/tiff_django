@@ -51,7 +51,7 @@ urlpatterns = [
 
 handler404 = page_not_found
 
-#
+
 # # включаем возможность обработки картинок
 if settings.DEBUG:
     # urlpatterns.append(path('static/<path:path>'))
