@@ -29,10 +29,18 @@ services:
       - media_volume:/django/media
     env_file:
       - .env
+    ports:
+      - 8000:8000
 
     command: >
-      bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && ./manage.py add_price && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
+      bash -c "python manage.py makemigrations &&
+                   python manage.py migrate &&
+                   python manage.py add_price &&
+                   python manage.py collectstatic --noinput &&
+                   gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
+
     restart: always
+
   worker:
     restart: always
     build: .
@@ -74,7 +82,3 @@ services:
 volumes:
   static_volume:
   media_volume:
-  certs:
-  vhost:
-  html:
-  acme:

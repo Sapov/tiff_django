@@ -22,4 +22,6 @@ COPY --chown=django:django . .
 
 RUN pip install -r requirements.txt
 
+
 USER django
+CMD ["bash", "-c", "python manage.py collectstatic --noinput && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"]
