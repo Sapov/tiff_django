@@ -78,7 +78,7 @@ class Command(BaseCommand):
 
         # заполняем Финишку в таблицу FinishWork
         print('*' * 30, 'Заполняю Постпечатную обработку', '*' * 30)
-        for item in load_excel('finishka', 'b2:e10'):
+        for item in load_excel('finishka', 'b2:e11'):
             print(item)
             FinishWork.objects.get_or_create(
                 work=item[0],

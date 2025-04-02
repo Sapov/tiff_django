@@ -8519,3 +8519,9 @@ NameError: name 'os' is not defined
 2025-03-03 22:05:04,300 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
 2025-03-03 22:05:04,301 account.views INFO     page_NUM: 1
 2025-03-03 22:05:04,303 account.views INFO     page_NUM: <Page 1 of 3>
+2025-04-02 19:32:39,073 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-02 19:33:27,343 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-02 19:33:33,910 django.request WARNING  Not Found: /favicon.ico
+2025-04-02 19:34:14,684 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-02 19:34:14,684 account.views INFO     page_NUM: 1
+2025-04-02 19:34:14,686 account.views INFO     page_NUM: <Page 1 of 3>
