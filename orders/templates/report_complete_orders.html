@@ -33,7 +33,7 @@
                 <th>Затраты по заказу</th>
                 <th>Организация</th>
                 <th>Дата формирования заказа</th>
-                <th>Contractor</th>
+                <th>Пользователь</th>
             </thead>
             <tbody>
             {% for item in order %}
@@ -42,7 +42,7 @@
                 <td>{{ item.cost_total_price }}</td>
                 <td>{{ item.organisation_payer }}</td>
                 <td>{{ item.created }}</td>
-                <td>{{ item.Contractor }}</td>
+                <td>{{ item.user }}</td>
 
 
             </tr>
