@@ -53,6 +53,4 @@ handler404 = page_not_found
 
 
 # # включаем возможность обработки картинок
-if settings.DEBUG:
-    # urlpatterns.append(path('static/<path:path>'))
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
