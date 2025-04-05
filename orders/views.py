@@ -417,11 +417,14 @@ def report_day(request):
 
 def change_status_order(status_oder: int, pk: int):
     order = Order.objects.get(id=pk)  # получаем заказ по id заказа
-    status = StatusOrder.objects.get(id=status_oder)  # меняем статус заказа
-    logger.info(f"МЕНЯЮ СТАТУС НА {status}")
-    order.status = status
-    order.save()
-
+    if order.status.id != status_oder:
+        status = StatusOrder.objects.get(id=status_oder)  # меняем статус заказа
+        logger.info(f"МЕНЯЮ СТАТУС НА {status}")
+        order.status = status
+        order.save()
+        return True
+    else:
+        return False
 
 def create_invoice(request, order_id):
     domain = str(get_domain(request))

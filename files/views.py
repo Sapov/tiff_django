@@ -415,13 +415,16 @@ def confirm_order_to_work(request, pk: int, hash_code: str):
     ''' Подтверждение приема заказа менеджером типографии'''
     if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш равен коду от хеша номера заказа
         """Меняем статус заказа"""
-        change_status_order(3, pk)
-        # оповещаем в whatsapp
-        send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}', f'Заказ № {pk} Принят типографией')
+        if change_status_order(3, pk):
+            # оповещаем в whatsapp
+            send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}', f'Заказ № {pk} Принят типографией')
 
-        context = Alerts.view_items_in_order(pk)
+            context = Alerts.view_items_in_order(pk)
 
-        return render(request, "files/confirm_order_to_work.html", context)
+            return render(request, "files/confirm_order_to_work.html", context)
+        else:
+            return render(request, "files/order_already_recorded.html", {'message': 'Заказ уже В работе!'})
+
     else:
         return render(request, "files/no_confirm_order_to_work.html")
 
@@ -431,17 +434,14 @@ def confirm_order_to_completed(request, pk: int, hash_code):
     if request.method == 'GET':
         if hash_code == UtilsModel.calculate_signature(pk):  # Нужно проверить что хеш  равен коду от хеша номера заказа
             """Меняем статус заказа"""
-            order = Order.objects.get(id=pk)
-            if order.status.id != 5:
-                print('ПРОВЕРКА СТАТУСА ОРДЕРА ПЕРЕд подтверждением', order.status.id)
-                change_status_order(5, pk)  # Статус Готов
+            if change_status_order(5, pk):  # Статус Готов
                 Alerts.stop_count_down(pk)
                 # Отослать сообщение админу и клиенту на месенджер
                 send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}',
                                             f'Типография подтвердила готовность заказа № {pk}')
 
                 return render(request, "files/confirm_order_to_completed.html")
-            elif order.status.id == 5:
+            else:
                 return render(request, "files/order_already_recorded.html", {'message':'Заказ уже закрыт!'})
         else:
             return render(request, "files/no_confirm_order_to_completed.html")
