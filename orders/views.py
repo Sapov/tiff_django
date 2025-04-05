@@ -221,7 +221,7 @@ def order_pay(request, order_id):
     os.chdir(f"{settings.MEDIA_ROOT}/orders")
     order = Order.objects.get(id=order_id)
 
-    if str(order.status) != 'Оформлен':  # предотвращаем повторную отправку заказа
+    if change_status_order(2, order_id):  # предотвращаем повторную отправку заказа
 
 
         # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправляем письмо с вопросом о готовности----------------
@@ -257,11 +257,10 @@ def order_pay(request, order_id):
         #     send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
 
         os.chdir(current_path)  # перейти обратно
-        change_status_order(2, order_id)
 
         return render(request, "orderpay.html", context)
     else:
-        return render(request, "orderpay.html")
+        return render(request, "files/order_already_recorded.html", {'message': 'Заказ уже оформлен!'})
 
 
 def get_domain(request):

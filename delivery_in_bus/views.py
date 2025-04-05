@@ -52,6 +52,8 @@ def render_instruction(request, order_id):
 def complete(request, order_id):
     if request.method == 'POST':
         # меняем статус заказа
-        change_status_order(status_oder=4, pk=order_id)
+        if change_status_order(status_oder=4, pk=order_id):
         # Отправляем фото клиенту
-        return redirect('delivery_in_bus:orders_for_courier_in_bus')
+            return redirect('delivery_in_bus:orders_for_courier_in_bus')
+        else:
+            return render(request, "files/order_already_recorded.html", {'message': 'Заказ уже закрыт!'})
