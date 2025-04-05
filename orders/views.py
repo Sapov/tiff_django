@@ -251,10 +251,10 @@ def order_pay(request, order_id):
             link_pay = Acquiring(order_id).run(organisation_flag=False)
             context = {"Orders": order, 'link_pay': link_pay}
 
-        # оповещаем в whatsapp
-        item_user = User.objects.get(email=user)
-        if item_user.whatsapp and item_user.phone_number:
-            send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
+        # оповещаем пользователя в whatsapp
+        # item_user = User.objects.get(email=user)
+        # if item_user.whatsapp and item_user.phone_number:
+        #     send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
 
         os.chdir(current_path)  # перейти обратно
         change_status_order(2, order_id)
