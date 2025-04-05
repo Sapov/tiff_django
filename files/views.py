@@ -10,8 +10,8 @@ from django.views.generic import DetailView, ListView
 from orders.alerts import Alerts
 from orders.models import Order, StatusOrder, OrderItem
 from .works_with_files.atchives_files import UtilsModel
-from orders.views import change_status_order, get_domain
-from .models import Product, Material, FinishWork, UseCalculator, Contractor
+from orders.views import change_status_order, get_domain, set_status_file
+from .models import Product, Material, FinishWork, UseCalculator, Contractor, StatusProduct
 from .forms import (
     CalculatorForm,
     UploadFilesInter,
@@ -450,7 +450,11 @@ def files_new_status(order_id:int):
     '''Функция возвращает файлы заказа в статус "ОФОРМЛЕН"'''
     all_products_in_order = OrderItem.objects.filter(order=order_id)
     for i in all_products_in_order:
-        i.product.status_product.id = 1
+        set_status_file(i.product, 1)
+        print('STATUS---', i.product.status_product)
+
+
+
 
 
 
