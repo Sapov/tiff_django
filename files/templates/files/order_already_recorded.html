@@ -1,13 +1,13 @@
 {% extends 'files/base_site.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %} {{title}} {% endblock %}
 {% block content %}
 
-<title>Заказ изменил статус</title>
+<title>{{message}}</title>
 
 
-<h5 style="text-align: center; ">Заказ изменил статус на "Готов"</h5>
+
+<h5 style="text-align: center; ">{{message}}</h5>
 
 <p style="text-align: center;">
 <button type="button" class="btn btn-success" onclick="window.close()">Закрыть окно</button></p>
