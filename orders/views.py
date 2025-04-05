@@ -415,6 +415,7 @@ def report_day(request):
 
 
 def change_status_order(status_oder: int, pk: int):
+    '''Проверяем что статс заказа уже не переведен и меняем на '''
     order = Order.objects.get(id=pk)  # получаем заказ по id заказа
     if order.status.id != status_oder:
         status = StatusOrder.objects.get(id=status_oder)  # меняем статус заказа

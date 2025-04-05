@@ -8597,3 +8597,9 @@ FileNotFoundError: [Errno 2] No such file or directory: '/home/sasha/PycharmProj
 2025-04-05 12:20:01,449 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
 2025-04-05 12:20:03,146 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-04-05 12:20:05,783 orders.views INFO     МЕНЯЮ СТАТУС НА В работе
+2025-04-05 12:29:54,650 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-05 12:29:55,716 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-05 12:34:20,480 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-05 12:34:21,810 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-05 12:40:20,464 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-04-05 12:40:22,257 django.utils.autoreload INFO     Watching for file changes with StatReloader

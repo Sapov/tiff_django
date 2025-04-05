@@ -439,12 +439,20 @@ def confirm_order_to_completed(request, pk: int, hash_code):
                 # Отослать сообщение админу и клиенту на месенджер
                 send_message_whatsapp.delay(f'{os.getenv("PHONE_NUMBER")}',
                                             f'Типография подтвердила готовность заказа № {pk}')
-
+                files_new_status(pk)
                 return render(request, "files/confirm_order_to_completed.html")
             else:
                 return render(request, "files/order_already_recorded.html", {'message':'Заказ уже закрыт!'})
         else:
             return render(request, "files/no_confirm_order_to_completed.html")
+
+def files_new_status(order_id:int):
+    '''Функция возвращает файлы заказа в статус "ОФОРМЛЕН"'''
+    all_products_in_order = OrderItem.objects.filter(order=order_id)
+    for i in all_products_in_order:
+        i.product.status_product.id = 1
+
+
 
 
 def add_time_order(request, pk: int, hash_code):
