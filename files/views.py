@@ -180,6 +180,94 @@ class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+# import os
+# import zipfile
+# from django.conf import settings
+# from django.core.files import File
+# from django.shortcuts import redirect
+# from django.contrib import messages
+# from tempfile import NamedTemporaryFile
+#
+#
+# class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
+#     """Загрузка файлов (включая архивы) для широкоформатной печати"""
+#     model = Product
+#     form_class = UploadFilesLarge
+#     template_name = "files/large_print.html"
+#
+#     def form_valid(self, form):
+#         uploaded_file = form.cleaned_data['images']
+#
+#         # Если загружен zip-архив
+#         if uploaded_file.name.endswith('.zip'):
+#             try:
+#                 with zipfile.ZipFile(uploaded_file, 'r') as zip_ref:
+#                     # Создаем временную директорию для распаковки
+#                     temp_dir = os.path.join(settings.MEDIA_ROOT, 'temp_unzip')
+#                     os.makedirs(temp_dir, exist_ok=True)
+#
+#                     # Распаковываем архив
+#                     zip_ref.extractall(temp_dir)
+#
+#                     # Обрабатываем каждый файл в архиве
+#                     for file_name in zip_ref.namelist():
+#                         file_path = os.path.join(temp_dir, file_name)
+#
+#                         # Пропускаем директории
+#                         if os.path.isdir(file_path):
+#                             continue
+#
+#                         # Создаем Product для каждого файла
+#                         self.create_product_from_file(file_path, form)
+#
+#                     # Удаляем временную директорию
+#                     for root, dirs, files in os.walk(temp_dir, topdown=False):
+#                         for name in files:
+#                             os.remove(os.path.join(root, name))
+#                         for name in dirs:
+#                             os.rmdir(os.path.join(root, name))
+#                     os.rmdir(temp_dir)
+#
+#                 messages.success(self.request, 'Архив успешно загружен и обработан')
+#                 return redirect(self.get_success_url())
+#
+#             except Exception as e:
+#                 messages.error(self.request, f'Ошибка обработки архива: {str(e)}')
+#                 return self.form_invalid(form)
+#         else:
+#             # Обычная обработка одного файла
+#             return self.process_single_file(form)
+#
+#     def create_product_from_file(self, file_path, form):
+#         """Создает объект Product из файла"""
+#         with open(file_path, 'rb') as f:
+#             django_file = File(f)
+#
+#             product = Product(
+#                 user=self.request.user,
+#                 material=form.cleaned_data['material'],
+#                 quantity=form.cleaned_data['quantity'],
+#                 resolution=form.cleaned_data['resolution'],
+#                 color_model=form.cleaned_data['color_model'],
+#                 FinishWork=form.cleaned_data['FinishWork'],
+#                 status_product=form.cleaned_data['status_product'],
+#                 comments=form.cleaned_data.get('comments', ''),
+#             )
+#
+#             # Сохраняем файл в ImageField
+#             file_name = os.path.basename(file_path)
+#             product.images.save(file_name, django_file, save=False)
+#
+#             # Вызываем save() для расчета параметров и цены
+#             product.save()
+#
+#     def process_single_file(self, form):
+#         """Обрабатывает одиночный файл (оригинальная логика)"""
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
+#
+
+
 class FilesCreateViewUV(LoginRequiredMixin, CreateView):
     """Загрузка файлов только для широкоформатной печати"""
 
