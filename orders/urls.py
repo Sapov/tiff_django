@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path
 from .views import (
-    view_order,
     View_order_item,
     OrderUpdateView,
     DeleteOrderView,
@@ -21,13 +20,11 @@ from files.views import about_file
 app_name = "orders"
 
 urlpatterns = [
-    # path('new_order/', OrderCreateView.as_view(), name="new_order"), # Добавить новый заказ
     path("neworder/", new_order, name="new_order"),  # Добавить новый заказ
     path(
         "create/<pk>", OrderUpdateView.as_view(), name="update_order"),
     # Редактировать заказ
-    path("view_orders/", view_order, name="view_orders"),  # посмотреть мои заказы
-    path("view_orders1/", OrdersViewList.as_view(), name="view_orders1"),  # посмотреть мои заказы
+    path("view_orders/", OrdersViewList.as_view(), name="view_orders"),  # посмотреть мои заказы
     path("view_order_item/<pk>", View_order_item.as_view(), name="view_order_items"),
     path("delete_order/<pk>", DeleteOrderView.as_view(), name="Delete_order"),
     path("add_files_in_order/<int:order_id>", add_files_in_order, name="add_file_in_order", ),
