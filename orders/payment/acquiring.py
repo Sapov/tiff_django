@@ -77,11 +77,11 @@ class Acquiring(Bank):
         order_items = OrderItem.objects.filter(order=self.order_id)
         positions = []
         for i, v in enumerate(order_items):
-            total_amount = v.price_per_item * v.product.quantity
+            total_amount = v.product.price #* v.product.quantity
             new_dict = {
                 "vatType": "none",
                 "name": f'{v.product.material} {v.product.length}x{v.product.width} м',
-                "amount": v.price_per_item,
+                "amount": float(v.product.price/v.product.quantity),
                 "quantity": v.product.quantity,
                 "paymentMethod": "full_payment",
                 "paymentObject": "goods",

@@ -127,7 +127,7 @@ class OrderItem(models.Model):
         max_digits=10,
         decimal_places=2,
         default=0,
-        verbose_name="Себестоимость шт.",
+        verbose_name="Себестоимость Итого",
         blank=True,
         null=True,
     )
@@ -146,12 +146,12 @@ class OrderItem(models.Model):
     def save(self, *args, **kwargs):
         self.quantity = self.product.quantity
         self.price_per_item = self.product.price
-        self.total_price = self.price_per_item * self.quantity
+        self.total_price = self.price_per_item #* self.quantity
         # Cost
         cost_price_per_item = self.product.cost_price
         logger.info(f"cost_price_per_item {cost_price_per_item}")
         self.cost_price_per_item = cost_price_per_item
-        self.cost_total_price = self.cost_price_per_item  # Убр ал  * self.quantity
+        self.cost_total_price = self.cost_price_per_item  #* self.quantity
 
         super(OrderItem, self).save(*args, **kwargs)
 
