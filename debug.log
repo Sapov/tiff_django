@@ -8981,3 +8981,507 @@ django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 54: 'e
 2025-04-08 09:52:01,609 orders.views INFO     page_NUM: 1
 2025-04-08 09:52:01,620 orders.views INFO     page_NUM: <Page 1 of 5>
 2025-04-08 09:54:40,063 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 09:55:42,433 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:55:42,435 orders.views INFO     page_NUM: 1
+2025-04-08 09:55:42,441 orders.views INFO     page_NUM: <Page 1 of 5>
+2025-04-08 09:55:55,658 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:55:55,658 orders.views INFO     page_NUM: 1
+2025-04-08 09:55:55,660 orders.views INFO     page_NUM: <Page 1 of 5>
+2025-04-08 09:57:52,959 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:57:52,960 orders.views INFO     page_NUM: 1
+2025-04-08 09:57:52,962 orders.views INFO     page_NUM: <Page 1 of 5>
+2025-04-08 09:57:53,094 django.request ERROR    Internal Server Error: /orders/view_orders/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 199, in render
+    template = context.template.engine.select_template(template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/engine.py", line 214, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: files/pagination.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 118, in view_order
+    return render(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: files/pagination.html
+2025-04-08 09:58:45,929 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:58:45,930 orders.views INFO     page_NUM: 1
+2025-04-08 09:58:45,934 orders.views INFO     page_NUM: <Page 1 of 5>
+2025-04-08 09:58:52,000 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:58:52,001 orders.views INFO     page_NUM: 3
+2025-04-08 09:58:52,004 orders.views INFO     page_NUM: <Page 3 of 5>
+2025-04-08 09:58:55,328 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:58:55,329 orders.views INFO     page_NUM: 1
+2025-04-08 09:58:55,331 orders.views INFO     page_NUM: <Page 1 of 5>
+2025-04-08 09:58:59,537 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:58:59,538 orders.views INFO     page_NUM: 2
+2025-04-08 09:58:59,540 orders.views INFO     page_NUM: <Page 2 of 5>
+2025-04-08 09:59:03,783 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:59:03,784 orders.views INFO     page_NUM: 1
+2025-04-08 09:59:03,786 orders.views INFO     page_NUM: <Page 1 of 5>
+2025-04-08 09:59:16,229 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 09:59:17,911 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 09:59:22,663 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 09:59:22,664 orders.views INFO     page_NUM: 2
+2025-04-08 09:59:22,673 orders.views INFO     page_NUM: <Page 2 of 5>
+2025-04-08 09:59:28,612 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 09:59:30,491 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:00:12,247 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-08 10:00:12,249 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2025-04-08 10:00:31,606 files.views  INFO     [INFO CLEAN DATA] {'quantity': 1.0, 'material': <Material: Баннер 440 грамм ламинированный Широкоформатная печать>, 'finishing': <FinishWork: оставить белые поля по 5 см>, 'length': 2.0, 'width': 3.0, 'user': <SimpleLazyObject: <User: forumvrn@gmail.com>>, 'role': 'MANAGER'}
+2025-04-08 10:00:31,607 root         INFO     [INFO]. self.length:2.0 TYPE<class 'float'>
+Width: 3.0 TYPE <class 'float'>
+ Quantity: 1.0 TYPE <class 'float'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-08 10:00:31,607 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-08 10:00:31,607 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-08 10:00:50,403 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:00:50,403 orders.views INFO     page_NUM: 1
+2025-04-08 10:00:50,405 orders.views INFO     page_NUM: <Page 1 of 5>
+2025-04-08 10:02:19,698 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:02:19,700 orders.views INFO     page_NUM: 2
+2025-04-08 10:02:19,707 orders.views INFO     page_NUM: <Page 2 of 5>
+2025-04-08 10:03:57,960 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 10:03:59,315 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:04:00,087 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:04:03,845 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:04:07,076 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:04:14,417 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:04:16,590 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:04:22,430 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:04:47,550 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:04:50,902 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:04:59,702 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 10:05:01,210 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:05:04,698 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:05:08,279 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:06:40,840 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 10:06:42,219 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:06:43,688 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:06:48,107 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:06:51,308 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:06:55,651 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:08:55,489 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:09:30,391 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:09:34,155 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:09:38,144 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:09:41,156 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:11:06,232 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 10:11:07,424 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:11:43,931 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:11:47,474 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:11:55,314 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 10:11:56,548 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:12:00,013 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-08 10:12:09,279 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 10:12:10,314 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:16:25,440 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/urls.py changed, reloading.
+2025-04-08 10:16:26,846 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:17:08,373 account.views INFO     Orders:  <QuerySet []>
+2025-04-08 10:17:08,373 account.views INFO     page_NUM: 1
+2025-04-08 10:17:08,375 account.views INFO     page_NUM: <Page 1 of 1>
+2025-04-08 10:17:28,136 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 10 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:17:28,137 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:17:28,137 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:17:38,716 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-08 10:17:38,717 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2025-04-08 10:17:46,142 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-08 10:17:46,143 root         INFO     method POST
+2025-04-08 10:17:46,144 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['TbPbODArav5AbkLDWxgwSOaM17fx1VlEEqFRQ965VcncfLKwajDnfR0toobV26EF'], 'organisation_payer': [''], 'delivery': ['2'], 'date_complite': ['2025-04-10']}>
+2025-04-08 10:17:46,144 root         INFO     USER sasha@mail.ru
+2025-04-08 10:17:46,144 root         INFO     [INFO] отправленная форма имеет дату 2025-04-10
+2025-04-08 10:17:46,148 root         INFO     [INFO] Приводим строку в формату даты 2025-04-10 00:00:00
+2025-04-08 10:17:46,151 root         INFO     [INFO] прибавляем 12 часов 2025-04-10 12:00:00
+2025-04-08 10:17:46,151 root         INFO     date_complite 2025-04-10 12:00:00 - <class 'datetime.datetime'>
+2025-04-08 10:17:46,151 root         INFO     DELIV ID:  2
+2025-04-08 10:17:46,151 root         INFO     ORGANISATION:  
+2025-04-08 10:17:46,153 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-08 10:17:49,272 orders.models INFO     cost_price_per_item 100.00
+2025-04-08 10:17:49,279 orders.models INFO     2000.00
+2025-04-08 10:17:49,279 orders.models INFO     Себестоимость, 100.00
+2025-04-08 10:17:49,290 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 10 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:17:49,290 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:17:49,290 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:17:51,397 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-08 10:17:51,402 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-08 10:17:51,404 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-10 09:00:00+00:00
+2025-04-08 10:17:51,566 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2025-04-08 10:17:51,567 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2025-04-08 10:17:52,570 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2025-04-08 10:17:53,574 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2025-04-08 10:17:54,575 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2025-04-08 10:17:55,578 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2025-04-08 10:17:56,581 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2025-04-08 10:17:57,584 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2025-04-08 10:17:58,587 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2025-04-08 10:17:59,591 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2025-04-08 10:18:00,601 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2025-04-08 10:18:01,602 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2025-04-08 10:18:02,606 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2025-04-08 10:18:03,610 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2025-04-08 10:18:04,616 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2025-04-08 10:18:05,622 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2025-04-08 10:18:06,626 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2025-04-08 10:18:07,632 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2025-04-08 10:18:08,635 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2025-04-08 10:18:09,682 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2025-04-08 10:18:10,610 django.request ERROR    Internal Server Error: /orders/order_pay/11
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 255, in order_pay
+    link_pay = Acquiring(order_id).run(organisation_flag=False)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py", line 116, in run
+    self.create_payment_operation_with_receipt_link(organisation_flag)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py", line 39, in create_payment_operation_with_receipt_link
+    tel = payer.user.phone_number.national_number
+AttributeError: 'NoneType' object has no attribute 'national_number'
+2025-04-08 10:18:47,171 django.request WARNING  Not Found: /orders/
+2025-04-08 10:20:16,993 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-08 10:20:18,143 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:20:19,369 django.request WARNING  Not Found: /orders/view_orders/
+2025-04-08 10:20:35,333 django.request ERROR    Internal Server Error: /orders/add_files_in_order/12
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 160, in add_files_in_order
+    order = Order.objects.get(id=order_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+orders.models.Order.DoesNotExist: Order matching query does not exist.
+2025-04-08 10:21:10,327 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:21:26,496 django.request ERROR    Internal Server Error: /orders/add_files_in_order/12
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 160, in add_files_in_order
+    order = Order.objects.get(id=order_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+orders.models.Order.DoesNotExist: Order matching query does not exist.
+2025-04-08 10:21:31,933 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-08 10:21:31,945 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2025-04-08 10:21:35,063 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-08 10:21:35,064 root         INFO     method POST
+2025-04-08 10:21:35,065 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['7BkXZTWe2KhYeVrMtdLe2ZKra9rmsEodSQaD1psSNrzAimqFHZ85p2A8xqnKtPHe'], 'organisation_payer': [''], 'delivery': ['2'], 'date_complite': ['2025-04-10']}>
+2025-04-08 10:21:35,066 root         INFO     USER sasha@mail.ru
+2025-04-08 10:21:35,066 root         INFO     [INFO] отправленная форма имеет дату 2025-04-10
+2025-04-08 10:21:35,069 root         INFO     [INFO] Приводим строку в формату даты 2025-04-10 00:00:00
+2025-04-08 10:21:35,070 root         INFO     [INFO] прибавляем 12 часов 2025-04-10 12:00:00
+2025-04-08 10:21:35,070 root         INFO     date_complite 2025-04-10 12:00:00 - <class 'datetime.datetime'>
+2025-04-08 10:21:35,070 root         INFO     DELIV ID:  2
+2025-04-08 10:21:35,070 root         INFO     ORGANISATION:  
+2025-04-08 10:21:35,072 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-08 10:21:38,770 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 12>, <Order: Заказ № 11>]>
+2025-04-08 10:21:38,771 account.views INFO     page_NUM: 1
+2025-04-08 10:21:38,772 account.views INFO     page_NUM: <Page 1 of 1>
+2025-04-08 10:21:50,712 root         INFO     [INFO]. self.length:1.06 TYPE<class 'float'>
+Width: 1.41 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:21:50,712 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:21:50,712 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:22:09,606 orders.models INFO     cost_price_per_item 1050.00
+2025-04-08 10:22:09,615 orders.models INFO     2620.00
+2025-04-08 10:22:09,616 orders.models INFO     Себестоимость, 1050.00
+2025-04-08 10:22:09,629 root         INFO     [INFO]. self.length:1.06 TYPE<class 'float'>
+Width: 1.41 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:22:09,629 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:22:09,629 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:22:12,133 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-08 10:22:12,148 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-08 10:22:12,153 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-10 09:00:00+00:00
+2025-04-08 10:22:12,295 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2025-04-08 10:22:12,583 django.request ERROR    Internal Server Error: /orders/order_pay/12
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 259, in order_pay
+    link_pay = Acquiring(order_id).run(organisation_flag=False)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py", line 116, in run
+    self.create_payment_operation_with_receipt_link(organisation_flag)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py", line 39, in create_payment_operation_with_receipt_link
+    tel = payer.user.phone_number.national_number
+AttributeError: 'NoneType' object has no attribute 'national_number'
+2025-04-08 10:24:33,912 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py changed, reloading.
+2025-04-08 10:24:35,065 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:24:52,658 django.request ERROR    Internal Server Error: /orders/add_files_in_order/13
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 160, in add_files_in_order
+    order = Order.objects.get(id=order_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+orders.models.Order.DoesNotExist: Order matching query does not exist.
+2025-04-08 10:25:23,899 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 12>, <Order: Заказ № 11>]>
+2025-04-08 10:25:23,901 account.views INFO     page_NUM: 1
+2025-04-08 10:25:23,908 account.views INFO     page_NUM: <Page 1 of 1>
+2025-04-08 10:25:37,513 root         INFO     [INFO]. self.length:0.03 TYPE<class 'float'>
+Width: 0.06 TYPE <class 'float'>
+ Quantity: 13 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:25:37,514 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:25:37,514 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:25:42,450 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-08 10:25:42,451 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2025-04-08 10:25:44,497 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-08 10:25:44,498 root         INFO     method POST
+2025-04-08 10:25:44,499 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['geIHWvEGU1GVXWDwY1AC0bHnvQj28EGb1tynY1akFIYx1nCpcNXtnex4S7fq9PZc'], 'organisation_payer': [''], 'delivery': ['2'], 'date_complite': ['2025-04-10']}>
+2025-04-08 10:25:44,499 root         INFO     USER sasha@mail.ru
+2025-04-08 10:25:44,500 root         INFO     [INFO] отправленная форма имеет дату 2025-04-10
+2025-04-08 10:25:44,503 root         INFO     [INFO] Приводим строку в формату даты 2025-04-10 00:00:00
+2025-04-08 10:25:44,504 root         INFO     [INFO] прибавляем 12 часов 2025-04-10 12:00:00
+2025-04-08 10:25:44,504 root         INFO     date_complite 2025-04-10 12:00:00 - <class 'datetime.datetime'>
+2025-04-08 10:25:44,504 root         INFO     DELIV ID:  2
+2025-04-08 10:25:44,504 root         INFO     ORGANISATION:  
+2025-04-08 10:25:44,506 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-08 10:25:51,743 orders.models INFO     cost_price_per_item 0.00
+2025-04-08 10:25:51,751 orders.models INFO     0.00
+2025-04-08 10:25:51,755 orders.models INFO     Себестоимость, 0.00
+2025-04-08 10:25:51,776 root         INFO     [INFO]. self.length:0.03 TYPE<class 'float'>
+Width: 0.06 TYPE <class 'float'>
+ Quantity: 13 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:25:51,785 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:25:51,785 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:25:54,128 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-08 10:25:54,132 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-08 10:25:54,134 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-10 09:00:00+00:00
+2025-04-08 10:25:54,265 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2025-04-08 10:25:54,665 django.request ERROR    Internal Server Error: /orders/order_pay/13
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 259, in order_pay
+    link_pay = Acquiring(order_id).run(organisation_flag=False)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py", line 117, in run
+    self.create_payment_operation_with_receipt_link(organisation_flag)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py", line 70, in create_payment_operation_with_receipt_link
+    self.pay_link = response.json()['Data']['paymentLink']
+KeyError: 'Data'
+2025-04-08 10:26:02,585 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py changed, reloading.
+2025-04-08 10:26:03,908 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:26:57,423 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-08 10:26:57,429 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2025-04-08 10:26:59,747 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-08 10:26:59,747 root         INFO     method POST
+2025-04-08 10:26:59,748 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['3LKuvZW1GLJG5aqGf2pXCAEqGoT46L2KO0AaxvsFrs1i9BpztOMOZDu73FPs7WlL'], 'organisation_payer': [''], 'delivery': ['2'], 'date_complite': ['2025-04-10']}>
+2025-04-08 10:26:59,748 root         INFO     USER sasha@mail.ru
+2025-04-08 10:26:59,749 root         INFO     [INFO] отправленная форма имеет дату 2025-04-10
+2025-04-08 10:26:59,752 root         INFO     [INFO] Приводим строку в формату даты 2025-04-10 00:00:00
+2025-04-08 10:26:59,752 root         INFO     [INFO] прибавляем 12 часов 2025-04-10 12:00:00
+2025-04-08 10:26:59,752 root         INFO     date_complite 2025-04-10 12:00:00 - <class 'datetime.datetime'>
+2025-04-08 10:26:59,753 root         INFO     DELIV ID:  2
+2025-04-08 10:26:59,753 root         INFO     ORGANISATION:  
+2025-04-08 10:26:59,756 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-08 10:27:04,197 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>]>
+2025-04-08 10:27:04,199 account.views INFO     page_NUM: 1
+2025-04-08 10:27:04,206 account.views INFO     page_NUM: <Page 1 of 2>
+2025-04-08 10:27:24,204 root         INFO     [INFO]. self.length:0.03 TYPE<class 'float'>
+Width: 0.06 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:27:24,204 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:27:24,204 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:27:29,338 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-08 10:27:29,339 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2025-04-08 10:27:40,804 django.request ERROR    Internal Server Error: /orders/add_files_in_order/15
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 160, in add_files_in_order
+    order = Order.objects.get(id=order_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+orders.models.Order.DoesNotExist: Order matching query does not exist.
+2025-04-08 10:28:36,063 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>]>
+2025-04-08 10:28:36,064 account.views INFO     page_NUM: 1
+2025-04-08 10:28:36,065 account.views INFO     page_NUM: <Page 1 of 2>
+2025-04-08 10:28:44,222 orders.models INFO     cost_price_per_item 0.00
+2025-04-08 10:28:44,233 orders.models INFO     0.00
+2025-04-08 10:28:44,233 orders.models INFO     Себестоимость, 0.00
+2025-04-08 10:28:44,264 root         INFO     [INFO]. self.length:0.03 TYPE<class 'float'>
+Width: 0.06 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:28:44,268 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:28:44,268 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:28:46,575 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-08 10:28:46,582 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-08 10:28:46,584 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-10 09:00:00+00:00
+2025-04-08 10:28:46,726 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2025-04-08 10:28:47,156 django.request ERROR    Internal Server Error: /orders/order_pay/14
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 259, in order_pay
+    link_pay = Acquiring(order_id).run(organisation_flag=False)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py", line 117, in run
+    self.create_payment_operation_with_receipt_link(organisation_flag)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py", line 70, in create_payment_operation_with_receipt_link
+    self.pay_link = response.json()['Data']['paymentLink']
+KeyError: 'Data'
+2025-04-08 10:29:36,709 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/urls.py changed, reloading.
+2025-04-08 10:29:37,835 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-08 10:30:02,720 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>]>
+2025-04-08 10:30:02,720 account.views INFO     page_NUM: 1
+2025-04-08 10:30:02,722 account.views INFO     page_NUM: <Page 1 of 2>
+2025-04-08 10:30:19,397 root         INFO     [INFO]. self.length:0.22 TYPE<class 'float'>
+Width: 0.48 TYPE <class 'float'>
+ Quantity: 10 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:30:19,397 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:30:19,397 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:30:26,674 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-08 10:30:26,676 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2025-04-08 10:30:28,950 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-08 10:30:28,950 root         INFO     method POST
+2025-04-08 10:30:28,952 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['QjT2lzlz0cH5FhCSxPa6sWzaITkLrHCfZHZXa1xrOndjCGX3bXznU1IddBLdeLlY'], 'organisation_payer': [''], 'delivery': ['2'], 'date_complite': ['2025-04-10']}>
+2025-04-08 10:30:28,952 root         INFO     USER sasha@mail.ru
+2025-04-08 10:30:28,952 root         INFO     [INFO] отправленная форма имеет дату 2025-04-10
+2025-04-08 10:30:28,956 root         INFO     [INFO] Приводим строку в формату даты 2025-04-10 00:00:00
+2025-04-08 10:30:28,956 root         INFO     [INFO] прибавляем 12 часов 2025-04-10 12:00:00
+2025-04-08 10:30:28,956 root         INFO     date_complite 2025-04-10 12:00:00 - <class 'datetime.datetime'>
+2025-04-08 10:30:28,956 root         INFO     DELIV ID:  2
+2025-04-08 10:30:28,956 root         INFO     ORGANISATION:  
+2025-04-08 10:30:28,958 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-08 10:30:31,325 orders.models INFO     cost_price_per_item 700.00
+2025-04-08 10:30:31,334 orders.models INFO     18000.00
+2025-04-08 10:30:31,335 orders.models INFO     Себестоимость, 700.00
+2025-04-08 10:30:31,345 root         INFO     [INFO]. self.length:0.22 TYPE<class 'float'>
+Width: 0.48 TYPE <class 'float'>
+ Quantity: 10 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-08 10:30:31,345 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:30:31,346 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-08 10:30:34,130 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-08 10:30:34,135 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-08 10:30:34,137 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-10 09:00:00+00:00
+2025-04-08 10:30:34,294 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2025-04-08 10:30:41,047 orders.views INFO     Orders:  <QuerySet [<Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>]>

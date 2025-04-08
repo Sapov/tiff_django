@@ -3,7 +3,7 @@
 {% block body %}
 
 
-{% if Orders.count > 0 %}
+{% if object_list.count > 0 %}
 <h2>Список Заказов: </h2>
 <hr>
 <button type="submit" class="btn btn-primary"
@@ -24,7 +24,7 @@
                 <th>Дата готовности</th>
             </thead>
             <tbody>
-            {% for order in Orders %}
+            {% for order in object_list %}
             <tr>
 
                  {% if order.status.id >= 2 %}
@@ -82,13 +82,10 @@
                     {% elif order.status.id == 4 %}
                     <div class="text-warning mb-2">Доставка
                     </div>
-
                     {% endif %}
                 </td>
                 <td>{{ order.created }}</td>
                 <td>{{ order.date_complete }}</td>
-
-
             </tr>
             {% endfor %}
 
@@ -97,5 +94,9 @@
         </table>
     </div>
 </div>
+
+{% include "pagination.html" with page=object_list %}
+
+
 {% endif %}
 {% endblock %}

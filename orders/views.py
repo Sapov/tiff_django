@@ -103,22 +103,26 @@ def select_time_complete(today: datetime) -> str:
 @login_required
 def view_order(request):
     """Вывод Заказов только авторизованного пользователя"""
-    Orders = Order.objects.filter(user=request.user).order_by("-id")
-    logger.info(f"Orders:  {Orders}")
+    object_list = Order.objects.filter(user=request.user).order_by("-id")
+    logger.info(f"Orders:  {object_list}")
+    """paginator"""
+    paginator = Paginator(object_list, 2)  # Show 5 contacts per page.
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
 
-    paginator = Paginator(Orders, 2)
-    if "page" in request.GET:
-        page_num = request.GET.get("page")
-    else:
-        page_num = 1
-    logger.info(f"page_NUM: {page_num}")
-    page_obj = paginator.get_page(page_num)
-    logger.info(f"page_NUM: {page_obj}")
+    # paginator = Paginator(Orders, 2)
+    # if "page" in request.GET:
+    #     page_num = request.GET.get("page")
+    # else:
+    #     page_num = 1
+    # logger.info(f"page_NUM: {page_num}")
+    # page_obj = paginator.get_page(page_num)
+    # logger.info(f"page_NUM: {page_obj}")
 
     return render(
         request,
         "view_orders.html",
-        {"Orders": Orders, "title": "Заказы", "page_obj": page_obj},
+        {"object_list": object_list, "title": "Заказы", "page_obj": page_obj},
     )
 
 
@@ -127,6 +131,10 @@ class OrdersViewList(LoginRequiredMixin, ListView):
     model = Order
     template_name = "view_orders.html"
     login_url = "login"
+
+    def get_queryset(self):
+        queryset = Product.objects.filter(user=self.request.user).order_by("-id")
+        return queryset
 
 
 class View_order_item(LoginRequiredMixin, UpdateView):

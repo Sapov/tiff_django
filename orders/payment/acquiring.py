@@ -36,40 +36,41 @@ class Acquiring(Bank):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
         payer = Order.objects.get(id=self.order_id)
-        tel = payer.user.phone_number.national_number
-        payload = {
-            "Data": {
-                "customerCode": self.customer_code,
-                "amount": payer.total_price,
-                "purpose": f"Оплата заказа № {payer.id}",
-                "redirectUrl": "https://order.san-cd.ru/orders/success",
-                "failRedirectUrl": "https://order.san-cd.ru/orders/fail",
-                "paymentMode": [
-                    "sbp",
-                    "card"
-                ],
-                "saveCard": True,
-                "consumerId": str(payer.user),
-                "taxSystemCode": "usn_income",
-                "merchantId": self.merchantId,
-                "Client": {
-                    "name": f'{str(payer.user.first_name)} {payer.user.last_name}' if organisation_flag
-                    else str(payer.organisation_payer),
-                    "email": str(payer.user),
+        if payer.user.phone_number.national_number:
+            tel = payer.user.phone_number.national_number
+            payload = {
+                "Data": {
+                    "customerCode": self.customer_code,
+                    "amount": payer.total_price,
+                    "purpose": f"Оплата заказа № {payer.id}",
+                    "redirectUrl": "https://order.san-cd.ru/orders/success",
+                    "failRedirectUrl": "https://order.san-cd.ru/orders/fail",
+                    "paymentMode": [
+                        "sbp",
+                        "card"
+                    ],
+                    "saveCard": True,
+                    "consumerId": str(payer.user),
+                    "taxSystemCode": "usn_income",
+                    "merchantId": self.merchantId,
+                    "Client": {
+                        "name": f'{str(payer.user.first_name)} {payer.user.last_name}' if organisation_flag
+                        else str(payer.organisation_payer),
+                        "email": str(payer.user),
 
-                    "phone": f"+7{tel}" if tel else None,
-                },
-                "Items": self.__create_list_position()
+                        "phone": f"+7{tel}" if tel else None,
+                    },
+                    "Items": self.__create_list_position()
+                }
             }
-        }
-        print('PAYLOAD', json.dumps(payload, indent=4))
-        try:
-            response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
-            print('RESPONSE FOR PAYMENT LINK', response.json())
-            self.pay_link = response.json()['Data']['paymentLink']
-            self._add_pay_link_in_table_order()
-        except requests.exceptions.RequestException as e:
-            logger.error(f' Error create payment link {e}')
+            print('PAYLOAD', json.dumps(payload, indent=4))
+            try:
+                response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
+                print('RESPONSE FOR PAYMENT LINK', response.json())
+                self.pay_link = response.json()['Data']['paymentLink']
+                self._add_pay_link_in_table_order()
+            except requests.exceptions.RequestException as e:
+                logger.error(f' Error create payment link {e}')
 
     def __create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
