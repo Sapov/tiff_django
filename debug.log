@@ -10159,3 +10159,43 @@ SELF.USER: MANAGER: TYPE <class 'str'>
 2025-04-09 00:36:49,882 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
 2025-04-09 00:36:49,882 account.views INFO     page_NUM: 1
 2025-04-09 00:36:49,884 account.views INFO     page_NUM: <Page 1 of 9>
+2025-04-09 11:40:40,011 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-09 11:40:40,012 account.views INFO     page_NUM: 1
+2025-04-09 11:40:40,013 account.views INFO     page_NUM: <Page 1 of 9>
+2025-04-09 11:41:05,143 root         INFO     [INFO]. self.length:1.0 TYPE<class 'float'>
+Width: 0.5 TYPE <class 'float'>
+ Quantity: 12 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Бумага постерная СytiLight  150 грамм (1,27; 1,6м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-09 11:41:05,143 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-09 11:41:05,143 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-09 11:41:18,029 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-09 11:41:18,032 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-09 11:46:06,448 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/forms.py changed, reloading.
+2025-04-09 11:46:07,578 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-09 11:46:25,734 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/forms.py changed, reloading.
+2025-04-09 11:46:26,797 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-09 11:46:36,849 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-09 11:46:36,851 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-09 11:47:04,178 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>]>
+2025-04-09 11:47:04,179 account.views INFO     page_NUM: 1
+2025-04-09 11:47:04,180 account.views INFO     page_NUM: <Page 1 of 4>
+2025-04-09 11:47:07,235 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-09 11:47:07,237 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-09 11:47:51,972 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-09 11:47:51,973 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-09 11:48:44,216 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-09 11:48:44,218 root         INFO     method POST
+2025-04-09 11:48:44,221 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['LKPkpvIyPnxujQtAE2GfOMPnnoTqhPXkuQfMBGMALADqptPyLZTFJbO2PBPtFFO0'], 'organisation_payer': ['2'], 'delivery': ['2'], 'date_complite': ['2025-04-11']}>
+2025-04-09 11:48:44,222 root         INFO     USER sasha@mail.ru
+2025-04-09 11:48:44,223 root         INFO     [INFO] отправленная форма имеет дату 2025-04-11
+2025-04-09 11:48:44,230 root         INFO     [INFO] Приводим строку в формату даты 2025-04-11 00:00:00
+2025-04-09 11:48:44,230 root         INFO     [INFO] прибавляем 12 часов 2025-04-11 12:00:00
+2025-04-09 11:48:44,231 root         INFO     date_complite 2025-04-11 12:00:00 - <class 'datetime.datetime'>
+2025-04-09 11:48:44,231 root         INFO     DELIV ID:  2
+2025-04-09 11:48:44,231 root         INFO     ORGANISATION:  2
+2025-04-09 11:48:44,234 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-09 11:49:35,240 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/models.py changed, reloading.
+2025-04-09 11:49:36,305 django.utils.autoreload INFO     Watching for file changes with StatReloader

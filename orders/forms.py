@@ -40,3 +40,6 @@ class NewOrder(forms.ModelForm):
         # self.fields["delivery_address"].queryset = DeliveryAddress.objects.filter(
         #     user=self.user
         # )
+        self.fields["organisation_payer"].queryset = Organisation.objects.filter(
+            user=self.user
+        )
