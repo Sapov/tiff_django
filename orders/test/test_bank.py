@@ -13,6 +13,12 @@ class TestClassBank(TestCase):
         self.assertEqual(url, expected_url)
 
 
+    def test_version_api(self):
+        ver_api = Bank.apiVersion
+        expected_api = 'v1.0'
+        self.assertEqual(ver_api, expected_api)
+
+
 if __name__ == '__main__':
     a = TestClassBank()
     a.test_urls()

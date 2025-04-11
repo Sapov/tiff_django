@@ -49,6 +49,7 @@ class Bank:
         self.customer_code = os.getenv('CUSTOMER_COD')
 
     def create_invoice(self):
+        '''Генерируем счет'''
         payer = Order.objects.get(id=self.order_id)
         logging.info(f'[INFO] payer {payer}')
 
@@ -108,7 +109,7 @@ class Bank:
         order_items = OrderItem.objects.filter(order=self.order_id)
         positions = []
         for i, v in enumerate(order_items):
-            total_amount = v.price_per_item * v.product.quantity
+            total_amount = v.price_per_item #* v.product.quantity
             new_dict = {
                 "positionName": f'{v.product.material} {v.product.length}x{v.product.width} м',
                 "unitCode": "шт.",
