@@ -40,7 +40,10 @@ class Bank:
     AS_URL = "https://enter.tochka.com"
 
     url = RS_URL + f"/invoice/{apiVersion}/bills"
-    headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"}
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+    }
 
     def __init__(self, order_id: int):
         self.document_id = None
@@ -80,17 +83,13 @@ class Bank:
                 }
             }
         }
-        print(f'di {di}')
+        logging.info(f'[dict] {di}')
 
         payload = json.dumps(di)
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-        }
-        print(f'HEADER: {headers}')
+
         try:
-            print('----PAYLOAD FOR Invoice----: ', payload)
-            response = requests.request("POST", self.url, headers=headers, data=payload)
+            logging.info(f'[PAYLOAD FOR Invoice] : {payload}')
+            response = requests.request("POST", self.url, headers=self.headers, data=payload)
             logging.info(f'RESPONSE ORDER  {response.text}')
             self.document_id = response.json()['Data']['documentId']
             logging.info(f'СГЕНЕРИРОВАЛИ СЧЕТ ПОЛУЧИЛИ DOC ID {self.document_id}')
@@ -109,12 +108,12 @@ class Bank:
         order_items = OrderItem.objects.filter(order=self.order_id)
         positions = []
         for i, v in enumerate(order_items):
-            total_amount = v.price_per_item #* v.product.quantity
+            total_amount = v.price_per_item #
             new_dict = {
                 "positionName": f'{v.product.material} {v.product.length}x{v.product.width} м',
                 "unitCode": "шт.",
                 "ndsKind": "without_nds",
-                "price": float(v.product.price / v.product.quantity),  # v.price_per_item,
+                "price": float(v.product.price / v.product.quantity),
                 "quantity": v.product.quantity,
                 "totalAmount": total_amount,
                 "totalNds": 0
@@ -126,13 +125,11 @@ class Bank:
 
     @goto_media_orders
     def get_invoice(self) -> None:
-        url = f"https://enter.tochka.com/uapi/invoice/{self.apiVersion}/bills/{self.customer_code}/{self.document_id}/file"
+
+        url = f"{self.RS_URL}/invoice/{self.apiVersion}/bills/{self.customer_code}/{self.document_id}/file"
         payload = {}
-        headers = {
-            'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
-        }
         try:
-            response = requests.request("GET", url, headers=headers, data=payload)
+            response = requests.request("GET", url, headers=self.headers, data=payload)
             with open(f'Order_{self.order_id}.pdf', 'wb') as file:
                 file.write(response.content)
         except requests.exceptions.RequestException as e:

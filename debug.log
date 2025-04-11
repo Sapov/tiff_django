@@ -11402,3 +11402,14 @@ SELF.USER: MANAGER: TYPE <class 'str'>
 2025-04-11 20:33:39,152 orders.views INFO     [Выбрана организация - генерим счет]
 2025-04-11 20:33:39,393 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
 2025-04-11 20:33:47,108 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-11 20:34:58,104 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 50>, <Order: Заказ № 49>, <Order: Заказ № 48>, <Order: Заказ № 47>, <Order: Заказ № 46>, <Order: Заказ № 45>, <Order: Заказ № 44>, <Order: Заказ № 43>, <Order: Заказ № 42>, <Order: Заказ № 41>, <Order: Заказ № 40>, <Order: Заказ № 39>, <Order: Заказ № 38>, <Order: Заказ № 37>, <Order: Заказ № 36>, <Order: Заказ № 35>, <Order: Заказ № 34>, <Order: Заказ № 33>, <Order: Заказ № 32>, <Order: Заказ № 31>, '...(remaining elements truncated)...']>
+2025-04-11 20:34:58,105 account.views INFO     page_NUM: 1
+2025-04-11 20:34:58,109 account.views INFO     page_NUM: <Page 1 of 21>
+2025-04-11 20:49:57,737 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-11 20:49:59,548 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-11 20:51:12,013 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-11 20:51:13,082 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-11 20:52:25,712 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-11 20:52:26,801 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-11 21:01:38,422 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-11 21:01:39,912 django.utils.autoreload INFO     Watching for file changes with StatReloader

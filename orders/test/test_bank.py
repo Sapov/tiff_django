@@ -18,7 +18,3 @@ class TestClassBank(TestCase):
         expected_api = 'v1.0'
         self.assertEqual(ver_api, expected_api)
 
-
-if __name__ == '__main__':
-    a = TestClassBank()
-    a.test_urls()
