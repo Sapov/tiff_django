@@ -160,11 +160,11 @@ class Bank:
 
     def get_status_invoice(self):
         document = BankInvoices.objects.get(order_id=self.order_id)
-        url = f'https://enter.tochka.com/uapi/invoice/{self.apiVersion}/bills/{self.customer_code}/{document.document_id}/payment-status'
+        url = f'{self.RS_URL}/invoice/{self.apiVersion}/bills/{self.customer_code}/{document.document_id}/payment-status'
 
         payload = ""
         response = requests.request("GET", url, headers=self.headers, data=payload)
-        print(response.text)
+        logger.info(response.text)
         payment_status = response.json()['Data']['paymentStatus']
         logging.info(f'PAYMENT STATUS {payment_status}')
         document.payment_Status = payment_status
