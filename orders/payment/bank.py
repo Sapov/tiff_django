@@ -137,7 +137,8 @@ class Bank:
 
 
     def get_customer_code(self) -> str:
-        url = f"https://enter.tochka.com/uapi/open-banking/{self.apiVersion}/customers"
+
+        url = f"{self.RS_URL}/open-banking/{self.apiVersion}/customers"
         payload = {}
         try:
             response = requests.request("GET", url, headers=self.headers, data=payload)
