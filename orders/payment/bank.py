@@ -183,6 +183,13 @@ class Bank:
             start_time=timezone.now()
         )
 
+    def delete_invoice(self):
+        document = BankInvoices.objects.get(order_id=self.order_id)
+        url = f"{self.RS_URL}/invoice/v1.0/bills/{self.customer_code}/{document.document_id}"
+        payload = {}
+        response = requests.request("DELETE", url, headers=self.headers, data=payload)
+        logging.info(f'[DELETING INVOICE]: {response.text}')
+        print(response.text)
 
     def run(self):
         # self.get_customer_code()

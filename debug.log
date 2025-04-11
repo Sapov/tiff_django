@@ -11413,3 +11413,73 @@ SELF.USER: MANAGER: TYPE <class 'str'>
 2025-04-11 20:52:26,801 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-04-11 21:01:38,422 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
 2025-04-11 21:01:39,912 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-11 21:03:56,264 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-11 21:03:57,436 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-11 21:05:36,141 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-11 21:05:37,369 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-11 21:05:48,197 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-11 21:06:13,067 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Печать на пленке с контурной резкой Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-11 21:06:13,069 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-11 21:06:13,069 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-11 21:06:13,083 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Печать на пленке с контурной резкой Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-11 21:06:13,083 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-11 21:06:13,084 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-11 21:06:32,608 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 6 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Печать на пленке с контурной резкой Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-11 21:06:32,608 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-11 21:06:32,609 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-11 21:06:37,650 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-11 21:06:37,654 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-04-11 21:06:42,375 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-11 21:06:42,376 root         INFO     method POST
+2025-04-11 21:06:42,382 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['jQ0uNuU5w6wFU67lWJtK7KnhE9DKLtZjmGnGuBU7KvBuXz6azIR5nK8etk25vIWL'], 'organisation_payer': ['3'], 'delivery': ['1'], 'date_complite': ['2025-04-14']}>
+2025-04-11 21:06:42,384 root         INFO     USER forumvrn@gmail.com
+2025-04-11 21:06:42,384 root         INFO     [INFO] отправленная форма имеет дату 2025-04-14
+2025-04-11 21:06:42,400 root         INFO     [INFO] Приводим строку в формату даты 2025-04-14 00:00:00
+2025-04-11 21:06:42,401 root         INFO     [INFO] прибавляем 12 часов 2025-04-14 12:00:00
+2025-04-11 21:06:42,402 root         INFO     date_complite 2025-04-14 12:00:00 - <class 'datetime.datetime'>
+2025-04-11 21:06:42,403 root         INFO     DELIV ID:  1
+2025-04-11 21:06:42,404 root         INFO     ORGANISATION:  3
+2025-04-11 21:06:42,410 root         INFO     DELIVERY:  Самовывоз
+2025-04-11 21:06:46,865 orders.models INFO     cost_price_per_item 242.40
+2025-04-11 21:06:46,885 orders.models INFO     696.00
+2025-04-11 21:06:46,886 orders.models INFO     Себестоимость, 242.40
+2025-04-11 21:06:46,929 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 6 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Печать на пленке с контурной резкой Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-11 21:06:46,930 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-11 21:06:46,931 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-11 21:06:49,780 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-11 21:06:49,794 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-11 21:06:49,798 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-14 09:00:00+00:00
+2025-04-11 21:06:50,326 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-11 21:06:50,620 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-11 21:06:53,103 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-11 21:06:54,963 django.request WARNING  Not Found: /media/
+2025-04-11 21:07:07,530 django.request WARNING  Not Found: /media/
+2025-04-11 21:07:13,317 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-11 21:14:46,524 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-11 21:14:47,724 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-11 21:15:27,791 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-11 21:15:28,967 django.utils.autoreload INFO     Watching for file changes with StatReloader
