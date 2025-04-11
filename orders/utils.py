@@ -56,7 +56,7 @@ class Utils:
         ''' принимаем ссылку на яд и текст шаблон письма'''
         send_mail('Новый заказ от REDS',
                   'заказ',
-                  'django.rpk@mail.ru',
+                  'info@banner-online.ru',
                   ['rpk.reds@ya.ru'],
                   fail_silently=False,
                   html_message=body_mail)

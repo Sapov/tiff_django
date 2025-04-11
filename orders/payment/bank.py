@@ -36,8 +36,10 @@ def goto_media_orders(foo):
 
 class Bank:
     apiVersion = 'v1.0'
-    host = 'https://enter.tochka.com/uapi/'
-    url = f"https://enter.tochka.com/uapi/invoice/{apiVersion}/bills"
+    RS_URL = "https://enter.tochka.com/uapi"
+    AS_URL = "https://enter.tochka.com"
+
+    url = RS_URL + f"/invoice/{apiVersion}/bills"
     headers = {'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"}
 
     def __init__(self, order_id: int):
@@ -48,7 +50,9 @@ class Bank:
 
     def create_invoice(self):
         payer = Order.objects.get(id=self.order_id)
-        payload = json.dumps({
+        logging.info(f'[INFO] payer {payer}')
+
+        di = {
             "Data": {
                 "accountId": os.getenv('BANK_ACCOUNT_ID'),
                 "customerCode": self.customer_code,
@@ -68,29 +72,36 @@ class Bank:
                         "date": str(datetime.now().date()),
                         "totalAmount": self.total_amount_order,
                         "totalNds": "0",
-                        "number": self.order_id,
+                        "number": str(self.order_id),
                         # "basedOn": "Основание платежа",
                         # "comment": "Комментарий к платежу",
                     }
                 }
             }
-        })
+        }
+        print(f'di {di}')
+
+        payload = json.dumps(di)
         headers = {
             'Content-Type': 'application/json',
             'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
         }
+        print(f'HEADER: {headers}')
         try:
+            print('----PAYLOAD FOR Invoice----: ', payload)
             response = requests.request("POST", self.url, headers=headers, data=payload)
-            logging.info(f'RESPONSE  {response}')
+            logging.info(f'RESPONSE ORDER  {response.text}')
             self.document_id = response.json()['Data']['documentId']
             logging.info(f'СГЕНЕРИРОВАЛИ СЧЕТ ПОЛУЧИЛИ DOC ID {self.document_id}')
         except requests.exceptions.RequestException as e:
             logger.error(f'Error message create invoice {e}')
 
+
     def __add_base_document_id(self):
         BankInvoices.objects.create(order_id=self.order_id,
                                     document_id=self.document_id)
         logging.info(f'ЗАПИСАЛИ В БАЗУ ID документа')
+
 
     def __create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
@@ -102,7 +113,7 @@ class Bank:
                 "positionName": f'{v.product.material} {v.product.length}x{v.product.width} м',
                 "unitCode": "шт.",
                 "ndsKind": "without_nds",
-                "price": v.price_per_item,
+                "price": float(v.product.price / v.product.quantity),  # v.price_per_item,
                 "quantity": v.product.quantity,
                 "totalAmount": total_amount,
                 "totalNds": 0
@@ -110,6 +121,7 @@ class Bank:
             self.total_amount_order += total_amount
             positions.append(new_dict)
         return positions
+
 
     @goto_media_orders
     def get_invoice(self) -> None:
@@ -125,20 +137,19 @@ class Bank:
         except requests.exceptions.RequestException as e:
             logger.error(f' Error create PDF as {e}')
 
+
     def get_customer_code(self) -> str:
         url = f"https://enter.tochka.com/uapi/open-banking/{self.apiVersion}/customers"
         payload = {}
         try:
             response = requests.request("GET", url, headers=self.headers, data=payload)
-
-            print(f'CUSTOMER_ID', response.text)
-            print('RESPONSE__CUSTOMER_ID', response.json()['Data']['Customer'][0]['customerCode'])
             self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
-            # print(response.json()['Data']['Customer'][0]['customerCode'])
+            logging.info(f'RESPONSE__CUSTOMER_ID: {self.customer_code}')
             return self.customer_code
         except requests.exceptions.RequestException as e:
             print(f'ERROR sending message: {e}')
             logger.error(f'ERROR sending messag: {e}')
+
 
     def add_pdf_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
@@ -146,6 +157,7 @@ class Bank:
         logger.info(f'ADD PDF in order: orders/Order_{self.order_id}.pdf')
         order.order_pdf_file = f'orders/Order_{self.order_id}.pdf'
         order.save()
+
 
     def get_status_invoice(self):
         document = BankInvoices.objects.get(order_id=self.order_id)
@@ -159,6 +171,7 @@ class Bank:
         document.payment_Status = payment_status
         document.save()
 
+
     @classmethod
     def check_payment(cls, domain, order_id):
         '''Запускаем ежечасную проверку оплаты '''
@@ -171,8 +184,9 @@ class Bank:
             start_time=timezone.now()
         )
 
+
     def run(self):
-        self.get_customer_code()
+        # self.get_customer_code()
         self.create_invoice()
         self.__add_base_document_id()
         self.get_invoice()

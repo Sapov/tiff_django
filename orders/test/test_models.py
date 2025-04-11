@@ -71,7 +71,7 @@ class TestOrderModel(TestCase):
                              comments='',
                              status=StatusOrder.objects.create(name='sdfsdf',
                                                                is_active=True),
-                             Contractor=User.objects.create(username='Basa'), )
+                             user=User.objects.create(username='Basa'), )
 
     def test_delivery_verbose_name(self):
         order = Order.objects.get(id=1)
@@ -86,9 +86,10 @@ class TestOrderModel(TestCase):
         self.assertEqual(name, expected_null)
 
     def test_delivery_default(self):
+        """ПО умолчанию самовывоз"""
         order = Order.objects.get(id=1)
         name = order._meta.get_field('delivery').default
-        expected_default = 3
+        expected_default = 1
         self.assertEqual(name, expected_default)
 
     def test_total_price_verbose_name(self):
@@ -261,13 +262,13 @@ class TestOrderModel(TestCase):
 
     def test_Contractor_verbose_name(self):
         order = Order.objects.get(id=1)
-        verbose_name_field = order._meta.get_field('Contractor').verbose_name
+        verbose_name_field = order._meta.get_field('user').verbose_name
         expected_verbose_name = 'Заказчик'
         self.assertEqual(verbose_name_field, expected_verbose_name)
 
     def test_Contractor_default_field(self):
         order = Order.objects.get(id=1)
-        field = order._meta.get_field('Contractor').default
+        field = order._meta.get_field('user').default
         expected = 1
         self.assertEqual(field, expected)
 

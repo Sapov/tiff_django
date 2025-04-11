@@ -103,6 +103,7 @@ class Acquiring(Bank):
         except requests.exceptions.RequestException as e:
             logger.error(f'Error as {e}')
 
+
     def _add_pay_link_in_table_order(self) -> None:
         '''Добавим ссылку об оплате в таблицу с ордером'''
         ''' добавим operationId'''
