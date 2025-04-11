@@ -36,7 +36,7 @@ class Acquiring(Bank):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
         payer = Order.objects.get(id=self.order_id)
-        if payer.user.phone_number.national_number:
+        if payer.user.phone_number:
             tel = payer.user.phone_number.national_number
             payload = {
                 "Data": {
