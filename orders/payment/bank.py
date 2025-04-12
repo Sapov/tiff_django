@@ -96,19 +96,17 @@ class Bank:
         except requests.exceptions.RequestException as e:
             logger.error(f'Error message create invoice {e}')
 
-
     def __add_base_document_id(self):
         BankInvoices.objects.create(order_id=self.order_id,
                                     document_id=self.document_id)
         logging.info(f'ЗАПИСАЛИ В БАЗУ ID документа')
-
-
+   
     def __create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
         order_items = OrderItem.objects.filter(order=self.order_id)
         positions = []
         for i, v in enumerate(order_items):
-            total_amount = v.price_per_item #
+            total_amount = v.price_per_item  #
             new_dict = {
                 "positionName": f'{v.product.material} {v.product.length}x{v.product.width} м',
                 "unitCode": "шт.",
@@ -122,7 +120,6 @@ class Bank:
             positions.append(new_dict)
         return positions
 
-
     @goto_media_orders
     def get_invoice(self) -> None:
 
@@ -134,7 +131,6 @@ class Bank:
                 file.write(response.content)
         except requests.exceptions.RequestException as e:
             logger.error(f' Error create PDF as {e}')
-
 
     def get_customer_code(self) -> str:
 
@@ -149,14 +145,12 @@ class Bank:
             print(f'ERROR sending message: {e}')
             logger.error(f'ERROR sending messag: {e}')
 
-
     def add_pdf_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
         order = Order.objects.get(id=self.order_id)
         logger.info(f'ADD PDF in order: orders/Order_{self.order_id}.pdf')
         order.order_pdf_file = f'orders/Order_{self.order_id}.pdf'
         order.save()
-
 
     def get_status_invoice(self):
         document = BankInvoices.objects.get(order_id=self.order_id)
@@ -170,7 +164,6 @@ class Bank:
         document.payment_Status = payment_status
         document.save()
 
-
     @classmethod
     def check_payment(cls, domain, order_id):
         '''Запускаем ежечасную проверку оплаты '''
@@ -183,8 +176,8 @@ class Bank:
             start_time=timezone.now()
         )
 
-    def delete_invoice(self):
-        document = BankInvoices.objects.get(order_id=self.order_id)
+    def delete_invoice(self, order_id: int):
+        document = BankInvoices.objects.get(order_id=order_id)
         url = f"{self.RS_URL}/invoice/v1.0/bills/{self.customer_code}/{document.document_id}"
         payload = {}
         response = requests.request("DELETE", url, headers=self.headers, data=payload)

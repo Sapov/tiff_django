@@ -60,6 +60,7 @@ class Utils:
                   ['rpk.reds@ya.ru'],
                   fail_silently=False,
                   html_message=body_mail)
+        print('Отправил почту', body_mail)
 
 
 def goto_media(foo):
