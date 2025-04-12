@@ -1,7 +1,6 @@
 from django.test import TestCase
 
-from orders.payment.New_bank import Bank
-
+from orders.payment.bank import Bank
 
 
 class TestClassBank(TestCase):

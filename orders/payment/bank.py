@@ -2,6 +2,8 @@ import logging
 from datetime import datetime, date
 import json
 import os
+from typing import Any
+
 import requests
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from dotenv import load_dotenv, find_dotenv
@@ -38,7 +40,6 @@ class Bank:
     apiVersion = 'v1.0'
     RS_URL = "https://enter.tochka.com/uapi"
     AS_URL = "https://enter.tochka.com"
-
     url = RS_URL + f"/invoice/{apiVersion}/bills"
     headers = {
         'Content-Type': 'application/json',
@@ -132,7 +133,7 @@ class Bank:
         except requests.exceptions.RequestException as e:
             logger.error(f' Error create PDF as {e}')
 
-    def get_customer_code(self) -> str:
+    def get_customer_code(self) -> str | None:
 
         url = f"{self.RS_URL}/open-banking/{self.apiVersion}/customers"
         payload = {}
