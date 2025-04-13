@@ -15,6 +15,7 @@ services:
     env_file:
       - .env
     restart: always
+
   django_project:
     build:
       dockerfile: Dockerfile
@@ -24,12 +25,13 @@ services:
     depends_on:
       - postgres_db
     volumes:
-        static_volume:
+       - media_volume:/django/media
+       - static_volume:
           driver_opts:
             type: none
             device: /data/django_static  # Путь на хосте
             o: bind
-      - media_volume:/django/media
+
     env_file:
       - .env
     ports:
