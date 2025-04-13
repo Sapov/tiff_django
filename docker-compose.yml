@@ -25,13 +25,8 @@ services:
     depends_on:
       - postgres_db
     volumes:
-       - media_volume:/django/media
-       - static_volume:
-          driver_opts:
-            type: none
-            device: /data/django_static  # Путь на хосте
-            o: bind
-
+      - static_volume:/django/static
+      - media_volume:/django/media
     env_file:
       - .env
     ports:
@@ -51,11 +46,7 @@ services:
     build: .
     volumes:
       - /:/app
-      - static_volume:
-          driver_opts:
-            type: none
-            device: /data/django_static  # Путь на хосте
-            o: bind
+      - static_volume:/django/static
       - media_volume:/django/media
     depends_on:
       - redis
@@ -67,11 +58,7 @@ services:
     build: .
     volumes:
       - /:/app
-      - static_volume:
-          driver_opts:
-            type: none
-            device: /data/django_static  # Путь на хосте
-            o: bind
+      - static_volume:/django/static
       - media_volume:/django/media
     depends_on:
       - redis
@@ -85,15 +72,25 @@ services:
       - 5555:5555
     volumes:
       - /:/app
+      - static_volume:/django/static
       - media_volume:/django/media
-      - static_volume:
-          driver_opts:
-            type: none
-            device: /data/django_static  # Путь на хосте
-            o: bind
     depends_on:
       - redis
     command: 'celery -A mysite flower'
+
+#  nginx:
+#    image: nginx:latest
+#    container_name: nginx
+#    ports:
+#      - "80:80"  # Публикуем порт 80 на хосте
+#    volumes:
+#      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # Конфиг Nginx
+#      - static_volume:/static  # Том со статикой
+#      - media_volume:/media     # Том с медиа
+#    depends_on:
+#      - django_project  # Ждём запуска Django
+#    restart: always
+
 
   nginx:
     build:
@@ -102,11 +99,7 @@ services:
     container_name: nginx_for_django
     image: nginx_for_django
     volumes:
-      - static_volume:
-          driver_opts:
-            type: none
-            device: /data/django_static  # Путь на хосте
-            o: bind
+      - static_volume:/django/static
       - media_volume:/django/media
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -123,6 +116,10 @@ services:
 
 volumes:
   static_volume:
+    driver_opts:
+      type: none
+      device: /data/django_static  # Абсолютный путь на хосте
+      o: bind
   media_volume:
   vhost:
   html:
