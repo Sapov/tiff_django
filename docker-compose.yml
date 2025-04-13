@@ -94,20 +94,6 @@ services:
       - redis
     command: 'celery -A mysite flower'
 
-#  nginx:
-#    image: nginx:latest
-#    container_name: nginx
-#    ports:
-#      - "80:80"  # Публикуем порт 80 на хосте
-#    volumes:
-#      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # Конфиг Nginx
-#      - static_volume:/static  # Том со статикой
-#      - media_volume:/media     # Том с медиа
-#    depends_on:
-#      - django_project  # Ждём запуска Django
-#    restart: always
-
-
   nginx:
     build:
       dockerfile: ./Dockerfile
