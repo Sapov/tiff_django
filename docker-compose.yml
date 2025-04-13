@@ -85,12 +85,12 @@ services:
       - 5555:5555
     volumes:
       - /:/app
+      - media_volume:/django/media
       - static_volume:
           driver_opts:
             type: none
             device: /data/django_static  # Путь на хосте
             o: bind
-      - media_volume:/django/media
     depends_on:
       - redis
     command: 'celery -A mysite flower'
