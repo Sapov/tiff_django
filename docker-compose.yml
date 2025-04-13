@@ -25,7 +25,11 @@ services:
     depends_on:
       - postgres_db
     volumes:
-      - static_volume:/django/static
+        static_volume:
+          driver_opts:
+            type: none
+            device: /data/django_static  # Путь на хосте
+            o: bind
       - media_volume:/django/media
     env_file:
       - .env
@@ -46,7 +50,11 @@ services:
     build: .
     volumes:
       - /:/app
-      - static_volume:/django/static
+      - static_volume:
+          driver_opts:
+            type: none
+            device: /data/django_static  # Путь на хосте
+            o: bind
       - media_volume:/django/media
     depends_on:
       - redis
@@ -58,7 +66,11 @@ services:
     build: .
     volumes:
       - /:/app
-      - static_volume:/django/static
+      - static_volume:
+          driver_opts:
+            type: none
+            device: /data/django_static  # Путь на хосте
+            o: bind
       - media_volume:/django/media
     depends_on:
       - redis
@@ -72,7 +84,11 @@ services:
       - 5555:5555
     volumes:
       - /:/app
-      - static_volume:/django/static
+      - static_volume:
+          driver_opts:
+            type: none
+            device: /data/django_static  # Путь на хосте
+            o: bind
       - media_volume:/django/media
     depends_on:
       - redis
@@ -99,7 +115,11 @@ services:
     container_name: nginx_for_django
     image: nginx_for_django
     volumes:
-      - static_volume:/django/static
+      - static_volume:
+          driver_opts:
+            type: none
+            device: /data/django_static  # Путь на хосте
+            o: bind
       - media_volume:/django/media
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
