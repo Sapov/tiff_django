@@ -1,3 +1,114 @@
+#version: '2'
+#
+#services:
+#  redis:
+#    image: redis
+#    restart: always
+#    ports:
+#      - "6379:6379"
+#
+#  postgres_db:
+#    image: postgres:15
+#    container_name: postgres_db
+#    volumes:
+#      - ~/.pg/pg_data/django:/var/lib/postgresql/data
+#    env_file:
+#      - .env
+#    restart: always
+#
+#  django_project:
+#    build:
+#      dockerfile: Dockerfile
+#      context: .
+#    image: django_docker:latest
+#    container_name: django_docker
+#    depends_on:
+#      - postgres_db
+#    volumes:
+#      - static_volume:/django/static
+#      - media_volume:/django/media
+#    env_file:
+#      - .env
+#    ports:
+#      - 8000:8000
+#
+#    command: >
+#      bash -c "python manage.py makemigrations &&
+#                   python manage.py migrate &&
+#                   python manage.py add_price &&
+#                   python manage.py collectstatic --noinput &&
+#                   gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
+#
+#    restart: always
+#
+#  worker:
+#    restart: always
+#    build: .
+#    volumes:
+#      - /:/app
+#      - static_volume:/django/static
+#      - media_volume:/django/media
+#    depends_on:
+#      - redis
+#      - django_project
+#    command: 'celery -A mysite worker -l info'
+#
+#  celery-beat:
+#    restart: always
+#    build: .
+#    volumes:
+#      - /:/app
+#      - static_volume:/django/static
+#      - media_volume:/django/media
+#    depends_on:
+#      - redis
+#      - django_project
+#    command: 'celery -A mysite beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler'
+#
+#  flower:
+#    container_name: flower
+#    build: .
+#    ports:
+#      - 5555:5555
+#    volumes:
+#      - /:/app
+#      - static_volume:/django/static
+#      - media_volume:/django/media
+#    depends_on:
+#      - redis
+#    command: 'celery -A mysite flower'
+#
+#  nginx:
+#    build:
+#      dockerfile: ./Dockerfile
+#      context: ./docker/nginx/
+#    container_name: nginx_for_django
+#    image: nginx_for_django
+#    volumes:
+#      - static_volume:/django/static
+#      - media_volume:/django/media
+#      - vhost:/etc/nginx/vhost.d
+#      - html:/usr/share/nginx/html
+#      - /var/run/docker.sock:/tmp/docker.sock:ro
+#
+#    depends_on:
+#      - django_project
+#      - postgres_db
+#    ports:
+#      - "${NGINX_EXTERNAL_PORT}:80"
+#      - "${NGINX_EXTERNAL_SSL_PORT}:443"
+#
+#    restart: always
+#
+#volumes:
+#  static_volume:
+#    driver_opts:
+#      type: none
+#      device: /data/django_static  # Абсолютный путь на хосте
+#      o: bind
+#  media_volume:
+#  vhost:
+#  html:
 version: '2'
 
 services:
@@ -29,18 +140,13 @@ services:
       - media_volume:/django/media
     env_file:
       - .env
-    ports:
-      - 8000:8000
+    environment:
+      - VIRTUAL_HOST=${ALLOWED_HOST}
+      - LETSENCRYPT_HOST=${ALLOWED_HOST}
 
     command: >
-      bash -c "python manage.py makemigrations &&
-                   python manage.py migrate &&
-                   python manage.py add_price &&
-                   python manage.py collectstatic --noinput &&
-                   gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
-
+      bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && ./manage.py add_price && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
     restart: always
-
   worker:
     restart: always
     build: .
@@ -78,20 +184,6 @@ services:
       - redis
     command: 'celery -A mysite flower'
 
-#  nginx:
-#    image: nginx:latest
-#    container_name: nginx
-#    ports:
-#      - "80:80"  # Публикуем порт 80 на хосте
-#    volumes:
-#      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # Конфиг Nginx
-#      - static_volume:/static  # Том со статикой
-#      - media_volume:/media     # Том с медиа
-#    depends_on:
-#      - django_project  # Ждём запуска Django
-#    restart: always
-
-
   nginx:
     build:
       dockerfile: ./Dockerfile
@@ -101,6 +193,7 @@ services:
     volumes:
       - static_volume:/django/static
       - media_volume:/django/media
+      - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -114,12 +207,10 @@ services:
 
     restart: always
 
+
 volumes:
   static_volume:
-    driver_opts:
-      type: none
-      device: /data/django_static  # Абсолютный путь на хосте
-      o: bind
   media_volume:
+  certs:
   vhost:
   html:
