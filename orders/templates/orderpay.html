@@ -37,14 +37,18 @@
             </tr>
         </table>
         <table>
+            {% if Orders.organisation_payer %}
             <td>
                 <button type="submit" class="btn btn-primary"
                         onClick="location.href='{% url 'orders:get_invoice' Orders.id %}'">Cформировать счет
                 </button>
             </td>
+            {% endif %}
+
+
             <td>
                 <button type="submit" class="btn btn-primary"
-                            onClick="location.href='{% url 'orders:create_pay_link' Orders.id %}'">Оплатить картой
+                        onClick="location.href='{% url 'orders:create_pay_link' Orders.id %}'">Оплатить картой
 
                 </button>
             </td>

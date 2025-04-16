@@ -12554,3 +12554,184 @@ Traceback (most recent call last):
 ValueError: The view orders.views.create_pay_link didn't return an HttpResponse object. It returned None instead.
 2025-04-16 13:09:18,284 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/lids/views.py changed, reloading.
 2025-04-16 13:09:21,071 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:08:02,082 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:08:15,046 django.request WARNING  Not Found: /favicon.ico
+2025-04-16 22:08:24,274 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 22:08:24,275 account.views INFO     page_NUM: 1
+2025-04-16 22:08:24,277 account.views INFO     page_NUM: <Page 1 of 9>
+2025-04-16 22:08:43,850 root         INFO     [INFO]. self.length:1.0 TYPE<class 'float'>
+Width: 1.0 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Пленка перфорированная (черный оборот) 140 гр (1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:08:43,851 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:08:43,851 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:08:52,994 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 22:08:52,996 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 22:09:06,527 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 22:09:06,527 root         INFO     method POST
+2025-04-16 22:09:06,529 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['mgwan6GqkKLDQ0vBoMFjljPQVmzSwRq50h1ytr8CDCngJWw5W7PUiRRWSmirKP2h'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 22:09:06,529 root         INFO     USER forumvrn@gmail.com
+2025-04-16 22:09:06,530 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 22:09:06,534 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 22:09:06,534 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 22:09:06,535 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 22:09:06,535 root         INFO     DELIV ID:  1
+2025-04-16 22:09:06,535 root         INFO     ORGANISATION:  
+2025-04-16 22:09:06,537 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 22:09:09,972 orders.models INFO     cost_price_per_item 450.00
+2025-04-16 22:09:09,979 orders.models INFO     1120.00
+2025-04-16 22:09:09,979 orders.models INFO     Себестоимость, 450.00
+2025-04-16 22:09:09,990 root         INFO     [INFO]. self.length:1.0 TYPE<class 'float'>
+Width: 1.0 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Пленка перфорированная (черный оборот) 140 гр (1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:09:09,990 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:09:09,990 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:09:17,210 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 22:09:17,218 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:09:17,224 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 22:09:52,263 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 22:09:52,265 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 22:12:28,538 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:12:28,628 django.request ERROR    Internal Server Error: /orders/create_pay_link/18
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view orders.views.create_pay_link didn't return an HttpResponse object. It returned None instead.
+2025-04-16 22:13:00,511 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:13:00,613 django.request ERROR    Internal Server Error: /orders/create_pay_link/18
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view orders.views.create_pay_link didn't return an HttpResponse object. It returned None instead.
+2025-04-16 22:15:05,160 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 22:15:05,160 account.views INFO     page_NUM: 1
+2025-04-16 22:15:05,162 account.views INFO     page_NUM: <Page 1 of 9>
+2025-04-16 22:15:19,905 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 3 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:15:19,905 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:15:19,906 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:15:31,685 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 22:15:31,696 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 22:15:38,916 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 22:15:38,917 root         INFO     method POST
+2025-04-16 22:15:38,921 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['2yyMfKnSbOWXJDpvG1o1SYNDg0kFbzaVGz3al5P4uGyACzqZemyCPwPJd03epxM7'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 22:15:38,922 root         INFO     USER forumvrn@gmail.com
+2025-04-16 22:15:38,923 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 22:15:38,923 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 22:15:38,924 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 22:15:38,925 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 22:15:38,929 root         INFO     DELIV ID:  1
+2025-04-16 22:15:38,930 root         INFO     ORGANISATION:  
+2025-04-16 22:15:38,932 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 22:15:42,620 orders.models INFO     cost_price_per_item 150.00
+2025-04-16 22:15:42,629 orders.models INFO     360.00
+2025-04-16 22:15:42,630 orders.models INFO     Себестоимость, 150.00
+2025-04-16 22:15:42,645 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 3 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:15:42,645 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:15:42,646 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:15:46,607 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 22:15:46,614 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:15:46,616 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 22:15:52,789 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:15:52,852 django.request ERROR    Internal Server Error: /orders/create_pay_link/19
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view orders.views.create_pay_link didn't return an HttpResponse object. It returned None instead.
+2025-04-16 22:16:35,432 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:16:35,535 django.request ERROR    Internal Server Error: /orders/create_pay_link/19
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view orders.views.create_pay_link didn't return an HttpResponse object. It returned None instead.
+2025-04-16 22:16:45,166 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:16:45,247 django.request ERROR    Internal Server Error: /orders/create_pay_link/19
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view orders.views.create_pay_link didn't return an HttpResponse object. It returned None instead.
+2025-04-16 22:16:55,494 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 22:16:55,495 account.views INFO     page_NUM: 1
+2025-04-16 22:16:55,497 account.views INFO     page_NUM: <Page 1 of 10>
+2025-04-16 22:17:09,857 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:17:09,857 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:17:09,857 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:17:16,191 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 22:17:16,200 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 22:17:21,335 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 22:17:21,335 root         INFO     method POST
+2025-04-16 22:17:21,337 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['3S8BRjuHNOOZKfv1PvmtqOWsvB8sjnfQHTDZXEWT6GqCDbwvnQw4nmYysBR1xlR2'], 'organisation_payer': ['1'], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 22:17:21,339 root         INFO     USER forumvrn@gmail.com
+2025-04-16 22:17:21,339 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 22:17:21,339 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 22:17:21,340 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 22:17:21,340 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 22:17:21,340 root         INFO     DELIV ID:  1
+2025-04-16 22:17:21,340 root         INFO     ORGANISATION:  1
+2025-04-16 22:17:21,342 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 22:17:24,139 orders.models INFO     cost_price_per_item 50.00
+2025-04-16 22:17:24,161 orders.models INFO     120.00
+2025-04-16 22:17:24,162 orders.models INFO     Себестоимость, 50.00
+2025-04-16 22:17:24,196 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:17:24,197 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:17:24,197 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:17:27,599 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 22:17:27,611 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:17:27,616 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 22:17:39,620 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:17:44,436 django.request WARNING  Not Found: /media/
+2025-04-16 22:17:48,998 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-16 22:17:58,509 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-16 22:19:17,911 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-16 22:19:27,790 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:20:16,559 orders.views INFO     DOMAIN: 127.0.0.1:8000
