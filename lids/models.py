@@ -7,8 +7,8 @@ from account.views import Users
 
 
 class Channel(models.TextChoices):
-    WHATSAPP = "WHATSAPP", "whatsapp"  # розничный клиент
-    TELEGRAM = "TELEGRAM", "telegram"  # розничный клиент
+    WHATSAPP = "WHATSAPP", "whatsapp"
+    TELEGRAM = "TELEGRAM", "telegram"
     EMAIL = 'EMAIL', 'email'
     PHONE = 'PHONE', 'Телефонный звонок'
     SITE = 'SITE', 'Сайт'

@@ -218,7 +218,7 @@ class UtilsModel:
         # ----------''' Сообщение дминистратору'''--------------
         ''' успешная отправка письма В будущем - -Сообщение менеджеру типографии'''
         admin_phone = os.getenv('PHONE_NUMBER')
-        send_message_whatsapp.delay(f'{admin_phone}', f'Письмо с заказом № {self.order_id}отправлено в типографию. ')
+        send_message_whatsapp.delay(f'{admin_phone}', f'Письмо с заказом № {self.order_id} отправлено в типографию. ')
 
     def run(self):
         self.create_list()

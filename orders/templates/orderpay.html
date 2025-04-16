@@ -44,7 +44,8 @@
             </td>
             <td>
                 <button type="submit" class="btn btn-primary"
-                        onClick="location.href='{{link_pay}}'">Оплатить картой
+                            onClick="location.href='{% url 'orders:create_pay_link' Orders.id %}'">Оплатить картой
+
                 </button>
             </td>
             {% if Orders.organisation_payer %}

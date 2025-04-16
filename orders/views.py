@@ -100,7 +100,6 @@ def select_time_complete(today: datetime) -> str:
     return today
 
 
-
 class OrdersViewList(LoginRequiredMixin, ListView):
     paginate_by = 5
     model = Order
@@ -206,7 +205,6 @@ def order_pay(request, order_id):
 
     if change_status_order(2, order_id):  # предотвращаем повторную отправку заказа
 
-
         # ------------Устанавливаем таймер на готовность заказа по истечении таймера отправляем письмо с вопросом о готовности----------------
         # получаем дату готовности из базы
         domain = get_domain(request)
@@ -216,8 +214,6 @@ def order_pay(request, order_id):
         # -----------------------create_link_pay-----------------------------------
         # Orders = Order.objects.get(id=order_id)
         user = request.user
-
-
 
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
@@ -410,6 +406,7 @@ def change_status_order(status_oder: int, pk: int):
     else:
         return False
 
+
 def create_invoice(request, order_id):
     domain = str(get_domain(request))
     item = Order.objects.get(id=order_id)
@@ -455,10 +452,17 @@ def get_invoice(request, order_id):
     # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
     # только если была выбрана организация
     order = Order.objects.get(id=order_id)
+    context = {"Orders": order}  # 'link_pay': link_pay}
+
     if order.organisation_payer:
         logger.info(f'[Выбрана организация - генерим счет]')
         create_order_pdf.delay(order_id)
 
-        # link_pay = Acquiring(order_id).run(organisation_flag=True)
-        context = {"Orders": order}  # 'link_pay': link_pay}
         return render(request, 'orders/order_complete.html', context)
+    else:
+        return render(request, 'orders/order_complete.html', context)
+
+
+def create_pay_link(request, order_id: int) -> str:
+    link_pay = Acquiring(order_id).run(organisation_flag=True)
+    return link_pay
