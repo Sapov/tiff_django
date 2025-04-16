@@ -14,6 +14,7 @@ from .views import (
     new_order,
     OrdersViewList,
     AllOrdersListView, result, success_pay, fail, report_day, create_invoice, web_hook, fail_payment, success_payment,
+    get_invoice,
 )
 from files.views import about_file
 
@@ -51,5 +52,8 @@ urlpatterns = [
     path('web_hook/', web_hook, name='web_hook'),
     path('fail/', fail_payment, name='fail_payment'),
     path('success/', success_payment, name='success_payment'),
+    # Invoice
+    path('get_invoice/<int:order_id>', get_invoice, name='get_invoice'),
+
 
 ]

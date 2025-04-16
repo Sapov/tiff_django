@@ -39,6 +39,11 @@
         <table>
             <td>
                 <button type="submit" class="btn btn-primary"
+                        onClick="location.href='{% url 'orders:get_invoice' Orders.id %}'">Cформировать счет
+                </button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary"
                         onClick="location.href='{{link_pay}}'">Оплатить картой
                 </button>
             </td>

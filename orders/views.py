@@ -217,23 +217,23 @@ def order_pay(request, order_id):
         # Orders = Order.objects.get(id=order_id)
         user = request.user
 
+
+
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
-        if order.organisation_payer:
-            logger.info(f'[Выбрана организация - генерим счет]')
-            create_order_pdf.delay(order_id)
-            # logger.info(f'[Выбрана организация - генерим платежную ссылку на организацию]')
-            # link_pay = create_pay_link.delay(order_id, True)
-
-            link_pay = Acquiring(order_id).run(organisation_flag=True)
-            context = {"Orders": order}# 'link_pay': link_pay}
-
-        else:
-            logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
-            # =============Платежная ссылка от точки===========
-            # link_pay = create_pay_link.delay(order_id, True)
-            link_pay = Acquiring(order_id).run(organisation_flag=False)
-            context = {"Orders": order, 'link_pay': link_pay}
+        # if order.organisation_payer:
+        #     logger.info(f'[Выбрана организация - генерим счет]')
+        #     create_order_pdf.delay(order_id)
+        #
+        #     link_pay = Acquiring(order_id).run(organisation_flag=True)
+        #     context = {"Orders": order}# 'link_pay': link_pay}
+        #
+        # else:
+        #     logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
+        #     # =============Платежная ссылка от точки===========
+        #     # link_pay = create_pay_link.delay(order_id, True)
+        #     link_pay = Acquiring(order_id).run(organisation_flag=False)
+        context = {"Orders": order}
 
         # оповещаем пользователя в whatsapp
         # item_user = User.objects.get(email=user)
@@ -449,3 +449,16 @@ def fail_payment(request):
 
 def success_payment(request):
     return render(request, 'orders/success_payment.html')
+
+
+def get_invoice(request, order_id):
+    # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
+    # только если была выбрана организация
+    order = Order.objects.get(id=order_id)
+    if order.organisation_payer:
+        logger.info(f'[Выбрана организация - генерим счет]')
+        create_order_pdf.delay(order_id)
+
+        # link_pay = Acquiring(order_id).run(organisation_flag=True)
+        context = {"Orders": order}  # 'link_pay': link_pay}
+        return render(request, 'orders/order_complete.html', context)

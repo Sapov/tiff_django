@@ -11858,3 +11858,517 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-04-12 15:24:39,032 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 6
 2025-04-12 15:50:02,917 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
 2025-04-12 15:50:04,015 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-15 23:36:27,276 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-15 23:36:31,646 django.request WARNING  Not Found: /favicon.ico
+2025-04-15 23:36:41,319 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-15 23:36:41,319 account.views INFO     page_NUM: 1
+2025-04-15 23:36:41,321 account.views INFO     page_NUM: <Page 1 of 4>
+2025-04-15 23:38:13,430 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 3 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Проварка кармана снизу TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Глянцевая 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-15 23:38:13,431 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-15 23:38:13,431 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-15 23:38:28,738 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-15 23:38:28,741 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2025-04-15 23:38:36,948 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-15 23:38:36,948 root         INFO     method POST
+2025-04-15 23:38:36,950 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['nigAklQwHJGJBX32FCmJV0AlquzoJYc9qkW23ko7MCIMMgK6dVSvKwx5ALNDnL8j'], 'organisation_payer': [''], 'delivery': ['2'], 'date_complite': ['2025-04-17']}>
+2025-04-15 23:38:36,950 root         INFO     USER forumvrn@gmail.com
+2025-04-15 23:38:36,950 root         INFO     [INFO] отправленная форма имеет дату 2025-04-17
+2025-04-15 23:38:36,961 root         INFO     [INFO] Приводим строку в формату даты 2025-04-17 00:00:00
+2025-04-15 23:38:36,962 root         INFO     [INFO] прибавляем 12 часов 2025-04-17 12:00:00
+2025-04-15 23:38:36,962 root         INFO     date_complite 2025-04-17 12:00:00 - <class 'datetime.datetime'>
+2025-04-15 23:38:36,962 root         INFO     DELIV ID:  2
+2025-04-15 23:38:36,962 root         INFO     ORGANISATION:  
+2025-04-15 23:38:36,964 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-15 23:38:41,615 orders.models INFO     cost_price_per_item 342.00
+2025-04-15 23:38:41,636 orders.models INFO     855.00
+2025-04-15 23:38:41,637 orders.models INFO     Себестоимость, 342.00
+2025-04-15 23:38:41,687 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 3 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Проварка кармана снизу TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Глянцевая 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-15 23:38:41,688 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-15 23:38:41,689 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:12:58,079 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 09:12:59,185 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 09:20:47,006 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 09:20:48,280 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 09:20:57,082 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 09:20:57,087 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 09:20:57,088 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-17 09:00:00+00:00
+2025-04-16 09:20:57,203 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2025-04-16 09:20:57,384 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 09:22:43,699 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 09:22:45,041 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 09:26:26,408 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 09:26:29,670 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 09:26:58,810 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 09:26:58,810 account.views INFO     page_NUM: 1
+2025-04-16 09:26:58,812 account.views INFO     page_NUM: <Page 1 of 5>
+2025-04-16 09:27:14,681 root         INFO     [INFO]. self.length:0.22 TYPE<class 'float'>
+Width: 0.48 TYPE <class 'float'>
+ Quantity: 2 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 09:27:14,681 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:27:14,682 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:27:19,722 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 09:27:19,724 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 09:27:23,338 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 09:27:23,338 root         INFO     method POST
+2025-04-16 09:27:23,341 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['g09YRpEj7NJS3rcYa4RQuzRBgYB6bIBGjsnYP2Rl5gqOL16UwB9oYELCdtE441f1'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 09:27:23,341 root         INFO     USER forumvrn@gmail.com
+2025-04-16 09:27:23,342 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 09:27:23,347 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 09:27:23,348 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 09:27:23,348 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 09:27:23,348 root         INFO     DELIV ID:  1
+2025-04-16 09:27:23,348 root         INFO     ORGANISATION:  
+2025-04-16 09:27:23,352 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 09:27:26,475 orders.models INFO     cost_price_per_item 40.00
+2025-04-16 09:27:26,497 orders.models INFO     100.00
+2025-04-16 09:27:26,498 orders.models INFO     Себестоимость, 40.00
+2025-04-16 09:27:26,539 root         INFO     [INFO]. self.length:0.22 TYPE<class 'float'>
+Width: 0.48 TYPE <class 'float'>
+ Quantity: 2 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 09:27:26,541 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:27:26,542 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:27:29,707 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 09:27:29,717 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 09:27:29,720 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 09:27:29,980 django.request ERROR    Internal Server Error: /orders/order_pay/10
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 245, in order_pay
+    return render(request, "orderpay.html", context)
+NameError: name 'context' is not defined
+2025-04-16 09:29:22,561 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 09:29:24,271 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 09:29:37,446 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 09:29:37,448 account.views INFO     page_NUM: 1
+2025-04-16 09:29:37,454 account.views INFO     page_NUM: <Page 1 of 5>
+2025-04-16 09:29:52,543 root         INFO     [INFO]. self.length:0.22 TYPE<class 'float'>
+Width: 0.48 TYPE <class 'float'>
+ Quantity: 3 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 09:29:52,543 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:29:52,543 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:29:59,248 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 09:29:59,252 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 09:30:03,325 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 09:30:03,326 root         INFO     method POST
+2025-04-16 09:30:03,330 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['l5EAeG1lTaDivysKuzNzpTZJ57pjZuaLoxSAcjenRDked8mGQ657TYTK2CshSNO6'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 09:30:03,331 root         INFO     USER forumvrn@gmail.com
+2025-04-16 09:30:03,331 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 09:30:03,338 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 09:30:03,338 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 09:30:03,339 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 09:30:03,339 root         INFO     DELIV ID:  1
+2025-04-16 09:30:03,339 root         INFO     ORGANISATION:  
+2025-04-16 09:30:03,343 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 09:30:06,139 orders.models INFO     cost_price_per_item 210.00
+2025-04-16 09:30:06,146 orders.models INFO     540.00
+2025-04-16 09:30:06,147 orders.models INFO     Себестоимость, 210.00
+2025-04-16 09:30:06,156 root         INFO     [INFO]. self.length:0.22 TYPE<class 'float'>
+Width: 0.48 TYPE <class 'float'>
+ Quantity: 3 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 09:30:06,156 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:30:06,156 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:30:08,654 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 09:30:08,675 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 09:30:08,679 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 09:30:08,979 django.request ERROR    Internal Server Error: /orders/order_pay/11
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 245, in order_pay
+    return render(request, "orderpay.html")
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_invoice' with arguments '('',)' not found. 1 pattern(s) tried: ['orders/get_invoice/(?P<order_id>[0-9]+)\\Z']
+2025-04-16 09:33:08,872 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 09:33:10,767 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 09:34:47,396 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 09:34:48,576 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 09:35:36,528 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 09:35:36,528 account.views INFO     page_NUM: 1
+2025-04-16 09:35:36,530 account.views INFO     page_NUM: <Page 1 of 6>
+2025-04-16 09:35:49,410 django.request WARNING  Not Found: /orders/view_orders1/
+2025-04-16 09:36:05,397 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-16 09:37:58,459 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-16 09:37:58,567 django.request ERROR    Internal Server Error: /orders/get_invoice/1
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 502, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 464, in get_invoice
+    return render(request, 'orders/order_complete.html', context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 504, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 555, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 186: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+2025-04-16 09:38:17,719 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-16 09:38:23,722 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 09:38:38,549 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 09:38:38,551 account.views INFO     page_NUM: 1
+2025-04-16 09:38:38,556 account.views INFO     page_NUM: <Page 1 of 6>
+2025-04-16 09:38:48,893 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 09:38:48,894 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:38:48,894 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:38:54,802 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 09:38:54,806 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 09:38:58,347 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 09:38:58,347 root         INFO     method POST
+2025-04-16 09:38:58,349 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['3z6Zpx9Pj0SzDQ1QxlSCP2X7GV67DmVUU3ljMnvjufsiOImx3A0a2PROf26BJs8o'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 09:38:58,349 root         INFO     USER forumvrn@gmail.com
+2025-04-16 09:38:58,349 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 09:38:58,353 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 09:38:58,354 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 09:38:58,354 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 09:38:58,354 root         INFO     DELIV ID:  1
+2025-04-16 09:38:58,354 root         INFO     ORGANISATION:  
+2025-04-16 09:38:58,356 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 09:39:01,207 orders.models INFO     cost_price_per_item 40.00
+2025-04-16 09:39:01,214 orders.models INFO     90.00
+2025-04-16 09:39:01,215 orders.models INFO     Себестоимость, 40.00
+2025-04-16 09:39:01,224 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 09:39:01,224 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:39:01,224 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:39:04,512 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 09:39:04,527 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 09:39:04,532 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 09:39:04,693 django.request ERROR    Internal Server Error: /orders/order_pay/12
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 245, in order_pay
+    return render(request, "orderpay.html")
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_invoice' with arguments '('',)' not found. 1 pattern(s) tried: ['orders/get_invoice/(?P<order_id>[0-9]+)\\Z']
+2025-04-16 09:46:36,072 django.request WARNING  Not Found: /orders/add_files_in_order/None
+2025-04-16 09:47:42,201 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 09:47:50,274 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 09:47:50,275 account.views INFO     page_NUM: 1
+2025-04-16 09:47:50,283 account.views INFO     page_NUM: <Page 1 of 6>
+2025-04-16 09:48:02,708 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 09:48:02,708 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:48:02,708 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:48:09,458 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 09:48:09,463 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 09:48:13,113 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 09:48:13,114 root         INFO     method POST
+2025-04-16 09:48:13,122 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['cgaedR3wT39mbdmitIRaMlPFGb5wkAzf3KpyAHp04iJ5m5HZZXZIZ8Jmfi50qGMJ'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 09:48:13,123 root         INFO     USER forumvrn@gmail.com
+2025-04-16 09:48:13,124 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 09:48:13,139 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 09:48:13,140 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 09:48:13,141 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 09:48:13,142 root         INFO     DELIV ID:  1
+2025-04-16 09:48:13,142 root         INFO     ORGANISATION:  
+2025-04-16 09:48:13,148 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 09:48:16,119 orders.models INFO     cost_price_per_item 40.00
+2025-04-16 09:48:16,139 orders.models INFO     90.00
+2025-04-16 09:48:16,141 orders.models INFO     Себестоимость, 40.00
+2025-04-16 09:48:16,176 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 09:48:16,177 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:48:16,177 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 09:48:21,058 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 09:48:21,075 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 09:48:21,081 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 09:48:21,490 django.request ERROR    Internal Server Error: /orders/order_pay/13
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 245, in order_pay
+    return render(request, "orderpay.html")
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_invoice' with arguments '('',)' not found. 1 pattern(s) tried: ['orders/get_invoice/(?P<order_id>[0-9]+)\\Z']
+2025-04-16 11:02:57,197 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/urls.py changed, reloading.
+2025-04-16 11:02:58,389 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 11:03:25,605 django.request WARNING  Not Found: /orders
+2025-04-16 11:03:40,098 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 11:03:40,099 account.views INFO     page_NUM: 1
+2025-04-16 11:03:40,102 account.views INFO     page_NUM: <Page 1 of 7>
+2025-04-16 11:03:52,612 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 11:03:52,613 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 11:03:52,613 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 11:04:01,801 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 11:04:01,809 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 11:04:06,635 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 11:04:06,637 root         INFO     method POST
+2025-04-16 11:04:06,644 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['3g6rKVAlxQxe4tHorNz6nWW0f3m7ffg7Nedb0OsZUvjEBXaf06EvE8FsnhDE7d3h'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 11:04:06,646 root         INFO     USER forumvrn@gmail.com
+2025-04-16 11:04:06,646 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 11:04:06,665 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 11:04:06,666 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 11:04:06,667 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 11:04:06,668 root         INFO     DELIV ID:  1
+2025-04-16 11:04:06,669 root         INFO     ORGANISATION:  
+2025-04-16 11:04:06,676 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 11:04:15,172 orders.models INFO     cost_price_per_item 40.00
+2025-04-16 11:04:15,202 orders.models INFO     90.00
+2025-04-16 11:04:15,205 orders.models INFO     Себестоимость, 40.00
+2025-04-16 11:04:15,246 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 11:04:15,247 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 11:04:15,248 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 11:07:02,262 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 11:07:04,353 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 11:07:08,628 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 11:07:08,647 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 11:07:08,656 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 11:07:25,641 django.request ERROR    Internal Server Error: /orders/get_invoice/14
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view orders.views.get_invoice didn't return an HttpResponse object. It returned None instead.
