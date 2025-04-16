@@ -43,9 +43,19 @@ def add_user_lids(request):
             Users = get_user_model()
             user = Users.objects.get(id=1)
             interest = Interest.objects.get(name=themas)
-            Lids.objects.create(username=cd['username'], email=cd['email'], phone=cd['phone'], user=user,
-                                interest=interest, interest_text=cd['interest_text'])
-            text = f"Имя: {cd['username']}, \nТема: {themas}, \nИнформация: {cd['interest_text']}"
+            username = cd['username'] 
+            email = cd['email']
+            phone = cd['phone']
+            interest_text = cd['interest_text']
+            Lids.objects.create(
+                username=username,
+                email=email,
+                phone=phone,
+                user=user,
+                interest=interest,
+                interest_text=interest_text)
+            text = (f"Имя: {username}, \nТема: {themas}, \nИнформация: {interest_text}"
+                    f"\nТелефон: {phone}, \nПочта: {email}")
             admin_phone = os.getenv('PHONE_NUMBER')
             send_message_whatsapp.delay(f'{admin_phone}', f'Новая заявка на сайте: \n{text}')
 
