@@ -12986,3 +12986,4 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-04-16 23:15:10,194 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, '...(remaining elements truncated)...']>
 2025-04-16 23:15:10,195 account.views INFO     page_NUM: 1
 2025-04-16 23:15:10,203 account.views INFO     page_NUM: <Page 1 of 13>
+2025-04-16 23:17:48,661 orders.views INFO     DOMAIN: 127.0.0.1:8000
