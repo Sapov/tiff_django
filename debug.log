@@ -12735,3 +12735,254 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-04-16 22:19:17,911 orders.views INFO     [Выбрана организация - генерим счет]
 2025-04-16 22:19:27,790 orders.views INFO     DOMAIN: 127.0.0.1:8000
 2025-04-16 22:20:16,559 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:22:11,696 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:25:07,241 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:30:46,003 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:30:46,091 django.request ERROR    Internal Server Error: /orders/create_pay_link/20
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view orders.views.create_pay_link didn't return an HttpResponse object. It returned None instead.
+2025-04-16 22:34:31,676 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 22:34:33,092 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:34:50,835 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 22:34:52,225 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:34:58,047 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:35:33,042 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 22:35:34,089 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:36:52,089 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 22:36:53,217 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:36:58,259 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:38:20,098 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 22:38:21,470 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:38:28,038 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:44:19,861 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 22:44:20,884 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:44:26,852 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:45:55,727 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:46:52,852 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-04-16 22:46:52,852 account.views INFO     page_NUM: 1
+2025-04-16 22:46:52,854 account.views INFO     page_NUM: <Page 1 of 10>
+2025-04-16 22:47:04,508 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:47:04,508 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:47:04,508 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:47:12,801 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 22:47:12,807 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 22:47:19,817 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 22:47:19,817 root         INFO     method POST
+2025-04-16 22:47:19,820 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['dx1aOzWlq5qA1cGzhTJHAYBIpBIcRhvkRywyUUoxJX2dU8H3PeTixwDOmBrL5f7w'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 22:47:19,821 root         INFO     USER forumvrn@gmail.com
+2025-04-16 22:47:19,821 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 22:47:19,826 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 22:47:19,827 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 22:47:19,827 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 22:47:19,827 root         INFO     DELIV ID:  1
+2025-04-16 22:47:19,828 root         INFO     ORGANISATION:  
+2025-04-16 22:47:19,830 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 22:47:22,700 orders.models INFO     cost_price_per_item 10.00
+2025-04-16 22:47:22,713 orders.models INFO     30.00
+2025-04-16 22:47:22,718 orders.models INFO     Себестоимость, 10.00
+2025-04-16 22:47:22,744 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:47:22,747 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:47:22,747 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:47:29,047 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 22:47:29,065 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:47:29,070 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 22:47:29,377 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 22:47:35,039 django.request WARNING  Not Found: /orders/order_pay/None
+2025-04-16 22:47:42,712 django.request WARNING  Not Found: /orders/order_pay/None
+2025-04-16 22:51:59,153 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/tasks.py changed, reloading.
+2025-04-16 22:52:00,319 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 22:53:36,378 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, '...(remaining elements truncated)...']>
+2025-04-16 22:53:36,379 account.views INFO     page_NUM: 1
+2025-04-16 22:53:36,381 account.views INFO     page_NUM: <Page 1 of 11>
+2025-04-16 22:53:48,271 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:53:48,272 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:53:48,272 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:53:54,714 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 22:53:54,717 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 22:54:00,609 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 22:54:00,609 root         INFO     method POST
+2025-04-16 22:54:00,615 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['aazoJ2NuswxtZRQpIQ3DyhO8iUXJF4X6Ob4MPnfGLo96SNRTgbdevPQefUGiT2zi'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 22:54:00,615 root         INFO     USER forumvrn@gmail.com
+2025-04-16 22:54:00,616 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 22:54:00,621 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 22:54:00,622 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 22:54:00,622 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 22:54:00,622 root         INFO     DELIV ID:  1
+2025-04-16 22:54:00,622 root         INFO     ORGANISATION:  
+2025-04-16 22:54:00,624 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 22:54:03,709 orders.models INFO     cost_price_per_item 40.00
+2025-04-16 22:54:03,721 orders.models INFO     90.00
+2025-04-16 22:54:03,721 orders.models INFO     Себестоимость, 40.00
+2025-04-16 22:54:03,738 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 22:54:03,739 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:54:03,739 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 22:54:06,576 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 22:54:06,592 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 22:54:06,597 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 22:54:12,775 django.request WARNING  Not Found: /orders/order_pay/450f2062-bc09-489e-973b-db565d7d6a11
+2025-04-16 23:02:30,641 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 23:02:31,681 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 23:02:43,548 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, '...(remaining elements truncated)...']>
+2025-04-16 23:02:43,548 account.views INFO     page_NUM: 1
+2025-04-16 23:02:43,550 account.views INFO     page_NUM: <Page 1 of 11>
+2025-04-16 23:02:55,494 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 23:02:55,494 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:02:55,494 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:03:02,464 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 23:03:02,471 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 23:03:06,856 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 23:03:06,857 root         INFO     method POST
+2025-04-16 23:03:06,867 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['pmbLIgXxyDqZz8PyibT8Yo0AZqh2eRzn3nG9OBpJRv2Cs4Q2Qw3JVW2GWq0BsPbz'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 23:03:06,877 root         INFO     USER forumvrn@gmail.com
+2025-04-16 23:03:06,877 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 23:03:06,894 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 23:03:06,895 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 23:03:06,895 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 23:03:06,895 root         INFO     DELIV ID:  1
+2025-04-16 23:03:06,896 root         INFO     ORGANISATION:  
+2025-04-16 23:03:06,899 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 23:03:10,057 orders.models INFO     cost_price_per_item 10.00
+2025-04-16 23:03:10,065 orders.models INFO     20.00
+2025-04-16 23:03:10,065 orders.models INFO     Себестоимость, 10.00
+2025-04-16 23:03:10,075 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 23:03:10,075 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:03:10,075 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:03:12,822 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 23:03:12,829 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 23:03:12,831 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 23:03:13,970 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 23:03:16,260 django.request WARNING  Not Found: /orders/order_pay/None
+2025-04-16 23:05:18,316 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-04-16 23:05:19,887 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 23:06:54,026 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, '...(remaining elements truncated)...']>
+2025-04-16 23:06:54,026 account.views INFO     page_NUM: 1
+2025-04-16 23:06:54,028 account.views INFO     page_NUM: <Page 1 of 12>
+2025-04-16 23:07:05,136 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 23:07:05,137 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:07:05,137 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:07:10,973 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 23:07:10,982 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 23:07:15,461 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 23:07:15,462 root         INFO     method POST
+2025-04-16 23:07:15,467 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['QmqM3pDqMPvRY4uRMvCEs9hgr982BagLunVa9K5C5H7uR0vlkQMfpHjmo9RBP8SX'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 23:07:15,468 root         INFO     USER forumvrn@gmail.com
+2025-04-16 23:07:15,469 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 23:07:15,482 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 23:07:15,484 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 23:07:15,486 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 23:07:15,487 root         INFO     DELIV ID:  1
+2025-04-16 23:07:15,489 root         INFO     ORGANISATION:  
+2025-04-16 23:07:15,493 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 23:07:18,236 orders.models INFO     cost_price_per_item 10.00
+2025-04-16 23:07:18,258 orders.models INFO     20.00
+2025-04-16 23:07:18,258 orders.models INFO     Себестоимость, 10.00
+2025-04-16 23:07:18,283 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 23:07:18,284 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:07:18,284 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:07:20,268 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 23:07:20,272 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 23:07:20,274 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 23:07:20,613 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 23:12:38,449 django.request WARNING  Not Found: /orders/add_files_in_order/None
+2025-04-16 23:12:52,546 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-16 23:13:06,670 django.request WARNING  Not Found: /orders/add_files_in_order/None
+2025-04-16 23:13:13,598 django.request WARNING  Not Found: /orders/add_files_in_order/None
+2025-04-16 23:13:49,433 django.request WARNING  Not Found: /orders/add_files_in_order/None
+2025-04-16 23:14:07,181 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, '...(remaining elements truncated)...']>
+2025-04-16 23:14:07,181 account.views INFO     page_NUM: 1
+2025-04-16 23:14:07,183 account.views INFO     page_NUM: <Page 1 of 12>
+2025-04-16 23:14:18,612 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 23:14:18,612 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:14:18,612 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:14:25,074 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-16 23:14:25,083 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-04-16 23:14:30,283 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-16 23:14:30,284 root         INFO     method POST
+2025-04-16 23:14:30,287 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['e9NAOyCwXeMdX4jTy1LYnffTzgbQvX4bSaiYUT4Ig6oQQ0kn6mVzkNhZwgUpJVGn'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-04-18']}>
+2025-04-16 23:14:30,287 root         INFO     USER forumvrn@gmail.com
+2025-04-16 23:14:30,288 root         INFO     [INFO] отправленная форма имеет дату 2025-04-18
+2025-04-16 23:14:30,294 root         INFO     [INFO] Приводим строку в формату даты 2025-04-18 00:00:00
+2025-04-16 23:14:30,295 root         INFO     [INFO] прибавляем 12 часов 2025-04-18 12:00:00
+2025-04-16 23:14:30,295 root         INFO     date_complite 2025-04-18 12:00:00 - <class 'datetime.datetime'>
+2025-04-16 23:14:30,295 root         INFO     DELIV ID:  1
+2025-04-16 23:14:30,295 root         INFO     ORGANISATION:  
+2025-04-16 23:14:30,297 root         INFO     DELIVERY:  Самовывоз
+2025-04-16 23:14:33,826 orders.models INFO     cost_price_per_item 50.00
+2025-04-16 23:14:33,843 orders.models INFO     120.00
+2025-04-16 23:14:33,843 orders.models INFO     Себестоимость, 50.00
+2025-04-16 23:14:33,857 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-16 23:14:33,857 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:14:33,858 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-16 23:14:41,262 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-16 23:14:41,271 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-16 23:14:41,275 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-18 09:00:00+00:00
+2025-04-16 23:14:41,625 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-16 23:15:10,194 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>, <Order: Заказ № 6>, '...(remaining elements truncated)...']>
+2025-04-16 23:15:10,195 account.views INFO     page_NUM: 1
+2025-04-16 23:15:10,203 account.views INFO     page_NUM: <Page 1 of 13>

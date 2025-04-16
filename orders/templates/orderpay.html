@@ -47,19 +47,12 @@
 
 
             <td>
-                <button type="submit" class="btn btn-primary"
-                        onClick="location.href='{% url 'orders:create_pay_link' Orders.id %}'">Оплатить картой
-
-                </button>
-            </td>
-            {% if Orders.organisation_payer %}
-            <td>
                 <button type="submit" class="btn btn-success"
-                        onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">Получить счет
-                </button>
+                        onClick="location.href='{{link_pay}}'">Оплатить картой
 
+                </button>
             </td>
-            {% endif %}
+
         </table>
 
         </tbody>

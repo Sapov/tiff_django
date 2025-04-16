@@ -28,7 +28,7 @@ def create_order_pdf(order_id: int):
 
 
 @shared_task
-def create_pay_link(order_id: int, organisation: bool):
+def create_pay_link_d(order_id: int, organisation: bool):
     '''Формирования ссылки для организаций и для физ лиц'''
     order = Acquiring(order_id)
     order.run(organisation)

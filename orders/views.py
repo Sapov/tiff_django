@@ -21,7 +21,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
-from .tasks import create_order_pdf, arh_for_mail
+from .tasks import create_order_pdf, arh_for_mail, create_pay_link_d
 from users.tasks import send_message_whatsapp
 import logging
 import jwt
@@ -217,19 +217,19 @@ def order_pay(request, order_id):
 
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
-        # if order.organisation_payer:
+        if order.organisation_payer:
         #     logger.info(f'[Выбрана организация - генерим счет]')
         #     create_order_pdf.delay(order_id)
         #
-        #     link_pay = Acquiring(order_id).run(organisation_flag=True)
-        #     context = {"Orders": order}# 'link_pay': link_pay}
+            link_pay = Acquiring(order_id).run(organisation_flag=True)
+            context = {"Orders": order, 'link_pay': link_pay}
         #
-        # else:
+        else:
         #     logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
         #     # =============Платежная ссылка от точки===========
-        #     # link_pay = create_pay_link.delay(order_id, True)
-        #     link_pay = Acquiring(order_id).run(organisation_flag=False)
-        context = {"Orders": order}
+        # link_pay = create_pay_link_d.delay(order_id, True)
+            link_pay = Acquiring(order_id).run(organisation_flag=False)
+            context = {"Orders": order, 'link_pay': link_pay}
 
         # оповещаем пользователя в whatsapp
         # item_user = User.objects.get(email=user)
@@ -465,4 +465,5 @@ def get_invoice(request, order_id):
 
 def create_pay_link(request, order_id: int) -> str:
     link_pay = Acquiring(order_id).run(organisation_flag=True)
-    return link_pay
+    print(link_pay)
+    return HttpResponse(f'{link_pay}')

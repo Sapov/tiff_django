@@ -248,7 +248,7 @@
     <td>
 
         <button type="submit" class="btn btn-success"
-                onClick="location.href='{% url 'orders:create_pay_link' Orders.id %}'">Оплатить картой
+                onClick="location.href='{{order_data_pay}}'">Оплатить картой
 
         </button>
 
@@ -256,7 +256,7 @@
     {% if Orders.organisation_payer %}
     <td>
 
-        <button type="submit" class="btn btn-success"
+        <button type="submit" class="btn btn-primary"
                 onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">Получить счет
         </button>
 
