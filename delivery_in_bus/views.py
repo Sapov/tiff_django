@@ -57,3 +57,16 @@ def complete(request, order_id):
             return redirect('delivery_in_bus:orders_for_courier_in_bus')
         else:
             return render(request, "files/order_already_recorded.html", {'message': 'Заказ уже закрыт!'})
+
+
+
+# Create your views here.
+class ViewAllCompleteDeliversForBus(LoginRequiredMixin, ListView):
+    '''Показать Завершеные доставки Курьера'''
+    model = Order
+    paginate_by = 6
+    template_name = "delivery_in_bus/view_delivers_for_courier.html"
+
+    def get_queryset(self):
+
+        return Order.objects.filter(status_id=4).filter(delivery_id=2).order_by("-id")
