@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from delivery_in_bus.forms import FormLoadImgCourier
 from delivery_in_bus.models import OrdersDeliveryBus
 from orders.models import Order
@@ -65,8 +65,18 @@ class ViewAllCompleteDeliversForBus(LoginRequiredMixin, ListView):
     '''Показать Завершеные доставки Курьера'''
     model = Order
     paginate_by = 6
+    # extra_context = {'latest':OrdersDeliveryBus.objects. }
+    #Нужно достать id доставки из базы OrdersDeliveryBus по id order
     template_name = "delivery_in_bus/view_delivers_for_courier.html"
 
     def get_queryset(self):
+        # return Order.objects.filter(status_id=4).filter(delivery_id=2).order_by("-id")
+        return OrdersDeliveryBus.objects.filter(user=self.request.user)
 
-        return Order.objects.filter(status_id=4).filter(delivery_id=2).order_by("-id")
+class DeliveryDetailVew(LoginRequiredMixin, DetailView):
+    model = OrdersDeliveryBus
+
+    def get_queryset(self):
+        "доставки только этого юзера курьера"
+        queryset = OrdersDeliveryBus.objects.filter(user=self.request.user)
+        return queryset

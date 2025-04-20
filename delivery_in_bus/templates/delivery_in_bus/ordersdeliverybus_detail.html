@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+<title>{% block title %} Детали доставки: {% endblock %}</title>
+{% block body %}
+
+
+<h2>Детали о доставке: </h2>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Заказ №</th>
+                <th>Доставка отгружена</th>
+                <th>Фото продукции</th>
+                <th>Фото телефон</th>
+                <th>Фото номер автобуса</th>
+                <th>Комментарии</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ object.id }}</td>
+
+                <td>{{ object.created_at }}</td>
+                <td><a>{% load thumbnail %} <img src="{% thumbnail object.img_production 100x0 %}" class="image-detail"></a></td>
+                <td><a>{% load thumbnail %} <img src="{% thumbnail object.img_phone 100x0 %}" class="image-detail"></a></td>
+                <td><a>{% load thumbnail %} <img src="{% thumbnail object.img_bus 100x0 %}" class="image-detail"></a></td>
+
+                <td>{{ object.comments }}</td>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
