@@ -134,7 +134,7 @@ def add_files_in_order(request, order_id):
     order = Order.objects.get(id=order_id)
     items = Product.objects.filter(
         user=request.user
-    )  # Только те файлы которые еще были добавлены в заказ(ы), только файлы юзера
+    ).order_by("-id")  # Только те файлы которые еще были добавлены в заказ(ы), только файлы юзера
     items_in_order = OrderItem.objects.filter(order=order_id)  # файлы в заказе
     current_order = Order.objects.get(pk=order_id)
 
