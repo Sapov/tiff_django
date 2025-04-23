@@ -218,8 +218,8 @@ def order_pay(request, order_id):
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
         if order.organisation_payer:
-        #     logger.info(f'[Выбрана организация - генерим счет]')
-        #     create_order_pdf.delay(order_id)
+            logger.info(f'[Выбрана организация - генерим счет]')
+            create_order_pdf.delay(order_id)
         #
             link_pay = Acquiring(order_id).run(organisation_flag=True)
             context = {"Orders": order, 'link_pay': link_pay}
