@@ -1,4 +1,5 @@
 import logging
+from json import JSONDecodeError
 
 import aiohttp
 from .rest_result import Result

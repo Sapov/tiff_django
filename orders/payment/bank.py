@@ -1,14 +1,11 @@
-import logging
 from datetime import datetime, date
 import json
 import os
-from typing import Any
 
 import requests
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from dotenv import load_dotenv, find_dotenv
 from django.utils import timezone
-from requests import Response
 
 from mysite import settings
 from orders.models import Order, OrderItem, BankInvoices
