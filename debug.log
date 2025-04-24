@@ -13390,3 +13390,50 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-04-22 21:12:44,107 orders.views INFO     [Выбрана организация - генерим счет]
 2025-04-22 21:12:47,600 orders.views INFO     DOMAIN: 127.0.0.1:8000
 2025-04-22 21:18:03,009 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-24 11:41:11,964 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 11:41:15,692 django.request WARNING  Not Found: /favicon.ico
+2025-04-24 11:41:27,767 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, '...(remaining elements truncated)...']>
+2025-04-24 11:41:27,767 account.views INFO     page_NUM: 1
+2025-04-24 11:41:27,769 account.views INFO     page_NUM: <Page 1 of 14>
+2025-04-24 12:15:25,363 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-24 12:15:26,621 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 13:24:44,326 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-24 13:24:45,623 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 13:29:44,335 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-24 13:29:45,366 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 14:36:42,762 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/type/__init__.py changed, reloading.
+2025-04-24 14:36:45,521 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 14:40:45,959 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 14:40:48,816 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 14:51:27,712 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 14:51:28,721 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 14:53:38,613 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 14:53:39,623 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 14:53:56,367 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 14:53:57,362 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 14:56:56,892 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 14:56:57,898 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 14:57:41,382 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 14:57:42,413 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:14:20,922 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:14:21,888 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:18:18,377 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:18:19,394 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:25:09,490 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:25:10,532 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:27:33,036 root         INFO     ЗАПИСАЛИ В БАЗУ ID документа
+2025-04-24 15:28:57,328 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:28:58,323 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:30:08,101 root         INFO     ЗАПИСАЛИ В БАЗУ ID документа
+2025-04-24 15:33:40,401 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:33:41,407 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:34:56,099 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:34:57,096 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:38:04,986 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:38:06,142 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:38:19,844 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:38:20,877 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:44:32,093 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:44:33,150 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 15:47:52,079 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
+2025-04-24 15:47:53,228 django.utils.autoreload INFO     Watching for file changes with StatReloader

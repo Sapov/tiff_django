@@ -10,6 +10,7 @@ from django.utils import timezone
 from mysite import settings
 from orders.models import Order, OrderItem, BankInvoices
 import logging
+from .type.second_side import SecondSide
 
 logger = logging.getLogger(__name__)
 
@@ -54,23 +55,26 @@ class Bank:
         payer = Order.objects.get(id=self.order_id)
         logging.info(f'[INFO] payer {payer}')
 
-        di = {
+        payload = json.dumps({
             "Data": {
                 "accountId": os.getenv('BANK_ACCOUNT_ID'),
                 "customerCode": self.customer_code,
-                "SecondSide": {
-                    "accountId": f'{payer.organisation_payer.bank_account}/{payer.organisation_payer.bik_bank}',
-                    "legalAddress": payer.organisation_payer.address,
-                    "kpp": payer.organisation_payer.kpp,
-                    "bankName": payer.organisation_payer.bank_name,
-                    "bankCorrAccount": payer.organisation_payer.bankCorrAccount,
-                    "taxCode": payer.organisation_payer.inn,
-                    "type": 'ip' if len(payer.organisation_payer.inn) == 12 else 'company',
-                    "secondSideName": payer.organisation_payer.name_full
-                },
+                "SecondSide": SecondSide(payer).__dict__
+
+                #     {
+                #     "accountId": f'{payer.organisation_payer.bank_account}/{payer.organisation_payer.bik_bank}',
+                #     "legalAddress": payer.organisation_payer.address,
+                #     "kpp": payer.organisation_payer.kpp,
+                #     "bankName": payer.organisation_payer.bank_name,
+                #     "bankCorrAccount": payer.organisation_payer.bankCorrAccount,
+                #     "taxCode": payer.organisation_payer.inn,
+                #     "type": 'ip' if len(payer.organisation_payer.inn) == 12 else 'company',
+                #     "secondSideName": payer.organisation_payer.name_full
+                # }
+                ,
                 "Content": {
                     "Invoice": {
-                        "Positions": self.__create_list_position(),
+                        "Positions": self.create_list_position(),
                         "date": str(datetime.now().date()),
                         "totalAmount": self.total_amount_order,
                         "totalNds": "0",
@@ -80,10 +84,10 @@ class Bank:
                     }
                 }
             }
-        }
-        logging.info(f'[dict] {di}')
+        })
+        logging.info(f'[dict] {payload}')
 
-        payload = json.dumps(di)
+        # payload = json.dumps(di)
 
         try:
             logging.info(f'[PAYLOAD FOR Invoice] : {payload}')
@@ -99,7 +103,7 @@ class Bank:
                                     document_id=self.document_id)
         logging.info(f'ЗАПИСАЛИ В БАЗУ ID документа')
    
-    def __create_list_position(self) -> list[dict]:
+    def create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
         order_items = OrderItem.objects.filter(order=self.order_id)
         positions = []
@@ -151,6 +155,7 @@ class Bank:
         order.save()
 
     def get_status_invoice(self):
+        '''https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-vystavleniem-schetov#get_invoice_invoice__apiVersion__bills__customerCode___documentId__file_get'''
         document = BankInvoices.objects.get(order_id=self.order_id)
         url = f'{self.RS_URL}/invoice/{self.apiVersion}/bills/{self.customer_code}/{document.document_id}/payment-status'
 
@@ -181,6 +186,11 @@ class Bank:
         response = requests.request("DELETE", url, headers=self.headers, data=payload)
         logging.info(f'[DELETING INVOICE]: {response.text}')
         print(response.text)
+
+    def check_status_payment(self):
+        '''проверка всех счетов имеющих статус не оплачено'''
+        documents = BankInvoices.objects.filter(payment_Status=None)
+
 
     def run(self):
         # self.get_customer_code()

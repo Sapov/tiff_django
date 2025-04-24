@@ -5,6 +5,7 @@ from orders.payment.bank import Bank
 
 
 class BankCloseDocument(Bank):
+    '''https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-zakryvayushimi-dokumentami'''
     RS_URL = super().RS_URL
     apiVersion = super().apiVersion
     url = RS_URL + f"/invoice/{apiVersion}/closing-documents"
@@ -20,23 +21,13 @@ class BankCloseDocument(Bank):
                 "documentId": "1cf95c4f-e794-4407-bac4-0829f19bd2be",
                 "Content": {
                     "Act": {
-                        "number": "3",
+                        "number": self.order_id,
                         "basedOn": "Основание платежа",
                         "comment": "Комментарий",
                         "date": "2021-05-06",
                         "totalAmount": "12345",
                         "totalNds": "1",
-                        "Positions": [
-                            {
-                                "positionName": "Название товара или услуги",
-                                "unitCode": "шт.",
-                                "ndsKind": "nds_0",
-                                "price": "12345.00",
-                                "quantity": "12345",
-                                "totalAmount": "12345",
-                                "totalNds": "1"
-                            }
-                        ]
+                        "Positions": self.create_list_position()
                     }
                 },
                 "SecondSide": {
@@ -60,6 +51,10 @@ class BankCloseDocument(Bank):
 
         print(response.text)
 
+    def __get_base_document_id(self):
+        id_document  = BankInvoices.objects.get(order_id=self.order_id,
+                                    document_id=self.document_id)
+        logging.info(f'ЗАПИСАЛИ В БАЗУ ID документа')
 
     if __name__ == "__main__":
         main()
