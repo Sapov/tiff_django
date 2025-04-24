@@ -10,6 +10,8 @@ from django.utils import timezone
 from mysite import settings
 from orders.models import Order, OrderItem, BankInvoices
 import logging
+
+from orders.payment import IdDocument
 from .type.second_side import SecondSide
 
 logger = logging.getLogger(__name__)
@@ -99,10 +101,8 @@ class Bank:
             logger.error(f'Error message create invoice {e}')
 
     def __add_base_document_id(self):
-        BankInvoices.objects.create(order_id=self.order_id,
-                                    document_id=self.document_id)
-        logging.info(f'ЗАПИСАЛИ В БАЗУ ID документа')
-   
+        IdDocument(self.order_id).add_base_document_id(self.document_id)
+
     def create_list_position(self) -> list[dict]:
         ''' формируем dict по каждой позиции и кладем в list'''
         order_items = OrderItem.objects.filter(order=self.order_id)

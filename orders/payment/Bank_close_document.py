@@ -1,8 +1,11 @@
+from datetime import datetime
+
 import requests
 import json
 
+from orders.payment import IdDocument
 from orders.payment.bank import Bank
-
+from orders.payment.type.second_side import SecondSide
 
 class BankCloseDocument(Bank):
     '''https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-zakryvayushimi-dokumentami'''
@@ -18,28 +21,29 @@ class BankCloseDocument(Bank):
             "Data": {
                 "customerCode": self.customer_code,
                 "accountId": "40817810802000000008/044525104",
-                "documentId": "1cf95c4f-e794-4407-bac4-0829f19bd2be",
+                "documentId": IdDocument(self.order_id).get_base_document_id(),
                 "Content": {
                     "Act": {
                         "number": self.order_id,
-                        "basedOn": "Основание платежа",
-                        "comment": "Комментарий",
-                        "date": "2021-05-06",
-                        "totalAmount": "12345",
-                        "totalNds": "1",
+                        # "basedOn": "Основание платежа", !!! оферта сайта
+                        # "comment": "Комментарий",
+                        "date": str(datetime.now().date()),
+                        "totalAmount": super().total_amount_order,
+                        "totalNds": "0",
                         "Positions": self.create_list_position()
                     }
                 },
-                "SecondSide": {
-                    "accountId": "40817810802000000008/044525104",
-                    "legalAddress": "197183, г. Санкт-Петербург, ул. Сестрорецкая, д. 8",
-                    "kpp": "668101001",
-                    "bankName": "ООО \"БАНК ТОЧКА\"",
-                    "bankCorrAccount": "30101810745374525104",
-                    "taxCode": "660000000000",
-                    "type": "company",
-                    "secondSideName": "ООО \"ГОС-АЛЬЯНС\""
-                }
+                "SecondSide": SecondSide(payer).__dict__
+                #     {
+                #     "accountId": "40817810802000000008/044525104",
+                #     "legalAddress": "197183, г. Санкт-Петербург, ул. Сестрорецкая, д. 8",
+                #     "kpp": "668101001",
+                #     "bankName": "ООО \"БАНК ТОЧКА\"",
+                #     "bankCorrAccount": "30101810745374525104",
+                #     "taxCode": "660000000000",
+                #     "type": "company",
+                #     "secondSideName": "ООО \"ГОС-АЛЬЯНС\""
+                # }
             }
         })
         headers = {

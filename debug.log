@@ -13437,3 +13437,50 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-04-24 15:44:33,150 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-04-24 15:47:52,079 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/id_document.py changed, reloading.
 2025-04-24 15:47:53,228 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 21:40:24,946 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-24 21:40:26,269 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-24 21:41:09,763 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, <Order: Заказ № 9>, '...(remaining elements truncated)...']>
+2025-04-24 21:41:09,763 account.views INFO     page_NUM: 1
+2025-04-24 21:41:09,765 account.views INFO     page_NUM: <Page 1 of 14>
+2025-04-24 21:41:30,574 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 3 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-24 21:41:30,575 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-24 21:41:30,575 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-24 21:41:37,912 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-24 21:41:37,921 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-04-24 21:41:44,003 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-24 21:41:44,006 root         INFO     method POST
+2025-04-24 21:41:44,011 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['4Aktgutq1CWcpUR4JXu2mBe9CUVFyKykd0PLBLJVooQJLRTOXzVBfTie3jk1DVBQ'], 'organisation_payer': ['1'], 'delivery': ['2'], 'date_complite': ['2025-04-28']}>
+2025-04-24 21:41:44,012 root         INFO     USER forumvrn@gmail.com
+2025-04-24 21:41:44,015 root         INFO     [INFO] отправленная форма имеет дату 2025-04-28
+2025-04-24 21:41:44,030 root         INFO     [INFO] Приводим строку в формату даты 2025-04-28 00:00:00
+2025-04-24 21:41:44,035 root         INFO     [INFO] прибавляем 12 часов 2025-04-28 12:00:00
+2025-04-24 21:41:44,038 root         INFO     date_complite 2025-04-28 12:00:00 - <class 'datetime.datetime'>
+2025-04-24 21:41:44,039 root         INFO     DELIV ID:  2
+2025-04-24 21:41:44,040 root         INFO     ORGANISATION:  1
+2025-04-24 21:41:44,051 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-24 21:41:48,028 orders.models INFO     cost_price_per_item 0.00
+2025-04-24 21:41:48,043 orders.models INFO     30.00
+2025-04-24 21:41:48,043 orders.models INFO     Себестоимость, 0.00
+2025-04-24 21:41:48,058 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 3 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-04-24 21:41:48,058 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-24 21:41:48,058 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-04-24 21:41:51,476 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-24 21:41:51,494 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-24 21:41:51,502 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-28 09:00:00+00:00
+2025-04-24 21:41:51,705 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-24 21:41:51,886 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-24 21:42:10,878 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-24 21:42:15,957 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-24 21:42:18,748 orders.views INFO     DOMAIN: 127.0.0.1:8000
