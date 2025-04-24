@@ -13484,3 +13484,16 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-04-24 21:42:10,878 orders.views INFO     [Выбрана организация - генерим счет]
 2025-04-24 21:42:15,957 orders.views INFO     [Выбрана организация - генерим счет]
 2025-04-24 21:42:18,748 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-24 21:43:56,839 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, '...(remaining elements truncated)...']>
+2025-04-24 21:43:56,840 account.views INFO     page_NUM: 1
+2025-04-24 21:43:56,841 account.views INFO     page_NUM: <Page 1 of 15>
+2025-04-24 21:44:06,023 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, '...(remaining elements truncated)...']>
+2025-04-24 21:44:06,025 account.views INFO     page_NUM: 1
+2025-04-24 21:44:06,032 account.views INFO     page_NUM: <Page 1 of 15>
+2025-04-24 21:44:07,673 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, '...(remaining elements truncated)...']>
+2025-04-24 21:44:07,673 account.views INFO     page_NUM: 1
+2025-04-24 21:44:07,675 account.views INFO     page_NUM: <Page 1 of 15>
+2025-04-24 22:03:42,852 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-24 22:03:44,940 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-25 00:21:10,505 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-25 00:21:11,653 django.utils.autoreload INFO     Watching for file changes with StatReloader

@@ -13,7 +13,7 @@ import logging
 
 from orders.payment import IdDocument
 from .type.second_side import SecondSide
-
+from .type.content import Content
 logger = logging.getLogger(__name__)
 
 load_dotenv(find_dotenv())
@@ -51,40 +51,32 @@ class Bank:
         self.total_amount_order = 0
         self.order_id = order_id
         self.customer_code = os.getenv('CUSTOMER_COD')
+        self.payer = Order.objects.get(id=self.order_id)
+
 
     def create_invoice(self):
         '''Генерируем счет'''
-        payer = Order.objects.get(id=self.order_id)
-        logging.info(f'[INFO] payer {payer}')
+
+        logging.info(f'[INFO] payer {self.payer}')
 
         payload = json.dumps({
             "Data": {
                 "accountId": os.getenv('BANK_ACCOUNT_ID'),
                 "customerCode": self.customer_code,
-                "SecondSide": SecondSide(payer).__dict__
+                "SecondSide": SecondSide(self.payer).__dict__,
 
+                "Content": Content(self.order_id).items_content('Invoice')
                 #     {
-                #     "accountId": f'{payer.organisation_payer.bank_account}/{payer.organisation_payer.bik_bank}',
-                #     "legalAddress": payer.organisation_payer.address,
-                #     "kpp": payer.organisation_payer.kpp,
-                #     "bankName": payer.organisation_payer.bank_name,
-                #     "bankCorrAccount": payer.organisation_payer.bankCorrAccount,
-                #     "taxCode": payer.organisation_payer.inn,
-                #     "type": 'ip' if len(payer.organisation_payer.inn) == 12 else 'company',
-                #     "secondSideName": payer.organisation_payer.name_full
+                #     "Invoice": {
+                #         "Positions": self.create_list_position(),
+                #         "date": str(datetime.now().date()),
+                #         "totalAmount": self.total_amount_order,
+                #         "totalNds": "0",
+                #         "number": str(self.order_id),
+                #         # "basedOn": "Основание платежа",
+                #         # "comment": "Комментарий к платежу",
+                #     }
                 # }
-                ,
-                "Content": {
-                    "Invoice": {
-                        "Positions": self.create_list_position(),
-                        "date": str(datetime.now().date()),
-                        "totalAmount": self.total_amount_order,
-                        "totalNds": "0",
-                        "number": str(self.order_id),
-                        # "basedOn": "Основание платежа",
-                        # "comment": "Комментарий к платежу",
-                    }
-                }
             }
         })
         logging.info(f'[dict] {payload}')
