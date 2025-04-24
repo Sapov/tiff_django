@@ -80,6 +80,7 @@ class Bank:
             }
         })
         logging.info(f'[dict] {payload}')
+        logging.info(f"[CONTENT] {Content(self.order_id).items_content('Invoice')}")
 
         # payload = json.dumps(di)
 

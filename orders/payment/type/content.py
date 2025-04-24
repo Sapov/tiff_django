@@ -6,7 +6,7 @@ from orders.models import OrderItem
 class Content:
     def __init__(self, order_id: int):
         self.order_id = order_id
-        self.total_amount_order = None
+        self.total_amount_order = 0
 
 
     def __create_list_position(self) -> list[dict]:
@@ -14,16 +14,17 @@ class Content:
         order_items = OrderItem.objects.filter(order=self.order_id)
         positions = []
         for i, v in enumerate(order_items):
+            total_amount = v.price_per_item
             new_dict = {
                 "positionName": f'{v.product.material} {v.product.length}x{v.product.width} м',
                 "unitCode": "шт.",
                 "ndsKind": "without_nds",
                 "price": float(v.product.price / v.product.quantity),
                 "quantity": v.product.quantity,
-                "totalAmount": v.price_per_item,
+                "totalAmount": total_amount,
                 "totalNds": 0
             }
-            self.total_amount_order += v.price_per_item
+            self.total_amount_order += total_amount
             positions.append(new_dict)
         return positions
 

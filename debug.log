@@ -13497,3 +13497,154 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-04-24 22:03:44,940 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-04-25 00:21:10,505 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
 2025-04-25 00:21:11,653 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-25 00:21:54,435 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, <Order: Заказ № 10>, '...(remaining elements truncated)...']>
+2025-04-25 00:21:54,435 account.views INFO     page_NUM: 1
+2025-04-25 00:21:54,437 account.views INFO     page_NUM: <Page 1 of 15>
+2025-04-25 00:22:10,110 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 22 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-25 00:22:10,110 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-25 00:22:10,110 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-25 00:22:15,518 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-25 00:22:15,519 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-04-25 00:22:18,512 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-25 00:22:18,513 root         INFO     method POST
+2025-04-25 00:22:18,514 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['1pYZ1JY6vcIDBKsCAJ5UoC96Stc7dSsW5aobwhwxCHjO93ix90CvCEtTu7wouIeJ'], 'organisation_payer': ['1'], 'delivery': ['1'], 'date_complite': ['2025-04-28']}>
+2025-04-25 00:22:18,514 root         INFO     USER forumvrn@gmail.com
+2025-04-25 00:22:18,514 root         INFO     [INFO] отправленная форма имеет дату 2025-04-28
+2025-04-25 00:22:18,534 root         INFO     [INFO] Приводим строку в формату даты 2025-04-28 00:00:00
+2025-04-25 00:22:18,535 root         INFO     [INFO] прибавляем 12 часов 2025-04-28 12:00:00
+2025-04-25 00:22:18,535 root         INFO     date_complite 2025-04-28 12:00:00 - <class 'datetime.datetime'>
+2025-04-25 00:22:18,535 root         INFO     DELIV ID:  1
+2025-04-25 00:22:18,535 root         INFO     ORGANISATION:  1
+2025-04-25 00:22:18,544 root         INFO     DELIVERY:  Самовывоз
+2025-04-25 00:22:22,816 orders.models INFO     cost_price_per_item 220.00
+2025-04-25 00:22:22,825 orders.models INFO     660.00
+2025-04-25 00:22:22,825 orders.models INFO     Себестоимость, 220.00
+2025-04-25 00:22:22,835 root         INFO     [INFO]. self.length:0.23 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 22 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-25 00:22:22,835 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-25 00:22:22,835 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-25 00:22:26,216 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-25 00:22:26,231 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:22:26,236 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-28 09:00:00+00:00
+2025-04-25 00:22:26,487 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-25 00:22:26,680 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-25 00:22:57,481 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-25 00:22:59,270 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:23:03,265 django.request WARNING  Not Found: /media/
+2025-04-25 00:25:29,566 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/type/content.py changed, reloading.
+2025-04-25 00:25:30,745 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-25 00:26:48,846 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/type/content.py changed, reloading.
+2025-04-25 00:26:50,021 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-25 00:28:16,939 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 30>, <Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, <Order: Заказ № 11>, '...(remaining elements truncated)...']>
+2025-04-25 00:28:16,939 account.views INFO     page_NUM: 1
+2025-04-25 00:28:16,941 account.views INFO     page_NUM: <Page 1 of 15>
+2025-04-25 00:28:29,652 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 111 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-25 00:28:29,653 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-25 00:28:29,653 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-25 00:28:41,296 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-25 00:28:41,299 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-04-25 00:28:46,313 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-25 00:28:46,313 root         INFO     method POST
+2025-04-25 00:28:46,314 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['aefoMy2OWFaXdgaahmDjMRM1M3GVNCr0eZFAh6Af3aL8Lz05QDaU0T6OoH0c4sdN'], 'organisation_payer': ['1'], 'delivery': ['2'], 'date_complite': ['2025-04-28']}>
+2025-04-25 00:28:46,314 root         INFO     USER forumvrn@gmail.com
+2025-04-25 00:28:46,314 root         INFO     [INFO] отправленная форма имеет дату 2025-04-28
+2025-04-25 00:28:46,318 root         INFO     [INFO] Приводим строку в формату даты 2025-04-28 00:00:00
+2025-04-25 00:28:46,319 root         INFO     [INFO] прибавляем 12 часов 2025-04-28 12:00:00
+2025-04-25 00:28:46,319 root         INFO     date_complite 2025-04-28 12:00:00 - <class 'datetime.datetime'>
+2025-04-25 00:28:46,319 root         INFO     DELIV ID:  2
+2025-04-25 00:28:46,320 root         INFO     ORGANISATION:  1
+2025-04-25 00:28:46,321 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-25 00:28:50,306 orders.models INFO     cost_price_per_item 1110.00
+2025-04-25 00:28:50,313 orders.models INFO     3330.00
+2025-04-25 00:28:50,314 orders.models INFO     Себестоимость, 1110.00
+2025-04-25 00:28:50,324 root         INFO     [INFO]. self.length:0.18 TYPE<class 'float'>
+Width: 0.29 TYPE <class 'float'>
+ Quantity: 111 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-25 00:28:50,325 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-25 00:28:50,325 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-25 00:28:53,302 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-25 00:28:53,310 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:28:53,312 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-28 09:00:00+00:00
+2025-04-25 00:28:53,464 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-25 00:28:53,641 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-25 00:29:12,503 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-25 00:29:14,044 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:29:15,805 django.request WARNING  Not Found: /media/
+2025-04-25 00:29:21,541 django.request WARNING  Not Found: /media/
+2025-04-25 00:29:26,655 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:29:28,804 django.request WARNING  Not Found: /media/
+2025-04-25 00:31:33,055 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:31:34,970 django.request WARNING  Not Found: /media/
+2025-04-25 00:31:56,765 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:31:58,691 django.request WARNING  Not Found: /media/
+2025-04-25 00:34:47,904 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-25 00:34:48,968 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-25 00:34:52,196 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-25 00:35:10,253 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 31>, <Order: Заказ № 30>, <Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, <Order: Заказ № 22>, <Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 19>, <Order: Заказ № 18>, <Order: Заказ № 17>, <Order: Заказ № 16>, <Order: Заказ № 15>, <Order: Заказ № 14>, <Order: Заказ № 13>, <Order: Заказ № 12>, '...(remaining elements truncated)...']>
+2025-04-25 00:35:10,253 account.views INFO     page_NUM: 1
+2025-04-25 00:35:10,256 account.views INFO     page_NUM: <Page 1 of 16>
+2025-04-25 00:35:27,038 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 33 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-25 00:35:27,038 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-25 00:35:27,038 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-25 00:35:32,860 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-04-25 00:35:32,867 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-04-25 00:35:37,057 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-04-25 00:35:37,058 root         INFO     method POST
+2025-04-25 00:35:37,066 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['wgrz0xoXd0sFfNhL8GN3VaXleDw3eNGwA1RLv5Wokv3QN67GHXkE9ch8QhQkvDsj'], 'organisation_payer': ['1'], 'delivery': ['2'], 'date_complite': ['2025-04-28']}>
+2025-04-25 00:35:37,066 root         INFO     USER forumvrn@gmail.com
+2025-04-25 00:35:37,067 root         INFO     [INFO] отправленная форма имеет дату 2025-04-28
+2025-04-25 00:35:37,076 root         INFO     [INFO] Приводим строку в формату даты 2025-04-28 00:00:00
+2025-04-25 00:35:37,077 root         INFO     [INFO] прибавляем 12 часов 2025-04-28 12:00:00
+2025-04-25 00:35:37,077 root         INFO     date_complite 2025-04-28 12:00:00 - <class 'datetime.datetime'>
+2025-04-25 00:35:37,077 root         INFO     DELIV ID:  2
+2025-04-25 00:35:37,078 root         INFO     ORGANISATION:  1
+2025-04-25 00:35:37,080 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-04-25 00:35:41,650 orders.models INFO     cost_price_per_item 0.00
+2025-04-25 00:35:41,668 orders.models INFO     330.00
+2025-04-25 00:35:41,669 orders.models INFO     Себестоимость, 0.00
+2025-04-25 00:35:41,685 root         INFO     [INFO]. self.length:0.08 TYPE<class 'float'>
+Width: 0.15 TYPE <class 'float'>
+ Quantity: 33 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-04-25 00:35:41,686 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-04-25 00:35:41,686 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-04-25 00:35:43,936 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-04-25 00:35:43,942 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:35:43,944 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-04-28 09:00:00+00:00
+2025-04-25 00:35:44,256 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-25 00:35:44,734 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-04-25 00:38:05,431 orders.views INFO     [Выбрана организация - генерим счет]
+2025-04-25 00:38:07,420 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-04-25 00:38:09,237 django.request WARNING  Not Found: /media/
+2025-04-25 00:39:11,421 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/type/content.py changed, reloading.
+2025-04-25 00:39:12,440 django.utils.autoreload INFO     Watching for file changes with StatReloader
