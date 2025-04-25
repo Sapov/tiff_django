@@ -28,6 +28,7 @@ def create_order_pdf(order_id: int):
 
 @shared_task()
 def create_act(order_id:int):
+    '''Формирование закрывающего документа АКТ'''
     document = Bank(order_id)
     document.create_act()
 

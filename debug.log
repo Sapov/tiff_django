@@ -14244,3 +14244,7 @@ SELF.USER: MANAGER: TYPE <class 'str'>
 2025-04-25 09:33:00,847 orders.views INFO     DOMAIN: 127.0.0.1:8000
 2025-04-25 09:36:24,001 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/type/data.py changed, reloading.
 2025-04-25 09:36:25,413 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-25 09:41:13,179 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-25 09:41:14,550 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-25 09:49:05,526 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2025-04-25 09:49:06,875 django.utils.autoreload INFO     Watching for file changes with StatReloader

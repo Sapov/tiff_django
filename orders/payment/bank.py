@@ -12,8 +12,6 @@ from orders.models import Order, OrderItem, BankInvoices
 import logging
 
 from orders.payment import IdDocument
-from .type.second_side import SecondSide
-from .type.content import Content
 from .type.data import Data
 
 logger = logging.getLogger(__name__)
@@ -70,14 +68,12 @@ class Bank:
     def __create_document(self, name_document: str):
         '''Генерируем Документ'''
 
-        logging.info(f'[INFO] payer {self.payer}')
         payload = json.dumps({
                 "Data": Data(self.order_id).data(name_document)
         })
         logging.info(f'[DICT FOR DOCUMENT] {payload}')
 
         try:
-            logging.info(f'[PAYLOAD FOR DOCUMENT] : {payload}')
             response = requests.request("POST", self.url, headers=self.headers, data=payload)
             logging.info(f'RESPONSE ORDER  {response.text}')
             self.document_id = response.json()['Data']['documentId']
@@ -88,24 +84,6 @@ class Bank:
     def __add_base_document_id(self):
         IdDocument(self.order_id).add_base_document_id(self.document_id)
 
-    def create_list_position(self) -> list[dict]:
-        ''' формируем dict по каждой позиции и кладем в list'''
-        order_items = OrderItem.objects.filter(order=self.order_id)
-        positions = []
-        for i, v in enumerate(order_items):
-            total_amount = v.price_per_item  #
-            new_dict = {
-                "positionName": f'{v.product.material} {v.product.length}x{v.product.width} м',
-                "unitCode": "шт.",
-                "ndsKind": "without_nds",
-                "price": float(v.product.price / v.product.quantity),
-                "quantity": v.product.quantity,
-                "totalAmount": total_amount,
-                "totalNds": 0
-            }
-            self.total_amount_order += total_amount
-            positions.append(new_dict)
-        return positions
 
     @goto_media_orders
     def __get_invoice(self) -> None:
@@ -173,17 +151,8 @@ class Bank:
         print(response.text)
 
     def check_status_payment(self):
-        '''проверка всех счетов имеющих статус не оплачено'''
+        '''
+        При оповещегии об оплате через хук нужно проверить все не оплаченные документы на статус оплаты
+        '''
         documents = BankInvoices.objects.filter(payment_Status=None)
 
-    def run(self):
-        # self.get_customer_code()
-        self.create_document('Invoice')
-        self.__add_base_document_id()
-        self.get_invoice()
-        self.add_pdf_in_order()
-
-
-if __name__ == '__main__':
-    a = Bank(3)
-    a.get_customer_code()
