@@ -46,12 +46,12 @@ class Bank:
         'Content-Type': 'application/json',
         'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
     }
+    customer_code = os.getenv('CUSTOMER_COD')
 
     def __init__(self, order_id: int):
         self.document_id = None
         self.total_amount_order = 0
         self.order_id = order_id
-        self.customer_code = os.getenv('CUSTOMER_COD')
         self.payer = Order.objects.get(id=self.order_id)
 
     def create_invoice(self):

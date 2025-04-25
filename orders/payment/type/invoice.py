@@ -1,31 +1,18 @@
-#
-#
-# class Invoice:
-#     '''Содержание ордера'''
-#     Positions: list[dict]
-#     date:str
-#     totalAmount: int
-#     number: str
-#
-#
-#
-# {
-#                         "Positions": self.__create_list_position(),
-#                         "date": str(datetime.now().date()),
-#                         "totalAmount": self.total_amount_order,
-#                         "totalNds": "0",
-#                         "number": str(self.order_id),
-#                         # "basedOn": "Основание платежа",
-#                         # "comment": "Комментарий к платежу",
-#                     }
-#
-# "Positions": [
-#                             {
-#                                 "positionName": "Название товара или услуги",
-#                                 "unitCode": "шт.",
-#                                 "ndsKind": "nds_0",
-#                                 "price": "12345.00",
-#                                 "quantity": "12345",
-#                                 "totalAmount": "12345",
-#                                 "totalNds": "1"
-#                             }
+import requests
+import json
+
+url = "https://enter.tochka.com/uapi/invoice/v1.0/bills/300000092/1cf95c4f-e794-4407-bac4-0829f19bd2be/email"
+
+payload = json.dumps({
+  "Data": {
+    "email": "user@example.com"
+  }
+})
+headers = {
+  'Authorization': 'Bearer <token>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)

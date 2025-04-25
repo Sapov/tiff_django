@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from json import JSONDecodeError
 
@@ -125,3 +126,9 @@ class RestAdapter:
                               endpoint=endpoint,
                               params=params,
                               payload=payload)
+
+
+ async def main():
+     pass
+if __name__ == '__main__':
+    asyncio.run(main())

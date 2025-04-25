@@ -21,6 +21,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
+from .payment.send_document import SendDocument
 from .tasks import create_order_pdf, arh_for_mail, create_pay_link_d, create_act
 from users.tasks import send_message_whatsapp
 import logging
@@ -458,6 +459,7 @@ def get_invoice(request, order_id):
         logger.info(f'[Выбрана организация - генерим счет]')
         create_order_pdf.delay(order_id)
         create_act.delay(order_id)
+        SendDocument(order_id).send_invoice_to_email()
 
         return render(request, 'orders/order_complete.html', context)
     else:
