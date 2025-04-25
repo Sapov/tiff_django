@@ -21,7 +21,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
-from .tasks import create_order_pdf, arh_for_mail, create_pay_link_d
+from .tasks import create_order_pdf, arh_for_mail, create_pay_link_d, create_act
 from users.tasks import send_message_whatsapp
 import logging
 import jwt
@@ -457,6 +457,7 @@ def get_invoice(request, order_id):
     if order.organisation_payer:
         logger.info(f'[Выбрана организация - генерим счет]')
         create_order_pdf.delay(order_id)
+        create_act.delay(order_id)
 
         return render(request, 'orders/order_complete.html', context)
     else:

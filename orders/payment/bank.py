@@ -14,6 +14,8 @@ import logging
 from orders.payment import IdDocument
 from .type.second_side import SecondSide
 from .type.content import Content
+from .type.data import Data
+
 logger = logging.getLogger(__name__)
 
 load_dotenv(find_dotenv())
@@ -41,6 +43,7 @@ class Bank:
     RS_URL = "https://enter.tochka.com/uapi"
     AS_URL = "https://enter.tochka.com"
     url = RS_URL + f"/invoice/{apiVersion}/bills"
+
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
@@ -53,39 +56,28 @@ class Bank:
         self.customer_code = os.getenv('CUSTOMER_COD')
         self.payer = Order.objects.get(id=self.order_id)
 
-
     def create_invoice(self):
-        '''Генерируем счет'''
+        '''Выставляем счет'''
+        self.__create_document('Invoice')
+        self.__add_base_document_id()
+        self.__get_invoice()
+        self.__add_pdf_in_order()
+
+    def create_act(self):
+        self.url = self.RS_URL + f"/invoice/{self.apiVersion}/closing-documents"
+        self.__create_document('Act')
+
+    def __create_document(self, name_document: str):
+        '''Генерируем Документ'''
 
         logging.info(f'[INFO] payer {self.payer}')
-
         payload = json.dumps({
-            "Data": {
-                "accountId": os.getenv('BANK_ACCOUNT_ID'),
-                "customerCode": self.customer_code,
-                "SecondSide": SecondSide(self.payer).__dict__,
-
-                "Content": Content(self.order_id).items_content('Invoice')
-                #     {
-                #     "Invoice": {
-                #         "Positions": self.create_list_position(),
-                #         "date": str(datetime.now().date()),
-                #         "totalAmount": self.total_amount_order,
-                #         "totalNds": "0",
-                #         "number": str(self.order_id),
-                #         # "basedOn": "Основание платежа",
-                #         # "comment": "Комментарий к платежу",
-                #     }
-                # }
-            }
+                "Data": Data(self.order_id).data(name_document)
         })
-        logging.info(f'[dict] {payload}')
-        logging.info(f"[CONTENT] {Content(self.order_id).items_content('Invoice')}")
-
-        # payload = json.dumps(di)
+        logging.info(f'[DICT FOR DOCUMENT] {payload}')
 
         try:
-            logging.info(f'[PAYLOAD FOR Invoice] : {payload}')
+            logging.info(f'[PAYLOAD FOR DOCUMENT] : {payload}')
             response = requests.request("POST", self.url, headers=self.headers, data=payload)
             logging.info(f'RESPONSE ORDER  {response.text}')
             self.document_id = response.json()['Data']['documentId']
@@ -116,7 +108,7 @@ class Bank:
         return positions
 
     @goto_media_orders
-    def get_invoice(self) -> None:
+    def __get_invoice(self) -> None:
 
         url = f"{self.RS_URL}/invoice/{self.apiVersion}/bills/{self.customer_code}/{self.document_id}/file"
         payload = {}
@@ -140,7 +132,7 @@ class Bank:
             print(f'ERROR sending message: {e}')
             logger.error(f'ERROR sending messag: {e}')
 
-    def add_pdf_in_order(self):
+    def __add_pdf_in_order(self):
         '''Записываем в таблицу ссылку на pdf счет с файлами'''
         order = Order.objects.get(id=self.order_id)
         logger.info(f'ADD PDF in order: orders/Order_{self.order_id}.pdf')
@@ -184,10 +176,9 @@ class Bank:
         '''проверка всех счетов имеющих статус не оплачено'''
         documents = BankInvoices.objects.filter(payment_Status=None)
 
-
     def run(self):
         # self.get_customer_code()
-        self.create_invoice()
+        self.create_document('Invoice')
         self.__add_base_document_id()
         self.get_invoice()
         self.add_pdf_in_order()

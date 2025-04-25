@@ -23,9 +23,13 @@ def timer_order_complete(*args):
 @shared_task
 def create_order_pdf(order_id: int):
     '''Формирования счета для организаций'''
-    order = Bank(order_id)
-    order.run()
+    document = Bank(order_id)
+    document.create_invoice()
 
+@shared_task()
+def create_act(order_id:int):
+    document = Bank(order_id)
+    document.create_act()
 
 @shared_task
 def create_pay_link_d(order_id: int, organisation: bool):
