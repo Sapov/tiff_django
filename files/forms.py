@@ -120,7 +120,7 @@ class BaseUploadForm(forms.ModelForm):
         # Устанавливаем queryset для material на основе TYPE_PRINT
         self.fields['material'].queryset = Material.objects.filter(type_print=self.TYPE_PRINT)
         self.fields['material'].initial = self.DEFAULT_MATERIAL
-        """Форма загрузки файлов для широкоформатной печати (только TIFF)"""
+        """Форма загрузки файлов (только TIFF)"""
         self.fields['images'].validators.append(validate_tiff_file)
         self.fields['images'].widget.attrs.update({'accept': '.tif,.tiff'})
 

@@ -170,7 +170,7 @@ class Product(models.Model):
     FinishWork = models.ForeignKey("FinishWork",
                                    on_delete=models.PROTECT,
                                    verbose_name="Финишная обработка",
-                                   default=1,
+                                   # default=1,
                                    )
 
     status_product = models.ForeignKey(
