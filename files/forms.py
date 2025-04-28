@@ -93,13 +93,16 @@ class CalculatorBlankMaterial(forms.Form):
     width = forms.FloatField(max_value=100, label="Ширина в метрах")
 
 
-class UploadFilesInter(forms.ModelForm):
-    """Форма загрузки файлов для интерьерной печати отфильтруем только интерьерную печать"""
+class BaseUploadForm(forms.ModelForm):
+    """Базовая форма для всех типов печати"""
+
+    # Общие поля для всех форм
+    TYPE_PRINT = None  # Переопределяется в дочерних классах
+    DEFAULT_MATERIAL = None  # Переопределяется в дочерних классах
 
     material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=2),
-        label="Выберите материал для печати",
-        initial=13,  # по умолчанию пленка матовая Китай
+        queryset=Material.objects.none(),  # Будет переопределено
+        label="Выберите материал для печати"
     )
 
     class Meta:
@@ -111,53 +114,36 @@ class UploadFilesInter(forms.ModelForm):
             "images",
             "comments"
         ]
-
-
-class UploadFilesLarge(forms.ModelForm):
-    """Форма загрузки файлов для Широкоформатной печати отфильтруем только широкоформатную печать"""
-
-    material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=1),
-        label="Выберите материал для печати",
-        initial=1,  # по умолчанию 440 баннер
-    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Добавляем валидатор к полю images
+        # Устанавливаем queryset для material на основе TYPE_PRINT
+        self.fields['material'].queryset = Material.objects.filter(type_print=self.TYPE_PRINT)
+        self.fields['material'].initial = self.DEFAULT_MATERIAL
+        """Форма загрузки файлов для широкоформатной печати (только TIFF)"""
         self.fields['images'].validators.append(validate_tiff_file)
-        # Можно также добавить HTML атрибут accept для браузерной валидации
         self.fields['images'].widget.attrs.update({'accept': '.tif,.tiff'})
 
-    class Meta:
-        model = Product
-        fields = [
-            "quantity",
-            "material",
-            "FinishWork",
-            "images",
-            "comments"
-        ]
+
+class UploadFilesInter(BaseUploadForm):
+    """Форма загрузки файлов для интерьерной печати"""
+
+    TYPE_PRINT = 2
+    DEFAULT_MATERIAL = 22  # пленка матовая Китай
 
 
-class UploadFilesUV(forms.ModelForm):
-    """Форма загрузки файлов для UV-печати отфильтруем только UV-печать"""
+class UploadFilesLarge(BaseUploadForm):
+    """Форма загрузки файлов для широкоформатной печати (только TIFF)"""
 
-    material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=3),
-        label="Выберите материал для печати",
-        initial=1,  # по умолчанию ПВХ 3 мм
-    )
+    TYPE_PRINT = 1
+    DEFAULT_MATERIAL = 1  # 440 баннер
 
-    class Meta:
-        model = Product
-        fields = [
-            "quantity",
-            "material",
-            "FinishWork",
-            "images",
-            "comments"
-        ]
+
+class UploadFilesUV(BaseUploadForm):
+    """Форма загрузки файлов для UV-печати"""
+
+    TYPE_PRINT = 3
+    DEFAULT_MATERIAL = 37  # ПВХ 3 мм
 
 
 class UploadFilesRollUp(forms.ModelForm):
