@@ -99,11 +99,17 @@ class BaseUploadForm(forms.ModelForm):
     # Общие поля для всех форм
     TYPE_PRINT = None  # Переопределяется в дочерних классах
     DEFAULT_MATERIAL = None  # Переопределяется в дочерних классах
+    FINISH_WORK = None # Переопределяется в дочерних классах
 
     material = forms.ModelChoiceField(
         queryset=Material.objects.none(),  # Будет переопределено
         label="Выберите материал для печати"
     )
+    # FinishWork = forms.ModelChoiceField(
+    #     queryset=FinishWork.objects.all(),
+    #     label="Финишная обработка",
+    #     initial=FINISH_WORK,
+    # )
 
     class Meta:
         model = Product
@@ -120,6 +126,7 @@ class BaseUploadForm(forms.ModelForm):
         # Устанавливаем queryset для material на основе TYPE_PRINT
         self.fields['material'].queryset = Material.objects.filter(type_print=self.TYPE_PRINT)
         self.fields['material'].initial = self.DEFAULT_MATERIAL
+        self.fields['FinishWork'].initial = self.FINISH_WORK
         """Форма загрузки файлов (только TIFF)"""
         self.fields['images'].validators.append(validate_tiff_file)
         self.fields['images'].widget.attrs.update({'accept': '.tif,.tiff'})
@@ -130,13 +137,16 @@ class UploadFilesInter(BaseUploadForm):
 
     TYPE_PRINT = 2
     DEFAULT_MATERIAL = 22  # пленка матовая Китай
+    FINISH_WORK = 2
 
 
 class UploadFilesLarge(BaseUploadForm):
-    """Форма загрузки файлов для широкоформатной печати (только TIFF)"""
+    """Форма загрузки файлов для широкоформатной печати """
 
     TYPE_PRINT = 1
     DEFAULT_MATERIAL = 1  # 440 баннер
+    FINISH_WORK = 1 # поля по 5 см
+
 
 
 class UploadFilesUV(BaseUploadForm):
@@ -144,6 +154,7 @@ class UploadFilesUV(BaseUploadForm):
 
     TYPE_PRINT = 3
     DEFAULT_MATERIAL = 37  # ПВХ 3 мм
+    FINISH_WORK = 2
 
 
 class UploadFilesRollUp(forms.ModelForm):

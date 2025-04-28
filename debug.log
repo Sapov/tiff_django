@@ -14413,3 +14413,33 @@ SyntaxError: unmatched ')'
 2025-04-29 00:11:07,799 account.views INFO     page_NUM: <Page 1 of 21>
 2025-04-29 00:17:11,770 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/models.py changed, reloading.
 2025-04-29 00:17:12,818 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:19:21,591 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:19:22,879 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:19:45,693 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:19:46,783 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:20:16,407 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:20:17,585 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:20:55,952 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:20:57,062 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:22:11,522 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:22:12,671 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:22:15,637 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 42>, <Order: Заказ № 41>, <Order: Заказ № 40>, <Order: Заказ № 39>, <Order: Заказ № 38>, <Order: Заказ № 37>, <Order: Заказ № 36>, <Order: Заказ № 35>, <Order: Заказ № 34>, <Order: Заказ № 33>, <Order: Заказ № 32>, <Order: Заказ № 31>, <Order: Заказ № 30>, <Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, '...(remaining elements truncated)...']>
+2025-04-29 00:22:15,637 account.views INFO     page_NUM: 1
+2025-04-29 00:22:15,639 account.views INFO     page_NUM: <Page 1 of 21>
+2025-04-29 00:23:10,681 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:23:11,882 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:23:26,149 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 42>, <Order: Заказ № 41>, <Order: Заказ № 40>, <Order: Заказ № 39>, <Order: Заказ № 38>, <Order: Заказ № 37>, <Order: Заказ № 36>, <Order: Заказ № 35>, <Order: Заказ № 34>, <Order: Заказ № 33>, <Order: Заказ № 32>, <Order: Заказ № 31>, <Order: Заказ № 30>, <Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, '...(remaining elements truncated)...']>
+2025-04-29 00:23:26,149 account.views INFO     page_NUM: 1
+2025-04-29 00:23:26,152 account.views INFO     page_NUM: <Page 1 of 21>
+2025-04-29 00:23:53,958 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:23:55,136 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:24:20,628 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 42>, <Order: Заказ № 41>, <Order: Заказ № 40>, <Order: Заказ № 39>, <Order: Заказ № 38>, <Order: Заказ № 37>, <Order: Заказ № 36>, <Order: Заказ № 35>, <Order: Заказ № 34>, <Order: Заказ № 33>, <Order: Заказ № 32>, <Order: Заказ № 31>, <Order: Заказ № 30>, <Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, '...(remaining elements truncated)...']>
+2025-04-29 00:24:20,629 account.views INFO     page_NUM: 1
+2025-04-29 00:24:20,632 account.views INFO     page_NUM: <Page 1 of 21>
+2025-04-29 00:25:46,033 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:25:47,181 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-04-29 00:25:57,532 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 42>, <Order: Заказ № 41>, <Order: Заказ № 40>, <Order: Заказ № 39>, <Order: Заказ № 38>, <Order: Заказ № 37>, <Order: Заказ № 36>, <Order: Заказ № 35>, <Order: Заказ № 34>, <Order: Заказ № 33>, <Order: Заказ № 32>, <Order: Заказ № 31>, <Order: Заказ № 30>, <Order: Заказ № 29>, <Order: Заказ № 28>, <Order: Заказ № 27>, <Order: Заказ № 26>, <Order: Заказ № 25>, <Order: Заказ № 24>, <Order: Заказ № 23>, '...(remaining elements truncated)...']>
+2025-04-29 00:25:57,533 account.views INFO     page_NUM: 1
+2025-04-29 00:25:57,536 account.views INFO     page_NUM: <Page 1 of 21>
+2025-04-29 00:26:34,606 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-04-29 00:26:35,701 django.utils.autoreload INFO     Watching for file changes with StatReloader
