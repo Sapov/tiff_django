@@ -127,8 +127,7 @@ class RestAdapter:
                               params=params,
                               payload=payload)
 
-
- async def main():
+async def main():
      pass
 if __name__ == '__main__':
     asyncio.run(main())

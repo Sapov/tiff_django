@@ -1,5 +1,8 @@
 from django import forms
+from django.core.validators import FileExtensionValidator
+
 from .models import *
+from .validators import validate_tiff_file
 
 
 class UploadFiles(forms.ModelForm):
@@ -118,6 +121,13 @@ class UploadFilesLarge(forms.ModelForm):
         label="Выберите материал для печати",
         initial=1,  # по умолчанию 440 баннер
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Добавляем валидатор к полю images
+        self.fields['images'].validators.append(validate_tiff_file)
+        # Можно также добавить HTML атрибут accept для браузерной валидации
+        self.fields['images'].widget.attrs.update({'accept': '.tif,.tiff'})
 
     class Meta:
         model = Product
