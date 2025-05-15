@@ -158,34 +158,9 @@ def page_not_found(request, exception):
     return HttpResponseNotFound(f"<H1>Страница не найдена</H1")
 
 
-class FilesCreateViewInter(LoginRequiredMixin, CreateView):
-    """Загрузка файлов только для интерьерной печати"""
-
+class BaseFilesCreateView(LoginRequiredMixin, CreateView):
+    """Базовый класс для загрузки файлов"""
     model = Product
-    form_class = UploadFilesInter
-    template_name = "files/inter_print.html"
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-
-# class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
-#     """Загрузка файлов только для широкоформатной печати"""
-#     model = Product
-#     form_class = UploadFilesLarge
-#     # form_class = UploadFiles(type_print=1)
-#     template_name = "files/large_print.html"
-#
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
-
-
-
-class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
-    model = Product
-    form_class = UploadFilesLarge
     template_name = "files/large_print.html"
     success_url = "files:about_file"
 
@@ -193,52 +168,41 @@ class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         instance = form.save()
 
-        # Запускаем асинхронную задачу
         task = process_uploaded_file.delay(
             file_path=instance.images.path,
             user_id=self.request.user.id
         )
 
-        # Для AJAX запросов
         if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             return JsonResponse({'task_id': task.id})
 
         return super().form_valid(form)
 
 
-class FilesCreateViewUV(LoginRequiredMixin, CreateView):
+class FilesCreateViewInter(BaseFilesCreateView):
+    """Загрузка файлов только для интерьерной печати"""
+    form_class = UploadFilesInter
+
+class FilesCreateViewUV(BaseFilesCreateView):
     """Загрузка файлов только для UV печати"""
-
-    model = Product
     form_class = UploadFilesUV
-    template_name = "files/uv_print.html"
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 
-class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
+class FilesCreateViewLarge(BaseFilesCreateView):
+    """Загрузка файлов для широкоформатной печати"""
+    form_class = UploadFilesLarge
+
+
+class FilesCreateViewRollUp(BaseFilesCreateView):
     """Загрузка файлов только для Rollup"""
-    model = Product
     form_class = UploadFilesRollUp
     template_name = "files/rollup_print.html"
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
-
-class PicturesCreateViewInter(LoginRequiredMixin, CreateView):
+class PicturesCreateViewInter(BaseFilesCreateView):
     """Загрузка файлов  для Картин на холсте печати"""
-
-    model = Product
     form_class = UploadFilesPictures
     template_name = "files/pictures_print.html"
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 
 class MaterialViewSet(viewsets.ModelViewSet):
