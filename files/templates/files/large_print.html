@@ -1,15 +1,12 @@
-
-
-<!-- large_print.html -->
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block body %}
 <div class="container mt-5">
     <h2>Загрузка файлов для широкоформатной печати</h2>
 
     <form id="uploadForm" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
 
         <div class="progress mb-3 d-none" id="progressBarContainer">
             <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%"></div>

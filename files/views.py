@@ -207,7 +207,7 @@ class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
 
 
 class FilesCreateViewUV(LoginRequiredMixin, CreateView):
-    """Загрузка файлов только для широкоформатной печати"""
+    """Загрузка файлов только для UV печати"""
 
     model = Product
     form_class = UploadFilesUV
@@ -230,7 +230,7 @@ class FilesCreateViewRollUp(LoginRequiredMixin, CreateView):
 
 
 class PicturesCreateViewInter(LoginRequiredMixin, CreateView):
-    """Загрузка файлов только для интерьерной печати"""
+    """Загрузка файлов  для Картин на холсте печати"""
 
     model = Product
     form_class = UploadFilesPictures
