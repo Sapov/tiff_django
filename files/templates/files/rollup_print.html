@@ -13,7 +13,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <form action="{% url 'files:create_rollup' %}" method="post" , enctype="multipart/form-data">
+                <form action="{% url 'files:create_rollup' %}" method="post", enctype="multipart/form-data">
 
                     {% csrf_token %}
                     <p>{{form.material}}</p>
