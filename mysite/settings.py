@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
     'celery_progress',
     'info',
+    'kb.apps.KbConfig',
     'rest_framework',
     "phonenumber_field",
     'django_extensions',
