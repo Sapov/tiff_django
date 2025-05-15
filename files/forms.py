@@ -105,11 +105,6 @@ class BaseUploadForm(forms.ModelForm):
         queryset=Material.objects.none(),  # Будет переопределено
         label="Выберите материал для печати"
     )
-    # FinishWork = forms.ModelChoiceField(
-    #     queryset=FinishWork.objects.all(),
-    #     label="Финишная обработка",
-    #     initial=FINISH_WORK,
-    # )
 
     class Meta:
         model = Product
