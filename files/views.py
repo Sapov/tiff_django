@@ -187,6 +187,7 @@ class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
     model = Product
     form_class = UploadFilesLarge
     template_name = "files/large_print.html"
+    success_url = "files:about_file"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -194,7 +195,7 @@ class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
 
         # Запускаем асинхронную задачу
         task = process_uploaded_file.delay(
-            file_path=instance.file.path,
+            file_path=instance.images.path,
             user_id=self.request.user.id
         )
 
