@@ -1,7 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
+
+User = get_user_model()
 
 
 class Category(models.Model):
@@ -10,7 +12,7 @@ class Category(models.Model):
     description = models.TextField(blank=True)
 
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name_plural = "Разделы"
 
     def __str__(self):
         return self.name
@@ -42,6 +44,9 @@ class Article(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'Статьи'
 
 
 class Comment(models.Model):

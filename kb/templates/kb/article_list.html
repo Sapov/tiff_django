@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="col-md-9">
-        <h1>{% if category_slug %}{{ categories.get(slug=category_slug).name }}{% else %}Все статьи{% endif %}</h1>
+<h1>{% if current_category %}{{ current_category.name }}{% else %}Все статьи{% endif %}</h1>
 
         {% for article in articles %}
             <div class="card mb-3">
@@ -40,7 +40,23 @@
             <p>Статей пока нет.</p>
         {% endfor %}
 
-        {% include 'kb/pagination.html' with page=articles %}
+        {% if page.has_other_pages %}
+<div class="pagination">
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}">&laquo;</a>
+    {% endif %}
+
+    <span class="current">
+        Страница {{ page.number }} из {{ page.paginator.num_pages }}
+    </span>
+
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}">&raquo;</a>
+    {% endif %}
+</div>
+{% endif %}
+
+<!--        {% include 'kb/pagination.html' with page=articles %}-->
     </div>
 </div>
 {% endblock %}
