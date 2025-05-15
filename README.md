@@ -46,9 +46,11 @@ SECRET_KEY='SecRet_Key'
 
 Остановить: docker compose down
 
-для отладки запустить redis:
+Локально:
+python manage.py runserver --settings mysite.settings_dev
+
+Запускаем redis:
 docker run -d -p 6379:6379 redis
 
 Запускаем Celery:
-celery -A mysite worker -l info
-
+DJANGO_SETTINGS_MODULE=mysite.settings_dev celery -A mysite worker -l info

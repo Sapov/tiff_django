@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "users",
     "crispy_forms",
     "crispy_bootstrap4",
+    'celery_progress',
     'info',
     'rest_framework',
     "phonenumber_field",
