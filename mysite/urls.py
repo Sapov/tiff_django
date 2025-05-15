@@ -43,6 +43,7 @@ urlpatterns = [
     path("delivery_in_bus/", include("delivery_in_bus.urls")),
     path("admin/", admin.site.urls),
     path("api/v1/", include(router.urls)), # api/v1/material
+    path('celery-progress/', include('celery_progress.urls')),
 
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT})
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

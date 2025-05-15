@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "users",
     "crispy_forms",
     "crispy_bootstrap4",
+    'celery_progress',
     'info',
     'rest_framework',
     "phonenumber_field",
@@ -173,13 +174,16 @@ EMAIL_USE_SSL = False
 
 # # ---------------------CELERY-------------------------
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
-
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 
 CELERY_IMPORTS = [
     'orders.tasks',
 ]
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [

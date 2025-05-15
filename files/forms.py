@@ -22,10 +22,11 @@ class AddFiles(forms.Form):
     quantity = forms.CharField(max_length=29)
 
 
-class CalculatorForm(forms.Form):
+class BaseCalculatorForm(forms.Form):
+    ''' Базовый класс формы'''
     quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
     material = forms.ModelChoiceField(
-        queryset=Material.objects.all(),
+        queryset=Material.objects.none(),  # Будет переопределено в подклассах
         label="Материал для печати",
         help_text="Выберите материал",
         initial=1,
@@ -36,61 +37,42 @@ class CalculatorForm(forms.Form):
     length = forms.FloatField(max_value=100, label="Длина в метрах")
     width = forms.FloatField(max_value=100, label="Ширина в метрах")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Устанавливаем queryset для material после инициализации
+        self.fields['material'].queryset = self.get_material_queryset()
 
-class CalculatorLargePrint(forms.Form):
-    '''для широкоформатной печати'''
-    quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
-    material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=1),
-        label="Материал для печати",
-        help_text="Выберите материал",
-        initial=1, )
-    finishing = forms.ModelChoiceField(
-        queryset=FinishWork.objects.all(), label="Обработка", initial=True)
-    length = forms.FloatField(max_value=100, label="Длина в метрах")
-    width = forms.FloatField(max_value=100, label="Ширина в метрах")
+    def get_material_queryset(self):
+        """Метод должен быть переопределен в подклассах"""
+        return Material.objects.none()
 
 
-class CalculatorInterierPrint(forms.Form):
-    '''для интерьерной печати'''
-    quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
-    material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=2),
-        label="Материал для печати",
-        help_text="Выберите материал",
-        initial=1, )
-    finishing = forms.ModelChoiceField(
-        queryset=FinishWork.objects.all(), label="Обработка", initial=True)
-    length = forms.FloatField(max_value=100, label="Длина в метрах")
-    width = forms.FloatField(max_value=100, label="Ширина в метрах")
+class CalculatorForm(BaseCalculatorForm):
+
+    def get_material_queryset(self):
+        return Material.objects.all()
 
 
-class CalculatorUVPrint(forms.Form):
-    '''для интерьерной печати'''
-    quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
-    material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=3),  # УФ
-        label="Материал для печати",
-        help_text="Выберите материал",
-        initial=1, )
-    finishing = forms.ModelChoiceField(
-        queryset=FinishWork.objects.all(), label="Обработка", initial=True)
-    length = forms.FloatField(max_value=100, label="Длина в метрах")
-    width = forms.FloatField(max_value=100, label="Ширина в метрах")
+class CalculatorLargePrint(BaseCalculatorForm):
+    """для широкоформатной печати"""
+    def get_material_queryset(self):
+        return Material.objects.filter(type_print=1)
+
+class CalculatorInterierPrint(BaseCalculatorForm):
+    """для интерьерной печати"""
+    def get_material_queryset(self):
+        return Material.objects.filter(type_print=2)
+
+class CalculatorUVPrint(BaseCalculatorForm):
+        """для УФ печати"""
+        def get_material_queryset(self):
+            return Material.objects.filter(type_print=3)
 
 
-class CalculatorBlankMaterial(forms.Form):
-    '''для расчета чистого материала'''
-    quantity = forms.FloatField(max_value=1000, label="Количество", initial=1)
-    material = forms.ModelChoiceField(
-        queryset=Material.objects.filter(type_print=4),  # пустой материал
-        label="Материал для печати",
-        help_text="Выберите материал",
-        initial=1, )
-    finishing = forms.ModelChoiceField(
-        queryset=FinishWork.objects.all(), label="Обработка", initial=True)
-    length = forms.FloatField(max_value=100, label="Длина в метрах")
-    width = forms.FloatField(max_value=100, label="Ширина в метрах")
+class CalculatorBlankMaterial(BaseCalculatorForm):
+    '''Для чистого материала'''
+    def get_material_queryset(self):
+        return Material.objects.filter(type_print=4)
 
 
 class BaseUploadForm(forms.ModelForm):
@@ -99,7 +81,7 @@ class BaseUploadForm(forms.ModelForm):
     # Общие поля для всех форм
     TYPE_PRINT = None  # Переопределяется в дочерних классах
     DEFAULT_MATERIAL = None  # Переопределяется в дочерних классах
-    FINISH_WORK = None # Переопределяется в дочерних классах
+    FINISH_WORK = None  # Переопределяется в дочерних классах
 
     material = forms.ModelChoiceField(
         queryset=Material.objects.none(),  # Будет переопределено
@@ -140,8 +122,7 @@ class UploadFilesLarge(BaseUploadForm):
 
     TYPE_PRINT = 1
     DEFAULT_MATERIAL = 1  # 440 баннер
-    FINISH_WORK = 1 # поля по 5 см
-
+    FINISH_WORK = 1  # поля по 5 см
 
 
 class UploadFilesUV(BaseUploadForm):
