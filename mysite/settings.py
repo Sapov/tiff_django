@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'picturies',
     'plotter',
     'lids',
+    'ckeditor',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"

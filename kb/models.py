@@ -24,13 +24,8 @@ class Category(models.Model):
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=200)
-    image = models.ImageField(
-        upload_to='articles/images/',
-        blank=True,
-        null=True,
-        verbose_name='Изображение'
-    )
+    title = models.CharField(max_length=200,verbose_name='Заголовок')
+    # images = models.ForeignKey('ArticleImage', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=200, unique=True)
     content = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
