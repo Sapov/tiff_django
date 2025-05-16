@@ -15,6 +15,7 @@ class ArticleListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
+        queryset = Category.objects.all()
         queryset = super().get_queryset().filter(is_published=True)
         category_slug = self.kwargs.get('category_slug')
         if category_slug:
@@ -22,16 +23,13 @@ class ArticleListView(ListView):
             queryset = queryset.filter(category=category)
         return queryset
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['categories'] = Category.objects.all()
-    #     return context
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         category_slug = self.kwargs.get('category_slug')
         if category_slug:
             context['current_category'] = get_object_or_404(Category, slug=category_slug)
+        context['categories'] = Category.objects.all()
+        print(context)
         return context
 
 

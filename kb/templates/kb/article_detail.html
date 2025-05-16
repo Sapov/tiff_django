@@ -7,16 +7,15 @@
     <div class="card-body">
         <h1 class="card-title">{{ article.title }}</h1>
         <div class="d-flex justify-content-between mb-3">
-            <div>
-                <span class="badge bg-secondary">{{ article.category.name }}</span>
-                <span class="text-muted ms-2">Автор: {{ article.author.username }}</span>
-            </div>
+<!--            <div>-->
+<!--                <span class="badge bg-secondary">{{ article.category.name }}</span>-->
+<!--            </div>-->
             <div class="text-muted">
-                Опубликовано: {{ article.created_at|date:"d.m.Y H:i" }}
-                {% if article.updated_at != article.created_at %}
-                (обновлено: {{ article.updated_at|date:"d.m.Y H:i" }})
-                {% endif %}
-                | Просмотров: {{ article.views }}
+<!--                Опубликовано: {{ article.created_at|date:"d.m.Y H:i" }}-->
+<!--                {% if article.updated_at != article.created_at %}-->
+<!--                (обновлено: {{ article.updated_at|date:"d.m.Y H:i" }})-->
+<!--                {% endif %}-->
+                | Просмотров: {{ article.views }} |
             </div>
         </div>
 
@@ -24,12 +23,10 @@
             {% if article.image %}
             <img src="{{ article.image.url }}" class="img-fluid mb-3" alt="{{ article.title }}">
             {% endif %}
-            {{ article.content|linebreaks }}
+            {{ article.content|safe }}
         </div>
 
-        <div class="card-text mb-4">
-            {{ article.content|linebreaks }}
-        </div>
+
 
         {% if article.author == user %}
         <div class="btn-group">
@@ -60,7 +57,7 @@
             {% for comment in comments %}
             <div class="mb-3">
                 <div class="d-flex justify-content-between">
-                    <strong>{{ comment.author.username }}</strong>
+                    <strong>{{ comment.author.first_name }}</strong>
                     <small class="text-muted">{{ comment.created_at|date:"d.m.Y H:i" }}</small>
                 </div>
                 <p>{{ comment.text }}</p>
