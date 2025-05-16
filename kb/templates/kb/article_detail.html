@@ -14,10 +14,17 @@
             <div class="text-muted">
                 Опубликовано: {{ article.created_at|date:"d.m.Y H:i" }}
                 {% if article.updated_at != article.created_at %}
-                    (обновлено: {{ article.updated_at|date:"d.m.Y H:i" }})
+                (обновлено: {{ article.updated_at|date:"d.m.Y H:i" }})
                 {% endif %}
                 | Просмотров: {{ article.views }}
             </div>
+        </div>
+
+        <div class="card-text mb-4">
+            {% if article.image %}
+            <img src="{{ article.image.url }}" class="img-fluid mb-3" alt="{{ article.title }}">
+            {% endif %}
+            {{ article.content|linebreaks }}
         </div>
 
         <div class="card-text mb-4">
@@ -25,10 +32,10 @@
         </div>
 
         {% if article.author == user %}
-            <div class="btn-group">
-                <a href="{% url 'article_update' article.slug %}" class="btn btn-sm btn-outline-primary">Редактировать</a>
-                <a href="{% url 'article_delete' article.slug %}" class="btn btn-sm btn-outline-danger">Удалить</a>
-            </div>
+        <div class="btn-group">
+            <a href="{% url 'article_update' article.slug %}" class="btn btn-sm btn-outline-primary">Редактировать</a>
+            <a href="{% url 'article_delete' article.slug %}" class="btn btn-sm btn-outline-danger">Удалить</a>
+        </div>
         {% endif %}
     </div>
 </div>
@@ -37,29 +44,32 @@
     <div class="card-header">Комментарии ({{ comments.count }})</div>
     <div class="card-body">
         {% if user.is_authenticated %}
-            <form method="post" action="{% url 'add_comment' article.slug %}">
-                {% csrf_token %}
-                <div class="mb-3">
-                    {{ comment_form.text }}
-                </div>
-                <button type="submit" class="btn btn-primary">Добавить комментарий</button>
-            </form>
+        <form method="post" action="{% url 'add_comment' article.slug %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ comment_form.text }}
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить комментарий</button>
+        </form>
         {% else %}
-            <p>Чтобы оставить комментарий, <a href="{% url 'login' %}">войдите</a> или <a href="{% url 'register' %}">зарегистрируйтесь</a>.</p>
+        <p>Чтобы оставить комментарий, <a href="{% url 'login' %}">войдите</a> или <a href="{% url 'register' %}">зарегистрируйтесь</a>.
+        </p>
         {% endif %}
 
         <div class="mt-4">
             {% for comment in comments %}
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between">
-                        <strong>{{ comment.author.username }}</strong>
-                        <small class="text-muted">{{ comment.created_at|date:"d.m.Y H:i" }}</small>
-                    </div>
-                    <p>{{ comment.text }}</p>
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <strong>{{ comment.author.username }}</strong>
+                    <small class="text-muted">{{ comment.created_at|date:"d.m.Y H:i" }}</small>
                 </div>
-                {% if not forloop.last %}<hr>{% endif %}
+                <p>{{ comment.text }}</p>
+            </div>
+            {% if not forloop.last %}
+            <hr>
+            {% endif %}
             {% empty %}
-                <p>Комментариев пока нет.</p>
+            <p>Комментариев пока нет.</p>
             {% endfor %}
         </div>
     </div>
