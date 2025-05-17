@@ -15,7 +15,6 @@ class ArticleListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = Category.objects.all()
         queryset = super().get_queryset().filter(is_published=True)
         category_slug = self.kwargs.get('category_slug')
         if category_slug:

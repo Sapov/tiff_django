@@ -14,6 +14,8 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Разделы"
+        verbose_name = 'Раздел'
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -26,7 +28,7 @@ class Category(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=200,verbose_name='Заголовок')
-    # images = models.ForeignKey('ArticleImage', on_delete=models.CASCADE)
+    images = models.ForeignKey('ArticleImage', on_delete=models.CASCADE, blank=True, null=True)
     slug = models.SlugField(max_length=200, unique=True)
     content = RichTextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -62,7 +64,7 @@ class Comment(models.Model):
 
 
 class ArticleImage(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='images')
+    # article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='articles/images/')
     caption = models.CharField(max_length=255, blank=True)
 
