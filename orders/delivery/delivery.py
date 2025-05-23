@@ -48,7 +48,7 @@ class YandexDelivery:
                 "pro_courier": False,
                 "cargo_options": ["auto_courier"],
                 "skip_door_to_door": False,
-                "due": "2024-07-28T21:30:00+00:00"
+                "due": "2025-05-22T21:30:00+00:00"
             }
         }
 
@@ -169,13 +169,13 @@ class YandexDelivery:
             "skip_emergency_notify": False,
             "skip_act": False,
             "optional_return": False,
-            "due": "2020-01-01T00:00:00+00:00",
+            "due": "2025-01-01T00:00:00+00:00",
             "comment": "Ресторан",
             "referral_source": "bitrix",
             "same_day_data": {
                 "delivery_interval": {
-                    "from": "2020-01-01T07:00:00+00:00",
-                    "to": "2020-01-01T07:00:00+00:00"
+                    "from": "2025-01-01T07:00:00+00:00",
+                    "to": "2025-01-01T07:00:00+00:00"
                 }
             },
             "auto_accept": False,
@@ -189,4 +189,3 @@ class YandexDelivery:
 if __name__ == '__main__':
     YandexDelivery().offer_calculate()
 
-ItemSizes(1, 2, 3)
