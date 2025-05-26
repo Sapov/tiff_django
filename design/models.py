@@ -8,7 +8,7 @@ User = get_user_model()
 class DesignOrder(models.Model):
     '''Заказ на создание макета для печати баннера'''
     title = models.CharField(max_length=200,verbose_name='Заголовок')
-    img = models.ForeignKey('ArticleImage', on_delete=models.CASCADE, blank=True, null=True)
+    # img = models.ForeignKey('ArticleImage', on_delete=models.CASCADE, blank=True, null=True)
     images = models.ImageField(upload_to="image/design", verbose_name="Загрузка файла")
 
     content = models.TextField(verbose_name='дополнительная информация')
