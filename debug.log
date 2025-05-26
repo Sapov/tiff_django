@@ -16603,3 +16603,6 @@ django.template.exceptions.TemplateDoesNotExist: kb/pagination.html
 2025-05-16 21:48:26,161 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-16 21:54:06,090 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/kb/views.py changed, reloading.
 2025-05-16 21:54:07,399 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-26 16:52:01,968 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-26 16:52:49,174 django.request WARNING  Not Found: /bk
+2025-05-26 17:06:36,674 django.utils.autoreload INFO     Watching for file changes with StatReloader
