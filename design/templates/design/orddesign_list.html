@@ -1,6 +1,6 @@
 {% extends 'kb/base_kb.html' %}
 
-{% block title %}Все статьи{% endblock %}
+{% block title %}Все заказы{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -11,28 +11,22 @@
                 <a href="{% url 'article_list' %}" class="list-group-item list-group-item-action {% if not category_slug %}active{% endif %}">
                     Все категории
                 </a>
-                {% for category in categories %}
-                    <a href="{% url 'article_list_by_category' category.slug %}"
-                       class="list-group-item list-group-item-action {% if category_slug == category.slug %}active{% endif %}">
-                        {{ category.name }}
-                    </a>
-                {% endfor %}
             </div>
         </div>
     </div>
     <div class="col-md-9">
-<h1>{% if current_category %}{{ current_category.name }}{% else %}Все статьи{% endif %}</h1>
+<h1>{% if current_category %}{{ current_category.name }}{% else %}Заказы на дизайн{% endif %}</h1>
 
-        {% for article in articles %}
+        {% for dsg in designers %}
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                        <a href="{{ dsg.get_absolute_url }}">{{ dsg.title }}</a>
                     </h5>
                 </div>
             </div>
         {% empty %}
-            <p>Статей пока нет.</p>
+            <p>Заказов пока нет.</p>
         {% endfor %}
 
         {% if page.has_other_pages %}
