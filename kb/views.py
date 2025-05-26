@@ -50,18 +50,6 @@ class ArticleDetailView(DetailView):
         return obj
 
 
-@login_required
-def add_comment(request, slug):
-    article = get_object_or_404(Article, slug=slug)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.article = article
-            comment.author = request.user
-            comment.save()
-            return redirect('article_detail', slug=article.slug)
-    return redirect('article_detail', slug=article.slug)
 
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):

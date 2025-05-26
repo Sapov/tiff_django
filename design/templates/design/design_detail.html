@@ -41,7 +41,7 @@
     <div class="card-header">Комментарии ({{ comments.count }})</div>
     <div class="card-body">
         {% if user.is_authenticated %}
-        <form method="post" action="{% url 'add_comment' article.slug %}">
+        <form method="post" action="{% url 'design:add_comment' article.slug %}">
             {% csrf_token %}
             <div class="mb-3">
                 {{ comment_form.text }}
