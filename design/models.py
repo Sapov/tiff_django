@@ -29,3 +29,16 @@ class OrdDesign(models.Model):
 
     def get_absolute_url(self):
         return reverse('design:design_detail', args=[self.slug])
+
+
+class Comment(models.Model):
+    design = models.ForeignKey(OrdDesign, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comment by {self.author} on {self.design}"
+
+
+
