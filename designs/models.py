@@ -31,7 +31,6 @@ class OrderDesign(models.Model):
     images = models.ImageField(upload_to='images/designs', verbose_name='Картинка')
     created_at = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=True)
-    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title

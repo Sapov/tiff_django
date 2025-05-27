@@ -1,0 +1,76 @@
+{% extends 'kb/base_kb.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ object.title }}</h1>
+        <div class="d-flex justify-content-between mb-3">
+            <div>
+                <span class="badge bg-secondary">{{ object.complexity }}</span>
+            </div>
+            <div>
+                Автор: {{object.user}}
+            </div>
+
+            <div>Тех. Задание {{object.description}}</div>
+            <div>Категория макета: {{object.interest}}</div>
+            <div>Размеры: {{object.width}} х {{object.length}} см</div>
+            <div>Изображение: {{object.images}} </div>
+            <div>Добавлено: {{object.created_at}} </div>
+            <div>Сложность: {{object.complexity}} </div>
+            <div class="text-muted">
+<!--                Опубликовано: {{ article.created_at|date:"d.m.Y H:i" }}-->
+<!--                {% if article.updated_at != article.created_at %}-->
+<!--                (обновлено: {{ article.updated_at|date:"d.m.Y H:i" }})-->
+<!--                {% endif %}-->
+                | Просмотров: {{ object.views }} |
+            </div>
+        </div>
+
+        <div class="card-text mb-4">
+            {% if object.images %}
+            <img src="{{ object.images.url }}" class="img-fluid mb-3" alt="{{ object.title }}">
+            {% endif %}
+            {{ object.content|safe }}
+        </div>
+
+
+
+        {% if object.author == user %}
+        <div class="btn-group">
+            <a href="{% url 'article_update' article.slug %}" class="btn btn-sm btn-outline-primary">Редактировать</a>
+            <a href="{% url 'article_delete' article.slug %}" class="btn btn-sm btn-outline-danger">Удалить</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">Комментарии ({{ comments.count }})</div>
+    <div class="card-body">
+        {% if user.is_authenticated %}
+
+
+        <div class="mt-4">
+            {% for comment in comments %}
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <strong>{{ comment.author.first_name }}</strong>
+                    <small class="text-muted">{{ comment.created_at|date:"d.m.Y H:i" }}</small>
+                </div>
+                <p>{{ comment.text }}</p>
+            </div>
+            {% if not forloop.last %}
+            <hr>
+            {% endif %}
+            {% empty %}
+            <p>Комментариев пока нет.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+            {% endif %}
+
+{% endblock %}
