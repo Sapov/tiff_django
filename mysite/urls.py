@@ -41,7 +41,7 @@ urlpatterns = [
     path("orders/", include("orders.urls")),
     path("info/", include("info.urls")),
     path("kb/", include("kb.urls")),
-    path("design/", include("design.urls")),
+    # path("design/", include("design.urls")),
     path("delivery_in_bus/", include("delivery_in_bus.urls")),
     path("admin/", admin.site.urls),
     path("api/v1/", include(router.urls)), # api/v1/material
