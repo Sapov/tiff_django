@@ -1,12 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 from designs.forms import CommentForm
 from designs.models import OrderDesign
 
 
-# Create your views here.
 class DesignLIst(ListView):
     model = OrderDesign
 
@@ -28,8 +27,6 @@ class DesignDetailView(DetailView):
         queryset = OrderDesign.objects.filter(user=self.request.user)
         print(queryset)
         return queryset
-
-
 
 
 @login_required
@@ -54,3 +51,8 @@ def add_comment(request, id):
 
     # Если метод не POST, перенаправляем на детальную страницу
     return redirect('designs:design_detail', pk=design.id)
+
+
+class DesignCreateView(CreateView):
+    model = OrderDesign
+    fields = ['title', 'complexity', 'interest', 'interest', 'width', 'length', 'description', 'images']

@@ -1,0 +1,22 @@
+{% extends 'kb/base_kb.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ object.title }}</h1>
+        <div class="d-flex justify-content-between mb-3">
+
+            <form method="post">{% csrf_token %}
+                {{ form|crispy }}
+
+                <input type="submit" value="Save">
+            </form>
+        </div>
+        {% endblock %}
+
