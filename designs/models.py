@@ -14,3 +14,21 @@ class Project(models.Model):
         return self.title
 
 
+class Design(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='designs')
+    image = models.ImageField(upload_to='images/design')
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Design for {self.project.title}'
+
+class Comment(models.Model):
+    design = models.ForeignKey(Design, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comments {self.author.user_name}'
+
