@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView
 
 from designs.forms import CommentForm
@@ -35,7 +36,7 @@ class DesignList(LoginRequiredMixin, ListView):
 class DesignDetailView(DetailView):
     model = OrderDesign
     template_name = 'designs/design_detail.html'
-    context_object_name = 'designers'
+    context_object_name = 'design'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -101,15 +102,37 @@ class DesignCreateView(CreateView):
         return super().form_valid(form)
 
 
-class CommentCreateView(CreateView):
+# class CommentCreateView(CreateView):
+#     model = Comments
+#     form_class = CommentForm
+#     template_name = 'designs/add_comment.html'
+#
+#     def form_valid(self, form):
+#         form.instance.design_id = self.kwargs['design_id']
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
+
+    # def get_success_url(self):
+    #     return reverse_lazy('design_detail', kwargs={'pk': self.kwargs['design_id']})
+
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comments
     form_class = CommentForm
     template_name = 'designs/add_comment.html'
 
     def form_valid(self, form):
-        form.instance.design_id = self.kwargs['design_id']
+        design = OrderDesign.objects.get(pk=self.kwargs['design_id'])
+        form.instance.design = design  # Устанавливаем связь с дизайном
         form.instance.author = self.request.user
+        print("Design ID:", self.kwargs['design_id'])  # Проверьте что получаете ID
+        design = get_object_or_404(OrderDesign, pk=self.kwargs['design_id'])
+        print("Found design:", design)  # Проверьте что объект существует
         return super().form_valid(form)
 
+
+    # def get_success_url(self):
+    #     return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
+
     def get_success_url(self):
-        return reverse_lazy('design_detail', kwargs={'pk': self.kwargs['design_id']})
+        return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})

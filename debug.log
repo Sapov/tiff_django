@@ -23569,3 +23569,1678 @@ django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' 
 2025-05-28 00:16:10,772 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-28 00:18:29,329 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
 2025-05-28 00:18:30,609 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 00:21:06,705 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-05-28 00:21:07,695 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 00:23:43,250 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-05-28 00:23:44,575 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 00:30:30,997 django.request ERROR    Internal Server Error: /designs/7/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' not found. 'add_comment' is not a valid view function or pattern name.
+2025-05-28 00:33:35,905 django.request ERROR    Internal Server Error: /designs/7/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: designs_comments.image
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 198, in render
+    len_values = len(values)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: designs_comments.image
+2025-05-28 00:33:57,903 django.request ERROR    Internal Server Error: /designs/7/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: designs_comments.image
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 198, in render
+    len_values = len(values)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: designs_comments.image
+2025-05-28 00:34:05,507 django.request ERROR    Internal Server Error: /designs/7/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 502, in parse
+    compile_func = self.tags[command]
+KeyError: 'empty'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 961, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 504, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 555, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 156: 'empty', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+2025-05-28 00:34:32,315 django.request ERROR    Internal Server Error: /designs/7/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 502, in parse
+    compile_func = self.tags[command]
+KeyError: 'endfor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 961, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 504, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 555, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 158: 'endfor', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+2025-05-28 00:40:51,337 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: table designs_comments has no column named image
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 112, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: table designs_comments has no column named image
+2025-05-28 00:41:19,335 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 00:41:48,970 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 112, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+2025-05-28 00:50:24,983 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 00:50:26,274 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 00:52:25,815 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 129, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+2025-05-28 00:53:45,995 django.request ERROR    Internal Server Error: /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' not found. 'add_comment' is not a valid view function or pattern name.
+2025-05-28 00:55:15,652 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 129, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+2025-05-28 00:56:23,147 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:00:11,120 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:00:12,270 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:00:30,006 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+2025-05-28 01:07:12,277 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: designs_comments.designs_id
+2025-05-28 01:12:33,720 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-28 01:12:34,897 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:13:28,336 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-28 01:13:48,900 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:15:16,703 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:15:17,804 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:17:10,477 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-05-28 01:17:11,614 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:18:31,198 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 133, in form_valid
+    design = get_object_or_404(OrderDesign, pk=self.kwargs['pk'])
+KeyError: 'pk'
+2025-05-28 01:18:44,970 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 133, in form_valid
+    design = get_object_or_404(OrderDesign, pk=self.kwargs['pk'])
+KeyError: 'pk'
+2025-05-28 01:19:48,373 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:19:49,424 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:20:02,837 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 136, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 618, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/encoding.py", line 138, in iri_to_uri
+    iri = str(iri)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 119, in __str__
+    return str(self.__cast())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 110, in __cast
+    return func(*self._args, **self._kw)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:21:25,651 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:21:26,771 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:21:29,809 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 136, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 618, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/encoding.py", line 138, in iri_to_uri
+    iri = str(iri)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 119, in __str__
+    return str(self.__cast())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 110, in __cast
+    return func(*self._args, **self._kw)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:23:45,620 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:23:47,035 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:25:05,626 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-28 01:25:06,796 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:26:06,335 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:26:07,565 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:26:15,357 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 618, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/encoding.py", line 138, in iri_to_uri
+    iri = str(iri)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 119, in __str__
+    return str(self.__cast())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 110, in __cast
+    return func(*self._args, **self._kw)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:29:40,690 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:29:47,397 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 618, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/encoding.py", line 138, in iri_to_uri
+    iri = str(iri)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 119, in __str__
+    return str(self.__cast())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 110, in __cast
+    return func(*self._args, **self._kw)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:30:38,300 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:30:39,902 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:31:26,842 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:31:28,021 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:31:34,102 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 137, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['pk']})
+KeyError: 'pk'
+2025-05-28 01:31:50,722 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:31:51,987 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:31:55,233 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 137, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:32:21,309 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:32:22,378 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:35:41,320 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 137, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['pk']})
+KeyError: 'pk'
+2025-05-28 01:36:29,563 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:36:30,709 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:36:33,304 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 125, in form_valid
+    design = OrderDesign.objects.get(pk=self.kwargs['pk'])
+KeyError: 'pk'
+2025-05-28 01:37:38,814 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:37:39,897 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:37:43,016 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 125, in form_valid
+    design = OrderDesign.objects.get(pk=self.id)
+AttributeError: 'CommentCreateView' object has no attribute 'id'
+2025-05-28 01:38:29,303 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:38:30,435 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:38:34,029 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 129, in form_valid
+    design = get_object_or_404(OrderDesign, pk=self.kwargs['pk'])
+KeyError: 'pk'
+2025-05-28 01:39:00,661 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:39:01,756 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:39:08,884 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 137, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['pk']})
+KeyError: 'pk'
+2025-05-28 01:42:32,517 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:42:33,565 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:42:41,033 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 137, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:43:47,856 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:43:49,088 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:49:34,146 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:49:43,517 django.request ERROR    Internal Server Error: /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' with arguments '('',)' not found. 1 pattern(s) tried: ['designs/comment/(?P<design_id>[0-9]+)/\\Z']
+2025-05-28 01:49:46,380 django.request ERROR    Internal Server Error: /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' with arguments '('',)' not found. 1 pattern(s) tried: ['designs/comment/(?P<design_id>[0-9]+)/\\Z']
+2025-05-28 01:50:02,492 django.request ERROR    Internal Server Error: /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' with arguments '('',)' not found. 1 pattern(s) tried: ['designs/comment/(?P<design_id>[0-9]+)/\\Z']
+2025-05-28 01:50:51,604 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:50:55,702 django.request ERROR    Internal Server Error: /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' with arguments '('',)' not found. 1 pattern(s) tried: ['designs/comment/(?P<design_id>[0-9]+)/\\Z']
+2025-05-28 01:51:15,008 django.request ERROR    Internal Server Error: /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' with arguments '('',)' not found. 1 pattern(s) tried: ['designs/comment/(?P<design_id>[0-9]+)/\\Z']
+2025-05-28 01:52:06,449 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 135, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:52:34,605 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 135, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:53:23,919 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 135, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:54:13,137 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-28 01:54:14,224 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:54:22,639 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 135, in get_success_url
+    return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:55:17,796 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 01:55:19,015 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:55:27,212 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 123, in get_success_url
+    url = self.object.get_absolute_url()
+AttributeError: 'Comments' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 125, in get_success_url
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: No URL to redirect to.  Either provide a url or define a get_absolute_url method on the Model.
+2025-05-28 01:55:45,637 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-28 01:55:46,721 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:56:06,831 django.request WARNING  Not Found: /designs/26/
+2025-05-28 01:58:51,739 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-28 01:58:53,067 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:58:56,721 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 618, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/encoding.py", line 138, in iri_to_uri
+    iri = str(iri)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 119, in __str__
+    return str(self.__cast())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 110, in __cast
+    return func(*self._args, **self._kw)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' not found. 'design_detail' is not a valid view function or pattern name.
+2025-05-28 01:59:19,213 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 01:59:43,555 django.request ERROR    Internal Server Error: /designs/comment/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 71, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+KeyError: 'design'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 131, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 618, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/encoding.py", line 138, in iri_to_uri
+    iri = str(iri)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 119, in __str__
+    return str(self.__cast())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 110, in __cast
+    return func(*self._args, **self._kw)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 82, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'design' is not a registered namespace
+2025-05-28 01:59:59,857 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 02:00:01,840 django.utils.autoreload INFO     Watching for file changes with StatReloader
