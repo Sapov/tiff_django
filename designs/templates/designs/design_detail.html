@@ -17,14 +17,14 @@
             <div>Тех. Задание {{object.description}}</div>
             <div>Категория макета: {{object.interest}}</div>
             <div>Размеры: {{object.width}} х {{object.length}} см</div>
-            <div>Изображение: {{object.images}} </div>
-            <div>Добавлено: {{object.created_at}} </div>
-            <div>Сложность: {{object.complexity}} </div>
+            <div>Изображение: {{object.images}}</div>
+            <div>Добавлено: {{object.created_at}}</div>
+            <div>Сложность: {{object.complexity}}</div>
             <div class="text-muted">
-<!--                Опубликовано: {{ article.created_at|date:"d.m.Y H:i" }}-->
-<!--                {% if article.updated_at != article.created_at %}-->
-<!--                (обновлено: {{ article.updated_at|date:"d.m.Y H:i" }})-->
-<!--                {% endif %}-->
+                <!--                Опубликовано: {{ article.created_at|date:"d.m.Y H:i" }}-->
+                <!--                {% if article.updated_at != article.created_at %}-->
+                <!--                (обновлено: {{ article.updated_at|date:"d.m.Y H:i" }})-->
+                <!--                {% endif %}-->
                 | Просмотров: {{ object.views }} |
             </div>
         </div>
@@ -35,7 +35,6 @@
             {% endif %}
             {{ object.content|safe }}
         </div>
-
 
 
         {% if object.author == user %}
@@ -49,28 +48,29 @@
 
 <div class="card mt-4">
     <div class="card-header">Комментарии ({{ comments.count }})</div>
+</div>
+{% if user.is_authenticated %}
+
+{% for comment in comments %}
+<div class="card mt-4">
+    <div class="card-header">[{{ comment.author.first_name }}] Добавлено: {{comment.created_at}}</div>
+
     <div class="card-body">
-        {% if user.is_authenticated %}
+        <small class="text-muted">{{ comment.created_at|date:"d.m.Y H:i" }}</small>
 
 
-        <div class="mt-4">
-            {% for comment in comments %}
-            <div class="mb-3">
-                <div class="d-flex justify-content-between">
-                    <strong>{{ comment.author.first_name }}</strong>
-                    <small class="text-muted">{{ comment.created_at|date:"d.m.Y H:i" }}</small>
-                </div>
-                <p>{{ comment.text }}</p>
-            </div>
-            {% if not forloop.last %}
-            <hr>
-            {% endif %}
-            {% empty %}
-            <p>Комментариев пока нет.</p>
-            {% endfor %}
-        </div>
+        {{ comment.text }}
     </div>
 </div>
-            {% endif %}
+
+{% if not forloop.last %}
+<hr>
+{% endif %}
+{% empty %}
+<p>Комментариев пока нет.</p>
+
+{% endfor %}
+
+{% endif %}
 
 {% endblock %}
