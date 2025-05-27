@@ -5033,7 +5033,7 @@ crop:
   label: crop
   search:
     terms:
-      - design
+      - designs
       - frame
       - mask
       - resize
@@ -5048,7 +5048,7 @@ crop-alt:
   label: Alternate Crop
   search:
     terms:
-      - design
+      - designs
       - frame
       - mask
       - resize
@@ -5914,7 +5914,7 @@ drafting-compass:
   label: Drafting Compass
   search:
     terms:
-      - design
+      - designs
       - map
       - mechanical drawing
       - plot
@@ -6986,7 +6986,7 @@ figma:
   search:
     terms:
       - app
-      - design
+      - designs
       - interface
   styles:
     - brands
@@ -10869,7 +10869,7 @@ invision:
   search:
     terms:
       - app
-      - design
+      - designs
       - interface
   styles:
     - brands
@@ -12280,7 +12280,7 @@ marker:
   label: Marker
   search:
     terms:
-      - design
+      - designs
       - edit
       - sharpie
       - update
@@ -13351,7 +13351,7 @@ object-group:
     terms:
       - combine
       - copy
-      - design
+      - designs
       - merge
       - select
   styles:
@@ -13368,7 +13368,7 @@ object-ungroup:
   search:
     terms:
       - copy
-      - design
+      - designs
       - merge
       - select
       - separate
@@ -13882,7 +13882,7 @@ pen:
   label: Pen
   search:
     terms:
-      - design
+      - designs
       - edit
       - update
       - write
@@ -13897,7 +13897,7 @@ pen-alt:
   label: Alternate Pen
   search:
     terms:
-      - design
+      - designs
       - edit
       - update
       - write
@@ -13911,7 +13911,7 @@ pen-fancy:
   label: Pen Fancy
   search:
     terms:
-      - design
+      - designs
       - edit
       - fountain pen
       - update
@@ -13926,7 +13926,7 @@ pen-nib:
   label: Pen Nib
   search:
     terms:
-      - design
+      - designs
       - edit
       - fountain pen
       - update
@@ -13956,7 +13956,7 @@ pencil-alt:
   label: Alternate Pencil
   search:
     terms:
-      - design
+      - designs
       - edit
       - pencil
       - update
@@ -13971,7 +13971,7 @@ pencil-ruler:
   label: Pencil Ruler
   search:
     terms:
-      - design
+      - designs
       - draft
       - draw
       - pencil
@@ -15753,7 +15753,7 @@ ruler:
   label: Ruler
   search:
     terms:
-      - design
+      - designs
       - draft
       - length
       - measure
@@ -15768,7 +15768,7 @@ ruler-combined:
   label: Ruler Combined
   search:
     terms:
-      - design
+      - designs
       - draft
       - length
       - measure
@@ -15783,7 +15783,7 @@ ruler-horizontal:
   label: Ruler Horizontal
   search:
     terms:
-      - design
+      - designs
       - draft
       - length
       - measure
@@ -15798,7 +15798,7 @@ ruler-vertical:
   label: Ruler Vertical
   search:
     terms:
-      - design
+      - designs
       - draft
       - length
       - measure
@@ -16698,7 +16698,7 @@ sketch:
   search:
     terms:
       - app
-      - design
+      - designs
       - interface
   styles:
     - brands
@@ -17544,7 +17544,7 @@ spray-can:
     terms:
       - Paint
       - aerosol
-      - design
+      - designs
       - graffiti
       - tag
   styles:
@@ -18309,7 +18309,7 @@ swatchbook:
     terms:
       - Pantone
       - color
-      - design
+      - designs
       - hue
       - palette
   styles:
@@ -18553,7 +18553,7 @@ tape:
   label: Tape
   search:
     terms:
-      - design
+      - designs
       - package
       - sticky
   styles:
