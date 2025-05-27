@@ -3,6 +3,31 @@
 {% block title %}Мои Брифы на дизайн макета>{% endblock %}
 
 {% block content %}
+
+
+
+<h1>
+    {% if is_designer %}
+        Все заказы на дизайн
+    {% else %}
+        Мои заказы на дизайн
+    {% endif %}
+</h1>
+
+<ul>
+    {% for design in designs %}
+        <li>
+            <a href="{{ design.get_absolute_url }}">{{ design.title }}</a>
+            {% if is_designer %}
+                (Автор: {{ design.user.username }})
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>Нет доступных заказов</li>
+    {% endfor %}
+</ul>
+
+
 <div class="row">
     <div class="col-md-3">
         <div class="card">

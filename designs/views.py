@@ -32,23 +32,6 @@ class DesignList(LoginRequiredMixin, ListView):
         context['is_designer'] = self.request.user.role == 'DESIGNER'
         return context
 
-# class DesignDetailView(DetailView):
-#     model = OrderDesign
-#     template_name = 'designs/design_detail.html'
-#     context_object_name = 'designers'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['comment_form'] = CommentForm()
-#         context['comments'] = self.object.comments.all()
-#         return context
-#
-#     def get_queryset(self):
-#         print(self.request.user)
-#         queryset = OrderDesign.objects.filter(user=self.request.user)
-#         print(queryset)
-#         return queryset
-
 
 class DesignDetailView(DetailView):
     model = OrderDesign

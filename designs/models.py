@@ -49,6 +49,8 @@ class Comments(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='comment_images/', blank=True, null=True)
+
 
     def __str__(self):
         return f"Comment by {self.author} on {self.designs}"
