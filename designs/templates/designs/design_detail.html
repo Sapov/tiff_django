@@ -1,25 +1,26 @@
 {% extends 'kb/base_kb.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
 <style>
-   .comment {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-}
+    .comment {
+     border: 1px solid #ddd;
+     padding: 15px;
+     margin-bottom: 15px;
+     border-radius: 5px;
+ }
 
-.comment-image {
-    margin-top: 10px;
-}
+ .comment-image {
+     margin-top: 10px;
+ }
 
-.comment-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+ .comment-image img {
+     max-width: 100%;
+     height: auto;
+     border-radius: 5px;
+     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+ }
 </style>
 
 
@@ -62,6 +63,7 @@
     </div>
 </div>
 
+{% if comments %}
 <div class="card mt-4">
     <div class="card-header">Комментарии ({{ comments.count }})</div>
 </div>
@@ -69,9 +71,12 @@
 
 
 {% for comment in design.comments.all %}
-<div class="comment">
-    <strong>{{ comment.author.username }}</strong>
-    <small>{{ comment.created_at|date:"d.m.Y H:i" }}</small>
+<!--<div class="comment">-->
+<div class="card mt-4">
+    <div class="card-header">{{ comment.author.username }}
+        <small>{{ comment.created_at|date:"d.m.Y H:i" }}</small>
+    </div>
+
 
     {% if comment.text %}
     <p>{{ comment.text }}</p>
@@ -85,39 +90,25 @@
 </div>
 {% endfor %}
 
-<a href="{% url 'designs:add_comment' design.id %}" class="btn btn-secondary">
-
-    Добавить комментарий с изображением
-</a>
-
-
-
 
 {% if not forloop.last %}
 <hr>
 {% endif %}
-<p>Комментариев пока нет.</p>
 
+{% else %}
+<p>Комментариев пока нет.</p>
+{% endif %}
 
 
 <div class="card-body">
-<form method="post" enctype="multipart/form-data" action="{% url 'designs:add_comment' design.pk %}">
-    {% csrf_token %}
-    {{ comment_form.as_p }}
-    <button type="submit">Отправить</button>
-</form>
+    <form method="post" enctype="multipart/form-data" action="{% url 'designs:add_comment' design.pk %}">
+        {% csrf_token %}
+        <!--    {{ comment_form.as_p }}-->
+        {{ comment_form|crispy }}
 
-<!--    <form method="post" action="{% url 'designs:add_comment' design.id %}">-->
 
-<!--        {% csrf_token %}-->
-<!--        <div class="mb-3">-->
-<!--            {{ comment_form.text }}-->
-<!--        </div>-->
-<!--        <div class="mb-3">-->
-<!--            {{ comment_form.image }}-->
-<!--        </div>-->
-<!--        <button type="submit" class="btn btn-primary">Добавить комментарий</button>-->
-<!--    </form>-->
+        <button type="submit">Отправить</button>
+    </form>
 
 
     {% endif %}

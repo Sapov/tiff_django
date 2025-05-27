@@ -25244,3 +25244,66 @@ Traceback (most recent call last):
 django.urls.exceptions.NoReverseMatch: 'design' is not a registered namespace
 2025-05-28 01:59:59,857 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
 2025-05-28 02:00:01,840 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 02:04:24,992 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-05-28 02:04:26,083 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 02:04:28,477 django.request ERROR    Internal Server Error: /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' not found. 'add_comment' is not a valid view function or pattern name.
+2025-05-28 02:04:59,357 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-05-28 02:05:00,508 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 02:17:43,625 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-28 02:17:45,006 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 02:23:50,841 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-28 02:23:52,293 django.utils.autoreload INFO     Watching for file changes with StatReloader
