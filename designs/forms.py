@@ -9,5 +9,7 @@ class OrderForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
-        fields = ['text']
-
+        fields = ['text', 'image']
+        widgets = {
+            'text': forms.Textarea(attrs={'rows': 3}),
+        }
