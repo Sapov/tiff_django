@@ -23565,3 +23565,7 @@ django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' 
 2025-05-28 00:13:47,398 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-28 00:15:05,511 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
 2025-05-28 00:15:06,574 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 00:16:09,710 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/forms.py changed, reloading.
+2025-05-28 00:16:10,772 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 00:18:29,329 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 00:18:30,609 django.utils.autoreload INFO     Watching for file changes with StatReloader

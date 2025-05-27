@@ -5,8 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
 from designs.forms import CommentForm
-from designs.models import OrderDesign
-
+from designs.models import OrderDesign, Comments
 
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -101,3 +100,16 @@ class DesignCreateView(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
+class CommentCreateView(CreateView):
+    model = Comments
+    form_class = CommentForm
+    template_name = 'designs/add_comment.html'
+
+    def form_valid(self, form):
+        form.instance.design_id = self.kwargs['design_id']
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('design_detail', kwargs={'pk': self.kwargs['design_id']})
