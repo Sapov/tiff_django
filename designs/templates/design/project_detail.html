@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ project.title }}</h1>
+<h2>Макеты</h2>
+
+{% for design in designs %}
+    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+        <img src="{{ design.image.url }}" style="max-width: 500px;">
+        <p>Загружено: {{ design.uploaded_by.username }} ({{ design.uploaded_at }})</p>
+
+        <h3>Комментарии:</h3>
+        {% for comment in design.comments.all %}
+            <div style="margin-left: 20px; padding: 5px; background: #f9f9f9;">
+                <strong>{{ comment.author.username }}:</strong> {{ comment.text }}
+                <small>({{ comment.created_at }})</small>
+            </div>
+        {% endfor %}
+
+        <form method="post" action="{% url 'add_comment' design.id %}">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Добавить комментарий</button>
+        </form>
+    </div>
+{% endfor %}
+
+<a href="{% url 'upload_design' project.id %}">Загрузить новый макет</a>
+{% endblock %}
