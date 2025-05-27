@@ -17,6 +17,7 @@ class Role(models.TextChoices):
     FINANCIER = "FINANCIER", "Бухгалтер"
     AnonymousUser = "AnonymousUser", "Незарегистрированный"
     COURIER = "COURIER", "Курьер"
+    DESIGNER = "DESIGNER", "Дизайнер"
 
 
 class User(AbstractUser):

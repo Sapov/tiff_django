@@ -12,7 +12,8 @@
         <h1 class="card-title">{{ object.title }}</h1>
         <div class="d-flex justify-content-between mb-3">
 
-            <form method="post">{% csrf_token %}
+            <form method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
                 {{ form|crispy }}
 
                 <input type="submit" value="Save">

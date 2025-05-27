@@ -23303,3 +23303,53 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
 django.template.exceptions.TemplateDoesNotExist: designs/orderdesign_form.html
 2025-05-27 22:40:22,996 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-27 22:43:47,961 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-27 22:43:49,062 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-27 22:44:42,638 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-27 22:44:43,762 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-27 22:49:03,897 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-27 22:54:15,648 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-27 22:54:16,666 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-27 22:58:49,377 django.request ERROR    Internal Server Error: /designs/new/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 134, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 119, in get_success_url
+    if self.success_url:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 187, in __wrapper__
+    result = func(*self._args, **self._kw)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'design_detail' with no arguments not found. 1 pattern(s) tried: ['designs/(?P<pk>[0-9]+)/\\Z']
+2025-05-27 23:02:13,323 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-27 23:02:14,347 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-27 23:02:25,783 django.request WARNING  Not Found: /designs/2/
+2025-05-27 23:02:39,128 django.request WARNING  Not Found: /designs/3/
+2025-05-27 23:03:45,690 django.request WARNING  Not Found: /designs/4/
+2025-05-27 23:04:12,317 django.request WARNING  Not Found: /designs/4/
+2025-05-27 23:07:52,002 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-27 23:07:53,614 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-27 23:11:00,827 django.request WARNING  Not Found: /designs/5/
+2025-05-27 23:11:04,334 django.request WARNING  Not Found: /designs/4/
+2025-05-27 23:11:11,285 django.request WARNING  Not Found: /designs/1/
+2025-05-27 23:11:15,888 django.request WARNING  Not Found: /designs/3/
+2025-05-27 23:11:20,210 django.request WARNING  Not Found: /designs/1/
+2025-05-27 23:12:23,909 django.request WARNING  Not Found: /designs/7/
+2025-05-27 23:29:22,872 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/models.py changed, reloading.
+2025-05-27 23:29:24,019 django.utils.autoreload INFO     Watching for file changes with StatReloader

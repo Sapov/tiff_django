@@ -21,13 +21,13 @@ class Complexity(models.Model):
 
 
 class OrderDesign(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Title')
-    complexity = models.ForeignKey(Complexity, on_delete=models.CASCADE, verbose_name='Сложность макета')
+    title = models.CharField(max_length=255, verbose_name='Название брифа')
+    complexity = models.ForeignKey(Complexity, on_delete=models.CASCADE, verbose_name='Выберите сложность макета')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', null=True, blank=True)
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE, verbose_name='Категория макета', default=3)
     width = models.IntegerField(verbose_name='Ширина')
     length = models.IntegerField(verbose_name='Длина')
-    description = models.TextField(verbose_name='Дополнительные сведения')
+    description = models.TextField(verbose_name='Тех.задание')
     images = models.ImageField(upload_to='images/designs', verbose_name='Картинка')
     created_at = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=True)

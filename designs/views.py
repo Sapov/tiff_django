@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
 from designs.forms import CommentForm
@@ -56,3 +57,9 @@ def add_comment(request, id):
 class DesignCreateView(CreateView):
     model = OrderDesign
     fields = ['title', 'complexity', 'interest', 'interest', 'width', 'length', 'description', 'images']
+    success_url = reverse_lazy("designs:design_list")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+

@@ -42,6 +42,7 @@ class DesignCreateView(CreateView):
 
 
 
+
 @login_required
 def add_comment(request, slug):
     article = get_object_or_404(OrdDesign, slug=slug)
