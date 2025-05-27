@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'lids',
     'ckeditor',
     'design.apps.DesignConfig',
+    'designs.apps.DesignsConfig',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"

@@ -38,7 +38,7 @@ class DesignViewList(ListView):
 class DesignCreateView(CreateView):
     form_class = AddDesignForm
     model = OrdDesign
-    template_name = 'add_design.html'
+    template_name = 'design/add_design.html'
 
 
 

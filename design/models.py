@@ -9,7 +9,7 @@ User = get_user_model()
 class OrdDesign(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', null=True, blank=True)
-    interest = models.ForeignKey(Interest, on_delete=models.CASCADE, verbose_name='Категория макета')
+    interest = models.ForeignKey(Interest, on_delete=models.CASCADE, verbose_name='Категория макета', default=3)
     width = models.IntegerField(verbose_name='Ширина')
     length = models.IntegerField(verbose_name='Длина')
     description = models.TextField(verbose_name='Дополнительные сведения')
@@ -28,7 +28,7 @@ class OrdDesign(models.Model):
         ordering = ['title']
 
     def get_absolute_url(self):
-        return reverse('design:design_detail', args=[self.slug])
+        return reverse('design:design_detail', args=[self.slug], kwargs={'slug':self.slug})
 
 
 class Comment(models.Model):
