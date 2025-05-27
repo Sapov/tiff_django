@@ -37,12 +37,9 @@
         </div>
 
 
-        {% if object.author == user %}
-        <div class="btn-group">
-            <a href="{% url 'article_update' article.slug %}" class="btn btn-sm btn-outline-primary">Редактировать</a>
-            <a href="{% url 'article_delete' article.slug %}" class="btn btn-sm btn-outline-danger">Удалить</a>
-        </div>
-        {% endif %}
+        <!--        {% if object.user == user %}-->
+
+        <!--        {% endif %}-->
     </div>
 </div>
 
@@ -50,6 +47,7 @@
     <div class="card-header">Комментарии ({{ comments.count }})</div>
 </div>
 {% if user.is_authenticated %}
+
 
 {% for comment in comments %}
 <div class="card mt-4">
@@ -70,7 +68,17 @@
 <p>Комментариев пока нет.</p>
 
 {% endfor %}
+<div class="card-body">
+    <form method="post" action="{% url 'designs:add_comment' designers.id %}">
 
-{% endif %}
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ comment_form.text }}
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить комментарий</button>
+    </form>
 
-{% endblock %}
+
+    {% endif %}
+
+    {% endblock %}

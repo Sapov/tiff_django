@@ -41,7 +41,7 @@ class OrderDesign(models.Model):
         ordering = ['title']
 
     def get_absolute_url(self):
-        return reverse('designs:design_detail', args=[self.id])
+        return reverse('designs:design_detail', args=[self.id])  # или kwargs={'pk': self.id}
 
 
 class Comments(models.Model):
