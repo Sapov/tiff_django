@@ -12,6 +12,9 @@ from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import OrderDesign
 
+from django.http import JsonResponse
+from django.core import serializers
+
 class DesignList(LoginRequiredMixin, ListView):
     model = OrderDesign
     template_name = 'designs/design_list.html'  # Укажите ваш шаблон
@@ -136,3 +139,11 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})
+
+
+def get_comments(request, design_id):
+    '''endpoint for JS'''
+    design = get_object_or_404(OrderDesign, pk=design_id)
+    comments = design.comments.all().order_by('created_at')
+    comments_json = serializers.serialize('json', comments)
+    return JsonResponse(comments_json, safe=False)

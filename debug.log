@@ -25632,3 +25632,7 @@ Traceback (most recent call last):
   File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'add_comment' not found. 'add_comment' is not a valid view function or pattern name.
+2025-05-28 13:35:07,052 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 13:35:08,433 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 13:35:31,009 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 13:35:32,267 django.utils.autoreload INFO     Watching for file changes with StatReloader
