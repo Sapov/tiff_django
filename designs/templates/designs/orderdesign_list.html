@@ -28,42 +28,4 @@
 </ul>
 
 
-<div class="row">
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-header">Мои Брифы</div>
-            <div class="list-group list-group-flush">
-    <div class="col-md-9">
-<h1>{% if current_category %}{{ current_category.name }}{% else %}Все статьи{% endif %}</h1>
-
-        {% for article in object_list %}
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-                    </h5>
-                </div>
-            </div>
-        {% empty %}
-            <p>Статей пока нет.</p>
-        {% endfor %}
-
-        {% if page.has_other_pages %}
-<div class="pagination">
-    {% if page.has_previous %}
-        <a href="?page={{ page.previous_page_number }}">&laquo;</a>
-    {% endif %}
-
-    <span class="current">
-        Страница {{ page.number }} из {{ page.paginator.num_pages }}
-    </span>
-
-    {% if page.has_next %}
-        <a href="?page={{ page.next_page_number }}">&raquo;</a>
-    {% endif %}
-</div>
-{% endif %}
-
-    </div>
-</div>
 {% endblock %}
