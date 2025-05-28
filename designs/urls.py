@@ -1,15 +1,12 @@
 from django.urls import path
-from .views import DesignList, DesignDetailView, add_comment, DesignCreateView, CommentCreateView
+from .views import DesignList, DesignDetailView, add_comment, DesignCreateView, CommentCreateView, get_comments
 
 app_name = 'designs'
 urlpatterns = [
     path('', DesignList.as_view(), name='design_list'),
-    # path('category/<slug:category_slug>/', ArticleListView.as_view(), name='article_list_by_category'),
     path('new/', DesignCreateView.as_view(), name='design_create'),
     path('<int:pk>/', DesignDetailView.as_view(), name='design_detail'),
-    # path('article/<slug:slug>/edit/', ArticleUpdateView.as_view(), name='article_update'),
-    # path('article/<slug:slug>/delete/', ArticleDeleteView.as_view(), name='article_delete'),
     path('comment/<int:design_id>/', CommentCreateView.as_view(), name='add_comment'),
-
+    path('api/design/<int:design_id>/comments/', get_comments, name='get_comments'),
 
 ]
