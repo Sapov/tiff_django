@@ -3,16 +3,16 @@
 
 {% block title %} {{title}} {% endblock %}
 {% block content %}
- <style>
-     .summa {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 140%;
-    text-align: center;
+<style>
+    .summa {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 140%;
+   text-align: center;
 
 }
-    </style>
+</style>
 
 <h1 style="text-align: center">{{title}}</h1>
 <h3 style="text-align: center">Минимальная сумма заказа 1000 руб.</h3>
@@ -34,17 +34,14 @@
     <div class="col-sm summa">
 
         <h2 class="summa">Сумма заказа:<br>{{results}} руб.</h2>
-        <p >
-                {% if st_discount %}
-        Скидка: {{st_discount}}
-
-        {% endif %}
+        <p>
+            {% if st_discount %}
+            Скидка: {{st_discount}}
+            {% endif %}
         </p>
     </div>
-
-
-
 </div>
+
 <div class="col-sm">
     <h4 style="text-align: center; ">Посчитанные заказы</h4>
     <table class="table table-bordered">
