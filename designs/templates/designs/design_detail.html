@@ -1,6 +1,5 @@
 {% extends 'kb/base_kb.html' %}
 {% load crispy_forms_tags %}
-
 {% block title %}{{ object.title }}{% endblock %}
 
 
@@ -14,7 +13,6 @@
             <div>
                 <span class="badge bg-secondary">{{ object.complexity }}</span>
             </div>
-
             <table class="table">
                 <thead>
                 <tr>
@@ -69,8 +67,6 @@
     <div class="card-header">{{ comment.author.username }}
         <small>{{ comment.created_at|date:"d.m.Y H:i" }}</small>
     </div>
-
-
     {% if comment.text %}
     <div class="card-body">
 
@@ -97,14 +93,147 @@
 
 
 <div class="card-body">
-    <form method="post" enctype="multipart/form-data" action="{% url 'designs:add_comment' design.pk %}">
+    <!--    <form method="post" enctype="multipart/form-data" action="{% url 'designs:add_comment' design.pk %}">-->
+    <!--        {% csrf_token %}-->
+    <!--        {{ comment_form|crispy }}-->
+    <!--        <button type="submit">Отправить</button>-->
+    <!--    </form>-->
+
+    <div id="chat-container" class="message-container">
+        <!-- Сообщения будут загружаться сюда через JavaScript -->
+    </div>
+
+    <form id="message-form" method="post" enctype="multipart/form-data"
+          action="{% url 'designs:add_comment' design.pk %}">
         {% csrf_token %}
-        {{ comment_form|crispy }}
-
-
+        {{ comment_form.text }}
+        {{ comment_form.image }}
         <button type="submit">Отправить</button>
     </form>
 
+
+    <script>
+<!--        document.addEventListener('DOMContentLoaded', function() {-->
+<!--            const chatContainer = document.getElementById('chat-container');-->
+<!--            const designId = {{ design.pk }};-->
+
+<!--            // Функция загрузки сообщений-->
+<!--            function loadMessages() {-->
+<!--fetch("{% url 'designs:get_comments' design.pk %}")-->
+
+<!--                    .then(response => response.json())-->
+<!--                    .then(data => {-->
+<!--                        chatContainer.innerHTML = '';-->
+<!--                        data.forEach(comment => {-->
+<!--                            const messageClass = comment.fields.author === {{ request.user.pk }} ? 'client' : 'designer';-->
+<!--                            const messageHtml = `-->
+<!--                                <div class="message ${messageClass}">-->
+<!--                                    <div class="message-text">${comment.fields.text || ''}</div>-->
+<!--                                    ${comment.fields.image ? `<img src="${comment.fields.image}" class="message-image">` : ''}-->
+<!--                                    <div class="message-info">-->
+<!--                                        <span>${comment.fields.author}</span>-->
+<!--                                        <span class="message-time">${new Date(comment.fields.created_at).toLocaleTimeString()}</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            `;-->
+<!--                            chatContainer.innerHTML += messageHtml;-->
+<!--                        });-->
+<!--                        chatContainer.scrollTop = chatContainer.scrollHeight;-->
+<!--                    });-->
+<!--            }-->
+
+<!--            // Отправка формы-->
+<!--            document.getElementById('message-form').addEventListener('submit', function(e) {-->
+<!--                e.preventDefault();-->
+<!--                const formData = new FormData(this);-->
+
+<!--                fetch(this.action, {-->
+<!--                    method: 'POST',-->
+<!--                    body: formData,-->
+<!--                    headers: {-->
+<!--                        'X-CSRFToken': formData.get('csrfmiddlewaretoken')-->
+<!--                    }-->
+<!--                })-->
+<!--                .then(response => {-->
+<!--                    if (response.ok) {-->
+<!--                        this.reset();-->
+<!--                        loadMessages();-->
+<!--                    }-->
+<!--                });-->
+<!--            });-->
+
+<!--            // Автообновление каждые 5 секунд-->
+<!--            setInterval(loadMessages, 5000);-->
+<!--            loadMessages(); // Первоначальная загрузка-->
+<!--        });-->
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const chatContainer = document.getElementById('chat-container');
+    const designId = {{ design.pk }};
+    const currentUserId = {{ request.user.pk }};
+
+    // Функция загрузки сообщений
+    function loadMessages() {
+        fetch(`/designs/api/design/${designId}/comments/`)
+            .then(response => {
+                if (!response.ok) throw new Error('Network error');
+                return response.json();
+            })
+            .then(data => {
+                chatContainer.innerHTML = '';
+                data.forEach(comment => {
+                    const isCurrentUser = comment.fields.author === currentUserId;
+                    const messageClass = isCurrentUser ? 'client' : 'designer';
+                    const authorName = isCurrentUser ? 'Вы' : comment.fields.author;
+
+                    const messageHtml = `
+                        <div class="card mt-3 ${messageClass}">
+                            <div class="card-header">
+                                ${authorName}
+                                <small>${new Date(comment.fields.created_at).toLocaleString()}</small>
+                            </div>
+                            <div class="card-body">
+                                ${comment.fields.text ? `<p>${comment.fields.text}</p>` : ''}
+                                ${comment.fields.image ? `<img src="${comment.fields.image}" class="img-fluid" style="max-width: 300px;">` : ''}
+                            </div>
+                        </div>
+                    `;
+                    chatContainer.innerHTML += messageHtml;
+                });
+                window.scrollTo(0, document.body.scrollHeight);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Отправка формы
+    const messageForm = document.getElementById('message-form');
+    if (messageForm) {
+        messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    this.reset();
+                    loadMessages();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    }
+
+    // Первоначальная загрузка и автообновление
+    loadMessages();
+    setInterval(loadMessages, 5000);
+});
+    </script>
 
     <script>window.scrollTo(0, document.body.scrollHeight);
     </script>

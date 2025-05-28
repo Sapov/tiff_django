@@ -141,9 +141,27 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})
 
 
+# def get_comments(request, design_id):
+#     '''endpoint for JS'''
+#     design = get_object_or_404(OrderDesign, pk=design_id)
+#     comments = design.comments.all().order_by('created_at')
+#     comments_json = serializers.serialize('json', comments)
+#     return JsonResponse(comments_json, safe=False)
+
+
 def get_comments(request, design_id):
-    '''endpoint for JS'''
     design = get_object_or_404(OrderDesign, pk=design_id)
-    comments = design.comments.all().order_by('created_at')
-    comments_json = serializers.serialize('json', comments)
-    return JsonResponse(comments_json, safe=False)
+    comments = design.comments.all().order_by('created_at').select_related('author')
+
+    comments_data = []
+    for comment in comments:
+        comments_data.append({
+            'fields': {
+                'author': comment.author.pk,
+                'text': comment.text,
+                'image': comment.image.url if comment.image else None,
+                'created_at': comment.created_at.isoformat(),
+            }
+        })
+
+    return JsonResponse(comments_data, safe=False)
