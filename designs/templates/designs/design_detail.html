@@ -113,61 +113,8 @@
 
 
     <script>
-<!--        document.addEventListener('DOMContentLoaded', function() {-->
-<!--            const chatContainer = document.getElementById('chat-container');-->
-<!--            const designId = {{ design.pk }};-->
 
-<!--            // Функция загрузки сообщений-->
-<!--            function loadMessages() {-->
-<!--fetch("{% url 'designs:get_comments' design.pk %}")-->
-
-<!--                    .then(response => response.json())-->
-<!--                    .then(data => {-->
-<!--                        chatContainer.innerHTML = '';-->
-<!--                        data.forEach(comment => {-->
-<!--                            const messageClass = comment.fields.author === {{ request.user.pk }} ? 'client' : 'designer';-->
-<!--                            const messageHtml = `-->
-<!--                                <div class="message ${messageClass}">-->
-<!--                                    <div class="message-text">${comment.fields.text || ''}</div>-->
-<!--                                    ${comment.fields.image ? `<img src="${comment.fields.image}" class="message-image">` : ''}-->
-<!--                                    <div class="message-info">-->
-<!--                                        <span>${comment.fields.author}</span>-->
-<!--                                        <span class="message-time">${new Date(comment.fields.created_at).toLocaleTimeString()}</span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            `;-->
-<!--                            chatContainer.innerHTML += messageHtml;-->
-<!--                        });-->
-<!--                        chatContainer.scrollTop = chatContainer.scrollHeight;-->
-<!--                    });-->
-<!--            }-->
-
-<!--            // Отправка формы-->
-<!--            document.getElementById('message-form').addEventListener('submit', function(e) {-->
-<!--                e.preventDefault();-->
-<!--                const formData = new FormData(this);-->
-
-<!--                fetch(this.action, {-->
-<!--                    method: 'POST',-->
-<!--                    body: formData,-->
-<!--                    headers: {-->
-<!--                        'X-CSRFToken': formData.get('csrfmiddlewaretoken')-->
-<!--                    }-->
-<!--                })-->
-<!--                .then(response => {-->
-<!--                    if (response.ok) {-->
-<!--                        this.reset();-->
-<!--                        loadMessages();-->
-<!--                    }-->
-<!--                });-->
-<!--            });-->
-
-<!--            // Автообновление каждые 5 секунд-->
-<!--            setInterval(loadMessages, 5000);-->
-<!--            loadMessages(); // Первоначальная загрузка-->
-<!--        });-->
-
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const chatContainer = document.getElementById('chat-container');
     const designId = {{ design.pk }};
     const currentUserId = {{ request.user.pk }};

@@ -15,6 +15,7 @@ from .models import OrderDesign
 from django.http import JsonResponse
 from django.core import serializers
 
+
 class DesignList(LoginRequiredMixin, ListView):
     model = OrderDesign
     template_name = 'designs/design_list.html'  # Укажите ваш шаблон
@@ -73,7 +74,7 @@ class DesignDetailView(DetailView):
 @login_required
 def add_comment(request, id):
     design = get_object_or_404(OrderDesign, id=id)
-    if request.user.role == 'DESIGNER' or request.user.role == 'CUSTOMER_RETAIL' :
+    if request.user.role == 'DESIGNER' or request.user.role == 'CUSTOMER_RETAIL':
 
         if request.method == 'POST':
             form = CommentForm(request.POST)
@@ -115,8 +116,8 @@ class DesignCreateView(CreateView):
 #         form.instance.author = self.request.user
 #         return super().form_valid(form)
 
-    # def get_success_url(self):
-    #     return reverse_lazy('design_detail', kwargs={'pk': self.kwargs['design_id']})
+# def get_success_url(self):
+#     return reverse_lazy('design_detail', kwargs={'pk': self.kwargs['design_id']})
 
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
@@ -133,7 +134,6 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         print("Found design:", design)  # Проверьте что объект существует
         return super().form_valid(form)
 
-
     # def get_success_url(self):
     #     return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
 
@@ -141,15 +141,9 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})
 
 
-# def get_comments(request, design_id):
-#     '''endpoint for JS'''
-#     design = get_object_or_404(OrderDesign, pk=design_id)
-#     comments = design.comments.all().order_by('created_at')
-#     comments_json = serializers.serialize('json', comments)
-#     return JsonResponse(comments_json, safe=False)
-
-
 def get_comments(request, design_id):
+    #     '''endpoint for JS'''
+
     design = get_object_or_404(OrderDesign, pk=design_id)
     comments = design.comments.all().order_by('created_at').select_related('author')
 

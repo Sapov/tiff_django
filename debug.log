@@ -26429,3 +26429,5 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'get_comments' not found. 'ge
 2025-05-28 14:33:08,892 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
 2025-05-28 14:33:10,206 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-28 14:33:29,662 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-28 14:37:01,288 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-05-28 14:37:02,472 django.utils.autoreload INFO     Watching for file changes with StatReloader
