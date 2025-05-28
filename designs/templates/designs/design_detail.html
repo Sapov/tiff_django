@@ -3,25 +3,6 @@
 
 {% block title %}{{ object.title }}{% endblock %}
 
-<style>
-    .comment {
-     border: 1px solid #ddd;
-     padding: 15px;
-     margin-bottom: 15px;
-     border-radius: 5px;
- }
-
- .comment-image {
-     margin-top: 10px;
- }
-
- .comment-image img {
-     max-width: 100%;
-     height: auto;
-     border-radius: 5px;
-     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
- }
-</style>
 
 
 {% block content %}
@@ -29,36 +10,49 @@
 
 <div class="card">
     <div class="card-body">
-        <h1 class="card-title">{{ object.title }}</h1>
+        <h1 class="card-title">Бриф:{{ object.title }}</h1>
         <div class="d-flex justify-content-between mb-3">
             <div>
                 <span class="badge bg-secondary">{{ object.complexity }}</span>
             </div>
-            <div>
-                Автор: {{object.user}}
-            </div>
 
-            <div>Тех. Задание {{object.description}}</div>
-            <div>Категория макета: {{object.interest}}</div>
-            <div>Размеры: {{object.width}} х {{object.length}} см</div>
-            <div>Изображение: {{object.images}}</div>
-            <div>Добавлено: {{object.created_at}}</div>
-            <div>Сложность: {{object.complexity}}</div>
-            <div class="text-muted">
-                <!--                Опубликовано: {{ article.created_at|date:"d.m.Y H:i" }}-->
-                <!--                {% if article.updated_at != article.created_at %}-->
-                <!--                (обновлено: {{ article.updated_at|date:"d.m.Y H:i" }})-->
-                <!--                {% endif %}-->
-                | Просмотров: {{ object.views }} |
-            </div>
+            <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Автор</th>
+      <th scope="col">Категория макета:</th>
+      <th scope="col">Сложность:</th>
+      <th scope="col">Длина:</th>
+      <th scope="col">Ширина:</th>
+      <th scope="col">Создано:</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>{{object.user}}</td>
+      <td>{{object.interest}}</td>
+      <td>{{object.complexity}}</td>
+      <td>{{object.length}} см</td>
+      <td>{{object.width}} см</td>
+      <td>{{object.created_at}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
         </div>
 
         <div class="card-text mb-4">
             {% if object.images %}
-            <img src="{{ object.images.url }}" class="img-fluid mb-3" alt="{{ object.title }}">
+            <img src="{{ object.images.url }}" class="img-fluid mb-3" alt="{{ object.title }}" style="max-width: 400px;">
+
             {% endif %}
             {{ object.content|safe }}
         </div>
+<div class="card mt-4">
+    <div class="card-header">Тех.Задание ({{ object.description }})</div>
+</div>
 
     </div>
 </div>
@@ -70,8 +64,8 @@
 {% if user.is_authenticated %}
 
 
+
 {% for comment in design.comments.all %}
-<!--<div class="comment">-->
 <div class="card mt-4">
     <div class="card-header">{{ comment.author.username }}
         <small>{{ comment.created_at|date:"d.m.Y H:i" }}</small>
@@ -79,7 +73,9 @@
 
 
     {% if comment.text %}
-    <p>{{ comment.text }}</p>
+    <div class="card-body">
+
+        <p>{{ comment.text }}</p></div>
     {% endif %}
 
     {% if comment.image %}
@@ -103,7 +99,6 @@
 <div class="card-body">
     <form method="post" enctype="multipart/form-data" action="{% url 'designs:add_comment' design.pk %}">
         {% csrf_token %}
-        <!--    {{ comment_form.as_p }}-->
         {{ comment_form|crispy }}
 
 
