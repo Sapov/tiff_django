@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Dashboard{% endblock %}
+{% block title %}Панель управления{% endblock %}
 {% block body %}
 
 {% if request.user.role == 'COURIER' %}
@@ -37,13 +37,13 @@
 </div>
 {% endif %}
 
+
+
 {% elif request.user.role == 'MANAGER' %}
 
 
 
 <div class="row">
-
-
     <!-- Earnings (Annual) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
@@ -121,10 +121,10 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_rollup' %}">Заказ мобильного стенда RollUp</a></p>
+                            <p><a href=" {% url 'designs:design_create' %}">Создать бриф на разработку макета</a></p>
 
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 4950 руб.</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 450 руб.</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -326,11 +326,11 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_rollup' %}">Заказ мобильного стенда RollUp</a></p>
+                               <p><a href=" {% url 'designs:design_create' %}">Создать бриф на разработку макета</a></p>
 
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 4950 руб.</div>
-                    </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 450 руб.</div>
+                        </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>

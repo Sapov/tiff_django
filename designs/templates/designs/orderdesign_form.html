@@ -1,0 +1,51 @@
+{% extends 'designs/base_design.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-sm">
+
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">{{ object.title }}</h1>
+                <div class="d-flex justify-content-between mb-3">
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+
+
+        <button type="submit" class="btn btn-success"
+                >Создать
+        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm summa">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Как заполнить</h1>
+                    <p>Название Брифа: к примеру "Баннер в спортзал"</p>
+                    <p>Сложность макета: к примеру "простой, средний, сложный"</p>
+                    <p>Категория макета: к примеру наклейка, баннер, стенд</p>
+                    <p>Ширина макета: указывается в см. </p>
+                    <p>Длина макета: указывается в см. </p>
+                    <p>Техническое задание: Подробно опишите что вы хотите видеть в будущем макете </p>
+                    <p>Картинка: можно загрузить картинку, логотип брендбук</p>
+                    <p>Загрузите главную картинку, остальные можно будет загрузить в чате при общении.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

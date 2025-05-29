@@ -88,22 +88,6 @@ class Order(models.Model):
         return reverse("orders:add_file_in_order", args=[self.id])
 
 
-# def send_order(instance, **kwargs):
-#     order_id = instance.id
-#     paid = instance.paid
-#     status = instance.status.id
-#     if paid and status == 2:
-#         print('--ORDER PAID--')
-#         domain = os.getenv("DOMAIN")
-#         from .tasks import arh_for_mail
-#         # _________________________Архивируем файлы для письма посылаем письмо с заказом------------------
-#         # domain = str(get_domain(request))
-#         arh_for_mail.delay(order_id, domain=domain)
-#
-#
-# post_save.connect(send_order, sender=Order)
-
-
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name="Ордер")
     product = models.ForeignKey(
@@ -146,12 +130,12 @@ class OrderItem(models.Model):
     def save(self, *args, **kwargs):
         self.quantity = self.product.quantity
         self.price_per_item = self.product.price
-        self.total_price = self.price_per_item #* self.quantity
+        self.total_price = self.price_per_item  # * self.quantity
         # Cost
         cost_price_per_item = self.product.cost_price
         logger.info(f"cost_price_per_item {cost_price_per_item}")
         self.cost_price_per_item = cost_price_per_item
-        self.cost_total_price = self.cost_price_per_item  #* self.quantity
+        self.cost_total_price = self.cost_price_per_item  # * self.quantity
 
         super(OrderItem, self).save(*args, **kwargs)
 
@@ -180,23 +164,6 @@ def product_in_order_post_save(instance, **kwargs):
 
 
 post_save.connect(product_in_order_post_save, sender=OrderItem)
-
-
-# def goto_media(foo):
-#     ''' переходим в папку media/image{data}  и обратно'''
-#
-#     def wrapper(*args, **kwargs):
-#         logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
-#         current_path = os.getcwd()
-#         os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
-#         # перейти в директорию дата должна браться из параметра Order.created
-#         logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
-#         res = foo(*args, **kwargs)
-#         os.chdir(current_path)  # перейти обратно
-#         logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
-#         return res
-#
-#     return wrapper
 
 
 class BankInvoices(models.Model):

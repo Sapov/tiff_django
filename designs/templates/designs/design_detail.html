@@ -1,0 +1,182 @@
+{% extends 'designs/base_design.html' %}
+{% load crispy_forms_tags %}
+{% block title %}{{ object.title }}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">Бриф:{{ object.title }}</h1>
+        <div class="d-flex justify-content-between mb-3">
+            <div>
+                <span class="badge bg-secondary">{{ object.complexity }}</span>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Автор</th>
+                    <th scope="col">Категория макета:</th>
+                    <th scope="col">Сложность:</th>
+                    <th scope="col">Длина:</th>
+                    <th scope="col">Ширина:</th>
+                    <th scope="col">Создано:</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td>{{object.user}}</td>
+                    <td>{{object.interest}}</td>
+                    <td>{{object.complexity}}</td>
+                    <td>{{object.length}} см</td>
+                    <td>{{object.width}} см</td>
+                    <td>{{object.created_at}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+        <div class="card-text mb-4">
+            {% if object.images %}
+            <img src="{{ object.images.url }}" class="img-fluid mb-3" alt="{{ object.title }}"
+                 style="max-width: 400px;">
+
+            {% endif %}
+            {{ object.content|safe }}
+        </div>
+        <div class="card mt-4">
+            <div class="card-header">Тех.Задание ({{ object.description }})</div>
+        </div>
+
+    </div>
+</div>
+
+{% if comments %}
+<div class="card mt-4">
+    <div class="card-header">Комментарии ({{ comments.count }})</div>
+</div>
+{% if user.is_authenticated %}
+
+
+{% for comment in design.comments.all %}
+<div class="card mt-4">
+    <div class="card-header">{{ comment.author.username }}
+        <small>{{ comment.created_at|date:"d.m.Y H:i" }}</small>
+    </div>
+    {% if comment.text %}
+    <div class="card-body">
+
+        <p>{{ comment.text }}</p></div>
+    {% endif %}
+
+    {% if comment.image %}
+    <div class="comment-image">
+        <img src="{{ comment.image.url }}" alt="Изображение в комментарии" style="max-width: 300px;">
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+
+
+{% if not forloop.last %}
+<hr>
+{% endif %}
+
+{% else %}
+<p>Комментариев пока нет.</p>
+{% endif %}
+{% endif %}
+
+
+<div class="card-body">
+
+    <div id="chat-container" class="message-container">
+        <!-- Сообщения будут загружаться сюда через JavaScript -->
+    </div>
+
+    <form id="message-form" method="post" enctype="multipart/form-data"
+          action="{% url 'designs:add_comment' design.pk %}">
+        {% csrf_token %}
+        {{ comment_form.text }}
+        {{ comment_form.image }}
+        <button type="submit">Отправить</button>
+    </form>
+
+
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const chatContainer = document.getElementById('chat-container');
+    const designId = {{ design.pk }};
+    const currentUserId = {{ request.user.username }};
+
+    // Функция загрузки сообщений
+    function loadMessages() {
+        fetch(`/designs/api/design/${designId}/comments/`)
+            .then(response => {
+                if (!response.ok) throw new Error('Network error');
+                return response.json();
+            })
+            .then(data => {
+                chatContainer.innerHTML = '';
+                data.forEach(comment => {
+                    const isCurrentUser = comment.fields.author === currentUserId;
+                    const messageClass = isCurrentUser ? 'client' : 'designer';
+                    const authorName = isCurrentUser ? 'Вы' : comment.fields.author;
+
+                    const messageHtml = `
+                        <div class="card mt-3 ${messageClass}">
+                            <div class="card-header">
+                                ${authorName}
+                                <small>${new Date(comment.fields.created_at).toLocaleString()}</small>
+                            </div>
+                            <div class="card-body">
+                                ${comment.fields.text ? `<p>${comment.fields.text}</p>` : ''}
+                                ${comment.fields.image ? `<img src="${comment.fields.image}" class="img-fluid" style="max-width: 300px;">` : ''}
+                            </div>
+                        </div>
+                    `;
+                    chatContainer.innerHTML += messageHtml;
+                });
+                window.scrollTo(0, document.body.scrollHeight);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Отправка формы
+    const messageForm = document.getElementById('message-form');
+    if (messageForm) {
+        messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    this.reset();
+                    loadMessages();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    }
+
+    // Первоначальная загрузка и автообновление
+    loadMessages();
+    setInterval(loadMessages, 5000);
+});
+    </script>
+
+    <script>window.scrollTo(0, document.body.scrollHeight);
+    </script>
+    {% endblock %}

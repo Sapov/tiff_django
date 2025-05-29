@@ -4,8 +4,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Article, Category, Comment
-from .forms import ArticleForm, CommentForm
+from .models import Article, Category
+from .forms import ArticleForm
 
 
 class ArticleListView(ListView):
@@ -39,8 +39,8 @@ class ArticleDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comment_form'] = CommentForm()
-        context['comments'] = self.object.comments.all()
+        # context['comment_form'] = CommentForm()
+        # context['comments'] = self.object.comments.all()
         return context
 
     def get_object(self, queryset=None):
@@ -50,18 +50,6 @@ class ArticleDetailView(DetailView):
         return obj
 
 
-@login_required
-def add_comment(request, slug):
-    article = get_object_or_404(Article, slug=slug)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.article = article
-            comment.author = request.user
-            comment.save()
-            return redirect('article_detail', slug=article.slug)
-    return redirect('article_detail', slug=article.slug)
 
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):

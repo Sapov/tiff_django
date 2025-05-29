@@ -1,0 +1,71 @@
+{% extends 'designs/base_design.html' %}
+
+{% block title %}Мои Брифы на дизайн макета>{% endblock %}
+
+{% block content %}
+
+<h1>
+    {% if is_designer %}
+    Все заказы на дизайн
+</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">№</th>
+        <th scope="col">Название брифа</th>
+        <th scope="col">Заказчик</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Дата</th>
+        <th scope="col">Категория</th>
+    </tr>
+    </thead>
+    {% for design in designs %}
+    <tbody>
+    <tr>
+        <td> {{design.id}}</td>
+        <th scope="row"><a href="{{ design.get_absolute_url }}">{{ design.title }}</a></th>
+        <td>{{ design.user }}</td>
+        <td>{{ design.get_order_status_display }}</td>
+        <td>{{ design.created_at }}</td>
+        <td>{{ design.interest }}</td>
+    </tr>
+    {% empty %}
+    <li>Нет доступных заказов</li>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+Мои заказы на дизайн
+</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Название брифа</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Дата</th>
+        <th scope="col">Категория</th>
+    </tr>
+    </thead>
+    {% for design in designs %}
+
+    <tbody>
+    <tr>
+        <th scope="row"><a href="{{ design.get_absolute_url }}">{{ design.title }}</a></th>
+        <td>{{ design.get_order_status_display }}</td>
+        <td>{{ design.created_at }}</td>
+        <td>{{ design.interest }}</td>
+    </tr>
+    {% empty %}
+    <li>Нет доступных заказов</li>
+    {% endfor %}
+    </tbody>
+</table>
+
+<button type="submit" class="btn btn-primary"
+        onClick="location.href='{% url 'designs:design_create'  %}'">Создать Бриф
+</button>
+{% endif %}
+
+
+{% endblock %}

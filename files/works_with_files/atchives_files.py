@@ -34,7 +34,7 @@ class UtilsModel:
         data = {
             "data_order_complete": self.order_complete,
             "order_item": self.order_list,
-            "order_archive_link": f"http://{self.domain}/media/{str(order.order_arhive)}",
+            "order_archive_link": f"https://{self.domain}/media/{str(order.order_arhive)}",
             "confirm_link": self.confirm_link_to_work,
             "order_id": self.order_id,
         }
