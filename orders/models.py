@@ -166,23 +166,6 @@ def product_in_order_post_save(instance, **kwargs):
 post_save.connect(product_in_order_post_save, sender=OrderItem)
 
 
-# def goto_media(foo):
-#     ''' переходим в папку media/image{data}  и обратно'''
-#
-#     def wrapper(*args, **kwargs):
-#         logger.info(f'[INFO DECORATOR] перед работой мы тут: {os.getcwd()}')
-#         current_path = os.getcwd()
-#         os.chdir(f'{settings.MEDIA_ROOT}/image/{str(date.today())}')
-#         # перейти в директорию дата должна браться из параметра Order.created
-#         logger.info(f'[INFO DECORATOR] Мы Выбрали: {os.getcwd()}')
-#         res = foo(*args, **kwargs)
-#         os.chdir(current_path)  # перейти обратно
-#         logger.info(f'[INFO DECORATOR] Возвращаемся обратно: {os.getcwd()}')
-#         return res
-#
-#     return wrapper
-
-
 class BankInvoices(models.Model):
     order_id = models.IntegerField(verbose_name='Номер заказа')
     document_id = models.CharField(max_length=40, verbose_name='Номер выставленного документа в банке')

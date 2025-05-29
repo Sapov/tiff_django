@@ -26829,3 +26829,5 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-05-29 14:00:11,227 orders.payment.bank ERROR    ERROR sending messag: HTTPSConnectionPool(host='enter.tochka.com', port=443): Max retries exceeded with url: /uapi/open-banking/v1.0/customers (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7c17001b5cc0>: Failed to resolve 'enter.tochka.com' ([Errno -3] Temporary failure in name resolution)"))
 2025-05-29 14:22:29,106 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/models.py changed, reloading.
 2025-05-29 14:22:30,304 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 14:23:42,485 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/models.py changed, reloading.
+2025-05-29 14:23:43,625 django.utils.autoreload INFO     Watching for file changes with StatReloader
