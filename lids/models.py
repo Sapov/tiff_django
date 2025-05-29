@@ -54,7 +54,7 @@ class Lids(models.Model):
     user = models.ForeignKey(  # переименовать в юзера!!!!!
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        verbose_name="Владелиц лида",
+        verbose_name="Владелиц лида",null=True, blank=True
 
     )
 
