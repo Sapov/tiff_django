@@ -27405,3 +27405,115 @@ SELF.USER: DESIGNER: TYPE <class 'str'>
 2025-05-29 21:50:04,968 account.views INFO     Orders:  <QuerySet []>
 2025-05-29 21:50:04,969 account.views INFO     page_NUM: 1
 2025-05-29 21:50:04,971 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 00:19:18,371 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 00:19:40,172 account.views INFO     Orders:  <QuerySet []>
+2025-05-30 00:19:40,173 account.views INFO     page_NUM: 1
+2025-05-30 00:19:40,176 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 00:19:42,271 django.request WARNING  Not Found: /favicon.ico
+2025-05-30 00:19:57,305 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-30 00:19:57,306 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:19:57,306 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:20:13,464 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-05-30 00:20:13,472 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-05-30 00:20:15,986 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-05-30 00:20:15,988 root         INFO     method POST
+2025-05-30 00:20:15,990 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['pd36iC0MI2LBTtfLvioeVBbgPkAEHohvX5yk4n5n6doJOEDmrFFAwzZWVzEN3VKm'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-06-02']}>
+2025-05-30 00:20:15,990 root         INFO     USER sasha@mail.ru
+2025-05-30 00:20:15,991 root         INFO     [INFO] отправленная форма имеет дату 2025-06-02
+2025-05-30 00:20:15,996 root         INFO     [INFO] Приводим строку в формату даты 2025-06-02 00:00:00
+2025-05-30 00:20:15,996 root         INFO     [INFO] прибавляем 12 часов 2025-06-02 12:00:00
+2025-05-30 00:20:15,996 root         INFO     date_complite 2025-06-02 12:00:00 - <class 'datetime.datetime'>
+2025-05-30 00:20:15,996 root         INFO     DELIV ID:  1
+2025-05-30 00:20:15,997 root         INFO     ORGANISATION:  
+2025-05-30 00:20:15,999 root         INFO     DELIVERY:  Самовывоз
+2025-05-30 00:20:19,372 orders.models INFO     cost_price_per_item 280.00
+2025-05-30 00:20:19,392 orders.models INFO     690.00
+2025-05-30 00:20:19,392 orders.models INFO     Себестоимость, 280.00
+2025-05-30 00:20:19,427 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-30 00:20:19,427 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:20:19,427 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:20:26,128 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-05-30 00:20:26,145 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-05-30 00:20:26,154 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-06-02 09:00:00+00:00
+2025-05-30 00:20:26,493 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-05-30 00:24:18,767 orders.views INFO     МЕНЯЮ СТАТУС НА В работе
+2025-05-30 00:25:06,794 orders.views INFO     МЕНЯЮ СТАТУС НА Готов
+2025-05-30 00:25:07,138 django.request ERROR    Internal Server Error: /files/confirm_order_to_competed/3/eccbc87e4b5ce2fe28308fd9f2a7baf3/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 432, in confirm_order_to_completed
+    files_new_status(pk)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 443, in files_new_status
+    set_status_file(i.product, 4)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 174, in set_status_file
+    instance_status = StatusProduct.objects.get(id=status_id)  # файл в работе
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+files.models.StatusProduct.DoesNotExist: StatusProduct matching query does not exist.
+2025-05-30 00:29:42,742 orders.views INFO     МЕНЯЮ СТАТУС НА В работе
+2025-05-30 00:30:41,078 orders.views INFO     МЕНЯЮ СТАТУС НА Готов
+2025-05-30 00:30:41,121 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-30 00:30:41,126 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:30:41,126 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:30:56,660 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 3>]>
+2025-05-30 00:30:56,660 account.views INFO     page_NUM: 1
+2025-05-30 00:30:56,662 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 00:31:11,947 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Прозрачная 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-30 00:31:11,947 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:31:11,947 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:32:07,075 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-05-30 00:32:07,085 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-05-30 00:32:09,411 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-05-30 00:32:09,411 root         INFO     method POST
+2025-05-30 00:32:09,413 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['WbwjbpCewYv57y2Va9wzdVn0XgTIX23wu31xXaHPU98d2Jqw6wNVOTbG3vXRjzwn'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-06-02']}>
+2025-05-30 00:32:09,414 root         INFO     USER sasha@mail.ru
+2025-05-30 00:32:09,415 root         INFO     [INFO] отправленная форма имеет дату 2025-06-02
+2025-05-30 00:32:09,415 root         INFO     [INFO] Приводим строку в формату даты 2025-06-02 00:00:00
+2025-05-30 00:32:09,415 root         INFO     [INFO] прибавляем 12 часов 2025-06-02 12:00:00
+2025-05-30 00:32:09,416 root         INFO     date_complite 2025-06-02 12:00:00 - <class 'datetime.datetime'>
+2025-05-30 00:32:09,416 root         INFO     DELIV ID:  1
+2025-05-30 00:32:09,416 root         INFO     ORGANISATION:  
+2025-05-30 00:32:09,417 root         INFO     DELIVERY:  Самовывоз
+2025-05-30 00:32:16,614 orders.models INFO     cost_price_per_item 534.00
+2025-05-30 00:32:16,633 orders.models INFO     705.00
+2025-05-30 00:32:16,634 orders.models INFO     Себестоимость, 534.00
+2025-05-30 00:32:16,699 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Прозрачная 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-30 00:32:16,700 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:32:16,701 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-30 00:32:47,594 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tiff_file.py changed, reloading.
+2025-05-30 00:32:49,544 django.utils.autoreload INFO     Watching for file changes with StatReloader

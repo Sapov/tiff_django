@@ -437,10 +437,10 @@ def confirm_order_to_completed(request, pk: int, hash_code):
             return render(request, "files/no_confirm_order_to_completed.html")
 
 def files_new_status(order_id:int):
-    '''Функция возвращает файлы заказа в статус "ОФОРМЛЕН"'''
+    '''Функция меняет статус файлов на "В архиве"'''
     all_products_in_order = OrderItem.objects.filter(order=order_id)
     for i in all_products_in_order:
-        set_status_file(i.product, 1)
+        set_status_file(i.product, 4)
         print('STATUS---', i.product.status_product)
 
 
