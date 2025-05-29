@@ -1,4 +1,3 @@
-from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
@@ -30,7 +29,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200,verbose_name='Заголовок')
     images = models.ForeignKey('ArticleImage', on_delete=models.CASCADE, blank=True, null=True)
     slug = models.SlugField(max_length=200, unique=True)
-    content = RichTextField()
+    content = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
