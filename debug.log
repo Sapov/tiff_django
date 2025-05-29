@@ -27352,3 +27352,53 @@ AttributeError: 'QuerySet' object has no attribute 'by_order'
 2025-05-29 21:24:48,972 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-29 21:25:21,045 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
 2025-05-29 21:25:22,319 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 21:34:36,695 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:34:36,695 account.views INFO     page_NUM: 1
+2025-05-29 21:34:36,700 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:38:39,007 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:38:39,007 account.views INFO     page_NUM: 1
+2025-05-29 21:38:39,010 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:38:46,874 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:38:46,874 account.views INFO     page_NUM: 1
+2025-05-29 21:38:46,877 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:38:59,536 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:38:59,537 account.views INFO     page_NUM: 1
+2025-05-29 21:38:59,540 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:39:08,748 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-05-29 21:39:08,757 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-05-29 21:39:26,052 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:39:26,052 account.views INFO     page_NUM: 1
+2025-05-29 21:39:26,056 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:39:57,205 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-05-29 21:39:57,207 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-05-29 21:39:59,395 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:39:59,395 account.views INFO     page_NUM: 1
+2025-05-29 21:39:59,397 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:41:35,746 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:41:35,749 account.views INFO     page_NUM: 1
+2025-05-29 21:41:35,759 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:41:42,436 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:41:42,438 account.views INFO     page_NUM: 1
+2025-05-29 21:41:42,440 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:42:47,927 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:42:47,928 account.views INFO     page_NUM: 1
+2025-05-29 21:42:47,931 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:43:31,587 files.views  INFO     [INFO CLEAN DATA] {'quantity': 1.0, 'material': <Material: Баннер 440 грамм ламинированный Широкоформатная печать>, 'finishing': <FinishWork: оставить белые поля по 5 см>, 'length': 2.0, 'width': 3.0, 'user': <SimpleLazyObject: <User: sapov@mail.ru>>, 'role': 'DESIGNER'}
+2025-05-29 21:43:31,587 root         INFO     [INFO]. self.length:2.0 TYPE<class 'float'>
+Width: 3.0 TYPE <class 'float'>
+ Quantity: 1.0 TYPE <class 'float'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: DESIGNER: TYPE <class 'str'> 
+2025-05-29 21:43:31,588 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: DESIGNER, TYPE <class 'str'>
+2025-05-29 21:43:31,588 files.tiff_file INFO     CHECK ROLE -> USER IS USER: DESIGNER, TYPE <class 'str'>
+2025-05-29 21:44:20,270 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:44:20,271 account.views INFO     page_NUM: 1
+2025-05-29 21:44:20,273 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:44:52,158 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:44:52,158 account.views INFO     page_NUM: 1
+2025-05-29 21:44:52,160 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 21:46:08,328 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 21:46:08,328 account.views INFO     page_NUM: 1
+2025-05-29 21:46:08,329 account.views INFO     page_NUM: <Page 1 of 1>
