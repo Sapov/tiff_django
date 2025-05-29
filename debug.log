@@ -27523,3 +27523,9 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-05-30 00:36:47,365 orders.views INFO     DOMAIN: 127.0.0.1:8000
 2025-05-30 00:36:47,372 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-06-02 09:00:00+00:00
 2025-05-30 00:36:47,869 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2025-05-30 00:49:04,846 django.request WARNING  Not Found: /files/about_file/image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
+2025-05-30 00:49:22,265 django.request WARNING  Not Found: /files/about_file/image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
+2025-05-30 00:49:54,477 django.request WARNING  Not Found: /image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
+2025-05-30 00:51:29,461 django.request WARNING  Not Found: /files/about_file/media/image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
+2025-05-30 00:52:00,589 django.request WARNING  Not Found: /files/about_file/image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
+2025-05-30 00:54:56,543 django.request WARNING  Not Found: /files/about_file/image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
