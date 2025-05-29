@@ -27517,3 +27517,9 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-05-30 00:32:16,701 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
 2025-05-30 00:32:47,594 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tiff_file.py changed, reloading.
 2025-05-30 00:32:49,544 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 00:36:41,672 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/atchives_files.py changed, reloading.
+2025-05-30 00:36:42,797 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 00:36:47,349 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-05-30 00:36:47,365 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-05-30 00:36:47,372 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-06-02 09:00:00+00:00
+2025-05-30 00:36:47,869 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
