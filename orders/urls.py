@@ -58,3 +58,5 @@ urlpatterns = [
     path('create_pay_link/<int:order_id>', create_pay_link, name='create_pay_link'), # Генерируем ссылку
 
 ]
+
+

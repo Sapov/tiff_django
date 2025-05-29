@@ -16603,6 +16603,50 @@ django.template.exceptions.TemplateDoesNotExist: kb/pagination.html
 2025-05-16 21:48:26,161 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-16 21:54:06,090 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/kb/views.py changed, reloading.
 2025-05-16 21:54:07,399 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 01:00:38,550 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 01:01:13,478 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:01:13,480 account.views INFO     page_NUM: 1
+2025-05-30 01:01:13,486 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:01:17,106 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:01:17,107 account.views INFO     page_NUM: 1
+2025-05-30 01:01:17,114 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:01:20,416 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:01:20,418 account.views INFO     page_NUM: 1
+2025-05-30 01:01:20,424 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:01:26,586 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 01:01:28,868 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:01:28,869 account.views INFO     page_NUM: 1
+2025-05-30 01:01:28,877 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:01:31,727 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:01:31,728 account.views INFO     page_NUM: 1
+2025-05-30 01:01:31,735 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:01:33,256 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:01:33,256 account.views INFO     page_NUM: 1
+2025-05-30 01:01:33,258 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:01:36,790 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:01:36,791 account.views INFO     page_NUM: 1
+2025-05-30 01:01:36,798 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:02:48,112 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:02:48,114 account.views INFO     page_NUM: 1
+2025-05-30 01:02:48,123 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:02:57,951 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:02:57,952 account.views INFO     page_NUM: 1
+2025-05-30 01:02:57,962 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:03:26,520 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-30 01:03:26,520 account.views INFO     page_NUM: 1
+2025-05-30 01:03:26,521 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:03:30,498 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-30 01:03:30,499 account.views INFO     page_NUM: 1
+2025-05-30 01:03:30,506 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:03:31,563 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-30 01:03:31,564 account.views INFO     page_NUM: 1
+2025-05-30 01:03:31,571 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:03:52,719 account.views INFO     Orders:  <QuerySet []>
+2025-05-30 01:03:52,719 account.views INFO     page_NUM: 1
+2025-05-30 01:03:52,721 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:04:00,647 account.views INFO     Orders:  <QuerySet []>
+2025-05-30 01:04:00,648 account.views INFO     page_NUM: 1
+2025-05-30 01:04:00,649 account.views INFO     page_NUM: <Page 1 of 1>
 2025-05-26 16:52:01,968 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-26 16:52:49,174 django.request WARNING  Not Found: /bk
 2025-05-26 17:06:36,674 django.utils.autoreload INFO     Watching for file changes with StatReloader
@@ -27529,3 +27573,10 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-05-30 00:51:29,461 django.request WARNING  Not Found: /files/about_file/media/image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
 2025-05-30 00:52:00,589 django.request WARNING  Not Found: /files/about_file/image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
 2025-05-30 00:54:56,543 django.request WARNING  Not Found: /files/about_file/image/Баннеры_2000_х_700_ВВ_VKdllJi.tif
+2025-05-30 01:04:17,177 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 01:04:36,086 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 01:05:17,775 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-05-30 01:05:17,779 account.views INFO     page_NUM: 1
+2025-05-30 01:05:17,789 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:06:02,809 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/urls.py changed, reloading.
+2025-05-30 01:06:04,149 django.utils.autoreload INFO     Watching for file changes with StatReloader
