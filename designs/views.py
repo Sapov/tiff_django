@@ -106,20 +106,6 @@ class DesignCreateView(CreateView):
         return super().form_valid(form)
 
 
-# class CommentCreateView(CreateView):
-#     model = Comments
-#     form_class = CommentForm
-#     template_name = 'designs/add_comment.html'
-#
-#     def form_valid(self, form):
-#         form.instance.design_id = self.kwargs['design_id']
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
-
-# def get_success_url(self):
-#     return reverse_lazy('design_detail', kwargs={'pk': self.kwargs['design_id']})
-
-
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comments
     form_class = CommentForm
@@ -133,9 +119,6 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         design = get_object_or_404(OrderDesign, pk=self.kwargs['design_id'])
         print("Found design:", design)  # Проверьте что объект существует
         return super().form_valid(form)
-
-    # def get_success_url(self):
-    #     return reverse('design_detail', kwargs={'pk': self.kwargs['design_id']})
 
     def get_success_url(self):
         return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})

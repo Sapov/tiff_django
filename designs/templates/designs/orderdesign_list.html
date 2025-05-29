@@ -12,6 +12,7 @@
 <table class="table">
     <thead>
     <tr>
+        <th scope="col">№</th>
         <th scope="col">Название брифа</th>
         <th scope="col">Заказчик</th>
         <th scope="col">Статус</th>
@@ -22,6 +23,7 @@
     {% for design in designs %}
     <tbody>
     <tr>
+        <td> {{design.id}}</td>
         <th scope="row"><a href="{{ design.get_absolute_url }}">{{ design.title }}</a></th>
         <td>{{ design.user }}</td>
         <td>{{ design.get_order_status_display }}</td>
@@ -61,9 +63,9 @@
     </tbody>
 </table>
 
- <button type="submit" class="btn btn-primary"
-                onClick="location.href='{% url 'designs:design_create'  %}'">Создать Бриф
-        </button>
+<button type="submit" class="btn btn-primary"
+        onClick="location.href='{% url 'designs:design_create'  %}'">Создать Бриф
+</button>
 {% endif %}
 
 

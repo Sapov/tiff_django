@@ -93,11 +93,6 @@
 
 
 <div class="card-body">
-    <!--    <form method="post" enctype="multipart/form-data" action="{% url 'designs:add_comment' design.pk %}">-->
-    <!--        {% csrf_token %}-->
-    <!--        {{ comment_form|crispy }}-->
-    <!--        <button type="submit">Отправить</button>-->
-    <!--    </form>-->
 
     <div id="chat-container" class="message-container">
         <!-- Сообщения будут загружаться сюда через JavaScript -->
@@ -117,7 +112,7 @@
     document.addEventListener('DOMContentLoaded', function() {
     const chatContainer = document.getElementById('chat-container');
     const designId = {{ design.pk }};
-    const currentUserId = {{ request.user.pk }};
+    const currentUserId = {{ request.user.username }};
 
     // Функция загрузки сообщений
     function loadMessages() {
