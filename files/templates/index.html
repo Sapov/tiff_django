@@ -43,7 +43,7 @@
                 <td>{{ product.price }} руб.</td>
                 <td>{{ product.status_product }}</td>
                 <td>{{ product.created_at }}</td>
-                {% if product.status_product.id == 1 %}
+                {% if product.status_product.id == 1 or product.status_product.id == 4 %}
                 <td><a href="{% url 'files:edit_files' product.id %}">Изменить</a></td>
                 <td><a href="{% url 'files:delete_files' product.id %}">Удалить</a></td>
                 <td></td>
