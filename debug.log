@@ -27589,3 +27589,6 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-05-30 01:10:59,851 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
 2025-05-30 01:10:59,852 account.views INFO     page_NUM: 1
 2025-05-30 01:10:59,856 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-30 01:22:58,625 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-30 01:23:42,271 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/mysite/settings.py changed, reloading.
+2025-05-30 01:23:43,744 django.utils.autoreload INFO     Watching for file changes with StatReloader

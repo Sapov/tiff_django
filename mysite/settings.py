@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'picturies',
     'plotter',
     'lids',
-    'ckeditor',
+    # 'ckeditor',
     'designs.apps.DesignsConfig',
 
 ]
