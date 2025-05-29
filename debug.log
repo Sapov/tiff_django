@@ -26431,3 +26431,196 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'get_comments' not found. 'ge
 2025-05-28 14:33:29,662 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-28 14:37:01,288 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
 2025-05-28 14:37:02,472 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 00:15:58,311 django.request ERROR    Internal Server Error: /designs/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'instruction_for_courier' with arguments '('',)' not found. 1 pattern(s) tried: ['delivery_in_bus/instruction/(?P<order_id>[0-9]+)\\Z']
+2025-05-29 11:52:31,549 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 11:53:27,863 django.request ERROR    Internal Server Error: /register/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/users/views.py", line 63, in post
+    send_email_for_verify(request, user)
+  File "/home/sasha/PycharmProjects/tiff_django/users/utils.py", line 27, in send_email_for_verify
+    email.send()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/mail/backends/smtp.py", line 128, in send_messages
+    new_conn_created = self.open()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/mail/backends/smtp.py", line 86, in open
+    self.connection = self.connection_class(
+  File "/home/sasha/.pyenv/versions/3.10.4/lib/python3.10/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/home/sasha/.pyenv/versions/3.10.4/lib/python3.10/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/home/sasha/.pyenv/versions/3.10.4/lib/python3.10/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/home/sasha/.pyenv/versions/3.10.4/lib/python3.10/socket.py", line 824, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/home/sasha/.pyenv/versions/3.10.4/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2025-05-29 12:23:20,758 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 12:24:07,601 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:24:07,601 account.views INFO     page_NUM: 1
+2025-05-29 12:24:07,603 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:25:34,150 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:25:34,150 account.views INFO     page_NUM: 1
+2025-05-29 12:25:34,152 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:33:52,349 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:33:52,350 account.views INFO     page_NUM: 1
+2025-05-29 12:33:52,366 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:33:53,235 django.request ERROR    Internal Server Error: /account/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/account/views.py", line 36, in dashboard
+    return render(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 961, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 515, in parse
+    self.unclosed_block_tag(parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/base.py", line 578, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 27: 'if'. Looking for one of: elif, else, endif.
+2025-05-29 12:34:23,814 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:34:23,815 account.views INFO     page_NUM: 1
+2025-05-29 12:34:23,817 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:35:29,175 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:35:29,177 account.views INFO     page_NUM: 1
+2025-05-29 12:35:29,185 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:35:49,565 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:35:49,569 account.views INFO     page_NUM: 1
+2025-05-29 12:35:49,587 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:38:09,793 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:38:09,794 account.views INFO     page_NUM: 1
+2025-05-29 12:38:09,801 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:38:41,086 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:38:41,087 account.views INFO     page_NUM: 1
+2025-05-29 12:38:41,089 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:38:44,608 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:38:44,608 account.views INFO     page_NUM: 1
+2025-05-29 12:38:44,611 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:39:11,575 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:39:11,576 account.views INFO     page_NUM: 1
+2025-05-29 12:39:11,582 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:39:19,570 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:39:19,571 account.views INFO     page_NUM: 1
+2025-05-29 12:39:19,580 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:39:22,023 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:39:22,024 account.views INFO     page_NUM: 1
+2025-05-29 12:39:22,029 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:39:36,734 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 12:39:40,013 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:39:40,014 account.views INFO     page_NUM: 1
+2025-05-29 12:39:40,023 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:39:42,978 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:39:42,979 account.views INFO     page_NUM: 1
+2025-05-29 12:39:42,980 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:40:13,427 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:40:13,428 account.views INFO     page_NUM: 1
+2025-05-29 12:40:13,439 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:40:15,964 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:40:15,966 account.views INFO     page_NUM: 1
+2025-05-29 12:40:15,973 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:40:18,220 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:40:18,221 account.views INFO     page_NUM: 1
+2025-05-29 12:40:18,223 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:40:19,021 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:40:19,023 account.views INFO     page_NUM: 1
+2025-05-29 12:40:19,028 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:40:26,954 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 12:40:29,833 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:40:29,835 account.views INFO     page_NUM: 1
+2025-05-29 12:40:29,843 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:40:37,581 django.utils.autoreload INFO     Watching for file changes with StatReloader
