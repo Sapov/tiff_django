@@ -28,7 +28,7 @@ class OrderDesign(models.Model):
     width = models.IntegerField(verbose_name='Ширина')
     length = models.IntegerField(verbose_name='Длина')
     description = models.TextField(verbose_name='Тех.задание')
-    images = models.ImageField(upload_to='images/designs', verbose_name='Картинка')
+    images = models.ImageField(upload_to='images/designs', verbose_name='Картинка', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=True)
 
