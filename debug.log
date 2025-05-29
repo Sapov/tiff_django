@@ -26831,3 +26831,265 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-05-29 14:22:30,304 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-05-29 14:23:42,485 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/models.py changed, reloading.
 2025-05-29 14:23:43,625 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 17:48:34,075 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 17:48:38,570 django.request WARNING  Not Found: /favicon.ico
+2025-05-29 17:48:51,291 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 17:48:51,291 account.views INFO     page_NUM: 1
+2025-05-29 17:48:51,294 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:49:17,386 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/middleware.py changed, reloading.
+2025-05-29 17:49:18,428 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 17:49:34,346 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 17:49:34,347 account.views INFO     page_NUM: 1
+2025-05-29 17:49:34,349 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:50:50,141 django.request WARNING  Method Not Allowed (GET): /logout/
+2025-05-29 17:50:50,151 django.request WARNING  Method Not Allowed: /logout/
+2025-05-29 17:50:53,074 django.request WARNING  Method Not Allowed (GET): /logout/
+2025-05-29 17:50:53,087 django.request WARNING  Method Not Allowed: /logout/
+2025-05-29 17:51:09,195 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,196 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,198 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:09,273 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,273 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,274 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:09,348 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,349 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,351 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:09,432 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,433 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,436 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:09,523 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,523 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,526 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:09,635 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,636 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,645 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:09,750 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,750 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,752 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:09,844 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,845 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,850 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:09,958 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:09,959 account.views INFO     page_NUM: 1
+2025-05-29 17:51:09,964 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,070 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,070 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,075 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,204 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,204 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,207 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,289 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,290 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,292 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,388 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,390 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,396 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,468 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,468 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,470 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,542 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,542 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,545 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,614 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,614 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,616 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,682 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,682 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,684 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,754 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,754 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,756 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:10,866 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:10,867 account.views INFO     page_NUM: 1
+2025-05-29 17:51:10,873 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,071 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,071 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,073 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,111 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,112 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,113 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,180 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,181 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,182 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,260 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,260 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,261 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,380 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,381 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,388 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,477 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,477 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,479 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,592 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,593 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,599 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,695 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,695 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,698 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,774 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,774 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,776 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,845 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,845 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,847 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:12,955 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:12,956 account.views INFO     page_NUM: 1
+2025-05-29 17:51:12,961 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,064 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,065 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,067 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,158 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,158 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,162 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,253 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,254 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,256 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,355 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,356 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,359 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,434 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,434 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,436 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,549 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,550 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,555 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,672 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,673 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,676 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,793 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,794 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,799 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:13,908 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:13,909 account.views INFO     page_NUM: 1
+2025-05-29 17:51:13,912 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,007 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,007 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,009 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,039 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,039 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,041 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,110 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,111 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,113 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,182 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,182 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,184 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,251 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,251 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,253 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,324 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,324 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,326 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,400 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,400 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,402 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,473 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,473 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,474 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,547 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,547 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,549 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,639 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,640 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,643 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,752 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,753 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,754 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,826 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,827 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,829 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,906 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,907 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,909 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:19,980 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:19,980 account.views INFO     page_NUM: 1
+2025-05-29 17:51:19,981 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:20,052 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:20,053 account.views INFO     page_NUM: 1
+2025-05-29 17:51:20,054 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:20,145 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:20,147 account.views INFO     page_NUM: 1
+2025-05-29 17:51:20,151 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:20,285 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:20,285 account.views INFO     page_NUM: 1
+2025-05-29 17:51:20,287 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:20,391 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:20,392 account.views INFO     page_NUM: 1
+2025-05-29 17:51:20,395 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:20,494 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:20,494 account.views INFO     page_NUM: 1
+2025-05-29 17:51:20,495 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:20,562 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:20,562 account.views INFO     page_NUM: 1
+2025-05-29 17:51:20,564 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:50,706 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:50,706 account.views INFO     page_NUM: 1
+2025-05-29 17:51:50,708 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:50,739 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:50,740 account.views INFO     page_NUM: 1
+2025-05-29 17:51:50,741 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:50,809 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:50,809 account.views INFO     page_NUM: 1
+2025-05-29 17:51:50,811 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:50,888 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:50,888 account.views INFO     page_NUM: 1
+2025-05-29 17:51:50,891 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:50,997 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:50,998 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,004 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,111 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,112 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,115 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,194 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,194 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,196 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,270 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,271 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,275 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,390 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,391 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,396 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,483 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,484 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,485 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,586 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,587 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,592 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,727 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,728 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,733 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,849 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,849 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,853 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:51,949 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:51,950 account.views INFO     page_NUM: 1
+2025-05-29 17:51:51,953 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:52,065 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:52,067 account.views INFO     page_NUM: 1
+2025-05-29 17:51:52,072 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:52,200 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:52,201 account.views INFO     page_NUM: 1
+2025-05-29 17:51:52,207 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:52,345 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:52,347 account.views INFO     page_NUM: 1
+2025-05-29 17:51:52,353 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:52,466 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:52,467 account.views INFO     page_NUM: 1
+2025-05-29 17:51:52,469 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:52,539 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:52,539 account.views INFO     page_NUM: 1
+2025-05-29 17:51:52,541 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:51:52,623 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:51:52,624 account.views INFO     page_NUM: 1
+2025-05-29 17:51:52,627 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:53:49,633 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 17:53:57,596 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:53:57,597 account.views INFO     page_NUM: 1
+2025-05-29 17:53:57,599 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:54:17,036 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:54:17,036 account.views INFO     page_NUM: 1
+2025-05-29 17:54:17,037 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:56:05,054 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 17:56:17,545 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:56:17,545 account.views INFO     page_NUM: 1
+2025-05-29 17:56:17,547 account.views INFO     page_NUM: <Page 1 of 1>
