@@ -27,8 +27,8 @@ class DesignList(LoginRequiredMixin, ListView):
         для дизайнеров - все заказы
         """
         if self.request.user.role == 'DESIGNER':
-            return OrderDesign.objects.all()
-        return OrderDesign.objects.filter(user=self.request.user)
+            return OrderDesign.objects.all().order_by('-id')
+        return OrderDesign.objects.filter(user=self.request.user).order_by('-id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
