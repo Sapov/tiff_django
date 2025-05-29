@@ -51,12 +51,12 @@ class Lids(models.Model):
     interest_text = models.TextField(verbose_name='Дополнительная информация', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Добавлено")
     update_at = models.DateTimeField(auto_now=True, verbose_name='Изменено')
-    user = models.ForeignKey(  # переименовать в юзера!!!!!
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        verbose_name="Владелиц лида",null=True, blank=True
-
-    )
+    # user = models.ForeignKey(  # переименовать в юзера!!!!!
+    #     settings.AUTH_USER_MODEL,
+    #     on_delete=models.CASCADE,
+    #     verbose_name="Владелиц лида",null=True, blank=True
+    #
+    # )
 
     def __str__(self):
         return self.username
