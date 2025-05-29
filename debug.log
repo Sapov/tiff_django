@@ -27093,3 +27093,22 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-05-29 17:56:17,545 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
 2025-05-29 17:56:17,545 account.views INFO     page_NUM: 1
 2025-05-29 17:56:17,547 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:59:44,555 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:59:44,556 account.views INFO     page_NUM: 1
+2025-05-29 17:59:44,557 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:59:46,899 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:59:46,899 account.views INFO     page_NUM: 1
+2025-05-29 17:59:46,901 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 17:59:48,339 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 17:59:48,340 account.views INFO     page_NUM: 1
+2025-05-29 17:59:48,341 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 18:00:06,761 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 18:00:10,018 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 18:00:10,018 account.views INFO     page_NUM: 1
+2025-05-29 18:00:10,020 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 18:00:42,200 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 18:00:42,200 account.views INFO     page_NUM: 1
+2025-05-29 18:00:42,203 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 18:02:47,742 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 18:02:47,742 account.views INFO     page_NUM: 1
+2025-05-29 18:02:47,744 account.views INFO     page_NUM: <Page 1 of 1>
