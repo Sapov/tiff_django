@@ -26624,3 +26624,208 @@ django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 27: 'if'. L
 2025-05-29 12:40:29,835 account.views INFO     page_NUM: 1
 2025-05-29 12:40:29,843 account.views INFO     page_NUM: <Page 1 of 1>
 2025-05-29 12:40:37,581 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 12:44:31,777 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 12:44:41,854 django.request WARNING  Not Found: /favicon.ico
+2025-05-29 12:44:50,347 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:44:50,348 account.views INFO     page_NUM: 1
+2025-05-29 12:44:50,352 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:45:40,405 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:45:40,405 account.views INFO     page_NUM: 1
+2025-05-29 12:45:40,407 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:45:41,975 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:45:41,976 account.views INFO     page_NUM: 1
+2025-05-29 12:45:41,978 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:45:44,476 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:45:44,477 account.views INFO     page_NUM: 1
+2025-05-29 12:45:44,487 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:45:47,439 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:45:47,440 account.views INFO     page_NUM: 1
+2025-05-29 12:45:47,447 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:45:49,861 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:45:49,862 account.views INFO     page_NUM: 1
+2025-05-29 12:45:49,869 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:46:38,969 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:46:38,970 account.views INFO     page_NUM: 1
+2025-05-29 12:46:38,975 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:46:42,518 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:46:42,523 account.views INFO     page_NUM: 1
+2025-05-29 12:46:42,530 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:46:43,704 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:46:43,705 account.views INFO     page_NUM: 1
+2025-05-29 12:46:43,714 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:46:46,017 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:46:46,017 account.views INFO     page_NUM: 1
+2025-05-29 12:46:46,019 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:46:47,024 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:46:47,024 account.views INFO     page_NUM: 1
+2025-05-29 12:46:47,026 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:46:49,300 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:46:49,300 account.views INFO     page_NUM: 1
+2025-05-29 12:46:49,305 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:47:41,091 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:47:41,091 account.views INFO     page_NUM: 1
+2025-05-29 12:47:41,093 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:48:57,824 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:48:57,824 account.views INFO     page_NUM: 1
+2025-05-29 12:48:57,827 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:49:42,018 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:49:42,018 account.views INFO     page_NUM: 1
+2025-05-29 12:49:42,023 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:49:45,978 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:49:45,979 account.views INFO     page_NUM: 1
+2025-05-29 12:49:45,987 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:49:52,026 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:49:52,027 account.views INFO     page_NUM: 1
+2025-05-29 12:49:52,033 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:50:02,678 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:50:02,679 account.views INFO     page_NUM: 1
+2025-05-29 12:50:02,687 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:50:13,437 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:50:13,438 account.views INFO     page_NUM: 1
+2025-05-29 12:50:13,441 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:52:31,559 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:52:31,560 account.views INFO     page_NUM: 1
+2025-05-29 12:52:31,569 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:52:34,736 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:52:34,737 account.views INFO     page_NUM: 1
+2025-05-29 12:52:34,742 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:52:37,492 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:52:37,492 account.views INFO     page_NUM: 1
+2025-05-29 12:52:37,495 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:59:38,433 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 12:59:38,434 account.views INFO     page_NUM: 1
+2025-05-29 12:59:38,439 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 12:59:57,475 django.request WARNING  Not Found: /design/
+2025-05-29 13:25:12,245 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 13:25:12,248 account.views INFO     page_NUM: 1
+2025-05-29 13:25:12,256 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 13:25:15,740 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 13:25:15,741 account.views INFO     page_NUM: 1
+2025-05-29 13:25:15,749 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 13:25:44,077 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 13:25:44,084 account.views INFO     page_NUM: 1
+2025-05-29 13:25:44,109 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 13:28:19,289 django.request WARNING  Method Not Allowed (GET): /logout/
+2025-05-29 13:28:19,292 django.request WARNING  Method Not Allowed: /logout/
+2025-05-29 13:28:36,850 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 13:28:36,850 account.views INFO     page_NUM: 1
+2025-05-29 13:28:36,852 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 13:29:19,251 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 13:29:19,252 account.views INFO     page_NUM: 1
+2025-05-29 13:29:19,253 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 13:30:20,536 django.request WARNING  Not Found: /design/
+2025-05-29 13:30:24,907 django.request WARNING  Forbidden (Permission denied): /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 61, in dispatch
+    raise PermissionDenied("У вас нет прав доступа к этому макету")
+django.core.exceptions.PermissionDenied: У вас нет прав доступа к этому макету
+2025-05-29 13:43:52,420 account.views INFO     Orders:  <QuerySet []>
+2025-05-29 13:43:52,420 account.views INFO     page_NUM: 1
+2025-05-29 13:43:52,422 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 13:45:08,144 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 5 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Глянцевая 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-29 13:45:08,144 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:45:08,144 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:45:40,469 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-05-29 13:45:40,481 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-05-29 13:45:48,021 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-05-29 13:45:48,023 root         INFO     method POST
+2025-05-29 13:45:48,024 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['O8uUPAF7uv9GouOWsTwTQ0dxaOvLhBYNLCVPKofU92wk7OpVOCkCje0W9m5YvnL6'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-06-02']}>
+2025-05-29 13:45:48,026 root         INFO     USER forumvrn@gmail.com
+2025-05-29 13:45:48,027 root         INFO     [INFO] отправленная форма имеет дату 2025-06-02
+2025-05-29 13:45:48,028 root         INFO     [INFO] Приводим строку в формату даты 2025-06-02 00:00:00
+2025-05-29 13:45:48,028 root         INFO     [INFO] прибавляем 12 часов 2025-06-02 12:00:00
+2025-05-29 13:45:48,028 root         INFO     date_complite 2025-06-02 12:00:00 - <class 'datetime.datetime'>
+2025-05-29 13:45:48,029 root         INFO     DELIV ID:  1
+2025-05-29 13:45:48,032 root         INFO     ORGANISATION:  
+2025-05-29 13:45:48,033 root         INFO     DELIVERY:  Самовывоз
+2025-05-29 13:45:52,923 orders.models INFO     cost_price_per_item 2670.00
+2025-05-29 13:45:52,946 orders.models INFO     3525.00
+2025-05-29 13:45:52,947 orders.models INFO     Себестоимость, 2670.00
+2025-05-29 13:45:52,990 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 5 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Глянцевая 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-29 13:45:52,991 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:45:52,992 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:46:07,629 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-05-29 13:46:07,635 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-05-29 13:46:10,347 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-05-29 13:46:10,350 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-05-29 13:46:13,565 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-05-29 13:46:13,566 root         INFO     method POST
+2025-05-29 13:46:13,571 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['w5BB2PXB4gSsE8zkwatell27MLjX4bCDtz2wXDxoJNf6nsajSThXOzPwLjTaiXpW'], 'organisation_payer': [''], 'delivery': ['1'], 'date_complite': ['2025-06-02']}>
+2025-05-29 13:46:13,571 root         INFO     USER forumvrn@gmail.com
+2025-05-29 13:46:13,572 root         INFO     [INFO] отправленная форма имеет дату 2025-06-02
+2025-05-29 13:46:13,574 root         INFO     [INFO] Приводим строку в формату даты 2025-06-02 00:00:00
+2025-05-29 13:46:13,575 root         INFO     [INFO] прибавляем 12 часов 2025-06-02 12:00:00
+2025-05-29 13:46:13,575 root         INFO     date_complite 2025-06-02 12:00:00 - <class 'datetime.datetime'>
+2025-05-29 13:46:13,575 root         INFO     DELIV ID:  1
+2025-05-29 13:46:13,576 root         INFO     ORGANISATION:  
+2025-05-29 13:46:13,577 root         INFO     DELIVERY:  Самовывоз
+2025-05-29 13:47:51,488 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-05-29 13:47:51,489 account.views INFO     page_NUM: 1
+2025-05-29 13:47:51,496 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 13:48:10,576 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 5 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 510 грамм литой Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-29 13:48:10,577 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:48:10,577 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:56:40,326 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 5 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Глянцевая 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-29 13:56:40,326 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:56:40,326 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:56:40,332 root         INFO     [Удаляем из OrderItems] Заказ № 1-image/Баннеры_2000_х_700_ВВ.tif
+2025-05-29 13:59:56,936 orders.models INFO     cost_price_per_item 2770.00
+2025-05-29 13:59:56,956 orders.models INFO     4125.00
+2025-05-29 13:59:56,957 orders.models INFO     Себестоимость, 2770.00
+2025-05-29 13:59:57,023 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 5 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 510 грамм литой Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-29 13:59:57,025 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:59:57,026 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:59:58,582 orders.models INFO     cost_price_per_item 2670.00
+2025-05-29 13:59:58,596 orders.models INFO     7650.00
+2025-05-29 13:59:58,597 orders.models INFO     Себестоимость, 5440.00
+2025-05-29 13:59:58,626 root         INFO     [INFO]. self.length:0.7 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 5 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Глянцевая 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-05-29 13:59:58,627 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 13:59:58,627 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-05-29 14:00:01,171 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-05-29 14:00:01,177 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-05-29 14:00:01,180 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-06-02 09:00:00+00:00
+2025-05-29 14:00:11,227 orders.payment.bank ERROR    ERROR sending messag: HTTPSConnectionPool(host='enter.tochka.com', port=443): Max retries exceeded with url: /uapi/open-banking/v1.0/customers (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7c17001b5cc0>: Failed to resolve 'enter.tochka.com' ([Errno -3] Temporary failure in name resolution)"))
+2025-05-29 14:22:29,106 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/models.py changed, reloading.
+2025-05-29 14:22:30,304 django.utils.autoreload INFO     Watching for file changes with StatReloader
