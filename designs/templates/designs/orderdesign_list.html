@@ -13,21 +13,35 @@
         Мои заказы на дизайн
     {% endif %}
 </h1>
-
-<ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Название брифа</th>
+      <th scope="col">Заказчик</th>
+      <th scope="col">Статус</th>
+      <th scope="col">Дата</th>
+      <th scope="col">Категория</th>
+    </tr>
+  </thead>
     {% for design in designs %}
-        <li>
-            <a href="{{ design.get_absolute_url }}">{{ design.title }}</a>
-            {% if is_designer %}
-                (Автор: {{ design.user.username }})
-            {% endif %}
-        </li>
+
+  <tbody>
+    <tr>
+      <th scope="row"><a href="{{ design.get_absolute_url }}">{{ design.title }}</a></th>
+      <td>{{ design.user }}</td>
+      <td>{{ design.status_order }}</td>
+      <td>{{ design.created_at }}</td>
+      <td>{{ design.interest }}</td>
+    </tr>
     {% empty %}
         <li>Нет доступных заказов</li>
     {% endfor %}
-</ul>
-
-     <button type="submit" class="btn btn-primary"
+    </tbody>
+</table>
+    {% if is_designer %}
+    {% else %}
+    <button type="submit" class="btn btn-primary"
                 onClick="location.href='{% url 'designs:design_create'  %}'">Создать Бриф
-        </button>
+        </button>    {% endif %}
+
 {% endblock %}
