@@ -6,6 +6,12 @@ from lids.models import Interest
 
 User = get_user_model()
 
+class OrderStatus(models.TextChoices):
+    OG = 'Ожидает оплаты'
+    IN_WORK = 'В работе'
+    AGREED = 'УТВЕРЖДЕН'
+    CLOSED = 'Закрыт'
+
 
 class Complexity(models.Model):
     complexity_vars = models.CharField(max_length=60, verbose_name='Варианты сложности')
@@ -21,6 +27,7 @@ class Complexity(models.Model):
 
 
 class OrderDesign(models.Model):
+
     title = models.CharField(max_length=255, verbose_name='Название брифа')
     complexity = models.ForeignKey(Complexity, on_delete=models.CASCADE, verbose_name='Выберите сложность макета')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', null=True, blank=True)
@@ -31,6 +38,8 @@ class OrderDesign(models.Model):
     images = models.ImageField(upload_to='images/designs', verbose_name='Картинка', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=True)
+    order_status = models.CharField(max_length=100, choices=OrderStatus.choices, default=OrderStatus.OG, verbose_name='Статус Брифа')
+
 
     def __str__(self):
         return self.title
@@ -54,3 +63,5 @@ class Comments(models.Model):
 
     def __str__(self):
         return f"Comment by {self.author} on {self.design}"
+
+

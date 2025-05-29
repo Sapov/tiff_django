@@ -27112,3 +27112,18 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-05-29 18:02:47,742 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>, <Order: Заказ № 1>]>
 2025-05-29 18:02:47,742 account.views INFO     page_NUM: 1
 2025-05-29 18:02:47,744 account.views INFO     page_NUM: <Page 1 of 1>
+2025-05-29 18:13:00,811 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-29 18:13:01,894 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 18:15:45,301 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 19:14:07,887 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-29 19:14:09,170 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 19:38:54,110 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-29 19:38:55,318 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 19:40:06,077 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-29 19:40:07,439 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 19:40:37,191 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-29 19:40:38,943 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 19:41:14,438 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-29 19:41:15,741 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-05-29 19:43:05,528 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-05-29 19:43:06,890 django.utils.autoreload INFO     Watching for file changes with StatReloader
