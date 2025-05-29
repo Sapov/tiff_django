@@ -6,11 +6,13 @@ from lids.models import Interest
 
 User = get_user_model()
 
-class OrderStatus(models.TextChoices):
-    OG = 'Ожидает оплаты'
-    IN_WORK = 'В работе'
-    AGREED = 'УТВЕРЖДЕН'
-    CLOSED = 'Закрыт'
+
+class OrderDesignStatus(models.TextChoices):
+    AWAITING_PAY = 'AWAITING_PAY', 'Ожидает оплаты'
+    PAY = 'PAY', 'Оплачен'
+    IN_WORK = 'IN_WORK', 'В работе'
+    AGREED = 'AGREED', 'УТВЕРЖДЕН'
+    CLOSED = 'CLOSED', 'Закрыт'
 
 
 class Complexity(models.Model):
@@ -27,9 +29,9 @@ class Complexity(models.Model):
 
 
 class OrderDesign(models.Model):
-
     title = models.CharField(max_length=255, verbose_name='Название брифа')
-    complexity = models.ForeignKey(Complexity, on_delete=models.CASCADE, verbose_name='Выберите сложность макета')
+    complexity = models.ForeignKey(Complexity, on_delete=models.CASCADE, verbose_name='Выберите сложность макета',
+                                   default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', null=True, blank=True)
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE, verbose_name='Категория макета', default=3)
     width = models.IntegerField(verbose_name='Ширина')
@@ -38,8 +40,8 @@ class OrderDesign(models.Model):
     images = models.ImageField(upload_to='images/designs', verbose_name='Картинка', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=True)
-    order_status = models.CharField(max_length=100, choices=OrderStatus.choices, default=OrderStatus.OG, verbose_name='Статус Брифа')
-
+    order_status = models.CharField(max_length=100, choices=OrderDesignStatus.choices, verbose_name='Статус Брифа',
+                                    default=OrderDesignStatus.AWAITING_PAY)
 
     def __str__(self):
         return self.title
@@ -55,7 +57,7 @@ class OrderDesign(models.Model):
 
 class Comments(models.Model):
     design = models.ForeignKey(OrderDesign, on_delete=models.CASCADE, related_name='comments', verbose_name='Дизайн'
-                                )
+                               )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(verbose_name='Текст сообщения')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -63,5 +65,3 @@ class Comments(models.Model):
 
     def __str__(self):
         return f"Comment by {self.author} on {self.design}"
-
-
