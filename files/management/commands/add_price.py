@@ -102,7 +102,7 @@ class Command(BaseCommand):
     #                       'status')
 
         print('*' * 30, 'заполняем Статус Продукта ', '*' * 30)
-        for status in load_excel('status_product', 'b2:b4'):
+        for status in load_excel('status_product', 'b2:b5'):
             print(status)
             StatusProduct.objects.get_or_create(status=status[0])
 
