@@ -20,14 +20,14 @@
                 </ul>
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'article_create' %}">Новая статья</a>
-                        </li>
-                        <li class="nav-item">
-                            <span class="nav-link">Привет, {{ user.username }}</span>
+                            <span class="nav-link">Привет, {{ user.username }}| Статус: {{user.get_role_display}}</span>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+
+
                         </li>
                     {% else %}
                         <li class="nav-item">
