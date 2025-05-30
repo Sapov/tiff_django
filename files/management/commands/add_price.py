@@ -21,9 +21,9 @@ class Command(BaseCommand):
             print(type_print)
             TypePrint.objects.get_or_create(type_print=type_print[0])
 
-        '''заполняем ширку из первого  листа с диапазоном b2:f12 '''
+        '''заполняем ширку из первого  листа с диапазоном b2:f11 '''
         print('*' * 30, 'Заполняю базу стоимости Широкоформатная печать материалов из файла', '*' * 30)
-        for item in load_excel('shirka', 'b2:e12'):
+        for item in load_excel('shirka', 'b2:e11'):
             print(item)
             Material.objects.get_or_create(
                 name=item[0],
