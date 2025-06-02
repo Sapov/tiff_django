@@ -26,9 +26,16 @@ admin.site.register(Material, MaterialAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Product._meta.fields]
+    list_filter = ['user', 'created_at', 'FinishWork']
+    list_editable = ['status_product']
+
 
     class Meta:
         model = Product
+
+
+# @admin.register(Order)
+
 
 
 admin.site.register(Product, ProductAdmin)
