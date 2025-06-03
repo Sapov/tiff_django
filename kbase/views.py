@@ -10,7 +10,7 @@ from .forms import ArticleForm
 
 class ArticleListView(ListView):
     model = Article
-    template_name = 'kb/article_list.html'
+    template_name = 'kbase/article_list.html'
     context_object_name = 'articles'
     paginate_by = 10
 
@@ -34,7 +34,7 @@ class ArticleListView(ListView):
 
 class ArticleDetailView(DetailView):
     model = Article
-    template_name = 'kb/article_detail.html'
+    template_name = 'kbase/article_detail.html'
     context_object_name = 'article'
 
     def get_context_data(self, **kwargs):
@@ -55,7 +55,7 @@ class ArticleDetailView(DetailView):
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
     form_class = ArticleForm
-    template_name = 'kb/article_form.html'
+    template_name = 'kbase/article_form.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -65,7 +65,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     model = Article
     form_class = ArticleForm
-    template_name = 'kb/article_form.html'
+    template_name = 'kbase/article_form.html'
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
@@ -76,7 +76,7 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
 
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     model = Article
-    template_name = 'kb/article_confirm_delete.html'
+    template_name = 'kbase/article_confirm_delete.html'
     success_url = reverse_lazy('article_list')
 
     def dispatch(self, request, *args, **kwargs):

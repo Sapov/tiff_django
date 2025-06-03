@@ -40,7 +40,7 @@ urlpatterns = [
     path("lids/", include("lids.urls")),
     path("orders/", include("orders.urls")),
     path("info/", include("info.urls")),
-    path("kb/", include("kb.urls")),
+    path("kbase/", include("kbase.urls")),
     path("designs/", include("designs.urls")),
     path("delivery_in_bus/", include("delivery_in_bus.urls")),
     path("admin/", admin.site.urls),

@@ -25,6 +25,29 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
 
+class ArticleImage(models.Model):
+    # article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='articles/images/')
+    caption = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        verbose_name = 'Изображение статьи'
+        verbose_name_plural = 'Изображения статьи'
+
+    def __str__(self):
+        return f"Изображение для {self.article.title}"
+
+
+# class Comment(models.Model):
+#     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+#     author_ = models.ForeignKey(User, on_delete=models.CASCADE)
+#     text = models.TextField()
+#     created_at = models.DateTimeField(auto_now_add=True)
+#
+#     def __str__(self):
+#         return f"Comment by {self.author} on {self.article}"
+
+
 class Article(models.Model):
     title = models.CharField(max_length=200,verbose_name='Заголовок')
     images = models.ForeignKey('ArticleImage', on_delete=models.CASCADE, blank=True, null=True)
@@ -51,26 +74,3 @@ class Article(models.Model):
     class Meta:
         verbose_name_plural = 'Статьи'
         verbose_name = 'Статья'
-
-
-# class Comment(models.Model):
-#     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
-#     author_ = models.ForeignKey(User, on_delete=models.CASCADE)
-#     text = models.TextField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-#
-#     def __str__(self):
-#         return f"Comment by {self.author} on {self.article}"
-
-
-class ArticleImage(models.Model):
-    # article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='articles/images/')
-    caption = models.CharField(max_length=255, blank=True)
-
-    class Meta:
-        verbose_name = 'Изображение статьи'
-        verbose_name_plural = 'Изображения статьи'
-
-    def __str__(self):
-        return f"Изображение для {self.article.title}"
