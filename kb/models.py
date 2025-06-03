@@ -50,6 +50,7 @@ class Article(models.Model):
 
     class Meta:
         verbose_name_plural = 'Статьи'
+        verbose_name = 'Статья'
 
 
 # class Comment(models.Model):

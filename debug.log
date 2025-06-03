@@ -27951,3 +27951,4 @@ self.material: Баннер 440 грамм ламинированный Широ
 SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
 2025-06-02 17:29:51,470 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
 2025-06-02 17:29:51,470 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-03 16:12:21,732 django.utils.autoreload INFO     Watching for file changes with StatReloader
