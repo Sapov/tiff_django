@@ -28166,3 +28166,180 @@ django.db.utils.OperationalError: no such table: lids_lids
 2025-06-05 20:24:15,895 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-05 20:24:38,159 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
 2025-06-05 20:24:39,888 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:27:53,388 django.security.csrf WARNING  Forbidden (CSRF token from POST incorrect.): /designs/comment/10/
+2025-06-05 20:27:58,763 django.security.csrf WARNING  Forbidden (CSRF token from POST incorrect.): /designs/comment/10/
+2025-06-05 20:28:20,604 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-05 20:28:20,605 account.views INFO     page_NUM: 1
+2025-06-05 20:28:20,610 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-05 20:28:36,498 django.request ERROR    Internal Server Error: /designs/comment/10/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 135, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 924, in save_base
+    post_save.send(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/signals.py", line 13, in send_comment_notification
+    project = design.project
+AttributeError: 'OrderDesign' object has no attribute 'project'
+2025-06-05 20:33:39,801 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-05 20:33:40,946 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:33:49,491 django.request ERROR    Internal Server Error: /designs/comment/10/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 135, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 924, in save_base
+    post_save.send(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/signals.py", line 13, in send_comment_notification
+    project = design.project
+AttributeError: 'OrderDesign' object has no attribute 'project'
+2025-06-05 20:34:12,836 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 20:34:14,038 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:34:20,050 django.request ERROR    Internal Server Error: /designs/comment/10/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 135, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 924, in save_base
+    post_save.send(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/signals.py", line 16, in send_comment_notification
+    recipient = project.client if instance.author == project.designer else project.designer
+AttributeError: 'int' object has no attribute 'designer'
+2025-06-05 20:42:10,236 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-05 20:42:11,813 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:42:45,348 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 20:42:46,438 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:47:35,392 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 20:47:36,486 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:49:20,504 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 20:49:22,113 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:55:02,514 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 20:55:03,692 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:56:25,863 django.request WARNING  Forbidden (Permission denied): /designs/12/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 62, in dispatch
+    raise PermissionDenied("У вас нет прав доступа к этому макету")
+django.core.exceptions.PermissionDenied: У вас нет прав доступа к этому макету
+2025-06-05 20:56:31,757 django.request WARNING  Forbidden (Permission denied): /designs/10/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 62, in dispatch
+    raise PermissionDenied("У вас нет прав доступа к этому макету")
+django.core.exceptions.PermissionDenied: У вас нет прав доступа к этому макету
+2025-06-05 20:56:48,021 django.request WARNING  Method Not Allowed (GET): /logout/
+2025-06-05 20:56:48,050 django.request WARNING  Method Not Allowed: /logout/
+2025-06-05 20:58:12,130 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 4>, <Order: Заказ № 3>]>
+2025-06-05 20:58:12,131 account.views INFO     page_NUM: 1
+2025-06-05 20:58:12,140 account.views INFO     page_NUM: <Page 1 of 1>
+2025-06-05 20:58:31,550 django.request ERROR    Internal Server Error: /designs/comment/13/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 135, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 924, in save_base
+    post_save.send(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/signals.py", line 18, in send_comment_notification
+    recipient = design.user if instance.author == project.designer else project.designer
+NameError: name 'project' is not defined
+2025-06-05 20:58:48,274 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 20:58:49,561 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:59:23,144 account.views INFO     Orders:  <QuerySet []>
+2025-06-05 20:59:23,145 account.views INFO     page_NUM: 1
+2025-06-05 20:59:23,152 account.views INFO     page_NUM: <Page 1 of 1>
+2025-06-05 21:02:54,591 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:02:56,162 django.utils.autoreload INFO     Watching for file changes with StatReloader
