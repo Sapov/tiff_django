@@ -28156,3 +28156,9 @@ django.db.utils.OperationalError: no such table: lids_lids
 2025-06-05 20:00:48,982 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
 2025-06-05 20:00:48,983 account.views INFO     page_NUM: 1
 2025-06-05 20:00:48,985 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-05 20:12:44,642 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/apps.py changed, reloading.
+2025-06-05 20:12:45,840 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:13:11,326 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/apps.py changed, reloading.
+2025-06-05 20:13:12,431 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:13:40,579 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/__init__.py changed, reloading.
+2025-06-05 20:13:41,978 django.utils.autoreload INFO     Watching for file changes with StatReloader
