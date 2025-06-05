@@ -28144,3 +28144,15 @@ Traceback (most recent call last):
     return super().execute(query, params)
 django.db.utils.OperationalError: no such table: lids_lids
 2025-06-05 19:49:36,237 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 19:59:13,850 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-05 19:59:13,851 account.views INFO     page_NUM: 1
+2025-06-05 19:59:13,859 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-05 19:59:51,311 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-05 19:59:51,312 account.views INFO     page_NUM: 1
+2025-06-05 19:59:51,313 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-05 20:00:15,467 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-05 20:00:15,469 account.views INFO     page_NUM: 1
+2025-06-05 20:00:15,476 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-05 20:00:48,982 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-05 20:00:48,983 account.views INFO     page_NUM: 1
+2025-06-05 20:00:48,985 account.views INFO     page_NUM: <Page 1 of 2>
