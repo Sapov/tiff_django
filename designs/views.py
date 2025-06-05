@@ -146,24 +146,29 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 #     return JsonResponse(comments_data, safe=False)
 
 # designs/views.py
-from django.http import JsonResponse
-from django.template.loader import render_to_string
-from .models import OrderDesign, Comments
+from django.views.decorators.http import require_http_methods
 
 
-def get_comments(request, design_id):
+@require_http_methods(["POST"])
+def add_comment(request, design_id):
     design = get_object_or_404(OrderDesign, id=design_id)
-    comments = design.comments.all().order_by('created_at')
+    form = CommentForm(request.POST, request.FILES)
 
-    context = {
-        'comments': comments,
-        'request': request  # Передаем request для проверки пользователя
-    }
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.design = design
+        comment.author = request.user
+        comment.save()
 
-    # Рендерим HTML на сервере
-    html = render_to_string('designs/_comments_partial.html', context)
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': True})
 
-    return JsonResponse({
-        'success': True,
-        'html': html
+        return redirect('designs:design_detail', design_id=design.id)
+
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+
+    return render(request, 'designs/design_detail.html', {
+        'design': design,
+        'form': form
     })
