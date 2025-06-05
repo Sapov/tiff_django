@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.mail import send_mail
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
@@ -83,6 +84,19 @@ def add_comment(request, id):
                 comment.designs = design  # Используем designs вместо design (как в модели)
                 comment.author = request.user
                 comment.save()
+
+                # Отправка уведомления (дублирующая логика для надежности)
+                project = design.project
+                recipient = project.client if request.user == project.designer else project.designer
+
+                send_mail(
+                    f'Новый комментарий к проекту "{project.title}"',
+                    f'{request.user.username} оставил комментарий: {comment.text}',
+                    None,
+                    [recipient.email],
+                    fail_silently=True
+                )
+
                 return redirect('designs:design_detail', pk=design.id)  # Добавляем id для редиректа
             else:
                 # Если форма невалидна, можно вернуть пользователя на страницу с ошибками

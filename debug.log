@@ -28162,3 +28162,7 @@ django.db.utils.OperationalError: no such table: lids_lids
 2025-06-05 20:13:12,431 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-05 20:13:40,579 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/__init__.py changed, reloading.
 2025-06-05 20:13:41,978 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:24:14,325 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-05 20:24:15,895 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 20:24:38,159 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-05 20:24:39,888 django.utils.autoreload INFO     Watching for file changes with StatReloader
