@@ -10,24 +10,27 @@
     </style>
 </head>
 <body>
-    <h2>Здравствуйте, {{ recipient.first_name|default:recipient.username }}!</h2>
-    <p>Пользователь <strong>{{ author.username }}</strong> оставил новый комментарий к вашему брифу <strong>"{{ order_design.title }}"</strong>:</p>
+<h2>Здравствуйте, {{ recipient.first_name|default:recipient.username }}!</h2>
+<p>Пользователь <strong>{{ author.username }}</strong> оставил новый комментарий к вашему брифу <strong>{{ order_design.title }}</strong>:</p>
 
-    <div class="comment">
-        {{ comment.text }}
-        {% if comment.image %}
-        <p><img src="{{ comment.image.url }}" style="max-width: 300px;"></p>
-        {% endif %}
+<div class="comment">
+    {{ comment.text }}
+    {% if image_url %}
+    <div class="image-container">
+        <p><strong>Прикреплённое изображение:</strong></p>
+        <img src="{{ image_url }}" alt="Изображение из комментария">
     </div>
+    {% endif %}
+</div>
 
-    <p style="margin-top: 15px;">
-        <a href="{{ comment_url }}" class="button">Перейти к брифу</a>
-    </p>
+<p style="margin-top: 15px;">
+    <a href="{{ comment_url }}" class="button">Перейти к брифу</a>
+</p>
 
-    <div class="footer">
-        <p>Дата комментария: {{ comment.created_at|date:"d.m.Y H:i" }}</p>
-        <p><a href="{{ unsubscribe_url }}">Настроить уведомления</a></p>
-        <p>Это автоматическое сообщение, пожалуйста, не отвечайте на него.</p>
-    </div>
+<div class="footer">
+    <p>Дата комментария: {{ comment.created_at|date:"d.m.Y H:i" }}</p>
+    <p><a href="{{ unsubscribe_url }}">Настроить уведомления</a></p>
+    <p>Это автоматическое сообщение, пожалуйста, не отвечайте на него.</p>
+</div>
 </body>
 </html>
