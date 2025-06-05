@@ -17,15 +17,12 @@ SITE_URL = SECRET_KEY = 'https://' + os.getenv('ALLOWED_HOST')
 
 @receiver(post_save, sender=Comments)
 def send_comment_notification(sender, instance, created, **kwargs):
-    print('Написал КТО', instance.author)
-    print('SITE_URL', SITE_URL)
     if created:  # Отправляем только для новых комментариев
         order_design = instance.design
         author = instance.author
         recipient = None
 
         # Определяем получателя (если автор не владелец бриффа - отправляем владельцу)
-        print("ВладелEц", order_design.user, type(order_design.user))
 
         # Полный URL к изображению
         image_url = instance.image.url if instance.image else None
@@ -36,7 +33,7 @@ def send_comment_notification(sender, instance, created, **kwargs):
         if author != order_design.user and order_design.user:
             recipient = order_design.user
         else:
-            recipient = Users.objects.get(id=3)  ## HARD CODD
+            recipient = Users.objects.get(id=11)  ## HARD CODD FOR DESIGNER
 
         # Если получатель определен и у него есть email
         if recipient and recipient.email:
