@@ -28964,3 +28964,5 @@ Traceback (most recent call last):
   File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: designs/_comments_partial.html
+2025-06-06 00:37:36,929 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-06 00:37:38,034 django.utils.autoreload INFO     Watching for file changes with StatReloader
