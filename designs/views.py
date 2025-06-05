@@ -126,21 +126,44 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})
 
 
+# def get_comments(request, design_id):
+#     #     '''endpoint for JS'''
+#
+#     design = get_object_or_404(OrderDesign, pk=design_id)
+#     comments = design.comments.all().order_by('created_at').select_related('author')
+#
+#     comments_data = []
+#     for comment in comments:
+#         comments_data.append({
+#             'fields': {
+#                 'author': comment.author.pk,
+#                 'text': comment.text,
+#                 'image': comment.image.url if comment.image else None,
+#                 'created_at': comment.created_at.isoformat(),
+#             }
+#         })
+#
+#     return JsonResponse(comments_data, safe=False)
+
+# designs/views.py
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+from .models import OrderDesign, Comments
+
+
 def get_comments(request, design_id):
-    #     '''endpoint for JS'''
+    design = get_object_or_404(OrderDesign, id=design_id)
+    comments = design.comments.all().order_by('created_at')
 
-    design = get_object_or_404(OrderDesign, pk=design_id)
-    comments = design.comments.all().order_by('created_at').select_related('author')
+    context = {
+        'comments': comments,
+        'request': request  # Передаем request для проверки пользователя
+    }
 
-    comments_data = []
-    for comment in comments:
-        comments_data.append({
-            'fields': {
-                'author': comment.author.pk,
-                'text': comment.text,
-                'image': comment.image.url if comment.image else None,
-                'created_at': comment.created_at.isoformat(),
-            }
-        })
+    # Рендерим HTML на сервере
+    html = render_to_string('designs/_comments_partial.html', context)
 
-    return JsonResponse(comments_data, safe=False)
+    return JsonResponse({
+        'success': True,
+        'html': html
+    })
