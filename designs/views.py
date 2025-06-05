@@ -128,49 +128,110 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})
 
 @cache_page(60 * 5)  # Кеш на 5 минут
+from django.template.loader import render_to_string
+
 def get_comments(request, design_id):
-    #     '''endpoint for JS'''
-
-    design = get_object_or_404(OrderDesign, pk=design_id)
-    comments = design.comments.all().order_by('created_at').select_related('author')
-
-    comments_data = []
-    for comment in comments:
-        comments_data.append({
-            'fields': {
-                'author': comment.author.pk,
-                'text': comment.text,
-                'image': comment.image.url if comment.image else None,
-                'created_at': comment.created_at.isoformat(),
-            }
+    try:
+        design = OrderDesign.objects.get(pk=design_id)
+        comments = design.comments.all()
+        html = render_to_string("designs/comments_partial.html", {
+            'comments': comments,
+            'request': request  # Для проверки request.user
         })
+        return JsonResponse(
+            {'html': html},
+            content_type='application/json'
+        )
+    except OrderDesign.DoesNotExist:
+        return JsonResponse(
+            {'error': 'Дизайн не найден'},
+            status=404,
+            content_type='application/json'
+        )
 
-    return JsonResponse(comments_data, safe=False)
+# def get_comments(request, design_id):
+#     #     '''endpoint for JS'''
+#
+#     design = get_object_or_404(OrderDesign, pk=design_id)
+#     comments = design.comments.all().order_by('created_at').select_related('author')
+#
+#     comments_data = []
+#     for comment in comments:
+#         comments_data.append({
+#             'fields': {
+#                 'author': comment.author.pk,
+#                 'text': comment.text,
+#                 'image': comment.image.url if comment.image else None,
+#                 'created_at': comment.created_at.isoformat(),
+#             }
+#         })
+#
+#     return JsonResponse(comments_data, safe=False)
 
 # designs/views.py
 from django.views.decorators.http import require_http_methods
 
 
-@require_http_methods(["POST"])
-def add_comment(request, design_id):
-    design = get_object_or_404(OrderDesign, id=design_id)
-    form = CommentForm(request.POST, request.FILES)
+# @require_http_methods(["POST"])
+# def add_comment(request, design_id):
+#     design = get_object_or_404(OrderDesign, id=design_id)
+#     form = CommentForm(request.POST, request.FILES)
+#
+#     if form.is_valid():
+#         comment = form.save(commit=False)
+#         comment.design = design
+#         comment.author = request.user
+#         comment.save()
+#
+#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#             return JsonResponse({'success': True})
+#
+#         return redirect('designs:design_detail', design_id=design.id)
+#
+#     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#         return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+#
+#     return render(request, 'designs/design_detail.html', {
+#         'design': design,
+#         'form': form
+#     })
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+
+
+@require_POST
+def add_comment(request, design_id):
+    if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse(
+            {'error': 'Только AJAX-запросы'},
+            status=400,
+            content_type='application/json'
+        )
+
+    try:
+        design = OrderDesign.objects.get(pk=design_id)
+    except OrderDesign.DoesNotExist:
+        return JsonResponse(
+            {'error': 'Дизайн не найден'},
+            status=404,
+            content_type='application/json'
+        )
+
+    form = CommentForm(request.POST, request.FILES)
     if form.is_valid():
         comment = form.save(commit=False)
-        comment.design = design
         comment.author = request.user
+        comment.design = design
         comment.save()
+        return JsonResponse(
+            {'success': True},
+            content_type='application/json'
+        )
 
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({'success': True})
-
-        return redirect('designs:design_detail', design_id=design.id)
-
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        return JsonResponse({'success': False, 'errors': form.errors}, status=400)
-
-    return render(request, 'designs/design_detail.html', {
-        'design': design,
-        'form': form
-    })
+    return JsonResponse(
+        {'error': form.errors},
+        status=400,
+        content_type='application/json'
+    )

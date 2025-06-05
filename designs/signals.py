@@ -33,7 +33,7 @@ def send_comment_notification(sender, instance, created, **kwargs):
         if author != order_design.user and order_design.user:
             recipient = order_design.user
         else:
-            recipient = Users.objects.get(id=11)  ## HARD CODD FOR DESIGNER
+            recipient = Users.objects.get(id=3)  ## HARD CODD Design 11
 
         # Если получатель определен и у него есть email
         if recipient and recipient.email:

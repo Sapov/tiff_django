@@ -96,6 +96,7 @@
                                 <i class="bi bi-image"></i> Прикрепить изображение
                             </label>
                         </div>
+                        <button onclick="scrollToBottom()" class="btn btn-secondary">Вниз</button>
                         <button type="submit" class="btn btn-primary">Отправить</button>
                     </div>
                 </form>
@@ -106,123 +107,110 @@
 
 <!-- JavaScript для работы чата -->
 <script>
-<!--    -->
-<!--document.addEventListener('DOMContentLoaded', function() {-->
-<!--    const chatContainer = document.getElementById('chat-container');-->
-<!--    const messageForm = document.getElementById('message-form');-->
+    document.addEventListener('DOMContentLoaded', function() {
+    const chatContainer = document.getElementById('chat-container');
+    const messageForm = document.getElementById('message-form');
+    const designId = {{ design.pk }};
 
-<!--    // Автопрокрутка вниз при загрузке-->
-<!--    chatContainer.scrollTop = chatContainer.scrollHeight;-->
-
-<!--    // Предпросмотр изображения-->
-<!--    const imageUpload = document.getElementById('image-upload');-->
-<!--    imageUpload.addEventListener('change', function(e) {-->
-<!--        if (e.target.files.length > 0) {-->
-<!--            const preview = document.createElement('div');-->
-<!--            preview.className = 'mt-2';-->
-<!--            preview.innerHTML = `-->
-<!--                <img src="${URL.createObjectURL(e.target.files[0])}"-->
-<!--                     class="img-thumbnail"-->
-<!--                     style="max-height: 100px;"-->
-<!--                     alt="Предпросмотр">-->
-<!--                <button type="button" class="btn btn-sm btn-danger ms-2 remove-image">×</button>-->
-<!--            `;-->
-
-<!--            const formGroup = messageForm.querySelector('.mb-3');-->
-<!--            formGroup.appendChild(preview);-->
-
-<!--            preview.querySelector('.remove-image').addEventListener('click', function() {-->
-<!--                imageUpload.value = '';-->
-<!--                preview.remove();-->
-<!--            });-->
-<!--        }-->
-<!--    });-->
-
-<!--    // Отправка формы через AJAX-->
-<!--    messageForm.addEventListener('submit', function(e) {-->
-<!--        e.preventDefault();-->
-<!--        const formData = new FormData(this);-->
-
-<!--        fetch(this.action, {-->
-<!--            method: 'POST',-->
-<!--            body: formData,-->
-<!--            headers: {-->
-<!--                'X-CSRFToken': formData.get('csrfmiddlewaretoken')-->
-<!--            }-->
-<!--        })-->
-<!--        .then(response => response.json())-->
-<!--        .then(data => {-->
-<!--            if (data.success) {-->
-<!--                messageForm.reset();-->
-<!--                // Очистка предпросмотра-->
-<!--                const previews = messageForm.querySelectorAll('[class^="mt-2"]');-->
-<!--                previews.forEach(preview => preview.remove());-->
-<!--                // Обновление чата-->
-<!--                updateChat();-->
-<!--            }-->
-<!--        })-->
-<!--        .catch(error => console.error('Error:', error));-->
-<!--    });-->
-
-<!--    // Функция обновления чата-->
-<!--    function updateChat() {-->
-<!--        fetch(`{% url 'designs:get_comments' design.pk %}`)-->
-<!--            .then(response => response.json())-->
-<!--            .then(data => {-->
-<!--                chatContainer.innerHTML = data.html;-->
-<!--                chatContainer.scrollTop = chatContainer.scrollHeight;-->
-<!--            });-->
-<!--    }-->
-
-<!--    // Автообновление каждые 5 секунд-->
-<!--    setInterval(updateChat, 5000);-->
-<!--});-->
+    // Функция прокрутки
+    function scrollToBottom() {
+        setTimeout(() => {
+            chatContainer.scrollTo({
+                top: chatContainer.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 300);
+    }
 
     // Функция обновления чата
-function updateChat() {
-    fetch(`/designs/api/design/${designId}/comments/`)
+    function updateChat() {
+        fetch(`{% url 'designs:get_comments' design.pk %}`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json' // Явно запрашиваем JSON
+            }
+        })
         .then(response => {
-            if (!response.ok) throw new Error('Network error');
+            // Проверяем Content-Type
+            const contentType = response.headers.get('content-type');
+
+            if (!contentType.includes('application/json')) {
+                return response.text().then(text => {
+                    throw new Error(`Ожидался JSON, но получен: ${text.substring(0, 100)}...`);
+                });
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            if (data.html) {
+                chatContainer.innerHTML = data.html;
+                scrollToBottom();
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка загрузки чата:', error);
+            alert('Не удалось загрузить чат. Проверьте консоль для деталей.');
+        });
+    }
+
+    // Отправка сообщения
+    messageForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const submitButton = this.querySelector('button[type="submit"]');
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправка...';
+
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => {
+            const contentType = response.headers.get('content-type');
+
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`HTTP ${response.status}: ${text}`);
+                });
+            }
+
+            if (!contentType.includes('application/json')) {
+                throw new Error('Сервер вернул не JSON');
+            }
+
             return response.json();
         })
         .then(data => {
             if (data.success) {
-                chatContainer.innerHTML = data.html;
-                chatContainer.scrollTop = chatContainer.scrollHeight;
+                messageForm.reset();
+                document.querySelectorAll('.image-preview').forEach(el => el.remove());
+                updateChat();
+            } else {
+                throw new Error(data.error || 'Неизвестная ошибка сервера');
             }
         })
-        .catch(error => console.error('Error:', error));
-}
+        .catch(error => {
+            console.error('Ошибка:', error);
+            alert('Ошибка отправки: ' + error.message);
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Отправить';
+        });
+    });
 
-// Отправка формы
-messageForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
+    // Первая загрузка чата
+    updateChat();
 
-    fetch(this.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',  // Важно для идентификации AJAX
-            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Network error');
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            this.reset();
-            // Очистка предпросмотра изображений
-            document.querySelectorAll('.image-preview').forEach(el => el.remove());
-            updateChat();
-        } else if (data.errors) {
-            // Обработка ошибок валидации
-            alert('Ошибка: ' + JSON.stringify(data.errors));
-        }
-    })
-    .catch(error => console.error('Error:', error));
+    // Автообновление каждые 5 сек
+    setInterval(updateChat, 5000);
 });
 </script>
 
