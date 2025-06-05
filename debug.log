@@ -28343,3 +28343,154 @@ NameError: name 'project' is not defined
 2025-06-05 20:59:23,152 account.views INFO     page_NUM: <Page 1 of 1>
 2025-06-05 21:02:54,591 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
 2025-06-05 21:02:56,162 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:04:16,959 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/apps.py changed, reloading.
+2025-06-05 21:04:18,074 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:05:51,575 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-05 21:05:53,007 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:06:01,651 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-05 21:06:03,028 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:06:21,222 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-05 21:06:22,322 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:07:54,100 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:07:55,476 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:08:23,076 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:10:40,572 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:10:41,867 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:11:38,262 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:11:39,447 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:12:10,050 django.request ERROR    Internal Server Error: /designs/comment/13/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 123, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 924, in save_base
+    post_save.send(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/signals.py", line 30, in send_comment_notification
+    'comment_url': settings.SITE_URL + reverse('designs:design_detail', args=[order_design.id]),
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/conf/__init__.py", line 91, in __getattr__
+    val = getattr(_wrapped, name)
+AttributeError: 'Settings' object has no attribute 'SITE_URL'
+2025-06-05 21:23:21,978 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:23:25,114 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:24:02,706 django.request ERROR    Internal Server Error: /designs/comment/13/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 123, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 924, in save_base
+    post_save.send(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/signals.py", line 31, in send_comment_notification
+    'unsubscribe_url': 'https://order.san-cd.ru' + reverse('profile_settings')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'profile_settings' not found. 'profile_settings' is not a valid view function or pattern name.
+2025-06-05 21:25:16,712 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:25:20,583 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:29:20,359 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:29:21,518 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:30:10,315 django.request WARNING  Method Not Allowed (GET): /logout/
+2025-06-05 21:30:10,341 django.request WARNING  Method Not Allowed: /logout/
+2025-06-05 21:30:42,556 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-05 21:30:42,557 account.views INFO     page_NUM: 1
+2025-06-05 21:30:42,559 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-05 21:33:42,280 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:33:43,502 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:34:22,431 account.views INFO     Orders:  <QuerySet []>
+2025-06-05 21:34:22,433 account.views INFO     page_NUM: 1
+2025-06-05 21:34:22,442 account.views INFO     page_NUM: <Page 1 of 1>
+2025-06-05 21:36:39,907 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:36:43,765 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:38:45,544 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:38:48,646 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:41:00,289 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:41:04,335 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:41:57,164 account.views INFO     Orders:  <QuerySet []>
+2025-06-05 21:41:57,165 account.views INFO     page_NUM: 1
+2025-06-05 21:41:57,176 account.views INFO     page_NUM: <Page 1 of 1>
+2025-06-05 21:48:20,919 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:48:26,304 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:57:01,458 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:57:04,295 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 21:57:08,460 django.request ERROR    Internal Server Error: /designs/comment/14/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 123, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 133, in form_valid
+    self.object = form.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/models.py", line 552, in save
+    self.instance.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 924, in save_base
+    post_save.send(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/signals.py", line 26, in send_comment_notification
+    if recipient and recipient.email:
+AttributeError: 'str' object has no attribute 'email'
+2025-06-05 21:57:51,690 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 21:57:56,538 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 22:03:48,163 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 22:03:50,979 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 22:04:52,633 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 22:04:58,469 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 22:07:19,971 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 22:07:24,195 django.utils.autoreload INFO     Watching for file changes with StatReloader
