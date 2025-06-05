@@ -28512,3 +28512,17 @@ AttributeError: 'str' object has no attribute 'email'
 2025-06-05 22:50:02,721 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-05 22:50:46,331 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
 2025-06-05 22:50:47,793 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 23:08:41,769 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 23:08:43,551 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 23:09:58,383 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 23:09:59,475 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 23:14:47,880 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/tasks.py changed, reloading.
+2025-06-05 23:14:49,014 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 23:18:39,225 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/tasks.py changed, reloading.
+2025-06-05 23:18:40,302 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 23:19:36,517 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/tasks.py changed, reloading.
+2025-06-05 23:19:37,623 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 23:21:07,189 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 23:21:08,490 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-05 23:24:10,917 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-05 23:24:11,947 django.utils.autoreload INFO     Watching for file changes with StatReloader

@@ -9,6 +9,8 @@ from django.urls import reverse
 from .models import Comments, OrderDesign
 from django.conf import settings
 
+from .tasks import send_comment_in_mail_task
+
 Users = get_user_model()
 SITE_URL = SECRET_KEY = 'https://' + os.getenv('ALLOWED_HOST')
 
@@ -31,11 +33,10 @@ def send_comment_notification(sender, instance, created, **kwargs):
             image_url = SITE_URL + image_url
             print('image_url', image_url)
 
-
         if author != order_design.user and order_design.user:
             recipient = order_design.user
         else:
-            recipient = Users.objects.get(id=3) ## HARD CODD
+            recipient = Users.objects.get(id=3)  ## HARD CODD
 
         # Если получатель определен и у него есть email
         if recipient and recipient.email:
@@ -53,12 +54,9 @@ def send_comment_notification(sender, instance, created, **kwargs):
             # print('Посылаю на почту----', recipient.email, message, )
             print('order_design', order_design)
 
-
-            send_mail(
+            send_comment_in_mail_task.delay(
                 subject,
                 message,
-                settings.DEFAULT_FROM_EMAIL,
-                [recipient.email],
-                html_message=message,
-                fail_silently=True
+                recipient = [recipient.email]
             )
+
