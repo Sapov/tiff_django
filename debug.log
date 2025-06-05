@@ -28966,3 +28966,9 @@ Traceback (most recent call last):
 django.template.exceptions.TemplateDoesNotExist: designs/_comments_partial.html
 2025-06-06 00:37:36,929 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
 2025-06-06 00:37:38,034 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-06 00:41:14,971 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-06 00:41:16,085 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-06 00:47:20,281 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-06 00:47:21,680 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-06 00:47:31,124 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-06 00:47:32,414 django.utils.autoreload INFO     Watching for file changes with StatReloader

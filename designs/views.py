@@ -14,6 +14,8 @@ from .models import OrderDesign
 
 from django.http import JsonResponse
 from django.core import serializers
+from django.views.decorators.cache import cache_page
+
 
 
 class DesignList(LoginRequiredMixin, ListView):
@@ -125,25 +127,25 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})
 
+@cache_page(60 * 5)  # Кеш на 5 минут
+def get_comments(request, design_id):
+    #     '''endpoint for JS'''
 
-# def get_comments(request, design_id):
-#     #     '''endpoint for JS'''
-#
-#     design = get_object_or_404(OrderDesign, pk=design_id)
-#     comments = design.comments.all().order_by('created_at').select_related('author')
-#
-#     comments_data = []
-#     for comment in comments:
-#         comments_data.append({
-#             'fields': {
-#                 'author': comment.author.pk,
-#                 'text': comment.text,
-#                 'image': comment.image.url if comment.image else None,
-#                 'created_at': comment.created_at.isoformat(),
-#             }
-#         })
-#
-#     return JsonResponse(comments_data, safe=False)
+    design = get_object_or_404(OrderDesign, pk=design_id)
+    comments = design.comments.all().order_by('created_at').select_related('author')
+
+    comments_data = []
+    for comment in comments:
+        comments_data.append({
+            'fields': {
+                'author': comment.author.pk,
+                'text': comment.text,
+                'image': comment.image.url if comment.image else None,
+                'created_at': comment.created_at.isoformat(),
+            }
+        })
+
+    return JsonResponse(comments_data, safe=False)
 
 # designs/views.py
 from django.views.decorators.http import require_http_methods
