@@ -33,7 +33,8 @@ class User(AbstractUser):
                                              'к номеру телефона подключен Telegram',
                                    null=True, blank=True)
     email_notification = models.BooleanField(
-        verbose_name='Присылать уведомления на эл. почту', help_text='Установите Да если', default=False,
+        verbose_name='Присылать уведомления на эл. почту', help_text='Установите Да если хотите получать уведомления'
+                                                                     'на электронную почту', default=True,
         null=True, blank=True)
 
     USERNAME_FIELD = "email"
