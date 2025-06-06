@@ -9,4 +9,5 @@ urlpatterns = [
     path('comment/<int:design_id>/', CommentCreateView.as_view(), name='add_comment'),
     path('api/design/<int:design_id>/comments/', get_comments, name='get_comments'),
 
+
 ]
