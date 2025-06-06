@@ -353,7 +353,7 @@ def get_comments(request, design_id):
                 'created_at': comment.created_at.isoformat(),
             }
         })
-
+    print('GET COMMENT',JsonResponse(comments_data, safe=False))
     return JsonResponse(comments_data, safe=False)
 
 # designs/views.py

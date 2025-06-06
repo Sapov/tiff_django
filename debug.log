@@ -29798,3 +29798,10 @@ Traceback (most recent call last):
   File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 228, in do_block
     raise TemplateSyntaxError(
 django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' appears more than once
+2025-06-06 21:51:54,823 django.security.csrf WARNING  Forbidden (CSRF token from POST incorrect.): /designs/comment/14/
+2025-06-06 21:51:58,283 django.security.csrf WARNING  Forbidden (CSRF token from POST incorrect.): /designs/comment/14/
+2025-06-06 21:52:03,057 django.security.csrf WARNING  Forbidden (CSRF token from POST incorrect.): /designs/comment/14/
+2025-06-06 21:54:51,810 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-06 21:54:53,698 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-06 23:56:19,052 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/models.py changed, reloading.
+2025-06-06 23:56:20,339 django.utils.autoreload INFO     Watching for file changes with StatReloader

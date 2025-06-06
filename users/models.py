@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-
 class Role(models.TextChoices):
     """Роли пользователей"""
 
@@ -33,6 +32,9 @@ class User(AbstractUser):
                                    help_text='Установите Да если '
                                              'к номеру телефона подключен Telegram',
                                    null=True, blank=True)
+    email_notification = models.BooleanField(
+        verbose_name='Присылать уведомления на эл. почту', help_text='Установите Да если', default=False,
+        null=True, blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
