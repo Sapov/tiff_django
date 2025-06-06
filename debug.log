@@ -29808,3 +29808,31 @@ django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' 
 2025-06-06 23:56:51,377 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-06 23:59:22,711 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/models.py changed, reloading.
 2025-06-06 23:59:23,746 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:07:21,914 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-07 00:07:23,248 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:10:07,501 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-07 00:10:08,713 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:11:33,580 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-07 00:11:34,753 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:12:16,168 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-07 00:12:17,453 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:12:24,995 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-07 00:12:26,227 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:15:13,210 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-07 00:15:13,210 account.views INFO     page_NUM: 1
+2025-06-07 00:15:13,214 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-07 00:18:01,490 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/account/forms.py changed, reloading.
+2025-06-07 00:18:02,820 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:24:09,263 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/models.py changed, reloading.
+2025-06-07 00:24:10,379 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:26:13,998 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-07 00:26:14,000 account.views INFO     page_NUM: 1
+2025-06-07 00:26:14,006 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-07 00:28:08,722 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-07 00:28:08,722 account.views INFO     page_NUM: 1
+2025-06-07 00:28:08,725 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-07 00:28:28,747 account.views INFO     Orders:  <QuerySet []>
+2025-06-07 00:28:28,748 account.views INFO     page_NUM: 1
+2025-06-07 00:28:28,755 account.views INFO     page_NUM: <Page 1 of 1>
+2025-06-07 00:44:49,918 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
+2025-06-07 00:44:50,975 django.utils.autoreload INFO     Watching for file changes with StatReloader

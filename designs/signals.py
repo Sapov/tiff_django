@@ -3,11 +3,9 @@ import os
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.urls import reverse
 from .models import Comments, OrderDesign
-from django.conf import settings
 
 from .tasks import send_comment_in_mail_task
 
@@ -34,26 +32,27 @@ def send_comment_notification(sender, instance, created, **kwargs):
             recipient = order_design.user
         else:
             recipient = Users.objects.get(id=3)  ## HARD CODD Design 11
+        user = Users.objects.get(email=recipient)
+        if user.email_notification:
 
-        # Если получатель определен и у него есть email
-        if recipient and recipient.email:
-            subject = f'Новый комментарий к брифу "{order_design.title}"'
-            message = render_to_string('emails/new_comment.html', {
-                'recipient': recipient,
-                'author': author,
-                'order_design': order_design,
-                'comment': instance,
-                'image_url': image_url,
+            # Если получатель определен и у него есть email
+            if recipient and recipient.email:
+                subject = f'Новый комментарий к брифу "{order_design.title}"'
+                message = render_to_string('emails/new_comment.html', {
+                    'recipient': recipient,
+                    'author': author,
+                    'order_design': order_design,
+                    'comment': instance,
+                    'image_url': image_url,
 
-                'comment_url': SITE_URL + reverse('designs:design_detail', args=[order_design.id]),
-                # 'unsubscribe_url': SITE_URL + reverse('profile_settings')
-            })
-            # print('Посылаю на почту----', recipient.email, message, )
-            print('order_design', order_design)
+                    'comment_url': SITE_URL + reverse('designs:design_detail', args=[order_design.id]),
+                    # 'unsubscribe_url': SITE_URL + reverse('profile_settings')
+                })
+                print('order_design', order_design)
 
-            send_comment_in_mail_task.delay(
-                subject,
-                message,
-                recipient = [recipient.email]
-            )
+                send_comment_in_mail_task.delay(
+                    subject,
+                    message,
+                    recipient = [recipient.email]
+                )
 
