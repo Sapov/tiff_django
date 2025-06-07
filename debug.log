@@ -29836,3 +29836,6 @@ django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' 
 2025-06-07 00:28:28,755 account.views INFO     page_NUM: <Page 1 of 1>
 2025-06-07 00:44:49,918 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/signals.py changed, reloading.
 2025-06-07 00:44:50,975 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 00:53:44,297 account.views INFO     Orders:  <QuerySet []>
+2025-06-07 00:53:44,300 account.views INFO     page_NUM: 1
+2025-06-07 00:53:44,306 account.views INFO     page_NUM: <Page 1 of 1>
