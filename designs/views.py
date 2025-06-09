@@ -211,7 +211,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, CreateView
 
 from designs.forms import CommentForm
@@ -357,29 +359,40 @@ def get_comments(request, design_id):
     return JsonResponse(comments_data, safe=False)
 
 # designs/views.py
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, require_POST
 
-
-@require_http_methods(["POST"])
+# @csrf_exempt
+@require_POST
 def add_comment(request, design_id):
-    design = get_object_or_404(OrderDesign, id=design_id)
-    form = CommentForm(request.POST, request.FILES)
+    try:
+        design = OrderDesign.objects.get(pk=design_id)
+        form = CommentForm(request.POST, request.FILES)
 
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.design = design
-        comment.author = request.user
-        comment.save()
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.design = design
+            comment.save()
 
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({'success': True})
+            # Возвращаем обновлённый список комментариев
+            comments = design.comments.all()
+            html = render_to_string('designs/comments_partial.html', {
+                'comments': comments,
+                'request': request
+            })
 
-        return redirect('designs:design_detail', design_id=design.id)
+            return JsonResponse({
+                'html': html,
+                'success': True
+            })
 
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+        return JsonResponse({
+            'error': form.errors.as_json(),
+            'success': False
+        }, status=400)
 
-    return render(request, 'designs/design_detail.html', {
-        'design': design,
-        'form': form
-    })
+    except Exception as e:
+        return JsonResponse({
+            'error': str(e),
+            'success': False
+        }, status=500)

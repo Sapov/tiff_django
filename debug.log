@@ -29839,3 +29839,129 @@ django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' 
 2025-06-07 00:53:44,297 account.views INFO     Orders:  <QuerySet []>
 2025-06-07 00:53:44,300 account.views INFO     page_NUM: 1
 2025-06-07 00:53:44,306 account.views INFO     page_NUM: <Page 1 of 1>
+2025-06-07 11:13:35,800 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-07 11:13:37,128 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 11:15:30,647 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-07 11:15:32,228 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 11:17:14,930 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-07 11:17:16,158 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 11:17:29,296 django.request WARNING  Bad Request: /designs/design/15/add_comment/
+2025-06-07 11:18:06,960 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-07 11:18:08,521 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 11:18:17,732 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:18:22,639 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:18:27,704 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:18:32,681 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:18:37,643 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:18:42,720 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:18:47,706 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:18:52,666 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:18:57,688 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:19:02,732 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:19:13,899 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:20:13,806 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:21:13,828 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:21:41,005 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:21:42,219 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:21:47,786 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:21:52,691 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:21:57,685 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:22:02,676 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:22:07,667 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:22:12,630 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:22:17,673 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:22:22,694 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:22:27,757 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:22:32,675 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:22:37,688 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:23:13,635 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:24:13,805 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:25:13,722 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:26:13,795 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:11,491 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:12,213 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:14,351 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:19,396 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:20,314 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:24,384 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:25,901 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:30,889 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:35,887 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:40,479 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-07 11:27:41,928 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 11:27:45,918 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:48,049 django.request ERROR    Internal Server Error: /designs/design/15/add_comment/
+2025-06-07 11:27:51,186 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:54,477 django.request ERROR    Internal Server Error: /designs/design/15/add_comment/
+2025-06-07 11:27:55,853 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:27:58,823 django.request ERROR    Internal Server Error: /designs/design/15/add_comment/
+2025-06-07 11:28:01,768 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:05,888 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:10,848 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:11,476 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-07 11:28:12,637 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-07 11:28:16,370 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:17,310 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:17,568 django.request WARNING  Bad Request: /designs/design/15/add_comment/
+2025-06-07 11:28:22,440 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:22,740 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:27,324 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:30,089 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:32,397 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:34,196 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:39,226 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:44,758 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:49,693 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:54,698 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:28:59,681 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:04,676 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:09,725 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:14,670 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:19,254 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:20,538 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:25,586 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:30,586 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:33,710 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:35,577 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:37,929 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:42,974 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:48,708 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:53,746 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:29:58,660 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:03,685 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:08,686 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:13,833 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:18,675 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:23,674 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:28,693 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:33,697 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:38,678 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:30:43,723 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:01,874 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:02,991 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:07,961 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:12,528 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:17,550 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:22,561 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:27,589 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:32,600 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:37,616 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:42,599 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:47,683 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:52,727 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:57,684 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:31:57,915 django.request WARNING  Not Found: /designs/api/design/1/comments/
+2025-06-07 11:32:02,644 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:03,518 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:07,683 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:12,738 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:17,680 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:22,681 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:27,631 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:32,632 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:37,775 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:42,710 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:32:48,723 django.request WARNING  Not Found: //designs/api/design/15/comments/
+2025-06-07 11:33:13,819 django.request WARNING  Not Found: /designs/api/design/15/comments/
+2025-06-07 11:33:17,356 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-06-07 11:33:18,790 django.utils.autoreload INFO     Watching for file changes with StatReloader

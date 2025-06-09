@@ -8,6 +8,7 @@ urlpatterns = [
     path('<int:pk>/', DesignDetailView.as_view(), name='design_detail'),
     path('comment/<int:design_id>/', CommentCreateView.as_view(), name='add_comment'),
     path('api/design/<int:design_id>/comments/', get_comments, name='get_comments'),
-
+    path('design/<int:design_id>/add_comment/', add_comment, name='add_comment'),
+    # path('design/<int:design_id>/comments/', get_comments, name='get_comments'),
 
 ]
