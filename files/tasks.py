@@ -15,7 +15,7 @@ def process_uploaded_file(self, file_path, user_id):
 
     # Имитация обработки файла
     for i in range(100):
-        time.sleep(0.1)  # Замените на реальную обработку
+        # time.sleep(0.1)  # Замените на реальную обработку
         progress_recorder.set_progress(i + 1, 100, description='Обработка файла')
 
     return {'result': 'success'}

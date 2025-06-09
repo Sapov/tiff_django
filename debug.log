@@ -29965,3 +29965,71 @@ django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' 
 2025-06-07 11:33:13,819 django.request WARNING  Not Found: /designs/api/design/15/comments/
 2025-06-07 11:33:17,356 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
 2025-06-07 11:33:18,790 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 13:16:06,641 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-09 13:16:07,804 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 13:17:51,463 django.request WARNING  Forbidden (Permission denied): /designs/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/designs/views.py", line 63, in dispatch
+    raise PermissionDenied("У вас нет прав доступа к этому макету")
+django.core.exceptions.PermissionDenied: У вас нет прав доступа к этому макету
+2025-06-09 13:34:53,759 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-09 13:34:55,183 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 13:41:48,045 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-09 13:41:49,214 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 13:43:38,328 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/validators.py changed, reloading.
+2025-06-09 13:43:39,513 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:11:54,974 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-09 14:11:56,644 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:12:36,029 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-09 14:12:37,492 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:12:52,909 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:14:23,356 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-09 14:14:24,543 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:14:35,521 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-09 14:14:36,671 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:15:15,247 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-09 14:15:15,252 account.views INFO     page_NUM: 1
+2025-06-09 14:15:15,258 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-09 14:15:43,819 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-09 14:15:45,254 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:16:57,111 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-09 14:16:58,723 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:17:04,687 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-09 14:17:05,999 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:23:27,637 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-09 14:23:29,747 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:26:52,772 root         INFO     [INFO]. self.length:0.83 TYPE<class 'float'>
+Width: 1.18 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-06-09 14:26:52,772 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-06-09 14:26:52,772 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-06-09 14:28:22,214 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-09 14:28:23,537 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:28:24,672 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-09 14:28:24,672 account.views INFO     page_NUM: 1
+2025-06-09 14:28:24,674 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-09 14:28:37,809 root         INFO     [INFO]. self.length:0.13 TYPE<class 'float'>
+Width: 0.19 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-06-09 14:28:37,810 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-06-09 14:28:37,810 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-06-09 14:29:07,964 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-09 14:29:09,363 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:29:22,231 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/validators.py changed, reloading.
+2025-06-09 14:29:23,623 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-09 14:48:33,586 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-09 14:48:34,992 django.utils.autoreload INFO     Watching for file changes with StatReloader

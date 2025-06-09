@@ -164,6 +164,47 @@ class BaseFilesCreateView(LoginRequiredMixin, CreateView):
     template_name = "files/large_print.html"
     success_url = "files:about_file"
 
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     instance = form.save()
+    #
+    #     task = process_uploaded_file.delay(
+    #         file_path=instance.images.path,
+    #         user_id=self.request.user.id
+    #     )
+    #
+    #     if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+    #         return JsonResponse({'task_id': task.id})
+    #
+    #     return super().form_valid(form)
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+
+        # Обработка AJAX-загрузки (drag-and-drop)
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            files = request.FILES.getlist('files')
+            task_ids = []
+
+            for uploaded_file in files:
+                # Сохраняем файл временно
+                path = default_storage.save(f'tmp/{uploaded_file.name}', uploaded_file)
+                full_path = default_storage.path(path)
+
+                # Запускаем обработку
+                task = process_uploaded_file.delay(
+                    file_path=full_path,
+                    user_id=request.user.id
+                )
+                task_ids.append(task.id)
+
+            return JsonResponse({'status': 'success', 'task_ids': task_ids})
+
+        # Обычная форма (не AJAX)
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         instance = form.save()
@@ -173,10 +214,8 @@ class BaseFilesCreateView(LoginRequiredMixin, CreateView):
             user_id=self.request.user.id
         )
 
-        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({'task_id': task.id})
-
         return super().form_valid(form)
+
 
 
 class FilesCreateViewInter(BaseFilesCreateView):
