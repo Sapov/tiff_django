@@ -30033,3 +30033,41 @@ SELF.USER: MANAGER: TYPE <class 'str'>
 2025-06-09 14:29:23,623 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-09 14:48:33,586 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
 2025-06-09 14:48:34,992 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-10 18:36:20,514 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-10 18:39:23,284 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-10 18:39:26,111 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-10 18:39:40,540 root         INFO     [INFO]. self.length:0.83 TYPE<class 'float'>
+Width: 1.18 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-06-10 18:39:40,540 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-06-10 18:39:40,541 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-06-10 18:40:39,958 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-10 18:40:58,116 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-10 18:41:03,542 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-10 18:41:03,544 account.views INFO     page_NUM: 1
+2025-06-10 18:41:03,554 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-10 18:41:13,462 root         INFO     [INFO]. self.length:0.83 TYPE<class 'float'>
+Width: 1.18 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-06-10 18:41:13,462 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-06-10 18:41:13,463 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-06-10 18:41:19,476 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-10 18:41:19,477 account.views INFO     page_NUM: 1
+2025-06-10 18:41:19,485 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-10 18:41:27,378 root         INFO     [INFO]. self.length:0.83 TYPE<class 'float'>
+Width: 1.18 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: PP-баннер Natura 140 гр (0,91; 1,37 м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-06-10 18:41:27,379 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-06-10 18:41:27,379 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
