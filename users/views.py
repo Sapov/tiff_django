@@ -125,3 +125,26 @@ class ProfileUpdateLIst(LoginRequiredMixin, UpdateView):
     ]
     template_name_suffix = '_update_form'
     success_url = reverse_lazy('profile_list')
+
+
+
+# from django.shortcuts import render, redirect
+# from django.contrib.auth import login
+# from django.views.generic import CreateView
+from .forms import DesignerSignUpForm
+# from .models import User
+
+
+class DesignerSignUpView(CreateView):
+    model = User
+    form_class = DesignerSignUpForm
+    template_name = 'registration/designer_signup.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'designer'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('home')  # Замените 'home' на ваш URL
