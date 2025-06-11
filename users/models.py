@@ -37,5 +37,6 @@ class User(AbstractUser):
                                                                      'на электронную почту', default=True,
         blank=True, null=True)
 
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
