@@ -35,7 +35,7 @@ class User(AbstractUser):
     email_notification = models.BooleanField(
         verbose_name='Присылать уведомления на эл. почту', help_text='Установите Да если хотите получать уведомления'
                                                                      'на электронную почту', default=True,
-        )
+        blank=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
