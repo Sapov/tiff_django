@@ -147,4 +147,4 @@ class DesignerSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('home')  # Замените 'home' на ваш URL
+        return redirect('account:dashboard')  # Замените 'home' на ваш URL
