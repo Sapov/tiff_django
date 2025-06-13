@@ -18,7 +18,6 @@ class TestCalculator(TestCase):
                                 price_contractor=200,
                                 price=350,
                                 price_customer_retail=400,
-                                resolution_print=72,
                                 is_active=True)
         FinishWork.objects.create(work='Порезка по краям',
                                   price_contractor=40,

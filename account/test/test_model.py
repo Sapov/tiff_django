@@ -25,7 +25,7 @@ class TestModelDelivery(TestCase):
     def test_type_delivery_default(self):
         delivery = Delivery.objects.get(id=1)
         default = delivery._meta.get_field('type_delivery').default
-        expected_default = 2
+        expected_default = 1
         self.assertEqual(default, expected_default)
 
     def test_model_verbose_name(self):

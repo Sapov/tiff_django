@@ -202,7 +202,7 @@ class TestModelsMaterial(TestCase):
         """Заносит данные в БД перед запуском тестов класса"""
         Material.objects.create(
             name='Баннер 440 грамм ламинированный',
-            # type_print='Интерьерная печать',
+            type_print='Интерьерная печать',
             price_contractor=100,
             price=200,
             resolution_print=100)
@@ -345,8 +345,8 @@ class TestModelsUseCalculator(TestCase):
     @classmethod
     def setUpTestData(cls):
         """Заносит данные в БД перед запуском тестов класса"""
-        Material.objects.create(name='Баннер 440 грамм ламинированный',  # type_print='Интерьерная печать',
-                                price_contractor=200, price=400, resolution_print=100)
+        Material.objects.create(name='Баннер 440 грамм ламинированный',  type_print='Интерьерная печать',
+                                price_contractor=200, price=400)
         fw = FinishWork.objects.create(work='Порезка', price_contractor=50, price=100, price_customer_retail=200,
                                        is_active=True)
 
@@ -354,7 +354,6 @@ class TestModelsUseCalculator(TestCase):
                                      quantity=2, width=2, length=3, results=3800,
                                      FinishWork=FinishWork.objects.get(id=1), )
 
-        # created_at = 2004/01/01
 
     def test_material_label(self):
         '''Получение метаданных поля для получения необходимых значений'''

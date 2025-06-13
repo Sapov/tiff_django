@@ -31155,3 +31155,171 @@ Traceback (most recent call last):
     return super().execute(query, params)
 django.db.utils.OperationalError: no such table: lids_lids
 2025-06-12 11:19:45,727 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-13 14:20:04,774 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-13 14:20:19,095 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-06-13 14:20:19,096 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:20:19,139 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 7
+2025-06-13 14:20:19,140 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:20:19,140 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:20:19,140 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:20:19,141 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-06-13 14:20:19,141 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:20:19,141 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 6
+2025-06-13 14:23:08,406 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-13 14:23:12,495 django.request WARNING  Not Found: /favicon.ico
+2025-06-13 14:23:18,651 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-13 14:23:18,652 account.views INFO     page_NUM: 1
+2025-06-13 14:23:18,660 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-13 14:23:25,373 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-06-13 14:23:25,391 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:24:07,206 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/account/models.py changed, reloading.
+2025-06-13 14:24:15,760 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-13 14:24:23,177 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-06-13 14:24:23,179 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:24:23,221 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 7
+2025-06-13 14:24:23,221 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:24:23,221 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:24:23,222 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:24:23,222 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-06-13 14:24:23,222 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:24:23,223 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 6
+2025-06-13 14:24:46,517 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-06-13 14:24:46,518 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:24:46,562 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 7
+2025-06-13 14:24:46,562 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:24:46,562 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:24:46,563 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:24:46,563 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-06-13 14:24:46,563 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:24:46,564 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 6
+2025-06-13 14:26:09,699 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-06-13 14:26:09,701 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:26:09,741 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 7
+2025-06-13 14:26:09,741 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:26:09,742 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:26:09,742 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:26:09,742 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-06-13 14:26:09,743 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:26:09,743 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 6
+2025-06-13 14:28:05,167 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-13 14:28:05,172 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-13 14:28:05,172 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:28:05,172 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:28:05,177 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_AGENCY: TYPE <class 'str'> 
+2025-06-13 14:28:05,177 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_AGENCY, TYPE <class 'str'>
+2025-06-13 14:28:05,177 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_AGENCY, TYPE <class 'str'>
+2025-06-13 14:28:05,182 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-13 14:28:05,182 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:28:05,182 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:28:05,187 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_AGENCY: TYPE <class 'str'> 
+2025-06-13 14:28:05,187 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_AGENCY, TYPE <class 'str'>
+2025-06-13 14:28:05,187 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_AGENCY, TYPE <class 'str'>
+2025-06-13 14:28:05,191 root         INFO     [INFO]. self.length:0.2 TYPE<class 'float'>
+Width: 0.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-13 14:28:05,191 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:28:05,192 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:28:05,719 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-06-13 14:28:05,721 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:28:05,762 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 7
+2025-06-13 14:28:05,762 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:28:05,763 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:28:05,763 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:28:05,763 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-06-13 14:28:05,764 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:28:05,764 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 6
+2025-06-13 14:29:38,942 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-13 14:29:38,949 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-13 14:29:38,949 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:29:38,949 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:29:38,955 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_AGENCY: TYPE <class 'str'> 
+2025-06-13 14:29:38,955 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_AGENCY, TYPE <class 'str'>
+2025-06-13 14:29:38,955 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_AGENCY, TYPE <class 'str'>
+2025-06-13 14:29:38,961 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-13 14:29:38,961 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:29:38,961 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:29:38,965 root         INFO     [INFO]. self.length:2 TYPE<class 'int'>
+Width: 2 TYPE <class 'int'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_AGENCY: TYPE <class 'str'> 
+2025-06-13 14:29:38,965 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_AGENCY, TYPE <class 'str'>
+2025-06-13 14:29:38,965 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_AGENCY, TYPE <class 'str'>
+2025-06-13 14:29:38,969 root         INFO     [INFO]. self.length:0.2 TYPE<class 'float'>
+Width: 0.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Порезка по краям TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-13 14:29:38,969 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:29:38,969 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-13 14:29:39,502 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-06-13 14:29:39,504 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:29:39,545 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 7
+2025-06-13 14:29:39,545 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:29:39,545 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:29:39,545 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 5
+2025-06-13 14:29:39,546 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2025-06-13 14:29:39,546 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-06-13 14:29:39,546 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 6
