@@ -31583,3 +31583,7 @@ SELF.USER: MANAGER: TYPE <class 'str'>
 2025-06-16 22:41:07,884 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
 2025-06-16 22:41:07,885 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
 2025-06-16 22:41:07,905 root         INFO     [Удаляем из OrderItems] Заказ № 6-image/Свойства_электромагнтиных_волн_RMtRGC1.tif
+2025-06-16 23:02:19,602 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-16 23:02:24,238 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-16 23:04:59,562 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-16 23:05:03,116 django.utils.autoreload INFO     Watching for file changes with StatReloader

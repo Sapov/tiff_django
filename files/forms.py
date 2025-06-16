@@ -11,6 +11,14 @@ class UploadFiles(forms.ModelForm):
         fields = ["material", "quantity", "width", "length", "images"]
 
 
+class ProductForm(forms.ModelForm):
+    files = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'files']  # другие поля
+
+
 class UpdateFiles(forms.ModelForm):
     class Meta:
         model = Product
