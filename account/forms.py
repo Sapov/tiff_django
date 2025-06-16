@@ -30,7 +30,7 @@ class UserRegistrationForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["last_name", "first_name", 'phone_number', 'whatsapp', 'email_notification']
+        fields = ["first_name", 'phone_number', 'whatsapp', 'email_notification']
 
 
 class OrganisationForm(forms.ModelForm):
@@ -42,4 +42,5 @@ class OrganisationForm(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ["first_name", 'phone_number', 'whatsapp', 'email_notification']
+
