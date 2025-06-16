@@ -158,25 +158,84 @@ def page_not_found(request, exception):
     return HttpResponseNotFound(f"<H1>Страница не найдена</H1")
 
 
+# class BaseFilesCreateView(LoginRequiredMixin, CreateView):
+#     """Базовый класс для загрузки файлов"""
+#     model = Product
+#     template_name = "files/large_print.html"
+#     success_url = "files:about_file"
+#
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         instance = form.save()
+#
+#         task = process_uploaded_file.delay(
+#             file_path=instance.images.path,
+#             user_id=self.request.user.id
+#         )
+#
+#         if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#             return JsonResponse({'task_id': task.id})
+#
+#         return super().form_valid(form)
+
+# from django.views.generic.edit import CreateView
+# from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.http import JsonResponse
+from django.core.files.storage import default_storage
+# from .models import Product
+# from .tasks import process_uploaded_file
+# import os
+
+
 class BaseFilesCreateView(LoginRequiredMixin, CreateView):
-    """Базовый класс для загрузки файлов"""
+    """Базовый класс для мультизагрузки файлов"""
     model = Product
     template_name = "files/large_print.html"
     success_url = "files:about_file"
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+
+        if not form.is_valid():
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'errors': form.errors}, status=400)
+            return self.form_invalid(form)
+
+        # Сохраняем основную форму
+        form.instance.user = request.user
         instance = form.save()
 
-        task = process_uploaded_file.delay(
-            file_path=instance.images.path,
-            user_id=self.request.user.id
-        )
+        # Обрабатываем множественные файлы
+        files = request.FILES.getlist('files')  # предполагается поле 'files' в форме
+        task_ids = []
 
-        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({'task_id': task.id})
+        for uploaded_file in files:
+            # Сохраняем файл временно
+            temp_path = os.path.join('temp_uploads', uploaded_file.name)
+            saved_path = default_storage.save(temp_path, uploaded_file)
+
+            # Запускаем задачу для каждого файла
+            task = process_uploaded_file.delay(
+                file_path=saved_path,
+                user_id=request.user.id,
+                product_id=instance.id  # передаем ID продукта
+            )
+            task_ids.append(task.id)
+
+        # Ответ для AJAX/HTMX запроса
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': True,
+                'task_ids': task_ids,
+                'product_id': instance.id
+            })
 
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'errors': form.errors}, status=400)
+        return super().form_invalid(form)
 
 
 class FilesCreateViewInter(BaseFilesCreateView):
