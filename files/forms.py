@@ -11,18 +11,26 @@ class UploadFiles(forms.ModelForm):
         fields = ["material", "quantity", "width", "length", "images"]
 
 
-class ProductForm(forms.ModelForm):
-    files = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
-
-    class Meta:
-        model = Product
-        fields = ['name', 'description', 'files']  # другие поля
+from django import forms
 
 
-class UpdateFiles(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ["material", "quantity", "width", "length", "images"]
+class MultipleFileInput(forms.ClearableFileInput):
+    allow_multiple_selected = True
+
+
+class MultipleFileFields(forms.FileField):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('widget', MultipleFileInput())
+        super().__init__(*args, **kwargs)
+
+    def clean(self, data, initial=None):
+        single_file_clean = super().clean
+        if isinstance(data, (list, tuple)):
+            result = [single_file_clean(data, initial)]
+            return result
+
+class FileFieldForm(forms.Form):
+    file_field = MultipleFileFields()
 
 
 class AddFiles(forms.Form):
@@ -63,22 +71,28 @@ class CalculatorForm(BaseCalculatorForm):
 
 class CalculatorLargePrint(BaseCalculatorForm):
     """для широкоформатной печати"""
+
     def get_material_queryset(self):
         return Material.objects.filter(type_print=1)
 
+
 class CalculatorInterierPrint(BaseCalculatorForm):
     """для интерьерной печати"""
+
     def get_material_queryset(self):
         return Material.objects.filter(type_print=2)
 
+
 class CalculatorUVPrint(BaseCalculatorForm):
-        """для УФ печати"""
-        def get_material_queryset(self):
-            return Material.objects.filter(type_print=3)
+    """для УФ печати"""
+
+    def get_material_queryset(self):
+        return Material.objects.filter(type_print=3)
 
 
 class CalculatorBlankMaterial(BaseCalculatorForm):
     '''Для чистого материала'''
+
     def get_material_queryset(self):
         return Material.objects.filter(type_print=4)
 

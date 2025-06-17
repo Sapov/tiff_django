@@ -31587,3 +31587,75 @@ SELF.USER: MANAGER: TYPE <class 'str'>
 2025-06-16 23:02:24,238 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-16 23:04:59,562 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
 2025-06-16 23:05:03,116 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-16 23:10:19,177 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-16 23:12:02,395 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-16 23:15:45,754 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-16 23:17:31,280 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-16 23:20:15,838 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-16 23:20:16,919 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-16 23:31:26,302 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-16 23:31:26,302 account.views INFO     page_NUM: 1
+2025-06-16 23:31:26,305 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-17 00:10:52,138 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2025-06-17 00:10:52,139 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2025-06-17 00:10:53,141 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2025-06-17 00:10:54,145 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2025-06-17 00:10:55,147 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2025-06-17 00:10:56,149 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2025-06-17 00:10:57,152 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2025-06-17 00:10:58,155 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2025-06-17 00:10:59,158 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2025-06-17 00:11:00,160 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2025-06-17 00:11:01,163 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2025-06-17 00:11:02,168 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2025-06-17 00:11:03,172 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2025-06-17 00:11:04,175 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2025-06-17 00:11:05,178 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2025-06-17 00:11:06,180 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2025-06-17 00:11:07,194 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2025-06-17 00:11:08,196 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2025-06-17 00:11:09,198 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2025-06-17 00:11:10,200 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2025-06-17 00:11:11,203 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2025-06-17 00:11:11,205 django.request ERROR    Internal Server Error: /designs/design/15/add_comment/
+2025-06-17 13:14:05,418 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-17 13:14:05,419 account.views INFO     page_NUM: 1
+2025-06-17 13:14:05,422 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-17 13:56:11,611 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 13:56:17,315 django.request WARNING  Not Found: /favicon.ico
+2025-06-17 13:56:25,598 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-17 13:56:25,598 account.views INFO     page_NUM: 1
+2025-06-17 13:56:25,600 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-17 13:57:20,716 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 13:57:22,740 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 13:57:50,421 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 13:57:51,783 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 13:57:53,210 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 178, in get
+    return super().get(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 142, in get
+    return self.render_to_response(self.get_context_data())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 72, in get_context_data
+    kwargs["form"] = self.get_form()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 36, in get_form
+    form_class = self.get_form_class()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 84, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Specifying both 'fields' and 'form_class' is not permitted.
+2025-06-17 13:58:36,799 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 13:58:38,602 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:24:00,272 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 14:24:02,174 django.utils.autoreload INFO     Watching for file changes with StatReloader
