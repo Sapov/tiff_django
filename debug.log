@@ -31659,3 +31659,1813 @@ django.core.exceptions.ImproperlyConfigured: Specifying both 'fields' and 'form_
 2025-06-17 13:58:38,602 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-17 14:24:00,272 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
 2025-06-17 14:24:02,174 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:24:11,868 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 14:24:13,973 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:24:54,952 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 14:24:56,072 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:25:52,249 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:25:56,691 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 178, in get
+    return super().get(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 142, in get
+    return self.render_to_response(self.get_context_data())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 72, in get_context_data
+    kwargs["form"] = self.get_form()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 36, in get_form
+    form_class = self.get_form_class()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 84, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Specifying both 'fields' and 'form_class' is not permitted.
+2025-06-17 14:27:44,243 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:27:48,185 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 142, in get
+    return self.render_to_response(self.get_context_data())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 200, in render_to_response
+    template=self.get_template_names(),
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 212, in get_template_names
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: TemplateResponseMixin requires either a definition of 'template_name' or an implementation of 'get_template_names()'
+2025-06-17 14:29:21,005 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 14:29:22,619 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:29:57,247 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:30:45,160 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 14:30:46,451 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:35:13,098 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:37:35,080 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:36,090 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:37,050 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:38,056 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:39,061 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:40,121 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:41,060 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:42,081 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:43,047 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:44,153 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:45,075 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:46,066 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:47,031 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:48,366 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:49,100 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:50,045 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:51,135 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:52,057 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:52,988 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:54,142 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:55,082 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:56,171 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:57,090 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:58,227 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:59,054 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:37:59,974 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:38:01,168 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:38:02,187 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:38:03,035 django.request ERROR    Internal Server Error: /celery-progress/undefined/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/views.py", line 10, in get_progress
+    return HttpResponse(json.dumps(progress.get_info()), content_type='application/json')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery_progress/backend.py", line 92, in get_info
+    task_meta = self.result._get_task_meta()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/result.py", line 441, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 608, in get_task_meta
+    meta = self._get_task_meta_for(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/base.py", line 995, in _get_task_meta_for
+    meta = self.get(self.get_key_for_task(task_id))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in get
+    return self.client.get(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-17 14:39:45,341 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 14:39:47,002 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:39:54,969 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 14:39:56,367 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:40:30,804 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 14:40:32,116 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 14:42:47,185 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 14:42:53,130 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:03:54,522 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:04:16,572 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 98, in form_valid
+    form.instance.user = self.request.user
+AttributeError: 'FileFieldForm' object has no attribute 'instance'
+2025-06-17 15:04:59,442 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:05:03,450 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 102, in form_valid
+    form.instance.user = self.request.user
+AttributeError: 'FileFieldForm' object has no attribute 'instance'
+2025-06-17 15:05:34,468 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:05:38,353 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 113, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 58, in get_success_url
+    raise ImproperlyConfigured("No URL to redirect to. Provide a success_url.")
+django.core.exceptions.ImproperlyConfigured: No URL to redirect to. Provide a success_url.
+2025-06-17 15:06:27,769 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:06:31,587 django.request WARNING  Not Found: /files/create/myfiles
+2025-06-17 15:06:51,850 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:07:06,388 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 114, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 15:07:06,493 django.request WARNING  Bad Request: /files/create/
+2025-06-17 15:07:41,267 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 114, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 15:07:41,341 django.request WARNING  Bad Request: /files/create/
+2025-06-17 15:07:53,198 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:08:01,276 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 114, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 15:08:01,373 django.request WARNING  Bad Request: /files/create/
+2025-06-17 15:08:15,868 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 114, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 15:08:15,913 django.request WARNING  Bad Request: /files/create/
+2025-06-17 15:50:09,038 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 15:50:10,271 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:50:46,821 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 15:50:47,891 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 15:52:16,986 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 15:52:18,026 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:37:04,641 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:37:09,817 django.request WARNING  Not Found: /favicon.ico
+2025-06-17 22:37:16,494 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-17 22:37:16,495 account.views INFO     page_NUM: 1
+2025-06-17 22:37:16,501 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-17 22:37:25,833 django.request WARNING  Not Found: /create
+2025-06-17 22:37:49,451 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 99, in form_valid
+    files = form.cleaned_data['file_field']
+KeyError: 'file_field'
+2025-06-17 22:38:47,623 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:38:55,498 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 98, in form_valid
+    form.instance.user = self.request.user
+AttributeError: 'FileArh' object has no attribute 'instance'
+2025-06-17 22:39:12,669 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:39:15,670 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 100, in form_valid
+    files = form.cleaned_data['file_field']
+KeyError: 'file_field'
+2025-06-17 22:40:05,961 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:40:11,271 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 99, in form_valid
+    print(request.Files)
+AttributeError: module 'django.http.request' has no attribute 'Files'
+2025-06-17 22:40:43,766 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:40:49,068 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 100, in form_valid
+    files = form.cleaned_data['file_field']
+KeyError: 'file_field'
+2025-06-17 22:41:18,081 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:41:20,530 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:41:33,872 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 114, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 22:41:34,030 django.request WARNING  Bad Request: /files/create/
+2025-06-17 22:42:30,309 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:42:36,600 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 113, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 22:42:36,810 django.request WARNING  Bad Request: /files/create/
+2025-06-17 22:43:01,330 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:43:05,925 django.request WARNING  Not Found: /files/create/myfiles
+2025-06-17 22:44:32,693 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-17 22:44:33,966 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:47:36,060 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:47:45,560 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:48:31,617 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:48:36,734 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:48:45,161 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:48:52,913 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:49:47,380 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:49:52,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:50:20,174 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 106, in form_valid
+    handle_uploaded_file(file)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 91, in handle_uploaded_file
+    with open(f"uploads/{f.name}", "wb+") as destination:
+FileNotFoundError: [Errno 2] No such file or directory: 'uploads/1шт_пленка_китай_интерьерн_1040х540мм_А.tif'
+2025-06-17 22:50:44,877 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 106, in form_valid
+    handle_uploaded_file(file)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 91, in handle_uploaded_file
+    with open(f"uploads/{f.name}", "wb+") as destination:
+FileNotFoundError: [Errno 2] No such file or directory: 'uploads/1шт_пленка_китай_интерьерн_1040х540мм_А.tif'
+2025-06-17 22:52:40,475 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:52:46,370 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:52:51,523 django.request WARNING  Not Found: /files/create/myfiles
+2025-06-17 22:55:10,616 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:55:11,816 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:55:21,633 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 119, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 22:55:21,698 django.request WARNING  Bad Request: /files/create/
+2025-06-17 22:56:00,319 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:56:01,511 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:56:05,067 django.request ERROR    Internal Server Error: /files/create/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 119, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 58, in get_success_url
+    raise ImproperlyConfigured("No URL to redirect to. Provide a success_url.")
+django.core.exceptions.ImproperlyConfigured: No URL to redirect to. Provide a success_url.
+2025-06-17 22:56:43,553 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 22:56:44,659 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 22:56:46,002 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 119, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 22:56:46,107 django.request WARNING  Bad Request: /files/create/
+2025-06-17 22:58:18,750 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 119, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 22:58:18,799 django.request WARNING  Bad Request: /files/create/
+2025-06-17 22:58:24,613 django.security.DisallowedRedirect ERROR    Unsafe redirect to URL with protocol 'files'
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 119, in form_valid
+    return super().form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 63, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/http/response.py", line 621, in __init__
+    raise DisallowedRedirect(
+django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 'files'
+2025-06-17 22:58:24,663 django.request WARNING  Bad Request: /files/create/
+2025-06-17 23:01:43,166 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-17 23:01:44,178 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 23:02:33,253 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-17 23:02:34,435 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-17 23:59:17,180 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/apps.py changed, reloading.
+2025-06-17 23:59:18,438 django.utils.autoreload INFO     Watching for file changes with StatReloader

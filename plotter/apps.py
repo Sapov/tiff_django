@@ -4,3 +4,5 @@ from django.apps import AppConfig
 class PlotterConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'plotter'
+    verbose_name = 'Плоттер'
+

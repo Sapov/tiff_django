@@ -18,8 +18,7 @@ from .forms import (
     UploadFilesLarge,
     UploadFilesUV,
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
-    UploadFilesPictures, MyForm,
-
+    UploadFilesPictures, FileArh,
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
@@ -88,14 +87,66 @@ class FilesUpdateView(LoginRequiredMixin, UpdateView):
     login_url = "login"
 
 
-class FilesCreateView(LoginRequiredMixin, CreateView):
+def handle_uploaded_file(f):
+    with open(f"media/uploads/{f.name}", "wb+") as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = FileArh(request.POST, request.FILES)
+        if form.is_valid():
+            upload = FileArh(file=request.FILES['file'])
+            upload.save()
+
+            # Запуск асинхронной задачи
+            process_large_file.delay(upload.id)
+
+            return JsonResponse({
+                'status': 'success',
+                'upload_id': upload.id,
+                'task_status_url': f'/upload/status/{upload.id}/'
+            })
+    else:
+        form = FileArh()
+    return render(request, 'upload.html', {'form': form})
+
+
+# def upload_status(request, upload_id):
+#     upload = FileUpload.objects.get(id=upload_id)
+#     return JsonResponse({
+#         'status': upload.status,
+#         'progress': upload.progress,
+#         'result': upload.result
+#     })
+class FilesCreateView(LoginRequiredMixin, FormView):
+    form_class = FileArh
     model = Product
     fields = ["quantity", "material", "FinishWork", "images", "comments"]
-    form = MyForm
+    template_name = 'files/upload_files.html'
+    success_url = 'files:myfiles'
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        # form.instance.user = self.request.user
+        file = form.cleaned_data['files']
+        handle_uploaded_file(file)
+        print(file)
+        # form.instance.user = self.request.user
+        # instance = form.save()
+
+        # task = process_uploaded_file.delay(
+        #     file_path=i,
+        #     user_id=self.request.user.id
+        # )
+
+        # if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        #     return JsonResponse({'task_id': task.id})
+
         return super().form_valid(form)
+
+
 
 
 @login_required

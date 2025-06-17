@@ -1,41 +1,6 @@
 from django import forms
-from django.core.validators import FileExtensionValidator
-
 from .models import *
 from .validators import validate_tiff_file
-
-
-class UploadFiles(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ["material", "quantity", "width", "length", "images"]
-
-
-from django import forms
-
-
-class MultipleFileInput(forms.ClearableFileInput):
-    allow_multiple_selected = True
-
-
-class MultipleFileFields(forms.FileField):
-    def __init__(self, *args, **kwargs):
-        kwargs.setdefault('widget', MultipleFileInput())
-        super().__init__(*args, **kwargs)
-
-    def clean(self, data, initial=None):
-        single_file_clean = super().clean
-        if isinstance(data, (list, tuple)):
-            result = [single_file_clean(data, initial)]
-            return result
-
-class FileFieldForm(forms.Form):
-    file_field = MultipleFileFields()
-
-
-class AddFiles(forms.Form):
-    # material = forms.ModelChoiceField(queryset=Material.objects.filter(type_print=1))
-    quantity = forms.CharField(max_length=29)
 
 
 class BaseCalculatorForm(forms.Form):
@@ -200,3 +165,7 @@ class CreateContractor(forms.ModelForm):
         model = Contractor
         fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
                   'address', 'contact_contractor']
+
+
+class FileArh(forms.Form):
+    files = forms.ImageField()
