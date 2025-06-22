@@ -19,3 +19,5 @@ def process_uploaded_file(self, file_path, user_id):
         progress_recorder.set_progress(i + 1, 100, description='Обработка файла')
 
     return {'result': 'success'}
+
+

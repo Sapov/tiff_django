@@ -8,6 +8,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from users.utils import send_email_for_verify
+from .models import Role
+
 
 User = get_user_model()
 
@@ -49,3 +51,19 @@ class UserCreationForm(DjangoUserCreationForm):
     class Meta(DjangoUserCreationForm.Meta):
         model = User
         fields = ("username", "email")
+
+
+
+
+class DesignerSignUpForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('email', 'username', 'password1', 'password2')
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.role = Role.DESIGNER  # Автоматически устанавливаем роль дизайнера
+        if commit:
+            user.save()
+        return user

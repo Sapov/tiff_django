@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="container mt-5">
+    <h2>Загрузка файлов для широкоформатной печати</h2>
+
+    <form id="uploadForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="progress mb-3 d-none" id="progressBarContainer">
+            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>
+
+        <div id="progressDescription" class="mb-3"></div>
+
+        <button type="submit" class="btn btn-primary" id="submitBtn">Загрузить</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!--<script>-->
+<!--document.getElementById('uploadForm').addEventListener('submit', function(e) {-->
+<!--    e.preventDefault();-->
+
+<!--    const form = e.target;-->
+<!--    const progressBarContainer = document.getElementById('progressBarContainer');-->
+<!--    const progressBar = document.getElementById('progressBar');-->
+<!--    const progressDescription = document.getElementById('progressDescription');-->
+<!--    const submitBtn = document.getElementById('submitBtn');-->
+
+<!--    // Показываем прогресс-бар-->
+<!--    progressBarContainer.classList.remove('d-none');-->
+<!--    submitBtn.disabled = true;-->
+
+<!--    // Создаем FormData объект-->
+<!--    const formData = new FormData(form);-->
+
+<!--    // Добавляем заголовок для AJAX-->
+<!--    const config = {-->
+<!--        headers: {-->
+<!--            'X-Requested-With': 'XMLHttpRequest',-->
+<!--            'Content-Type': 'multipart/form-data'-->
+<!--        },-->
+<!--        onUploadProgress: function(progressEvent) {-->
+<!--            if (progressEvent.lengthComputable) {-->
+<!--                const percentComplete = Math.round((progressEvent.loaded / progressEvent.total) * 100);-->
+<!--                progressBar.style.width = percentComplete + '%';-->
+<!--                progressBar.setAttribute('aria-valuenow', percentComplete);-->
+<!--                progressBar.textContent = percentComplete + '%';-->
+<!--                progressDescription.textContent = 'Загрузка файла... ' + percentComplete + '%';-->
+<!--            }-->
+<!--        }-->
+<!--    };-->
+
+<!--    // Отправляем данные-->
+<!--    axios.post(form.action, formData, config)-->
+<!--        .then(function(response) {-->
+<!--            const taskId = response.data.task_id;-->
+<!--            checkProgress(taskId);-->
+<!--        })-->
+<!--        .catch(function(error) {-->
+<!--            console.error(error);-->
+<!--            alert('Ошибка загрузки файла');-->
+<!--            submitBtn.disabled = false;-->
+<!--        });-->
+<!--});-->
+
+<!--function checkProgress(taskId) {-->
+<!--    const progressBar = document.getElementById('progressBar');-->
+<!--    const progressDescription = document.getElementById('progressDescription');-->
+
+<!--    const progressUrl = `/celery-progress/${taskId}/`;-->
+<!--    const checkInterval = setInterval(function() {-->
+<!--        fetch(progressUrl)-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                if (data.progress) {-->
+<!--                    const progress = data.progress.current / data.progress.total * 100;-->
+<!--                    progressBar.style.width = progress + '%';-->
+<!--                    progressBar.textContent = Math.round(progress) + '%';-->
+
+<!--                    if (data.progress.description) {-->
+<!--                        progressDescription.textContent = data.progress.description;-->
+<!--                    }-->
+<!--                }-->
+
+<!--                if (data.complete) {-->
+<!--                    clearInterval(checkInterval);-->
+<!--                    if (data.success) {-->
+<!--                        window.location.href = "{% url 'files:myfiles' %}";-->
+<!--                    } else {-->
+<!--                        alert('Ошибка обработки файла');-->
+<!--                        document.getElementById('submitBtn').disabled = false;-->
+<!--                    }-->
+<!--                }-->
+<!--            });-->
+<!--    }, 1000);-->
+<!--}-->
+<!--</script>-->
+{% endblock %}

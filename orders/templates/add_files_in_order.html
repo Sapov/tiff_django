@@ -119,7 +119,7 @@
                     </div>
                     {% endif %}
                 </td>
-                <td>{{ Orders.total_price }}</td>
+                <td>{{ Orders.total_price|default:'0' }}</td>
                 <td>{% if Orders.status.id == 3 %}
                     <div class="mb-2">
                         <code>В работе</code>

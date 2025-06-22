@@ -25,7 +25,7 @@ urlpatterns = [
     path("", index, name="myfiles"),  # Myfiles
     path("ind/", ViewFilesUserListView.as_view(), name="myfiles1"),  # Myfiles
     # форма добавления файла
-    path("create/", FilesCreateView.as_view(), name="create_files"),
+    path("create/", FilesCreateView.as_view(), name="create_files"), # АРХИВ
     path("create_large/", FilesCreateViewLarge.as_view(), name="create_large"),
     path("create_inter/", FilesCreateViewInter.as_view(), name="create_inter"),
     path("create_uv/", FilesCreateViewUV.as_view(), name="create_uv"),

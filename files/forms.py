@@ -1,25 +1,6 @@
 from django import forms
-from django.core.validators import FileExtensionValidator
-
 from .models import *
 from .validators import validate_tiff_file
-
-
-class UploadFiles(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ["material", "quantity", "width", "length", "images"]
-
-
-class UpdateFiles(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ["material", "quantity", "width", "length", "images"]
-
-
-class AddFiles(forms.Form):
-    # material = forms.ModelChoiceField(queryset=Material.objects.filter(type_print=1))
-    quantity = forms.CharField(max_length=29)
 
 
 class BaseCalculatorForm(forms.Form):
@@ -55,22 +36,28 @@ class CalculatorForm(BaseCalculatorForm):
 
 class CalculatorLargePrint(BaseCalculatorForm):
     """для широкоформатной печати"""
+
     def get_material_queryset(self):
         return Material.objects.filter(type_print=1)
 
+
 class CalculatorInterierPrint(BaseCalculatorForm):
     """для интерьерной печати"""
+
     def get_material_queryset(self):
         return Material.objects.filter(type_print=2)
 
+
 class CalculatorUVPrint(BaseCalculatorForm):
-        """для УФ печати"""
-        def get_material_queryset(self):
-            return Material.objects.filter(type_print=3)
+    """для УФ печати"""
+
+    def get_material_queryset(self):
+        return Material.objects.filter(type_print=3)
 
 
 class CalculatorBlankMaterial(BaseCalculatorForm):
     '''Для чистого материала'''
+
     def get_material_queryset(self):
         return Material.objects.filter(type_print=4)
 
@@ -178,3 +165,7 @@ class CreateContractor(forms.ModelForm):
         model = Contractor
         fields = ["name", "description", "email_contractor", "phone_contractor", "phone_contractor_2",
                   'address', 'contact_contractor']
+
+
+class FileArh(forms.Form):
+    files = forms.ImageField()

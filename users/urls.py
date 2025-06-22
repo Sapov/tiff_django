@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 from account.views import edit_profile
 from users.views import Register, EmailVerify, MyLoginView, UserListsView, UsersCreateView, UserUpdateLIst, \
-    UserDeleteView, ListProfile, ProfileUpdateLIst
+    UserDeleteView, ListProfile, ProfileUpdateLIst, DesignerSignUpView
 
 # app_name = "users"
 
@@ -29,5 +29,7 @@ urlpatterns = [
     # --------------CRUD PROFILE------------
     path('profile_list/', ListProfile.as_view(), name='profile_list'),
     path('profile_edit/', edit_profile, name='profile_edit'),
+
+    path('signup/designer/', DesignerSignUpView.as_view(), name='designer_signup'),
 
 ]
