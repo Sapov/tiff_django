@@ -33469,3 +33469,175 @@ django.core.exceptions.DisallowedRedirect: Unsafe redirect to URL with protocol 
 2025-06-17 23:02:34,435 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-17 23:59:17,180 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/apps.py changed, reloading.
 2025-06-17 23:59:18,438 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-18 00:00:53,666 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/account/apps.py changed, reloading.
+2025-06-18 00:00:54,890 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-18 00:01:36,982 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-18 00:01:36,982 account.views INFO     page_NUM: 1
+2025-06-18 00:01:36,984 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-18 00:01:54,471 root         INFO     [INFO]. self.length:0.54 TYPE<class 'float'>
+Width: 1.04 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 гр ламинированный Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-06-18 00:01:54,471 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-06-18 00:01:54,471 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-06-18 00:01:54,586 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2025-06-18 00:01:54,587 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2025-06-18 00:01:55,589 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2025-06-18 00:01:56,593 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2025-06-18 00:01:57,597 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2025-06-18 00:01:58,601 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2025-06-18 00:01:59,604 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2025-06-18 00:02:00,607 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2025-06-18 00:02:01,610 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2025-06-18 00:02:02,613 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2025-06-18 00:02:03,616 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2025-06-18 00:02:04,619 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2025-06-18 00:02:05,623 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2025-06-18 00:02:06,646 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2025-06-18 00:02:07,650 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2025-06-18 00:02:08,653 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2025-06-18 00:02:09,657 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2025-06-18 00:02:10,659 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2025-06-18 00:02:11,664 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2025-06-18 00:02:12,670 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2025-06-18 00:02:13,692 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2025-06-18 00:02:14,343 django.request ERROR    Internal Server Error: /files/create_inter/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 127, in reconnect_on_error
+    yield
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 177, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 916, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 749, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/kombu/connection.py", line 472, in _reraise_as_library_errors
+    yield
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/app/base.py", line 797, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 373, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in consume_from
+    return self.start(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 147, in start
+    self._consume_from(initial_task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 176, in _consume_from
+    with self.reconnect_on_error():
+  File "/home/sasha/.pyenv/versions/3.10.4/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 130, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 384, in ensure
+    return retry_over_time(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 318, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 2015, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 223, in form_valid
+    task = process_uploaded_file.delay(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/app/task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/app/task.py", line 594, in apply_async
+    return app.send_task(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/app/base.py", line 795, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/home/sasha/.pyenv/versions/3.10.4/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/kombu/connection.py", line 476, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to localhost:6379. Connection refused.
+2025-06-18 00:02:53,711 root         INFO     [INFO]. self.length:0.54 TYPE<class 'float'>
+Width: 1.04 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Пленка Китай Матовая 100 гр Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-06-18 00:02:53,713 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-06-18 00:02:53,715 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-06-18 00:03:03,587 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-18 00:03:03,589 account.views INFO     page_NUM: 1
+2025-06-18 00:03:03,600 account.views INFO     page_NUM: <Page 1 of 2>
+2025-06-18 00:03:17,211 root         INFO     [INFO]. self.length:0.54 TYPE<class 'float'>
+Width: 1.04 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: MANAGER: TYPE <class 'str'> 
+2025-06-18 00:03:17,212 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: MANAGER, TYPE <class 'str'>
+2025-06-18 00:03:17,212 files.tiff_file INFO     CHECK ROLE -> USER IS USER: MANAGER, TYPE <class 'str'>
+2025-06-18 00:22:53,075 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-18 00:22:53,077 account.views INFO     page_NUM: 1
+2025-06-18 00:22:53,085 account.views INFO     page_NUM: <Page 1 of 2>
