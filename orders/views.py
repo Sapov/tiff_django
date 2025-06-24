@@ -226,10 +226,10 @@ def order_pay(request, order_id):
             context = {"Orders": order, 'link_pay': link_pay}
         #
         else:
-        #     logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
+            logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
         #     # =============Платежная ссылка от точки===========
-        # link_pay = create_pay_link_d.delay(order_id, True)
-            link_pay = Acquiring(order_id).run(organisation_flag=False)
+            link_pay = create_pay_link_d.delay(order_id, True)
+            # link_pay = Acquiring(order_id).run(organisation_flag=False)
             context = {"Orders": order, 'link_pay': link_pay}
 
         # оповещаем пользователя в whatsapp

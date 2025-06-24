@@ -77,11 +77,11 @@ class Acquiring(Bank):
         order_items = OrderItem.objects.filter(order=self.order_id)
         positions = []
         for i, v in enumerate(order_items):
-            total_amount = v.product.price #* v.product.quantity
+            total_amount = v.product.price  # * v.product.quantity
             new_dict = {
                 "vatType": "none",
                 "name": f'{v.product.material} {v.product.length}x{v.product.width} м',
-                "amount": float(v.product.price/v.product.quantity),
+                "amount": float(v.product.price / v.product.quantity),
                 "quantity": v.product.quantity,
                 "paymentMethod": "full_payment",
                 "paymentObject": "goods",
@@ -102,7 +102,6 @@ class Acquiring(Bank):
             print(response.text)
         except requests.exceptions.RequestException as e:
             logger.error(f'Error as {e}')
-
 
     def _add_pay_link_in_table_order(self) -> None:
         '''Добавим ссылку об оплате в таблицу с ордером'''
