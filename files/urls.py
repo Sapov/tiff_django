@@ -25,7 +25,7 @@ urlpatterns = [
     path("", index, name="myfiles"),  # Myfiles
     path("ind/", ViewFilesUserListView.as_view(), name="myfiles1"),  # Myfiles
     # форма добавления файла
-    path("create/", FilesCreateView.as_view(), name="create_files"), # АРХИВ
+    path("create/", FilesCreateView.as_view(), name="create_files"),  # АРХИВ
     path("create_large/", FilesCreateViewLarge.as_view(), name="create_large"),
     path("create_inter/", FilesCreateViewInter.as_view(), name="create_inter"),
     path("create_uv/", FilesCreateViewUV.as_view(), name="create_uv"),
@@ -57,8 +57,9 @@ urlpatterns = [
     # подтверждение готовности заказа
     path("confirm_order_to_competed/<pk>/<hash_code>/", confirm_order_to_completed, name="confirm_order_to_completed"),
     path('add_time_order/<int:pk>/<hash_code>/', add_time_order, name='add_time_order'),
-    path('pictures/', PicturesListView.as_view(), name='pictures')
+    path('pictures/', PicturesListView.as_view(), name='pictures'),
 
+    # Загрузка архива
+    path('upload/', views.upload_file, name='upload_file'),
+    path('upload/status/<int:upload_id>/', views.upload_status, name='upload_status'),
 ]
-
-
