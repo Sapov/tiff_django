@@ -11,14 +11,14 @@ from orders.alerts import Alerts
 from orders.models import Order, StatusOrder, OrderItem
 from .works_with_files.atchives_files import UtilsModel
 from orders.views import change_status_order, get_domain, set_status_file
-from .models import Product, Material, FinishWork, UseCalculator, Contractor, StatusProduct
+from .models import Product, Material, FinishWork, UseCalculator, Contractor, StatusProduct, FileUpload
 from .forms import (
     CalculatorForm,
     UploadFilesInter,
     UploadFilesLarge,
     UploadFilesUV,
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
-    UploadFilesPictures, FileArh,
+    UploadFilesPictures, FileArh, UploadFileForm,
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
@@ -28,7 +28,7 @@ from rest_framework import viewsets
 from .serializers import MaterlailSerializer
 
 from users.tasks import send_message_whatsapp
-from .tasks import resize_image
+from .tasks import resize_image, process_large_file
 from django.http import JsonResponse
 from .tasks import process_uploaded_file
 
@@ -569,3 +569,33 @@ class CalculatorLIst(LoginRequiredMixin, ListView):
         print(self.request.user)
         queryset = UseCalculator.objects.filter(user=self.request.user).order_by("-id")
         return queryset
+
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            upload = FileUpload(file=request.FILES['file'])
+            upload.save()
+
+            # Запуск асинхронной задачи
+            process_large_file.delay(upload.id)
+
+            return JsonResponse({
+                'status': 'success',
+                'upload_id': upload.id,
+                'task_status_url': f'/upload/status/{upload.id}/'
+            })
+    else:
+        form = UploadFileForm()
+    return render(request, 'upload.html', {'form': form})
+
+
+def upload_status(request, upload_id):
+    upload = FileUpload.objects.get(id=upload_id)
+    return JsonResponse({
+        'status': upload.status,
+        'progress': upload.progress,
+        'result': upload.result
+    })
