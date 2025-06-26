@@ -1,0 +1,57 @@
+<!-- upload.html -->
+<form id="uploadForm" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file" required>
+    <button type="submit">Upload</button>
+</form>
+
+<div id="progressContainer" style="display: none;">
+    <progress id="progressBar" value="0" max="100"></progress>
+    <span id="progressText">0%</span>
+</div>
+
+<script>
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+
+    progressContainer.style.display = 'block';
+
+    fetch(window.location.href, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            const checkStatus = () => {
+                fetch(`/upload/status/${data.upload_id}/`)
+                .then(res => res.json())
+                .then(statusData => {
+                    progressBar.value = statusData.progress;
+                    progressText.textContent = `${statusData.progress}%`;
+
+                    if (statusData.status !== 'completed' && statusData.status !== 'failed') {
+                        setTimeout(checkStatus, 1000);
+                    } else if (statusData.status === 'completed') {
+                        alert('File processed successfully!');
+                    } else {
+                        alert('Error processing file: ' + (statusData.result?.error || 'Unknown error'));
+                    }
+                });
+            };
+            checkStatus();
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Upload failed');
+    });
+});
+</script>
