@@ -26,4 +26,3 @@ def send_comment_in_mail_task(
         # )
     )
 
-# Логика отправки письма...

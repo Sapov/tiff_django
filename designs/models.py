@@ -79,3 +79,4 @@ class Comments(models.Model):
 
     def __str__(self):
         return f"Comment by {self.author} on {self.design}"
+
