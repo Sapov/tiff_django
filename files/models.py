@@ -238,3 +238,14 @@ class UseCalculator(models.Model):
     class Meta:
         verbose_name_plural = "Расчеты клиентов сайта"
         verbose_name = "Расчет клиентов сайта"
+
+
+
+class FileUpload(models.Model):
+    """для статуса загрузки архива"""
+    file = models.FileField(upload_to='uploads/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    task_id = models.CharField(max_length=255, blank=True)
+    status = models.CharField(max_length=20, default='pending')
+    progress = models.IntegerField(default=0)
+    result = models.JSONField(blank=True, null=True)
