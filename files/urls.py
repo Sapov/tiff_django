@@ -16,7 +16,7 @@ from .views import (
     FilesCreateViewRollUp, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     ViewContractorListView, ContractorCreateView, ContractorUpdateView,
     ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed, calculator_interior_print, add_time_order,
-    about_file, PicturesListView, PicturesCreateViewInter, CalculatorLIst,
+    about_file, PicturesListView, PicturesCreateViewInter, CalculatorLIst, upload_file, upload_status
 )
 
 app_name = "files"
@@ -60,6 +60,6 @@ urlpatterns = [
     path('pictures/', PicturesListView.as_view(), name='pictures'),
 
     # Загрузка архива
-    path('upload/', views.upload_file, name='upload_file'),
-    path('upload/status/<int:upload_id>/', views.upload_status, name='upload_status'),
+    path('upload/', upload_file, name='upload_file'),
+    path('upload/status/<int:upload_id>/', upload_status, name='upload_status'),
 ]

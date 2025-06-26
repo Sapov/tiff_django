@@ -589,7 +589,7 @@ def upload_file(request):
             })
     else:
         form = UploadFileForm()
-    return render(request, 'upload.html', {'form': form})
+    return render(request, 'files/upload.html', {'form': form})
 
 
 def upload_status(request, upload_id):

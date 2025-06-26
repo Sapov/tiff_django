@@ -249,3 +249,18 @@ class FileUpload(models.Model):
     status = models.CharField(max_length=20, default='pending')
     progress = models.IntegerField(default=0)
     result = models.JSONField(blank=True, null=True)
+
+from django.core.files.storage import FileSystemStorage
+upload_storage = FileSystemStorage(location='/path/to/upload/dir')
+
+
+class UploadedFile(models.Model):
+    '''Хранение архива'''
+    original_archive = models.FileField(upload_to='archives/', storage=upload_storage)
+    file_name = models.CharField(max_length=255)
+    file_path = models.FileField(upload_to='unpacked_files/', storage=upload_storage)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    size = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.file_name
