@@ -27,6 +27,20 @@ class Complexity(models.Model):
     class Meta:
         verbose_name_plural = 'Варианты сложности макета'
 
+class WorkDesigners(models.Model):
+    designer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Дизайнер', null=True, blank=True)
+    order_design = models.ForeignKey('OrderDesign', on_delete=models.CASCADE, verbose_name='Заказ на дизайн')
+    create_at = models.DateTimeField(auto_now=True, verbose_name='Добавлено'
+                                     )
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Изменено")  # date update
+
+    class Meta:
+        def __str__(self):
+            return self.designer
+
+        verbose_name_plural = 'Заказы по дизайнерам'
+
+
 
 class OrderDesign(models.Model):
     title = models.CharField(max_length=255, verbose_name='Название брифа')

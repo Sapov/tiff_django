@@ -33979,3 +33979,686 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2025-06-24 17:45:02,776 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
 2025-06-24 17:45:02,777 account.views INFO     page_NUM: 1
 2025-06-24 17:45:02,778 account.views INFO     page_NUM: <Page 1 of 3>
+2025-06-24 17:51:30,677 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-24 17:51:31,881 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-24 18:00:39,525 django.request ERROR    Internal Server Error: /files/create_rollup/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 228, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'title' appears more than once
+2025-06-24 18:01:40,283 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-24 18:01:40,284 account.views INFO     page_NUM: 1
+2025-06-24 18:01:40,286 account.views INFO     page_NUM: <Page 1 of 3>
+2025-06-24 18:06:59,701 django.request WARNING  Not Found: /files/rol
+2025-06-24 18:13:14,776 django.request WARNING  Not Found: /rollup_reds_5.jpg
+2025-06-24 18:13:32,591 django.request WARNING  Not Found: /files/create_rollup/account/rollup_reds_5.jpg
+2025-06-24 18:13:35,079 django.request WARNING  Not Found: /files/create_rollup/account/rollup_reds_5.jpg
+2025-06-24 18:14:23,954 django.request WARNING  Not Found: /files/create_rollup/img/rollup_reds_5.jpg
+2025-06-24 18:14:25,475 django.request WARNING  Not Found: /files/create_rollup/img/rollup_reds_5.jpg
+2025-06-24 18:15:20,012 django.request ERROR    Internal Server Error: /files/create_rollup/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 502, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 504, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 555, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 18: 'static', expected 'endblock'. Did you forget to register or load this tag?
+2025-06-24 18:16:46,884 django.request ERROR    Internal Server Error: /files/create_rollup/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 502, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 504, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 555, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 18: 'static', expected 'endblock'. Did you forget to register or load this tag?
+2025-06-24 18:18:35,423 django.request ERROR    Internal Server Error: /files/create_rollup/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 502, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 504, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 555, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 19: 'static', expected 'endblock'. Did you forget to register or load this tag?
+2025-06-24 18:18:43,808 django.request ERROR    Internal Server Error: /files/create_rollup/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 502, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 504, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 555, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 19: 'static', expected 'endblock'. Did you forget to register or load this tag?
+2025-06-24 18:25:02,921 django.request WARNING  Not Found: /files/create_rollup/...
+2025-06-24 18:25:19,372 django.request WARNING  Not Found: /files/create_rollup/...
+2025-06-24 18:25:55,535 django.request WARNING  Not Found: /files/create_rollup/...
+2025-06-25 15:35:30,048 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-25 15:35:30,049 account.views INFO     page_NUM: 1
+2025-06-25 15:35:30,051 account.views INFO     page_NUM: <Page 1 of 3>
+2025-06-25 15:48:39,819 account.views INFO     Orders:  <QuerySet []>
+2025-06-25 15:48:39,821 account.views INFO     page_NUM: 1
+2025-06-25 15:48:39,823 account.views INFO     page_NUM: <Page 1 of 1>
+2025-06-25 15:50:05,023 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-25 15:50:05,024 account.views INFO     page_NUM: 1
+2025-06-25 15:50:05,025 account.views INFO     page_NUM: <Page 1 of 3>
+2025-06-25 15:53:14,649 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 15:55:57,876 django.request WARNING  Method Not Allowed (GET): /logout/
+2025-06-25 15:55:57,889 django.request WARNING  Method Not Allowed: /logout/
+2025-06-25 15:57:27,906 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/models.py changed, reloading.
+2025-06-25 15:57:28,892 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:06:31,806 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:09:19,803 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:09:20,830 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:09:34,411 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:09:35,470 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:09:45,794 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:09:46,840 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:09:55,608 django.request WARNING  Method Not Allowed (GET): /logout/
+2025-06-25 16:09:55,631 django.request WARNING  Method Not Allowed: /logout/
+2025-06-25 16:10:10,343 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-25 16:10:10,343 account.views INFO     page_NUM: 1
+2025-06-25 16:10:10,344 account.views INFO     page_NUM: <Page 1 of 3>
+2025-06-25 16:19:04,526 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:19:05,879 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:19:08,152 django.request WARNING  Method Not Allowed (GET): /logout/
+2025-06-25 16:19:08,161 django.request WARNING  Method Not Allowed: /logout/
+2025-06-25 16:20:49,940 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-06-25 16:20:50,890 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:31:02,321 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:31:03,493 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:31:33,466 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:31:34,422 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:32:42,445 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:32:43,352 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:35:28,668 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:36:53,835 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-06-25 16:36:54,731 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:36:58,683 django.request ERROR    Internal Server Error: /designs/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 961, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 861, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 1380, in url
+    viewname = parser.compile_filter(bits[1])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 698, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: 'designs:add_desing_in_work' from ''app_name = 'designs:add_desing_in_work'
+2025-06-25 16:36:59,263 django.request WARNING  Not Found: /favicon.ico
+2025-06-25 16:37:37,214 django.request ERROR    Internal Server Error: /designs/design/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: add_desing_in_work() got an unexpected keyword argument 'design_id'
+2025-06-25 16:39:38,940 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:39:39,852 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:39:48,021 django.request ERROR    Internal Server Error: /designs/design/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: add_desing_in_work() got an unexpected keyword argument 'design_id'
+2025-06-25 16:40:49,621 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-06-25 16:40:50,585 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:40:59,575 django.request ERROR    Internal Server Error: /designs/design_in_work/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: add_desing_in_work() got an unexpected keyword argument 'design_id'
+2025-06-25 16:41:40,698 django.request ERROR    Internal Server Error: /designs/design_in_work/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: add_desing_in_work() got an unexpected keyword argument 'design_id'
+2025-06-25 16:42:33,089 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:42:34,049 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:42:40,850 django.request ERROR    Internal Server Error: /designs/design_in_work/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: add_desing_in_work() got an unexpected keyword argument 'design_id'
+2025-06-25 16:45:35,181 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/urls.py changed, reloading.
+2025-06-25 16:45:36,278 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:45:41,238 django.request ERROR    Internal Server Error: /designs/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'add_desing_in_work' with arguments '(1,)' not found. 1 pattern(s) tried: ['designs/design_in_work/\\Z']
+2025-06-25 16:46:07,926 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:54:20,300 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:54:34,244 django.request WARNING  Not Found: /favicon.ico
+2025-06-25 16:54:54,767 django.request ERROR    Internal Server Error: /designs/design_in_work/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: add_desing_in_work() got an unexpected keyword argument 'design_id'
+2025-06-25 16:56:52,374 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:56:53,507 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:57:05,144 django.request ERROR    Internal Server Error: /designs/design_in_work/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view designs.views.add_desing_in_work didn't return an HttpResponse object. It returned None instead.
+2025-06-25 16:57:37,920 django.request ERROR    Internal Server Error: /designs/design_in_work/1/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view designs.views.add_desing_in_work didn't return an HttpResponse object. It returned None instead.
+2025-06-25 16:57:54,229 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:57:55,181 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:58:06,502 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:58:07,464 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 16:58:11,699 django.request WARNING  Not Found: /design/
+2025-06-25 16:59:52,429 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 16:59:53,614 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-25 18:48:41,828 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/designs/views.py changed, reloading.
+2025-06-25 18:48:43,503 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 18:22:13,025 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 18:22:36,049 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-26 18:22:36,049 account.views INFO     page_NUM: 1
+2025-06-26 18:22:36,051 account.views INFO     page_NUM: <Page 1 of 3>
+2025-06-26 18:46:23,243 django.request WARNING  Not Found: /favicon.ico

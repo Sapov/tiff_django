@@ -17,6 +17,7 @@
         <th scope="col">Статус</th>
         <th scope="col">Дата</th>
         <th scope="col">Категория</th>
+        <th scope="col">Работа</th>
     </tr>
     </thead>
     {% for design in designs %}
@@ -28,6 +29,7 @@
         <td>{{ design.get_order_status_display }}</td>
         <td>{{ design.created_at }}</td>
         <td>{{ design.interest }}</td>
+        <td><a href="{% url 'designs:add_desing_in_work' design.id %}">Взять в работу</a></td>
     </tr>
     {% empty %}
     <li>Нет доступных заказов</li>

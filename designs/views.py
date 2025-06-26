@@ -227,11 +227,11 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.views.decorators.cache import cache_page
 
-
+from .models import WorkDesigners
 
 class DesignList(LoginRequiredMixin, ListView):
     model = OrderDesign
-    template_name = 'designs/design_list.html'  # Укажите ваш шаблон
+    # template_name = 'designs/design_list.html'
     context_object_name = 'designs'  # Имя переменной в шаблоне
 
     def get_queryset(self):
@@ -358,7 +358,9 @@ def get_comments(request, design_id):
     print('GET COMMENT',JsonResponse(comments_data, safe=False))
     return JsonResponse(comments_data, safe=False)
 
-# designs/views.py
+
+
+
 from django.views.decorators.http import require_http_methods, require_POST
 
 # @csrf_exempt
@@ -396,3 +398,39 @@ def add_comment(request, design_id):
             'error': str(e),
             'success': False
         }, status=500)
+
+
+class CreateInWork(CreateView):
+    model = WorkDesigners
+    # form_class = CommentForm
+    template_name = 'designs/add_comment.html'
+
+    def form_valid(self, form):
+        design = OrderDesign.objects.get(pk=self.kwargs['design_id'])
+        form.instance.design = design  # Устанавливаем связь с дизайном
+        form.instance.author = self.request.user
+        print("Design ID:", self.kwargs['design_id'])  # Проверьте что получаете ID
+        design = get_object_or_404(OrderDesign, pk=self.kwargs['design_id'])
+        print("Found design:", design)  # Проверьте что объект существует
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('designs:design_detail', kwargs={'pk': self.kwargs['design_id']})
+
+
+def add_desing_in_work(request, design_id):
+    """Дизайнер ставит заказ в работу
+    после то как заказ оплачен меняем статус заказа
+    """
+
+
+    print(request)
+    new_ord_deign = WorkDesigners()
+    item = OrderDesign.objects.get(id=design_id)
+    new_ord_deign.order_design = item
+    new_ord_deign.designer = request.user
+    new_ord_deign.save()
+    return redirect('designs:design_list')  # редирект на дизайн
+
+    '''                <td><a href="/orders/add_item_in_order/{{order_id}}/{{item.id}}">Добавить в заказ</a></td>
+'''
