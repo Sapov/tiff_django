@@ -16,7 +16,8 @@ from .views import (
     FilesCreateViewRollUp, calculator_large_print_out, calculator_blank_out, calculator_uv_print_out,
     ViewContractorListView, ContractorCreateView, ContractorUpdateView,
     ContractorDeleteView, confirm_order_to_work, confirm_order_to_completed, calculator_interior_print, add_time_order,
-    about_file, PicturesListView, PicturesCreateViewInter, CalculatorLIst, upload_file, upload_status
+    about_file, PicturesListView, PicturesCreateViewInter, CalculatorLIst, upload_file, upload_archive,
+    upload_status
 )
 
 app_name = "files"

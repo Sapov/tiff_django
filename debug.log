@@ -34810,3 +34810,319 @@ django.template.exceptions.TemplateDoesNotExist: upload.html
 2025-06-26 21:51:53,538 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-26 21:52:34,689 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/models.py changed, reloading.
 2025-06-26 21:52:35,789 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:54:17,556 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-26 21:54:18,568 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:55:26,989 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/urls.py changed, reloading.
+2025-06-26 21:55:28,009 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:55:41,071 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/urls.py changed, reloading.
+2025-06-26 21:55:42,027 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:56:34,546 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-26 21:56:36,510 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:57:11,587 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:57:19,266 django.request ERROR    Internal Server Error: /files/upload/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 114, in upload_file
+    return render(request, 'upload.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: upload.html
+2025-06-26 21:59:06,937 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/urls.py changed, reloading.
+2025-06-26 21:59:07,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:59:20,291 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/urls.py changed, reloading.
+2025-06-26 21:59:21,349 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:59:39,464 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/urls.py changed, reloading.
+2025-06-26 21:59:40,528 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 21:59:55,725 django.request ERROR    Internal Server Error: /files/upload/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 625, in upload_archive
+    archive_model.save()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    for sql, params in self.as_sql():
+                       ^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1745, in as_sql
+    value_rows = [
+                 ^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1746, in <listcomp>
+    [
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1747, in <listcomp>
+    self.prepare_value(field, self.pre_save_val(field, obj))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1695, in pre_save_val
+    return field.pre_save(obj, add=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/files/storage/filesystem.py", line 87, in _save
+    os.makedirs(directory, exist_ok=True)
+  File "<frozen os>", line 215, in makedirs
+  File "<frozen os>", line 215, in makedirs
+  File "<frozen os>", line 215, in makedirs
+  [Previous line repeated 1 more time]
+  File "<frozen os>", line 225, in makedirs
+PermissionError: [Errno 13] Permission denied: '/path'
+2025-06-26 22:05:32,753 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-26 22:05:34,019 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:05:58,522 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/urls.py changed, reloading.
+2025-06-26 22:05:59,436 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:06:09,447 django.request ERROR    Internal Server Error: /files/upload/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 579, in upload_file
+    upload = FileUpload(file=request.FILES['file'])
+                             ~~~~~~~~~~~~~^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'file'
+2025-06-26 22:08:40,171 django.request ERROR    Internal Server Error: /files/upload/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 579, in upload_file
+    upload = FileUpload(file=request.FILES['file'])
+                             ~~~~~~~~~~~~~^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'file'
+2025-06-26 22:09:51,493 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-26 22:09:53,256 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:10:15,497 django.request ERROR    Internal Server Error: /files/upload/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 579, in upload_file
+    upload = FileUpload(file=request.FILES.get['file'])
+                             ~~~~~~~~~~~~~~~~~^^^^^^^^
+TypeError: 'method' object is not subscriptable
+2025-06-26 22:10:37,349 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-26 22:10:38,374 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:10:47,163 django.request ERROR    Internal Server Error: /files/upload/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 579, in upload_file
+    upload = FileUpload(file=request.FILES['file'])
+                             ~~~~~~~~~~~~~^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'file'
+2025-06-26 22:14:06,757 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-26 22:14:08,316 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:14:19,656 django.request ERROR    Internal Server Error: /files/upload/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 580, in upload_file
+    upload = FileUpload(file=request.FILES['file'])
+                             ~~~~~~~~~~~~~^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'file'
+2025-06-26 22:14:49,541 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:14:55,524 django.request ERROR    Internal Server Error: /files/upload/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 580, in upload_file
+    upload = FileUpload(file=request.FILES['file'])
+                             ~~~~~~~~~~~~~^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/utils/datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'file'
+2025-06-26 22:15:47,269 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-26 22:15:48,385 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:17:49,926 django.request WARNING  Not Found: /upload/status/2/
+2025-06-26 22:18:14,468 django.request WARNING  Not Found: /upload/status/3/
+2025-06-26 22:18:40,871 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:18:49,283 django.request WARNING  Not Found: /upload/status/4/
+2025-06-26 22:20:23,434 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views.py changed, reloading.
+2025-06-26 22:20:24,790 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:22:41,313 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:22:42,352 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:22:43,974 django.request WARNING  Not Found: /upload/status/5/
+2025-06-26 22:23:20,380 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:23:21,565 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:29:05,146 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/forms.py changed, reloading.
+2025-06-26 22:29:06,271 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:29:13,134 django.request WARNING  Not Found: /upload/status/6/
+2025-06-26 22:38:36,823 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:38:37,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:39:14,287 django.request WARNING  Not Found: /upload/status/7/
+2025-06-26 22:39:53,181 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:39:54,226 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:40:12,175 django.request WARNING  Not Found: /upload/status/8/
+2025-06-26 22:41:59,158 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:42:00,322 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:42:17,198 django.request WARNING  Not Found: /upload/status/9/
+2025-06-26 22:43:29,475 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:43:30,502 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:43:49,302 django.request WARNING  Not Found: /upload/status/10/
+2025-06-26 22:44:38,815 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:44:39,851 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:44:51,532 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:44:52,586 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:45:02,813 django.request WARNING  Not Found: /upload/status/11/
+2025-06-26 22:45:16,039 django.request WARNING  Not Found: /upload/status/12/
+2025-06-26 22:45:44,645 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/tasks.py changed, reloading.
+2025-06-26 22:45:45,768 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-26 22:45:51,932 django.request WARNING  Not Found: /upload/status/13/
+2025-06-27 08:04:50,095 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-27 08:09:09,166 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-30 15:12:59,876 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-30 15:13:23,282 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-30 15:13:44,633 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-30 15:13:44,634 account.views INFO     page_NUM: 1
+2025-06-30 15:13:44,640 account.views INFO     page_NUM: <Page 1 of 3>
+2025-06-30 15:14:59,512 root         INFO     [INFO]. self.length:0.54 TYPE<class 'float'>
+Width: 1.04 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-30 15:14:59,513 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-30 15:14:59,513 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-30 15:15:07,988 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-06-30 15:15:08,007 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2025-06-30 15:15:23,842 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2025-06-30 15:15:23,844 root         INFO     method POST
+2025-06-30 15:15:23,850 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['GKXqJ98Xt682D5UANx5Gm5J2cfm1UFTarheabbcGpZQLk2SGrWxWNd4ZZMxNYF4r'], 'organisation_payer': [''], 'delivery': ['2'], 'date_complite': ['2025-07-02']}>
+2025-06-30 15:15:23,851 root         INFO     USER forumvrn@gmail.com
+2025-06-30 15:15:23,851 root         INFO     [INFO] отправленная форма имеет дату 2025-07-02
+2025-06-30 15:15:23,862 root         INFO     [INFO] Приводим строку в формату даты 2025-07-02 00:00:00
+2025-06-30 15:15:23,863 root         INFO     [INFO] прибавляем 12 часов 2025-07-02 12:00:00
+2025-06-30 15:15:23,866 root         INFO     date_complite 2025-07-02 12:00:00 - <class 'datetime.datetime'>
+2025-06-30 15:15:23,867 root         INFO     DELIV ID:  2
+2025-06-30 15:15:23,870 root         INFO     ORGANISATION:  
+2025-06-30 15:15:23,875 root         INFO     DELIVERY:  Автобусом по М4 (в сторону Москвы)
+2025-06-30 15:15:30,613 orders.models INFO     cost_price_per_item 110.00
+2025-06-30 15:15:30,639 orders.models INFO     280.00
+2025-06-30 15:15:30,640 orders.models INFO     Себестоимость, 110.00
+2025-06-30 15:15:30,687 root         INFO     [INFO]. self.length:0.54 TYPE<class 'float'>
+Width: 1.04 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2025-06-30 15:15:30,688 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-30 15:15:30,688 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2025-06-30 15:15:35,807 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2025-06-30 15:15:35,831 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2025-06-30 15:15:35,856 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2025-07-02 09:00:00+00:00
+2025-06-30 15:15:36,128 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2025-06-30 15:22:49,268 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2025-06-30 15:22:52,976 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-06-30 15:23:37,779 django.request WARNING  Not Found: /orders/order_pay/011d0d27-3719-44ea-b0fb-deeecbb67a57
+2025-06-30 15:23:46,598 django.request WARNING  Not Found: /orders/order_pay/011d0d27-3719-44ea-b0fb-deeecbb67a57
+2025-06-30 15:24:22,855 django.request WARNING  Not Found: /orders/order_pay/011d0d27-3719-44ea-b0fb-deeecbb67a57
+2025-06-30 15:25:19,531 django.request WARNING  Not Found: /orders/order_pay/011d0d27-3719-44ea-b0fb-deeecbb67a57
+2025-06-30 15:32:22,326 account.views INFO     Orders:  <QuerySet [<Order: Заказ № 7>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>, <Order: Заказ № 1>]>
+2025-06-30 15:32:22,326 account.views INFO     page_NUM: 1
+2025-06-30 15:32:22,329 account.views INFO     page_NUM: <Page 1 of 4>

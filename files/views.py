@@ -18,7 +18,7 @@ from .forms import (
     UploadFilesLarge,
     UploadFilesUV,
     UploadFilesRollUp, CalculatorLargePrint, CalculatorInterierPrint, CalculatorUVPrint, CalculatorBlankMaterial,
-    UploadFilesPictures, FileArh, UploadFileForm,
+    UploadFilesPictures, UploadFileForm,
 )
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
@@ -94,24 +94,24 @@ def handle_uploaded_file(f):
 
 
 
-def upload_file(request):
-    if request.method == 'POST':
-        form = FileArh(request.POST, request.FILES)
-        if form.is_valid():
-            upload = FileArh(file=request.FILES['file'])
-            upload.save()
-
-            # Запуск асинхронной задачи
-            process_large_file.delay(upload.id)
-
-            return JsonResponse({
-                'status': 'success',
-                'upload_id': upload.id,
-                'task_status_url': f'/upload/status/{upload.id}/'
-            })
-    else:
-        form = FileArh()
-    return render(request, 'upload.html', {'form': form})
+# def upload_file(request):
+#     if request.method == 'POST':
+#         form = FileArh(request.POST, request.FILES)
+#         if form.is_valid():
+#             upload = FileArh(file=request.FILES['file'])
+#             upload.save()
+#
+#             # Запуск асинхронной задачи
+#             process_large_file.delay(upload.id)
+#
+#             return JsonResponse({
+#                 'status': 'success',
+#                 'upload_id': upload.id,
+#                 'task_status_url': f'/upload/status/{upload.id}/'
+#             })
+#     else:
+#         form = FileArh()
+#     return render(request, 'upload.html', {'form': form})
 
 
 # def upload_status(request, upload_id):
@@ -122,7 +122,7 @@ def upload_file(request):
 #         'result': upload.result
 #     })
 class FilesCreateView(LoginRequiredMixin, FormView):
-    form_class = FileArh
+    # form_class = FileArh
     model = Product
     fields = ["quantity", "material", "FinishWork", "images", "comments"]
     template_name = 'files/upload_files.html'
@@ -574,6 +574,7 @@ class CalculatorLIst(LoginRequiredMixin, ListView):
 
 def upload_file(request):
     if request.method == 'POST':
+        print(request)
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             upload = FileUpload(file=request.FILES['file'])
@@ -599,3 +600,59 @@ def upload_status(request, upload_id):
         'progress': upload.progress,
         'result': upload.result
     })
+
+import os
+import zipfile
+from django.shortcuts import render, redirect
+from django.conf import settings
+from .forms import UploadFileForm
+from .models import UploadedFile
+
+
+def upload_archive(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            archive = request.FILES['file']
+
+            # Сохраняем оригинальный архив
+            archive_model = UploadedFile(
+                original_archive=archive,
+                file_name=archive.name,
+                file_path='',  # Заполним позже
+                size=archive.size
+            )
+            archive_model.save()
+
+            # Путь для сохранения распакованных файлов
+            extract_to = os.path.join(settings.MEDIA_ROOT, 'unpacked_files', str(archive_model.id))
+            os.makedirs(extract_to, exist_ok=True)
+
+            # Временный путь для сохранения архива
+            archive_path = os.path.join(settings.MEDIA_ROOT, 'archives', archive.name)
+            with open(archive_path, 'wb+') as destination:
+                for chunk in archive.chunks():
+                    destination.write(chunk)
+
+            # Распаковка архива
+            with zipfile.ZipFile(archive_path, 'r') as zip_ref:
+                zip_ref.extractall(extract_to)
+
+            # Сохранение информации о каждом файле
+            for root, dirs, files in os.walk(extract_to):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    relative_path = os.path.relpath(file_path, settings.MEDIA_ROOT)
+
+                    UploadedFile.objects.create(
+                        file_name=file,
+                        file_path=relative_path,
+                        size=os.path.getsize(file_path)
+                    )
+
+            return redirect('upload_success')
+    else:
+        form = UploadFileForm()
+
+    return render(request, 'files/upload.html', {'form': form})
+

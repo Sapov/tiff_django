@@ -167,10 +167,5 @@ class CreateContractor(forms.ModelForm):
                   'address', 'contact_contractor']
 
 
-class FileArh(forms.Form):
-    files = forms.ImageField()
-
-# forms.py
-
 class UploadFileForm(forms.Form):
-    archive = forms.FileField(label='Select a zip archive')
+    file = forms.FileField(label='Select a zip archive')

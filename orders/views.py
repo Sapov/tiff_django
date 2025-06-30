@@ -210,7 +210,7 @@ def order_pay(request, order_id):
         # получаем дату готовности из базы
         domain = get_domain(request)
         Alerts.start_count_down(domain, order_id)
-        arh_for_mail.delay(order_id, domain=domain)
+        arh_for_mail.delay(order_id, domain=domain) # отправляем архив - файл на почту
 
         # -----------------------create_link_pay-----------------------------------
         # Orders = Order.objects.get(id=order_id)

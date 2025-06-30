@@ -33,6 +33,7 @@ def process_large_file(self, upload_id):
     upload.status = 'processing'
     upload.task_id = self.request.id
     upload.save()
+    print('UPLOAD', upload, upload.id, upload.file )
 
     try:
         file_path = upload.file.path
