@@ -174,3 +174,4 @@ class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
 
 def politics(request):
     return render(request, 'registration/politics.html')
+

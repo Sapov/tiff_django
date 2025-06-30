@@ -434,6 +434,7 @@ def web_hook(request):
             )
             json_hook = json.dumps(webhook_jwt, indent=4, ensure_ascii=False)
             print(json_hook)
+
             admin_phone = os.getenv('PHONE_NUMBER')
             send_message_whatsapp.delay(f'{admin_phone}', f'Пришло оповещение о оплате: {json_hook}')
         except exceptions.JWTDecodeError:
