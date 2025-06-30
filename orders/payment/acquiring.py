@@ -47,7 +47,7 @@ class Acquiring(Bank):
                     "failRedirectUrl": "https://order.san-cd.ru/orders/fail",
                     "paymentMode": [
                         "sbp",
-                        "card"
+                        # "card" # Only SPB
                     ],
                     "saveCard": True,
                     "consumerId": str(payer.user),
