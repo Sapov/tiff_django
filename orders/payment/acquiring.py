@@ -54,7 +54,7 @@ class Acquiring(Bank):
                     "taxSystemCode": "usn_income",
                     "merchantId": self.merchantId,
                     "Client": {
-                        "name": f'{str(payer.user.first_name)} {payer.user.last_name}' if organisation_flag
+                        "name": f'{str(payer.user.first_name)}' if organisation_flag
                         else str(payer.organisation_payer),
                         "email": str(payer.user),
 
