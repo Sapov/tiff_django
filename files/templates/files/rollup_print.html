@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-<!--{% load crispy_forms_tags %}-->
+{% load crispy_forms_tags %}
 {% load static %}
 
 
@@ -17,11 +17,13 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_inter' %}">Рол-ап 85 х 200 см</a></p>
+                            <p>Рол-ап 85 х 200 см</p>
                             <p>Стандартный рол-ап Время изготовления 1 день.</p>
                             <p>Бесплатная доставка</p>
                             <img class="img-profile "
                                  src="{% static 'img/rollup_reds_5.jpg' %}">
+                                {{ form | crispy}}
+                            <input type="hidden" name="material" id="id_material">
 
 
                         </div>
