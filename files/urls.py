@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
+from mysite.urls import router
 from .forms import UploadFilesInter
 from .views import (
     index,
@@ -63,4 +64,5 @@ urlpatterns = [
     # Загрузка архива
     path('upload/', upload_file, name='upload_file'),
     path('upload/status/<int:upload_id>/', upload_status, name='upload_status'),
+
 ]

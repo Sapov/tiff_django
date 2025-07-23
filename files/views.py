@@ -422,7 +422,6 @@ def last_ten_string():
 
 class ViewContractorListView(LoginRequiredMixin, ListView):
     """Посмотреть всех подрядчиков"""
-
     model = Contractor
     # paginate_by = 5
     template_name = "files/view_contractor.html"
