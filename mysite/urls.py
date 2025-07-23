@@ -5,13 +5,14 @@ from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from files.views import page_not_found, MaterialViewSet
+from files.views import page_not_found
 
 from rest_framework import routers
-from files.api_view import FilesViewSet
+from files.api_view import FilesViewSet, FinishWorkViewSet
 
 router = routers.SimpleRouter()
 router.register(r'materials', FilesViewSet)
+router.register(r'finishwork', FinishWorkViewSet)
 
 from django.views.static import serve
 from django.conf import settings
