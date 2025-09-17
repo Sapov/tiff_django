@@ -122,7 +122,7 @@ class Command(BaseCommand):
             Delivery.objects.get_or_create(type_delivery=type_delivery[0])
 
         print('*' * 30, 'заполняем Интересы лидов ', '*' * 30)
-        for name in load_excel('Interest', 'b2:b8'):
+        for name in load_excel('Interest', 'b2:b9'):
             print(name)
             Interest.objects.get_or_create(name=name[0])
 

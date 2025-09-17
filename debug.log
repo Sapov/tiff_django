@@ -35253,3 +35253,288 @@ requests.exceptions.ConnectionError: HTTPSConnectionPool(host='enter.tochka.com'
 2025-06-30 20:57:07,489 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2025-06-30 21:03:30,437 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/account/views.py changed, reloading.
 2025-06-30 21:03:33,693 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-09 22:23:26,799 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-10 23:23:42,507 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-10 23:23:48,551 django.request WARNING  Not Found: /favicon.ico
+2025-09-10 23:24:03,901 django.request ERROR    Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: users_user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 440, in login
+    return LoginView.as_view(**defaults)(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 88, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 150, in post
+    if form.is_valid():
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/forms.py", line 192, in errors
+    self.full_clean()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/forms.py", line 328, in full_clean
+    self._clean_form()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/forms/forms.py", line 349, in _clean_form
+    cleaned_data = self.clean()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/forms.py", line 250, in clean
+    self.user_cache = authenticate(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/views/decorators/debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/__init__.py", line 79, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/contrib/auth/base_user.py", line 56, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: users_user
+2025-09-12 12:15:26,372 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-12 12:52:08,328 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-12 12:52:10,964 django.request WARNING  Not Found: /favicon.ico
+2025-09-12 12:53:06,945 account.views INFO     Orders:  <QuerySet []>
+2025-09-12 12:53:06,945 account.views INFO     page_NUM: 1
+2025-09-12 12:53:06,947 account.views INFO     page_NUM: <Page 1 of 1>
+2025-09-12 12:53:40,981 account.views INFO     Orders:  <QuerySet []>
+2025-09-12 12:53:40,981 account.views INFO     page_NUM: 1
+2025-09-12 12:53:40,983 account.views INFO     page_NUM: <Page 1 of 1>
+2025-09-12 16:37:38,773 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-12 16:37:42,933 django.request WARNING  Not Found: /favicon.ico
+2025-09-12 16:39:14,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-12 16:39:25,747 files.views  INFO     [--INFO CLEAN DATA--] {'quantity': 1.0, 'material': <Material: Баннер 440 грамм ламинированный Широкоформатная печать>, 'finishing': <FinishWork: оставить белые поля по 5 см>, 'length': 1.0, 'width': 2.0, 'user': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x7fe43c079630>>, 'role': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x7fe43c079630>>}
+2025-09-12 16:39:25,750 root         INFO     [INFO]. self.length:1.0 TYPE<class 'float'>
+Width: 2.0 TYPE <class 'float'>
+ Quantity: 1.0 TYPE <class 'float'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: rpk.reds@yandex.ru: TYPE <class 'django.utils.functional.SimpleLazyObject'> 
+2025-09-12 16:39:25,751 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: rpk.reds@yandex.ru, TYPE <class 'django.utils.functional.SimpleLazyObject'>
+2025-09-12 16:39:25,751 files.tiff_file INFO     CHECK ROLE -> USER IS USER: rpk.reds@yandex.ru, TYPE <class 'django.utils.functional.SimpleLazyObject'>
+2025-09-12 16:41:07,179 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2025-09-12 16:42:10,688 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-12 16:42:30,830 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2025-09-12 16:42:47,912 files.views  INFO     [--INFO CLEAN DATA--] {'quantity': 1.0, 'material': <Material: Баннер 510 грамм литой Широкоформатная печать>, 'finishing': <FinishWork: Люверсы через 30 см с проваркой>, 'length': 3.0, 'width': 6.0, 'user': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x7fcd863dbc70>>, 'role': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x7fcd863dbc70>>}
+2025-09-12 16:42:47,914 root         INFO     [INFO]. self.length:3.0 TYPE<class 'float'>
+Width: 6.0 TYPE <class 'float'>
+ Quantity: 1.0 TYPE <class 'float'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см с проваркой TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 510 грамм литой Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: rpk.reds@yandex.ru: TYPE <class 'django.utils.functional.SimpleLazyObject'> 
+2025-09-12 16:42:47,915 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: rpk.reds@yandex.ru, TYPE <class 'django.utils.functional.SimpleLazyObject'>
+2025-09-12 16:42:47,915 files.tiff_file INFO     CHECK ROLE -> USER IS USER: rpk.reds@yandex.ru, TYPE <class 'django.utils.functional.SimpleLazyObject'>
+2025-09-12 16:42:48,268 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2025-09-12 16:42:48,269 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2025-09-12 16:42:49,271 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2025-09-12 16:42:50,272 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2025-09-12 16:42:51,273 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2025-09-12 16:42:52,275 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2025-09-12 16:42:53,276 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2025-09-12 16:42:54,278 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2025-09-12 16:42:55,280 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2025-09-12 16:42:56,282 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2025-09-12 16:42:57,287 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2025-09-12 16:42:58,288 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2025-09-12 16:42:59,290 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2025-09-12 16:43:00,292 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2025-09-12 16:43:01,298 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2025-09-12 16:43:02,300 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2025-09-12 16:43:03,302 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2025-09-12 16:43:04,303 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2025-09-12 16:43:05,305 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2025-09-12 16:43:06,307 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2025-09-12 16:43:07,311 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2025-09-12 16:43:07,392 django.request ERROR    Internal Server Error: /files/calculator_large_print_out/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 127, in reconnect_on_error
+    yield
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 177, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 916, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 749, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 264, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 265, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 615, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/kombu/connection.py", line 472, in _reraise_as_library_errors
+    yield
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/app/base.py", line 797, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 373, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in consume_from
+    return self.start(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 147, in start
+    self._consume_from(initial_task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 176, in _consume_from
+    with self.reconnect_on_error():
+  File "/home/sasha/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 130, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 384, in ensure
+    return retry_over_time(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 318, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/commands/core.py", line 2015, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/files/views.py", line 280, in calculator_large_print_out
+    results, st_discount = image_price.discount()
+  File "/home/sasha/PycharmProjects/tiff_django/files/tiff_file.py", line 328, in discount
+    send_message_whatsapp.delay(f'{admin_phone}', f'В калькуляторе посчитали скидку 10 % + бесплатная доставка')
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/app/task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/app/task.py", line 594, in apply_async
+    return app.send_task(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/celery/app/base.py", line 795, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/home/sasha/.local/share/uv/python/cpython-3.10.18-linux-x86_64-gnu/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.10/site-packages/kombu/connection.py", line 476, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to localhost:6379. Connection refused.
+2025-09-12 16:43:07,675 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2025-09-12 16:44:22,170 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-12 16:44:27,065 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2025-09-12 16:44:30,911 files.views  INFO     [--INFO CLEAN DATA--] {'quantity': 1.0, 'material': <Material: Баннер 510 грамм литой Широкоформатная печать>, 'finishing': <FinishWork: Люверсы через 30 см с проваркой>, 'length': 3.0, 'width': 6.0, 'user': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x7f714ffd03a0>>, 'role': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x7f714ffd03a0>>}
+2025-09-12 16:44:30,917 root         INFO     [INFO]. self.length:3.0 TYPE<class 'float'>
+Width: 6.0 TYPE <class 'float'>
+ Quantity: 1.0 TYPE <class 'float'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см с проваркой TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 510 грамм литой Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: rpk.reds@yandex.ru: TYPE <class 'django.utils.functional.SimpleLazyObject'> 
+2025-09-12 16:44:30,922 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: rpk.reds@yandex.ru, TYPE <class 'django.utils.functional.SimpleLazyObject'>
+2025-09-12 16:44:30,923 files.tiff_file INFO     CHECK ROLE -> USER IS USER: rpk.reds@yandex.ru, TYPE <class 'django.utils.functional.SimpleLazyObject'>
+2025-09-12 16:44:31,516 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2025-09-12 16:45:04,719 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2025-09-12 16:45:17,769 files.views  INFO     [INFO CLEAN DATA] {'quantity': 1.0, 'material': <Material: Баннер 440 гр ламинированный Интерьерная печать>, 'finishing': <FinishWork: оставить белые поля по 5 см>, 'length': 1.5, 'width': 1.5, 'user': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x7f714f779750>>, 'role': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x7f714f779750>>}
+2025-09-12 16:45:17,772 root         INFO     [INFO]. self.length:1.5 TYPE<class 'float'>
+Width: 1.5 TYPE <class 'float'>
+ Quantity: 1.0 TYPE <class 'float'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 гр ламинированный Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: rpk.reds@yandex.ru: TYPE <class 'django.utils.functional.SimpleLazyObject'> 
+2025-09-12 16:45:17,772 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: rpk.reds@yandex.ru, TYPE <class 'django.utils.functional.SimpleLazyObject'>
+2025-09-12 16:45:17,772 files.tiff_file INFO     CHECK ROLE -> USER IS USER: rpk.reds@yandex.ru, TYPE <class 'django.utils.functional.SimpleLazyObject'>
+2025-09-12 16:45:17,982 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2025-09-17 21:52:13,665 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-17 21:53:04,474 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-17 21:53:18,507 account.views INFO     Orders:  <QuerySet []>
+2025-09-17 21:53:18,507 account.views INFO     page_NUM: 1
+2025-09-17 21:53:18,511 account.views INFO     page_NUM: <Page 1 of 1>
+2025-09-17 21:57:47,198 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2025-09-17 21:57:47,206 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
