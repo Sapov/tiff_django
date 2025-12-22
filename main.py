@@ -1,28 +1,18 @@
-# class FloatValidator:
-#     def __init__(self, max_value, min_value):
-#         self.min_value = min_value
-#         self.max_value = max_value
-#
-# fv = FloatValidator(3,1)
-#
-#
-# fv(3)
+# n = int(input())
+# lst = [int(input()) for i in range(n)]
+
+n = 3
+lst = [4, 3, 2]
+count_five = 0
+median = sum(lst) / len(lst)
+if median < 4:
+    while median < 4:
+        lst.append(5)
+        count_five += 1
+        median = sum(lst) / len(lst)
+    print(count_five)
+    print(*lst)
 
 
-def one(name, sound):
-    class Animal:
-        def __init__(self, name):
-            self.name = name
-
-        def say(self):
-            print(f'SAY {sound}')
-        # def __str__(self):
-        #     return Animal.__name__
-    Animal.__name__ = name.capitalize()
-
-    return Animal
-
-
-Dog = one('Dog', 'Gav')
-shar = Dog('Sharic')
-shar.say()
+else:
+    print('все в порядке Федя!')

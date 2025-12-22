@@ -36,7 +36,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 User = get_user_model()
-
 logger = logging.getLogger(__name__)
 
 

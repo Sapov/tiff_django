@@ -35538,3 +35538,15 @@ SELF.USER: rpk.reds@yandex.ru: TYPE <class 'django.utils.functional.SimpleLazyOb
 2025-09-17 21:53:18,511 account.views INFO     page_NUM: <Page 1 of 1>
 2025-09-17 21:57:47,198 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
 2025-09-17 21:57:47,206 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2025-09-17 22:10:59,868 account.views INFO     Orders:  <QuerySet []>
+2025-09-17 22:10:59,869 account.views INFO     page_NUM: 1
+2025-09-17 22:10:59,876 account.views INFO     page_NUM: <Page 1 of 1>
+2025-09-17 22:12:30,308 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-09-17 22:13:39,939 account.views INFO     Orders:  <QuerySet []>
+2025-09-17 22:13:39,940 account.views INFO     page_NUM: 1
+2025-09-17 22:13:39,941 account.views INFO     page_NUM: <Page 1 of 1>
+2025-09-17 22:14:41,093 account.views INFO     Orders:  <QuerySet []>
+2025-09-17 22:14:41,093 account.views INFO     page_NUM: 1
+2025-09-17 22:14:41,094 account.views INFO     page_NUM: <Page 1 of 1>
+2025-12-22 20:32:19,759 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2025-12-22 20:33:47,205 django.utils.autoreload INFO     Watching for file changes with StatReloader
