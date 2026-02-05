@@ -5,8 +5,8 @@ import os
 
 def validate_tiff_file(value):
     ext = os.path.splitext(value.name)[1]  # Получаем расширение файла
-    valid_extensions = ['.tif', '.tiff']
+    valid_extensions = ['.tif']
     if not ext.lower() in valid_extensions:
         raise ValidationError(
-            _('Поддерживаются только TIFF файлы с расширениями .tif или .tiff')
+            _('Поддерживаются только TIFF файлы с расширениями .tif ')
         )
