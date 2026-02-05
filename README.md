@@ -4,11 +4,14 @@
 Как запустить: 
 git clone https://github.com/Sapov/tiff_django.git
 
+uv init
+uv sync
+
+
 ЛОКАЛЬНО:
 
 PYTHONUNBUFFERED=1;DJANGO_SETTINGS_MODULE=mysite.settings_dev python3 manage.py runserver
 docker run -d -p 6379:6379  redis      
-DJANGO_SETTINGS_MODULE=mysite.settings_dev celery -A mysite worker -l info
 
 DJANGO_SETTINGS_MODULE=mysite.settings_dev celery -A mysite beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
@@ -46,11 +49,13 @@ SECRET_KEY='SecRet_Key'
 
 Остановить: docker compose down
 
-Локально:
-python manage.py runserver --settings mysite.settings_dev
+--- Локально: ---
 
-Запускаем redis:
+1. Запускаем redis:
 docker run -d -p 6379:6379 redis
 
-Запускаем Celery:
-DJANGO_SETTINGS_MODULE=mysite.settings_dev celery -A mysite worker -l info
+2. Запускаем Celery:
+DJANGO_SETTINGS_MODULE=mysite.settings_dev uv run python -m celery -A mysite worker -l info
+
+3. Запускаем Django
+uv run manage.py runserver --settings mysite.settings_dev
