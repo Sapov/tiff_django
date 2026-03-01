@@ -31,7 +31,6 @@ class Migration(migrations.Migration):
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
                 ('role', models.CharField(choices=[('CUSTOMER_RETAIL', 'Клиент'), ('CUSTOMER_AGENCY', 'Рекламное агентство'), ('MANAGER', 'Менеджер'), ('OPERATOR', 'Оператор'), ('FINANCIER', 'Бухгалтер'), ('AnonymousUser', 'Незарегистрированный'), ('COURIER', 'Курьер'), ('DESIGNER', 'Дизайнер')], default='CUSTOMER_RETAIL', max_length=24)),
                 ('email', models.EmailField(max_length=254, unique=True, verbose_name='email address')),
-                ('email_verify', models.BooleanField(default=False)),
                 ('phone_number', phonenumber_field.modelfields.PhoneNumberField(blank=True, help_text='В формате +7 953 119-33-67', max_length=128, null=True, region=None, verbose_name='Номер телефона')),
                 ('whatsapp', models.BooleanField(default=False, help_text='Установите Да если к номеру телефона подключен Whatsapp', verbose_name='Присылать уведомления на Whatsapp')),
                 ('photo', models.ImageField(blank=True, null=True, upload_to='users/%Y/%m/%d/')),
