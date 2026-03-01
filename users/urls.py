@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from profiles.views import edit_profile
-from users.views import Register, EmailVerify, MyLoginView, UserListsView, UsersCreateView, UserUpdateLIst, \
+from users.views import UserListsView, UsersCreateView, UserUpdateLIst, \
     UserDeleteView, ListProfile, ProfileUpdateLIst, DesignerSignUpView
 
 # app_name = "users"

@@ -10,7 +10,6 @@ User = get_user_model()
 class UsersCreateView(LoginRequiredMixin, CreateView):
     model = User
     fields = [
-        # 'password',
         'email',
         'username',
         'last_name',
@@ -48,9 +47,7 @@ class ListProfile(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         "организации только этого юзера"
-        # queryset = []
         queryset = User.objects.filter(email=self.request.user)
-        #     q = User.objects.filter(user=self.request.user)
         return queryset
 
 
