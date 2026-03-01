@@ -224,6 +224,8 @@ AUTHENTICATION_BACKENDS = [
 
 ACCOUNT_UNIQUE_EMAIL = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
+# Выход без страницы подтверждения (по GET-запросу)
+ACCOUNT_LOGOUT_ON_GET = True
 
 # Как обрабатывать существующие email
 ACCOUNT_EMAIL_REQUIRED = True
