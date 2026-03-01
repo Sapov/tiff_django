@@ -8,7 +8,7 @@ from .models import (
     StatusProduct,
     UseCalculator,
 )
-from account.models import Organisation
+from profiles.models import Organisation
 
 
 class MaterialAdmin(admin.ModelAdmin):

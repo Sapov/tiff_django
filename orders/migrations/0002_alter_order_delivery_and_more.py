@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0003_alter_delivery_type_delivery'),
+        ('profiles', '0003_alter_delivery_type_delivery'),
         ('orders', '0001_initial'),
     ]
 
@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='order',
             name='delivery',
-            field=models.ForeignKey(default=1, null=True, on_delete=django.db.models.deletion.PROTECT, to='account.delivery', verbose_name='Доставка'),
+            field=models.ForeignKey(default=1, null=True, on_delete=django.db.models.deletion.PROTECT, to='profiles.delivery', verbose_name='Доставка'),
         ),
         migrations.AlterField(
             model_name='orderitem',

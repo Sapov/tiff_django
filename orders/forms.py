@@ -1,6 +1,6 @@
 import logging
 from django import forms
-from account.models import Organisation, DeliveryAddress
+from profiles.models import Organisation, DeliveryAddress
 
 from users.models import User
 from .models import Order

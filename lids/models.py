@@ -3,7 +3,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings
 from django.urls import reverse
 
-from account.views import Users
+from profiles.views import Users
 
 
 class Channel(models.TextChoices):

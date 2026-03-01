@@ -28,7 +28,7 @@ class EmailVerify(View):
             user.email_verify = True
             user.save()
             login(request, user)
-            return redirect('account:dashboard')
+            return redirect('profiles:dashboard')
         return redirect('invalid_verify')
 
     @staticmethod
@@ -147,4 +147,4 @@ class DesignerSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('account:dashboard')  # Замените 'home' на ваш URL
+        return redirect('profiles:dashboard')  # Замените 'home' на ваш URL

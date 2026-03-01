@@ -14,7 +14,7 @@ class RoleRedirectMiddleware:
                 if request.user.role == 'DESIGNER':
                     return redirect('designs:design_list')
                 else:
-                    return redirect('account:dashboard')
+                    return redirect('profiles:dashboard')
 
         return response
 

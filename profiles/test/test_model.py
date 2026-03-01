@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from unittest import TestCase
-from account.models import Organisation, Delivery, DeliveryAddress
+from profiles.models import Organisation, Delivery, DeliveryAddress
 
 User = get_user_model()
 

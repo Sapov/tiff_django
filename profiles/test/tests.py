@@ -4,31 +4,31 @@ from django.contrib.auth import get_user_model, authenticate
 
 from django.test import TestCase
 
-from account.models import Organisation
+from profiles.models import Organisation
 
 
 class TestAccount(TestCase):
     def test_add_organisation(self):
-        response = self.client.get('/account/add_organisation/')
+        response = self.client.get('/profiles/add_organisation/')
         self.assertEqual(response.status_code, 302)
         # self.assertTemplateUsed(response, 'organisation_form.html')
 
     # def test_add_organisation_templates(self, request):
-    #     response = self.client.get('/account/add_organisation/')
+    #     response = self.client.get('/profiles/add_organisation/')
     #     # self.assertEqual(response.status_code, 302)
-    #     self.assertTemplateUsed(response, 'account/organisation_form.html')
+    #     self.assertTemplateUsed(response, 'profiles/organisation_form.html')
 
     def test_list_organisation(self):
-        response = self.client.get('/account/list_organisation/')
+        response = self.client.get('/profiles/list_organisation/')
         self.assertEqual(response.status_code, 302)
         # self.assertTemplateUsed(response, 'organisation_list.html')
 
     def test_del_organisation(self):
-        response = self.client.get('/account/delete_organisation_user/1')
+        response = self.client.get('/profiles/delete_organisation_user/1')
         self.assertEqual(response.status_code, 302)
 
     def test_update_organisation(self):
-        response = self.client.get('/account/update_organisation_user/1')
+        response = self.client.get('/profiles/update_organisation_user/1')
         self.assertEqual(response.status_code, 302)
         # self.assertTemplateUsed(response, 'organisation_update_form.html')
 

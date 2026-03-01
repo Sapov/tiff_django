@@ -1,3 +1,6 @@
+{% load i18n %}
+{% load account socialaccount %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +45,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Сервис онлайн печати</h1>
                                     </div>
-                                    <form class="user"  action="{% url 'login' %}" method="post">
+                                    <form class="user"  action="{% url 'account_login' %}" method="post">
                                     {% csrf_token %}
                                         <div class="form-group">
                                             <input type="text" name="username" class="form-control form-control-user"
@@ -67,12 +70,32 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{% url 'password_reset' %}">Забыли пароль?</a>
+                                        <a class="small" href="{% url 'account_reset_password' %}">Забыли пароль?</a>
 
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{% url 'register' %}">Зарегистрироваться</a>
+                                        <a class="small" href="{% url 'account_signup' %}">Зарегистрироваться</a>
                                     </div>
+
+                                      <div class="d-grid gap-2">
+
+                            <form method="post" action="{% provider_login_url 'google' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark btn-lg w-100 py-2 fs-6 shadow-sm"
+                                        style="border-radius: 10px;">
+                                    <img src="https://authjs.dev/img/providers/google.svg" alt="Google" width="20"
+                                         class="me-2">
+                                    {% trans "Войти через Google" %}
+                                </button>
+                            </form>
+                                                    <a href="{% provider_login_url 'yandex' %}" class="btn btn-outline-dark btn-lg py-2 fs-6 shadow-sm" style="border-radius: 10px;">
+                                                        <img src="https://authjs.dev/img/providers/yandex.svg" alt="Yandex" width="20" class="me-2">
+                                                        {% trans "Войти через Yandex" %}
+                                                    </a>
+                        </div>
+
+
+
                                 </div>
                             </div>
                         </div>

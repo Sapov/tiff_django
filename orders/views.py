@@ -9,7 +9,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from account.models import Delivery, Organisation
+from profiles.models import Delivery, Organisation
 
 from files.models import Product, StatusProduct
 from files.pay import Robokassa

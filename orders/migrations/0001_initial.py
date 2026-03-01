@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('account', '0002_initial'),
+        ('profiles', '0002_initial'),
         ('files', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
@@ -55,8 +55,8 @@ class Migration(migrations.Migration):
                 ('order_arhive', models.FileField(blank=True, null=True, upload_to='arhive/<built-in function id>')),
                 ('order_pdf_file', models.FileField(blank=True, null=True, upload_to='orders/')),
                 ('pay_link', models.TextField(blank=True, null=True, verbose_name='Ссылка для оплаты')),
-                ('delivery', models.ForeignKey(default=3, null=True, on_delete=django.db.models.deletion.PROTECT, to='account.delivery', verbose_name='Доставка')),
-                ('organisation_payer', models.ForeignKey(blank=True, default=1, help_text='Выберите организацию плательщик', null=True, on_delete=django.db.models.deletion.CASCADE, to='account.organisation', verbose_name='Организация плательщик')),
+                ('delivery', models.ForeignKey(default=3, null=True, on_delete=django.db.models.deletion.PROTECT, to='profiles.delivery', verbose_name='Доставка')),
+                ('organisation_payer', models.ForeignKey(blank=True, default=1, help_text='Выберите организацию плательщик', null=True, on_delete=django.db.models.deletion.CASCADE, to='profiles.organisation', verbose_name='Организация плательщик')),
                 ('user', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Заказчик')),
                 ('status', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='orders.statusorder', verbose_name='Статус заказа')),
             ],

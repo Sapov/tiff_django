@@ -29,19 +29,19 @@ class AccountURLTests(TestCase):
         ''' Проверка страницы Оранизации пользователя'''
         self.authorized_client.force_login(self.user)
 
-        response = self.authorized_client.get('/account/add_organisation/')
+        response = self.authorized_client.get('/profiles/add_organisation/')
         self.assertEqual(response.status_code, 200)
 
 
 class TestAccount(TestCase):
     def test_add_organisation(self):
-        ''' Редирект пользователя с /account/add_organisation/'''
-        response = self.client.get('/account/add_organisation/')
+        ''' Редирект пользователя с /profiles/add_organisation/'''
+        response = self.client.get('/profiles/add_organisation/')
         self.assertEqual(response.status_code, 302)
 
     def test_list_organisation(self):
-        """ Редирект пользователя с /account/list_organisation/"""
-        response = self.client.get('/account/list_organisation/')
+        """ Редирект пользователя с /profiles/list_organisation/"""
+        response = self.client.get('/profiles/list_organisation/')
         self.assertEqual(response.status_code, 302)
 
 

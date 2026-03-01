@@ -35,7 +35,7 @@ def dashboard(request):
 
     return render(
         request,
-        "account/dashboard.html",
+        "profiles/dashboard.html",
         {"Orders": Orders, 'object_list': object_list, "title": "Заказы", "page_obj": page_obj, "section": "dashboard"},
     )
 
@@ -77,7 +77,7 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
         "phone",
         "email",
     ]
-    success_url = reverse_lazy("account:list_organisation")
+    success_url = reverse_lazy("profiles:list_organisation")
 
     # только для текущего юзера
     def form_valid(self, form):
@@ -86,7 +86,7 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
 
 
 class ListOrganisation(LoginRequiredMixin, ListView):
-    template_name = "account/organisation_list.html"
+    template_name = "profiles/organisation_list.html"
     model = Organisation
     paginate_by = 5
 
@@ -100,7 +100,7 @@ class ListOrganisation(LoginRequiredMixin, ListView):
 class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
     """Удаление организации"""
     model = Organisation
-    success_url = reverse_lazy("account:list_organisation")
+    success_url = reverse_lazy("profiles:list_organisation")
 
 
 class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
@@ -121,7 +121,7 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
         "email",
     )
     template_name_suffix = "_update_form"
-    success_url = reverse_lazy("account:list_organisation")
+    success_url = reverse_lazy("profiles:list_organisation")
 
 
 class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
@@ -140,7 +140,7 @@ class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
         "second_name",
         "phone",
     ]
-    success_url = reverse_lazy("account:delivery_list")
+    success_url = reverse_lazy("profiles:delivery_list")
 
     # только для текущего юзера
     def form_valid(self, form):
@@ -149,7 +149,7 @@ class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
 
 
 class DeliveryAddressListView(LoginRequiredMixin, ListView):
-    template_name = "account/delivery_list.html"
+    template_name = "profiles/delivery_list.html"
     model = DeliveryAddress
     paginate_by = 5
 
@@ -163,13 +163,13 @@ class DeliveryAddressUpdate(LoginRequiredMixin, UpdateView):
     model = DeliveryAddress
     fields = ["region", "city", "street", "house", "delivery_method"]
     template_name_suffix = "_update_form"
-    success_url = reverse_lazy("account:delivery_list")
+    success_url = reverse_lazy("profiles:delivery_list")
 
 
 class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
     model = DeliveryAddress
     fields = "__all__"
-    success_url = reverse_lazy("account:delivery_list")
+    success_url = reverse_lazy("profiles:delivery_list")
 
 
 def politics(request):

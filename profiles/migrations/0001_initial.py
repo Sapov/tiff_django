@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(blank=True, max_length=100, null=True, verbose_name='Имя')),
                 ('second_name', models.CharField(blank=True, max_length=100, null=True, verbose_name='Фамилия')),
                 ('phone', models.CharField(blank=True, max_length=100, null=True, verbose_name='Телефон')),
-                ('delivery_method', models.ForeignKey(blank=True, default=2, null=True, on_delete=django.db.models.deletion.PROTECT, to='account.delivery', verbose_name='Тип доставки')),
+                ('delivery_method', models.ForeignKey(blank=True, default=2, null=True, on_delete=django.db.models.deletion.PROTECT, to='profiles.delivery', verbose_name='Тип доставки')),
             ],
             options={
                 'verbose_name': 'Адреса доставки',

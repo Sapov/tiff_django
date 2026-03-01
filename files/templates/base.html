@@ -36,7 +36,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'account:dashboard' %}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'profiles:dashboard' %}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -153,10 +153,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">профиль:</h6>
-                    <a class="collapse-item" href="{% url 'profile_list' %}">Профиль пользователя</a>
-                    <a class="collapse-item" href="{% url 'account:delivery_list' %}">Адреса доставки</a>
-                    <a class="collapse-item" href="{% url 'account:list_organisation' %}">Организации</a>
-                    <a class="collapse-item" href="{% url 'password_change' %}">Сменить пароль</a>
+                    <a class="collapse-item" href="{% url 'profiles:delivery_list' %}">Адреса доставки</a>
+                    <a class="collapse-item" href="{% url 'profiles:list_organisation' %}">Организации</a>
                 </div>
             </div>
         </li>
@@ -180,7 +178,7 @@
         <!--                    data-parent="#accordionSidebar">-->
         <!--                    <div class="bg-white py-2 collapse-inner rounded">-->
         <!--                        <h6 class="collapse-header">Управление доставкой:</h6>-->
-        <!--                        <a class="collapse-item" href="{% url 'account:delivery_list' %}">Адреса</a>-->
+        <!--                        <a class="collapse-item" href="{% url 'profiles:delivery_list' %}">Адреса</a>-->
         <!--                        <a class="collapse-item" href="#">Добавить адрес</a>-->
         <!--                        <a class="collapse-item" href="#">Удалить адрес</a>-->
         <!--                    </div>-->
@@ -280,7 +278,6 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{% url 'profile_list' %}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Профиль
                             </a>
@@ -295,13 +292,13 @@
                             {% if request.user.is_authenticated %}
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal"
+                            <a class="dropdown-item" href="{% url 'account_logout' %}" data-toggle="modal"
                                data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Выйти
                             </a>
                             {% else %}
-                            <a class="dropdown-item" href="{% url 'login' %}" data-toggle="modal"
+                            <a class="dropdown-item" href="{% url 'account_login' %}" data-toggle="modal"
                                data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Войти
@@ -365,7 +362,7 @@
                 <div class="modal-body">Вы действительно хотите выйти?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{% url 'login' %}">Выход</a>
+                    <a class="btn btn-primary" href="{% url 'account_login' %}">Выход</a>
                 </div>
             </div>
         </div>

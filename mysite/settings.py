@@ -20,7 +20,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "easy_thumbnails",
-    "account.apps.AccountConfig",
+    "profiles.apps.AccountConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -44,6 +44,14 @@ INSTALLED_APPS = [
     'plotter',
     'lids',
     'designs.apps.DesignsConfig',
+    'allauth',
+    'allauth.account',
+
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.yandex',
+
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
@@ -78,6 +86,7 @@ MIDDLEWARE = [
 
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 
 ]
 
@@ -163,11 +172,11 @@ MEDIA_URL = "/media/"
 # MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = "/profile/"
-LOGIN_URL = "login"
+LOGIN_URL = "account_login"
 # LOGOUT_URL = "logout"
-LOGOUT_URL = reverse_lazy('logout')
+LOGOUT_URL = reverse_lazy('account_logout')
 
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'account_login'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = os.getenv("EMAIL_HOST")
@@ -203,3 +212,12 @@ PHONENUMBER_DEFAULT_REGION = 'RU'
 CSRF_TRUSTED_ORIGINS = []
 if scrf_subdomain := os.getenv('SCRF_SUBDOMAIN'):
     CSRF_TRUSTED_ORIGINS += [f'http://{scrf_subdomain}', f'https://{scrf_subdomain}']
+
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
