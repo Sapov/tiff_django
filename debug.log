@@ -39463,3 +39463,25 @@ django.db.utils.IntegrityError: UNIQUE constraint failed: users_user.email
 2026-03-01 21:14:38,125 profiles.views INFO     page_NUM: <Page 1 of 1>
 2026-03-01 21:16:19,586 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/mysite/settings.py changed, reloading.
 2026-03-01 21:16:20,554 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-01 21:49:05,770 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/mysite/settings.py changed, reloading.
+2026-03-01 21:49:07,163 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-01 21:49:52,586 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-01 21:49:52,586 profiles.views INFO     page_NUM: 1
+2026-03-01 21:49:52,587 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-01 21:50:11,906 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-01 21:50:11,906 profiles.views INFO     page_NUM: 1
+2026-03-01 21:50:11,907 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-01 21:51:32,511 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-01 21:51:32,511 profiles.views INFO     page_NUM: 1
+2026-03-01 21:51:32,514 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-01 21:52:34,316 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-01 21:52:34,319 profiles.views INFO     page_NUM: 1
+2026-03-01 21:52:34,322 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-01 21:53:02,402 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-01 21:53:02,403 profiles.views INFO     page_NUM: 1
+2026-03-01 21:53:02,407 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-01 21:53:31,366 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-01 21:53:31,367 profiles.views INFO     page_NUM: 1
+2026-03-01 21:53:31,371 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-01 21:53:47,062 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/mysite/settings.py changed, reloading.
+2026-03-01 21:53:48,210 django.utils.autoreload INFO     Watching for file changes with StatReloader

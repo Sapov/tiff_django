@@ -355,9 +355,18 @@
                     </button>
                 </div>
                 <div class="modal-body">Вы действительно хотите выйти?</div>
+
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{% url 'account_logout' %}">Выход</a>
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+
+                    <form method="post" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+  <button class="btn btn-primary type="submit">Выйти</button>
+</form>
+
                 </div>
             </div>
         </div>
