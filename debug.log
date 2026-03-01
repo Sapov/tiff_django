@@ -39770,3 +39770,7 @@ django.urls.exceptions.NoReverseMatch: 'account' is not a registered namespace
 2026-03-01 23:02:37,871 profiles.views INFO     Orders:  <QuerySet []>
 2026-03-01 23:02:37,872 profiles.views INFO     page_NUM: 1
 2026-03-01 23:02:37,874 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-01 23:25:11,005 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/urls.py changed, reloading.
+2026-03-01 23:25:11,967 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-01 23:25:50,571 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/urls.py changed, reloading.
+2026-03-01 23:25:51,634 django.utils.autoreload INFO     Watching for file changes with StatReloader
