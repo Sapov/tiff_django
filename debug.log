@@ -39774,3 +39774,132 @@ django.urls.exceptions.NoReverseMatch: 'account' is not a registered namespace
 2026-03-01 23:25:11,967 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2026-03-01 23:25:50,571 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/urls.py changed, reloading.
 2026-03-01 23:25:51,634 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 14:54:30,745 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 14:55:49,708 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 15:00:57,820 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 15:01:31,079 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 15:01:37,060 django.request ERROR    Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 172, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\library.py", line 324, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\templatetags\socialaccount.py", line 21, in provider_login_url
+    provider = adapter.get_provider(request, provider)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\adapter.py", line 212, in get_provider
+    app = self.get_app(request, provider=provider, client_id=client_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\adapter.py", line 302, in get_app
+    raise SocialApp.DoesNotExist()
+allauth.socialaccount.models.SocialApp.DoesNotExist
+2026-03-02 15:01:37,324 django.request WARNING  Not Found: /favicon.ico
+2026-03-02 15:17:07,534 django.utils.autoreload INFO     C:\Users\sasha\PycharmProjects\tiff_django\mysite\settings.py changed, reloading.
+2026-03-02 15:17:09,175 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 15:17:45,622 django.request ERROR    Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 172, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\library.py", line 324, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\templatetags\socialaccount.py", line 21, in provider_login_url
+    provider = adapter.get_provider(request, provider)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\adapter.py", line 212, in get_provider
+    app = self.get_app(request, provider=provider, client_id=client_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\adapter.py", line 302, in get_app
+    raise SocialApp.DoesNotExist()
+allauth.socialaccount.models.SocialApp.DoesNotExist
+2026-03-02 15:19:20,700 django.utils.autoreload INFO     C:\Users\sasha\PycharmProjects\tiff_django\mysite\settings.py changed, reloading.
+2026-03-02 15:19:22,133 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 15:20:22,193 django.request ERROR    Internal Server Error: /accounts/yandex/login/
+Traceback (most recent call last):
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 102, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\providers\base\views.py", line 19, in dispatch
+    return provider.redirect_from_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\providers\base\provider.py", line 57, in redirect_from_request
+    return self.redirect(request, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\providers\oauth2\provider.py", line 125, in redirect
+    client.get_redirect_url(
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\allauth\socialaccount\providers\oauth2\client.py", line 51, in get_redirect_url
+    return f"{authorization_url}?{urlencode(params)}"
+                                  ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\utils\http.py", line 56, in urlencode
+    raise TypeError(
+TypeError: Cannot encode None for key 'client_id' in a query string. Did you mean to pass an empty string or omit the value?
+2026-03-02 15:22:08,599 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-02 15:22:08,599 profiles.views INFO     page_NUM: 1
+2026-03-02 15:22:08,600 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-02 15:26:54,617 django.utils.autoreload INFO     C:\Users\sasha\PycharmProjects\tiff_django\mysite\settings.py changed, reloading.
+2026-03-02 15:26:56,208 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 15:27:23,830 django.utils.autoreload INFO     C:\Users\sasha\PycharmProjects\tiff_django\mysite\settings.py changed, reloading.
+2026-03-02 15:27:25,378 django.utils.autoreload INFO     Watching for file changes with StatReloader
