@@ -39903,3 +39903,232 @@ TypeError: Cannot encode None for key 'client_id' in a query string. Did you mea
 2026-03-02 15:26:56,208 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2026-03-02 15:27:23,830 django.utils.autoreload INFO     C:\Users\sasha\PycharmProjects\tiff_django\mysite\settings.py changed, reloading.
 2026-03-02 15:27:25,378 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 15:27:49,291 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-02 15:27:49,291 profiles.views INFO     page_NUM: 1
+2026-03-02 15:27:49,292 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-02 15:30:23,727 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-02 15:30:23,728 profiles.views INFO     page_NUM: 1
+2026-03-02 15:30:23,730 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-02 15:30:47,559 root         INFO     [INFO]. self.length:2.05 TYPE<class 'float'>
+Width: 0.85 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-02 15:30:47,560 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-02 15:30:47,560 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-02 15:30:57,487 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2026-03-02 15:31:01,551 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2026-03-02 15:31:06,637 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2026-03-02 15:31:11,729 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2026-03-02 15:31:16,806 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2026-03-02 15:31:21,900 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2026-03-02 15:31:26,995 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2026-03-02 15:32:54,052 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-02 15:35:14,246 django.request ERROR    Internal Server Error: /kbase/
+Traceback (most recent call last):
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 172, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'logout' not found. 'logout' is not a valid view function or pattern name.
+2026-03-02 15:36:12,808 django.request ERROR    Internal Server Error: /kbase/
+Traceback (most recent call last):
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 172, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'accoubt_logout' not found. 'accoubt_logout' is not a valid view function or pattern name.
+2026-03-02 15:36:33,289 django.request ERROR    Internal Server Error: /kbase/
+Traceback (most recent call last):
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 172, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 1018, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sasha\PycharmProjects\tiff_django\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'accoubt_logout' not found. 'accoubt_logout' is not a valid view function or pattern name.
+2026-03-02 15:59:34,866 django.utils.autoreload INFO     C:\Users\sasha\PycharmProjects\tiff_django\kbase\models.py changed, reloading.
+2026-03-02 15:59:36,440 django.utils.autoreload INFO     Watching for file changes with StatReloader

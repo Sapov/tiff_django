@@ -38,16 +38,6 @@ class ArticleImage(models.Model):
         return f"Изображение для {self.article.title}"
 
 
-# class Comment(models.Model):
-#     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
-#     author_ = models.ForeignKey(User, on_delete=models.CASCADE)
-#     text = models.TextField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-#
-#     def __str__(self):
-#         return f"Comment by {self.author} on {self.article}"
-
-
 class Article(models.Model):
     title = models.CharField(max_length=200,verbose_name='Заголовок')
     images = models.ForeignKey('ArticleImage', on_delete=models.CASCADE, blank=True, null=True)

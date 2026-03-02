@@ -1,8 +1,0 @@
-from django.apps import AppConfig
-
-
-class PicturiesConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'picturies'
-    verbose_name = 'Картины'
-

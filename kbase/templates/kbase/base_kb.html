@@ -22,16 +22,16 @@
                     {% if user.is_authenticated %}
 
                         <li class="nav-item">
-                            <span class="nav-link">Привет, {{ user.username }}| Статус: {{user.get_role_display}}</span>
+                            <span class="nav-link">Привет, {{ user.username }} | Статус: {{user.get_role_display}}</span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                            <a class="nav-link" href="{% url 'account_logout' %}">Выйти</a>
 
 
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                            <a class="nav-link" href="{% url 'account_login' %}">Войти</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
