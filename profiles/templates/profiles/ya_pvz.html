@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% block title %}Адреса доставки{% endblock %}
+
+{% block body %}
+<!-- Добавляем CSRF токен для формы -->
+{% csrf_token %}
+
+<div id="delivery-widget"></div>
+
+<script async src="https://ndd-widget.landpro.site/widget.js"></script>
+
+<script>
+    (function(w) {
+        function startWidget() {
+            w.YaDelivery.createWidget({
+                containerId: 'delivery-widget',
+                params: {
+                    city: "Москва",
+                    size: {
+                        "height": "450px",
+                        "width": "100%"
+                    },
+                    delivery_price: "от 100",
+                    delivery_term: "от 1 дня",
+                    show_select_button: true,
+                    filter: {
+                        type: ["pickup_point", "terminal"],
+                        is_yandex_branded: false,
+                        payment_methods_filter: "or",
+                        payment_methods: [
+                            "already_paid",
+                            "cash_on_receipt",
+                            "card_on_receipt"
+                        ],
+                    }
+                },
+            });
+        }
+        w.YaDelivery
+            ? startWidget()
+            : document.addEventListener('YaNddWidgetLoad', startWidget);
+    })(window);
+
+    // Обработка выбора пункта выдачи с FormData
+    document.addEventListener('YaNddWidgetPointSelected', function (data) {
+        console.log('Выбран пункт:', data.detail);
+
+        // Создаем FormData
+        const formData = new FormData();
+
+        // Добавляем все данные о выбранном пункте
+        formData.append('point_id', data.detail.id);
+        formData.append('point_name', data.detail.name || '');
+        formData.append('full_address', data.detail.address.full_address);
+        formData.append('country', data.detail.address.country);
+        formData.append('city', data.detail.address.locality);
+        formData.append('street', data.detail.address.street || '');
+        formData.append('house', data.detail.address.house || '');
+        formData.append('comment', data.detail.address.comment || '');
+        formData.append('latitude', data.detail.address.lat || '');
+        formData.append('longitude', data.detail.address.lng || '');
+        formData.append('postal_code', data.detail.address.postal_code || '');
+
+        // Добавляем метаданные
+        formData.append('delivery_type', 'pickup_point');
+        formData.append('selected_at', new Date().toISOString());
+
+
+        // Добавляем данные из формы, если есть
+        const orderForm = document.getElementById('order-form');
+        if (orderForm) {
+            new FormData(orderForm).forEach((value, key) => {
+                formData.append(key, value);
+            });
+        }
+
+        // Получаем CSRF токен
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Отправляем на сервер
+        fetch('{% url "profiles:save_delivery_point" %}', {
+        
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка сети');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                showMessage('Пункт выдачи успешно сохранен!', 'success');
+
+            } else {
+                showMessage('Ошибка: ' + data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showMessage('Ошибка при сохранении пункта выдачи. Пожалуйста, попробуйте еще раз.', 'error');
+        });
+    });
+
+    // Функция для отображения сообщений
+    function showMessage(text, type) {
+        let messageContainer = document.getElementById('message-container');
+        if (!messageContainer) {
+            messageContainer = document.createElement('div');
+            messageContainer.id = 'message-container';
+            messageContainer.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+            `;
+            document.body.appendChild(messageContainer);
+        }
+
+        const message = document.createElement('div');
+        message.className = `alert alert-${type === 'success' ? 'success' : 'danger'}`;
+        message.style.cssText = `
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            color: ${type === 'success' ? '#155724' : '#721c24'};
+            background-color: ${type === 'success' ? '#d4edda' : '#f8d7da'};
+            border: 1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'};
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease;
+        `;
+        message.textContent = text;
+
+        // Добавляем стили анимации, если их еще нет
+        if (!document.querySelector('#message-styles')) {
+            const style = document.createElement('style');
+            style.id = 'message-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        messageContainer.appendChild(message);
+
+        setTimeout(() => {
+            message.style.animation = 'slideIn 0.3s reverse';
+            setTimeout(() => {
+                message.remove();
+                if (messageContainer.children.length === 0) {
+                    messageContainer.remove();
+                }
+            }, 300);
+        }, 5000);
+    }
+</script>
+
+<!-- Дополнительная информация о выбранном пункте (опционально) -->
+<div id="selected-point-info" style="display: none;"></div>
+{% endblock %}

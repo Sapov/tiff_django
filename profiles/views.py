@@ -1,5 +1,8 @@
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -175,3 +178,69 @@ class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
 def politics(request):
     return render(request, 'registration/politics.html')
 
+
+def ya_pvz(request):
+    return render(request, 'profiles/ya_pvz.html')
+
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+import json
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
+import json
+
+
+@login_required
+@csrf_protect
+def save_delivery_point(request):
+    if request.method == 'POST':
+        print(request)
+        try:
+            # Получаем данные из FormData
+            point_data = {
+                'point_id': request.POST.get('point_id'),
+                'point_name': request.POST.get('point_name'),
+                'full_address': request.POST.get('full_address'),
+                'country': request.POST.get('country'),
+                'city': request.POST.get('city'),
+                'street': request.POST.get('street'),
+                'house': request.POST.get('house'),
+                'comment': request.POST.get('comment'),
+                'latitude': request.POST.get('latitude'),
+                'longitude': request.POST.get('longitude'),
+                'postal_code': request.POST.get('postal_code'),
+                'delivery_type': request.POST.get('delivery_type', 'pickup_point'),
+                'selected_at': request.POST.get('selected_at'),
+            }
+
+            # Сохраняем в сессию
+            request.session['delivery_point'] = point_data
+            print(point_data)
+
+            # Или сохраняем в базу данных
+            # DeliveryPoint.objects.create(
+            #     user=request.user,
+            #     **point_data
+            # )
+
+            # Возвращаем успешный ответ
+            return JsonResponse({
+                'status': 'success',
+                'message': 'Заказ принят в обработку',
+                'order_id': order.id
+            })
+
+        except Exception as e:
+            return JsonResponse({
+                'status': 'error',
+                'message': str(e)
+            }, status=400)
+
+    return JsonResponse({
+        'status': 'error',
+        'message': 'Метод не разрешен'
+    }, status=405)

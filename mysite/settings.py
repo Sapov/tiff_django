@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_celery_beat',
     'delivery_in_bus',
-    'picturies',
-    'plotter',
     'lids',
     'designs.apps.DesignsConfig',
     'allauth',
