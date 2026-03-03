@@ -7,7 +7,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.urls import reverse
 
-from profiles.models import Organisation, Delivery
+from profiles.models import Organisation, DeliveryAddress
 from files.models import Product
 
 from dotenv import load_dotenv, find_dotenv
@@ -35,7 +35,7 @@ class StatusOrder(models.Model):
 
 
 class Order(models.Model):
-    delivery = models.ForeignKey(Delivery, on_delete=models.PROTECT, verbose_name='Доставка', null=True, default=1)
+    delivery = models.ForeignKey(DeliveryAddress, on_delete=models.PROTECT, verbose_name='Доставка', null=True, default=1)
     total_price = models.FloatField(max_length=10, null=True, help_text="Стоимость заказа",
                                     verbose_name="Общая Стоимость", blank=True, )
     cost_total_price = models.FloatField(

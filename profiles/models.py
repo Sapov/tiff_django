@@ -30,19 +30,6 @@ class Organisation(models.Model):
         return self.name_full
 
 
-class Delivery(models.Model):
-    type_delivery = models.CharField(
-        max_length=200, verbose_name="Тип доставки", default=1
-    )
-
-    class Meta:
-        verbose_name_plural = "Типы доставки"
-        verbose_name = "Тип Доставки"
-        ordering = ["type_delivery"]
-
-    def __str__(self):
-        return self.type_delivery
-
 
 class DeliveryAddress(models.Model):
     class DeliveryType(models.TextChoices):
@@ -50,7 +37,7 @@ class DeliveryAddress(models.Model):
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True)
-    point_id = models.CharField(max_length=100, verbose_name="point_id", null=True, blank=True)
+    point_id = models.CharField(max_length=100, verbose_name="point_id", null=True, blank=True, unique=True)
     point_name = models.CharField(max_length=200, verbose_name="point_name", null=True, blank=True)
     full_address = models.CharField(max_length=255, verbose_name="full_address", null=True, blank=True)
     country = models.CharField(max_length=200, verbose_name="country", null=True, blank=True)
@@ -66,14 +53,8 @@ class DeliveryAddress(models.Model):
     first_name = models.CharField(max_length=100, verbose_name="Имя", null=True, blank=True)
     second_name = models.CharField(max_length=100, verbose_name="Фамилия", null=True, blank=True)
     phone = models.CharField(max_length=100, verbose_name="Телефон", null=True, blank=True)
-    delivery_method = models.ForeignKey(
-        Delivery,
-        on_delete=models.PROTECT,
-        null=True,
-        blank=True,
-        verbose_name="Тип доставки",
-        default=2,
-    )
+    delivery_method = models.CharField(max_length=64, choices=DeliveryType.choices,
+                                        default=DeliveryType.YA, verbose_name="Тип доставки")
 
     class Meta:
         verbose_name_plural = "Адреса доставки"
@@ -81,4 +62,4 @@ class DeliveryAddress(models.Model):
         ordering = ["street"]
 
     def __str__(self):
-        return f"{self.delivery_method}-{self.city}-{self.street}-{self.house}"
+        return f"{self.full_address}"

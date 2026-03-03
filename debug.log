@@ -40810,3 +40810,25 @@ django.core.exceptions.FieldError: Unknown field(s) (floor, entrance, flat, regi
 2026-03-03 21:55:21,443 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2026-03-03 21:56:13,685 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/models.py changed, reloading.
 2026-03-03 21:56:14,682 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 22:39:00,492 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-03 22:39:00,492 profiles.views INFO     page_NUM: 1
+2026-03-03 22:39:00,493 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-03 22:39:02,661 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 22:39:02,663 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 22:49:30,426 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/models.py changed, reloading.
+2026-03-03 22:49:31,069 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 22:56:47,500 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 22:56:51,132 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 22:56:51,133 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:01:06,329 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 23:01:06,330 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:02:34,465 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/models.py changed, reloading.
+2026-03-03 23:02:35,429 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 23:03:00,817 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/models.py changed, reloading.
+2026-03-03 23:03:01,709 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 23:03:03,217 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 23:03:03,223 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:03:09,888 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 23:03:09,889 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:04:04,914 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 23:04:04,915 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2

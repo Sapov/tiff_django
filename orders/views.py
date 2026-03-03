@@ -9,7 +9,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from profiles.models import Delivery, Organisation
+from profiles.models import DeliveryAddress, Organisation
 
 from files.models import Product, StatusProduct
 from files.pay import Robokassa
@@ -59,8 +59,6 @@ def new_order(request):
         logging.info(f"DELIV ID:  {delivery_id}")
         logging.info(f"ORGANISATION:  {request.POST['organisation_payer']}")
 
-        delivery = Delivery.objects.get(id=delivery_id)
-        logging.info(f"DELIVERY:  {delivery}")
         organisation_id = request.POST['organisation_payer']
         if organisation_id:
             organisation = Organisation.objects.get(id=organisation_id)
@@ -71,7 +69,6 @@ def new_order(request):
             user=form.user,
             date_complete=date_complite,
             organisation_payer=organisation,
-            delivery=delivery,
         )
 
         return redirect("orders:add_file_in_order", neworder.id)
