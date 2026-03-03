@@ -48,23 +48,20 @@ class DeliveryAddress(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
     )
-    region = models.CharField(
-        max_length=100, verbose_name="Область", null=True, blank=True
-    )
 
-    city = models.CharField(max_length=200, verbose_name="Город", null=True, blank=True)
-    street = models.CharField(
-        max_length=200, verbose_name="Улица", null=True, blank=True
-    )
-    house = models.CharField(max_length=200, verbose_name="Дом", null=True, blank=True)
-    entrance = models.CharField(
-        max_length=10, verbose_name="Подъезд", null=True, blank=True
-    )
-    floor = models.CharField(max_length=10, verbose_name="Этаж", null=True, blank=True)
-    flat = models.CharField(
-        max_length=10, verbose_name="Квартира/офис", null=True, blank=True
-    )
-
+    point_id = models.CharField(max_length=100, verbose_name="point_id", null=True, blank=True)
+    point_name = models.CharField(max_length=200, verbose_name="point_name", null=True, blank=True)
+    full_address = models.CharField(max_length=255, verbose_name="full_address", null=True, blank=True)
+    country = models.CharField(max_length=200, verbose_name="country", null=True, blank=True)
+    city = models.CharField(max_length=100, verbose_name="city", null=True, blank=True)
+    street = models.CharField(max_length=255, verbose_name="Улица", null=True, blank=True)
+    house = models.CharField(max_length=20, verbose_name="house", null=True, blank=True)
+    comment = models.CharField(max_length=255, verbose_name="comment", null=True, blank=True)
+    latitude = models.CharField(max_length=255, verbose_name="latitude", null=True, blank=True)
+    longitude = models.CharField(max_length=255, verbose_name="longitude", null=True, blank=True)
+    postal_code = models.CharField(max_length=255, verbose_name="postal_code", null=True, blank=True)
+    delivery_type = models.CharField(max_length=255, verbose_name="delivery_type", null=True, blank=True)
+    selected_at = models.CharField(max_length=255, verbose_name="selected_at", null=True, blank=True)
     first_name = models.CharField(
         max_length=100, verbose_name="Имя", null=True, blank=True
     )

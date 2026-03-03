@@ -22,7 +22,7 @@ urlpatterns = [
     path('delivery_delete/<pk>', views.DeliveryAddressDelete.as_view(), name='delivery_delete'),
 
     path('yandex/', views.ya_pvz, name='ya_pvz'),
-    path('save_delivery_point/', views.ya_pvz, name='save_delivery_point'),
+    path('save_delivery_point/', views.save_delivery_point, name='save_delivery_point'),
 
 ]
 

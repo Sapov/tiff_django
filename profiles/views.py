@@ -1,8 +1,5 @@
-import json
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -222,16 +219,15 @@ def save_delivery_point(request):
             print(point_data)
 
             # Или сохраняем в базу данных
-            # DeliveryPoint.objects.create(
-            #     user=request.user,
-            #     **point_data
-            # )
+            DeliveryAddress.objects.create(
+                user=request.user,
+                **point_data
+            )
 
             # Возвращаем успешный ответ
             return JsonResponse({
                 'status': 'success',
                 'message': 'Заказ принят в обработку',
-                'order_id': order.id
             })
 
         except Exception as e:

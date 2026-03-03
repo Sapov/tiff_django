@@ -28,10 +28,11 @@
             <tr>
 
                                                     <th scope="col">№</th>
-                                                    <th scope="col">Область</th>
-                                                    <th scope="col">Город</th>
-                                                    <th scope="col">Улица</th>
+                                                    <th scope="col">Страна</th>
+                                                    <th scope="col">Адрес</th>
                                                     <th scope="col">Дом</th>
+                                                    <th scope="col">Коментарий</th>
+                                                    <th scope="col">Индекс</th>
                                                     <th scope="col">Имя получателя</th>
                                                     <th scope="col">Тел. получателя</th>
                                                     <th scope="col">Тип доставки:</th>
@@ -43,10 +44,11 @@
                                             <tbody>
                                                 <tr>
                                                     <td>{{ item.id }}</td>
-                                                    <td>{{ item.region }}</td>
-                                                    <td>{{ item.city }}</td>
-                                                    <td>{{ item.street }}</td>
+                                                    <td>{{ item.country }}</td>
+                                                    <td>{{ item.full_address }}</td>
                                                     <td>{{ item.house }}</td>
+                                                    <td>{{ item.comment }}</td>
+                                                    <td>{{ item.postal_code }}</td>
                                                     <td>{{ item.first_name }} {{ item.second_name }}</td>
                                                     <td>{{ item.phone }}</td>
                                                     <td>{{ item.delivery_method }}</td>

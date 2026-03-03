@@ -215,10 +215,8 @@ AUTHENTICATION_BACKENDS = [
 
 ACCOUNT_UNIQUE_EMAIL = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 
-# Как обрабатывать существующие email
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False  # если используете только email
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
