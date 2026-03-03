@@ -14,9 +14,9 @@ class AccountTemplatesDeliveryAddressTests(TestCase):
 
     def test_create_delivery_address(self):
         '''Шаблон добавление адреса доставки'''
-        response = self.authorized_client.get('/profiles/delivery_create/')
+        response = self.authorized_client.get('/yandex/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'profiles/deliveryaddress_form.html')
+        self.assertTemplateUsed(response, 'profiles/ya_pvz.html')
 
     def test_delivery_address_list(self):
         ''' Проверка страницы list адреса доставки пользователя'''

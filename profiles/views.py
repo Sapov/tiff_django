@@ -2,6 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
 from orders.models import Order
@@ -124,29 +126,6 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("profiles:list_organisation")
 
 
-class DeliveryAddressCreateView(LoginRequiredMixin, CreateView):
-    # from django.views.generic.edit import CreateView
-    model = DeliveryAddress
-    fields = [
-        "delivery_method",
-        "region",
-        "city",
-        "street",
-        "house",
-        "entrance",
-        "floor",
-        "flat",
-        "first_name",
-        "second_name",
-        "phone",
-    ]
-    success_url = reverse_lazy("profiles:delivery_list")
-
-    # только для текущего юзера
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
 
 class DeliveryAddressListView(LoginRequiredMixin, ListView):
     template_name = "profiles/delivery_list.html"
@@ -159,11 +138,6 @@ class DeliveryAddressListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class DeliveryAddressUpdate(LoginRequiredMixin, UpdateView):
-    model = DeliveryAddress
-    fields = ["region", "city", "street", "house", "delivery_method"]
-    template_name_suffix = "_update_form"
-    success_url = reverse_lazy("profiles:delivery_list")
 
 
 class DeliveryAddressDelete(LoginRequiredMixin, DeleteView):
@@ -180,22 +154,13 @@ def ya_pvz(request):
     return render(request, 'profiles/ya_pvz.html')
 
 
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
-import json
 
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.decorators import login_required
-import json
 
 
 @login_required
 @csrf_protect
 def save_delivery_point(request):
     if request.method == 'POST':
-        print(request)
         try:
             # Получаем данные из FormData
             point_data = {
@@ -236,3 +201,4 @@ def save_delivery_point(request):
         'status': 'error',
         'message': 'Метод не разрешен'
     }, status=405)
+

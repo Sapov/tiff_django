@@ -4,18 +4,11 @@
 
     <h1>Мои Адреса: </h1>
 
-  <a href="{% url 'profiles:delivery_create' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">Добавить адрес</span>
-                                    </a>
-
   <a href="{% url 'profiles:ya_pvz' %}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">Получить через Яндекс ПВЗ</span>
+                                        <span class="text">Добавить адрес Яндекс ПВЗ</span>
                                     </a>
 
 
@@ -52,7 +45,6 @@
                                                     <td>{{ item.first_name }} {{ item.second_name }}</td>
                                                     <td>{{ item.phone }}</td>
                                                     <td>{{ item.delivery_method }}</td>
-                                                    <td><a href="{% url 'profiles:delivery_update' item.id %}">Изменить</a></td>
                                                     <td><a href="{% url 'profiles:delivery_delete' item.id %}">Удалить</a></td>
                 </tr>
         {% endfor %}
