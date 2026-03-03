@@ -40802,3 +40802,11 @@ Traceback (most recent call last):
     raise FieldError(message)
 django.core.exceptions.FieldError: Unknown field(s) (floor, entrance, flat, region) specified for DeliveryAddress
 2026-03-03 21:50:06,218 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 21:53:03,391 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/models.py changed, reloading.
+2026-03-03 21:53:04,446 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 21:54:55,779 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/models.py changed, reloading.
+2026-03-03 21:54:56,773 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 21:55:20,287 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/models.py changed, reloading.
+2026-03-03 21:55:21,443 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 21:56:13,685 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/models.py changed, reloading.
+2026-03-03 21:56:14,682 django.utils.autoreload INFO     Watching for file changes with StatReloader

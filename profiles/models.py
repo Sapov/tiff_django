@@ -7,7 +7,8 @@ class Organisation(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
     )
-    name_full = models.CharField(max_length=200, verbose_name="Имя юр. лица", help_text="Форма собственности и название")
+    name_full = models.CharField(max_length=200, verbose_name="Имя юр. лица",
+                                 help_text="Форма собственности и название")
     inn = models.CharField(max_length=12, verbose_name="ИНН")
     kpp = models.CharField(max_length=9, blank=True, verbose_name="КПП")
     address = models.CharField(max_length=256, verbose_name="Юр. Адрес", help_text="Полный почтовый адрес", )
@@ -19,7 +20,6 @@ class Organisation(models.Model):
     phone = models.CharField(max_length=20, blank=True, verbose_name="Телефон")
     email = models.EmailField(max_length=40, blank=True, verbose_name="Электронная почта")
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Опубликовано")
-
 
     class Meta:
         verbose_name_plural = "Организации"
@@ -45,10 +45,11 @@ class Delivery(models.Model):
 
 
 class DeliveryAddress(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
-    )
+    class DeliveryType(models.TextChoices):
+        YA = 'Yandex delivery', 'Яндекс доставка'
 
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True)
     point_id = models.CharField(max_length=100, verbose_name="point_id", null=True, blank=True)
     point_name = models.CharField(max_length=200, verbose_name="point_name", null=True, blank=True)
     full_address = models.CharField(max_length=255, verbose_name="full_address", null=True, blank=True)
@@ -62,15 +63,9 @@ class DeliveryAddress(models.Model):
     postal_code = models.CharField(max_length=255, verbose_name="postal_code", null=True, blank=True)
     delivery_type = models.CharField(max_length=255, verbose_name="delivery_type", null=True, blank=True)
     selected_at = models.CharField(max_length=255, verbose_name="selected_at", null=True, blank=True)
-    first_name = models.CharField(
-        max_length=100, verbose_name="Имя", null=True, blank=True
-    )
-    second_name = models.CharField(
-        max_length=100, verbose_name="Фамилия", null=True, blank=True
-    )
-    phone = models.CharField(
-        max_length=100, verbose_name="Телефон", null=True, blank=True
-    )
+    first_name = models.CharField(max_length=100, verbose_name="Имя", null=True, blank=True)
+    second_name = models.CharField(max_length=100, verbose_name="Фамилия", null=True, blank=True)
+    phone = models.CharField(max_length=100, verbose_name="Телефон", null=True, blank=True)
     delivery_method = models.ForeignKey(
         Delivery,
         on_delete=models.PROTECT,
