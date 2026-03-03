@@ -40832,3 +40832,37 @@ django.core.exceptions.FieldError: Unknown field(s) (floor, entrance, flat, regi
 2026-03-03 23:03:09,889 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
 2026-03-03 23:04:04,914 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
 2026-03-03 23:04:04,915 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:10:14,598 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/views.py changed, reloading.
+2026-03-03 23:10:15,762 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 23:11:17,833 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/views.py changed, reloading.
+2026-03-03 23:11:18,860 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 23:12:20,475 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/views.py changed, reloading.
+2026-03-03 23:12:21,441 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 23:13:59,868 django.request WARNING  Bad Request: /save_delivery_point/
+2026-03-03 23:14:24,406 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/views.py changed, reloading.
+2026-03-03 23:14:25,340 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 23:14:30,350 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-03-03 23:14:44,910 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 23:14:44,911 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:15:48,163 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 23:15:48,164 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:16:23,008 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-03 23:17:06,963 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 23:17:06,964 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:17:13,731 django.request WARNING  Bad Request: /save_delivery_point/
+2026-03-03 23:17:17,366 django.request WARNING  Bad Request: /save_delivery_point/
+2026-03-03 23:17:25,274 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-03 23:17:25,275 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-03 23:18:46,037 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-03 23:18:46,037 profiles.views INFO     page_NUM: 1
+2026-03-03 23:18:46,039 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-03 23:20:19,263 files.views  INFO     [INFO CLEAN DATA] {'quantity': 1.0, 'material': <Material: Баннер 440 грамм ламинированный Широкоформатная печать>, 'finishing': <FinishWork: оставить белые поля по 5 см>, 'length': 1.0, 'width': 3.0, 'user': <SimpleLazyObject: <User: forumvrn>>, 'role': 'CUSTOMER_RETAIL'}
+2026-03-03 23:20:19,263 root         INFO     [INFO]. self.length:1.0 TYPE<class 'float'>
+Width: 3.0 TYPE <class 'float'>
+ Quantity: 1.0 TYPE <class 'float'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-03 23:20:19,263 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-03 23:20:19,263 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>

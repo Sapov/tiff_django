@@ -214,16 +214,12 @@ def save_delivery_point(request):
                 'selected_at': request.POST.get('selected_at'),
             }
 
-            # Сохраняем в сессию
-            request.session['delivery_point'] = point_data
             print(point_data)
 
-            # Или сохраняем в базу данных
             DeliveryAddress.objects.create(
                 user=request.user,
                 **point_data
             )
-
             # Возвращаем успешный ответ
             return JsonResponse({
                 'status': 'success',
