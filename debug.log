@@ -41523,3 +41523,63 @@ django.db.utils.IntegrityError: FOREIGN KEY constraint failed
 2026-03-10 10:08:14,759 root         INFO     date_complite 2026-03-12 12:00:00 - <class 'datetime.datetime'>
 2026-03-10 10:08:14,759 root         INFO     DELIV ID:  4
 2026-03-10 10:08:14,759 root         INFO     ORGANISATION:  
+2026-03-10 10:08:45,831 orders.models INFO     cost_price_per_item 340.00
+2026-03-10 10:08:45,841 orders.models INFO     830.00
+2026-03-10 10:08:45,842 orders.models INFO     Себестоимость, 340.00
+2026-03-10 10:08:45,996 root         INFO     [INFO]. self.length:2.0 TYPE<class 'float'>
+Width: 0.85 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-10 10:08:45,996 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-10 10:08:45,997 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-10 10:08:52,844 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-03-10 10:08:52,853 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-03-10 10:08:52,855 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-12 09:00:00+00:00
+2026-03-10 10:08:52,999 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-03-10 10:13:44,161 orders.views INFO     МЕНЯЮ СТАТУС НА В работе
+2026-03-10 10:13:59,885 django.request WARNING  Not Found: /orders/order_pay/7764abcf-6b63-4efb-9ea7-680b190f92be
+2026-03-10 10:17:13,991 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-03-10 10:17:14,003 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-03-10 10:17:14,006 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-12 09:00:00+00:00
+2026-03-10 10:17:14,063 django.request ERROR    Internal Server Error: /orders/order_pay/2
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 210, in order_pay
+    Alerts.start_count_down(domain, order_id)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/alerts.py", line 62, in start_count_down
+    PeriodicTask.objects.create(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 665, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django_celery_beat/models.py", line 627, in save
+    self.validate_unique()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django_celery_beat/models.py", line 594, in validate_unique
+    super().validate_unique(*args, **kwargs)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1408, in validate_unique
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['Периодическая задача с таким Название уже существует.']}
+2026-03-10 10:17:21,307 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>]>
+2026-03-10 10:17:21,308 profiles.views INFO     page_NUM: 1
+2026-03-10 10:17:21,310 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 10:46:21,802 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>]>
+2026-03-10 10:46:21,803 profiles.views INFO     page_NUM: 1
+2026-03-10 10:46:21,808 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 10:47:33,016 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>]>
+2026-03-10 10:47:33,016 profiles.views INFO     page_NUM: 1
+2026-03-10 10:47:33,018 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 10:48:11,540 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>]>
+2026-03-10 10:48:11,541 profiles.views INFO     page_NUM: 1
+2026-03-10 10:48:11,545 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 10:48:54,849 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>]>
+2026-03-10 10:48:54,850 profiles.views INFO     page_NUM: 1
+2026-03-10 10:48:54,851 profiles.views INFO     page_NUM: <Page 1 of 1>

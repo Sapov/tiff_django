@@ -95,6 +95,10 @@
         .then(data => {
             if (data.status === 'success') {
                 showMessage('Пункт выдачи успешно сохранен!', 'success');
+                 setTimeout(() => {
+                            messageContainer.style.display = 'none';
+                        }, 5000);
+                                    window.location.href = '{% url "profiles:delivery_list" %}';
 
             } else {
                 showMessage('Ошибка: ' + data.message, 'error');
