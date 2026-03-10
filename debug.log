@@ -41153,3 +41153,373 @@ Traceback (most recent call last):
   File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'delivery_update' not found. 'delivery_update' is not a valid view function or pattern name.
+2026-03-04 00:20:48,768 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-04 00:20:48,770 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2026-03-10 09:41:31,009 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 09:42:05,967 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-10 09:42:05,968 profiles.views INFO     page_NUM: 1
+2026-03-10 09:42:05,969 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 09:42:12,419 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-10 09:42:12,419 profiles.views INFO     page_NUM: 1
+2026-03-10 09:42:12,420 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 09:43:08,001 profiles.views INFO     Orders:  <QuerySet []>
+2026-03-10 09:43:08,002 profiles.views INFO     page_NUM: 1
+2026-03-10 09:43:08,006 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 09:58:17,710 root         INFO     [INFO]. self.length:2.0 TYPE<class 'float'>
+Width: 0.85 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-10 09:58:17,710 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-10 09:58:17,710 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-10 09:58:25,145 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-10 09:58:25,148 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-10 09:58:33,709 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-10 09:58:33,709 root         INFO     method POST
+2026-03-10 09:58:33,710 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['53vRhMGyy9y0eP7YyRVtAaAIemIitUTsMFRgkzxnF2QvTXd32RMWDjsNGS1DNXsp'], 'organisation_payer': [''], 'delivery': ['4'], 'date_complite': ['2026-03-12']}>
+2026-03-10 09:58:33,711 root         INFO     USER forumvrn
+2026-03-10 09:58:33,711 root         INFO     [INFO] отправленная форма имеет дату 2026-03-12
+2026-03-10 09:58:33,715 root         INFO     [INFO] Приводим строку в формату даты 2026-03-12 00:00:00
+2026-03-10 09:58:33,715 root         INFO     [INFO] прибавляем 12 часов 2026-03-12 12:00:00
+2026-03-10 09:58:33,715 root         INFO     date_complite 2026-03-12 12:00:00 - <class 'datetime.datetime'>
+2026-03-10 09:58:33,715 root         INFO     DELIV ID:  4
+2026-03-10 09:58:33,716 root         INFO     ORGANISATION:  
+2026-03-10 09:58:33,787 django.request ERROR    Internal Server Error: /orders/neworder/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 98, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 68, in new_order
+    neworder = Order.objects.create(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 665, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 1873, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1894, in execute_sql
+    self.connection.ops.fetch_returned_insert_columns(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/backends/base/operations.py", line 215, in fetch_returned_insert_columns
+    return cursor.fetchone()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 97, in inner
+    with self:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 98, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+2026-03-10 09:59:33,732 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-10 09:59:33,732 root         INFO     method POST
+2026-03-10 09:59:33,733 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['53vRhMGyy9y0eP7YyRVtAaAIemIitUTsMFRgkzxnF2QvTXd32RMWDjsNGS1DNXsp'], 'organisation_payer': [''], 'delivery': ['4'], 'date_complite': ['2026-03-12']}>
+2026-03-10 09:59:33,733 root         INFO     USER forumvrn
+2026-03-10 09:59:33,733 root         INFO     [INFO] отправленная форма имеет дату 2026-03-12
+2026-03-10 09:59:33,734 root         INFO     [INFO] Приводим строку в формату даты 2026-03-12 00:00:00
+2026-03-10 09:59:33,734 root         INFO     [INFO] прибавляем 12 часов 2026-03-12 12:00:00
+2026-03-10 09:59:33,734 root         INFO     date_complite 2026-03-12 12:00:00 - <class 'datetime.datetime'>
+2026-03-10 09:59:33,734 root         INFO     DELIV ID:  4
+2026-03-10 09:59:33,734 root         INFO     ORGANISATION:  
+2026-03-10 09:59:33,821 django.request ERROR    Internal Server Error: /orders/neworder/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 98, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 68, in new_order
+    neworder = Order.objects.create(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 665, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 1873, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1894, in execute_sql
+    self.connection.ops.fetch_returned_insert_columns(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/backends/base/operations.py", line 215, in fetch_returned_insert_columns
+    return cursor.fetchone()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 97, in inner
+    with self:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 98, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+2026-03-10 09:59:50,590 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-10 09:59:50,590 root         INFO     method POST
+2026-03-10 09:59:50,592 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['53vRhMGyy9y0eP7YyRVtAaAIemIitUTsMFRgkzxnF2QvTXd32RMWDjsNGS1DNXsp'], 'organisation_payer': [''], 'delivery': ['4'], 'date_complite': ['2026-03-12']}>
+2026-03-10 09:59:50,592 root         INFO     USER forumvrn
+2026-03-10 09:59:50,592 root         INFO     [INFO] отправленная форма имеет дату 2026-03-12
+2026-03-10 09:59:50,593 root         INFO     [INFO] Приводим строку в формату даты 2026-03-12 00:00:00
+2026-03-10 09:59:50,593 root         INFO     [INFO] прибавляем 12 часов 2026-03-12 12:00:00
+2026-03-10 09:59:50,593 root         INFO     date_complite 2026-03-12 12:00:00 - <class 'datetime.datetime'>
+2026-03-10 09:59:50,594 root         INFO     DELIV ID:  4
+2026-03-10 09:59:50,594 root         INFO     ORGANISATION:  
+2026-03-10 09:59:50,654 django.request ERROR    Internal Server Error: /orders/neworder/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 98, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 68, in new_order
+    neworder = Order.objects.create(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 665, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 1873, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1894, in execute_sql
+    self.connection.ops.fetch_returned_insert_columns(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/backends/base/operations.py", line 215, in fetch_returned_insert_columns
+    return cursor.fetchone()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 97, in inner
+    with self:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 98, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+2026-03-10 10:03:02,377 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/forms.py changed, reloading.
+2026-03-10 10:03:03,855 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 10:03:12,632 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/forms.py changed, reloading.
+2026-03-10 10:03:13,551 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 10:03:22,980 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-10 10:03:22,980 root         INFO     method POST
+2026-03-10 10:03:23,064 django.request ERROR    Internal Server Error: /orders/neworder/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 47, in new_order
+    form = NewOrder(user=request.user)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/forms.py", line 40, in __init__
+    self.fields["delivery_address"].queryset = DeliveryAddress.objects.filter(
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'delivery_address'
+2026-03-10 10:03:35,432 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/forms.py changed, reloading.
+2026-03-10 10:03:36,447 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 10:05:38,062 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2026-03-10 10:05:39,113 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 10:05:45,204 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-10 10:05:45,207 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-10 10:05:48,118 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-10 10:05:48,119 root         INFO     method POST
+2026-03-10 10:05:48,119 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['1F1KaTYIIUiOVRyefkqT7BdSVSm1Bh8sIhn9dGPxPNAjAZEjJkhmaK5XnoFmVkHp'], 'organisation_payer': [''], 'delivery': ['4'], 'date_complite': ['2026-03-12']}>
+2026-03-10 10:05:48,120 root         INFO     USER forumvrn
+2026-03-10 10:05:48,120 root         INFO     [INFO] отправленная форма имеет дату 2026-03-12
+2026-03-10 10:05:48,121 root         INFO     [INFO] Приводим строку в формату даты 2026-03-12 00:00:00
+2026-03-10 10:05:48,121 root         INFO     [INFO] прибавляем 12 часов 2026-03-12 12:00:00
+2026-03-10 10:05:48,121 root         INFO     date_complite 2026-03-12 12:00:00 - <class 'datetime.datetime'>
+2026-03-10 10:05:48,122 root         INFO     DELIV ID:  4
+2026-03-10 10:05:48,122 root         INFO     ORGANISATION:  
+2026-03-10 10:05:48,185 django.request ERROR    Internal Server Error: /orders/neworder/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 68, in new_order
+    neworder = Order.objects.create(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 663, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 545, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/fields/related_descriptors.py", line 291, in __set__
+    raise ValueError(
+ValueError: Cannot assign "'4'": "Order.delivery" must be a "DeliveryAddress" instance.
+2026-03-10 10:06:16,519 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2026-03-10 10:06:17,869 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 10:06:58,872 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-10 10:06:58,873 root         INFO     method POST
+2026-03-10 10:06:58,874 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['1F1KaTYIIUiOVRyefkqT7BdSVSm1Bh8sIhn9dGPxPNAjAZEjJkhmaK5XnoFmVkHp'], 'organisation_payer': [''], 'delivery': ['4'], 'date_complite': ['2026-03-12']}>
+2026-03-10 10:06:58,874 root         INFO     USER forumvrn
+2026-03-10 10:06:58,874 root         INFO     [INFO] отправленная форма имеет дату 2026-03-12
+2026-03-10 10:06:58,876 root         INFO     [INFO] Приводим строку в формату даты 2026-03-12 00:00:00
+2026-03-10 10:06:58,877 root         INFO     [INFO] прибавляем 12 часов 2026-03-12 12:00:00
+2026-03-10 10:06:58,877 root         INFO     date_complite 2026-03-12 12:00:00 - <class 'datetime.datetime'>
+2026-03-10 10:06:58,877 root         INFO     DELIV ID:  4
+2026-03-10 10:06:58,877 root         INFO     ORGANISATION:  
+2026-03-10 10:06:58,995 django.request ERROR    Internal Server Error: /orders/neworder/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 98, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 68, in new_order
+    neworder = Order.objects.create(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 665, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/query.py", line 1873, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1894, in execute_sql
+    self.connection.ops.fetch_returned_insert_columns(
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/backends/base/operations.py", line 215, in fetch_returned_insert_columns
+    return cursor.fetchone()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 97, in inner
+    with self:
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/db/utils.py", line 98, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+2026-03-10 10:08:10,973 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2026-03-10 10:08:12,137 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 10:08:14,747 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-10 10:08:14,747 root         INFO     method POST
+2026-03-10 10:08:14,749 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['1F1KaTYIIUiOVRyefkqT7BdSVSm1Bh8sIhn9dGPxPNAjAZEjJkhmaK5XnoFmVkHp'], 'organisation_payer': [''], 'delivery': ['4'], 'date_complite': ['2026-03-12']}>
+2026-03-10 10:08:14,750 root         INFO     USER forumvrn
+2026-03-10 10:08:14,750 root         INFO     [INFO] отправленная форма имеет дату 2026-03-12
+2026-03-10 10:08:14,757 root         INFO     [INFO] Приводим строку в формату даты 2026-03-12 00:00:00
+2026-03-10 10:08:14,759 root         INFO     [INFO] прибавляем 12 часов 2026-03-12 12:00:00
+2026-03-10 10:08:14,759 root         INFO     date_complite 2026-03-12 12:00:00 - <class 'datetime.datetime'>
+2026-03-10 10:08:14,759 root         INFO     DELIV ID:  4
+2026-03-10 10:08:14,759 root         INFO     ORGANISATION:  

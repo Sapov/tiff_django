@@ -65,10 +65,12 @@ def new_order(request):
         else:
             organisation = None
 
+        delivery = DeliveryAddress.objects.get(id=delivery_id)
         neworder = Order.objects.create(
             user=form.user,
             date_complete=date_complite,
             organisation_payer=organisation,
+            delivery= delivery
         )
 
         return redirect("orders:add_file_in_order", neworder.id)
