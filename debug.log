@@ -41583,3 +41583,22 @@ django.core.exceptions.ValidationError: {'name': ['Периодическая з
 2026-03-10 10:48:54,849 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>]>
 2026-03-10 10:48:54,850 profiles.views INFO     page_NUM: 1
 2026-03-10 10:48:54,851 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 20:22:03,243 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/forms.py changed, reloading.
+2026-03-10 20:22:04,371 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 20:22:48,345 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/forms.py changed, reloading.
+2026-03-10 20:22:49,315 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-10 20:22:51,971 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 2>]>
+2026-03-10 20:22:51,972 profiles.views INFO     page_NUM: 1
+2026-03-10 20:22:51,973 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-10 20:23:03,584 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-10 20:23:03,585 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-03-10 20:23:14,685 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-10 20:23:14,686 root         INFO     method POST
+2026-03-10 20:23:14,690 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['BPwHlkwBNXE3tzVnxH0dM1GEsM8hT8hGirS6o7nqUQWy8H1s1HRGPayJUirCdbQD'], 'organisation_payer': [''], 'delivery': ['5'], 'date_complite': ['2026-03-12']}>
+2026-03-10 20:23:14,691 root         INFO     USER forumvrn
+2026-03-10 20:23:14,691 root         INFO     [INFO] отправленная форма имеет дату 2026-03-12
+2026-03-10 20:23:14,698 root         INFO     [INFO] Приводим строку в формату даты 2026-03-12 00:00:00
+2026-03-10 20:23:14,698 root         INFO     [INFO] прибавляем 12 часов 2026-03-12 12:00:00
+2026-03-10 20:23:14,698 root         INFO     date_complite 2026-03-12 12:00:00 - <class 'datetime.datetime'>
+2026-03-10 20:23:14,698 root         INFO     DELIV ID:  5
+2026-03-10 20:23:14,699 root         INFO     ORGANISATION:  

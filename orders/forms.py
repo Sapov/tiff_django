@@ -29,7 +29,6 @@ class NewOrder(forms.ModelForm):
         model = Order
         fields = [
             "organisation_payer",
-            # "delivery_address",
             'delivery',
             # "date_complete",
         ]
@@ -41,5 +40,6 @@ class NewOrder(forms.ModelForm):
         #     user=self.user
         # )
         self.fields["organisation_payer"].queryset = Organisation.objects.filter(
-            user=self.user
-        )
+            user=self.user)
+        self.fields['organisation_payer'].empty_label = "Оплата на физ. лицо"
+
