@@ -4,6 +4,7 @@ from files.works_with_files.atchives_files import UtilsModel
 from .alerts import Alerts
 from .payment.acquiring import Acquiring
 from .payment.bank import Bank
+from .email_sender.sender import EmailSender
 
 
 @shared_task
@@ -46,4 +47,7 @@ def check_payment_order(*args):
     order = Bank(order_id)
     order.get_status_invoice()
 
-
+@shared_task
+def send_mail_for_user(order_id, mail_address):
+    mail = EmailSender(order_id, mail_address)
+    mail.send_mail()

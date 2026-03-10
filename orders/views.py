@@ -22,7 +22,7 @@ from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
 from .payment.send_document import SendDocument
-from .tasks import create_order_pdf, arh_for_mail, create_pay_link_d, create_act
+from .tasks import create_order_pdf, arh_for_mail, create_pay_link_d, create_act, send_mail_for_user
 from users.tasks import send_message_whatsapp
 import logging
 import jwt
@@ -212,7 +212,6 @@ def order_pay(request, order_id):
 
         # -----------------------create_link_pay-----------------------------------
         # Orders = Order.objects.get(id=order_id)
-        user = request.user
 
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
@@ -229,8 +228,8 @@ def order_pay(request, order_id):
             link_pay = create_pay_link_d.delay(order_id, True)
             # link_pay = Acquiring(order_id).run(organisation_flag=False)
             context = {"Orders": order, 'link_pay': link_pay}
-
         # оповещаем пользователя в whatsapp
+        send_mail_for_user.delay(order_id, order.user.email) # отправляем почту
         # item_user = User.objects.get(email=user)
         # if item_user.whatsapp and item_user.phone_number:
         #     send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
