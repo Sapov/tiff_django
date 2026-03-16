@@ -41944,3 +41944,7 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2026-03-10 21:58:33,054 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
 2026-03-10 22:06:15,048 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/email_sender/sender.py changed, reloading.
 2026-03-10 22:06:16,389 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-13 11:01:24,769 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-13 11:01:28,152 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>]>
+2026-03-13 11:01:28,152 profiles.views INFO     page_NUM: 1
+2026-03-13 11:01:28,156 profiles.views INFO     page_NUM: <Page 1 of 3>
