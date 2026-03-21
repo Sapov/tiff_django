@@ -3,126 +3,463 @@
 
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Вход в аккаунт | Добро пожаловать</title>
+    <!-- Подключаем шрифт для современного вида -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (бесплатные иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Bootstrap 5 (для совместимости с классами btn-outline-dark и т.д.) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fc 0%, #e9eef5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-    <title>Сервис онлайн печати баннеров</title>
+        /* Основная карточка входа */
+        .login-container {
+            max-width: 460px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
 
-    <!-- Custom fonts for this template-->
-    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet" type="text/css">
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+        .login-container:hover {
+            transform: translateY(-3px);
+        }
 
-    <!-- Custom styles for this template-->
-    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+        /* Внутренние отступы */
+        .login-inner {
+            padding: 40px 36px 44px;
+        }
 
+        /* Заголовок */
+        .brand {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .brand h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(120deg, #1a2a3a, #2c3e50);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .brand p {
+            color: #5b6e8c;
+            font-size: 15px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* Форма */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Поля ввода */
+        .input-group-custom {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .input-group-custom label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1f2a3e;
+            letter-spacing: -0.2px;
+        }
+        .input-field {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 20px;
+            background: #ffffff;
+            transition: all 0.2s;
+            padding: 4px 12px;
+        }
+        .input-field i {
+            color: #8a99b4;
+            font-size: 18px;
+            margin-right: 10px;
+            transition: color 0.2s;
+        }
+        .input-field input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 14px 0;
+            width: 100%;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+        }
+        .input-field input::placeholder {
+            color: #b9c2d4;
+            font-weight: 400;
+        }
+        .input-field:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+        }
+        .input-field:focus-within i {
+            color: #3b82f6;
+        }
+
+        /* Опции (запомнить / забыли пароль) */
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #475569;
+            cursor: pointer;
+        }
+        .remember input {
+            width: 16px;
+            height: 16px;
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+        .forgot-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .forgot-link:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        /* Кнопка входа */
+        .btn-login {
+            background: #1f2a3e;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 14px 0;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'Inter', sans-serif;
+            margin-top: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .btn-login:hover {
+            background: #111827;
+            transform: scale(0.98);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+        }
+
+        /* Разделитель "или" */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 24px 0 20px;
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2edf2;
+        }
+        .divider::before {
+            margin-right: 16px;
+        }
+        .divider::after {
+            margin-left: 16px;
+        }
+
+        /* Социальные кнопки в стиле Bootstrap */
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        /* Кастомизация Bootstrap кнопок под дизайн */
+        .btn-social {
+            border-radius: 10px !important;
+            padding: 12px 0 !important;
+            font-weight: 600 !important;
+            font-size: 15px !important;
+            transition: all 0.2s ease !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            border: 1.5px solid #e2e8f0 !important;
+            background-color: white !important;
+            color: #1f2a44 !important;
+        }
+
+        .btn-social:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.1) !important;
+        }
+
+        .btn-social img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-social.google:hover {
+            background-color: #fef7e0 !important;
+            border-color: #fbbc05 !important;
+        }
+
+        .btn-social.yandex:hover {
+            background-color: #fff0e0 !important;
+            border-color: #fc3f1d !important;
+        }
+
+        /* дополнительная ссылка регистрации */
+        .signup-prompt {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 14px;
+            color: #5a6e8a;
+        }
+        .signup-prompt a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+        .signup-prompt a:hover {
+            text-decoration: underline;
+        }
+
+        /* уведомление (демо) */
+        .toast-msg {
+            visibility: hidden;
+            min-width: 240px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            border-radius: 40px;
+            padding: 12px 20px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.2s, visibility 0.2s;
+            z-index: 1000;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            background-color: rgba(30,41,59,0.9);
+            border-radius: 60px;
+            pointer-events: none;
+        }
+        .toast-msg.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 480px) {
+            .login-inner {
+                padding: 32px 24px 38px;
+            }
+        }
+
+        /* Убираем лишние стили Bootstrap, которые могут мешать */
+        .btn:focus {
+            box-shadow: none !important;
+        }
+    </style>
 </head>
+<body>
 
-<body class="bg-gradient-primary">
+<div class="login-container">
+    <div class="login-inner">
+        <div class="brand">
+            <h1>Добро пожаловать</h1>
+            <p>Войдите в свой аккаунт</p>
+        </div>
 
-<div class="container">
+        <!-- Форма входа с использованием Django CSRF и стандартных полей -->
+        <form class="login-form" method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-        <div class="col-xl-6 col-lg-1 col-md-1">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <!--                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>-->
-                        <div class="col-lg-12">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Сервис онлайн печати</h1>
-                                </div>
-                                <form class="user" action="{% url 'account_login' %}" method="post">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <input type="text" name="username" class="form-control form-control-user"
-                                               id="exampleInputEmail" aria-describedby="emailHelp"
-                                               placeholder="Enter Email Address...">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" class="form-control form-control-user">
-                                        {{form.errors}}
-
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Запомнить меня</label>
-                                        </div>
-                                    </div>
-                                    <button type="submit" name="button" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </button>
-                            </div>
-
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="{% url 'account_reset_password' %}">Забыли пароль?</a>
-
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="{% url 'account_signup' %}">Зарегистрироваться</a>
-                            </div>
-
-                            <div class="text-center">
-
-                                <a href="{% provider_login_url 'google' %}"
-                                   class="btn btn-outline-dark btn-lg py-2 fs-6 shadow-sm"
-                                   style="border-radius: 10px;">
-                                    <img src="https://authjs.dev/img/providers/google.svg" alt="Yandex" width="20"
-                                         class="me-2">
-                                    {% trans "Войти через google" %}
-                                </a>
-                            </div>
-                            <div class="text-center">
-
-
-                                <a href="{% provider_login_url 'yandex' %}"
-                                   class="btn btn-outline-dark btn-lg py-2 fs-6 shadow-sm"
-                                   style="border-radius: 10px;">
-                                    <img src="https://authjs.dev/img/providers/yandex.svg" alt="Yandex" width="20"
-                                         class="me-2">
-                                    {% trans "Войти через Yandex" %}
-                                </a>
-
-
-                            </div>
-                        </div>
-                    </div>
+            <div class="input-group-custom">
+                <label for="id_login">Email или телефон</label>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="login" id="id_login" placeholder="ivan@example.com" autocomplete="email" required>
                 </div>
+            </div>
+
+            <div class="input-group-custom">
+                <label for="id_password">Пароль</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="id_password" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+            </div>
+
+            <div class="login-options">
+                <label class="remember">
+                    <input type="checkbox" name="remember" id="id_remember"> Запомнить меня
+                </label>
+                <a href="{% url 'account_reset_password' %}" class="forgot-link">Забыли пароль?</a>
+            </div>
+
+            <button type="submit" class="btn-login">Войти</button>
+        </form>
+
+        <div class="divider">или продолжите с</div>
+
+        <!-- Социальные кнопки в точности как в вашем коде, но с адаптацией под Django -->
+        <div class="social-login">
+            <div class="text-center">
+                <a href="{% provider_login_url 'google' %}"
+                   class="btn btn-outline-dark btn-lg py-2 fs-6 shadow-sm btn-social google">
+                    <img src="https://authjs.dev/img/providers/google.svg" alt="Google" width="20" class="me-2">
+                    Войти через Google
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="{% provider_login_url 'yandex' %}"
+                   class="btn btn-outline-dark btn-lg py-2 fs-6 shadow-sm btn-social yandex">
+                    <img src="https://authjs.dev/img/providers/yandex.svg" alt="Yandex" width="20" class="me-2">
+                    Войти через Yandex
+                </a>
             </div>
         </div>
 
+        <div class="signup-prompt">
+            Нет аккаунта? <a href="{% url 'account_signup' %}">Создать</a>
+        </div>
     </div>
-
 </div>
 
-</div>
+<div id="toastMessage" class="toast-msg"></div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script>
+    // Функция для показа уведомлений (для обработки ошибок аутентификации)
+    function showMessage(text, isError = false) {
+        const toast = document.getElementById('toastMessage');
+        toast.textContent = text;
+        toast.classList.add('show');
+        if(isError) {
+            toast.style.backgroundColor = "rgba(220, 38, 38, 0.9)";
+        } else {
+            toast.style.backgroundColor = "rgba(30, 41, 59, 0.9)";
+        }
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.style.backgroundColor = "rgba(30, 41, 59, 0.9)";
+        }, 3000);
+    }
 
-<!-- Core plugin JavaScript-->
-<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    // Обработка сообщений об ошибках из Django (если есть)
+    {% if form.errors %}
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                showMessage('{{ error }}', true);
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
 
-<!-- Custom scripts for all pages-->
-<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    {% if messages %}
+        {% for message in messages %}
+            showMessage('{{ message }}', '{{ message.tags }}' === 'error');
+        {% endfor %}
+    {% endif %}
 
+    // Валидация на клиентской стороне перед отправкой
+    const loginForm = document.querySelector('.login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            const email = document.getElementById('id_login').value.trim();
+            const password = document.getElementById('id_password').value;
+
+            if (!email) {
+                e.preventDefault();
+                showMessage('Пожалуйста, введите email или телефон', true);
+                return false;
+            }
+            if (!password) {
+                e.preventDefault();
+                showMessage('Введите пароль', true);
+                return false;
+            }
+            return true;
+        });
+    }
+
+    // Добавляем эффект фокуса для полей ввода
+    const inputFields = document.querySelectorAll('.input-field');
+    inputFields.forEach(field => {
+        const input = field.querySelector('input');
+        if (input) {
+            input.addEventListener('focus', () => {
+                field.style.borderColor = '#3b82f6';
+                field.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.15)';
+            });
+            input.addEventListener('blur', () => {
+                field.style.borderColor = '#e2e8f0';
+                field.style.boxShadow = 'none';
+            });
+        }
+    });
+
+    // Обработка Enter на полях ввода
+    const passwordField = document.getElementById('id_password');
+    if (passwordField) {
+        passwordField.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (loginForm) {
+                    loginForm.dispatchEvent(new Event('submit'));
+                }
+            }
+        });
+    }
+
+</script>
+
+<!-- Bootstrap JS (опционально, для дополнительных функций) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
