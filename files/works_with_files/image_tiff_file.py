@@ -55,9 +55,9 @@ class ImageFile:
                 self.resolution = int(round(img.info['dpi'][0], 0))
                 self.width = round(2.54 * self.width_px / self.resolution, 0) / 100
                 self.length = round(2.54 * self.length_px / self.resolution, 0) / 100
-                print(f'[SIZE File] :{self.width} m X {self.length} m')
-                print(f'width: {self.width_px} px, length: {self.length_px} px')
-                print(f'RESOLUTION: {self.resolution} px')
+                logger.info(f'[SIZE File] :{self.width} m X {self.length} m')
+                logger.info(f'[SIZE File PIXELS] :width: {self.width_px} px, length: {self.length_px} px')
+                logger.info(f'[RESOLUTION] : {self.resolution} px')
 
         except PIL.UnidentifiedImageError:
 

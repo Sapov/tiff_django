@@ -122,28 +122,15 @@ def handle_uploaded_file(f):
 #         'result': upload.result
 #     })
 class FilesCreateView(LoginRequiredMixin, FormView):
-    # form_class = FileArh
     model = Product
     fields = ["quantity", "material", "FinishWork", "images", "comments"]
     template_name = 'files/upload_files.html'
     success_url = 'files:myfiles'
 
     def form_valid(self, form):
-        # form.instance.user = self.request.user
         file = form.cleaned_data['files']
         handle_uploaded_file(file)
         print(file)
-        # form.instance.user = self.request.user
-        # instance = form.save()
-
-        # task = process_uploaded_file.delay(
-        #     file_path=i,
-        #     user_id=self.request.user.id
-        # )
-
-        # if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        #     return JsonResponse({'task_id': task.id})
-
         return super().form_valid(form)
 
 

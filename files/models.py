@@ -193,19 +193,24 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         """Расчет и запись стоимости баннера"""
-        image_parameters = ImageFile(self.images)
-        self.width, self.length, self.resolution = image_parameters.dimensions()
-        dict_param = {'quantity': self.quantity,
-                      'material': self.material,
-                      'finishing': self.FinishWork,
-                      'length': self.length,
-                      'width': self.width,
-                      'role': self.user.role}
+        print(f'какое же расширение файла??{self.images}')
+        if str(self.images).endswith('tif'):
+            image_parameters = ImageFile(self.images)
+            self.width, self.length, self.resolution = image_parameters.dimensions()
+            dict_param = {'quantity': self.quantity,
+                          'material': self.material,
+                          'finishing': self.FinishWork,
+                          'length': self.length,
+                          'width': self.width,
+                          'role': self.user.role}
 
-        image_price = Calculator(dict_param)
-        self.price = image_price.calculate_price()
-        self.cost_price = image_price.calculate_cost()
-        super(Product, self).save(*args, **kwargs)
+            image_price = Calculator(dict_param)
+            self.price = image_price.calculate_price()
+            self.cost_price = image_price.calculate_cost()
+            super(Product, self).save(*args, **kwargs)
+        else:
+            super(Product, self).save(*args, **kwargs)
+
 
 
 def product_post_save(sender, instance, created, **kwargs):

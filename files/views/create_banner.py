@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, ListView, DeleteView
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
-
+from files.models import Product, Material, FinishWork, StatusProduct
 
 
 class BannerGeneratorView(View):
@@ -23,71 +23,11 @@ class BannerGeneratorView(View):
         return render(request, 'files/create_banner.html', context)
 
 
-#
-#
-# class BannerDetailView(LoginRequiredMixin, DetailView):
-#     model = Banner
-#     template_name = 'banner_detail.html'
-#     context_object_name = 'banner'
-#
-#     def get_queryset(self):
-#         # Пользователь может видеть только свои баннеры
-#         return Banner.objects.filter(user=self.request.user)
-#
-#
-#
-#
-#
-# # Или с использованием Django форм:
-# @csrf_exempt
-# def order_banner(request):
-#     if request.method == 'POST':
-#         form = BannerOrderForm(request.POST, request.FILES)
-#
-#         if form.is_valid():
-#             order = form.save()
-#
-#             # Если нужно обработать изображение из canvas
-#             if 'image' in request.FILES:
-#                 order.image = request.FILES['image']
-#                 order.save()
-#
-#             return JsonResponse({
-#                 'success': True,
-#                 'order_id': order.id
-#             })
-#         else:
-#             return JsonResponse({
-#                 'success': False,
-#                 'errors': form.errors
-#             })
-#
-#     return JsonResponse({'error': 'Invalid request method'}, status=400)
-#
-#
-# class BannersListView(LoginRequiredMixin, ListView):
-#     model = BannerOrder
-#     template_name = 'orders/banner_list.html'
-#
-#     def get_queryset(self):
-#         # Пользователь может видеть только свои баннеры
-#         return BannerOrder.objects.filter(user=self.request.user)
-#
-#
-# class BannerDeleteView(DeleteView):
-#     model = BannerOrder
-#     success_url = reverse_lazy("banners_list")
-#
-#
 @csrf_exempt
 def submit_banner_order(request):
-
     if request.method == 'POST':
-        print(request.POST.get('width'))
         try:
             # Получаем данные из формы
-            width = request.POST.get('width')
-            height = request.POST.get('height')
             user = request.user
             text = request.POST.get('text')
             phone = request.POST.get('phone')
@@ -100,30 +40,44 @@ def submit_banner_order(request):
             canvas_image = request.FILES.get('canvas_image')
 
             if canvas_image:
-                # Здесь можно сохранить данные в базу или отправить на почту
-                # Например:
-                from .models import BannerOrder
+                material = Material.objects.get(id=1)
+                finish_work = FinishWork.objects.get(id=1)
+                status = StatusProduct.objects.get(id=1)
+                print(f"Material {material},'\n',"
+                      f"finish_work {finish_work},'\n'"
+                      f"status {status}'\n'"
+                      f"user {request.user}\n"
+                      f" canvas_image {canvas_image}\n"
+                      f"")
 
-                order = BannerOrder.objects.create(
-                    width=width,
-                    height=height,
-                    text=text,
-                    user=user,
-                    phone=phone,
-                    bg_color=bg_color,
-                    text_color=text_color,
-                    grommet_type=grommet_type,
-                    image=canvas_image,
-                    price_banner=price_banner
-                )
+                try:
+                    Product.objects.create(
+                    user=request.user,
+                    material = material,
+                    quantity = 1,
+                    width = 1,#request.POST.get('width'),
+                    length = 1,#request.POST.get('length'),
+                    # resolution = 0,
+                    color_model =  "CMYK",
+                    size = 0,
+                    price = 0,
+                    cost_price = 0,
+                    images = canvas_image,
+                    FinishWork = finish_work,
+                    status_product = status,
+                    comments = '',
+                    )
+                except Exception as e:
+                    print(e)
+                    print(f"Тип ошибки: {type(e).__name__}")
+                    print(f"Сообщение: {str(e)}")
+                    print(f"Полная информация: {e}")
 
-                # Или отправить уведомление на почту
-                # send_mail(...)
+
 
                 return JsonResponse({
                     'status': 'success',
                     'message': 'Заказ принят в обработку',
-                    'order_id': order.id
                 })
             else:
                 return JsonResponse({
@@ -144,5 +98,5 @@ def submit_banner_order(request):
 
 
 def delivery(request):
-    #https://yandex.ru/support/delivery-profile/ru/modules/widgets#widget-setup
+    # https://yandex.ru/support/delivery-profile/ru/modules/widgets#widget-setup
     return render(request, 'orders/delivery.html')

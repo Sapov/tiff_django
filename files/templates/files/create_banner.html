@@ -145,29 +145,29 @@
             font-weight: normal;
             cursor: pointer;
         }
-        
+
         .submit-btn {
             background-color: #FF5722;
             margin-top: 20px;
         }
-        
+
         .submit-btn:hover {
             background-color: #E64A19;
         }
-        
+
         .message {
             padding: 10px;
             margin: 10px 0;
             border-radius: 4px;
             text-align: center;
         }
-        
+
         .success {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-        
+
         .error {
             background-color: #f8d7da;
             color: #721c24;
@@ -257,19 +257,19 @@
             <div class="info-text" id="sizeInfo"></div>
                 <div class="result" id="result">
             <h3>Результат расчета</h3>
-         
+
             <div class="result-item">
                 <span class="result-label">Количество люверсов:</span>
                 <span class="result-value" id="luversCount">0 шт</span>
             </div>
-      
+
             <div class="result-item">
                 <span class="result-label">Итого стоимость:</span>
                 <span class="result-value price" id="totalCost">0 ₽</span>
 
             </div>
         </div>
-            
+
             <button type="button" id="submitOrderBtn" class="submit-btn">Заказать</button>
 
         </div>
@@ -323,13 +323,13 @@
 
 
 
-        
+
 
  // Основная функция расчета
         function calculateCost(widthMM, heightMM, grommetType) {
             // Получаем значения из формы
             // const width = parseFloat(document.getElementById('widthInput').value);
-            
+
             // const length = parseFloat(document.getElementById('lengthInput').value);
             const luversType = grommetType;
             const width = widthMM / 1000;
@@ -358,8 +358,8 @@
             }
             currentTotalCost = Math.ceil(totalCost);
 
-            
-           
+
+
 
             // Форматируем числа для вывода
             const formatNumber = (num) => {
@@ -518,7 +518,7 @@
             // Обновляем информацию о размерах
             sizeInfo.textContent = `Размер: ${widthMM}×${heightMM} мм (${Math.round(widthPx)}×${Math.round(heightPx)} px)`;
 
-                      
+
 
 
             // Очищаем canvas
@@ -580,12 +580,12 @@
                 ctx.fillText(phone, widthPx / 2, phoneY);
             }
             calculateCost(widthMM, heightMM, grommetType);
-            
+
 
             // Активируем кнопку скачивания
 <!--            downloadBtn.disabled = false;-->
 
-            
+
         }
 
         // Функция для отправки данных формы и изображения
@@ -631,6 +631,9 @@
                         setTimeout(() => {
                             messageContainer.style.display = 'none';
                         }, 5000);
+                            window.location.href = '{% url "files:myfiles" %}';
+;
+
 
                     } else {
                         showMessage('Ошибка: ' + data.message, 'error');
@@ -682,20 +685,20 @@
             switch(luversType) {
                 case 'none': // Нет люверсов
                     return 0;
-                    
+
                 case 'corners': // По углам
                     return 4;
-                    
+
                 case 'perimeter': // По периметру
                     // Расчет количества люверсов по периметру с шагом GROMMET_SPACING_MM
                     // Формула: 2 * (ширина/шаг + 1) + 2 * (длина/шаг + 1) - 4 (углы не дублируем)
-                    
+
                     const luversWidth = Math.max(2, Math.ceil(widthMM / GROMMET_SPACING_MM) + 1);
                     const luversLength = Math.max(2, Math.ceil(lengthMM / GROMMET_SPACING_MM) + 1);
-                    
+
                     // Общее количество: 2 стороны по ширине + 2 стороны по длине - 4 угла (учтены дважды)
                     return 2 * (luversWidth + luversLength) - 8;
-                    
+
                 default:
                     return 0;
             }
