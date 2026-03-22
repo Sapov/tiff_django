@@ -1347,3 +1347,180 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2026-03-22 22:31:35,201 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
 2026-03-22 22:32:22,984 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
 2026-03-22 22:32:24,067 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:37:11,950 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:37:13,247 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:40:43,531 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:40:44,601 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:42:22,810 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/models.py changed, reloading.
+2026-03-22 22:42:23,970 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:43:35,704 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:43:36,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:44:27,569 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:44:28,814 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:45:01,535 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:45:02,721 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:46:11,905 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:46:12,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:47:01,763 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:47:03,378 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:47:55,496 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:47:56,737 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:49:17,934 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:49:19,217 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:50:20,300 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:50:21,751 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:51:01,932 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:51:03,348 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:54:35,697 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:54:36,790 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 22:56:28,245 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 22:56:29,446 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:02:20,859 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:02:22,780 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:03:41,328 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:03:42,479 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:05:37,429 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:05:38,586 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:05:58,164 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:05:59,293 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:06:02,389 django.request ERROR    Internal Server Error: /files/submit-banner-order/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/allauth/account/middleware.py", line 35, in middleware
+    if _should_redirect_accounts(request, response):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/allauth/account/middleware.py", line 64, in _should_redirect_accounts
+    if response.status_code != HTTPStatus.NOT_FOUND:
+       ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'FinishWork' object has no attribute 'status_code'
+2026-03-22 23:06:04,600 django.request ERROR    Internal Server Error: /files/submit-banner-order/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/allauth/account/middleware.py", line 35, in middleware
+    if _should_redirect_accounts(request, response):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/allauth/account/middleware.py", line 64, in _should_redirect_accounts
+    if response.status_code != HTTPStatus.NOT_FOUND:
+       ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'FinishWork' object has no attribute 'status_code'
+2026-03-22 23:06:32,859 django.request ERROR    Internal Server Error: /files/submit-banner-order/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/allauth/account/middleware.py", line 35, in middleware
+    if _should_redirect_accounts(request, response):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/allauth/account/middleware.py", line 64, in _should_redirect_accounts
+    if response.status_code != HTTPStatus.NOT_FOUND:
+       ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'FinishWork' object has no attribute 'status_code'
+2026-03-22 23:07:43,217 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:07:44,665 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:07:52,735 django.request ERROR    Internal Server Error: /files/submit-banner-order/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/allauth/account/middleware.py", line 35, in middleware
+    if _should_redirect_accounts(request, response):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/allauth/account/middleware.py", line 64, in _should_redirect_accounts
+    if response.status_code != HTTPStatus.NOT_FOUND:
+       ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'FinishWork' object has no attribute 'status_code'
+2026-03-22 23:08:44,851 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:08:45,989 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:10:26,265 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:10:27,380 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:13:54,331 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:13:55,619 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:17:06,949 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:17:08,192 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:17:47,124 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:17:48,294 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:17:56,951 django.request ERROR    Internal Server Error: /files/submit-banner-order/
+2026-03-22 23:18:24,741 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-22 23:18:25,975 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:23:28,238 files.works_with_files.image_tiff_file INFO     [SIZE File] :3.4 m X 0.4 m
+2026-03-22 23:23:28,238 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 16063 px, length: 1890 px
+2026-03-22 23:23:28,238 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 120 px
+2026-03-22 23:23:28,241 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 3.4 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 510 грамм литой Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-22 23:23:28,241 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-22 23:23:28,241 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-22 23:24:06,523 files.works_with_files.image_tiff_file INFO     [SIZE File] :3.4 m X 0.4 m
+2026-03-22 23:24:06,524 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 16063 px, length: 1890 px
+2026-03-22 23:24:06,525 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 120 px
+2026-03-22 23:24:06,530 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 3.4 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Печать на ПВХ 4 мм UV-печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-22 23:24:06,530 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-22 23:24:06,531 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-22 23:25:29,338 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-22 23:25:29,340 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 7
+2026-03-22 23:25:36,935 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-22 23:25:36,938 root         INFO     method POST
+2026-03-22 23:25:36,939 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['pZgU1jJTzGIhkhyc5yShJ9I08puGQ4MxcuwVzIhaXyRqfUHr2CvUIe4YQTuHW1ge'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-24']}>
+2026-03-22 23:25:36,940 root         INFO     USER allprepress
+2026-03-22 23:25:36,940 root         INFO     [INFO] отправленная форма имеет дату 2026-03-24
+2026-03-22 23:25:36,950 root         INFO     [INFO] Приводим строку в формату даты 2026-03-24 00:00:00
+2026-03-22 23:25:36,952 root         INFO     [INFO] прибавляем 12 часов 2026-03-24 12:00:00
+2026-03-22 23:25:36,952 root         INFO     date_complite 2026-03-24 12:00:00 - <class 'datetime.datetime'>
+2026-03-22 23:25:36,952 root         INFO     DELIV ID:  6
+2026-03-22 23:25:36,952 root         INFO     ORGANISATION:  
+2026-03-22 23:25:40,663 orders.models INFO     cost_price_per_item 0.00
+2026-03-22 23:25:40,674 orders.models INFO     1300.00
+2026-03-22 23:25:40,675 orders.models INFO     Себестоимость, 0.00
+2026-03-22 23:25:54,550 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-03-22 23:25:54,558 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-03-22 23:25:54,560 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-24 09:00:00+00:00
+2026-03-22 23:25:54,794 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-03-22 23:28:18,438 django.request WARNING  Not Found: /orders/order_pay/27e6302a-8935-4d9c-9de6-c371c6433bcb
+2026-03-22 23:33:42,241 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:33:43,739 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:37:26,647 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:37:27,610 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:39:20,689 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:39:21,939 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:40:21,615 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:40:22,707 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:41:26,968 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:41:28,312 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:42:24,202 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:42:25,510 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:43:24,121 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:43:25,866 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:45:01,027 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:45:02,999 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-22 23:48:33,894 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-22 23:48:35,797 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 00:00:22,062 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py changed, reloading.
+2026-03-23 00:00:23,388 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 00:07:56,571 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/models.py changed, reloading.
+2026-03-23 00:07:58,124 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 00:55:49,111 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 00:58:21,024 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 00:58:21,699 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 00:58:35,231 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 00:58:36,185 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 00:58:49,191 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 7>]>
+2026-03-23 00:58:49,192 profiles.views INFO     page_NUM: 1
+2026-03-23 00:58:49,194 profiles.views INFO     page_NUM: <Page 1 of 1>
+2026-03-23 01:01:27,580 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/models.py changed, reloading.
+2026-03-23 01:01:28,845 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 01:04:32,312 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-23 01:04:33,311 django.utils.autoreload INFO     Watching for file changes with StatReloader

@@ -8,6 +8,8 @@ from files.works_with_files.image_tiff_file import ImageFile
 
 import logging
 
+from .works_with_files.convert_png_to_tif import ConvertToTif
+
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
@@ -193,7 +195,6 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         """Расчет и запись стоимости баннера"""
-        print(f'какое же расширение файла??{self.images}')
         if str(self.images).endswith('tif'):
             image_parameters = ImageFile(self.images)
             self.width, self.length, self.resolution = image_parameters.dimensions()
@@ -208,7 +209,9 @@ class Product(models.Model):
             self.price = image_price.calculate_price()
             self.cost_price = image_price.calculate_cost()
             super(Product, self).save(*args, **kwargs)
-        else:
+        elif str(self.images).endswith('png'):
+            # png_image  = ConvertToTif(self.images)
+            # png_image.run()
             super(Product, self).save(*args, **kwargs)
 
 

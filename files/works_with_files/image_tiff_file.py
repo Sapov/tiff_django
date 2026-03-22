@@ -27,6 +27,8 @@ def goto_media(foo):
     return wrapper
 
 
+
+
 class ImageFile:
     '''Работа с загруженным файлом
     dimensions - параметры файла
@@ -87,6 +89,8 @@ class ImageFile:
         except Exception as Ex:
             print(Ex)
 
+
+
     def draw_outline_image(self):
         # Делаем обводку вокруг файла, часто файлы имею много белого  - непонятно как его разрезать
         res = self.dimensions()[2]
@@ -135,8 +139,5 @@ class ImageFile:
 # обводим контуром изображение для печати
 
 if __name__ == '__main__':
-    im_new = ImageFile('/home/sasha/Загрузки/test_pic/85x200.tif')
-    # im_new.resize_image(70)
-    im_new.draw_outline_image()
-    # im_new.resolution_reduction(300)
-    im_new.dimensions()
+    im_new = ImageFile('/home/sasha/PycharmProjects/tiff_django/media/image/123.png')
+    im_new.convert_png_to_tif()
