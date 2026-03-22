@@ -6,6 +6,18 @@
 <p></p>
 <h3>Добавить новый заказ</h3>
 <form method="post" , enctype="multipart/form-data">
+<a href="{% url 'profiles:ya_pvz' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">Добавить адрес Яндекс ПВЗ</span>
+                                    </a>
+<a href="{% url 'profiles:create_organisation' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+    <span class="text">Добавить организацию</span>
+</a>
 
     {% csrf_token %}
     {{ form|crispy }}

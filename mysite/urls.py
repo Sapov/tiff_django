@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
-from files.views import page_not_found
+from files.views.views import page_not_found
 from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static

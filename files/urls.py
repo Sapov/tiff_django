@@ -1,5 +1,5 @@
-from django.urls import path, include
-
+from django.urls import path
+from .views import BannerGeneratorView, submit_banner_order
 from .views import (
     index,
     delete,
@@ -61,5 +61,9 @@ urlpatterns = [
     # Загрузка архива
     path('upload/', upload_file, name='upload_file'),
     path('upload/status/<int:upload_id>/', upload_status, name='upload_status'),
+
+
+    path('create_banner/', BannerGeneratorView.as_view(), name='create_banner'),
+    path('submit-banner-order/', submit_banner_order, name='submit_banner_order'),
 
 ]

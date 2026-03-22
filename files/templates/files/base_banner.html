@@ -1,0 +1,333 @@
+{% load account socialaccount %}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #4e73df !important;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .footer {
+            background: white;
+            padding: 20px 0;
+            border-top: 1px solid #e3e6f0;
+        }
+
+        /* Стили для модального окна */
+        .modal-social {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            border-bottom: none;
+            padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            border-top: none;
+            justify-content: center;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .social-login-btn {
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .social-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .social-login-btn.google:hover {
+            border-color: #ea4335;
+            background: #fff5f5;
+        }
+
+        .social-login-btn.yandex:hover {
+            border-color: #fc3f1d;
+            background: #fff5f0;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .btn-close-custom {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            line-height: 1;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .btn-close-custom:hover {
+            opacity: 1;
+        }
+
+        .modal-backdrop.show {
+            backdrop-filter: blur(4px);
+        }
+
+        /* Анимация для модального окна */
+        .modal.fade .modal-dialog {
+            transform: scale(0.95);
+            transition: transform 0.2s ease-out;
+        }
+
+        .modal.show .modal-dialog {
+            transform: scale(1);
+        }
+
+        /* Стили для кнопки входа */
+        .login-btn {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(78, 115, 223, 0.3);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .modal-dialog {
+                margin: 1rem;
+            }
+
+            .social-login-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+        <div class="container">
+            <a href="/" title="РПК РЕДС" rel="nofollow">
+                <img src="https://www.san-cd.ru/wp-content/themes/sancd/images/logo-trans.png" alt="РПК РЕДС" class="img-fluid mt-lg-4 mt-3 mb-3" style="height: 60px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                {{ user.email }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                <li><a class="dropdown-item" href="{% url 'account_email' %}">Настройки</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form method="post" action="{% url 'account_logout' %}" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="dropdown-item text-danger">Выйти</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-primary btn-sm ms-lg-2 px-4 login-btn" data-bs-toggle="modal" data-bs-target="#loginModal" style="border-radius: 8px;">
+                                Вход
+                            </button>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <main>
+        {% block content %}
+        <!-- Основной контент страницы -->
+        <div class="container text-center py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4" style="color: #2c3e50;">
+                        Добро пожаловать
+                    </h1>
+                    <p class="lead text-muted mb-5">
+                        Войдите в свой аккаунт, чтобы продолжить
+                    </p>
+                    <button type="button" class="btn btn-primary btn-lg px-5 py-3" data-bs-toggle="modal" data-bs-target="#loginModal" style="border-radius: 12px;">
+                        Войти в аккаунт
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+
+    <footer class="footer mt-5">
+        <div class="container text-center text-muted small">
+            &copy; {% now "Y" %} Мой проект на Django. Все права защищены.
+        </div>
+    </footer>
+
+    <!-- Модальное окно входа -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-social">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="loginModalLabel" style="color: #2c3e50;">Вход в аккаунт</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted text-center mb-4">
+                        Выберите способ входа
+                    </p>
+
+                    <div class="d-grid gap-3">
+                        <!-- Google вход -->
+                        <a href="{% provider_login_url 'google' %}"
+                           class="social-login-btn google text-decoration-none">
+                            <img src="https://authjs.dev/img/providers/google.svg" alt="Google" class="social-icon">
+                            <span>Продолжить с Google</span>
+                        </a>
+
+                        <!-- Yandex вход -->
+                        <a href="{% provider_login_url 'yandex' %}"
+                           class="social-login-btn yandex text-decoration-none">
+                            <img src="https://authjs.dev/img/providers/yandex.svg" alt="Yandex" class="social-icon">
+                            <span>Продолжить с Yandex</span>
+                        </a>
+                    </div>
+
+
+                    <div class="text-center">
+                        <p class="text-muted small mb-0">
+                            Вход через социальные сети обеспечивает быстрый и безопасный доступ к вашему аккаунту.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-sm px-4" data-bs-dismiss="modal">
+                        Закрыть
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <!-- Если у вас нет FontAwesome, можно использовать CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script>
+        // Обработка ошибок CSRF для AJAX запросов (если понадобится)
+        const csrftoken = document.querySelector('[name=csrf-token]').getAttribute('content');
+
+        // Автоматическое открытие модального окна, если есть параметр в URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('show_login') === 'true') {
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+            }
+
+            // Добавляем обработку для кнопок соцсетей (логирование для отладки)
+            const socialButtons = document.querySelectorAll('.social-login-btn');
+            socialButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const provider = this.classList.contains('google') ? 'Google' : 'Yandex';
+                    console.log(`Вход через ${provider}...`);
+                    // Реальный редирект произойдет по href
+                });
+            });
+        });
+
+        // Если нужно показать сообщение при ошибке аутентификации
+        {% if form.errors %}
+            document.addEventListener('DOMContentLoaded', function() {
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+
+                // Показываем сообщение об ошибке
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger alert-dismissible fade show mt-3';
+                errorMessage.role = 'alert';
+                errorMessage.innerHTML = `
+                    Ошибка аутентификации. Пожалуйста, попробуйте снова.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                document.querySelector('.modal-body').appendChild(errorMessage);
+            });
+        {% endif %}
+
+        // Анимация закрытия модального окна
+        const modalElement = document.getElementById('loginModal');
+        if (modalElement) {
+            modalElement.addEventListener('hidden.bs.modal', function () {
+                // Очищаем любые временные сообщения об ошибках
+                const alerts = document.querySelectorAll('.modal-body .alert');
+                alerts.forEach(alert => alert.remove());
+            });
+        }
+
+        // Добавляем возможность открытия модального окна через URL hash
+        if (window.location.hash === '#login') {
+            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        }
+    </script>
+
+    {% block extra_body %}{% endblock %}
+</body>
+</html>

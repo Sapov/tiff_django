@@ -9,10 +9,10 @@ from django.views.generic import DetailView, ListView
 
 from orders.alerts import Alerts
 from orders.models import Order, StatusOrder, OrderItem
-from .works_with_files.atchives_files import UtilsModel
+from files.works_with_files.atchives_files import UtilsModel
 from orders.views import change_status_order, get_domain, set_status_file
-from .models import Product, Material, FinishWork, UseCalculator, Contractor, StatusProduct, FileUpload
-from .forms import (
+from files.models import Product, Material, FinishWork, UseCalculator, Contractor, StatusProduct, FileUpload
+from files.forms import (
     CalculatorForm,
     UploadFilesInter,
     UploadFilesLarge,
@@ -23,14 +23,14 @@ from .forms import (
 from django.views.generic.edit import CreateView, UpdateView, FormView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin  # new
 
-from .tiff_file import Calculator
+from files.tiff_file import Calculator
 from rest_framework import viewsets
-from .serializers import MaterlailSerializer
+from files.serializers import MaterlailSerializer
 
 from users.tasks import send_message_whatsapp
-from .tasks import resize_image, process_large_file
+from files.tasks import resize_image, process_large_file
 from django.http import JsonResponse
-from .tasks import process_uploaded_file
+from files.tasks import process_uploaded_file
 
 import logging
 
@@ -604,8 +604,8 @@ import os
 import zipfile
 from django.shortcuts import render, redirect
 from django.conf import settings
-from .forms import UploadFileForm
-from .models import UploadedFile
+from files.forms import UploadFileForm
+from files.models import UploadedFile
 
 
 def upload_archive(request):
