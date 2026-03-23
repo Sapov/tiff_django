@@ -210,8 +210,8 @@ class Product(models.Model):
             self.cost_price = image_price.calculate_cost()
             super(Product, self).save(*args, **kwargs)
         elif str(self.images).endswith('png'):
-            # png_image  = ConvertToTif(self.images)
-            # png_image.run()
+            png_image  = ConvertToTif(self.images)
+            self.images.name = png_image.run()
             super(Product, self).save(*args, **kwargs)
 
 

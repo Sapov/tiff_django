@@ -140,4 +140,3 @@ class ImageFile:
 
 if __name__ == '__main__':
     im_new = ImageFile('/home/sasha/PycharmProjects/tiff_django/media/image/123.png')
-    im_new.convert_png_to_tif()

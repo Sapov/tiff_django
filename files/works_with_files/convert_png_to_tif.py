@@ -9,7 +9,7 @@ class ConvertToTif:
     '''
 
     def __init__(self, image):
-        self.new_name = None
+        self.new_name = 'temp.tif'
         self.image = image
 
     def __new_name_file(self):
@@ -19,27 +19,31 @@ class ConvertToTif:
         Image.MAX_IMAGE_PIXELS = None
 
         with Image.open(self.image) as img:
-            # Конвертировать и сохранить в TIFF
-            img.save(self.new_name, format='TIFF', dpi=(72, 72))
-            content_type = 'image/tiff'
+            try:
+                # Конвертировать и сохранить в TIFF
+                dpi = 72
+                # img.info['dpi'] = (dpi, dpi)
+                print(img.info)
+
+                img.save(self.new_name,
+                         format='TIFF',
+                         compression='tiff_lzw',  # LZW компрессия для печати
+                         dpi=(dpi, dpi))
+
+                content_type = 'image/tiff'
+            except Exception as e:
+                print(f'Error {e}')
 
     def delete_png(self):
-        os.remove(self.image)
-
-    def update_bd_product(self):
-        new_file = os.path.basename(self.new_name)
-        print(new_file)
-        self.image = new_file
-        self.image.save()
-        'banner_orders/2026/03/22/banner_Q8erJ6a.png'
+        os.remove(str(self.image))
 
     def run(self):
-        self.__new_name_file()
         self.convert_png_to_tif()
-        self.delete_png()
-        self.update_bd_product()
+        self.__new_name_file()
+        # self.delete_png()
+        return self.new_name
 
 
 if __name__ == '__main__':
-    im_new = ConvertToTif('/home/sasha/PycharmProjects/tiff_django/media/image/123.png')
+    im_new = ConvertToTif('/home/sasha/PycharmProjects/tiff_django/media/image/banner.tif')
     im_new.run()
