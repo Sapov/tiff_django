@@ -48,6 +48,6 @@ def check_payment_order(*args):
     order.get_status_invoice()
 
 @shared_task
-def send_mail_for_user(order_id, mail_address):
-    mail = EmailSender(order_id, mail_address)
+def send_mail_for_user(order_id, mail_address, order_pay_link):
+    mail = EmailSender(order_id, mail_address, order_pay_link)
     mail.send_mail()

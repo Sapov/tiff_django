@@ -50,7 +50,7 @@ def edit_profile(request):
         #     instance=request.user, data=request.POST, files=request.FILES)
         if user_form.is_valid():
             user_form.save()
-        return redirect('profile_list')
+        return redirect('list_profile')
     else:
         user_form = UserEditForm(instance=request.user)
     return render(

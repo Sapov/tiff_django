@@ -211,8 +211,6 @@ def order_pay(request, order_id):
         arh_for_mail.delay(order_id, domain=domain) # отправляем архив - файл на почту
 
         # -----------------------create_link_pay-----------------------------------
-        # Orders = Order.objects.get(id=order_id)
-
         # ________ГЕНЕРИМ СЧЕТ ОТ ТОЧКИ ПО API______________
         # только если была выбрана организация
         if order.organisation_payer:
@@ -226,10 +224,11 @@ def order_pay(request, order_id):
             logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
         #     # =============Платежная ссылка от точки===========
             link_pay = create_pay_link_d.delay(order_id, True)
+            logger.info(f'[Сгенерили - Ссылку для оплаты]{link_pay}')
             # link_pay = Acquiring(order_id).run(organisation_flag=False)
             context = {"Orders": order, 'link_pay': link_pay}
         # оповещаем пользователя в whatsapp
-        send_mail_for_user.delay(order_id, order.user.email) # отправляем почту
+        send_mail_for_user.delay(order_id, order.user.email, order.pay_link) # отправляем почту
         # item_user = User.objects.get(email=user)
         # if item_user.whatsapp and item_user.phone_number:
         #     send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')

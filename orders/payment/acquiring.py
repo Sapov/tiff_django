@@ -56,7 +56,7 @@ class Acquiring(Bank):
                     "Client": {
                         "name": f'{str(payer.user.first_name)}' if organisation_flag
                         else str(payer.organisation_payer),
-                        "email": str(payer.user),
+                        "email": str(payer.user.email),
 
                         "phone": f"+7{tel}" if tel else None,
                     },

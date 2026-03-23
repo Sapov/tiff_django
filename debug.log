@@ -2394,3 +2394,247 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2026-03-23 17:32:32,774 orders.views INFO     DOMAIN: 127.0.0.1:8000
 2026-03-23 17:32:32,775 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-25 09:00:00+00:00
 2026-03-23 17:32:32,909 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-03-23 17:44:19,687 django.request WARNING  Not Found: /orders/order_pay/1c1f47ac-d77d-4eb9-a7e1-d07cdd778141
+2026-03-23 17:50:33,539 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2026-03-23 17:50:34,719 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 17:50:36,283 django.request WARNING  Not Found: /orders/order_pay/1c1f47ac-d77d-4eb9-a7e1-d07cdd778141
+2026-03-23 17:54:35,238 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/urls.py changed, reloading.
+2026-03-23 17:54:36,162 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 17:54:51,298 django.request WARNING  Not Found: /orders/order_pay/1c1f47ac-d77d-4eb9-a7e1-d07cdd778141
+2026-03-23 17:54:57,073 django.request WARNING  Not Found: /orders/order_pay/1c1f47ac-d77d-4eb9-a7e1-d07cdd778141
+2026-03-23 17:59:59,470 django.request ERROR    Internal Server Error: /users/profile_edit/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/profiles/views.py", line 53, in edit_profile
+    return redirect('profile_list')
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'profile_list' not found. 'profile_list' is not a valid view function or pattern name.
+2026-03-23 18:00:11,018 django.request ERROR    Internal Server Error: /users/profile_edit/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/profiles/views.py", line 53, in edit_profile
+    return redirect('profile_list')
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'profile_list' not found. 'profile_list' is not a valid view function or pattern name.
+2026-03-23 18:01:11,820 django.request WARNING  Not Found: /orders/add_files_in_order/None
+2026-03-23 18:01:20,153 django.request WARNING  Not Found: /orders/add_files_in_order/None
+2026-03-23 18:01:58,876 django.request ERROR    Internal Server Error: /users/profile_edit/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/profiles/views.py", line 53, in edit_profile
+    return redirect('profile_list')
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'profile_list' not found. 'profile_list' is not a valid view function or pattern name.
+2026-03-23 18:02:44,268 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/views.py changed, reloading.
+2026-03-23 18:02:45,511 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 18:06:43,176 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 18:06:43,176 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 18:06:43,176 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 18:06:46,219 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 18:06:46,223 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 18:06:50,920 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 18:06:50,921 root         INFO     method POST
+2026-03-23 18:06:50,922 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['xlDoePDyc6wk7R6WAKwb2PuElj29DrJmmDzDC3mh1rezQ3u8SiliNi1lPKP6q2Tw'], 'organisation_payer': [''], 'delivery': ['8'], 'date_complite': ['2026-03-25']}>
+2026-03-23 18:06:50,922 root         INFO     USER reds0
+2026-03-23 18:06:50,923 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 18:06:50,925 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 18:06:50,925 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 18:06:50,925 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 18:06:50,926 root         INFO     DELIV ID:  8
+2026-03-23 18:06:50,926 root         INFO     ORGANISATION:  
+2026-03-23 18:06:53,707 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 18:06:53,723 orders.models INFO     1300.00
+2026-03-23 18:06:53,723 orders.models INFO     Себестоимость, 0.00
+2026-03-23 18:06:53,731 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-03-23 18:06:53,731 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 18:06:53,731 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-03-23 18:06:53,737 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы по углам TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 18:06:53,738 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 18:06:53,738 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 18:06:56,469 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-03-23 18:06:56,478 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-03-23 18:06:56,479 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-25 09:00:00+00:00
+2026-03-23 18:06:56,598 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-03-23 18:07:15,148 django.request WARNING  Not Found: /orders/order_pay/c3b92237-83e0-471b-8baf-684d52aedebe
+2026-03-23 18:10:05,729 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 17>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>]>
+2026-03-23 18:10:05,729 profiles.views INFO     page_NUM: 1
+2026-03-23 18:10:05,731 profiles.views INFO     page_NUM: <Page 1 of 3>
+2026-03-23 18:20:05,729 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/tasks.py changed, reloading.
+2026-03-23 18:20:06,675 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 18:20:24,641 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 17>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>]>
+2026-03-23 18:20:24,642 profiles.views INFO     page_NUM: 1
+2026-03-23 18:20:24,643 profiles.views INFO     page_NUM: <Page 1 of 3>
+2026-03-23 18:20:50,696 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 18:20:50,696 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 18:20:50,696 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 18:20:53,362 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 18:20:53,366 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 18:20:59,552 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 18:20:59,553 root         INFO     method POST
+2026-03-23 18:20:59,554 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['lXKTwGIBPACeGZi1IxQem33D9kuczTSYoldaiUx7jzQwu846JlWrfkgyaCuO46HD'], 'organisation_payer': [''], 'delivery': ['4'], 'date_complite': ['2026-03-25']}>
+2026-03-23 18:20:59,555 root         INFO     USER forumvrn
+2026-03-23 18:20:59,555 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 18:20:59,557 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 18:20:59,557 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 18:20:59,558 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 18:20:59,558 root         INFO     DELIV ID:  4
+2026-03-23 18:20:59,558 root         INFO     ORGANISATION:  
+2026-03-23 18:21:01,923 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 18:21:01,931 orders.models INFO     1300.00
+2026-03-23 18:21:01,931 orders.models INFO     Себестоимость, 0.00
+2026-03-23 18:21:01,939 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-03-23 18:21:01,939 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 18:21:01,940 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-03-23 18:21:01,943 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 18:21:01,943 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 18:21:01,943 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 18:21:05,635 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-03-23 18:21:05,648 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-03-23 18:21:05,649 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-25 09:00:00+00:00
+2026-03-23 18:21:05,946 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-03-23 18:22:44,343 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2026-03-23 18:22:45,385 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 18:24:31,610 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 18:24:50,816 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 18:24:50,816 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 18:24:50,816 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 18:24:54,817 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 18:24:54,827 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 18:24:57,281 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 18:24:57,282 root         INFO     method POST
+2026-03-23 18:24:57,287 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['P3gZrjpIVKapuLVMoT1hUVtduP3LrrhtSrJgdxeepJoHiUHRpH7uNcG8v73nWE68'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-25']}>
+2026-03-23 18:24:57,287 root         INFO     USER forumvrn
+2026-03-23 18:24:57,287 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 18:24:57,290 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 18:24:57,290 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 18:24:57,290 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 18:24:57,291 root         INFO     DELIV ID:  6
+2026-03-23 18:24:57,291 root         INFO     ORGANISATION:  
+2026-03-23 18:24:59,788 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 18:24:59,798 orders.models INFO     1300.00
+2026-03-23 18:24:59,798 orders.models INFO     Себестоимость, 0.00
+2026-03-23 18:24:59,807 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-03-23 18:24:59,807 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 18:24:59,807 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-03-23 18:24:59,812 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 18:24:59,813 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 18:24:59,813 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 18:25:10,603 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-03-23 18:25:10,612 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-03-23 18:25:10,613 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-25 09:00:00+00:00
+2026-03-23 18:25:10,801 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-03-23 18:25:10,804 orders.views INFO     [Сгенерили - Ссылку для оплаты]62da52f0-def8-474e-8332-5e745b9f9586
+2026-03-23 18:31:43,448 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 18:31:48,683 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 21>, <Order: Заказ № 20>, <Order: Заказ № 17>, <Order: Заказ № 6>, <Order: Заказ № 5>, <Order: Заказ № 4>, <Order: Заказ № 3>, <Order: Заказ № 2>]>
+2026-03-23 18:31:48,683 profiles.views INFO     page_NUM: 1
+2026-03-23 18:31:48,684 profiles.views INFO     page_NUM: <Page 1 of 4>
+2026-03-23 18:31:56,279 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 18:31:56,279 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 18:31:56,279 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 18:32:00,890 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 18:32:00,893 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 18:32:03,262 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 18:32:03,262 root         INFO     method POST
+2026-03-23 18:32:03,264 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['DqWztksoOYz7nX8YP9buBhXLQ94sDQFXGOpQfyhUiXNpb6U3QXhHuyaGRr4483uC'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-25']}>
+2026-03-23 18:32:03,264 root         INFO     USER forumvrn
+2026-03-23 18:32:03,264 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 18:32:03,275 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 18:32:03,277 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 18:32:03,277 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 18:32:03,277 root         INFO     DELIV ID:  6
+2026-03-23 18:32:03,278 root         INFO     ORGANISATION:  
+2026-03-23 18:32:05,545 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 18:32:05,555 orders.models INFO     1300.00
+2026-03-23 18:32:05,555 orders.models INFO     Себестоимость, 0.00
+2026-03-23 18:32:05,568 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-03-23 18:32:05,568 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 18:32:05,569 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-03-23 18:32:05,573 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 18:32:05,573 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 18:32:05,573 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 18:32:07,899 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-03-23 18:32:07,906 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-03-23 18:32:07,908 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-25 09:00:00+00:00
+2026-03-23 18:32:08,044 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-03-23 18:32:08,048 orders.views INFO     [Сгенерили - Ссылку для оплаты]122e7af5-99bc-4e8d-91c1-f833139186d1
