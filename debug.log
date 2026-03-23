@@ -1777,3 +1777,431 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2026-03-23 11:43:07,638 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2026-03-23 11:43:44,456 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
 2026-03-23 11:43:45,469 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 12:10:06,157 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 12:10:16,268 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 10>, <Order: Заказ № 9>, <Order: Заказ № 8>, <Order: Заказ № 7>]>
+2026-03-23 12:10:16,270 profiles.views INFO     page_NUM: 1
+2026-03-23 12:10:16,271 profiles.views INFO     page_NUM: <Page 1 of 2>
+2026-03-23 12:10:20,177 django.request WARNING  Not Found: /favicon.ico
+2026-03-23 12:12:14,947 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 12:12:14,949 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 12:12:17,441 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 12:12:17,441 root         INFO     method POST
+2026-03-23 12:12:17,442 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['TMonL3di9wtdeZsfIZ8mdWqbsgL6QOdRGhEojsLzxoCm9CBuF3LZc1M9aKL7WLHy'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-25']}>
+2026-03-23 12:12:17,443 root         INFO     USER allprepress
+2026-03-23 12:12:17,443 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 12:12:17,449 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 12:12:17,452 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 12:12:17,454 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 12:12:17,454 root         INFO     DELIV ID:  6
+2026-03-23 12:12:17,454 root         INFO     ORGANISATION:  
+2026-03-23 12:12:20,146 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 12:12:20,153 orders.models INFO     1300.00
+2026-03-23 12:12:20,153 orders.models INFO     Себестоимость, 0.00
+2026-03-23 12:12:20,209 django.request ERROR    Internal Server Error: /orders/add_item_in_order/11/53
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 160, in add_item_in_order
+    set_status_file(item, 2)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 174, in set_status_file
+    item.save()
+  File "/home/sasha/PycharmProjects/tiff_django/files/models.py", line 200, in save
+    self.width, self.length, self.resolution = image_parameters.dimensions()
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py", line 57, in dimensions
+    self.resolution = int(round(img.info['dpi'][0], 0))
+                                ~~~~~~~~^^^^^^^
+KeyError: 'dpi'
+2026-03-23 12:13:06,177 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 12:13:07,612 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 12:13:41,802 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 12:13:43,053 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 12:15:07,492 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 12:15:07,495 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 12:15:28,372 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 12:15:28,375 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 12:15:30,460 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 12:15:30,461 root         INFO     method POST
+2026-03-23 12:15:30,462 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['p6QoPOvCdXZOYfsYDbHnCufkuDR8olcccB6pnd3TBP8XTSBdAfk0BzBic7R9uiGT'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-25']}>
+2026-03-23 12:15:30,463 root         INFO     USER allprepress
+2026-03-23 12:15:30,463 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 12:15:30,465 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 12:15:30,465 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 12:15:30,465 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 12:15:30,465 root         INFO     DELIV ID:  6
+2026-03-23 12:15:30,465 root         INFO     ORGANISATION:  
+2026-03-23 12:15:34,566 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 12:15:34,574 orders.models INFO     1300.00
+2026-03-23 12:15:34,574 orders.models INFO     Себестоимость, 0.00
+2026-03-23 12:15:34,616 django.request ERROR    Internal Server Error: /orders/add_item_in_order/12/54
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 160, in add_item_in_order
+    set_status_file(item, 2)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 174, in set_status_file
+    item.save()
+  File "/home/sasha/PycharmProjects/tiff_django/files/models.py", line 200, in save
+    self.width, self.length, self.resolution = image_parameters.dimensions()
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py", line 57, in dimensions
+    self.resolution = int(round(img.info['dpi'][0], 0))
+                                ~~~~~~~~^^^^^^^
+KeyError: 'dpi'
+2026-03-23 12:17:21,402 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 12:17:22,692 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 12:22:38,813 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 12:22:38,814 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 12:22:41,310 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 12:22:41,313 root         INFO     method POST
+2026-03-23 12:22:41,324 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['8Tp47g6SdisMd8eSIA0l9gDag2z06PcCVoF5FFE9BaBV8Ln7FEDY8lZ8Ywz1cMGj'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-25']}>
+2026-03-23 12:22:41,324 root         INFO     USER allprepress
+2026-03-23 12:22:41,324 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 12:22:41,328 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 12:22:41,328 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 12:22:41,328 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 12:22:41,328 root         INFO     DELIV ID:  6
+2026-03-23 12:22:41,329 root         INFO     ORGANISATION:  
+2026-03-23 12:22:45,101 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 12:22:45,111 orders.models INFO     1300.00
+2026-03-23 12:22:45,111 orders.models INFO     Себестоимость, 0.00
+2026-03-23 12:22:45,121 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 12:22:45,121 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 12:22:45,121 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 12:22:45,126 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 12:22:45,126 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 12:22:45,126 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 12:22:49,052 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 12:22:49,068 orders.models INFO     2600.00
+2026-03-23 12:22:49,068 orders.models INFO     Себестоимость, 0.00
+2026-03-23 12:22:49,075 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 12:22:49,075 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 12:22:49,076 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 12:22:49,081 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 12:22:49,081 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 12:22:49,081 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 12:22:50,999 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 12:22:51,011 orders.models INFO     3900.00
+2026-03-23 12:22:51,011 orders.models INFO     Себестоимость, 0.00
+2026-03-23 12:22:51,090 django.request ERROR    Internal Server Error: /orders/add_item_in_order/13/52
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 160, in add_item_in_order
+    set_status_file(item, 2)
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 174, in set_status_file
+    item.save()
+  File "/home/sasha/PycharmProjects/tiff_django/files/models.py", line 200, in save
+    self.width, self.length, self.resolution = image_parameters.dimensions()
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/works_with_files/image_tiff_file.py", line 57, in dimensions
+    self.resolution = int(round(img.info['dpi'][0], 0))
+                                ~~~~~~~~^^^^^^^
+KeyError: 'dpi'
+2026-03-23 16:23:41,119 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:23:42,147 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:23:51,388 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 16:23:51,390 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 16:25:22,577 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:25:23,596 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:26:46,319 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:26:47,341 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:27:49,748 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:27:50,862 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:28:18,716 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:28:19,807 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:30:57,972 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:30:58,960 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:32:26,117 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:32:27,097 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:33:02,148 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:33:03,136 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:33:36,057 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:33:37,089 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:34:07,895 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:34:08,879 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:35:35,921 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:35:36,704 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:36:08,076 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:36:09,026 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:37:05,445 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:37:06,588 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:39:43,056 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:39:44,023 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:46:07,748 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:46:08,760 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:46:13,522 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:46:31,962 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:46:32,988 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:46:35,670 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:47:11,516 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:47:12,526 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:47:16,389 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:47:54,663 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:47:56,018 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:47:59,692 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:47:59,692 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:47:59,692 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:48:30,792 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:48:30,792 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:48:30,792 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:49:44,850 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:49:45,852 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:49:55,376 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:49:55,376 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:49:55,376 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:51:13,775 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:51:14,841 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:51:23,306 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:51:23,306 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:51:23,306 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:52:06,357 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:52:06,357 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:52:06,357 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:54:30,868 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:54:31,830 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:55:05,734 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:55:06,657 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:55:13,423 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:55:13,423 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:55:13,424 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:56:21,319 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:56:22,291 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:56:38,584 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:56:38,585 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:56:38,585 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:58:02,010 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 16:58:03,024 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 16:58:11,979 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:58:11,979 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:58:11,980 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:58:30,717 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:58:30,717 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:58:30,717 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:58:54,727 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 16:58:54,729 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 16:58:56,607 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 16:58:56,607 root         INFO     method POST
+2026-03-23 16:58:56,609 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['BNhK50PmUUvLV0YM39s3cE1NQVpwlo6XoixLDpnDiMEUQD710d5GbJnLyppxrlAE'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-25']}>
+2026-03-23 16:58:56,609 root         INFO     USER allprepress
+2026-03-23 16:58:56,610 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 16:58:56,612 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 16:58:56,613 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 16:58:56,614 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 16:58:56,614 root         INFO     DELIV ID:  6
+2026-03-23 16:58:56,614 root         INFO     ORGANISATION:  
+2026-03-23 16:58:59,321 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 16:58:59,330 orders.models INFO     1300.00
+2026-03-23 16:58:59,330 orders.models INFO     Себестоимость, 0.00
+2026-03-23 16:58:59,339 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 16:58:59,339 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 16:58:59,339 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 16:58:59,344 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы по углам TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 16:58:59,344 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 16:58:59,344 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 16:59:01,114 orders.models INFO     cost_price_per_item 0.00
+2026-03-23 16:59:01,130 orders.models INFO     2600.00
+2026-03-23 16:59:01,130 orders.models INFO     Себестоимость, 0.00
+2026-03-23 16:59:01,140 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 16:59:01,140 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 16:59:01,142 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 16:59:01,147 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 16:59:01,150 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 16:59:01,150 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 16:59:35,907 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 16:59:35,908 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 16:59:35,908 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 16:59:35,913 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы по углам TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 16:59:35,913 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 16:59:35,913 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 16:59:35,920 root         INFO     [Удаляем из OrderItems] Заказ № 14-image/banner_KPcKFli.tif
+2026-03-23 16:59:40,727 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 16:59:40,727 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 16:59:40,727 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 16:59:40,730 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 16:59:40,730 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 16:59:40,731 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 16:59:40,739 root         INFO     [Удаляем из OrderItems] Заказ № 14-image/banner.tif
+2026-03-23 16:59:57,221 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 16:59:57,221 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 16:59:57,221 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:00:13,985 django.request ERROR    Internal Server Error: /files/delete/63/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views/views.py", line 75, in delete
+    os.remove(f"media/{str(product.images)}")  # Удаление файла
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'media/image/banner_XQdIvOg.tif'
+2026-03-23 17:00:47,072 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 17:00:47,072 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:00:47,072 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:00:56,255 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-23 17:00:56,257 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 1
+2026-03-23 17:00:58,228 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-23 17:00:58,228 root         INFO     method POST
+2026-03-23 17:00:58,229 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['YBiMPWYMiQNcwFJ80Eosh5xUroOwtc4TL6yNnlw3GIWlriSnXI15gaTS9SOxz9yA'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-25']}>
+2026-03-23 17:00:58,229 root         INFO     USER allprepress
+2026-03-23 17:00:58,230 root         INFO     [INFO] отправленная форма имеет дату 2026-03-25
+2026-03-23 17:00:58,230 root         INFO     [INFO] Приводим строку в формату даты 2026-03-25 00:00:00
+2026-03-23 17:00:58,230 root         INFO     [INFO] прибавляем 12 часов 2026-03-25 12:00:00
+2026-03-23 17:00:58,230 root         INFO     date_complite 2026-03-25 12:00:00 - <class 'datetime.datetime'>
+2026-03-23 17:00:58,230 root         INFO     DELIV ID:  6
+2026-03-23 17:00:58,230 root         INFO     ORGANISATION:  
+2026-03-23 17:01:18,773 files.works_with_files.image_tiff_file INFO     [SIZE File] :2.67 m X 1.07 m
+2026-03-23 17:01:18,773 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 7559 px, length: 3023 px
+2026-03-23 17:01:18,773 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 17:01:18,775 root         INFO     [INFO]. self.length:1.07 TYPE<class 'float'>
+Width: 2.67 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы по углам TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 510 грамм литой Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 17:01:18,775 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:01:18,775 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:01:51,584 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 17:01:51,584 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 17:01:51,584 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 17:01:51,586 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы по углам TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 гр ламинированный Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 17:01:51,586 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:01:51,586 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:02:10,620 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 17:02:10,621 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 17:02:10,621 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 17:02:10,622 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы по углам TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 гр ламинированный Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 17:02:10,622 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:02:10,622 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:02:33,508 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 17:02:34,498 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 17:02:47,625 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 17:02:47,625 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:02:47,625 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:03:00,644 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.2 m X 0.53 m
+2026-03-23 17:03:00,645 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 17:03:00,645 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 72 px
+2026-03-23 17:03:00,647 root         INFO     [INFO]. self.length:0.53 TYPE<class 'float'>
+Width: 1.2 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 17:03:00,648 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:03:00,648 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:09:54,817 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 17:09:55,812 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-23 17:10:04,498 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 17:10:04,499 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:10:04,499 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:10:16,484 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-03-23 17:10:16,484 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-03-23 17:10:16,484 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-03-23 17:10:16,486 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 гр ламинированный Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 17:10:16,486 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:10:16,486 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:10:29,742 django.request ERROR    Internal Server Error: /files/delete/63/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views/views.py", line 75, in delete
+    os.remove(f"media/{str(product.images)}")  # Удаление файла
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'media/image/banner_XQdIvOg.tif'
+2026-03-23 17:10:58,141 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 17:10:58,141 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:10:58,141 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:11:08,656 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 17:11:08,656 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:11:08,656 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:11:56,819 files.works_with_files.image_tiff_file INFO     [SIZE File] :2.1 m X 0.8 m
+2026-03-23 17:11:56,820 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 7937 px, length: 3023 px
+2026-03-23 17:11:56,820 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-03-23 17:11:56,822 root         INFO     [INFO]. self.length:0.8 TYPE<class 'float'>
+Width: 2.1 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 гр ламинированный Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-23 17:11:56,822 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:11:56,822 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-23 17:12:20,438 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-23 17:12:20,439 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:12:20,439 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-23 17:14:01,548 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/works_with_files/convert_png_to_tif.py changed, reloading.
+2026-03-23 17:14:02,538 django.utils.autoreload INFO     Watching for file changes with StatReloader
