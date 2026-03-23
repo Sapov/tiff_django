@@ -34,7 +34,7 @@ def submit_banner_order(request):
             print(f'GROMET {grommet_type}')
 
             if grommet_type == 'perimeter':
-                finish_work = FinishWork.objects.get(id=1)
+                finish_work = FinishWork.objects.get(id=8)
             elif grommet_type == 'corners':
                 finish_work = FinishWork.objects.get(id=3)
             elif grommet_type == 'none':

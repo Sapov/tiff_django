@@ -36,9 +36,9 @@ class NewOrder(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user", None)
         super(NewOrder, self).__init__(*args, **kwargs)
-        # self.fields["delivery_address"].queryset = DeliveryAddress.objects.filter(
-        #     user=self.user
-        # )
+        self.fields["delivery"].queryset = DeliveryAddress.objects.filter(
+            user=self.user
+        )
         self.fields["organisation_payer"].queryset = Organisation.objects.filter(
             user=self.user)
         self.fields['organisation_payer'].empty_label = "Оплата на физ. лицо"
