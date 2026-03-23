@@ -26,16 +26,20 @@ class Acquiring(Bank):
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/retailers?customerCode={self.customer_code}'
         payload = {}
         response = requests.request("GET", url, headers=self.headers, data=payload)
-        print(response.json())
+        logger.info(f'[RESPONSE JSON] {response.json()}')
         self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
         self.terminalId = (response.json()['Data']['Retailer'][0]['terminalId'])
-        print('MerchantId', self.merchantId)
-        print('TerminalId', self.terminalId)
+
+        logger.info(f'MerchantId: {self.merchantId}')
+        logger.info(f'TerminalId: {self.terminalId}')
 
     def create_payment_operation_with_receipt_link(self, organisation_flag):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
+        url_send_box = f'https://enter.tochka.com/sandbox/v2/acquiring/{self.apiVersion}/payments_with_receipt'
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
+
         payer = Order.objects.get(id=self.order_id)
+
         if payer.user.phone_number:
             tel = payer.user.phone_number.national_number
             payload = {
@@ -50,7 +54,7 @@ class Acquiring(Bank):
                         # "card" # Only SPB
                     ],
                     "saveCard": True,
-                    "consumerId": str(payer.user),
+                    "consumerId": str(payer.user.email),
                     "taxSystemCode": "usn_income",
                     "merchantId": self.merchantId,
                     "Client": {
@@ -63,12 +67,14 @@ class Acquiring(Bank):
                     "Items": self.__create_list_position()
                 }
             }
-            print('PAYLOAD', json.dumps(payload, indent=4))
+            logger.info([f'PAYLOAD: {json.dumps(payload, indent=4)}'])
             try:
-                response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
-                print('RESPONSE FOR PAYMENT LINK', response.json())
+                response = requests.request("POST", url_send_box, headers=self.headers, data=json.dumps(payload))
+                logger.info(f'RESPONSE FOR PAYMENT LINK :{response.json()}')
+
                 self.pay_link = response.json()['Data']['paymentLink']
                 self._add_pay_link_in_table_order()
+
             except requests.exceptions.RequestException as e:
                 logger.error(f' Error create payment link {e}')
 
@@ -89,8 +95,10 @@ class Acquiring(Bank):
             }
             self.total_amount_order += total_amount
             positions.append(new_dict)
-        print(f'Посчитанный тотал pice {self.total_amount_order}')
-        print('positions', positions)
+
+        logger.info(f'Посчитанный TOTAL PRICE: {self.total_amount_order}')
+        logger.info(f'positions: {positions}')
+
         return positions
 
     def check(self):
@@ -99,7 +107,7 @@ class Acquiring(Bank):
         payload = {}
         try:
             response = requests.request("GET", url, headers=self.headers, data=payload)
-            print(response.text)
+            logger.info(f'response.text {response.text}')
         except requests.exceptions.RequestException as e:
             logger.error(f'Error as {e}')
 
@@ -107,12 +115,17 @@ class Acquiring(Bank):
         '''Добавим ссылку об оплате в таблицу с ордером'''
         ''' добавим operationId'''
         order = Order.objects.get(id=self.order_id)
-        print(f'SAVE PAY-LINK: {self.pay_link}')
+        logger.info(f'SAVE PAY-LINK: {self.pay_link}')
         order.pay_link = self.pay_link
         order.save()
 
     def run(self, organisation_flag) -> str:
         super().get_customer_code()
-        print(self.customer_code, type(self.customer_code))
+        logger.info(f'self.customer_code {type(self.customer_code)}')
         self.create_payment_operation_with_receipt_link(organisation_flag)
         return self.pay_link
+
+
+if __name__ == '__main__':
+    link_pay = Acquiring(order_id=2).run(organisation_flag=True)
+    print(link_pay)

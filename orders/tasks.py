@@ -8,16 +8,15 @@ from .email_sender.sender import EmailSender
 
 
 @shared_task
-def arh_for_mail(order_id: int, domain: str):
-    order_item = UtilsModel(order_id, domain)
+def arh_for_mail(*args):
+    order_item = UtilsModel(*args)
     order_item.run()
 
 
 @shared_task(name='timer_order_complete')
 def timer_order_complete(*args):
-    order_id, domain = args
-    print(f'[INFO]-------------Отсылаем письмо с вопросом о готовности заказа--№ {order_id}---------')
-    item_mail = Alerts(order_id, domain)
+    print(f'[INFO]-------------Отсылаем письмо с вопросом о готовности заказа--№ {args[0]}---------')
+    item_mail = Alerts(*args)
     item_mail.send_mail_request_for_order_readiness()
 
 
@@ -28,9 +27,9 @@ def create_order_pdf(order_id: int):
     document.create_invoice()
 
 @shared_task()
-def create_act(order_id:int):
+def create_act(*args):
     '''Формирование закрывающего документа АКТ'''
-    document = Bank(order_id)
+    document = Bank(*args)
     document.create_act()
 
 @shared_task
@@ -48,6 +47,8 @@ def check_payment_order(*args):
     order.get_status_invoice()
 
 @shared_task
-def send_mail_for_user(order_id, mail_address, order_pay_link):
-    mail = EmailSender(order_id, mail_address, order_pay_link)
+# def send_mail_for_user(order_id, mail_address, order_pay_link):
+def send_mail_for_user(*args):
+    # mail = EmailSender(order_id, mail_address, order_pay_link)
+    mail = EmailSender(*args)
     mail.send_mail()
