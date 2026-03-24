@@ -70,6 +70,7 @@ dependencies = [
         "ptyprocess>=0.7.0",
         "pure-eval>=0.2.3",
         "pycparser>=2.22",
+        "pydantic>=2.12.5",
         "pygments>=2.18.0",
         "pyjwt>=2.11.0",
         "pysocks>=1.7.1",
