@@ -266,6 +266,20 @@ class WorkZip:
             # Product.objects.create(Contractor=request.user, images=i)
 
 
+def multiples(foo):
+    '''
+    все что посчитано меньше 1300 руб. увелививаем до 1300 руб.
+    '''
+
+    def wrapper(*args, **kwargs):
+        res = foo(*args, **kwargs)
+        if res < 1300:
+            res = 1300
+        return res
+
+    return wrapper
+
+
 class Calculator:
     ''' Класс умеет рассчитывать стоимость печати по Image '''
 
@@ -330,6 +344,7 @@ class Calculator:
         else:
             return self.calculator_result, None
 
+    @multiples
     def calculate(self):
         return (self.__print_calculator() + self.__finishing_calculator()) * self.quantity
 

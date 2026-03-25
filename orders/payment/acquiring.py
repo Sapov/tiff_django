@@ -35,13 +35,15 @@ class Acquiring(Bank):
 
     def create_payment_operation_with_receipt_link(self, organisation_flag):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
-        url_send_box = f'https://enter.tochka.com/sandbox/v2/acquiring/{self.apiVersion}/payments_with_receipt'
+        # url_send_box = f'https://enter.tochka.com/sandbox/v2/acquiring/{self.apiVersion}/payments_with_receipt'
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
 
         payer = Order.objects.get(id=self.order_id)
 
         if payer.user.phone_number:
             tel = payer.user.phone_number.national_number
+            print(f'd DICT{payer.total_price}{type(payer.total_price)}')
+
             payload = {
                 "Data": {
                     "customerCode": self.customer_code,
@@ -51,7 +53,6 @@ class Acquiring(Bank):
                     "failRedirectUrl": "https://order.san-cd.ru/orders/fail",
                     "paymentMode": [
                         "sbp",
-                        # "card" # Only SPB
                     ],
                     "saveCard": True,
                     "consumerId": str(payer.user.email),
@@ -67,9 +68,9 @@ class Acquiring(Bank):
                     "Items": self.__create_list_position()
                 }
             }
-            logger.info([f'PAYLOAD: {json.dumps(payload, indent=4)}'])
+            logger.info([f'PAYLOAD__: {json.dumps(payload, indent=4)}'])
             try:
-                response = requests.request("POST", url_send_box, headers=self.headers, data=json.dumps(payload))
+                response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
                 logger.info(f'RESPONSE FOR PAYMENT LINK :{response.json()}')
 
                 self.pay_link = response.json()['Data']['paymentLink']

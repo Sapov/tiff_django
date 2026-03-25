@@ -3,95 +3,108 @@ import os
 import requests
 import logging
 from dotenv import load_dotenv, find_dotenv
-
-logger = logging.getLogger(__name__)
 load_dotenv(find_dotenv())
+logger = logging.getLogger(__name__)
 
 
-class Acquiring:
+class Bank:
     apiVersion = 'v1.0'
     RS_URL = "https://enter.tochka.com/uapi"
     AS_URL = "https://enter.tochka.com"
     url = RS_URL + f"/invoice/{apiVersion}/bills"
 
-    headers: dict = {
+    headers = {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
         'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
     }
 
     def __init__(self, order_id: int):
-        self.customer_code = None
+        self.document_id = None
+        self.total_amount_order = 0
+        self.order_id = order_id
+        self.payer = Order.objects.get(id=self.order_id)
+
+    def get_customer_code(self) -> str | None:
+
+        url = f"{self.RS_URL}/open-banking/{self.apiVersion}/customers"
+        payload = {}
+        try:
+            response = requests.request("GET", url, headers=self.headers, data=payload)
+            print(response.text)
+            self.customer_code = response.json()['Data']['Customer'][0]['customerCode']
+            logging.info(f'GET_CUSTOMER_ID: {self.customer_code}')
+            print(f'----------RESPONSE__CUSTOMER_ID: {self.customer_code}')
+            return self.customer_code
+        except requests.exceptions.RequestException as e:
+            print(f'ERROR get custom code message: {e}')
+            logger.error(f'ERROR get custom code: {e}')
+
+    def __add_pdf_in_order(self):
+        '''Записываем в таблицу ссылку на pdf счет с файлами'''
+        order = Order.objects.get(id=self.order_id)
+        logger.info(f'ADD PDF in order: orders/Order_{self.order_id}.pdf')
+        order.order_pdf_file = f'orders/Order_{self.order_id}.pdf'
+        order.save()
+
+
+class Acquiring(Bank):
+    headers: dict = {
+        'Content-Type': 'application/json',
+        'Authorization': f"Bearer {os.getenv('TOCHKA_TOKEN')}"
+    }
+
+    def __init__(self, order_id: int):
         self.pay_link = None
         self.order_id = order_id
         self.terminalId = None
         self.merchantId = None
         self.total_amount_order = 0
 
-    def get_retailers(self):
-        ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami#create_payment_operation_with_receipt_acquiring__apiVersion__payments_with_receipt_post'''
-        url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/retailers?customerCode={self.customer_code}'
-        payload = {}
-        response = requests.request("GET", url, headers=self.headers, data=payload)
-        logger.info(f'[RESPONSE JSON] {response.json()}')
-        self.merchantId = (response.json()['Data']['Retailer'][0]['merchantId'])
-        self.terminalId = (response.json()['Data']['Retailer'][0]['terminalId'])
-
-        logger.info(f'MerchantId: {self.merchantId}')
-        logger.info(f'TerminalId: {self.terminalId}')
-
     def create_payment_operation_with_receipt_link(self, organisation_flag):
         ''' https://enter.tochka.com/doc/v2/redoc/tag/Rabota-s-platyozhnymi-ssylkami'''
-        url_send_box = f'https://enter.tochka.com/sandbox/v2/acquiring/{self.apiVersion}/payments_with_receipt'
         url = f'https://enter.tochka.com/uapi/acquiring/{self.apiVersion}/payments_with_receipt'
-
-        # payer = Order.objects.get(id=self.order_id)
-
+        # url = f'https://enter.tochka.com/sandbox/v2/acquiring/v1.0/payments_with_receipt'
         if True:
-            tel = '9515456824'
+            tel = '+79852325588'
             payload = {
                 "Data": {
                     "customerCode": self.customer_code,
-                    "amount": '830',
-                    "purpose": f"Оплата заказа № {2}",
+                    "amount": '12800.0',
+                    "purpose": "Оплата заказа № 51",
                     "redirectUrl": "https://order.san-cd.ru/orders/success",
                     "failRedirectUrl": "https://order.san-cd.ru/orders/fail",
-                    "paymentMode": ["sbp"],
-                    "saveCard": True,
-                    "consumerId": '',
-                    "taxSystemCode": "usn_income",
-                    "merchantId": self.merchantId,
-                    "Client": {
-                        "name": f'Александр' if organisation_flag
-                        else 'Александр',
-                        "email": 'forumvrn@gmail.com',
+                    "paymentMode": [
+                        "sbp",
+                        "card",
 
-                        "phone": '+7999999999',
+                    ],
+                    "saveCard": True,
+                    # "consumerId": "rpk.reds@yandex.ru",
+                    "taxSystemCode": "usn_income",
+                    "Client": {
+                        "name": "\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440",
+                        "email": "rpk.reds@yandex.ru",
+                        "phone": "+79802423868"
                     },
-                    "Items": [{
-                        "vatType": "none",
-                        "name": "string",
-                        "amount": "1234.00",
-                        "quantity": 1,
-                        "paymentMethod": "full_payment",
-                        "paymentObject": "service",
-                        "measure": "шт.",
-                        "Supplier": {
-                            "phone": "+7999999999",
-                            "name": "ООО Альтер",
-                            "taxCode": "660000000000"
+                    "Items": [
+                        {
+                            "vatType": "none",
+                            "name": "\u041f\u0435\u0447\u0430\u0442\u044c \u043d\u0430 \u041f\u0412\u0425 3 \u043c\u043c UV-\u043f\u0435\u0447\u0430\u0442\u044c 1.0x3.0 \u043c",
+                            "amount": '12800.0',
+                            "quantity": 1,
+                            "paymentMethod": "full_payment",
+                            "paymentObject": "goods",
+                            "measure": "\u0448\u0442."
                         }
-                    }]
+                    ]
                 }
             }
+            # print('PAYLOAD', json.dumps(payload, indent=4))
             try:
-                response = requests.request("POST", url_send_box, headers=self.headers, data=json.dumps(payload))
-                logger.info(f'RESPONSE FOR PAYMENT LINK :{response.json()}')
-                print(response.json())
-
-                # self.pay_link = response.json()['Data']['paymentLink']
+                response = requests.request("POST", url, headers=self.headers, data=json.dumps(payload))
+                print('RESPONSE FOR PAYMENT LINK', response.json())
+                self.pay_link = response.json()['Data']['paymentLink']
                 # self._add_pay_link_in_table_order()
-
             except requests.exceptions.RequestException as e:
                 logger.error(f' Error create payment link {e}')
 
@@ -112,10 +125,8 @@ class Acquiring:
             }
             self.total_amount_order += total_amount
             positions.append(new_dict)
-
-        logger.info(f'Посчитанный TOTAL PRICE: {self.total_amount_order}')
-        logger.info(f'positions: {positions}')
-
+        print(f'Посчитанный тотал pice {self.total_amount_order}')
+        print('positions', positions)
         return positions
 
     def check(self):
@@ -124,7 +135,7 @@ class Acquiring:
         payload = {}
         try:
             response = requests.request("GET", url, headers=self.headers, data=payload)
-            logger.info(f'response.text {response.text}')
+            print(response.text)
         except requests.exceptions.RequestException as e:
             logger.error(f'Error as {e}')
 
@@ -132,20 +143,17 @@ class Acquiring:
         '''Добавим ссылку об оплате в таблицу с ордером'''
         ''' добавим operationId'''
         order = Order.objects.get(id=self.order_id)
-        logger.info(f'SAVE PAY-LINK: {self.pay_link}')
+        print(f'SAVE PAY-LINK: {self.pay_link}')
         order.pay_link = self.pay_link
         order.save()
 
-    def get_customer_code(self) -> str | None:
-        self.customer_code = os.getenv('CUSTOMER_COD')
-
     def run(self, organisation_flag) -> str:
-        self.get_customer_code()
-        logger.info(f'self.customer_code {type(self.customer_code)}')
+        super().get_customer_code()
         self.create_payment_operation_with_receipt_link(organisation_flag)
         return self.pay_link
 
 
+
 if __name__ == '__main__':
-    link_pay = Acquiring(order_id=2).run(organisation_flag=True)
-    print(link_pay)
+    items = Acquiring(order_id=2)
+    items.run(organisation_flag=False)

@@ -69,7 +69,7 @@ class Bank:
         '''Генерируем Документ'''
 
         payload = json.dumps({
-                "Data": Data(self.order_id).data(name_document)
+            "Data": Data(self.order_id).data(name_document)
         })
         logging.info(f'[DICT FOR DOCUMENT] {payload}')
 
@@ -84,7 +84,6 @@ class Bank:
     def __add_base_document_id(self):
         IdDocument(self.order_id).add_base_document_id(self.document_id)
 
-
     @goto_media_orders
     def __get_invoice(self) -> None:
 
@@ -98,6 +97,9 @@ class Bank:
             logger.error(f' Error create PDF as {e}')
 
     def get_customer_code(self) -> str | None:
+        '''
+        https://developers.tochka.com/docs/tochka-api/api/get-customers-list-open-banking-v-1-0-customers-get
+        '''
 
         url = f"{self.RS_URL}/open-banking/{self.apiVersion}/customers"
         payload = {}
@@ -130,18 +132,6 @@ class Bank:
         document.payment_Status = payment_status
         document.save()
 
-    @classmethod
-    def check_payment(cls, domain, order_id):
-        '''Запускаем ежечасную проверку оплаты '''
-        PeriodicTask.objects.create(
-            name=f'Check payment order №{order_id}',
-            task='check_payment_order',
-            interval=IntervalSchedule.objects.get(every=1, period='hours'),
-            # interval=IntervalSchedule.objects.get(every=2, period='minutes'),
-            args=json.dumps([order_id, domain]),
-            start_time=timezone.now()
-        )
-
     def delete_invoice(self, order_id: int):
         document = BankInvoices.objects.get(order_id=order_id)
         url = f"{self.RS_URL}/invoice/v1.0/bills/{self.customer_code}/{document.document_id}"
@@ -155,4 +145,3 @@ class Bank:
         При оповещегии об оплате через хук нужно проверить все не оплаченные документы на статус оплаты
         '''
         documents = BankInvoices.objects.filter(payment_Status=None)
-
