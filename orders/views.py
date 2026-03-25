@@ -220,9 +220,10 @@ def order_pay(request, order_id):
         else:
             logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
         #     # =============Платежная ссылка от точки===========
-            link_pay = create_pay_link_d.delay(order_id, True)
-            logger.info(f'[Сгенерили - Ссылку для оплаты]{link_pay}')
-            context = {"Orders": order, 'link_pay': link_pay}
+            create_pay_link_d.delay(order_id, True)
+            order = Order.objects.get(id=order_id)
+            logger.info(f'[Сгенерили - Ссылку для оплаты]{order.pay_link}')
+            context = {"Orders": order, 'link_pay': order.pay_link}
         # оповещаем пользователя в whatsapp
         send_mail_for_user.delay(order_id, order.user.email, order.pay_link) # отправляем почту
         # item_user = User.objects.get(email=user)

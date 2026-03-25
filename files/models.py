@@ -210,6 +210,18 @@ class Product(models.Model):
             self.cost_price = image_price.calculate_cost()
             super(Product, self).save(*args, **kwargs)
         elif str(self.images).endswith('png'):
+
+            dict_param = {'quantity': self.quantity,
+                          'material': self.material,
+                          'finishing': self.FinishWork,
+                          'length': self.length,
+                          'width': self.width,
+                          'role': self.user.role}
+
+            image_price = Calculator(dict_param)
+            self.price = image_price.calculate_price()
+
+
             png_image  = ConvertToTif(self.images)
             self.images.name = png_image.run()
             super(Product, self).save(*args, **kwargs)

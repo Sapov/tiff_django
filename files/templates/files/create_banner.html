@@ -283,6 +283,7 @@
         const PRICE_PER_SQM = 490; // цена за 1 м² баннера
         const PRICE_PER_LUVER = 20; // цена за 1 люверс
         const MINIMAL_PRICE = 1300; // минимальная стоимость
+        const PRICE_FINISH = 80; // руб за м.п.
         const canvas = document.getElementById('bannerCanvas');
         const ctx = canvas.getContext('2d');
         const generateBtn = document.getElementById('generateBtn');
@@ -345,19 +346,22 @@
             // Вычисляем площадь
             const area = width * length;
 
+            // Вычисляем периметр
+            const perimetr = (width + length) * 2;
+
             // Вычисляем количество люверсов
             const luversCount = calculateLuversCount(widthMM, heightMM, luversType);
 
             // Вычисляем стоимость
             const bannerCost = area * PRICE_PER_SQM;
             const luversCost = luversCount * PRICE_PER_LUVER;
-            let totalCost = bannerCost + luversCost;
+            const finishWokrCost = perimetr * PRICE_FINISH;
+            let totalCost = bannerCost + luversCost + finishWokrCost;
               // Минимальная стоимость заказа
             if (totalCost <= MINIMAL_PRICE) {
                 totalCost = MINIMAL_PRICE;
             }
             currentTotalCost = Math.ceil(totalCost);
-
 
 
 
