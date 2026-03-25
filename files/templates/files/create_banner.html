@@ -387,7 +387,6 @@
 
 
 
-
         // Функция для поиска оптимального размера шрифта
         function findOptimalFontSize(ctx, text, maxWidth, minFontSize = 10, maxFontSize = 1600) {
             if (!text) return minFontSize;
@@ -626,7 +625,7 @@
                 })
                 .then(data => {
                     if (data.status === 'success') {
-                        showMessage('Заказ успешно отправлен! Наш менеджер свяжется с вами в ближайшее время.', 'success');
+                        showMessage('Заказ успешно отправлен!', 'success');
                         // Можно очистить форму или выполнить другие действия
                         setTimeout(() => {
                             messageContainer.style.display = 'none';
@@ -641,7 +640,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showMessage('Ошибка при отправке заказа. Возможно нужно залогиниться. Пожалуйста, попробуйте еще раз.', 'error');
+                    showMessage('Ошибка при отправке заказа. Возможно нужно войти под своей учетной записью. Пожалуйста, попробуйте еще раз.', 'error');
                 });
             }, 'image/png');
         }
@@ -706,11 +705,6 @@
 
 
     });
-
-
-
-
-
 
 
 </script>
