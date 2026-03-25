@@ -13,7 +13,7 @@ from .views import (
     report_complete_orders,
     new_order,
     OrdersViewList,
-    AllOrdersListView, result, success_pay, fail, report_day, create_invoice, web_hook, fail_payment, success_payment,
+    AllOrdersListView, report_day, create_invoice, web_hook, fail_payment, success_payment,
     get_invoice, create_pay_link,
 )
 from files.views import about_file
@@ -43,8 +43,6 @@ urlpatterns = [
     path('report_day/', report_day, name='report_day'),
     path("report/", report_complete_orders, name="report_complete_orders"),
 
-    # https://docs.robokassa.ru/pay-interface/#notification
-    path("result/", result, name="result"),  # для робокассы проверкаe
     # BANK
     path('web_hook/', web_hook, name='web_hook'),
     path('fail/', fail_payment, name='fail_payment'),

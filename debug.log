@@ -3448,3 +3448,10 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2026-03-25 17:24:50,156 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
 2026-03-25 17:34:05,845 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/forms.py changed, reloading.
 2026-03-25 17:34:09,865 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 21:06:02,560 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 21:08:15,629 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2026-03-25 21:08:16,585 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 21:08:30,462 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/urls.py changed, reloading.
+2026-03-25 21:08:31,389 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 21:08:41,033 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/urls.py changed, reloading.
+2026-03-25 21:08:42,021 django.utils.autoreload INFO     Watching for file changes with StatReloader

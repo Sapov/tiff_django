@@ -59,7 +59,7 @@ def submit_banner_order(request):
                         # resolution = 0,
                         color_model="CMYK",
                         size=0,
-                        price=price_banner,
+                        # price=price_banner,
                         cost_price=0,
                         images=canvas_image,
                         FinishWork=finish_work,

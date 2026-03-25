@@ -12,13 +12,11 @@ from django.urls import reverse_lazy
 from profiles.models import DeliveryAddress, Organisation
 
 from files.models import Product, StatusProduct
-from files.pay import Robokassa
 from .alerts import Alerts
 from .forms import NewOrder, ReportForm
 from .models import Order, OrderItem, StatusOrder
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView
-from django.core.paginator import Paginator
 
 from .payment.acquiring import Acquiring
 from .payment.send_document import SendDocument
@@ -43,7 +41,6 @@ logger = logging.getLogger(__name__)
 def new_order(request):
     logging.info(request)
     if request.POST:
-        logging.info(f"method POST")
         form = NewOrder(user=request.user)
         logging.info(f"REQUEST {request.POST}")
         logging.info(f"USER {request.user}")
@@ -336,39 +333,6 @@ def report_complete_orders(request):
         form = ReportForm()
         return render(request, "report_complete_orders.html", {'form': form})
 
-
-def result(request):
-    if request.GET:
-        if 'OutSum' and 'InvId' in request.GET:
-            received_sum = request.GET['OutSum']
-            order_number = request.GET['InvId']
-            received_signature = request.GET['SignatureValue']
-
-            if Robokassa.check_signature_result(received_sum, order_number, received_signature,
-                                                os.getenv('PASSWORD_ONE'), ):
-                # переключаем оплату на TRUE
-                return render(request, 'success_pay.html')
-
-            # http://www.orders.san-cd.ru/success/?OutSum=12.00&InvId=1&SignatureValue=356f165b0869ab28c62c6c063c44bccb&IsTest=1&Culture=ru
-        return render(request, 'fail_pay.html')
-
-
-def success_pay(request):
-    if request.GET:
-        print(request.GET)
-
-        received_sum = request.GET['OutSum']
-        order_number = request.GET['InvId']
-        received_signature = request.GET['SignatureValue']
-
-        if Robokassa.check_signature_result(received_sum, order_number, received_signature,
-                                            os.getenv('PASSWORD_ONE'), ):
-            return render(request, 'success_pay.html')
-    return render(request, 'fail_pay.html')
-
-
-def fail(request):
-    return render(request, 'fail_pay.html')
 
 
 def report_day(request):
