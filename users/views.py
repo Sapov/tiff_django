@@ -47,7 +47,7 @@ class ListProfile(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         "организации только этого юзера"
-        queryset = User.objects.filter(email=self.request.user)
+        queryset = User.objects.filter(username=self.request.user)
         return queryset
 
 

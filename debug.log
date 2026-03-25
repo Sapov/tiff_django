@@ -3345,3 +3345,18 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2026-03-25 10:47:23,546 profiles.views INFO     page_NUM: <Page 1 of 10>
 2026-03-25 16:59:15,010 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
 2026-03-25 16:59:16,133 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 17:00:32,175 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/bank.py changed, reloading.
+2026-03-25 17:00:33,277 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 17:19:01,862 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-25 17:19:01,862 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-25 17:19:01,862 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-25 17:19:11,385 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-25 17:19:11,388 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2026-03-25 17:21:38,979 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/views.py changed, reloading.
+2026-03-25 17:21:40,434 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 17:22:22,150 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/views.py changed, reloading.
+2026-03-25 17:22:23,472 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 17:22:38,985 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/views.py changed, reloading.
+2026-03-25 17:22:40,169 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 17:23:09,812 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/users/views.py changed, reloading.
+2026-03-25 17:23:10,944 django.utils.autoreload INFO     Watching for file changes with StatReloader

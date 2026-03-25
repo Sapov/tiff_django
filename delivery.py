@@ -185,8 +185,6 @@ class YandexDelivery:
             "features_context": {}
         }
 
-    # print(uuid.uuid4())
-
 
 if __name__ == '__main__':
     YandexDelivery().offer_calculate()
