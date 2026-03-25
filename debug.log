@@ -3446,3 +3446,5 @@ self.material: Баннер 440 грамм ламинированный Широ
 SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
 2026-03-25 17:24:50,155 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
 2026-03-25 17:24:50,156 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-25 17:34:05,845 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/profiles/forms.py changed, reloading.
+2026-03-25 17:34:09,865 django.utils.autoreload INFO     Watching for file changes with StatReloader
