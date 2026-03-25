@@ -1,16 +1,10 @@
-from datetime import datetime, date
 import json
 import os
-
 import requests
-from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from dotenv import load_dotenv, find_dotenv
-from django.utils import timezone
-
 from mysite import settings
-from orders.models import Order, OrderItem, BankInvoices
+from orders.models import Order, BankInvoices
 import logging
-
 from orders.payment import IdDocument
 from .type.data import Data
 
