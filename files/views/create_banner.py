@@ -31,7 +31,6 @@ def submit_banner_order(request):
             text_color = request.POST.get('text_color')
             grommet_type = request.POST.get('grommet_type')
             price_banner = request.POST.get('total_cost')
-            print(f'GROMET {grommet_type}')
 
             if grommet_type == 'perimeter':
                 finish_work = FinishWork.objects.get(id=8)

@@ -4294,3 +4294,57 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2026-03-25 22:17:53,558 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
 2026-03-25 22:17:53,562 orders.views INFO     [Сгенерили - Ссылку для оплаты]None
 2026-03-25 22:18:19,529 django.request WARNING  Not Found: /orders/order_pay/None
+2026-03-25 22:22:22,367 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/views.py changed, reloading.
+2026-03-25 22:22:23,397 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-03-25 22:23:15,575 root         INFO     [INFO]. self.length:1.2 TYPE<class 'float'>
+Width: 1.85 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-25 22:23:15,575 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-25 22:23:15,575 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-25 22:23:15,576 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-03-25 22:23:15,576 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-25 22:23:15,576 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-03-25 22:23:24,460 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-03-25 22:23:24,462 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 3
+2026-03-25 22:23:26,407 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-03-25 22:23:26,409 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['mMs04p8l6CdSLKMpvyQQMngjE3kMyB9ByghNwj82sDRESxiOU4UriwogQXcJMEGR'], 'organisation_payer': [''], 'delivery': ['6'], 'date_complite': ['2026-03-27']}>
+2026-03-25 22:23:26,409 root         INFO     USER forumvrn
+2026-03-25 22:23:26,409 root         INFO     [INFO] отправленная форма имеет дату 2026-03-27
+2026-03-25 22:23:26,411 root         INFO     [INFO] Приводим строку в формату даты 2026-03-27 00:00:00
+2026-03-25 22:23:26,411 root         INFO     [INFO] прибавляем 12 часов 2026-03-27 12:00:00
+2026-03-25 22:23:26,412 root         INFO     date_complite 2026-03-27 12:00:00 - <class 'datetime.datetime'>
+2026-03-25 22:23:26,412 root         INFO     DELIV ID:  6
+2026-03-25 22:23:26,412 root         INFO     ORGANISATION:  
+2026-03-25 22:23:28,854 orders.models INFO     cost_price_per_item 0.00
+2026-03-25 22:23:28,862 orders.models INFO     1700.00
+2026-03-25 22:23:28,862 orders.models INFO     Себестоимость, 0.00
+2026-03-25 22:23:28,869 files.works_with_files.image_tiff_file INFO     [SIZE File] :1.85 m X 1.2 m
+2026-03-25 22:23:28,870 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 6992 px, length: 4535 px
+2026-03-25 22:23:28,870 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-03-25 22:23:28,873 root         INFO     [INFO]. self.length:1.2 TYPE<class 'float'>
+Width: 1.85 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-03-25 22:23:28,873 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-25 22:23:28,873 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-03-25 22:23:31,377 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-03-25 22:23:31,399 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-03-25 22:23:31,401 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-03-27 09:00:00+00:00
+2026-03-25 22:23:31,649 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-03-25 22:23:32,077 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2026-03-25 22:23:32,079 orders.payment.acquiring INFO     self.customer_code <class 'str'>
+2026-03-25 22:23:32,105 orders.payment.acquiring INFO     Посчитанный TOTAL PRICE: 1700.00
+2026-03-25 22:23:32,106 orders.payment.acquiring INFO     positions: [{'vatType': 'none', 'name': 'Баннер 440 грамм ламинированный Широкоформатная печать 1.2x1.85 м', 'amount': 1700.0, 'quantity': 1, 'paymentMethod': 'full_payment', 'paymentObject': 'goods', 'measure': 'шт.'}]
+2026-03-25 22:23:32,106 orders.payment.acquiring INFO     ['PAYLOAD__: {\n    "Data": {\n        "customerCode": "301576470",\n        "amount": 1700.0,\n        "purpose": "\\u041e\\u043f\\u043b\\u0430\\u0442\\u0430 \\u0437\\u0430\\u043a\\u0430\\u0437\\u0430 \\u2116 50",\n        "redirectUrl": "https://order.san-cd.ru/orders/success",\n        "failRedirectUrl": "https://order.san-cd.ru/orders/fail",\n        "paymentMode": [\n            "sbp"\n        ],\n        "saveCard": true,\n        "consumerId": "forumvrn@gmail.com",\n        "taxSystemCode": "usn_income",\n        "merchantId": null,\n        "Client": {\n            "name": "\\u0410\\u043b\\u0435\\u043a\\u0441\\u0430\\u043d\\u0434\\u0440",\n            "email": "forumvrn@gmail.com",\n            "phone": "+79515456824"\n        },\n        "Items": [\n            {\n                "vatType": "none",\n                "name": "\\u0411\\u0430\\u043d\\u043d\\u0435\\u0440 440 \\u0433\\u0440\\u0430\\u043c\\u043c \\u043b\\u0430\\u043c\\u0438\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u043d\\u044b\\u0439 \\u0428\\u0438\\u0440\\u043e\\u043a\\u043e\\u0444\\u043e\\u0440\\u043c\\u0430\\u0442\\u043d\\u0430\\u044f \\u043f\\u0435\\u0447\\u0430\\u0442\\u044c 1.2x1.85 \\u043c",\n                "amount": 1700.0,\n                "quantity": 1,\n                "paymentMethod": "full_payment",\n                "paymentObject": "goods",\n                "measure": "\\u0448\\u0442."\n            }\n        ]\n    }\n}']
+2026-03-25 22:23:32,818 orders.payment.acquiring INFO     RESPONSE FOR PAYMENT LINK :{'Data': {'purpose': 'Оплата заказа № 50', 'status': 'CREATED', 'amount': 1700.0, 'operationId': '006c89b9-e531-4979-a73d-e6ec9642eddc', 'paymentLink': 'https://merch.tochka.com/order/?uuid=006c89b9-e531-4979-a73d-e6ec9642eddc', 'consumerId': 'forumvrn@gmail.com', 'ttl': 10080, 'paymentLinkId': '415', 'paymentMode': ['sbp'], 'customerCode': '301576470', 'redirectUrl': 'https://order.san-cd.ru/orders/success', 'failRedirectUrl': 'https://order.san-cd.ru/orders/fail', 'taxSystemCode': 'usn_income', 'Client': {'name': 'Александр', 'email': 'forumvrn@gmail.com', 'phone': '+79515456824'}, 'Items': [{'vatType': 'none', 'name': 'Баннер 440 грамм ламинированный Широкоформатная печать 1.2x1.85 м', 'amount': 1700.0, 'quantity': 1.0, 'paymentMethod': 'full_payment', 'paymentObject': 'goods', 'measure': 'шт.'}]}, 'Links': {'self': 'https://enter.tochka.com/uapi/acquiring/v1.0/payments_with_receipt'}, 'Meta': {'totalPages': 1}}
+2026-03-25 22:23:32,819 orders.payment.acquiring INFO     SAVE PAY-LINK: https://merch.tochka.com/order/?uuid=006c89b9-e531-4979-a73d-e6ec9642eddc
+2026-03-25 22:23:32,854 orders.views INFO     [Сгенерили - Ссылку для оплаты]https://merch.tochka.com/order/?uuid=006c89b9-e531-4979-a73d-e6ec9642eddc
+2026-03-25 22:27:59,146 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/create_banner.py changed, reloading.
+2026-03-25 22:28:00,386 django.utils.autoreload INFO     Watching for file changes with StatReloader

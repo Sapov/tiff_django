@@ -213,19 +213,19 @@ def order_pay(request, order_id):
         if order.organisation_payer:
             logger.info(f'[Выбрана организация - генерим счет]')
             create_order_pdf.delay(order_id)
-        #
             link_pay = Acquiring(order_id).run(organisation_flag=True)
             context = {"Orders": order, 'link_pay': link_pay}
-        #
         else:
             logger.info(f'[НЕ Выбрана организация - только  ссылку на частное лицо]')
-        #     # =============Платежная ссылка от точки===========
-            create_pay_link_d.delay(order_id, True)
-            order = Order.objects.get(id=order_id)
-            logger.info(f'[Сгенерили - Ссылку для оплаты]{order.pay_link}')
-            context = {"Orders": order, 'link_pay': order.pay_link}
+             # =============Платежная ссылка от точки===========
+            # create_pay_link_d.delay(order_id, True)
+            link_pay = Acquiring(order_id).run(organisation_flag=True)
+
+            # order = Order.objects.get(id=order_id)
+            logger.info(f'[Сгенерили - Ссылку для оплаты]{link_pay}')
+            context = {"Orders": order, 'link_pay': link_pay}
         # оповещаем пользователя в whatsapp
-        send_mail_for_user.delay(order_id, order.user.email, order.pay_link) # отправляем почту
+        send_mail_for_user.delay(order_id, order.user.email, link_pay) # отправляем почту
         # item_user = User.objects.get(email=user)
         # if item_user.whatsapp and item_user.phone_number:
         #     send_message_whatsapp.delay(f'7{item_user.phone_number.national_number}', f'Заказ № {order_id} оформлен')
