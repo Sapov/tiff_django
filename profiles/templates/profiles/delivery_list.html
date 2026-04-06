@@ -42,8 +42,8 @@
                                                     <td>{{ item.house }}</td>
                                                     <td>{{ item.comment }}</td>
                                                     <td>{{ item.postal_code }}</td>
-                                                    <td>{{ item.first_name }} {{ item.second_name }}</td>
-                                                    <td>{{ item.phone }}</td>
+                                                    <td>{{ item.user.first_name }} {{ item.user.last_name }}</td>
+                                                    <td>{{ item.user.phone_number }}</td>
                                                     <td>{{ item.delivery_method }}</td>
                                                     <td><a href="{% url 'profiles:delivery_delete' item.id %}">Удалить</a></td>
                 </tr>

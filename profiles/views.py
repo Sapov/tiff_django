@@ -179,7 +179,7 @@ def save_delivery_point(request):
                 'selected_at': request.POST.get('selected_at'),
             }
 
-            print(point_data)
+            print(f'Пришли данные с карты {point_data} и {request.user}')
 
             DeliveryAddress.objects.create(
                 user=request.user,

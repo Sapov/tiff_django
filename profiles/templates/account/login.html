@@ -317,35 +317,35 @@
             <p>Войдите в свой аккаунт</p>
         </div>
 
-        <!-- Форма входа с использованием Django CSRF и стандартных полей -->
-        <form class="login-form" method="post" action="{% url 'account_login' %}">
-            {% csrf_token %}
+<!--        &lt;!&ndash; Форма входа с использованием Django CSRF и стандартных полей &ndash;&gt;-->
+<!--        <form class="login-form" method="post" action="{% url 'account_login' %}">-->
+<!--            {% csrf_token %}-->
 
-            <div class="input-group-custom">
-                <label for="id_login">Email или телефон</label>
-                <div class="input-field">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" name="login" id="id_login" placeholder="ivan@example.com" autocomplete="email" required>
-                </div>
-            </div>
+<!--            <div class="input-group-custom">-->
+<!--                <label for="id_login">Email или телефон</label>-->
+<!--                <div class="input-field">-->
+<!--                    <i class="fas fa-envelope"></i>-->
+<!--                    <input type="email" name="login" id="id_login" placeholder="ivan@example.com" autocomplete="email" required>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="input-group-custom">
-                <label for="id_password">Пароль</label>
-                <div class="input-field">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" name="password" id="id_password" placeholder="••••••••" autocomplete="current-password" required>
-                </div>
-            </div>
+<!--            <div class="input-group-custom">-->
+<!--                <label for="id_password">Пароль</label>-->
+<!--                <div class="input-field">-->
+<!--                    <i class="fas fa-lock"></i>-->
+<!--                    <input type="password" name="password" id="id_password" placeholder="••••••••" autocomplete="current-password" required>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="login-options">
-                <label class="remember">
-                    <input type="checkbox" name="remember" id="id_remember"> Запомнить меня
-                </label>
-                <a href="{% url 'account_reset_password' %}" class="forgot-link">Забыли пароль?</a>
-            </div>
+<!--            <div class="login-options">-->
+<!--                <label class="remember">-->
+<!--                    <input type="checkbox" name="remember" id="id_remember"> Запомнить меня-->
+<!--                </label>-->
+<!--                <a href="{% url 'account_reset_password' %}" class="forgot-link">Забыли пароль?</a>-->
+<!--            </div>-->
 
-            <button type="submit" class="btn-login">Войти</button>
-        </form>
+<!--            <button type="submit" class="btn-login">Войти</button>-->
+<!--        </form>-->
 
         <div class="divider">или продолжите с</div>
 
@@ -367,9 +367,9 @@
             </div>
         </div>
 
-        <div class="signup-prompt">
-            Нет аккаунта? <a href="{% url 'account_signup' %}">Создать</a>
-        </div>
+<!--        <div class="signup-prompt">-->
+<!--            Нет аккаунта? <a href="{% url 'account_signup' %}">Создать</a>-->
+<!--        </div>-->
     </div>
 </div>
 

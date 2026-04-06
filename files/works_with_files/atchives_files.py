@@ -80,7 +80,6 @@ class UtilsModel:
             self.order_list.append(quantity_print)
             self.order_list.append(length_width)
             self.order_list.append(color_model)
-            # self.order_list.append(size)
             self.order_list.append(square)
             self.order_list.append(finish_work_rec_file)
 
