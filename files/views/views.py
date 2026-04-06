@@ -93,34 +93,6 @@ def handle_uploaded_file(f):
             destination.write(chunk)
 
 
-
-# def upload_file(request):
-#     if request.method == 'POST':
-#         form = FileArh(request.POST, request.FILES)
-#         if form.is_valid():
-#             upload = FileArh(file=request.FILES['file'])
-#             upload.save()
-#
-#             # Запуск асинхронной задачи
-#             process_large_file.delay(upload.id)
-#
-#             return JsonResponse({
-#                 'status': 'success',
-#                 'upload_id': upload.id,
-#                 'task_status_url': f'/upload/status/{upload.id}/'
-#             })
-#     else:
-#         form = FileArh()
-#     return render(request, 'upload.html', {'form': form})
-
-
-# def upload_status(request, upload_id):
-#     upload = FileUpload.objects.get(id=upload_id)
-#     return JsonResponse({
-#         'status': upload.status,
-#         'progress': upload.progress,
-#         'result': upload.result
-#     })
 class FilesCreateView(LoginRequiredMixin, FormView):
     model = Product
     fields = ["quantity", "material", "FinishWork", "images", "comments"]
