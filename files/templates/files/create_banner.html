@@ -844,7 +844,7 @@
         <p>Для оформления заказа необходимо войти в систему.</p>
         <div class="auth-modal-buttons">
             <a href="{% url 'account_login' %}?next={{ request.path }}" class="auth-modal-btn login">Войти</a>
-            <button onclick="closeAuthModal()" class="auth-modal-btn close">Закрыть</button>
+            <button onclick="document.getElementById('authModal').style.display = 'none'" class="auth-modal-btn close">Закрыть</button>
         </div>
     </div>
 </div>
