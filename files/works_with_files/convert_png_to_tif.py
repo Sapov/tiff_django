@@ -32,8 +32,7 @@ class ConvertToTif:
         self.new_name = 'temp.tif'
         self.image = image
 
-        print(f'[пришел type теперь]{type(self.image)}')
-        print(f'[пришел]{self.image}')
+        logger.info(f'[пришел]{self.image}')
 
     def __new_name_file(self):
         self.new_name = str(self.image)[:-4] + '.tif'

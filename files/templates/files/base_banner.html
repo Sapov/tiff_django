@@ -1,4 +1,3 @@
-переделай страницы в этой же стилистике
 {% load account socialaccount %}
 
 
@@ -200,7 +199,7 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <button type="button" class="btn btn-primary btn-sm ms-lg-2 px-4 login-btn" data-bs-toggle="modal" data-bs-target="#loginModal" style="border-radius: 8px;">
+                            <button type="button" class="btn btn-primary btn-sm ms-lg-2 px-4 login-btn"  data-bs-toggle="modal" data-bs-target="#loginModal" style="border-radius: 8px;" href="{% url 'account_login' %}">
                                 Вход
                             </button>
                         </li>

@@ -17,7 +17,7 @@ class BannerGeneratorView(View):
             'page_name': 'banner_generator',
         }
 
-        return render(request, 'files/create_banner_2.html', context)
+        return render(request, 'files/create_banner.html', context)
 
 
 @csrf_exempt
@@ -31,6 +31,7 @@ def submit_banner_order(request):
             text_color = request.POST.get('text_color')
             grommet_type = request.POST.get('grommet_type')
             price_banner = request.POST.get('total_cost')
+            mounting_type = request.POST.get('mounting_type')
 
             if grommet_type == 'perimeter':
                 finish_work = FinishWork.objects.get(id=8)
@@ -63,7 +64,7 @@ def submit_banner_order(request):
                         images=canvas_image,
                         FinishWork=finish_work,
                         status_product=status,
-                        comments=text + phone
+                        comments=text + phone + mounting_type
                     )
                 except Exception as e:
                     print(e)

@@ -1,20 +1,140 @@
-{% extends 'files/base_banner.html' %}
-
 {% load i18n %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
 
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изготовление баннеров "ПРОДАМ" - Быстро и Качественно</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
-            margin: 0 auto;
-            background-color: #f5f5f5;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #dc2626, #b91c1c, #991b1b);
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            background: #111827 !important;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
-        .container {
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
+        nav li { margin: 0 1rem; }
+        nav a { color: #fff; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 20px; transition: all 0.3s; }
+        nav a:hover { background: rgba(255,255,255,0.2); }
+
+        .hero {
+            background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJhIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxwYXRoIGQ9Ik0wIDQwTDQwIDBNNDAgNDBMIDAgMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=');
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero > .container { position: relative; z-index: 2; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.6rem; margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+
+        .btn {
+            background: #fff;
+            color: #dc2626;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #f3f4f6;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        section { padding: 6rem 0; background: rgba(255,255,255,0.05); margin: 2rem 0; border-radius: 20px; }
+
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #fff;
+        }
+
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+
+        .feature {
+            text-align: center;
+            padding: 2.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .feature h3 { color: #fff; margin-bottom: 1rem; font-size: 1.5rem; }
+        .feature p { color: rgba(255,255,255,0.9); }
+
+        .examples { background: rgba(255,255,255,0.08) !important; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+
+        .example {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .example:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+        .example img { width: 100%; height: 220px; object-fit: cover; background: #666; }
+        .example > div { padding: 1.5rem; color: #fff; }
+        .example h4 { margin-bottom: 0.5rem; }
+
+        /* Стили для формы заказа баннера */
+        .order-form-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
@@ -23,28 +143,51 @@
         .form-container {
             flex: 1;
             min-width: 300px;
-            background: white;
+            background: rgba(255,255,255,0.1);
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
         }
 
         .preview-container {
             flex: 1;
             min-width: 300px;
-            background: white;
+            background: rgba(255,255,255,0.1);
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
+        /* Стили для радиокнопок крепления */
+        .mounting-group {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .mounting-group label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .mounting-option {
+            margin-bottom: 8px;
+        }
+
+        .mounting-option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .mounting-option label {
+            display: inline;
+            font-weight: normal;
+            cursor: pointer;
         }
 
         .form-group {
@@ -55,15 +198,21 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #555;
+            color: #fff;
         }
 
         input[type="number"], input[type="text"] {
             width: 100%;
             padding: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(255,255,255,0.3);
             border-radius: 4px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
             box-sizing: border-box;
+        }
+
+        input::placeholder {
+            color: rgba(255,255,255,0.7);
         }
 
         .dimension-inputs {
@@ -87,44 +236,38 @@
         input[type="color"] {
             width: 100%;
             height: 40px;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(255,255,255,0.3);
             border-radius: 4px;
             cursor: pointer;
         }
 
         button {
-            background-color: #4CAF50;
-            color: white;
+            background: linear-gradient(135deg, #fff, #f3f4f6);
+            color: #dc2626;
             border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
+            padding: 12px 15px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
-            width: 100%;
-            margin-top: 10px;
+            font-weight: bold;
+            transition: all 0.3s;
         }
 
         button:hover {
-            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         #bannerCanvas {
-            border: 1px solid #ddd;
+            border: 1px solid rgba(255,255,255,0.3);
             max-width: 100%;
             margin-bottom: 15px;
-        }
-
-        .download-btn {
-            background-color: #2196F3;
-        }
-
-        .download-btn:hover {
-            background-color: #0b7dda;
+            background: #fff;
         }
 
         .info-text {
             font-size: 0.9em;
-            color: #666;
+            color: rgba(255,255,255,0.8);
             margin-top: 5px;
         }
 
@@ -147,12 +290,20 @@
         }
 
         .submit-btn {
-            background-color: #FF5722;
-            margin-top: 20px;
+            background: linear-gradient(135deg, #FF5722, #E64A19);
+            color: white;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .enter-btn {
+            background: linear-gradient(135deg, #FF5722, #E64A19);
+            color: white;
+            width: 100%;
         }
 
         .submit-btn:hover {
-            background-color: #E64A19;
+            background: linear-gradient(135deg, #E64A19, #D84315);
         }
 
         .message {
@@ -173,294 +324,584 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-    </style>
-    <title>{{ title }}</title>
 
+        .result {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .result-label {
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 1.3em;
+            color: #ffd700;
+        }
+
+        /* Стили для формы сбора контактов */
+        .contact-form-section {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.15);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form-container h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .contact-form-container input,
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        .contact-form-container input:focus,
+        .contact-form-container textarea:focus {
+            outline: none;
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        .contact-form-container input::placeholder,
+        .contact-form-container textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-form-container textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .contact-submit-btn {
+            background: linear-gradient(135deg, #FF5722, #E64A19);
+            color: white;
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,87,34,0.4);
+        }
+
+        footer {
+            background: rgba(17, 24, 39, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Стили для статус бара */
+        .status-bar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .status-bar-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            min-width: 350px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .status-bar-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .progress-bar-wrapper {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 25px 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .status-message {
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        .status-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #FF5722;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.2rem; }
+            h2 { font-size: 2rem; }
+            .features { grid-template-columns: 1fr; }
+            nav ul { flex-direction: column; }
+            nav li { margin: 0.5rem 0; }
+            .order-form-container { flex-direction: column; }
+            .contact-form-container { padding: 1.5rem; }
+            .status-bar-container { min-width: 280px; padding: 30px; }
+        }
+    </style>
 </head>
 <body>
-<h1>Заказать баннер</h1>
+<header>
+    <nav class="container">
+        <ul>
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#features">Преимущества</a></li>
+            <li><a href="#examples">Примеры</a></li>
+            <li><a href="#order">Заказать</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="userDropdown" role="button"
+                   data-bs-toggle="dropdown">
+                    {{ user.email }}
+                </a>
 
-<!-- Добавляем форму для отправки данных -->
-<form id="bannerForm" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+            <li class="nav-item dropdown">
+                <form method="post" action="{% url 'account_logout' %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="enter-btn btn-primary btn-sm ms-lg-2 px-4"
+                            style="border-radius: 8px;"> Выйти
+                    </button>
+                </form>
+            </li>
 
-    <!-- Сообщения об успехе/ошибке -->
-    <div id="messageContainer" class="message" style="display: none;"></div>
 
+            {% else %}
+            <li class="nav-item">
+                <a href="{% url 'account_login' %}" class="enter-btn btn-primary btn-sm ms-lg-2 px-4"
+                   style="border-radius: 8px;">
+                    Вход
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+
+
+    </nav>
+</header>
+
+<section id="home" class="hero">
     <div class="container">
-        <div class="form-container">
-            <div class="form-group">
-                <label>Размер баннера (мм):</label>
-                <div class="dimension-inputs">
-                    <div class="dimension-input">
-                        <label for="width">Ширина:</label>
-                        <input type="number" id="width" name="width" min="50" max="1600" value="900" required>
-                    </div>
-                    <div class="dimension-input">
-                        <label for="height">Высота:</label>
-                        <input type="number" id="height" name="height" min="20" max="1600" value="400" required>
-                    </div>
-                </div>
+        <h1>Изготовим баннер "ПРОДАМ" c вашим телефоном</h1>
+        <p>Яркий, прочный баннер для продажи авто, недвижимости или товаров. Любые размеры.</p>
+        <a href="#order" class="btn">Заказать баннер</a>
+    </div>
+</section>
+
+<section id="features">
+    <div class="container">
+        <h2>Почему выбирают нас?</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>⚡ Срочное изготовление</h3>
+                <p>Уже сегодня мы передадим ваш баннер в доставку.</p>
             </div>
-
-            <div class="form-group">
-                <label for="text">Текст баннера:</label>
-                <input type="text" id="text" name="text" value="АРЕНДА">
-                <input type="hidden" id="user" name="user" value={{user}}>
-                <input type="hidden" id="totalCostInput" name="total_cost" value="">
-
+            <div class="feature">
+                <h3>✅ Высокое качество</h3>
+                <p>Плотный баннерный материал, высококачественная печать, не выгорает на солнце.</p>
             </div>
-
-            <div class="form-group">
-                <label for="phone">Телефон:</label>
-                <input type="text" id="phone" name="phone" value="+7 (953) 119-33-67">
+            <div class="feature">
+                <h3>📏 Любые размеры</h3>
+                <p>От 1x1 м до 3x6 м и больше.</p>
             </div>
-
-            <div class="form-group">
-                <label>Цвета:</label>
-                <div class="color-inputs">
-                    <div class="color-input">
-                        <label for="bgColor">Фон</label>
-                        <input type="color" id="bgColor" name="bg_color" value="#ff0000">
-                    </div>
-                    <div class="color-input">
-                        <label for="textColor">Текст</label>
-                        <input type="color" id="textColor" name="text_color" value="#ffffff">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Люверсы:</label>
-                <div class="radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="grommetPerimeter" name="grommet_type" value="perimeter" checked>
-                        <label for="grommetPerimeter">Установить люверсы по периметру</label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" id="grommetCorners" name="grommet_type" value="corners">
-                        <label for="grommetCorners">Люверсы по углам</label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" id="grommetNone" name="grommet_type" value="none">
-                        <label for="grommetNone">Без люверсов</label>
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" id="generateBtn">Сгенерировать баннер</button>
-
-        </div>
-
-        <div class="preview-container">
-            <canvas id="bannerCanvas"></canvas>
-            <div class="info-text" id="sizeInfo"></div>
-                <div class="result" id="result">
-            <h3>Результат расчета</h3>
-
-            <div class="result-item">
-                <span class="result-label">Количество люверсов:</span>
-                <span class="result-value" id="luversCount">0 шт</span>
-            </div>
-
-            <div class="result-item">
-                <span class="result-label">Итого стоимость:</span>
-                <span class="result-value price" id="totalCost">0 ₽</span>
-
-            </div>
-        </div>
-
-            <button type="button" id="submitOrderBtn" class="submit-btn">Заказать</button>
-
         </div>
     </div>
+</section>
+
+<section id="examples" class="examples">
+    <div class="container">
+        <h2>Примеры баннеров "ПРОДАМ"</h2>
+        <div class="grid">
+            <div class="example">
+                <img src="{% static 'img/banners/red.jpg' %}" alt="Баннер для авто"
+                     style="width: 100%; height: 220px; object-fit: cover;">
+                <div>
+                    <h4>Баннер для авто</h4>
+                    <p>2x1.5 м, яркий дизайн, люверсы по периметру</p>
+                    <p><strong>Цена: от 1 500 ₽</strong></p>
+                </div>
+            </div>
+
+            <div class="example">
+                <img src="{% static 'img/banners/banner-house.jpg' %}" alt="Баннер для дома"
+                     style="width: 100%; height: 220px; object-fit: cover;">
+                <div>
+                    <h4>Баннер "Продам дом"</h4>
+                    <p>3x2 м, усиленные люверсы, защита от выгорания</p>
+                    <p><strong>Цена: от 2 900 ₽</strong></p>
+                </div>
+            </div>
+
+            <div class="example">
+                <img src="{% static 'img/banners/white.jpg' %}" alt="Баннер гаража"
+                     style="width: 100%; height: 220px; object-fit: cover;">
+                <div>
+                    <h4>Баннер "Продам гараж"</h4>
+                    <p>2x1 м, комплект с креплениями, срочное изготовление</p>
+                    <p><strong>Цена: от 1 300 ₽</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="order">
+    <div class="container">
+        <h2>Закажите баннер прямо сейчас</h2>
+
+        <div id="messageContainer" class="message" style="display: none;"></div>
+        <!-- Добавляем форму для отправки данных -->
+        <form id="bannerForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="order-form-container">
+                <!-- Левый блок - форма параметров -->
+                <div class="form-container">
+                    <div class="form-group">
+                        <label>Размер баннера (мм):</label>
+                        <div class="dimension-inputs">
+                            <div class="dimension-input">
+                                <label for="width">Ширина:</label>
+                                <input type="number" id="width" name="width" min="50" max="1600" value="900" required>
+                            </div>
+                            <div class="dimension-input">
+                                <label for="height">Высота:</label>
+                                <input type="number" id="height" name="height" min="20" max="1600" value="400" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text">Текст баннера:</label>
+                        <input type="text" id="text" name="text" value="ПРОДАМ">
+                        <input type="hidden" id="user" name="user" value="{{ user.id }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Телефон:</label>
+                        <input type="text" id="phone" name="phone" value="+7 (953) 119-33-67">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Цвета:</label>
+                        <div class="color-inputs">
+                            <div class="color-input">
+                                <label for="bgColor">Фон</label>
+                                <input type="color" id="bgColor" name="bg_color" value="#ff0000">
+                            </div>
+                            <div class="color-input">
+                                <label for="textColor">Текст</label>
+                                <input type="color" id="textColor" name="text_color" value="#ffffff">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Люверсы:</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="grommetPerimeter" name="grommet_type" value="perimeter" checked>
+                                <label for="grommetPerimeter">Установить люверсы по периметру</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="grommetCorners" name="grommet_type" value="corners">
+                                <label for="grommetCorners">Люверсы по углам</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="grommetNone" name="grommet_type" value="none">
+                                <label for="grommetNone">Без люверсов</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="generateBtn">Сгенерировать баннер</button>
+                </div>
+
+                <!-- Правый блок - предпросмотр, крепление и заказ -->
+                <div class="preview-container">
+                    <canvas id="bannerCanvas"></canvas>
+                    <div class="info-text" id="sizeInfo"></div>
+
+                    <div class="result">
+                        <h3>Результат расчета</h3>
+                        <div class="result-item">
+                            <span class="result-label">Количество люверсов:</span>
+                            <span class="result-value" id="luversCount">0 шт</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Итого стоимость:</span>
+                            <span class="result-value price" id="totalCost">0 ₽</span>
+                        </div>
+                    </div>
+
+                    <!-- Блок выбора крепления (перенесен в правую колонку) -->
+                    <div class="mounting-group">
+                        <label>🔧 Выберите крепеж:</label>
+                        <div class="mounting-option">
+                            <input type="radio" id="mountingTape" name="mounting_type" value="Скотч" checked>
+                            <label for="mountingTape">Скотч для приклейки баннера на окно</label>
+                        </div>
+                        <div class="mounting-option">
+                            <input type="radio" id="mountingTies" name="mounting_type" value="Стяжки">
+                            <label for="mountingTies">Стяжки для монтажа баннера на раму</label>
+                        </div>
+                        <div class="mounting-option">
+                            <input type="radio" id="mountingScrews" name="mounting_type" value="Саморезы">
+                            <label for="mountingScrews">Саморезы для крепления баннера через люверсы</label>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка заказать (в правой колонке) -->
+                    <button type="button" id="submitOrderBtn" class="submit-btn">Заказать баннер</button>
+                    <input type="hidden" id="totalCostInput" name="total_cost" value="">
+                    <input type="hidden" id="mounting-option" name="mounting_type" value="">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Статус бар -->
+<div id="statusBarOverlay" class="status-bar-overlay">
+    <div class="status-bar-container">
+        <div class="status-spinner"></div>
+        <div class="status-bar-title" id="statusTitle">Отправка заказа...</div>
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <div class="status-message" id="statusMessage">
+            Пожалуйста, подождите. Идет обработка вашего заказа...
+        </div>
+    </div>
+</div>
+
+<form id="contactForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Форма сбора контактов -->
+    <section id="contacts" class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-container">
+                <h3>📞 Остались вопросы? Свяжитесь с нами!</h3>
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="contactName" name="username" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="contactPhone" name="phone" placeholder="Номер телефона" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="contactEmail" name="email" placeholder="Email (необязательно)">
+                </div>
+                <div class="form-group">
+                    <textarea id="contactMessage" name="interest_text"
+                              placeholder="Размер, текст, пожелания (например: 2x1.5 м, красный фон)"
+                              rows="4"></textarea>
+
+
+                </div>
+                <button type="submit" class="contact-submit-btn">Отправить заявку</button>
+
+                <div id="contactMessageContainer" class="message" style="display: none; margin-top: 15px;"></div>
+            </div>
+        </div>
+    </section>
 </form>
 
+<footer id="contact">
+    <div class="container">
+        <p>&copy; 2026 Изготовление баннеров "ПРОДАМ". Тел: +7 (953) 119-33-67</p>
+    </div>
+</footer>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Цены
-        const PRICE_PER_SQM = 490; // цена за 1 м² баннера
-        const PRICE_PER_LUVER = 20; // цена за 1 люверс
-        const MINIMAL_PRICE = 1300; // минимальная стоимость
-        const PRICE_FINISH = 80; // руб за м.п.
+        const PRICE_PER_SQM = 490;
+        const PRICE_PER_LUVER = 20;
+        const MINIMAL_PRICE = 1300;
+        const PRICE_FINISH = 80;
+        const GROMMET_SPACING_MM = 300;
+        const GROMMET_MARGIN_MM = 25;
+        const GROMMET_RADIUS_MM = 4;
+        const MM_TO_PX = 96 / 25.4;
+
         const canvas = document.getElementById('bannerCanvas');
         const ctx = canvas.getContext('2d');
         const generateBtn = document.getElementById('generateBtn');
         const submitOrderBtn = document.getElementById('submitOrderBtn');
         const sizeInfo = document.getElementById('sizeInfo');
-        const InfoPrice = document.getElementById('InfoPrice');
         const messageContainer = document.getElementById('messageContainer');
         const form = document.getElementById('bannerForm');
-        const user = document.getElementById('userDropdown');
         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
         let currentTotalCost = 0;
 
-
-
-        // Элементы формы
         const widthInput = document.getElementById('width');
         const heightInput = document.getElementById('height');
         const textInput = document.getElementById('text');
         const phoneInput = document.getElementById('phone');
         const bgColorInput = document.getElementById('bgColor');
-        const totalCost = document.getElementById('totalCost');
         const textColorInput = document.getElementById('textColor');
         const grommetRadios = document.querySelectorAll('input[name="grommet_type"]');
 
-        // Константы для преобразования мм в пиксели (предполагаем 96 DPI)
-        const MM_TO_PX = 96 / 25.4;
+        // Элементы статус бара
+        const statusBarOverlay = document.getElementById('statusBarOverlay');
+        const statusTitle = document.getElementById('statusTitle');
+        const statusMessage = document.getElementById('statusMessage');
+        const progressFill = document.getElementById('progressFill');
 
-        // Параметры люверсов
-        const GROMMET_DIAMETER_MM = 8;
-        const GROMMET_RADIUS_MM = GROMMET_DIAMETER_MM / 2;
-        const GROMMET_SPACING_MM = 300; // Расстояние между центрами люверсов
-        const GROMMET_MARGIN_MM = 25; // Отступ от края
+        let progressInterval = null;
+        let currentProgress = 0;
 
-        // Функция для преобразования мм в пиксели
+        // Функции для статус бара
+        function showStatusBar(title, message) {
+            statusTitle.textContent = title || 'Отправка заказа...';
+            statusMessage.textContent = message || 'Пожалуйста, подождите. Идет обработка вашего заказа...';
+            statusBarOverlay.style.display = 'flex';
+            currentProgress = 0;
+            progressFill.style.width = '0%';
+
+            // Запускаем анимацию прогресса
+            if (progressInterval) clearInterval(progressInterval);
+            progressInterval = setInterval(() => {
+                if (currentProgress < 90) {
+                    currentProgress += Math.random() * 8;
+                    if (currentProgress > 90) currentProgress = 90;
+                    progressFill.style.width = `${currentProgress}%`;
+                }
+            }, 400);
+        }
+
+        function updateStatusBar(title, message, progress = null) {
+            if (title) statusTitle.textContent = title;
+            if (message) statusMessage.textContent = message;
+            if (progress !== null) {
+                currentProgress = progress;
+                progressFill.style.width = `${progress}%`;
+            }
+        }
+
+        function hideStatusBar(success = true, delay = 1000) {
+            if (progressInterval) clearInterval(progressInterval);
+
+            // Устанавливаем 100%
+            progressFill.style.width = '100%';
+            currentProgress = 100;
+
+            if (success) {
+                statusTitle.textContent = 'Готово!';
+                statusMessage.textContent = 'Заказ успешно отправлен!';
+            } else {
+                statusTitle.textContent = 'Ошибка!';
+                statusMessage.textContent = 'Произошла ошибка при отправке. Попробуйте позже.';
+            }
+
+            // Скрываем через указанную задержку
+            setTimeout(() => {
+                statusBarOverlay.style.display = 'none';
+                progressFill.style.width = '0%';
+                currentProgress = 0;
+            }, delay);
+        }
+
         function mmToPx(mm) {
             return mm * MM_TO_PX;
         }
 
-
-
-
-
- // Основная функция расчета
-        function calculateCost(widthMM, heightMM, grommetType) {
-            // Получаем значения из формы
-            // const width = parseFloat(document.getElementById('widthInput').value);
-
-            // const length = parseFloat(document.getElementById('lengthInput').value);
-            const luversType = grommetType;
-            const width = widthMM / 1000;
-            const length = heightMM / 1000;
-
-
-            // Проверка введенных данных
-            if (isNaN(width) || width <= 0 || isNaN(length) || length <= 0) {
-                alert('Пожалуйста, введите корректные значения ширины и длины (положительные числа)');
-                return;
-            }
-
-            // Вычисляем площадь
-            const area = width * length;
-
-            // Вычисляем периметр
-            const perimetr = (width + length) * 2;
-
-            // Вычисляем количество люверсов
-            const luversCount = calculateLuversCount(widthMM, heightMM, luversType);
-
-            // Вычисляем стоимость
-            const bannerCost = area * PRICE_PER_SQM;
-            const luversCost = luversCount * PRICE_PER_LUVER;
-            const finishWokrCost = perimetr * PRICE_FINISH;
-            let totalCost = bannerCost + luversCost + finishWokrCost;
-              // Минимальная стоимость заказа
-            if (totalCost <= MINIMAL_PRICE) {
-                totalCost = MINIMAL_PRICE;
-            }
-            currentTotalCost = Math.ceil(totalCost);
-
-
-
-            // Форматируем числа для вывода
-            const formatNumber = (num) => {
-                return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            };
-
-            // Отображаем результаты
-            // document.getElementById('areaValue').textContent = `${formatNumber(area)} м²`;
-            console.log(`${luversCount} шт`)
-            document.getElementById('luversCount').textContent = `${luversCount} шт`;
-            // document.getElementById('bannerCost').textContent = `${formatNumber(bannerCost)} ₽`;
-            // document.getElementById('luversCost').textContent = `${formatNumber(luversCost)} ₽`;
-            document.getElementById('totalCost').textContent = `${formatNumber(totalCost)} ₽`;
-
-            // Показываем блок с результатами
-            document.getElementById('result').style.display = 'block';
-
-            // Прокручиваем к результатам
-            document.getElementById('result').scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest'
-            });
-        }
-
-
-
-
-        // Функция для поиска оптимального размера шрифта
-        function findOptimalFontSize(ctx, text, maxWidth, minFontSize = 10, maxFontSize = 1600) {
-            if (!text) return minFontSize;
-
-            let fontSize = minFontSize;
-            let textWidth;
-
-            for (let size = minFontSize; size <= maxFontSize; size++) {
-                ctx.font = `bold ${size}px Arial`;
-                textWidth = ctx.measureText(text).width;
-                if (textWidth > maxWidth) {
-                    return Math.max(size - 1, minFontSize);
-                }
-            }
-
-            return maxFontSize;
-        }
-
-        // Функция для рисования люверсов по периметру
-        function drawPerimeterGrommets(widthMM, heightMM) {
-            const grommetRadiusPx = mmToPx(GROMMET_RADIUS_MM);
-            const marginPx = mmToPx(GROMMET_MARGIN_MM);
-            const spacingPx = mmToPx(GROMMET_SPACING_MM);
-
+        function drawGrommet(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
             ctx.fillStyle = 'silver';
+            ctx.fill();
             ctx.strokeStyle = '#333';
-            ctx.lineWidth = 1;
-
-            // Рассчитываем количество люверсов на каждой стороне
-            const widthPx = mmToPx(widthMM);
-            const heightPx = mmToPx(heightMM);
-
-            // Верхняя сторона
-            const topGrommets = calculateGrommetPositions(widthMM, GROMMET_MARGIN_MM, GROMMET_SPACING_MM);
-            topGrommets.forEach(xMM => {
-                const xPx = mmToPx(xMM);
-                drawGrommet(xPx, marginPx, grommetRadiusPx);
-            });
-
-            // Нижняя сторона
-            const bottomGrommets = calculateGrommetPositions(widthMM, GROMMET_MARGIN_MM, GROMMET_SPACING_MM);
-            bottomGrommets.forEach(xMM => {
-                const xPx = mmToPx(xMM);
-                drawGrommet(xPx, heightPx - marginPx, grommetRadiusPx);
-            });
-
-            // Левая сторона (без угловых, т.к. они уже нарисованы)
-            const leftGrommets = calculateGrommetPositions(heightMM, GROMMET_MARGIN_MM, GROMMET_SPACING_MM);
-            leftGrommets.forEach(yMM => {
-                // Пропускаем первый и последний (угловые)
-                if (yMM > GROMMET_MARGIN_MM && yMM < heightMM - GROMMET_MARGIN_MM) {
-                    const yPx = mmToPx(yMM);
-                    drawGrommet(marginPx, yPx, grommetRadiusPx);
-                }
-            });
-
-            // Правая сторона (без угловых)
-            const rightGrommets = calculateGrommetPositions(heightMM, GROMMET_MARGIN_MM, GROMMET_SPACING_MM);
-            rightGrommets.forEach(yMM => {
-                // Пропускаем первый и последний (угловые)
-                if (yMM > GROMMET_MARGIN_MM && yMM < heightMM - GROMMET_MARGIN_MM) {
-                    const yPx = mmToPx(yMM);
-                        drawGrommet(widthPx - marginPx, yPx, grommetRadiusPx);
-                }
-            const allGromet = topGrommets.length + bottomGrommets.length + leftGrommets.length + rightGrommets.length
-            console.log('ALL Gromets', allGromet - 4, 'шт.')
-            });
+            ctx.stroke();
         }
 
-        // Функция для расчета позиций люверсов на одной стороне
         function calculateGrommetPositions(lengthMM, marginMM, spacingMM) {
             const positions = [];
             const effectiveLength = lengthMM - 2 * marginMM;
@@ -470,37 +911,97 @@
             for (let i = 0; i < count; i++) {
                 positions.push(marginMM + i * actualSpacing);
             }
-
             return positions;
         }
 
-        // Функция для рисования люверсов по углам
+        function drawPerimeterGrommets(widthMM, heightMM) {
+            const grommetRadiusPx = mmToPx(GROMMET_RADIUS_MM);
+            const marginPx = mmToPx(GROMMET_MARGIN_MM);
+            const widthPx = mmToPx(widthMM);
+            const heightPx = mmToPx(heightMM);
+
+            const topGrommets = calculateGrommetPositions(widthMM, GROMMET_MARGIN_MM, GROMMET_SPACING_MM);
+            topGrommets.forEach(xMM => {
+                drawGrommet(mmToPx(xMM), marginPx, grommetRadiusPx);
+            });
+
+            const bottomGrommets = calculateGrommetPositions(widthMM, GROMMET_MARGIN_MM, GROMMET_SPACING_MM);
+            bottomGrommets.forEach(xMM => {
+                drawGrommet(mmToPx(xMM), heightPx - marginPx, grommetRadiusPx);
+            });
+
+            const leftGrommets = calculateGrommetPositions(heightMM, GROMMET_MARGIN_MM, GROMMET_SPACING_MM);
+            leftGrommets.forEach(yMM => {
+                if (yMM > GROMMET_MARGIN_MM && yMM < heightMM - GROMMET_MARGIN_MM) {
+                    drawGrommet(marginPx, mmToPx(yMM), grommetRadiusPx);
+                }
+            });
+
+            const rightGrommets = calculateGrommetPositions(heightMM, GROMMET_MARGIN_MM, GROMMET_SPACING_MM);
+            rightGrommets.forEach(yMM => {
+                if (yMM > GROMMET_MARGIN_MM && yMM < heightMM - GROMMET_MARGIN_MM) {
+                    drawGrommet(widthPx - marginPx, mmToPx(yMM), grommetRadiusPx);
+                }
+            });
+        }
+
         function drawCornerGrommets(widthMM, heightMM) {
             const grommetRadiusPx = mmToPx(GROMMET_RADIUS_MM);
             const marginPx = mmToPx(GROMMET_MARGIN_MM);
             const widthPx = mmToPx(widthMM);
             const heightPx = mmToPx(heightMM);
 
-            ctx.fillStyle = 'silver';
-            ctx.strokeStyle = '#333';
-            ctx.lineWidth = 1;
-
-            // Четыре угла
-            drawGrommet(marginPx, marginPx, grommetRadiusPx); // Левый верхний
-            drawGrommet(widthPx - marginPx, marginPx, grommetRadiusPx); // Правый верхний
-            drawGrommet(marginPx, heightPx - marginPx, grommetRadiusPx); // Левый нижний
-            drawGrommet(widthPx - marginPx, heightPx - marginPx, grommetRadiusPx); // Правый нижний
+            drawGrommet(marginPx, marginPx, grommetRadiusPx);
+            drawGrommet(widthPx - marginPx, marginPx, grommetRadiusPx);
+            drawGrommet(marginPx, heightPx - marginPx, grommetRadiusPx);
+            drawGrommet(widthPx - marginPx, heightPx - marginPx, grommetRadiusPx);
         }
 
-        // Функция для рисования одного люверса
-        function drawGrommet(x, y, radius) {
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.stroke();
+        function calculateLuversCount(widthMM, lengthMM, luversType) {
+            switch(luversType) {
+                case 'none': return 0;
+                case 'corners': return 4;
+                case 'perimeter':
+                    const luversWidth = Math.max(2, Math.ceil(widthMM / GROMMET_SPACING_MM) + 1);
+                    const luversLength = Math.max(2, Math.ceil(lengthMM / GROMMET_SPACING_MM) + 1);
+                    return 2 * (luversWidth + luversLength) - 8;
+                default: return 0;
+            }
         }
 
-        // Функция для генерации баннера
+        function calculateCost(widthMM, heightMM, grommetType) {
+            const width = widthMM / 1000;
+            const length = heightMM / 1000;
+            const area = width * length;
+            const perimetr = (width + length) * 2;
+            const luversCount = calculateLuversCount(widthMM, heightMM, grommetType);
+
+            const bannerCost = area * PRICE_PER_SQM;
+            const luversCost = luversCount * PRICE_PER_LUVER;
+            const finishWorkCost = perimetr * PRICE_FINISH;
+            let totalCost = bannerCost + luversCost + finishWorkCost;
+
+            if (totalCost <= MINIMAL_PRICE) {
+                totalCost = MINIMAL_PRICE;
+            }
+            currentTotalCost = Math.ceil(totalCost);
+
+            document.getElementById('luversCount').textContent = `${luversCount} шт`;
+            document.getElementById('totalCost').textContent = `${Math.ceil(totalCost).toLocaleString()} ₽`;
+            document.getElementById('totalCostInput').value = currentTotalCost;
+        }
+
+        function findOptimalFontSize(ctx, text, maxWidth, minFontSize = 10, maxFontSize = 2000) {
+            if (!text) return minFontSize;
+            for (let size = minFontSize; size <= maxFontSize; size++) {
+                ctx.font = `bold ${size}px Arial`;
+                if (ctx.measureText(text).width > maxWidth) {
+                    return Math.max(size - 1, minFontSize);
+                }
+            }
+            return maxFontSize;
+        }
+
         function generateBanner() {
             const widthMM = parseInt(widthInput.value);
             const heightMM = parseInt(heightInput.value);
@@ -510,206 +1011,177 @@
             const textColor = textColorInput.value;
             const grommetType = document.querySelector('input[name="grommet_type"]:checked').value;
 
-            // Преобразуем размеры в пиксели
             const widthPx = mmToPx(widthMM);
             const heightPx = mmToPx(heightMM);
 
-            // Устанавливаем размеры canvas
             canvas.width = widthPx;
             canvas.height = heightPx;
+            sizeInfo.textContent = `Размер: ${widthMM}×${heightMM} мм`;
 
-            // Обновляем информацию о размерах
-            sizeInfo.textContent = `Размер: ${widthMM}×${heightMM} мм (${Math.round(widthPx)}×${Math.round(heightPx)} px)`;
-
-
-
-
-            // Очищаем canvas
             ctx.clearRect(0, 0, widthPx, heightPx);
-
-            // Рисуем фон
             ctx.fillStyle = bgColor;
             ctx.fillRect(0, 0, widthPx, heightPx);
 
-            // Рисуем люверсы в зависимости от выбранного типа
             if (grommetType === 'perimeter') {
                 drawPerimeterGrommets(widthMM, heightMM);
             } else if (grommetType === 'corners') {
                 drawCornerGrommets(widthMM, heightMM);
             }
-            // Для 'none' ничего не рисуем
 
-
-
-            // Настраиваем стиль текста
             ctx.fillStyle = textColor;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
-            // Рассчитываем доступную ширину с отступами (20 мм с каждой стороны)
             const paddingPx = mmToPx(20);
             const availableWidth = widthPx - 2 * paddingPx;
 
-            // Сначала находим оптимальный размер шрифта для телефона
-            let phoneFontSize = 10;
-            if (phone) {
-                phoneFontSize = findOptimalFontSize(ctx, phone, availableWidth);
-            }
+            let phoneFontSize = findOptimalFontSize(ctx, phone, availableWidth);
+            let textFontSize = findOptimalFontSize(ctx, text, availableWidth);
 
-            // Теперь находим оптимальный размер шрифта для текста
-            let textFontSize = 10;
-            if (text) {
-                ctx.font = `bold ${phoneFontSize}px Arial`;
-                const phoneWidth = ctx.measureText(phone).width;
-
-                textFontSize = findOptimalFontSize(ctx, text, phoneWidth);
-            }
-
-            // Распределяем текст по вертикали
             const totalHeight = (text ? textFontSize : 0) + (phone ? phoneFontSize + 10 : 0);
             const startY = (heightPx - totalHeight) / 2;
 
-            // Рисуем основной текст
             if (text) {
                 ctx.font = `bold ${textFontSize}px Arial`;
-                const textY = startY + (textFontSize / 2);
-                ctx.fillText(text, widthPx / 2, textY);
+                ctx.fillText(text, widthPx / 2, startY + textFontSize / 2);
             }
 
-            // Рисуем телефон
             if (phone) {
                 ctx.font = `bold ${phoneFontSize}px Arial`;
-                const phoneY = startY + (text ? textFontSize + 10 : 0) + (phoneFontSize / 2);
+                const phoneY = startY + (text ? textFontSize + 10 : 0) + phoneFontSize / 2;
                 ctx.fillText(phone, widthPx / 2, phoneY);
             }
+
             calculateCost(widthMM, heightMM, grommetType);
-
-
-            // Активируем кнопку скачивания
-<!--            downloadBtn.disabled = false;-->
-
-
         }
 
-        // Функция для отправки данных формы и изображения
-        function submitOrder(total_cost) {
-            // Сначала генерируем баннер, чтобы canvas был актуальным
-            generateBanner();
+        function showMessage(message, type, containerId = 'messageContainer') {
+            const container = document.getElementById(containerId);
+            container.textContent = message;
+            container.className = 'message ' + type;
+            container.style.display = 'block';
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 5000);
+        }
 
-            // Показываем сообщение о загрузке
-            showMessage('Отправка заказа...', 'info');
+        async function submitOrder() {
+            // Показываем статус бар
+            showStatusBar('Подготовка заказа...', 'Генерация баннера и подготовка данных...');
 
-            // Создаем FormData из формы
-            const formData = new FormData(form);
+            try {
+                // Генерируем баннер
+                generateBanner();
+                updateStatusBar(null, 'Сохранение изображения...', 30);
 
-            // Добавляем изображение из canvas
-            canvas.toBlob(function(blob) {
-                // Создаем файл из blob
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                const formData = new FormData(form);
+
+                updateStatusBar(null, 'Отправка на сервер...', 60);
+
+                const mountingType = document.querySelector('input[name="mounting_type"]:checked');
+                if (mountingType) {
+                    formData.append('mounting_type', mountingType.value);
+                }
+
+                // Конвертируем canvas в blob
+                const blob = await new Promise(resolve => {
+                    canvas.toBlob(resolve, 'image/png');
+                });
+
                 const file = new File([blob], "banner.png", { type: "image/png" });
-
-                // Добавляем файл в FormData
                 formData.append('canvas_image', file);
-            formData.append('total_cost', currentTotalCost);
+                formData.append('total_cost', currentTotalCost);
 
-
+                updateStatusBar(null, 'Ожидание ответа сервера...', 80);
 
                 // Отправляем на сервер
-                fetch('{% url "files:submit_banner_order" %}', {
+                const response = await fetch('{% url "files:submit_banner_order" %}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': csrfToken
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Ошибка сервера');
+                }
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    updateStatusBar('Успешно!', 'Заказ оформлен. Перенаправление...', 100);
+                    hideStatusBar(true, 1500);
+                    showMessage('Заказ успешно отправлен!', 'success');
+
+                    setTimeout(() => {
+                        window.location.href = '{% url "files:myfiles" %}';
+                    }, 1500);
+                } else {
+                    throw new Error(data.message || 'Ошибка отправки');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                hideStatusBar(false, 2000);
+                showMessage('Ошибка при отправке заказа. Пожалуйста, попробуйте еще раз.', 'error');
+            }
+        }
+
+        generateBtn.addEventListener('click', generateBanner);
+        submitOrderBtn.addEventListener('click', submitOrder);
+        grommetRadios.forEach(radio => {
+            radio.addEventListener('change', generateBanner);
+        });
+
+        generateBanner();
+
+        // Плавный скролл
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Обработчик формы контактов
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(contactForm);
+
+                fetch('{% url "files:submit_contact" %}', {
                     method: 'POST',
                     body: formData,
                     headers: {
                         'X-CSRFToken': csrfToken
                     }
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Ошибка сети');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        showMessage('Заказ успешно отправлен!', 'success');
-                        // Можно очистить форму или выполнить другие действия
-                        setTimeout(() => {
-                            messageContainer.style.display = 'none';
-                        }, 5000);
-                            window.location.href = '{% url "files:myfiles" %}';
-;
-
-
+                        showMessage('Спасибо! Мы свяжемся с вами в ближайшее время.', 'success', 'contactMessageContainer');
+                        contactForm.reset();
                     } else {
-                        showMessage('Ошибка: ' + data.message, 'error');
+                        showMessage('Ошибка: ' + data.message, 'error', 'contactMessageContainer');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showMessage('Ошибка при отправке заказа. Возможно нужно войти под своей учетной записью. Пожалуйста, попробуйте еще раз.', 'error');
+                    showMessage('Ошибка при отправке. Пожалуйста, попробуйте еще раз.', 'error', 'contactMessageContainer');
                 });
-            }, 'image/png');
+            });
         }
-
-        // Функция для отображения сообщений
-        function showMessage(message, type) {
-            messageContainer.textContent = message;
-            messageContainer.className = 'message ' + type;
-            messageContainer.style.display = 'block';
-
-            // Прокручиваем к сообщению
-            messageContainer.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Обработчик для кнопки генерации
-        generateBtn.addEventListener('click', generateBanner);
-
-        // Обработчик для кнопки отправки заказа
-        submitOrderBtn.addEventListener('click', submitOrder);
-
-        // Обработчики для радиокнопок
-        grommetRadios.forEach(radio => {
-            radio.addEventListener('change', generateBanner);
-        });
-
-
-
-        // Генерируем начальный баннер
-        generateBanner();
-
-        // Обработчик для предотвращения стандартной отправки формы при нажатии Enter
-        form.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-            }
-        });
-
-
-    // Функция расчета количества люверсов по периметру
-        function calculateLuversCount(widthMM, lengthMM, luversType) {
-            switch(luversType) {
-                case 'none': // Нет люверсов
-                    return 0;
-
-                case 'corners': // По углам
-                    return 4;
-
-                case 'perimeter': // По периметру
-                    // Расчет количества люверсов по периметру с шагом GROMMET_SPACING_MM
-                    // Формула: 2 * (ширина/шаг + 1) + 2 * (длина/шаг + 1) - 4 (углы не дублируем)
-
-                    const luversWidth = Math.max(2, Math.ceil(widthMM / GROMMET_SPACING_MM) + 1);
-                    const luversLength = Math.max(2, Math.ceil(lengthMM / GROMMET_SPACING_MM) + 1);
-
-                    // Общее количество: 2 стороны по ширине + 2 стороны по длине - 4 угла (учтены дважды)
-                    return 2 * (luversWidth + luversLength) - 8;
-
-                default:
-                    return 0;
-            }
-        }
-
-
     });
-
-
 </script>
+</body>
+</html>
+
 {% endblock %}
