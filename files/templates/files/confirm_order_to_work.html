@@ -1,6 +1,5 @@
 {% extends 'files/base_site.html' %}
 {% load crispy_forms_tags %}
-
 {% block title %} {{title}} {% endblock %}
 {% block content %}
 
@@ -36,14 +35,13 @@
                 <td>{{ items.product.width }}x{{ items.product.length }}м</td>
                 <td>{{ items.product.quantity }} шт.</td>
                 <td>{{ items.product.FinishWork }}</td>
-
-
             </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
 
-<p style="text-align: center;">
-<button type="button" class="btn btn-success" onclick="window.close()">Закрыть окно</button></p>
+    <p style="text-align: center;">
+        <button type="button" class="btn btn-success" onclick="window.close()">Закрыть окно</button>
+    </p>
     {% endblock %}

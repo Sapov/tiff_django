@@ -1,132 +1,460 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-
 
 {% block title %}Загрузка макета для Ролл-апа{% endblock %}
 
 {% block body %}
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-scroll me-3"></i>Загрузка макета для Ролл-апа
+            </h1>
+            <p class="text-muted mt-2">
+                <i class="fas fa-image me-1"></i>Создайте профессиональный ролл-ап для вашего бизнеса
+            </p>
+        </div>
+    </div>
 
-<div class="row">
+    <hr class="mb-4">
 
-    <!-- Earnings (Annual) Card Example -->
-    <div class="col-md-auto">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
+    <div class="row g-4">
+        <!-- Форма загрузки -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-cloud-upload-alt me-2"></i>Детали заказа
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form action="{% url 'files:create_rollup' %}" method="post" enctype="multipart/form-data" id="rollupForm">
+                        {% csrf_token %}
 
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <p>Рол-ап 85 х 200 см</p>
-                            <p>Стандартный рол-ап Время изготовления 1 день.</p>
-                            <p>Бесплатная доставка</p>
-                            <img class="img-profile "
-                                 src="{% static 'img/rollup_reds_5.jpg' %}">
-                                {{ form | crispy}}
-                            <input type="hidden" name="material" id="id_material">
+                        <div class="form-wrapper">
+                            <div class="form-group mb-4">
+                                <label class="fw-bold mb-2">
+                                    <i class="fas fa-cube me-2 text-primary"></i>Материал
+                                </label>
+                                {{ form.material }}
+                            </div>
 
+                            <div class="form-group mb-4">
+                                <label class="fw-bold mb-2">
+                                    <i class="fas fa-hashtag me-2 text-primary"></i>Количество
+                                </label>
+                                {{ form.quantity }}
+                            </div>
 
+                            <div class="form-group mb-4">
+                                <label class="fw-bold mb-2">
+                                    <i class="fas fa-cut me-2 text-primary"></i>Финишная обработка
+                                </label>
+                                {{ form.FinishWork }}
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="fw-bold mb-2">
+                                    <i class="fas fa-file-image me-2 text-primary"></i>Загрузить макет
+                                </label>
+                                {{ form.images }}
+                                <small class="text-muted d-block mt-1">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Поддерживаемые форматы: JPG, PNG, PDF, AI, EPS. Максимальный размер: 50 МБ
+                                </small>
+                            </div>
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">6200 руб.
-                            <button type="submit">Загрузить макет</button>
+
+                        <!-- Кнопки действий -->
+                        <div class="d-flex gap-4 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg-custom flex-grow-1 shadow-sm">
+                                <i class="fas fa-upload me-2"></i>Загрузить макет
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg-custom flex-grow-1 shadow-sm"
+                                    onclick="resetForm()">
+                                <i class="fas fa-undo-alt me-2"></i>Очистить
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Информация о товаре -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-success text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Ролл-ап 85 × 200 см
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="product-info">
+                        <div class="product-image text-center mb-4">
+                            <img class="img-fluid rounded-3 shadow-sm"
+                                 src="{% static 'img/rollup_reds_5.jpg' %}"
+                                 alt="Ролл-ап"
+                                 style="max-height: 250px; width: auto;">
+                        </div>
+
+                        <div class="product-features mb-4">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                <span>Стандартный ролл-ап</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-clock text-success me-2"></i>
+                                <span>Время изготовления: 1 день</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-truck text-success me-2"></i>
+                                <span>Бесплатная доставка</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-ruler text-success me-2"></i>
+                                <span>Размер: 85 × 200 см</span>
+                            </div>
+                        </div>
+
+                        <div class="product-price text-center">
+                            <div class="price-badge">
+                                <span class="old-price">7 200 ₽</span>
+                                <span class="current-price">6 200 ₽</span>
+                            </div>
+                            <p class="text-muted small mt-2">
+                                <i class="fas fa-tag me-1"></i>Экономия 1 000 ₽
+                            </p>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Размеры ролл-апов -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-info text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-ruler-combined me-2"></i>Доступные размеры
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="sizes-grid">
+                        <div class="size-card">
+                            <div class="size-icon">
+                                <i class="fas fa-scroll"></i>
+                            </div>
+                            <div class="size-info">
+                                <h5 class="mb-1">85 × 200 см</h5>
+                                <p class="text-muted small">Стандартный</p>
+                                <span class="price">6 200 ₽</span>
+                            </div>
+                        </div>
+                        <div class="size-card">
+                            <div class="size-icon">
+                                <i class="fas fa-scroll"></i>
+                            </div>
+                            <div class="size-info">
+                                <h5 class="mb-1">100 × 200 см</h5>
+                                <p class="text-muted small">Увеличенный</p>
+                                <span class="price">8 900 ₽</span>
+                            </div>
+                        </div>
+                        <div class="size-card">
+                            <div class="size-icon">
+                                <i class="fas fa-scroll"></i>
+                            </div>
+                            <div class="size-info">
+                                <h5 class="mb-1">120 × 200 см</h5>
+                                <p class="text-muted small">Максимальный</p>
+                                <span class="price">11 000 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Требования к макету -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-warning text-dark rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-clipboard-list me-2"></i>Требования к макету
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="requirements-list">
+                        <div class="requirement-item">
+                            <i class="fas fa-arrow-right text-warning me-2"></i>
+                            <span>Разрешение: от 150 DPI</span>
+                        </div>
+                        <div class="requirement-item">
+                            <i class="fas fa-arrow-right text-warning me-2"></i>
+                            <span>Цветовая модель: CMYK</span>
+                        </div>
+                        <div class="requirement-item">
+                            <i class="fas fa-arrow-right text-warning me-2"></i>
+                            <span>Форматы: JPG, PNG, PDF, AI, EPS</span>
+                        </div>
+                        <div class="requirement-item">
+                            <i class="fas fa-arrow-right text-warning me-2"></i>
+                            <span>Размер файла: до 50 МБ</span>
+                        </div>
+                        <div class="requirement-item">
+                            <i class="fas fa-arrow-right text-warning me-2"></i>
+                            <span>Добавьте 3 мм на обрез</span>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info mt-4 mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        <small>Не знаете, как подготовить макет? Свяжитесь с нами - поможем!</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <!--    &lt;!&ndash; Pending Requests Card Example &ndash;&gt;-->
-    <!--    <div class="col-md-auto">-->
-    <!--        <div class="card border-left-warning shadow h-100 py-2">-->
-    <!--            <div class="card-body">-->
-    <!--                <div class="row no-gutters align-items-center">-->
-    <!--                    <div class="col mr-2">-->
-    <!--                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">-->
-    <!--                            <p><a href=" {% url 'files:create_uv' %}">Ролап 120 х 200 ми</a></p>-->
-    <!--                        </div>-->
-    <!--                        <div class="h5 mb-0 font-weight-bold text-gray-800">11 000 руб.</div>-->
-    <!--                    </div>-->
-    <!--                    <div class="col-auto">-->
-    <!--                        <i class="fas fa-comments fa-2x text-gray-300"></i>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-
-
-    <!--    <h3>Загрузите макет для Ролл-апа</h3>-->
-    <!--    <p>Файл должен соответствовать требованиям:-->
-    <!--    <div class="row">-->
-
-    <!--        <div class="col-xl-4 col-lg-7">-->
-
-    <!--            <div class="card shadow mb-4">-->
-    <!--                <div class="card-header py-3">-->
-    <!--                    <form action="{% url 'files:create_rollup' %}" method="post" , enctype="multipart/form-data">-->
-
-    <!--                        {% csrf_token %}-->
-    <!--                        <p>{{form.material}}</p>-->
-    <!--                        <p> {{form.quantity}}</p>-->
-    <!--                        <p> {{form.FinishWork}}</p>-->
-    <!--                        <p> {{form.images}}</p>-->
-    <!--                        <button type="submit" class="btn btn-primary">Загрузить</button>-->
-
-    <!--                    </form>-->
-
-
-    <!--                </div>-->
-    <!--                <div class="card-body">-->
-
-
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
-
-    <!-- Donut Chart -->
-    <div class="col-md-auto">
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Ролл ап</h6>
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-pie pt-4">
-                    <canvas id="myPieChart"></canvas>
-                </div>
-                <hr>
-                Мы изготавливаем трех размеров 85 х 200 см, 100 х 200 см, 120 х 200 см
-            </div>
-        </div>
-<!--    </div>-->
-<!--</div>-->
-
-<!-- Donut Chart -->
-<div class="col-md-auto">
-    <div class="card shadow mb-4">
-        <!-- Card Header - Dropdown -->
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Ролл ап</h6>
-        </div>
-        <!-- Card Body -->
-        <div class="card-body">
-            <div class="chart-pie pt-4">
-                <canvas id="myPieChart"></canvas>
-            </div>
-            <hr>
-            Мы изготавливаем трех размеров 85 х 200 см, 100 х 200 см, 120 х 200 см
-        </div>
-    </div>
-</div>
 </div>
 
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    }
+
+    .bg-gradient-info {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .bg-gradient-warning {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        overflow: visible;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .btn-lg-custom {
+        padding: 0.8rem 1.5rem !important;
+        font-size: 1rem !important;
+        border-radius: 10px;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .gap-4 {
+        gap: 1.5rem !important;
+    }
+
+    .product-features {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .price-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: #f8f9fa;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+    }
+
+    .old-price {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 1.1rem;
+    }
+
+    .current-price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #28a745;
+    }
+
+    .sizes-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .size-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .size-card:hover {
+        background: #e9ecef;
+        transform: translateX(5px);
+    }
+
+    .size-icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        color: white;
+        font-size: 1.3rem;
+    }
+
+    .size-info {
+        flex: 1;
+    }
+
+    .size-info .price {
+        font-weight: bold;
+        color: #28a745;
+        font-size: 1.1rem;
+    }
+
+    .requirements-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .requirement-item {
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    /* Улучшение стилей форм */
+    .form-wrapper .form-group {
+        margin-bottom: 1.5rem;
+        overflow: visible !important;
+    }
+
+    .form-wrapper label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-wrapper input,
+    .form-wrapper select,
+    .form-wrapper textarea {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .form-wrapper select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1rem;
+        padding-right: 2.5rem;
+    }
+
+    .form-wrapper input[type="file"] {
+        padding: 0.5rem;
+        background: #f8f9fa;
+        cursor: pointer;
+    }
+
+    .form-wrapper input:focus,
+    .form-wrapper select:focus,
+    .form-wrapper textarea:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        outline: none;
+    }
+
+    @media (max-width: 768px) {
+        .btn-lg-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-4 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        h1.display-5 {
+            font-size: 1.8rem;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+        }
+
+        .size-card {
+            padding: 0.75rem;
+        }
+
+        .size-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<script>
+    function resetForm() {
+        if (confirm('Очистить все поля формы?')) {
+            document.getElementById('rollupForm').reset();
+        }
+    }
+</script>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
-
