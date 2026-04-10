@@ -1,39 +1,274 @@
 {% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %} Добавить организацию{% endblock %}
+
+{% block title %}Добавить организацию{% endblock %}
+
 {% block body %}
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/css/suggestions.min.css'>
-<div class="well well-sm col-md-6">
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-building me-3"></i>Добавить организацию
+            </h1>
+            <p class="text-muted mt-2">
+                <i class="fas fa-plus-circle me-1"></i>Заполните информацию о новой организации
+            </p>
+        </div>
+    </div>
 
-    <form action="{% url 'profiles:create_organisation' %}" method="post">
+    <hr class="mb-4">
 
-        <section class="container">
-            <div class="form-group">
-                {% csrf_token %}
-                <h1>Добавить организацию</h1>
-                <input class="form-control" id="party" name="party" type="text"
-                       placeholder="Введите название, ИНН, ОГРН или адрес организации"/>
-                <input class="form-control" id="bank" name="bank" type="text" autocomplete="off"
-                       placeholder="Введите название БИК банка или название"/>
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Информация об организации
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form action="{% url 'profiles:create_organisation' %}" method="post" id="organisationForm">
+                        {% csrf_token %}
+
+                        <!-- Поиск организации через DaData -->
+                        <div class="search-section mb-4 p-3 rounded-3" style="background: #f8f9fa;">
+                            <h5 class="mb-3 fw-bold text-primary">
+                                <i class="fas fa-search me-2"></i>Быстрый поиск организации
+                            </h5>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">
+                                    <i class="fas fa-building me-2"></i>Поиск по названию, ИНН, ОГРН
+                                </label>
+                                <input class="form-control form-control-lg" id="party" name="party" type="text"
+                                       placeholder="Введите название, ИНН, ОГРН или адрес организации"
+                                       autocomplete="off">
+                                <small class="text-muted mt-1 d-block">
+                                    <i class="fas fa-info-circle me-1"></i>Начните вводить данные организации для автоматического поиска
+                                </small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">
+                                    <i class="fas fa-university me-2"></i>Банковские реквизиты
+                                </label>
+                                <input class="form-control form-control-lg" id="bank" name="bank" type="text"
+                                       autocomplete="off" placeholder="Введите название банка или БИК">
+                                <small class="text-muted mt-1 d-block">
+                                    <i class="fas fa-info-circle me-1"></i>Введите БИК или название банка для автоматического заполнения
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Форма с деталями организации -->
+                        <div class="form-details">
+                            <h5 class="mb-3 fw-bold text-primary">
+                                <i class="fas fa-clipboard-list me-2"></i>Детальная информация
+                            </h5>
+                            {{ form|crispy }}
+                        </div>
+
+                        <!-- Кнопки действий -->
+                        <div class="d-flex gap-4 mt-4 pt-3">
+                            <button type="submit" class="btn btn-primary btn-lg-custom flex-grow-1 shadow-sm">
+                                <i class="fas fa-save me-2"></i>Сохранить организацию
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg-custom flex-grow-1 shadow-sm"
+                                    onclick="resetForm()">
+                                <i class="fas fa-undo-alt me-2"></i>Очистить форму
+                            </button>
+                                <i class="fas fa-times-circle me-2"></i>Отмена
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </section>
-        {{ form|crispy }}
-        </section>
-        <input type="submit" value="Save">
 
-    </form>
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/dadata_script_bic.js' %}"></script>
-
-
+            <!-- Подсказки -->
+            <div class="alert alert-info mt-4 shadow-sm border-0 rounded-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-lightbulb fa-2x text-primary"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="alert-heading fw-bold mb-1">Совет по заполнению</h6>
+                        <p class="mb-0 small">
+                            Используйте поиск для быстрого заполнения реквизитов организации.
+                            Система автоматически подставит название, ИНН, КПП и другие данные.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .search-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .search-section:hover {
+        border-color: #667eea;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+    }
+
+    .btn-lg-custom {
+        padding: 0.8rem 1.5rem !important;
+        font-size: 1rem !important;
+        border-radius: 10px;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .gap-4 {
+        gap: 1.5rem !important;
+    }
+
+    /* Улучшение стилей crispy forms */
+    .form-details .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-details label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-details input,
+    .form-details select,
+    .form-details textarea {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .form-details input:focus,
+    .form-details select:focus,
+    .form-details textarea:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        outline: none;
+    }
+
+    /* Стили для полей поиска */
+    #party, #bank {
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    #party:focus, #bank:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        outline: none;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @media (max-width: 768px) {
+        .btn-lg-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-4 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        h1.display-5 {
+            font-size: 1.8rem;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .search-section {
+            padding: 1rem !important;
+        }
+
+        .form-control-lg {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<script>
+    function resetForm() {
+        if (confirm('Очистить все поля формы?')) {
+            document.getElementById('organisationForm').reset();
+        }
+    }
+
+    // Добавляем классы для полей формы
+    document.addEventListener('DOMContentLoaded', function() {
+        // Добавляем классы для всех полей ввода
+        const inputs = document.querySelectorAll('.form-details input, .form-details select, .form-details textarea');
+        inputs.forEach(input => {
+            if (!input.classList.contains('form-control')) {
+                input.classList.add('form-control');
+            }
+        });
+    });
+</script>
+
+<!-- Подключение стилей и скриптов DaData -->
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/css/suggestions.min.css'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/dadata_script_bic.js' %}"></script>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 {% endblock %}
-
-
-
-
