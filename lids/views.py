@@ -106,7 +106,7 @@ def add_new_contact_user_banner(request):
             text = (f"Имя: {username}, \nТема: Баннера, \nИнформация: {interest_text}"
                     f"\nТелефон: {phone}, \nПочта: {email}")
             admin_phone = os.getenv('PHONE_NUMBER')
-            # send_message_whatsapp.delay(f'{admin_phone}', f'Новая заявка на сайте: \n{text}')
+            send_message_whatsapp.delay(f'{admin_phone}', f'Новая заявка на сайте: \n{text}')
 
             try:
                 return JsonResponse({
@@ -119,10 +119,6 @@ def add_new_contact_user_banner(request):
                     'message': str(e)
                 }, status=500)
 
-        # form = NewUserBanner()
-        # return render(request, template_name,
-        #               {"form": form,
-        #                })
 
 
 class DetailLids(DetailView):
