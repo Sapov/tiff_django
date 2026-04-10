@@ -47,8 +47,6 @@ def submit_banner_order(request):
                 material = Material.objects.get(id=1)
                 status = StatusProduct.objects.get(id=1)
 
-                print(request.POST)
-
                 try:
                     Product.objects.create(
                         user=request.user,
@@ -64,13 +62,13 @@ def submit_banner_order(request):
                         images=canvas_image,
                         FinishWork=finish_work,
                         status_product=status,
-                        comments=text + phone + mounting_type
+                        comments=text + phone + 'Добавить крепеж:' + mounting_type
                     )
                 except Exception as e:
-                    print(e)
                     print(f"Тип ошибки: {type(e).__name__}")
                     print(f"Сообщение: {str(e)}")
                     print(f"Полная информация: {e}")
+
 
                 return JsonResponse({
                     'status': 'success',
