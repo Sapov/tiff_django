@@ -1,57 +1,425 @@
-{% extends 'base.html'%}
-<title>{% block title %} Страница оплаты{% endblock %}</title>
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %}Страница оплаты{% endblock %}</title>
+
 {% block body %}
-<h3> Страница оплаты</h3>
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Дата</th>
-                <th>Оплата</th>
-                <th>Сумма</th>
-                <th>Статус заказа</th>
-            </thead>
-            <tbody>
-            <tr>
-                <td>{{ Orders.created }}</td>
-                <td>{% if Orders.paid == False %}
-                    <div class="mb-2">
-                        <code>Не оплачено!</code>
-                    </div>
-                    {% else%}
-                    <div class="text-success mb-2">Оплачено
-                    </div>
-                    {% endif %}
-
-                <td>{{ Orders.total_price }} руб.</td>
-                <td>{{ Orders.status }}</td>
-                <!--                <td><a href="/media/{{Orders.order_pdf_file}}">Скачать счет</a></td>-->
-
-
-            </tr>
-        </table>
-        <table>
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-credit-card me-3"></i>Страница оплаты
+            </h1>
+            <p class="text-muted mt-2">
+                Детальная информация об оплате заказа
+            </p>
+        </div>
+        <div class="d-flex gap-3">
             {% if Orders.organisation_payer %}
-            <td>
-                <button type="submit" class="btn btn-primary"
-                        onClick="location.href='{% url 'orders:get_invoice' Orders.id %}'">Cформировать счет
-                </button>
-            </td>
+            <button type="button" class="btn btn-primary shadow-sm btn-sm-custom"
+                    onClick="location.href='{% url 'orders:get_invoice' Orders.id %}'">
+                <i class="fas fa-file-invoice me-2"></i>Сформировать счет
+            </button>
             {% endif %}
+            <button type="button" class="btn btn-success shadow-sm btn-sm-custom"
+                    onClick="location.href='{{link_pay}}'">
+                <i class="fas fa-credit-card me-2"></i>Оплатить картой
+            </button>
+        </div>
+    </div>
 
+    <hr class="mb-4">
 
-            <td>
-                <button type="submit" class="btn btn-success"
-                        onClick="location.href='{{link_pay}}'">Оплатить картой
+    <!-- Основная информация об оплате -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-8 col-xl-6">
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="card-header bg-gradient-primary text-white py-4">
+                    <div class="text-center">
+                        <i class="fas fa-receipt fa-3x mb-2"></i>
+                        <h3 class="mb-0 fw-bold">Детали платежа</h3>
+                        <p class="mb-0 mt-2 opacity-75">Заказ №{{ Orders.id }}</p>
+                    </div>
+                </div>
 
-                </button>
-            </td>
+                <div class="card-body p-4">
+                    <!-- Информационные карточки -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <div class="info-icon bg-gradient-calendar">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="info-content">
+                                    <label class="text-muted small text-uppercase">Дата заказа</label>
+                                    <div class="fw-bold fs-5">{{ Orders.created }}</div>
+                                </div>
+                            </div>
+                        </div>
 
-        </table>
+                        <div class="col-md-6">
+                            <div class="info-card">
+                                <div class="info-icon bg-gradient-status">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="info-content">
+                                    <label class="text-muted small text-uppercase">Статус заказа</label>
+                                    <div>
+                                        <span class="badge bg-info fs-6">
+                                            <i class="fas fa-cog fa-spin me-1"></i>{{ Orders.status }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        </tbody>
+                    <!-- Статус оплаты -->
+                    <div class="payment-status-card mb-4 p-4 rounded-3 text-center">
+                        {% if Orders.paid == False %}
+                        <div class="status-icon bg-warning">
+                            <i class="fas fa-clock fa-3x"></i>
+                        </div>
+                        <h4 class="mt-3 mb-2 text-warning">Ожидает оплаты</h4>
+                        <p class="text-muted mb-0">Заказ еще не оплачен. Выберите способ оплаты ниже.</p>
+                        {% else %}
+                        <div class="status-icon bg-success">
+                            <i class="fas fa-check-circle fa-3x"></i>
+                        </div>
+                        <h4 class="mt-3 mb-2 text-success">Заказ оплачен</h4>
+                        <p class="text-muted mb-0">Спасибо за оплату! Ваш заказ передан в обработку.</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Сумма к оплате -->
+                    <div class="amount-card mb-4 p-4 rounded-3">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Сумма к оплате:</span>
+                            <span class="fs-1 fw-bold text-gradient">{{ Orders.total_price }} ₽</span>
+                        </div>
+                        <div class="progress amount-progress">
+                            <div class="progress-bar bg-gradient-success"
+                                 style="width: {% if Orders.paid %}100{% else %}0{% endif %}%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-muted">Не оплачено</small>
+                            <small class="text-muted">Оплачено полностью</small>
+                        </div>
+                    </div>
+
+                    <!-- Способы оплаты -->
+                    <div class="payment-methods">
+                        <h5 class="mb-3 fw-bold">
+                            <i class="fas fa-hand-point-right me-2 text-primary"></i>Выберите способ оплаты
+                        </h5>
+
+                        <div class="row g-3">
+                            {% if Orders.organisation_payer %}
+                            <div class="col-md-6">
+                                <div class="payment-method-card" onclick="location.href='{% url 'orders:get_invoice' Orders.id %}'">
+                                    <div class="method-icon bg-gradient-invoice">
+                                        <i class="fas fa-file-invoice-dollar fa-2x"></i>
+                                    </div>
+                                    <div class="method-info">
+                                        <h6 class="mb-1">Безналичный расчет</h6>
+                                        <small class="text-muted">Для юридических лиц</small>
+                                    </div>
+                                    <div class="method-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <div class="payment-method-card" onclick="location.href='{{link_pay}}'">
+                                    <div class="method-icon bg-gradient-card">
+                                        <i class="fas fa-credit-card fa-2x"></i>
+                                    </div>
+                                    <div class="method-info">
+                                        <h6 class="mb-1">Оплата банковской картой</h6>
+                                        <small class="text-muted">Visa, Mastercard, МИР</small>
+                                    </div>
+                                    <div class="method-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-light py-3">
+                    <div class="text-center small text-muted">
+                        <i class="fas fa-lock me-1"></i>Безопасная оплата через защищенное соединение
+                    </div>
+                </div>
+            </div>
+
+            <!-- Безопасность и гарантии -->
+            <div class="security-badges mt-4">
+                <div class="row g-3 text-center">
+                    <div class="col-4">
+                        <div class="badge-card">
+                            <i class="fas fa-lock fa-2x text-primary mb-2"></i>
+                            <p class="small mb-0">Безопасная<br>оплата</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="badge-card">
+                            <i class="fas fa-shield-alt fa-2x text-success mb-2"></i>
+                            <p class="small mb-0">Защита<br>данных</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="badge-card">
+                            <i class="fas fa-clock fa-2x text-info mb-2"></i>
+                            <p class="small mb-0">Мгновенное<br>подтверждение</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-gradient-calendar {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .bg-gradient-status {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .bg-gradient-success {
+        background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
+    }
+
+    .bg-gradient-invoice {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .bg-gradient-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .info-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+        background: #e9ecef;
+        transform: translateX(5px);
+    }
+
+    .info-icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        color: white;
+        font-size: 1.3rem;
+    }
+
+    .info-content {
+        flex: 1;
+    }
+
+    .info-content label {
+        font-size: 0.7rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 0.5px;
+    }
+
+    .payment-status-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .status-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .amount-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        border: 1px solid #e0e0e0;
+    }
+
+    .amount-progress {
+        height: 8px;
+        border-radius: 10px;
+        background-color: #e0e0e0;
+    }
+
+    .progress-bar {
+        border-radius: 10px;
+        transition: width 0.5s ease;
+    }
+
+    .payment-method-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.2rem;
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .payment-method-card:hover {
+        border-color: #667eea;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+    }
+
+    .method-icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        color: white;
+    }
+
+    .method-info {
+        flex: 1;
+    }
+
+    .method-arrow {
+        color: #667eea;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .payment-method-card:hover .method-arrow {
+        opacity: 1;
+        transform: translateX(5px);
+    }
+
+    .badge-card {
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .badge-card:hover {
+        transform: translateY(-3px);
+        background: #e9ecef;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+        border-radius: 10px;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .btn-sm-custom {
+        padding: 0.51rem 0.85rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    .badge {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .btn-sm-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-3 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        .payment-method-card {
+            padding: 1rem;
+        }
+
+        .method-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .method-icon i {
+            font-size: 1.2rem;
+        }
+
+        .fs-1 {
+            font-size: 1.8rem !important;
+        }
+
+        .badge-card {
+            padding: 0.75rem;
+        }
+
+        .badge-card i {
+            font-size: 1.5rem !important;
+        }
+    }
+</style>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
