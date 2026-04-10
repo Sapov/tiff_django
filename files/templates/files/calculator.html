@@ -1,66 +1,457 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
-<title>{% block title %} Калькулятор {% endblock %}</title>
+<title>{% block title %}Калькулятор печати{% endblock %}</title>
+
 {% block body %}
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Калькулятор печати</h1>
-    <p class="mb-4">Выберите материал, укажите обработку если есть введите размер и нажмите кнопку "Посчитать"</p>
-
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Финишная обработка:</h6>
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-calculator me-3"></i>Калькулятор печати
+            </h1>
+            <p class="text-muted mt-2">
+                <i class="fas fa-ruler-combined me-1"></i>Выберите материал, укажите обработку, введите размер и нажмите "Рассчитать"
+            </p>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <form action="{% url 'files:calculator' %}" method="post" , enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form|crispy }}
+    </div>
 
-                    <button type="submit" class="btn btn-primary">Рассчитать</button>
+    <hr class="mb-4">
 
-                </form>
-
-                <h5>Сумма заказа: {{results}} руб.</h5>
-
-
-                <div class="col-sm">
-                    <h4 style="text-align: center; ">Рассчитанные заказы</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th scope="col">Материал</th>
-                            <th scope="col">Количество</th>
-                            <th scope="col">Ширина</th>
-                            <th scope="col">Длина</th>
-                            <th scope="col">Обработка</th>
-                            <th scope="col">Дата:</th>
-                            <th scope="col">Стоимость</th>
-                        </tr>
-                        </thead>
-                        {% for string in last_five_string %}
-
-                        <tbody>
-                        <tr>
-                            <td>{{ string.material }}</td>
-                            <td>{{ string.quantity }} шт.</td>
-                            <td> {{ string.width }} м</td>
-                            <td> {{ string.length }} м</td>
-                            <td> {{ string.FinishWork }}</td>
-                            <td> {{ string.created_at }}</td>
-                            <td> {{ string.results }} руб.</td>
-                        </tr>
-                        {% endfor %}
-
-
-                        {% endblock %}
-
-                        </tbody>
-                    </table>
+    <div class="row g-4">
+        <!-- Форма калькулятора -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-sliders-h me-2"></i>Параметры расчета
+                    </h4>
                 </div>
+                <div class="card-body p-4">
+                    <form action="{% url 'files:calculator' %}" method="post" enctype="multipart/form-data" id="calculatorForm">
+                        {% csrf_token %}
+
+                        <div class="form-wrapper">
+                            <!-- Материал -->
+                            <div class="form-group mb-4">
+                                <label class="fw-bold mb-2">
+                                    <i class="fas fa-cube me-2 text-primary"></i>Материал
+                                </label>
+                                {{ form.material }}
+                            </div>
+
+                            <!-- Размеры: Ширина и Длина на одной строке -->
+                            <div class="form-group mb-4">
+                                <label class="fw-bold mb-2">
+                                    <i class="fas fa-arrows-alt me-2 text-primary"></i>Размеры (м)
+                                </label>
+                                <div class="dimension-row">
+                                    <div class="dimension-field">
+                                        {{ form.width }}
+                                        <small class="text-muted">Ширина</small>
+                                    </div>
+                                    <div class="dimension-separator">
+                                        <span class="fs-3 fw-bold text-primary">×</span>
+                                    </div>
+                                    <div class="dimension-field">
+                                        {{ form.length }}
+                                        <small class="text-muted">Длина</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Количество -->
+                            <div class="form-group mb-4">
+                                <label class="fw-bold mb-2">
+                                    <i class="fas fa-hashtag me-2 text-primary"></i>Количество (шт.)
+                                </label>
+                                {{ form.quantity }}
+                            </div>
+
+                            <!-- Финишная обработка (выпадающий список) -->
+                            <div class="form-group mb-4">
+                                <label class="fw-bold mb-2">
+                                    <i class="fas fa-cut me-2 text-primary"></i>Финишная обработка
+                                </label>
+                                {{ form.finishing }}
+                                <small class="text-muted d-block mt-1">
+                                    <i class="fas fa-info-circle me-1"></i>Выберите тип обработки из списка
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-4 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg-custom flex-grow-1 shadow-sm">
+                                <i class="fas fa-calculator me-2"></i>Рассчитать
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg-custom flex-grow-1 shadow-sm" onclick="resetForm()">
+                                <i class="fas fa-undo-alt me-2"></i>Очистить
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Результат расчета -->
+                    <div class="result-card mt-4 p-4 rounded-3 text-center">
+                        <div class="result-icon mb-3">
+                            <i class="fas fa-ruble-sign fa-3x text-gradient"></i>
+                        </div>
+                        <h5 class="text-muted mb-2">Сумма заказа:</h5>
+                        <div class="result-amount">
+                            {{ results|default:"0" }} ₽
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- История расчетов -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-secondary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-history me-2"></i>История расчетов
+                    </h4>
+                </div>
+                <div class="card-body p-0">
+                    {% if last_five_string %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3">Материал</th>
+                                    <th class="py-3">Кол-во</th>
+                                    <th class="py-3">Размеры</th>
+                                    <th class="py-3">Обработка</th>
+                                    <th class="py-3">Дата</th>
+                                    <th class="py-3">Стоимость</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for string in last_five_string %}
+                                <tr class="{% cycle '' 'table-light' %}">
+                                    <td class="fw-bold">{{ string.material }}</td>
+                                    <td>{{ string.quantity }} шт.</td>
+                                    <td>
+                                        <span class="size-badge">
+                                            {{ string.width }} × {{ string.length }} м
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {% if string.FinishWork %}
+                                        <span class="finish-badge">{{ string.FinishWork }}</span>
+                                        {% else %}
+                                        <span class="text-muted">—</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="small">{{ string.created_at|date:"d.m.Y H:i" }}</td>
+                                    <td class="text-success fw-bold">{{ string.results }} ₽</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="empty-history text-center py-5">
+                        <div class="empty-icon mb-3">
+                            <i class="fas fa-chart-line fa-4x text-muted"></i>
+                        </div>
+                        <p class="text-muted mb-0">История расчетов пуста</p>
+                        <small class="text-muted">Выполните первый расчет</small>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if last_five_string %}
+                <div class="card-footer bg-light py-3">
+                    <div class="text-center small text-muted">
+                        <i class="fas fa-clock me-1"></i>Показаны последние 5 расчетов
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-gradient-secondary {
+        background: linear-gradient(135deg, #868f96 0%, #596164 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    /* Стили для строки размеров */
+    .dimension-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .dimension-field {
+        flex: 1;
+    }
+
+    .dimension-field input {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .dimension-field input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        outline: none;
+    }
+
+    .dimension-field small {
+        display: block;
+        text-align: center;
+        margin-top: 0.3rem;
+        font-size: 0.7rem;
+    }
+
+    .dimension-separator {
+        padding: 0 0.5rem;
+    }
+
+    /* Стили для бейджей в таблице */
+    .size-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        border-radius: 20px;
+        font-weight: 600;
+        color: #667eea;
+    }
+
+    .finish-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%);
+        border-radius: 20px;
+        font-weight: 500;
+        color: #f5576c;
+    }
+
+    .result-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .result-card:hover {
+        transform: scale(1.02);
+        border-color: #667eea;
+    }
+
+    .result-amount {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .btn-lg-custom {
+        padding: 0.8rem 1.5rem !important;
+        font-size: 1rem !important;
+        border-radius: 10px;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Увеличенное расстояние между кнопками */
+    .gap-4 {
+        gap: 1.5rem !important;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table > :not(caption) > * > * {
+        padding: 1rem 0.75rem;
+    }
+
+    .table tbody tr {
+        transition: all 0.3s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: rgba(102, 126, 234, 0.05);
+    }
+
+    .empty-history {
+        animation: fadeInUp 0.5s ease;
+    }
+
+    .empty-icon {
+        animation: bounce 2s ease infinite;
+    }
+
+    /* Улучшение стилей crispy forms для полей */
+    .form-wrapper select,
+    .form-wrapper input[type="number"] {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        background-color: white;
+    }
+
+    .form-wrapper select:focus,
+    .form-wrapper input[type="number"]:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        outline: none;
+    }
+
+    /* Стиль для выпадающего списка */
+    .form-wrapper select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1rem;
+    }
+
+    .form-wrapper label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    /* Анимации */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+        }
+    }
+
+    .btn-primary {
+        animation: pulse 2s infinite;
+    }
+
+    .btn-primary:hover {
+        animation: none;
+    }
+
+    @media (max-width: 768px) {
+        .btn-lg-custom {
+            width: 100%;
+        }
+
+        .result-amount {
+            font-size: 1.8rem;
+        }
+
+        .table-responsive {
+            font-size: 0.8rem;
+        }
+
+        .table > :not(caption) > * > * {
+            padding: 0.75rem 0.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .dimension-row {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .dimension-separator {
+            transform: rotate(90deg);
+        }
+
+        .gap-4 {
+            gap: 1rem !important;
+        }
+    }
+</style>
+
+<script>
+    function resetForm() {
+        if (confirm('Очистить все поля формы?')) {
+            document.getElementById('calculatorForm').reset();
+        }
+    }
+
+    // Автоматическое форматирование чисел
+    document.addEventListener('DOMContentLoaded', function() {
+        const numberInputs = document.querySelectorAll('input[type="number"]');
+        numberInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.value < 0) this.value = 0;
+            });
+        });
+    });
+</script>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
