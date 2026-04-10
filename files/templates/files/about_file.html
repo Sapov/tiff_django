@@ -1,139 +1,389 @@
-{% extends 'base.html'%}
-<title>{% block title %} Полные сведения о файле: {% endblock %}</title>
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+<title>{% block title %}Полные сведения о файле{% endblock %}</title>
+
 {% block body %}
-<link rel="stylesheet" href="/static/css/table_pic.css"/>
-
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Файл № {{ file.id }}</h1>
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-file-alt me-3"></i>Файл № {{ file.id }}
+            </h1>
+            <p class="text-muted mt-2">
+                <i class="fas fa-info-circle me-1"></i>Полная информация о файле
+            </p>
+        </div>
     </div>
-    <div class="mb-3">
-        <code>{{message}}</code>
-    </div>
-    <div class="row">
 
+    {% if message %}
+    <div class="alert alert-warning alert-dismissible fade show shadow-sm border-0 rounded-3 mb-4" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        <code>{{ message }}</code>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <hr class="mb-4">
+
+    <div class="row g-4">
+        <!-- Изображение -->
         <div class="col-lg-6">
-
-            <!-- Basic Card Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Изображение</h6>
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-image me-2"></i>Изображение
+                    </h4>
                 </div>
-                <div class="card-body">
-                    <table>
-                        <tbody>
-
-                        <tr>
-                            <td>
-                                ширина: {{ file.width }} м.
-                            </td>
-
-                            <th></th>
-                        </tr>
-
-                        <tr>
-                            <td><a>{% load thumbnail %} <img src="{% thumbnail file.images 350x0 %}"
-                                                             class="image-detail"></a></td>
-                            <td>высота: {{ file.length }} м</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-
+                <div class="card-body p-4">
+                    <div class="image-container">
+                        <div class="image-wrapper">
+                            <a href="{{ file.images.url }}" target="_blank" class="image-link">
+                                <img src="{% thumbnail file.images 500x500 %}"
+                                     class="img-fluid fit-image"
+                                     alt="Файл №{{ file.id }}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="image-dimensions mt-3 text-center">
+                        <div class="row g-3 justify-content-center">
+                            <div class="col-auto">
+                                <div class="dimension-badge">
+                                    <i class="fas fa-arrows-alt-h me-1"></i>
+                                    <span>Ширина: <strong>{{ file.width }} м</strong></span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="dimension-badge">
+                                    <i class="fas fa-arrows-alt-v me-1"></i>
+                                    <span>Высота: <strong>{{ file.length }} м</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
+
+        <!-- Характеристики файла -->
         <div class="col-lg-6">
-            <!-- Basic Card Example -->
-            <div class="card shadow mb-4">
-
-                <!-- DataTales Example -->
-                <!--                    <div class="card shadow mb-4">-->
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Характеристики файла</h6>
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-secondary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-chart-bar me-2"></i>Характеристики файла
+                    </h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <!--                            <thead>-->
+                        <table class="table table-hover align-middle mb-0">
                             <tbody>
-                            <tr>
-                                <th>Материал</th>
-                                <th>{{ file.material }}</th>
-                            </tr>
-                            <!--                            </thead>-->
-                            <tr>
-                                <td>Разрешение</td>
-                                <td>{{ file.resolution }} dpi</td>
-                            </tr>
-
-                            <tr>
-                                <td>Количество</td>
-                                <td>{{ file.quantity }} шт.</td>
-                            </tr>
-                            <tr>
-                                <td>Размер</td>
-                                <td>{{ file.width }} х {{ file.length }} м</td>
-                            </tr>
-                            <tr>
-                                <td>Цветовая модель</td>
-                                <td>{{ file.color_model }}</td>
-                            </tr>
-                            <tr>
-                                <td>Финишная обработка</td>
-                                <td>{{ file.FinishWork }}</td>
-                            </tr>
-                            <tr>
-                                <td>Добавлен</td>
-                                <td>{{ file.created_at }}</td>
-                            </tr>
-                            <tr>
-                                <td>Статус</td>
-                                <td>{{ file.status_product.status }}</td>
-                            </tr>
-
+                                <tr class="border-bottom">
+                                    <th class="ps-4 py-3 bg-light" style="width: 40%;">
+                                        <i class="fas fa-cube me-2 text-primary"></i>Материал
+                                    </th>
+                                    <td class="ps-3 py-3 fw-bold">{{ file.material }}</td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <th class="ps-4 py-3 bg-light">
+                                        <i class="fas fa-tachometer-alt me-2 text-primary"></i>Разрешение
+                                    </th>
+                                    <td class="ps-3 py-3">{{ file.resolution }} dpi</td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <th class="ps-4 py-3 bg-light">
+                                        <i class="fas fa-hashtag me-2 text-primary"></i>Количество
+                                    </th>
+                                    <td class="ps-3 py-3">{{ file.quantity }} шт.</td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <th class="ps-4 py-3 bg-light">
+                                        <i class="fas fa-arrows-alt me-2 text-primary"></i>Размер
+                                    </th>
+                                    <td class="ps-3 py-3 fw-bold">{{ file.width }} × {{ file.length }} м</td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <th class="ps-4 py-3 bg-light">
+                                        <i class="fas fa-palette me-2 text-primary"></i>Цветовая модель
+                                    </th>
+                                    <td class="ps-3 py-3">{{ file.color_model }}</td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <th class="ps-4 py-3 bg-light">
+                                        <i class="fas fa-cut me-2 text-primary"></i>Финишная обработка
+                                    </th>
+                                    <td class="ps-3 py-3">
+                                        {% if file.FinishWork %}
+                                        <span class="finish-badge">{{ file.FinishWork }}</span>
+                                        {% else %}
+                                        <span class="text-muted">—</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <th class="ps-4 py-3 bg-light">
+                                        <i class="fas fa-calendar-plus me-2 text-primary"></i>Добавлен
+                                    </th>
+                                    <td class="ps-3 py-3">{{ file.created_at|date:"d.m.Y H:i:s" }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="ps-4 py-3 bg-light">
+                                        <i class="fas fa-chart-line me-2 text-primary"></i>Статус
+                                    </th>
+                                    <td class="ps-3 py-3">
+                                        <span class="badge
+                                            {% if file.status_product.id == 1 %}bg-warning text-dark
+                                            {% elif file.status_product.id == 2 %}bg-info
+                                            {% elif file.status_product.id == 3 %}bg-success
+                                            {% elif file.status_product.id == 4 %}bg-primary
+                                            {% else %}bg-secondary{% endif %} fs-6">
+                                            <i class="fas
+                                                {% if file.status_product.id == 1 %}fa-spinner fa-spin
+                                                {% elif file.status_product.id == 2 %}fa-clock
+                                                {% elif file.status_product.id == 3 %}fa-check-circle
+                                                {% elif file.status_product.id == 4 %}fa-file-alt
+                                                {% else %}fa-info-circle{% endif %} me-1"></i>
+                                            {{ file.status_product.status }}
+                                        </span>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        {% if message %}
-        <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-            <span class="text">Удалить файл</span> </a>
-        {% else %}
-
-
-        {% if file.status_product.id == 1 %}
-        <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-            <span class="text">Добавить файл</span>
-            <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                <span class="text">Удалить файл</span> </a>
-            <!--        <td><a href="{% url 'files:edit_files' file.id %}">Изменить</a></td>-->
-            {% else %}
-            <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                <span class="text">Список файлов</span>
-            </a>
-            {% endif %}
-            {% endif %}
-
-
     </div>
 
+    <!-- Кнопки действий -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex gap-4 justify-content-center flex-wrap">
+                {% if message %}
+                <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-lg-custom shadow-sm"
+                   onclick="return confirm('Удалить этот файл?')">
+                    <i class="fas fa-trash me-2"></i>Удалить файл
+                </a>
+                {% else %}
+                    {% if file.status_product.id == 1 %}
+                    <a href="{% url 'files:myfiles' %}" class="btn btn-success btn-lg-custom shadow-sm">
+                        <i class="fas fa-check me-2"></i>Добавить файл
+                    </a>
+                    <a href="{% url 'files:edit_files' file.id %}" class="btn btn-primary btn-lg-custom shadow-sm">
+                        <i class="fas fa-edit me-2"></i>Редактировать
+                    </a>
+                    <a href="{% url 'files:delete_files' file.id %}" class="btn btn-danger btn-lg-custom shadow-sm"
+                       onclick="return confirm('Удалить этот файл?')">
+                        <i class="fas fa-trash me-2"></i>Удалить файл
+                    </a>
+                    {% else %}
+                    <a href="{% url 'files:myfiles' %}" class="btn btn-primary btn-lg-custom shadow-sm">
+                        <i class="fas fa-list me-2"></i>Список файлов
+                    </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
-    {% endblock %}
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-gradient-secondary {
+        background: linear-gradient(135deg, #868f96 0%, #596164 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    /* Контейнер для изображения - квадрат фиксированного размера */
+    .image-container {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+    }
+
+    /* Обертка для изображения с фиксированными размерами */
+    .image-wrapper {
+        width: 100%;
+        height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    /* Стиль для изображения - полное вписывание в контейнер */
+    .fit-image {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .fit-image:hover {
+        transform: scale(1.05);
+    }
+
+    .image-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+    }
+
+    .dimension-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        border-radius: 25px;
+        font-size: 0.9rem;
+    }
+
+    .finish-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%);
+        border-radius: 20px;
+        font-weight: 500;
+        color: #f5576c;
+    }
+
+    .btn-lg-custom {
+        padding: 0.8rem 1.8rem !important;
+        font-size: 1rem !important;
+        border-radius: 10px;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .gap-4 {
+        gap: 1.5rem !important;
+    }
+
+    .table th {
+        font-weight: 600;
+        border-bottom: none;
+    }
+
+    .table td {
+        font-weight: 500;
+    }
+
+    .table tr {
+        transition: all 0.3s ease;
+    }
+
+    .table tr:hover {
+        background-color: rgba(102, 126, 234, 0.03);
+    }
+
+    .badge {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* Анимация */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @media (max-width: 768px) {
+        .btn-lg-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-4 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        h1.display-5 {
+            font-size: 1.8rem;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .dimension-badge {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.7rem;
+        }
+
+        .table th, .table td {
+            padding: 0.75rem 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .image-container {
+            min-height: 300px;
+        }
+
+        .image-wrapper {
+            height: 280px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .image-container {
+            min-height: 250px;
+        }
+
+        .image-wrapper {
+            height: 230px;
+        }
+    }
+</style>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
