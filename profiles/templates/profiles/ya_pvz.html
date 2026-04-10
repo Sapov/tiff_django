@@ -98,7 +98,7 @@
                  setTimeout(() => {
                             messageContainer.style.display = 'none';
                         }, 5000);
-                                    window.location.href = '{% url "profiles:delivery_list" %}';
+                                    window.location.href = '{% url "orders:new_order" %}';
 
             } else {
                 showMessage('Ошибка: ' + data.message, 'error');
