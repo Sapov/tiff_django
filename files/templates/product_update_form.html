@@ -1,16 +1,343 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
-<title>{% block title %} Изменить {% endblock %}</title>
+<title>{% block title %}Редактирование{% endblock %}</title>
+
 {% block body %}
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-edit me-3"></i>Редактирование
+            </h1>
+            <p class="text-muted mt-2">
+                <i class="fas fa-pen me-1"></i>Внесите необходимые изменения
+            </p>
+        </div>
+    </div>
 
-{% block content %}
-<form method="post" , enctype="multipart/form-data">
+    <hr class="mb-4">
 
-    {% csrf_token %}
-    {{ form|crispy }}
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Редактирование данных
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" enctype="multipart/form-data" id="editForm" novalidate>
+                        {% csrf_token %}
 
-    <button type="submit">Сохранить</button>
-</form>
+                        <div class="form-wrapper">
+                            {{ form|crispy }}
+                        </div>
+
+                        <!-- Кнопки действий -->
+                        <div class="d-flex gap-4 mt-4 pt-3">
+                            <button type="submit" class="btn btn-primary btn-lg-custom flex-grow-1 shadow-sm">
+                                <i class="fas fa-save me-2"></i>Сохранить изменения
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg-custom flex-grow-1 shadow-sm"
+                                    onclick="resetForm()">
+                                <i class="fas fa-undo-alt me-2"></i>Сбросить
+                            </button>
+                            <a href="javascript:history.back()" class="btn btn-outline-danger btn-lg-custom flex-grow-1 shadow-sm">
+                                <i class="fas fa-times-circle me-2"></i>Отмена
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Подсказки -->
+            <div class="alert alert-info mt-4 shadow-sm border-0 rounded-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-lightbulb fa-2x text-primary"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="alert-heading fw-bold mb-1">Совет по редактированию</h6>
+                        <p class="mb-0 small">
+                            После внесения изменений не забудьте сохранить данные.
+                            Поля, отмеченные звездочкой (*), обязательны для заполнения.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        overflow: visible;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    /* Важно для выпадающих списков - чтобы они не обрезались */
+    .card-body {
+        overflow: visible !important;
+    }
+
+    .form-wrapper {
+        overflow: visible !important;
+    }
+
+    .btn-lg-custom {
+        padding: 0.8rem 1.5rem !important;
+        font-size: 1rem !important;
+        border-radius: 10px;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .gap-4 {
+        gap: 1.5rem !important;
+    }
+
+    /* Улучшение стилей crispy forms - как в калькуляторе */
+    .form-wrapper .form-group {
+        margin-bottom: 1.5rem;
+        overflow: visible !important;
+    }
+
+    .form-wrapper label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-wrapper input,
+    .form-wrapper select,
+    .form-wrapper textarea {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        background-color: white;
+    }
+
+    /* Стили для выпадающих списков (select) - как в калькуляторе */
+    .form-wrapper select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1rem;
+        padding-right: 2.5rem;
+    }
+
+    /* Стили для опций выпадающего списка */
+    .form-wrapper select option {
+        padding: 10px;
+        font-size: 14px;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    /* Для длинных опций */
+    .form-wrapper select optgroup option,
+    .form-wrapper select option {
+        min-height: 30px;
+        line-height: 1.4;
+    }
+
+    .form-wrapper input:focus,
+    .form-wrapper select:focus,
+    .form-wrapper textarea:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        outline: none;
+    }
+
+    /* Стили для текстовых полей */
+    .form-wrapper textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    /* Стили для чекбоксов и радио кнопок */
+    .form-wrapper input[type="checkbox"],
+    .form-wrapper input[type="radio"] {
+        width: auto;
+        margin-right: 0.5rem;
+        transform: scale(1.1);
+    }
+
+    /* Стили для файлового инпута */
+    .form-wrapper input[type="file"] {
+        padding: 0.5rem;
+        background: #f8f9fa;
+        cursor: pointer;
+    }
+
+    .form-wrapper input[type="file"]:hover {
+        background: #e9ecef;
+    }
+
+    /* Стили для help text */
+    .form-wrapper .help-text {
+        font-size: 0.75rem;
+        color: #6c757d;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    /* Стили для ошибок валидации */
+    .form-wrapper .errorlist {
+        list-style: none;
+        padding: 0;
+        margin: 0.25rem 0 0 0;
+    }
+
+    .form-wrapper .errorlist li {
+        color: #dc3545;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+    }
+
+    /* Увеличиваем z-index для выпадающих списков */
+    .form-wrapper select {
+        position: relative;
+        z-index: 10;
+    }
+
+    /* Анимация */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @media (max-width: 768px) {
+        .btn-lg-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-4 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        h1.display-5 {
+            font-size: 1.8rem;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        /* На мобильных устройствах делаем опции более читаемыми */
+        .form-wrapper select option {
+            font-size: 12px;
+            padding: 8px;
+            white-space: normal;
+            word-break: break-word;
+        }
+    }
+</style>
+
+<script>
+    function resetForm() {
+        if (confirm('Сбросить все изменения? Все несохраненные данные будут потеряны.')) {
+            document.getElementById('editForm').reset();
+            // Убираем классы is-valid/is-invalid если есть
+            const inputs = document.querySelectorAll('.form-wrapper input, .form-wrapper select, .form-wrapper textarea');
+            inputs.forEach(input => {
+                input.classList.remove('is-valid', 'is-invalid');
+            });
+        }
+    }
+
+    // Добавляем классы для полей формы
+    document.addEventListener('DOMContentLoaded', function() {
+        // Добавляем классы для всех полей ввода
+        const inputs = document.querySelectorAll('.form-wrapper input, .form-wrapper select, .form-wrapper textarea');
+        inputs.forEach(input => {
+            if (!input.classList.contains('form-control') &&
+                input.type !== 'checkbox' &&
+                input.type !== 'radio') {
+                input.classList.add('form-control');
+            }
+        });
+
+        // Добавляем класс для select
+        const selects = document.querySelectorAll('.form-wrapper select');
+        selects.forEach(select => {
+            select.classList.add('form-select');
+        });
+
+        // Добавляем класс для textarea
+        const textareas = document.querySelectorAll('.form-wrapper textarea');
+        textareas.forEach(textarea => {
+            textarea.classList.add('form-control');
+        });
+
+        // Предупреждение при попытке уйти без сохранения
+        let formChanged = false;
+        const form = document.getElementById('editForm');
+        const formInputs = document.querySelectorAll('.form-wrapper input, .form-wrapper select, .form-wrapper textarea');
+
+        formInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                formChanged = true;
+            });
+        });
+
+        window.addEventListener('beforeunload', function(e) {
+            if (formChanged) {
+                e.preventDefault();
+                e.returnValue = 'У вас есть несохраненные изменения. Вы уверены, что хотите покинуть страницу?';
+                return e.returnValue;
+            }
+        });
+
+        form.addEventListener('submit', function() {
+            formChanged = false;
+        });
+    });
+</script>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
-    {% endblock %}

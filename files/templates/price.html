@@ -1,217 +1,397 @@
-{% extends 'base.html'%}
-<title>{% block title %} Прайс-лист {% endblock %}</title>
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %}Прайс-лист{% endblock %}</title>
+
 {% block body %}
-
-
-{% if price_shirka.count > 0 %}
-
-<!--<div class="container-fluid">-->
-
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Прайс-лист</h1>
-<p class="mb-4">Цены указаны за 1 м2. Широкоформатная печать используется для печати рекламных носителей большого
-    формата</p>
-
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Широкоформатная печать:</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <th>Материал</th>
-                <th>Цена</th>
-                </thead>
-                <tbody>
-                {% for field in price_shirka %}
-                {% if field.is_active == True %}
-                <tr>
-                    <td>{{ field.name }}</td>
-                    {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
-                    <td>{{ field.price_customer_retail }} руб.</td>
-                    {% elif user.role == 'CUSTOMER_AGENCY' %}
-                    <td>{{ field.price }} руб.</td>
-
-                </tr>
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-
-
-        </div>
-    </div>
-</div>
-
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Интерьерная печать:</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <th>Материал</th>
-                <th>Цена</th>
-                </thead>
-                <tbody>
-                {% for field in price_interierka %}
-                {% if field.is_active == True %}
-                <tr>
-                    <td>{{ field.name }}</td>
-                    {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
-                    <td>{{ field.price_customer_retail }} руб.</td>
-                    {% elif user.role == 'CUSTOMER_AGENCY' %}
-                    <td>{{ field.price }} руб.</td>
-
-                </tr>
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-
-
-        </div>
-    </div>
-</div>
-
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">UV-печать:</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <th>Материал</th>
-                <th>Цена</th>
-                </thead>
-                <tbody>
-                {% for field in price_UV %}
-                {% if field.is_active == True %}
-                <tr>
-                    <td>{{ field.name }}</td>
-                    {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
-                    <td>{{ field.price_customer_retail }} руб.</td>
-                    {% elif user.role == 'CUSTOMER_AGENCY' %}
-                    <td>{{ field.price }} руб.</td>
-
-                </tr>
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-
-
-        </div>
-    </div>
-</div>
-
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Финишная обработка:</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <th>Работа</th>
-                <th>Цена</th>
-                </thead>
-                <tbody>
-                {% for field in finishka %}
-                {% if field.is_active == True %}
-
-                <tr>
-                    <td>{{ field.work }}</td>
-                    {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
-                    <td>{{ field.price_customer_retail }} руб.</td>
-                    {% elif user.role == 'CUSTOMER_AGENCY' %}
-                    <td>{{ field.price }} руб.</td>
-                </tr>
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-
-
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-tags me-3"></i>Прайс-лист
+            </h1>
+            <p class="text-muted mt-2">
+                <i class="fas fa-ruble-sign me-1"></i>Цены указаны за 1 м²
+            </p>
         </div>
     </div>
 
+    <hr class="mb-4">
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Чистый материал:</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <th>Материал</th>
-                    <th>Цена</th>
-                    </thead>
-                    <tbody>
-                    {% for field in blank_material %}
-                    {% if field.is_active == True %}
-                    <tr>
-                        <td>{{ field.name }}</td>
-                        {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
-                        <td>{{ field.price_customer_retail }} руб.</td>
-                        {% elif user.role == 'CUSTOMER_AGENCY' %}
-                        <td>{{ field.price }} руб.</td>
-
-                    </tr>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-
-            </div>
-        </div>
-
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Картины на подрамнике:</h6>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <th>Материал</th>
-                        <th>Цена</th>
-                        </thead>
-                        <tbody>
-                        {% for field in pictures %}
-                        {% if field.is_active == True %}
-                        <tr>
-                            <td>{{ field.name }}</td>
-                            {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
-                            <td>{{ field.price_customer_retail }} руб.</td>
-                            {% elif user.role == 'CUSTOMER_AGENCY' %}
-                            <td>{{ field.price }} руб.</td>
-
-                        </tr>
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                        </tbody>
-                    </table>
-
-
+    {% if price_shirka.count > 0 %}
+    <div class="row g-4">
+        <!-- Широкоформатная печать -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-expand-alt me-2"></i>Широкоформатная печать
+                    </h4>
+                    <p class="mb-0 mt-1 small opacity-75">
+                        Для печати рекламных носителей большого формата
+                    </p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3">Материал</th>
+                                    <th class="py-3 text-end">Цена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for field in price_shirka %}
+                                {% if field.is_active == True %}
+                                <tr class="{% cycle '' 'table-light' %}">
+                                    <td class="fw-bold">{{ field.name }}</td>
+                                    <td class="text-end">
+                                        <span class="price-badge">
+                                            {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
+                                            {{ field.price_customer_retail }}
+                                            {% elif user.role == 'CUSTOMER_AGENCY' %}
+                                            {{ field.price }}
+                                            {% endif %} ₽
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Интерьерная печать -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-secondary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-palette me-2"></i>Интерьерная печать
+                    </h4>
+                    <p class="mb-0 mt-1 small opacity-75">
+                        Для интерьерной и наружной рекламы
+                    </p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3">Материал</th>
+                                    <th class="py-3 text-end">Цена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for field in price_interierka %}
+                                {% if field.is_active == True %}
+                                <tr class="{% cycle '' 'table-light' %}">
+                                    <td class="fw-bold">{{ field.name }}</td>
+                                    <td class="text-end">
+                                        <span class="price-badge">
+                                            {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
+                                            {{ field.price_customer_retail }}
+                                            {% elif user.role == 'CUSTOMER_AGENCY' %}
+                                            {{ field.price }}
+                                            {% endif %} ₽
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UV-печать -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-uv text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-sun me-2"></i>UV-печать
+                    </h4>
+                    <p class="mb-0 mt-1 small opacity-75">
+                        УФ-отверждаемые чернила, высокая стойкость
+                    </p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3">Материал</th>
+                                    <th class="py-3 text-end">Цена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for field in price_UV %}
+                                {% if field.is_active == True %}
+                                <tr class="{% cycle '' 'table-light' %}">
+                                    <td class="fw-bold">{{ field.name }}</td>
+                                    <td class="text-end">
+                                        <span class="price-badge">
+                                            {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
+                                            {{ field.price_customer_retail }}
+                                            {% elif user.role == 'CUSTOMER_AGENCY' %}
+                                            {{ field.price }}
+                                            {% endif %} ₽
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Финишная обработка -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-finish text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-cut me-2"></i>Финишная обработка
+                    </h4>
+                    <p class="mb-0 mt-1 small opacity-75">
+                        Дополнительные услуги по обработке
+                    </p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3">Работа</th>
+                                    <th class="py-3 text-end">Цена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for field in finishka %}
+                                {% if field.is_active == True %}
+                                <tr class="{% cycle '' 'table-light' %}">
+                                    <td class="fw-bold">{{ field.work }}</td>
+                                    <td class="text-end">
+                                        <span class="price-badge">
+                                            {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
+                                            {{ field.price_customer_retail }}
+                                            {% elif user.role == 'CUSTOMER_AGENCY' %}
+                                            {{ field.price }}
+                                            {% endif %} ₽
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Чистый материал -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-material text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-cube me-2"></i>Чистый материал
+                    </h4>
+                    <p class="mb-0 mt-1 small opacity-75">
+                        Материалы без печати
+                    </p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3">Материал</th>
+                                    <th class="py-3 text-end">Цена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for field in blank_material %}
+                                {% if field.is_active == True %}
+                                <tr class="{% cycle '' 'table-light' %}">
+                                    <td class="fw-bold">{{ field.name }}</td>
+                                    <td class="text-end">
+                                        <span class="price-badge">
+                                            {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
+                                            {{ field.price_customer_retail }}
+                                            {% elif user.role == 'CUSTOMER_AGENCY' %}
+                                            {{ field.price }}
+                                            {% endif %} ₽
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Картины на подрамнике -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-header bg-gradient-picture text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-paintbrush me-2"></i>Картины на подрамнике
+                    </h4>
+                    <p class="mb-0 mt-1 small opacity-75">
+                        Готовые картины для интерьера
+                    </p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3">Материал</th>
+                                    <th class="py-3 text-end">Цена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for field in pictures %}
+                                {% if field.is_active == True %}
+                                <tr class="{% cycle '' 'table-light' %}">
+                                    <td class="fw-bold">{{ field.name }}</td>
+                                    <td class="text-end">
+                                        <span class="price-badge">
+                                            {% if user.role == 'CUSTOMER_RETAIL' or user.role == 'MANAGER' %}
+                                            {{ field.price_customer_retail }}
+                                            {% elif user.role == 'CUSTOMER_AGENCY' %}
+                                            {{ field.price }}
+                                            {% endif %} ₽
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
     {% endif %}
-    {% endblock %}
+</div>
 
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-gradient-secondary {
+        background: linear-gradient(135deg, #868f96 0%, #596164 100%);
+    }
+
+    .bg-gradient-uv {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .bg-gradient-finish {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .bg-gradient-material {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .bg-gradient-picture {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .price-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        border-radius: 20px;
+        font-weight: 600;
+        color: #667eea;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table > :not(caption) > * > * {
+        padding: 1rem 1rem;
+    }
+
+    .table tbody tr {
+        transition: all 0.3s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: rgba(102, 126, 234, 0.05);
+    }
+
+    /* Анимация */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @media (max-width: 768px) {
+        .table > :not(caption) > * > * {
+            padding: 0.75rem 0.5rem;
+        }
+
+        .price-badge {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+        }
+
+        .card-header h4 {
+            font-size: 1.1rem;
+        }
+
+        .card-header p {
+            font-size: 0.7rem;
+        }
+    }
+</style>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}

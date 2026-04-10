@@ -1,50 +1,295 @@
-{% extends 'base.html'%}
-<title>{% block title %} Профиль: {% endblock %}</title>
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %}Мой профиль{% endblock %}</title>
+
 {% block body %}
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-user-circle me-3"></i>Мой профиль
+            </h1>
+            <p class="text-muted mt-2">
+                <i class="fas fa-id-card me-1"></i>Личная информация и настройки
+            </p>
+        </div>
+        <div>
+            <a href="{% url 'profile_edit' %}" class="btn btn-primary btn-sm-custom shadow-sm">
+                <i class="fas fa-edit me-2"></i>Редактировать профиль
+            </a>
+        </div>
+    </div>
 
-<h1>Мои профиль: </h1>
-<a href="{% url 'profile_edit' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-    <span class="text">Редактировать</span>
-</a>
+    <hr class="mb-4">
 
-<hr>
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            <!-- Карточка профиля -->
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="card-header bg-gradient-primary text-white py-4">
+                    <div class="text-center">
+                        <div class="profile-avatar mb-3">
+                            <i class="fas fa-user-circle fa-4x"></i>
+                        </div>
+                        <h3 class="mb-0 fw-bold">{{ user.first_name|default:user.email }}</h3>
+                        <p class="mb-0 mt-2 opacity-75">@{{ user.username }}</p>
+                    </div>
+                </div>
 
-                <th scope="col">Email</th>
-                <th scope="col">Телефон</th>
-                <th scope="col">Имя Фамилия Отчество</th>
-                <th scope="col">Отсылать сообщения на Whatsapp</th>
-            </tr>
-            </thead>
+                <div class="card-body p-4">
+                    {% for item in object_list %}
+                    <!-- Информационные карточки -->
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-icon bg-gradient-email">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <label class="text-muted small text-uppercase">Email</label>
+                                <div class="fw-bold fs-6">{{ item.email }}</div>
+                            </div>
+                        </div>
 
-            {% for item in object_list %}
+                        <div class="info-card">
+                            <div class="info-icon bg-gradient-phone">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <label class="text-muted small text-uppercase">Телефон</label>
+                                <div class="fw-bold fs-6">{{ item.phone_number|default:"Не указан" }}</div>
+                            </div>
+                        </div>
 
-            <tbody>
-            <tr>
-<!--                <div class="input-group mb-3">-->
-<!--                    <span class="input-group-text"   id="inputGroup-sizing-default">Email</span>-->
-<!--                    <input type="text" class="form-control" placeholder="{{ item.email }} "-->
-<!--                           aria-label="{{ item.email }}" aria-describedby="inputGroup-sizing-default">-->
-<!--                </div>-->
-                <td>{{ item.email }}</td>
-                <td>{{ item.phone_number }}</td>
-                <td>{{ item.first_name }}</td>
-                <td>{{ item.whatsapp }}</td>
-                <td>
-                    <a href="{% url 'profile_edit' %}">Изменить</a>
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                        <div class="info-card">
+                            <div class="info-icon bg-gradient-name">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="info-content">
+                                <label class="text-muted small text-uppercase">ФИО</label>
+                                <div class="fw-bold fs-6">{{ item.first_name|default:"Не указано" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon bg-gradient-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="info-content">
+                                <label class="text-muted small text-uppercase">WhatsApp уведомления</label>
+                                <div>
+                                    {% if item.whatsapp %}
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check-circle me-1"></i>Включены
+                                    </span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">
+                                        <i class="fas fa-times-circle me-1"></i>Отключены
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="card-footer bg-light py-3">
+                    <div class="text-center small text-muted">
+                        <i class="fas fa-lock me-1"></i>Ваши данные защищены и не передаются третьим лицам
+                    </div>
+                </div>
+            </div>
+
+            <!-- Дополнительная информация -->
+            <div class="alert alert-info mt-4 shadow-sm border-0 rounded-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="alert-heading fw-bold mb-1">Конфиденциальность</h6>
+                        <p class="mb-0 small">
+                            Ваши личные данные используются только для оформления заказов
+                            и отправки уведомлений. Вы можете изменить настройки уведомлений
+                            в любое время.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-gradient-email {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .bg-gradient-phone {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .bg-gradient-name {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .bg-gradient-whatsapp {
+        background: linear-gradient(135deg, #25d366 0%, #128C7E 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+    }
+
+    .profile-avatar i {
+        font-size: 3.5rem;
+        color: white;
+    }
+
+    .info-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .info-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+        background: #e9ecef;
+        transform: translateX(5px);
+    }
+
+    .info-icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        color: white;
+        font-size: 1.3rem;
+    }
+
+    .info-content {
+        flex: 1;
+    }
+
+    .info-content label {
+        font-size: 0.7rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-sm-custom {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.9rem !important;
+        border-radius: 10px;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .badge {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.7rem;
+        font-weight: 500;
+    }
+
+    /* Анимация */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @media (max-width: 768px) {
+        .btn-sm-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-3 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        h1.display-5 {
+            font-size: 1.8rem;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .info-card {
+            padding: 0.75rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        .info-content .fw-bold {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock body %}
