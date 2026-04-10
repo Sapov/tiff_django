@@ -1,32 +1,311 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
-<title>{% block title %} Новый заказ{% endblock %}</title>
+<title>{% block title %}Новый заказ{% endblock %}</title>
+
 {% block body %}
-<p></p>
-<h3>Добавить новый заказ</h3>
-<form method="post" , enctype="multipart/form-data">
-<a href="{% url 'profiles:ya_pvz' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">Добавить адрес Яндекс ПВЗ</span>
-                                    </a>
-<a href="{% url 'profiles:create_organisation' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-    <span class="text">Добавить организацию</span>
-</a>
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-shopping-cart me-3"></i>Новый заказ
+            </h1>
+            <p class="text-muted mt-2">
+                Создайте новый заказ на изготовление баннера
+            </p>
+        </div>
+        <div class="d-flex gap-4">
+            <a href="{% url 'profiles:ya_pvz' %}" class="btn btn-outline-primary shadow-sm btn-sm-custom">
+                <i class="fas fa-map-marker-alt me-2"></i>Добавить адрес Яндекс ПВЗ
+            </a>
+            <a href="{% url 'profiles:create_organisation' %}" class="btn btn-outline-secondary shadow-sm btn-sm-custom">
+                <i class="fas fa-building me-2"></i>Добавить организацию
+            </a>
+        </div>
+    </div>
 
-    {% csrf_token %}
-    {{ form|crispy }}
-    <p>
-        <label for="date">Дата готовности: </label>
+    <hr class="mb-4">
 
-        <input type="date" value={{today}} min={{today}} id="start" name="date_complite"/>
-    </p>
-    <button type="submit" class="btn btn-primary">Новый заказ</button>
-</form>
+    <!-- Форма заказа -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-clipboard-list me-2"></i>Детали заказа
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" enctype="multipart/form-data" id="orderForm">
+                        {% csrf_token %}
 
+                        <!-- Основные поля формы с улучшенным стилем -->
+                        <div class="mb-4">
+                            {{ form|crispy }}
+                        </div>
+
+                        <!-- Дата готовности -->
+                        <div class="mb-4">
+                            <label for="date_complite" class="form-label fw-bold">
+                                <i class="fas fa-calendar-alt me-2 text-primary"></i>Дата готовности
+                            </label>
+                            <input type="date"
+                                   id="date_complite"
+                                   name="date_complite"
+                                   value="{{ today }}"
+                                   min="{{ today }}"
+                                   class="form-control form-control-lg shadow-sm"
+                                   required>
+                            <small class="text-muted mt-2 d-block">
+                                <i class="fas fa-info-circle me-1"></i>Минимальная дата: {{ today }}
+                            </small>
+                        </div>
+
+                        <!-- Кнопки действий с увеличенным расстоянием -->
+                        <div class="d-flex gap-4 mt-4 pt-3">
+                            <button type="submit" class="btn btn-primary btn-lg-custom flex-grow-1 shadow-sm">
+                                <i class="fas fa-check-circle me-2"></i>Создать заказ
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg-custom flex-grow-1 shadow-sm" onclick="resetForm()">
+                                <i class="fas fa-undo-alt me-2"></i>Очистить форму
+                            </button>
+                            <a href="{% url 'profiles:dashboard' %}" class="btn btn-outline-danger btn-lg-custom flex-grow-1 shadow-sm">
+                                <i class="fas fa-times-circle me-2"></i>Отмена
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Подсказки и информация -->
+            <div class="alert alert-info mt-4 shadow-sm border-0 rounded-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-lightbulb fa-2x text-primary"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="alert-heading fw-bold mb-1">Совет по оформлению заказа</h6>
+                        <p class="mb-0 small">
+                            Убедитесь, что вы указали корректные размеры баннера и выбрали правильный материал.
+                            После создания заказа вы сможете отслеживать его статус в личном кабинете.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+        border-radius: 10px;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Кастомные размеры кнопок - уменьшены на 15% */
+    .btn-sm-custom {
+        padding: 0.51rem 0.85rem !important;  /* Стандартный padding: 0.6rem 1rem, уменьшен на 15% */
+        font-size: 0.85rem !important;        /* Стандартный font-size: 1rem, уменьшен на 15% */
+        line-height: 1.2 !important;
+    }
+
+    .btn-lg-custom {
+        padding: 0.68rem 1.275rem !important;  /* Стандартный padding: 0.8rem 1.5rem, уменьшен на 15% */
+        font-size: 1.02rem !important;         /* Стандартный font-size: 1.2rem, уменьшен на 15% */
+        line-height: 1.3 !important;
+    }
+
+    /* Увеличенное расстояние между кнопками */
+    .gap-4 {
+        gap: 1.5rem !important;  /* Стандартное расстояние увеличено */
+    }
+
+    .form-control, .form-select, textarea {
+        border-radius: 10px;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus, .form-select:focus, textarea:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    /* Улучшение стилей crispy forms */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    /* Анимация для кнопок */
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+        }
+    }
+
+    .btn-primary {
+        animation: pulse 2s infinite;
+    }
+
+    .btn-primary:hover {
+        animation: none;
+    }
+
+    @media (max-width: 768px) {
+        .btn-sm-custom {
+            padding: 0.425rem 0.68rem !important;
+            font-size: 0.765rem !important;
+        }
+
+        .btn-lg-custom {
+            padding: 0.6rem 1.02rem !important;
+            font-size: 0.9rem !important;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        h1.display-5 {
+            font-size: 1.8rem;
+        }
+
+        .d-flex.gap-4 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        .btn-lg-custom, .btn-sm-custom {
+            width: 100%;
+        }
+
+        /* Увеличенное расстояние для мобильной версии */
+        .d-flex.gap-3, .d-flex.gap-4 {
+            gap: 1rem !important;
+        }
+    }
+
+    /* Стили для файлового инпута */
+    input[type="file"] {
+        padding: 0.5rem;
+        background: #f8f9fa;
+    }
+
+    /* Стили для чекбоксов и радио кнопок */
+    input[type="checkbox"], input[type="radio"] {
+        margin-right: 0.5rem;
+        transform: scale(1.1);
+    }
+
+    /* Стили для дропдаунов */
+    select.form-select {
+        cursor: pointer;
+    }
+
+    /* Анимация загрузки формы */
+    .card {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<!-- JavaScript для сброса формы -->
+<script>
+    function resetForm() {
+        if (confirm('Вы уверены, что хотите очистить все поля формы?')) {
+            document.getElementById('orderForm').reset();
+            // Устанавливаем минимальную дату обратно
+            const dateInput = document.getElementById('date_complite');
+            if (dateInput) {
+                dateInput.value = "{{ today }}";
+            }
+        }
+    }
+
+    // Валидация даты на клиенте
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('date_complite');
+        if (dateInput) {
+            dateInput.addEventListener('change', function() {
+                const selectedDate = new Date(this.value);
+                const minDate = new Date(this.min);
+                if (selectedDate < minDate) {
+                    alert('Дата не может быть раньше сегодняшнего дня');
+                    this.value = this.min;
+                }
+            });
+        }
+
+        // Добавляем классы для полей crispy forms
+        const formControls = document.querySelectorAll('input, select, textarea');
+        formControls.forEach(element => {
+            if (!element.classList.contains('form-control') &&
+                !element.classList.contains('form-select') &&
+                element.type !== 'checkbox' &&
+                element.type !== 'radio' &&
+                element.type !== 'file') {
+                element.classList.add('form-control');
+            }
+        });
+
+        const selects = document.querySelectorAll('select');
+        selects.forEach(select => {
+            select.classList.add('form-select');
+        });
+    });
+</script>
+
+<!-- Подключение Font Awesome (если не подключено в базовом шаблоне) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
