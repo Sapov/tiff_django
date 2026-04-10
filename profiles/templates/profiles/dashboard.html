@@ -1,443 +1,557 @@
 {% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
 {% block title %}Панель управления{% endblock %}
+
 {% block body %}
-
-{% if request.user.role == 'COURIER' %}
-
-{% if object_list.count > 0 %}
-<h2>Заказы готовые к отправке Автобусом: </h2>
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Заказ №</th>
-                <th>Статус</th>
-                <th>Дата заказа</th>
-                <th>Дата готовности</th>
-            </thead>
-            <tbody>
-            {% for order in object_list %}
-            <tr>
-                <td>{{ order.id }}</td>
-                <td>{{ order.status }}</td>
-                <td>{{ order.created }}</td>
-                <td>{{ order.date_complete }}</td>
-                <td><a class="btn btn-success"
-                       href="{% url 'orders:add_file_in_order' order.id %}"
-                       role="button"
-                       aria-expanded="false">
-                    Доставка
-                </a></td>
-
-                {% endfor %}
-            </tbody>
-        </table>
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-tachometer-alt me-3"></i>Панель управления
+            </h1>
+            <p class="text-muted mt-2">
+                <i class="fas fa-chart-line me-1"></i>Управление заказами и файлами
+            </p>
+        </div>
     </div>
-</div>
-{% endif %}
 
+    <hr class="mb-4">
 
+    <!-- ДЛЯ КУРЬЕРА -->
+    {% if request.user.role == 'COURIER' %}
+        {% if object_list.count > 0 %}
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                <h4 class="mb-0 fw-bold">
+                    <i class="fas fa-truck me-2"></i>Заказы готовые к отправке Автобусом
+                </h4>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="py-3">Заказ №</th>
+                                <th class="py-3">Статус</th>
+                                <th class="py-3">Дата заказа</th>
+                                <th class="py-3">Дата готовности</th>
+                                <th class="py-3">Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in object_list %}
+                            <tr>
+                                <td class="fw-bold">#{{ order.id }}</td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        <i class="fas fa-cog fa-spin me-1"></i>{{ order.status }}
+                                    </span>
+                                </td>
+                                <td>{{ order.created }}</td>
+                                <td>{{ order.date_complete }}</td>
+                                <td>
+                                    <a class="btn btn-success btn-sm-custom"
+                                       href="{% url 'orders:add_file_in_order' order.id %}">
+                                        <i class="fas fa-play me-1"></i>Доставка
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center shadow-sm border-0 rounded-3">
+            <i class="fas fa-info-circle me-2"></i>Нет заказов готовых к отправке
+        </div>
+        {% endif %}
 
-{% elif request.user.role == 'MANAGER' %}
-
-
-
-<div class="row">
-    <!-- Earnings (Annual) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_inter' %}">Загрузка файлов для Интерьерной печати</a></p>
-
+    <!-- ДЛЯ МЕНЕДЖЕРА -->
+    {% elif request.user.role == 'MANAGER' %}
+        <!-- Карточки быстрых действий -->
+        <div class="row g-4 mb-5">
+            <div class="col-xl-3 col-md-6">
+                <div class="card action-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="action-icon bg-gradient-inter">
+                            <i class="fas fa-palette fa-2x"></i>
                         </div>
-<!--                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 350 руб.</div>-->
+                        <h5 class="mt-3 mb-2">Интерьерная печать</h5>
+                        <p class="text-muted small">от 350 ₽</p>
+                        <a href="{% url 'files:create_inter' %}" class="btn btn-outline-primary btn-sm-custom mt-2">
+                            Загрузить файлы
+                        </a>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card action-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="action-icon bg-gradient-large">
+                            <i class="fas fa-expand-alt fa-2x"></i>
+                        </div>
+                        <h5 class="mt-3 mb-2">Широкоформатная печать</h5>
+                        <p class="text-muted small">от 1000 ₽</p>
+                        <a href="{% url 'files:create_large' %}" class="btn btn-outline-primary btn-sm-custom mt-2">
+                            Загрузить файлы
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card action-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="action-icon bg-gradient-uv">
+                            <i class="fas fa-sun fa-2x"></i>
+                        </div>
+                        <h5 class="mt-3 mb-2">UV-печать</h5>
+                        <p class="text-muted small">от 900 ₽</p>
+                        <a href="{% url 'files:create_uv' %}" class="btn btn-outline-primary btn-sm-custom mt-2">
+                            Загрузить файлы
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card action-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="action-icon bg-gradient-banner">
+                            <i class="fas fa-sign fa-2x"></i>
+                        </div>
+                        <h5 class="mt-3 mb-2">Баннер "ПРОДАЮ"</h5>
+                        <p class="text-muted small">от 1300 ₽</p>
+                        <a href="{% url 'files:create_banner' %}" class="btn btn-outline-primary btn-sm-custom mt-2">
+                            Создать баннер
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Tasks Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_large' %}">Загрузка файлов для Широкоформатной печати</a>
-                            </p>
+        <!-- Кнопки управления -->
+        <div class="d-flex gap-4 mb-4 flex-wrap">
+            <a href="{% url 'users_create' %}" class="btn btn-primary btn-sm-custom shadow-sm">
+                <i class="fas fa-user-plus me-2"></i>Добавить пользователя
+            </a>
+            <a href="{% url 'orders:new_order' %}" class="btn btn-success btn-sm-custom shadow-sm">
+                <i class="fas fa-shopping-cart me-2"></i>Создать заказ
+            </a>
+            <a href="{% url 'lids:list_lids' %}" class="btn btn-info btn-sm-custom shadow-sm">
+                <i class="fas fa-lead me-2"></i>Лиды
+            </a>
+        </div>
 
+        <!-- Таблица заказов -->
+        <div class="card shadow-lg border-0 rounded-4 mt-4">
+            <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                <h4 class="mb-0 fw-bold">
+                    <i class="fas fa-list-alt me-2"></i>Все заказы
+                </h4>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="py-3">Заказ №</th>
+                                <th class="py-3">Сумма заказа</th>
+                                <th class="py-3">Оплачено</th>
+                                <th class="py-3">Статус</th>
+                                <th class="py-3">Дата заказа</th>
+                                <th class="py-3">Дата готовности</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in Orders %}
+                            <tr>
+                                <td>
+                                    {% if order.status.id >= 2 %}
+                                    <button class="btn btn-primary btn-sm-custom"
+                                            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">
+                                        <i class="fas fa-box me-1"></i>Заказ № {{ order.id }}
+                                    </button>
+                                    {% else %}
+                                    <div class="dropdown">
+                                        <button class="btn btn-success btn-sm-custom dropdown-toggle"
+                                                type="button" id="dropdownMenuButton{{ order.id }}"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-box me-1"></i>Заказ № {{ order.id }}
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ order.id }}">
+                                            <li><a class="dropdown-item" href="{% url 'orders:add_file_in_order' order.id %}">
+                                                <i class="fas fa-plus me-2"></i>Добавить файлы
+                                            </a></li>
+                                            <li><a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">
+                                                <i class="fas fa-credit-card me-2"></i>Оплатить
+                                            </a></li>
+                                            <li><a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">
+                                                <i class="fas fa-edit me-2"></i>Редактировать
+                                            </a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item text-danger" href="{% url 'orders:Delete_order' order.id %}">
+                                                <i class="fas fa-trash me-2"></i>Удалить
+                                            </a></li>
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                </td>
+                                <td class="fw-bold text-success">{{ order.total_price }} ₽</td>
+                                <td>
+                                    {% if order.paid == False %}
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-clock me-1"></i>Не оплачено
+                                    </span>
+                                    {% else %}
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check-circle me-1"></i>Оплачено
+                                    </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if order.status.id == 3 %}
+                                    <span class="badge bg-info">
+                                        <i class="fas fa-cog fa-spin me-1"></i>В работе
+                                    </span>
+                                    {% elif order.status.id == 5 %}
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check-circle me-1"></i>Готов
+                                    </span>
+                                    {% elif order.status.id == 1 %}
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-spinner fa-spin me-1"></i>Готовится
+                                    </span>
+                                    {% elif order.status.id == 2 %}
+                                    <span class="badge bg-primary text-white">
+                                        <i class="fas fa-file-alt me-1"></i>Оформлен
+                                    </span>
+                                    {% elif order.status.id == 4 %}
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-truck me-1"></i>Доставка
+                                    </span>
+                                    {% endif %}
+                                </td>
+                                <td class="small">{{ order.created }}</td>
+                                <td class="small">{{ order.date_complete }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <!-- ДЛЯ КЛИЕНТА -->
+    {% else %}
+        <!-- Карточки быстрых действий для клиента -->
+        <div class="row g-4 mb-5">
+            <div class="col-xl-3 col-md-6">
+                <div class="card action-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="action-icon bg-gradient-inter">
+                            <i class="fas fa-palette fa-2x"></i>
                         </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-<!--                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">от 1000 руб.</div>-->
-                            </div>
-                            <div class="progress progress-sm mr-2">
-                                <div class="progress-bar bg-info" role="progressbar"
-                                     style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                        <h5 class="mt-3 mb-2">Интерьерная печать</h5>
+                        <p class="text-muted small">от 350 ₽</p>
+                        <a href="{% url 'files:create_inter' %}" class="btn btn-outline-primary btn-sm-custom mt-2">
+                            Загрузить файлы
+                        </a>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card action-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="action-icon bg-gradient-large">
+                            <i class="fas fa-expand-alt fa-2x"></i>
+                        </div>
+                        <h5 class="mt-3 mb-2">Широкоформатная печать</h5>
+                        <p class="text-muted small">от 1000 ₽</p>
+                        <a href="{% url 'files:create_large' %}" class="btn btn-outline-primary btn-sm-custom mt-2">
+                            Загрузить файлы
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card action-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="action-icon bg-gradient-uv">
+                            <i class="fas fa-sun fa-2x"></i>
+                        </div>
+                        <h5 class="mt-3 mb-2">UV-печать</h5>
+                        <p class="text-muted small">от 900 ₽</p>
+                        <a href="{% url 'files:create_uv' %}" class="btn btn-outline-primary btn-sm-custom mt-2">
+                            Загрузить файлы
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card action-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="action-icon bg-gradient-banner">
+                            <i class="fas fa-sign fa-2x"></i>
+                        </div>
+                        <h5 class="mt-3 mb-2">Баннер "ПРОДАЮ"</h5>
+                        <p class="text-muted small">от 1300 ₽</p>
+                        <a href="{% url 'files:create_banner' %}" class="btn btn-outline-primary btn-sm-custom mt-2">
+                            Создать баннер
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Pending Requests Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_uv' %}">Загрузка файлов для UV-печати</a></p>
-                        </div>
-<!--                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 900 руб.</div>-->
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
+        <!-- Кнопка создания заказа -->
+        <div class="d-flex gap-4 mb-4">
+            <a href="{% url 'orders:new_order' %}" class="btn btn-primary btn-sm-custom shadow-sm">
+                <i class="fas fa-shopping-cart me-2"></i>Создать заказ
+            </a>
+        </div>
+
+        <!-- Таблица заказов клиента -->
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                <h4 class="mb-0 fw-bold">
+                    <i class="fas fa-list-alt me-2"></i>Мои заказы
+                </h4>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="py-3">Заказ №</th>
+                                <th class="py-3">Сумма заказа</th>
+                                <th class="py-3">Оплачено</th>
+                                <th class="py-3">Статус</th>
+                                <th class="py-3">Дата заказа</th>
+                                <th class="py-3">Дата готовности</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in Orders %}
+                            <tr>
+                                <td>
+                                    {% if order.status.id >= 2 %}
+                                    <button class="btn btn-primary btn-sm-custom"
+                                            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">
+                                        <i class="fas fa-box me-1"></i>Заказ № {{ order.id }}
+                                    </button>
+                                    {% else %}
+                                    <div class="dropdown">
+                                        <button class="btn btn-success btn-sm-custom dropdown-toggle"
+                                                type="button" id="dropdownMenuButton{{ order.id }}"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-box me-1"></i>Заказ № {{ order.id }}
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ order.id }}">
+                                            <li><a class="dropdown-item" href="{% url 'orders:add_file_in_order' order.id %}">
+                                                <i class="fas fa-plus me-2"></i>Добавить файлы
+                                            </a></li>
+                                            <li><a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">
+                                                <i class="fas fa-credit-card me-2"></i>Оплатить
+                                            </a></li>
+                                            <li><a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">
+                                                <i class="fas fa-edit me-2"></i>Редактировать
+                                            </a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item text-danger" href="{% url 'orders:Delete_order' order.id %}">
+                                                <i class="fas fa-trash me-2"></i>Удалить
+                                            </a></li>
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                </td>
+                                <td class="fw-bold text-success">{{ order.total_price }} ₽</td>
+                                <td>
+                                    {% if order.paid == False %}
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-clock me-1"></i>Не оплачено
+                                    </span>
+                                    {% else %}
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check-circle me-1"></i>Оплачено
+                                    </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if order.status.id == 3 %}
+                                    <span class="badge bg-info">
+                                        <i class="fas fa-cog fa-spin me-1"></i>В работе
+                                    </span>
+                                    {% elif order.status.id == 5 %}
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check-circle me-1"></i>Готов
+                                    </span>
+                                    {% elif order.status.id == 1 %}
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-spinner fa-spin me-1"></i>Готовится
+                                    </span>
+                                    {% elif order.status.id == 2 %}
+                                    <span class="badge bg-primary text-white">
+                                        <i class="fas fa-file-alt me-1"></i>Оформлен
+                                    </span>
+                                    {% elif order.status.id == 4 %}
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-truck me-1"></i>Доставка
+                                    </span>
+                                    {% endif %}
+                                </td>
+                                <td class="small">{{ order.created }}</td>
+                                <td class="small">{{ order.date_complete }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <!-- Earnings (Annual) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_banner' %}">Создать баннер "ПРОДАЮ"</a></p>
-
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 1300 руб.</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<h3>Все заказы</h3>
-<a href="{% url 'users_create' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-        <span class="text">Добавить пользователя</span>
-<a href="{% url 'orders:new_order' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-    <span class="text">Создать заказ</span>
-</a>
-<a href="{% url 'lids:list_lids' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-    <span class="text">Лиды</span>
-</a>
-
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Заказ №</th>
-                <th>Сумма заказа</th>
-                <th>Оплачено</th>
-                <th>Статус</th>
-                <th>Дата заказа</th>
-                <th>Дата готовности</th>
-            </thead>
-            <tbody>
-            {% for order in Orders %}
-            <tr>
-
-                {% if order.status.id >= 2 %}
-
-                <td>
-                    <button type="submit" class="btn btn-primary"
-            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id }}                   </button>
-                </td>
-
-                {% else %}
-                <td>
-                    <a class="btn btn-success nav-link dropdown-toggle"
-                       href="{% url 'orders:add_file_in_order' order.id %}" id="navbarDropdown"
-                       role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        Заказ № {{ order.id }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                         aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'orders:add_file_in_order' order.id %}">Добавить
-                            файлы</a>
-                        <a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">Оплатить</a>
-                        <a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">Редактировать</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'orders:Delete_order' order.id %}">Удалить</a>
-                    </div>
-                </td>
-                {% endif %}
-
-
-                <td>{{ order.total_price }} руб.</td>
-                <td>{% if order.paid == False %}
-                    <div class="mb-2">
-                        <code>Не оплачено!</code>
-                    </div>
-                    {% else%}
-                    <div class="text-success mb-2">Оплачено
-                    </div>
-                    {% endif %}
-                    <!--                <td>{{ order.organisation_payer }}</td>-->
-                    <!--                <td>{{ order.comments }}</td>-->
-                <td>{% if order.status.id == 3 %}
-                    <div class="mb-2">
-                        <code>В работе</code>
-                    </div>
-                    {% elif order.status.id == 5 %}
-                    <div class="text-success mb-2">Готов
-                    </div>
-                    {% elif order.status.id == 1 %}
-                    <div class="text-warning mb-2">Готовится
-                    </div>
-                    {% elif order.status.id == 2 %}
-                    <div class="text-primary mb-2">Оформлен
-                    </div>
-                    {% elif order.status.id == 4 %}
-                    <div class="text-warning mb-2">Доставка
-                    </div>
-
-                    {% endif %}
-                </td>
-                <td>{{ order.created }}</td>
-                <td>{{ order.date_complete }}</td>
-
-
-            </tr>
-            {% endfor %}
-
-
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-{% else %}
-
-<div class="row">
-
-    <!-- Earnings (Annual) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_inter' %}">Загрузка файлов для Интерьерной печати</a></p>
-
-                        </div>
-<!--                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 350 руб.</div>-->
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tasks Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_large' %}">Загрузка файлов для Широкоформатной печати</a>
-                            </p>
-
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-<!--                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">от 1000 руб.</div>-->
-                            </div>
-                            <div class="progress progress-sm mr-2">
-                                <div class="progress-bar bg-info" role="progressbar"
-                                     style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                     aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pending Requests Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <p><a href=" {% url 'files:create_uv' %}">Загрузка файлов для UV-печати</a></p>
-                        </div>
-<!--                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 900 руб.</div>-->
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Earnings (Annual) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                               <p><a href=" {% url 'files:create_banner' %}">Создать баннер "ПРОДАЮ"</a></p>
-
-                        </div>
-<!--                        <div class="h5 mb-0 font-weight-bold text-gray-800">от 1300 руб.</div>-->
-                        </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<h3>Мои заказы</h3>
-<a href="{% url 'orders:new_order' %}" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-    <span class="text">Создать заказ</span>
-</a>
-
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Заказ №</th>
-                <th>Сумма заказа</th>
-                <th>Оплачено</th>
-                <th>Статус</th>
-                <th>Дата заказа</th>
-                <th>Дата готовности</th>
-            </thead>
-            <tbody>
-            {% for order in Orders %}
-            <tr>
-
-                {% if order.status.id >= 2 %}
-
-                <td>
-                    <button type="submit" class="btn btn-primary"
-            onClick="location.href='{% url 'orders:add_file_in_order' order.id %}'">Заказ № {{ order.id }}                   </button>
-                </td>
-
-                {% else %}
-                <td>
-                    <a class="btn btn-success nav-link dropdown-toggle"
-                       href="{% url 'orders:add_file_in_order' order.id %}" id="navbarDropdown"
-                       role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        Заказ № {{ order.id }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                         aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'orders:add_file_in_order' order.id %}">Добавить
-                            файлы</a>
-                        <a class="dropdown-item" href="{% url 'orders:order_pay' order.id %}">Оплатить</a>
-                        <a class="dropdown-item" href="{% url 'orders:update_order' order.id %}">Редактировать</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'orders:Delete_order' order.id %}">Удалить</a>
-                    </div>
-                </td>
-                {% endif %}
-
-
-                <td>{{ order.total_price }} руб.</td>
-                <td>{% if order.paid == False %}
-                    <div class="mb-2">
-                        <code>Не оплачено!</code>
-                    </div>
-                    {% else%}
-                    <div class="text-success mb-2">Оплачено
-                    </div>
-                    {% endif %}
-                    <!--                <td>{{ order.organisation_payer }}</td>-->
-                    <!--                <td>{{ order.comments }}</td>-->
-                <td>{% if order.status.id == 3 %}
-                    <div class="mb-2">
-                        <code>В работе</code>
-                    </div>
-                    {% elif order.status.id == 5 %}
-                    <div class="text-success mb-2">Готов
-                    </div>
-                    {% elif order.status.id == 1 %}
-                    <div class="text-warning mb-2">Готовится
-                    </div>
-                    {% elif order.status.id == 2 %}
-                    <div class="text-primary mb-2">Оформлен
-                    </div>
-                    {% elif order.status.id == 4 %}
-                    <div class="text-warning mb-2">Доставка
-                    </div>
-
-                    {% endif %}
-                </td>
-                <td>{{ order.created }}</td>
-                <td>{{ order.date_complete }}</td>
-
-
-            </tr>
-            {% endfor %}
-
-
-            </tbody>
-        </table>
-    </div>
+    {% endif %}
 </div>
 
-{% endif %}
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
 
+    .bg-gradient-inter {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .bg-gradient-large {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .bg-gradient-uv {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .bg-gradient-banner {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .action-card {
+        transition: all 0.3s ease;
+        border-radius: 16px;
+    }
+
+    .action-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .action-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        color: white;
+    }
+
+    .table {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table thead th {
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-bottom: none;
+    }
+
+    .table tbody tr {
+        transition: all 0.3s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: rgba(102, 126, 234, 0.05);
+    }
+
+    .btn-sm-custom {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+        border-radius: 8px;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .badge {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.7rem;
+        font-weight: 500;
+    }
+
+    .dropdown-menu {
+        border: none;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        border-radius: 12px;
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+        transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+        background-color: rgba(102, 126, 234, 0.1);
+        padding-left: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .btn-sm-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-4 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        .action-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .action-icon i {
+            font-size: 1.3rem;
+        }
+
+        .table-responsive {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
-
-
-
-
