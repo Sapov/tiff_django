@@ -17,7 +17,7 @@ class BannerGeneratorView(View):
             'page_name': 'banner_generator',
         }
 
-        return render(request, 'files/create_banner.html', context)
+        return render(request, 'files/create_banner_2.html', context)
 
 
 @csrf_exempt

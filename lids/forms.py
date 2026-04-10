@@ -13,3 +13,9 @@ class UserLids(forms.ModelForm):
         super(UserLids, self).__init__(*args, **kwargs)
         self.fields['email'].required = True
         self.fields['phone'].required = True
+
+
+class NewUserBanner(forms.ModelForm):
+    class Meta:
+        model = Lids
+        fields = ['username', 'email', 'phone', 'interest_text']

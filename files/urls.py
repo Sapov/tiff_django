@@ -1,4 +1,6 @@
 from django.urls import path
+
+from lids.views import add_new_contact_user_banner
 from .views import BannerGeneratorView, submit_banner_order
 from .views import (
     index,
@@ -65,5 +67,7 @@ urlpatterns = [
 
     path('create_banner/', BannerGeneratorView.as_view(), name='create_banner'),
     path('submit-banner-order/', submit_banner_order, name='submit_banner_order'),
+
+    path('add_new_user_banner/', add_new_contact_user_banner, name='submit_contact'),
 
 ]
