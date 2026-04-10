@@ -2,7 +2,7 @@
 {% load static %}
 {% load thumbnail %}
 
-<title>{% block title %}Ваши файлы{% endblock %}</title>
+<title>{% block title %}Мои файлы{% endblock %}</title>
 
 {% block body %}
 <div class="container-fluid px-4 py-4">
@@ -10,17 +10,20 @@
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
         <div>
             <h1 class="display-5 fw-bold text-gradient mb-0">
-                📁 Мои файлы
+                <i class="fas fa-folder-open me-3"></i>Мои файлы
             </h1>
             <p class="text-muted mt-2">
-                Всего файлов: <span class="badge bg-primary rounded-pill">{{ object_list.count }}</span>
+                <i class="fas fa-database me-1"></i>Всего файлов:
+                <span class="badge bg-primary rounded-pill">{{ object_list.count }}</span>
             </p>
         </div>
-        <div class="d-flex gap-3">
-            <button type="button" class="btn btn-success btn-lg shadow-sm" onClick="location.href='{% url 'profiles:dashboard' %}'">
+        <div class="d-flex gap-5">
+            <button type="button" class="btn btn-success btn-sm-custom shadow-sm"
+                    onClick="location.href='{% url 'profiles:dashboard' %}'">
                 <i class="fas fa-upload me-2"></i>Загрузить файл
             </button>
-            <button type="button" class="btn btn-primary btn-lg shadow-sm" onClick="location.href='{% url 'orders:new_order' %}'">
+            <button type="button" class="btn btn-primary btn-sm-custom shadow-sm"
+                    onClick="location.href='{% url 'orders:new_order' %}'">
                 <i class="fas fa-shopping-cart me-2"></i>Создать заказ
             </button>
         </div>
@@ -29,63 +32,78 @@
     {% if object_list.count > 0 %}
     <hr class="mb-4">
 
-    <!-- Карточки для мобильных устройств (видно только на маленьких экранах) -->
+    <!-- Карточки для мобильных устройств -->
     <div class="d-block d-md-none">
         {% for product in page_obj %}
-        <div class="card mb-3 shadow-sm border-0">
-            <div class="card-body">
+        <div class="card mb-4 shadow-sm border-0 rounded-4">
+            <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-start mb-3">
-                    <h5 class="card-title text-primary mb-0">#{{ product.id }}</h5>
-                    <span class="badge {% if product.status_product.id == 1 %}bg-success{% elif product.status_product.id == 2 %}bg-warning{% elif product.status_product.id == 3 %}bg-danger{% else %}bg-secondary{% endif %}">
+                    <div>
+                        <span class="badge bg-primary rounded-pill fs-6">#{{ product.id }}</span>
+                    </div>
+                    <span class="badge
+                        {% if product.status_product.id == 1 %}bg-success
+                        {% elif product.status_product.id == 2 %}bg-warning text-dark
+                        {% elif product.status_product.id == 3 %}bg-danger
+                        {% else %}bg-secondary{% endif %} fs-6">
+                        <i class="fas
+                            {% if product.status_product.id == 1 %}fa-check-circle
+                            {% elif product.status_product.id == 2 %}fa-clock
+                            {% elif product.status_product.id == 3 %}fa-times-circle
+                            {% else %}fa-info-circle{% endif %} me-1"></i>
                         {{ product.status_product }}
                     </span>
                 </div>
 
-                <div class="row g-3">
+                <div class="row g-4">
                     <div class="col-4">
                         <a href="{% url 'files:about_file' product.id %}">
-                            <img src="{% thumbnail product.images 150x150 crop %}" class="img-fluid rounded shadow-sm" alt="Preview">
+                            <img src="{% thumbnail product.images 150x150 crop %}"
+                                 class="img-fluid rounded-3 shadow-sm"
+                                 style="object-fit: cover; width: 100%; height: 120px;"
+                                 alt="Preview">
                         </a>
                     </div>
                     <div class="col-8">
-                        <table class="table table-sm table-borderless">
-                            <tr>
-                                <td class="text-muted ps-0">Материал:</td>
-                                <td class="fw-bold">{{ product.material }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-muted ps-0">Кол-во:</td>
-                                <td class="fw-bold">{{ product.quantity }} шт.</td>
-                            </tr>
-                            <tr>
-                                <td class="text-muted ps-0">Размер:</td>
-                                <td class="fw-bold">{{ product.width }} × {{ product.length }} м</td>
-                            </tr>
-                            <tr>
-                                <td class="text-muted ps-0">Финишка:</td>
-                                <td class="fw-bold">{{ product.FinishWork }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-muted ps-0">Стоимость:</td>
-                                <td class="fw-bold text-success">{{ product.price }} ₽</td>
-                            </tr>
-                            <tr>
-                                <td class="text-muted ps-0">Дата:</td>
-                                <td class="small">{{ product.created_at|date:"d.m.Y H:i" }}</td>
-                            </tr>
-                        </table>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <span class="info-label">📦 Материал:</span>
+                                <span class="info-value">{{ product.material }}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">🔢 Кол-во:</span>
+                                <span class="info-value">{{ product.quantity }} шт.</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">📏 Размер:</span>
+                                <span class="info-value">{{ product.width }} × {{ product.length }} м</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">✨ Финишка:</span>
+                                <span class="info-value">{{ product.FinishWork }}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">💰 Стоимость:</span>
+                                <span class="info-value text-success fw-bold">{{ product.price }} ₽</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">📅 Дата:</span>
+                                <span class="info-value small">{{ product.created_at|date:"d.m.Y H:i" }}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 {% if product.status_product.id == 1 or product.status_product.id == 4 %}
-                <div class="d-flex gap-2 mt-3">
-                    <a href="{{ product.images.url }}" class="btn btn-sm btn-outline-success flex-grow-1">
+                <div class="d-flex gap-3 mt-4">
+                    <a href="{{ product.images.url }}" class="btn btn-sm btn-success flex-grow-1">
                         <i class="fas fa-download me-1"></i>Скачать
                     </a>
-                    <a href="{% url 'files:edit_files' product.id %}" class="btn btn-sm btn-outline-primary flex-grow-1">
+                    <a href="{% url 'files:edit_files' product.id %}" class="btn btn-sm btn-primary flex-grow-1">
                         <i class="fas fa-edit me-1"></i>Изменить
                     </a>
-                    <a href="{% url 'files:delete_files' product.id %}" class="btn btn-sm btn-outline-danger flex-grow-1" onclick="return confirm('Удалить файл?')">
+                    <a href="{% url 'files:delete_files' product.id %}" class="btn btn-sm btn-danger flex-grow-1"
+                       onclick="return confirm('Удалить файл?')">
                         <i class="fas fa-trash me-1"></i>Удалить
                     </a>
                 </div>
@@ -95,31 +113,34 @@
         {% endfor %}
     </div>
 
-    <!-- Таблица для десктопных устройств (видно только на больших экранах) -->
+    <!-- Таблица для десктопных устройств -->
     <div class="d-none d-md-block">
-        <div class="table-responsive">
-            <table class="table table-hover table-striped align-middle shadow-sm">
-                <thead class="table-dark">
+        <div class="table-responsive rounded-4 shadow-sm">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-gradient-primary text-white">
                     <tr>
-                        <th>№</th>
-                        <th>Картинка</th>
-                        <th>Материал</th>
-                        <th>Кол-во</th>
-                        <th>Размер</th>
-                        <th>Финишка</th>
-                        <th>Стоимость</th>
-                        <th>Статус</th>
-                        <th>Дата загрузки</th>
-                        <th colspan="3">Действия</th>
+                        <th class="py-3">№</th>
+                        <th class="py-3">Картинка</th>
+                        <th class="py-3">Материал</th>
+                        <th class="py-3">Кол-во</th>
+                        <th class="py-3">Размер</th>
+                        <th class="py-3">Финишка</th>
+                        <th class="py-3">Стоимость</th>
+                        <th class="py-3">Статус</th>
+                        <th class="py-3">Дата загрузки</th>
+                        <th class="py-3" colspan="3">Действия</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for product in page_obj %}
-                    <tr>
+                    <tr class="{% cycle '' 'table-light' %}">
                         <td class="fw-bold">{{ product.id }}</td>
                         <td>
                             <a href="{% url 'files:about_file' product.id %}">
-                                <img src="{% thumbnail product.images 80x80 crop %}" class="rounded shadow-sm" style="object-fit: cover;" alt="Preview">
+                                <img src="{% thumbnail product.images 80x80 crop %}"
+                                     class="rounded-3 shadow-sm"
+                                     style="object-fit: cover; width: 60px; height: 60px;"
+                                     alt="Preview">
                             </a>
                         </td>
                         <td>{{ product.material }}</td>
@@ -128,7 +149,16 @@
                         <td>{{ product.FinishWork }}</td>
                         <td class="text-success fw-bold">{{ product.price }} ₽</td>
                         <td>
-                            <span class="badge {% if product.status_product.id == 1 %}bg-success{% elif product.status_product.id == 2 %}bg-warning{% elif product.status_product.id == 3 %}bg-danger{% else %}bg-secondary{% endif %}">
+                            <span class="badge
+                                {% if product.status_product.id == 1 %}bg-success
+                                {% elif product.status_product.id == 2 %}bg-warning text-dark
+                                {% elif product.status_product.id == 3 %}bg-danger
+                                {% else %}bg-secondary{% endif %}">
+                                <i class="fas
+                                    {% if product.status_product.id == 1 %}fa-check-circle
+                                    {% elif product.status_product.id == 2 %}fa-clock
+                                    {% elif product.status_product.id == 3 %}fa-times-circle
+                                    {% else %}fa-info-circle{% endif %} me-1"></i>
                                 {{ product.status_product }}
                             </span>
                         </td>
@@ -145,12 +175,13 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{% url 'files:delete_files' product.id %}" class="btn btn-sm btn-outline-danger" title="Удалить" onclick="return confirm('Удалить файл?')">
+                            <a href="{% url 'files:delete_files' product.id %}" class="btn btn-sm btn-outline-danger"
+                               title="Удалить" onclick="return confirm('Удалить файл?')">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
                         {% else %}
-                        <td colspan="3" class="text-muted small">Действия недоступны</td>
+                        <td colspan="3" class="text-muted small text-center">Действия недоступны</td>
                         {% endif %}
                     </tr>
                     {% endfor %}
@@ -160,23 +191,25 @@
     </div>
 
     <!-- Пагинация -->
-    <div class="mt-4">
+    <div class="mt-5">
         {% include "pagination.html" with page=object_list %}
     </div>
 
     {% else %}
     <!-- Пустое состояние -->
-    <div class="text-center py-5 my-5">
-        <div class="display-1 text-muted mb-4">
-            <i class="fas fa-folder-open"></i>
+    <div class="empty-state text-center py-5 my-5">
+        <div class="empty-state-icon mb-4">
+            <i class="fas fa-folder-open fa-5x text-gradient"></i>
         </div>
-        <h3 class="text-muted">У вас пока нет файлов</h3>
+        <h3 class="text-muted mb-3">У вас пока нет файлов</h3>
         <p class="text-muted mb-4">Загрузите первый файл или создайте заказ</p>
-        <div class="d-flex gap-3 justify-content-center">
-            <button type="button" class="btn btn-success btn-lg" onClick="location.href='{% url 'profiles:dashboard' %}'">
+        <div class="d-flex gap-5 justify-content-center flex-wrap">
+            <button type="button" class="btn btn-success btn-lg-custom shadow-sm"
+                    onClick="location.href='{% url 'profiles:dashboard' %}'">
                 <i class="fas fa-upload me-2"></i>Загрузить файл
             </button>
-            <button type="button" class="btn btn-primary btn-lg" onClick="location.href='{% url 'orders:new_order' %}'">
+            <button type="button" class="btn btn-primary btn-lg-custom shadow-sm"
+                    onClick="location.href='{% url 'orders:new_order' %}'">
                 <i class="fas fa-shopping-cart me-2"></i>Создать заказ
             </button>
         </div>
@@ -193,13 +226,34 @@
         background-clip: text;
     }
 
-    .table-hover tbody tr:hover {
-        background-color: rgba(102, 126, 234, 0.05);
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .table {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table thead th {
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-bottom: none;
+    }
+
+    .table tbody tr {
         transition: all 0.3s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: rgba(102, 126, 234, 0.05);
+        transform: scale(1.01);
     }
 
     .btn {
         transition: all 0.3s ease;
+        border-radius: 10px;
+        font-weight: 500;
     }
 
     .btn:hover {
@@ -207,8 +261,24 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
+    .btn-sm-custom {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .btn-lg-custom {
+        padding: 0.8rem 1.8rem !important;
+        font-size: 1.1rem !important;
+    }
+
+    /* Увеличенное расстояние между кнопками */
+    .gap-5 {
+        gap: 2rem !important; /* 32px вместо стандартных 20px */
+    }
+
     .card {
         transition: all 0.3s ease;
+        border: none;
     }
 
     .card:hover {
@@ -219,20 +289,88 @@
     .badge {
         font-size: 0.85rem;
         padding: 0.4rem 0.8rem;
+        font-weight: 500;
+    }
+
+    .info-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 0.85rem;
+    }
+
+    .info-label {
+        color: #6c757d;
+        font-weight: 500;
+    }
+
+    .info-value {
+        font-weight: 600;
+        text-align: right;
+    }
+
+    .empty-state {
+        animation: fadeInUp 0.5s ease;
+    }
+
+    .empty-state-icon {
+        animation: bounce 2s ease infinite;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
     }
 
     @media (max-width: 768px) {
-        .btn-lg {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+        .btn-sm-custom, .btn-lg-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-5 {
+            flex-direction: column;
+            gap: 1rem !important;
         }
 
         h1.display-5 {
             font-size: 1.8rem;
         }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .info-row {
+            font-size: 0.75rem;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+        }
     }
 </style>
 
-<!-- Подключение Font Awesome (если не подключено в базовом шаблоне) -->
+<!-- Подключение Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
