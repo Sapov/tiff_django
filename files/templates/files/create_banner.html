@@ -512,6 +512,74 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Стили для модального окна авторизации */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            text-align: center;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .auth-modal-content h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .auth-modal-content p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .auth-modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .auth-modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .auth-modal-btn.login {
+            background: #FF5722;
+            color: white;
+        }
+
+        .auth-modal-btn.login:hover {
+            background: #E64A19;
+            transform: translateY(-2px);
+        }
+
+        .auth-modal-btn.close {
+            background: #ccc;
+            color: #333;
+        }
+
+        .auth-modal-btn.close:hover {
+            background: #bbb;
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .hero p { font-size: 1.2rem; }
@@ -522,6 +590,7 @@
             .order-form-container { flex-direction: column; }
             .contact-form-container { padding: 1.5rem; }
             .status-bar-container { min-width: 280px; padding: 30px; }
+            .auth-modal-content { margin: 20px; padding: 30px; }
         }
     </style>
 </head>
@@ -553,7 +622,7 @@
 
             {% else %}
             <li class="nav-item">
-                <a href="{% url 'account_login' %}" class="enter-btn btn-primary btn-sm ms-lg-2 px-4"
+                <a href="{% url 'account_login' %}?next={{ request.path }}" class="enter-btn btn-primary btn-sm ms-lg-2 px-4"
                    style="border-radius: 8px;">
                     Вход
                 </a>
@@ -738,7 +807,13 @@
                     </div>
 
                     <!-- Кнопка заказать (в правой колонке) -->
-                    <button type="button" id="submitOrderBtn" class="submit-btn">Заказать баннер</button>
+                    <button type="button" id="submitOrderBtn" class="submit-btn">
+                        {% if user.is_authenticated %}
+                            Заказать баннер
+                        {% else %}
+                            Войти и заказать
+                        {% endif %}
+                    </button>
                     <input type="hidden" id="totalCostInput" name="total_cost" value="">
                     <input type="hidden" id="mounting-option" name="mounting_type" value="">
 
@@ -758,6 +833,18 @@
         </div>
         <div class="status-message" id="statusMessage">
             Пожалуйста, подождите. Идет обработка вашего заказа...
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для неавторизованных пользователей -->
+<div id="authModal" class="auth-modal">
+    <div class="auth-modal-content">
+        <h3>🔐 Требуется авторизация</h3>
+        <p>Для оформления заказа необходимо войти в систему.</p>
+        <div class="auth-modal-buttons">
+            <a href="{% url 'account_login' %}?next={{ request.path }}" class="auth-modal-btn login">Войти</a>
+            <button onclick="closeAuthModal()" class="auth-modal-btn close">Закрыть</button>
         </div>
     </div>
 </div>
@@ -802,6 +889,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Проверка авторизации из Django
+        const isAuthenticated = {{ user.is_authenticated|lower }};
+
         // Цены
         const PRICE_PER_SQM = 490;
         const PRICE_PER_LUVER = 20;
@@ -888,6 +978,25 @@
                 progressFill.style.width = '0%';
                 currentProgress = 0;
             }, delay);
+        }
+
+        // Функции для модального окна авторизации
+        function showAuthModal() {
+            const modal = document.getElementById('authModal');
+            modal.style.display = 'flex';
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            modal.style.display = 'none';
+        }
+
+        // Закрытие модального окна по клику вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('authModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
         }
 
         function mmToPx(mm) {
@@ -1067,6 +1176,12 @@
         }
 
         async function submitOrder() {
+            // Проверяем авторизацию
+            if (!isAuthenticated) {
+                showAuthModal();
+                return;
+            }
+
             // Показываем статус бар
             showStatusBar('Подготовка заказа...', 'Генерация баннера и подготовка данных...');
 
