@@ -1,272 +1,501 @@
-{% extends 'base.html'%}
-<title>{% block title %} {{current_order}} {% endblock %}</title>
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+<title>{% block title %}{{ current_order }}{% endblock %}</title>
+
 {% block body %}
-<!--FOR COURIER -->
-{% if request.user.role == 'COURIER' %}
-<h1>Отправить автобусом {{current_order}}</h1>
-<hr>
-
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Дата размещения заказа</th>
-                <th>Статус</th>
-                <th>Доставка</th>
-                <th>Дата готовности</th>
-            </thead>
-            <tbody>
-
-            <tr>
-                <td>{{ Orders.created }}</td>
-
-                <td>{% if Orders.status.id == 3 %}
-                    <div class="mb-2">
-                        <code>В работе</code>
-                    </div>
-                    {% elif Orders.status.id == 5 %}
-                    <div class="text-success mb-2">Готов
-                    </div>
-                    {% elif Orders.status.id == 1 %}
-                    <div class="text-warning mb-2">Готовится
-                    </div>
-                    {% elif Orders.status.id == 2 %}
-                    <div class="text-primary mb-2">Оформлен
-                    </div>
-
-                    {% endif %}
-                </td>
-                <td>{{ Orders.delivery }}</td>
-                <td>{{ Orders.date_complete }}</td>
-                <td>
-                </td>
-            </tr>
-        </table>
-        </tbody>
-    </div>
-</div>
-
-
-{% if items_in_order.count > 0  %}
-
-<h5> Файлы в заказе: </h5>
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>№</th>
-                <th>Картинка</th>
-                <th>Материал</th>
-                <th>Размер</th>
-                <th>Количество</th>
-                <th>Финишная обработка</th>
-            </thead>
-            <tbody>
-            {% for items in items_in_order %}
-            <tr>
-                <td>{{ items.product.id }}</td>
-                <td><a>{% load thumbnail %} <img src="{% thumbnail items.product.images 100x0 %}"
-                                                 class="image-detail"></a></td>
-                <td>{{ items.product.material }}</td>
-                <td>{{ items.product.width }}x{{ items.product.length }} м</td>
-                <td>{{ items.product.quantity }} шт.</td>
-                <td>{{ items.product.FinishWork }}</td>
-
-            </tr>
-            {% endfor %}
-
-            </tbody>
-        </table>
-        <button type="submit" class="btn btn-success"
-                onClick="location.href='{% url 'delivery_in_bus:instruction_for_courier' Orders.id %}'">Начать отправку
-            заказа
-        </button>
-
-    </div>
-
-
-</div>
-{% endif %}
-<!--ДЛЯ КЛИЕНТА-->
-{% else %}
-
-<h1>{{current_order}}</h1>
-<hr>
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Дата</th>
-                <th>Оплата</th>
-                <th>Сумма</th>
-                <th>Статус</th>
-                <th>Доставка</th>
-                <th>Дата готовности</th>
-
-            </thead>
-            <tbody>
-            <tr>
-                <td>{{ Orders.created }}</td>
-                <td> {% if Orders.paid == False %}
-                    <div class="mb-2">
-                        <code>Не оплачено</code>
-                    </div>
-                    {% else%}
-                    <div class="text-success mb-2">Оплачено
-                    </div>
-                    {% endif %}
-                </td>
-                <td>{{ Orders.total_price|default:'0' }}</td>
-                <td>{% if Orders.status.id == 3 %}
-                    <div class="mb-2">
-                        <code>В работе</code>
-                    </div>
-                    {% elif Orders.status.id == 5 %}
-                    <div class="text-success mb-2">Готов
-                    </div>
-                    {% elif Orders.status.id == 1 %}
-                    <div class="text-warning mb-2">Готовится
-                    </div>
-                    {% elif Orders.status.id == 2 %}
-                    <div class="text-primary mb-2">Оформлен
-                    </div>
-
-                    {% endif %}
-                </td>
-                <td>{{ Orders.delivery }}</td>
-                <td>{{ Orders.date_complete }}</td>
-                <td>
-                    <!--                    <button type="submit" class="btn btn-primary"-->
-                    <!--                            onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оплатить-->
-                    <!--                    </button>-->
-                </td>
-            </tr>
-        </table>
-        </tbody>
-    </div>
-</div>
-{% if items.count > 0 %}
-{% if current_order.status.id == 1 %}
-
-<h5> Файлы которые можно добавить в заказ: </h5>
-
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Картинка</th>
-                <th>Материал</th>
-                <th>Размер</th>
-                <th>Количество</th>
-                <th>Финишная обработка</th>
-                <th>Итого</th>
-            </thead>
-            <tbody>
-            {% for item in items %}
-            {% if item.status_product.id == 1 %}
-
-            <tr>
-                <td><a>{% load thumbnail %} <img src="{% thumbnail item.images 100x0 %}" class="image-detail"></a></td>
-                <td>{{ item.material }}</td>
-                <td>{{ item.width }}x{{ item.length }} м</td>
-                <td>{{ item.quantity }} шт.</td>
-                <td>{{ item.FinishWork }}</td>
-                <td>{{ item.price }}</td>
-                <td><a href="/orders/add_item_in_order/{{order_id}}/{{item.id}}">Добавить в заказ</a></td>
-            </tr>
+<div class="container-fluid px-4 py-4">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <div>
+            <h1 class="display-5 fw-bold text-gradient mb-0">
+                <i class="fas fa-truck me-3"></i>{{ current_order }}
+            </h1>
+            <p class="text-muted mt-2">
+                Детальная информация о заказе
+            </p>
+        </div>
+        <div class="d-flex gap-3">
+            {% if request.user.role == 'COURIER' %}
+            <button type="button" class="btn btn-success shadow-sm btn-sm-custom"
+                    onClick="location.href='{% url 'delivery_in_bus:instruction_for_courier' Orders.id %}'">
+                <i class="fas fa-play me-2"></i>Начать отправку заказа
+            </button>
             {% endif %}
-            {% endfor %}
-            </tbody>
-
-        </table>
-
+        </div>
     </div>
-</div>
-{% endif %}
-{% else %}
-<h6> Нет файлов для добавления в заказ </h6>
 
-{% endif %}
+    <hr class="mb-4">
 
+    <!-- Основная информация о заказе -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-info-circle me-2"></i>Информация о заказе
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="info-content">
+                                    <label class="text-muted small">Дата размещения</label>
+                                    <div class="fw-bold">{{ Orders.created }}</div>
+                                </div>
+                            </div>
+                        </div>
 
-{% if items_in_order.count > 0  %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="info-content">
+                                    <label class="text-muted small">Оплата</label>
+                                    <div class="fw-bold">
+                                        {% if Orders.paid == False %}
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="fas fa-clock me-1"></i>Не оплачено
+                                        </span>
+                                        {% else %}
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-check-circle me-1"></i>Оплачено
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<h5> Файлы в заказе: </h5>
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>№</th>
-                <th>Картинка</th>
-                <th>Материал</th>
-                <th>Размер</th>
-                <th>Количество</th>
-                <th>Финишная обработка</th>
-                <th>Итого</th>
-            </thead>
-            <tbody>
-            {% for items in items_in_order %}
-            <tr>
-                <td>{{ items.product.id }}</td>
-                <td><a>{% load thumbnail %} <img src="{% thumbnail items.product.images 100x0 %}"
-                                                 class="image-detail"></a></td>
-                <td>{{ items.product.material }}</td>
-                <td>{{ items.product.width }}x{{ items.product.length }} м</td>
-                <td>{{ items.product.quantity }} шт.</td>
-                <td>{{ items.product.FinishWork }}</td>
-                <td>{{ items.product.price }} руб.</td>
-                {% if Orders.status.id == 1 %}
-                <td><a href="/orders/del_item_in_order/{{order_id}}/{{items.id}}/{{items.product.id}}">Удалить файл</a>
-                </td>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-ruble-sign"></i>
+                                </div>
+                                <div class="info-content">
+                                    <label class="text-muted small">Сумма</label>
+                                    <div class="fw-bold text-success">{{ Orders.total_price|default:'0' }} ₽</div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-md-6 col-lg-4">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="info-content">
+                                    <label class="text-muted small">Статус</label>
+                                    <div>
+                                        {% if Orders.status.id == 3 %}
+                                        <span class="badge bg-info">
+                                            <i class="fas fa-cog fa-spin me-1"></i>В работе
+                                        </span>
+                                        {% elif Orders.status.id == 5 %}
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-check-circle me-1"></i>Готов
+                                        </span>
+                                        {% elif Orders.status.id == 1 %}
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="fas fa-spinner fa-spin me-1"></i>Готовится
+                                        </span>
+                                        {% elif Orders.status.id == 2 %}
+                                        <span class="badge bg-primary">
+                                            <i class="fas fa-file-alt me-1"></i>Оформлен
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                {% else %}
-                <td></td>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="info-content">
+                                    <label class="text-muted small">Доставка</label>
+                                    <div class="fw-bold">{{ Orders.delivery }}</div>
+                                </div>
+                            </div>
+                        </div>
 
-
-                {% endif %}
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="info-content">
+                                    <label class="text-muted small">Дата готовности</label>
+                                    <div class="fw-bold">{{ Orders.date_complete }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    {% if current_order.status.id == 1 %}
-    <td>
-        <button type="submit" class="btn btn-success"
-                onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">Оформить заказ
-        </button>
-    </td>
+
+    <!-- Для КУРЬЕРА - Файлы в заказе -->
+    {% if request.user.role == 'COURIER' %}
+    {% if items_in_order.count > 0 %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-secondary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-file-alt me-2"></i>Файлы в заказе
+                    </h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                            <tr>
+                                <th>№</th>
+                                <th>Картинка</th>
+                                <th>Материал</th>
+                                <th>Размер</th>
+                                <th>Количество</th>
+                                <th>Финишная обработка</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for items in items_in_order %}
+                            <tr>
+                                <td class="fw-bold">{{ items.product.id }}</td>
+                                <td>
+                                    <a href="{% url 'files:about_file' items.product.id %}">
+                                        <img src="{% thumbnail items.product.images 80x80 crop %}"
+                                             class="rounded shadow-sm" style="object-fit: cover;" alt="Preview">
+                                    </a>
+                                </td>
+                                <td>{{ items.product.material }}</td>
+                                <td>{{ items.product.width }}x{{ items.product.length }} м</td>
+                                <td>{{ items.product.quantity }} шт.</td>
+                                <td>{{ items.product.FinishWork }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- ДЛЯ КЛИЕНТА -->
     {% else %}
-    {% if Orders.paid == False %}
-
-    <td>
-
-        <button type="submit" class="btn btn-success"
-                onClick="location.href='{{order_data_pay}}'">Оплатить картой
-
-        </button>
-
-    </td>
-    {% if Orders.organisation_payer %}
-    <td>
-
-        <button type="submit" class="btn btn-primary"
-                onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">Получить счет
-        </button>
-
-    </td>
+    <!-- Доступные файлы для добавления -->
+    {% if items.count > 0 and current_order.status.id == 1 %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-success text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-plus-circle me-2"></i>Доступные файлы для добавления
+                    </h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                            <tr>
+                                <th>Картинка</th>
+                                <th>Материал</th>
+                                <th>Размер</th>
+                                <th>Количество</th>
+                                <th>Финишная обработка</th>
+                                <th>Итого</th>
+                                <th>Действие</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in items %}
+                            {% if item.status_product.id == 1 %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'files:about_file' item.id %}">
+                                        <img src="{% thumbnail item.images 80x80 crop %}"
+                                             class="rounded shadow-sm" style="object-fit: cover;" alt="Preview">
+                                    </a>
+                                </td>
+                                <td>{{ item.material }}</td>
+                                <td>{{ item.width }}x{{ item.length }} м</td>
+                                <td>{{ item.quantity }} шт.</td>
+                                <td>{{ item.FinishWork }}</td>
+                                <td class="text-success fw-bold">{{ item.price }} ₽</td>
+                                <td>
+                                    <a href="/orders/add_item_in_order/{{order_id}}/{{item.id}}"
+                                       class="btn btn-sm btn-success">
+                                        <i class="fas fa-plus me-1"></i>Добавить
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% elif items.count == 0 and current_order.status.id == 1 %}
+    <div class="alert alert-info text-center shadow-sm border-0 rounded-3">
+        <i class="fas fa-info-circle me-2"></i>Нет файлов для добавления в заказ
+    </div>
     {% endif %}
 
+    <!-- Файлы в заказе (для клиента) -->
+    {% if items_in_order.count > 0 %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-info text-white rounded-top-4 py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fas fa-folder-open me-2"></i>Файлы в заказе
+                    </h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                            <tr>
+                                <th>№</th>
+                                <th>Картинка</th>
+                                <th>Материал</th>
+                                <th>Размер</th>
+                                <th>Количество</th>
+                                <th>Финишная обработка</th>
+                                <th>Итого</th>
+                                {% if Orders.status.id == 1 %}
+                                <th>Действие</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for items in items_in_order %}
+                            <tr>
+                                <td class="fw-bold">{{ items.product.id }}</td>
+                                <td>
+                                    <a href="{% url 'files:about_file' items.product.id %}">
+                                        <img src="{% thumbnail items.product.images 80x80 crop %}"
+                                             class="rounded shadow-sm" style="object-fit: cover;" alt="Preview">
+                                    </a>
+                                </td>
+                                <td>{{ items.product.material }}</td>
+                                <td>{{ items.product.width }}x{{ items.product.length }} м</td>
+                                <td>{{ items.product.quantity }} шт.</td>
+                                <td>{{ items.product.FinishWork }}</td>
+                                <td class="text-success fw-bold">{{ items.product.price }} ₽</td>
+                                {% if Orders.status.id == 1 %}
+                                <td>
+                                    <a href="/orders/del_item_in_order/{{order_id}}/{{items.id}}/{{items.product.id}}"
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('Удалить файл из заказа?')">
+                                        <i class="fas fa-trash me-1"></i>Удалить
+                                    </a>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endif %}
 
-
+    <!-- Кнопки действий -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex gap-4 justify-content-center flex-wrap">
+                {% if current_order.status.id == 1 %}
+                <button type="button" class="btn btn-success btn-lg-custom shadow-sm"
+                        onClick="location.href='{% url 'orders:order_pay' Orders.id %}'">
+                    <i class="fas fa-shopping-cart me-2"></i>Оформить заказ
+                </button>
+                {% else %}
+                {% if Orders.paid == False %}
+                <button type="button" class="btn btn-primary btn-lg-custom shadow-sm"
+                        onClick="location.href='{{ order_data_pay }}'">
+                    <i class="fas fa-credit-card me-2"></i>Оплатить картой
+                </button>
+                {% if Orders.organisation_payer %}
+                <button type="button" class="btn btn-info btn-lg-custom shadow-sm"
+                        onClick="location.href='{% url 'orders:create_invoice' Orders.id %}'">
+                    <i class="fas fa-file-invoice me-2"></i>Получить счет
+                </button>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
     {% endif %}
 </div>
-{% endif %}
-{% endif %}
+
+<!-- Дополнительные стили -->
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-gradient-secondary {
+        background: linear-gradient(135deg, #868f96 0%, #596164 100%);
+    }
+
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    }
+
+    .bg-gradient-info {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .info-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+        background: #e9ecef;
+        transform: translateX(5px);
+    }
+
+    .info-icon {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    .info-content {
+        flex: 1;
+    }
+
+    .info-content label {
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+        border-radius: 10px;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .btn-sm-custom {
+        padding: 0.51rem 0.85rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    .btn-lg-custom {
+        padding: 0.68rem 1.275rem !important;
+        font-size: 1.02rem !important;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table > :not(caption) > * > * {
+        padding: 1rem 1rem;
+    }
+
+    .badge {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @media (max-width: 768px) {
+        .btn-lg-custom, .btn-sm-custom {
+            width: 100%;
+        }
+
+        .d-flex.gap-4 {
+            flex-direction: column;
+            gap: 1rem !important;
+        }
+
+        .info-card {
+            padding: 0.75rem;
+        }
+
+        .info-icon {
+            width: 35px;
+            height: 35px;
+            font-size: 1rem;
+        }
+
+        .table-responsive {
+            font-size: 0.85rem;
+        }
+
+        .btn {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<!-- Подключение Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
