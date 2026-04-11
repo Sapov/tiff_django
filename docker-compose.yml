@@ -231,16 +231,19 @@ version: '2'
 
 services:
   redis:
-    image: redis
+    image: redis:7-alpine
     restart: always
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
 
   postgres_db:
     image: postgres:15
     container_name: postgres_db
     volumes:
       - ~/.pg/pg_data/django:/var/lib/postgresql/data
+
     env_file:
       - .env
     restart: always
@@ -269,19 +272,19 @@ services:
     restart: always
     build: .
     volumes:
-      - /:/app
+      - ./:/app
       - static_volume:/django/static
       - media_volume:/django/media
     depends_on:
       - redis
       - django_project
-    command: 'celery -A mysite worker -l info'
+    command: celery -A mysite worker -l info
 
   celery-beat:
     restart: always
     build: .
     volumes:
-      - /:/app
+      - ./:/app
       - static_volume:/django/static
       - media_volume:/django/media
     depends_on:
@@ -295,7 +298,7 @@ services:
     ports:
       - 5555:5555
     volumes:
-      - /:/app
+      - ./:/app
       - static_volume:/django/static
       - media_volume:/django/media
     depends_on:
@@ -341,3 +344,4 @@ volumes:
   vhost:
   html:
   acme:
+  redis_data:
