@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand
 from django_celery_beat.models import IntervalSchedule
 
-from profiles.models import Delivery
 from files.models import Material, FinishWork, TypePrint, StatusProduct
 from lids.models import Interest
 from orders.models import StatusOrder

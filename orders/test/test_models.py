@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from profiles.models import Delivery
 from orders.models import BankInvoices, Order, StatusOrder
 
 User = get_user_model()
