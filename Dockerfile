@@ -1,41 +1,46 @@
 FROM python:3.10.4
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH="/django:/usr/local/lib/python3.10/site-packages"
+
 EXPOSE 8000
 
-RUN pip install --upgrade pip
-
-RUN apt update && apt -qy install gcc gettext cron openssh-client locales vim && \
+# Обновляем pip и устанавливаем системные зависимости
+RUN pip install --upgrade pip && \
+    apt update && apt -qy install gcc gettext cron openssh-client locales vim && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
 # Устанавливаем uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Создаем пользователя
-RUN useradd -rms /bin/bash django && \
-    mkdir -p /django/{media/{image,orders,arhive},static} && \
-    chown -R django:django /django
+# Создаем директории
+RUN mkdir -p /django/{media/{image,orders,arhive},static}
 
 WORKDIR /django
 
-# Копируем зависимости
-COPY --chown=django:django pyproject.toml uv.lock ./
+# Копируем файлы зависимостей
+COPY pyproject.toml uv.lock* ./
 
-# НЕ отключаем виртуальное окружение (по умолчанию создается .venv)
-RUN uv sync --frozen --no-dev && \
-    chown -R django:django /django/.venv
+# Устанавливаем зависимости
+ENV UV_VIRTUALENVS_CREATE=0
+RUN if [ -f uv.lock ]; then \
+        uv sync --no-dev; \
+    else \
+        uv pip install --system -e .; \
+    fi
+
+# Проверяем установку Django
+RUN python -c "import django; print(f'Django {django.get_version()} installed')"
 
 # Копируем код
-COPY --chown=django:django . .
+COPY . .
 
-# Добавляем .venv/bin в PATH (или используем uv run)
-ENV PATH="/django/.venv/bin:$PATH"
+# Создаем пользователя
+RUN useradd -rms /bin/bash django && \
+    chown -R django:django /django
 
 USER django
 
-# Вариант 1: через PATH
+# Запуск
 CMD ["bash", "-c", "python manage.py collectstatic --noinput && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"]
-
-# ИЛИ вариант 2: через uv run
-# CMD ["uv", "run", "gunicorn", "-b", "0.0.0.0:8000", "mysite.wsgi:application"]
