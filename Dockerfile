@@ -19,7 +19,7 @@ RUN mkdir /django/static && mkdir /django/media/orders  && mkdir /django/media/a
 
 COPY --chown=django:django . .
 
-////
+
 
 
 # Устанавливаем uv
