@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-c"]
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV PATH="/django/.venv/bin:$PATH"  # Исправлен путь
+ENV PATH="/django/.venv/bin:$PATH"
 
 EXPOSE 8000
 
