@@ -18,9 +18,23 @@ RUN mkdir /django/media/image
 RUN mkdir /django/static && mkdir /django/media/orders  && mkdir /django/media/arhive && chown -R django:django /django && chmod -R 755 /django
 
 COPY --chown=django:django . .
-#COPY . /django
 
-RUN pip install -r requirements.txt
+////
+
+
+# Устанавливаем uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+WORKDIR /django
+
+# Копируем файлы с зависимостями
+COPY pyproject.toml uv.lock ./
+
+# Устанавливаем зависимости
+RUN uv sync --frozen --no-dev
+
+# Добавляем виртуальное окружение в PATH
+ENV PATH="/app/.venv/bin:$PATH"
 
 
 USER django

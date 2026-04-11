@@ -31,3 +31,4 @@ celery>=5.3.4
 celery-progress>=0.5
 django-celery-beat>=2.7.0
 django-celery-results>=2.6.0
+crispy-bootstrap4
