@@ -1,4 +1,4 @@
-"django-allauth[socialaccount]"
+django-allauth[socialaccount]
 amqp==5.2.0
 annotated-types==0.7.0
 asgiref==3.8.1
