@@ -52,8 +52,14 @@ def new_order(request):
         logging.info(f'[INFO] прибавляем 12 часов {date_complite}')
 
         logging.info(f"date_complite {date_complite} - {type(date_complite)}")
-        delivery_id = request.POST["delivery"]
-        logging.info(f"DELIV ID:  {delivery_id}")
+        try:
+            delivery_id = request.POST["delivery"]
+            logging.info(f"DELIV ID:  {delivery_id}")
+        except Exception as e:
+            print('ERRor', e)
+            today = select_time_complete(datetime.datetime.today())
+            return render(request, "neworder.html", {"form": form, "today": today})
+
         logging.info(f"ORGANISATION:  {request.POST['organisation_payer']}")
 
         organisation_id = request.POST['organisation_payer']
