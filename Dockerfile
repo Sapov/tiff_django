@@ -23,6 +23,8 @@ RUN pip install --no-cache-dir  python-dotenv django gunicorn psycopg2-binary re
 
 # Если в pyproject.toml есть другие зависимости, установите их
 RUN pip install --no-cache-dir -e . || true
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем код
 COPY . .
