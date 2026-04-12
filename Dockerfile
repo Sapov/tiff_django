@@ -16,8 +16,11 @@ RUN mkdir -p /django/{media/{image,orders,arhive},static}
 WORKDIR /django
 
 # Копируем зависимости
-COPY pyproject.toml ./
-
+COPY pyproject.toml uv.lock ./
+# Устанавливаем зависимости с помощью uv (быстро)
+# --system: устанавливает в системный Python, а не в venv
+# --no-dev: если не нужны зависимости для разработки
+RUN uv pip install --system -r pyproject.toml
 
 # Если в pyproject.toml есть другие зависимости, установите их
 RUN pip install --no-cache-dir -e . || true

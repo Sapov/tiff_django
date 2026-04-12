@@ -115,10 +115,6 @@ class Command(BaseCommand):
     #                            'заполняем Статус Заказа ',
     #                            'status')
 
-        print('*' * 30, 'заполняем Типы доставки ', '*' * 30)
-        for type_delivery in load_excel('delivery', 'b2:b3'):
-            print(type_delivery)
-            Delivery.objects.get_or_create(type_delivery=type_delivery[0])
 
         print('*' * 30, 'заполняем Интересы лидов ', '*' * 30)
         for name in load_excel('Interest', 'b2:b9'):
