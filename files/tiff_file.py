@@ -1,8 +1,6 @@
 import os
 from datetime import date
 import PIL
-import data
-import patoolib
 from PIL import Image as Image_pil, ImageOps
 from mysite import settings
 from users.tasks import send_message_whatsapp
