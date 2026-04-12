@@ -21,7 +21,6 @@ COPY pyproject.toml uv.lock ./
 # --system: устанавливает в системный Python, а не в venv
 # --no-dev: если не нужны зависимости для разработки
 # RUN uv pip install --system -r pyproject.toml
-RUN uv sync --system --no-dev
 
 # Если в pyproject.toml есть другие зависимости, установите их
 RUN pip install --no-cache-dir -e . || true
