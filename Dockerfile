@@ -19,7 +19,7 @@ WORKDIR /django
 COPY pyproject.toml ./
 
 # Устанавливаем зависимости через pip
-RUN pip install --no-cache-dir django gunicorn psycopg2-binary redis celery flower
+RUN pip install --no-cache-dir  python-dotenv django gunicorn psycopg2-binary redis celery flower
 
 # Если в pyproject.toml есть другие зависимости, установите их
 RUN pip install --no-cache-dir -e . || true
