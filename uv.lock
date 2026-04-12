@@ -1817,6 +1817,7 @@ requires-dist = [
     { name = "pysocks", specifier = ">=1.7.1" },
     { name = "python-crontab", specifier = ">=3.2.0" },
     { name = "python-dateutil", specifier = ">=2.8.2" },
+    { name = "python-dotenv" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "pytz", specifier = ">=2024.1" },
     { name = "redis", specifier = ">=5.0.1" },
