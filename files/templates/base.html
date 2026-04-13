@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>{% block title %} {% endblock %}</title>
-    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet" type="text/css">
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -18,11 +18,94 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+    <style>
+        /* Мобильные стили для гамбургер-меню */
+        @media (max-width: 768px) {
+            /* Скрываем сайдбар по умолчанию на мобильных */
+            #wrapper {
+                overflow-x: hidden;
+            }
+
+            #accordionSidebar {
+                position: fixed;
+                left: -250px;
+                transition: left 0.3s ease-in-out;
+                z-index: 1040;
+                height: 100vh;
+                overflow-y: auto;
+            }
+
+            #accordionSidebar.mobile-open {
+                left: 0;
+                box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            }
+
+            #content-wrapper {
+                width: 100%;
+                transition: margin-left 0.3s ease-in-out;
+            }
+
+            /* Оверлей для затемнения фона при открытом меню */
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 1039;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            /* Кнопка гамбургера в топбаре */
+            .mobile-menu-btn {
+                display: inline-block;
+                margin-right: 15px;
+                font-size: 1.5rem;
+                cursor: pointer;
+                background: none;
+                border: none;
+                color: #4e73df;
+            }
+
+            /* Скрываем стандартную кнопку на мобильных */
+            .d-md-inline {
+                display: none !important;
+            }
+        }
+
+        /* Десктопная версия - сайдбар открыт по умолчанию */
+        @media (min-width: 769px) {
+            #accordionSidebar.mobile-open {
+                left: 0 !important;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Анимация для кнопки гамбургера */
+        .mobile-menu-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-btn.active i {
+            transform: rotate(90deg);
+        }
+    </style>
+
 </head>
 {% if request.user.is_authenticated %}
 
-
 <body id="page-top">
+
+<!-- Оверлей для мобильных устройств -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -37,15 +120,11 @@
             </div>
             <div class="sidebar-brand-text mx-3">REDS</div>
         </a>
+
         {% if request.user.role == 'COURIER' %}
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
@@ -86,7 +165,6 @@
                 </div>
             </div>
         </li>
-
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -158,40 +236,6 @@
             </div>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <!--            <div class="sidebar-heading">-->
-        <!--                Addons-->
-        <!--            </div>-->
-
-        <!--            &lt;!&ndash; Nav Item - Pages Collapse Menu &ndash;&gt;-->
-        <!--            <li class="nav-item active">-->
-        <!--                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"-->
-        <!--                    aria-controls="collapsePages">-->
-        <!--                    <i class="fas fa-fw fa-folder"></i>-->
-        <!--                    <span>Доставка</span>-->
-        <!--                </a>-->
-        <!--                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"-->
-        <!--                    data-parent="#accordionSidebar">-->
-        <!--                    <div class="bg-white py-2 collapse-inner rounded">-->
-        <!--                        <h6 class="collapse-header">Управление доставкой:</h6>-->
-        <!--                        <a class="collapse-item" href="{% url 'profiles:delivery_list' %}">Адреса</a>-->
-        <!--                        <a class="collapse-item" href="#">Добавить адрес</a>-->
-        <!--                        <a class="collapse-item" href="#">Удалить адрес</a>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </li>-->
-
-        <!-- Nav Item - Charts -->
-        <!--            <li class="nav-item">-->
-        <!--                <a class="nav-link" href="charts.html">-->
-        <!--                    <i class="fas fa-fw fa-chart-area"></i>-->
-        <!--                    <span>Доставка</span></a>-->
-        <!--            </li>-->
-
-
         <li class="nav-item">
             <a class="nav-link" href="{% url 'files:price' %}">
                 <i class="fas fa-fw fa-table"></i>
@@ -219,14 +263,18 @@
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                <!-- Sidebar Toggle (Topbar) -->
+                <!-- Кнопка гамбургера для мобильных устройств -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Sidebar Toggle (Topbar) - стандартная кнопка -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
 
                 <!-- Topbar Search -->
-                <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                aria-label="Search" aria-describedby="basic-addon2">
@@ -265,7 +313,6 @@
                         </div>
                     </li>
 
-
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -277,6 +324,7 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{% url 'profile_edit' %}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Профиль
                             </a>
@@ -284,12 +332,7 @@
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Настройки
                             </a>
-<!--                            <a class="dropdown-item" href="#">-->
-<!--                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>-->
-<!--                                Empty-->
-<!--                            </a>-->
                             {% if request.user.is_authenticated %}
-
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'account_logout' %}" data-toggle="modal"
                                data-target="#logoutModal">
@@ -297,7 +340,7 @@
                                 Выйти
                             </a>
                             {% else %}
-                            <a class="dropdown-item" href="{% url 'account_logout' %}" data-toggle="modal"
+                            <a class="dropdown-item" href="{% url 'account_login' %}" data-toggle="modal"
                                data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Войти
@@ -306,23 +349,17 @@
                         </div>
                     </li>
                 </ul>
-
             </nav>
             <!-- End of Topbar -->
-
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-
                 {% block body %}
                 {% endblock %}
 
-
             </div>
-
-
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -357,18 +394,15 @@
                     </button>
                 </div>
                 <div class="modal-body">Вы действительно хотите выйти?</div>
-
                 <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button class="btn btn-primary type="submit">Выйти</button>
-</form>
-
+                        {% csrf_token %}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                        <button class="btn btn-primary" type="submit">Выйти</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -384,9 +418,87 @@
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('accordionSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
-    {% endif %}
+            // Функция для открытия/закрытия мобильного меню
+            function toggleMobileMenu() {
+                sidebar.classList.toggle('mobile-open');
+                overlay.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+
+                // Блокируем скролл при открытом меню
+                if (sidebar.classList.contains('mobile-open')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+
+            // Функция для закрытия мобильного меню
+            function closeMobileMenu() {
+                sidebar.classList.remove('mobile-open');
+                overlay.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Обработчик клика по кнопке гамбургера
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Обработчик клика по оверлею
+            if (overlay) {
+                overlay.addEventListener('click', closeMobileMenu);
+            }
+
+            // Закрываем меню при ресайзе окна (если стало десктопом)
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Закрываем меню при клике на ссылку в сайдбаре (для мобильных)
+            const sidebarLinks = sidebar.querySelectorAll('a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        setTimeout(closeMobileMenu, 300);
+                    }
+                });
+            });
+
+            // Сохраняем состояние сайдбара для десктопа
+            const wrapper = document.getElementById('wrapper');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    if (window.innerWidth > 768) {
+                        const isToggled = wrapper.classList.contains('toggled');
+                        localStorage.setItem('sidebarToggled', isToggled);
+                    }
+                });
+            }
+
+            // Загружаем сохраненное состояние для десктопа
+            if (window.innerWidth > 768) {
+                const savedState = localStorage.getItem('sidebarToggled');
+                if (savedState === 'true') {
+                    wrapper.classList.add('toggled');
+                } else if (savedState === 'false') {
+                    wrapper.classList.remove('toggled');
+                }
+            }
+        });
+    </script>
+
+{% endif %}
 
 </body>
-
 </html>

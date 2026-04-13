@@ -10,7 +10,7 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Изготовление баннеров "ПРОДАМ" - Быстро и Качественно</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,11 +34,149 @@
             backdrop-filter: blur(10px);
         }
 
-        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
-        nav li { margin: 0 1rem; }
-        nav a { color: #fff; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 20px; transition: all 0.3s; }
-        nav a:hover { background: rgba(255,255,255,0.2); }
+        /* Навигация - десктопная версия */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu li {
+            margin: 0 0.5rem;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Кнопка гамбургера */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        /* Анимация гамбургера при открытии */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* Блок с кнопкой входа/выхода */
+        .nav-auth {
+            display: flex;
+            align-items: center;
+        }
+
+        .enter-btn {
+            background: linear-gradient(135deg, #FF5722, #E64A19);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,87,34,0.4);
+        }
+
+        /* Мобильная версия */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: #111827;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                overflow-y: auto;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .nav-menu a {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .nav-auth {
+                margin-left: auto;
+            }
+
+            /* Адаптируем header для мобильных */
+            header {
+                padding: 0.8rem 0;
+            }
+
+            nav {
+                padding: 0 20px;
+            }
+        }
+
+        /* Остальные стили остаются без изменений */
         .hero {
             background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
             height: 100vh;
@@ -585,55 +723,52 @@
             .hero p { font-size: 1.2rem; }
             h2 { font-size: 2rem; }
             .features { grid-template-columns: 1fr; }
-            nav ul { flex-direction: column; }
-            nav li { margin: 0.5rem 0; }
             .order-form-container { flex-direction: column; }
             .contact-form-container { padding: 1.5rem; }
             .status-bar-container { min-width: 280px; padding: 30px; }
             .auth-modal-content { margin: 20px; padding: 30px; }
+
+            /* Дополнительные мобильные настройки */
+            section { padding: 4rem 0; }
+            .hero { height: auto; min-height: 100vh; }
         }
     </style>
 </head>
 <body>
 <header>
     <nav class="container">
-        <ul>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
             <li><a href="#home">Главная</a></li>
             <li><a href="#features">Преимущества</a></li>
             <li><a href="#examples">Примеры</a></li>
             <li><a href="#order">Заказать</a></li>
             <li><a href="#contacts">Контакты</a></li>
+        </ul>
+        <div class="nav-auth">
             {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="userDropdown" role="button"
-                   data-bs-toggle="dropdown">
-                    {{ user.email }}
-                </a>
 
-            <li class="nav-item dropdown">
-                <form method="post" action="{% url 'account_logout' %}" class="d-inline">
+                    <form method="post" action="{% url 'account_logout' %}" class="d-inline">
                     {% csrf_token %}
                     <button type="submit" class="enter-btn btn-primary btn-sm ms-lg-2 px-4"
-                            style="border-radius: 8px;"> Выйти
+                            style="border-radius: 8px;"> {{ user.email }}
                     </button>
                 </form>
-            </li>
-
-
+                </div>
             {% else %}
-            <li class="nav-item">
-                <a href="{% url 'account_login' %}?next={{ request.path }}" class="enter-btn btn-primary btn-sm ms-lg-2 px-4"
-                   style="border-radius: 8px;">
+                <a href="{% url 'account_login' %}?next={{ request.path }}" class="enter-btn">
                     Вход
                 </a>
-            </li>
             {% endif %}
-        </ul>
-
-
+        </div>
     </nav>
 </header>
 
+<!-- Остальной код без изменений -->
 <section id="home" class="hero">
     <div class="container">
         <h1>Изготовим баннер "ПРОДАМ" c вашим телефоном</h1>
@@ -889,6 +1024,44 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Гамбургер меню
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburgerBtn && navMenu) {
+            hamburgerBtn.addEventListener('click', function() {
+                hamburgerBtn.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                // Блокируем скролл при открытом меню
+                if (navMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Закрываем меню при клике на ссылку
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburgerBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // Закрываем меню при клике вне его
+        document.addEventListener('click', function(event) {
+            if (navMenu && navMenu.classList.contains('active')) {
+                const isClickInside = navMenu.contains(event.target) || hamburgerBtn.contains(event.target);
+                if (!isClickInside) {
+                    hamburgerBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
         // Проверка авторизации из Django
         const isAuthenticated = {{ user.is_authenticated|lower }};
 
