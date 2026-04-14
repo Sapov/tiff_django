@@ -9229,3 +9229,339 @@ SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'>
 2026-04-14 01:27:57,532 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
 2026-04-14 01:27:57,534 profiles.views INFO     page_NUM: 1
 2026-04-14 01:27:57,535 profiles.views INFO     page_NUM: <Page 1 of 3>
+2026-04-14 01:33:49,167 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 01:33:49,167 profiles.views INFO     page_NUM: 1
+2026-04-14 01:33:49,172 profiles.views INFO     page_NUM: <Page 1 of 3>
+2026-04-14 01:33:50,345 django.request WARNING  Not Found: /favicon.ico
+2026-04-14 01:35:56,943 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 01:35:56,944 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 01:35:56,944 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 01:35:56,944 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 01:35:56,944 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-14 01:35:56,944 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 01:35:56,948 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 01:52:21,291 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-04-14 01:52:25,019 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 01:52:25,020 profiles.views INFO     page_NUM: 1
+2026-04-14 01:52:25,025 profiles.views INFO     page_NUM: <Page 1 of 3>
+2026-04-14 02:11:28,798 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 02:11:28,800 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 02:16:27,356 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-04-14 02:29:29,019 django.request ERROR    Internal Server Error: /files/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views/views.py", line 50, in index
+    return render(
+           ^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 197, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 519, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 519, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 519, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 519, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 228, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'title' appears more than once
+2026-04-14 02:52:32,307 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 02:52:32,308 profiles.views INFO     page_NUM: 1
+2026-04-14 02:52:32,309 profiles.views INFO     page_NUM: <Page 1 of 3>
+2026-04-14 02:52:33,740 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 02:52:33,740 profiles.views INFO     page_NUM: 1
+2026-04-14 02:52:33,741 profiles.views INFO     page_NUM: <Page 1 of 3>
+2026-04-14 02:58:12,425 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 02:58:12,425 profiles.views INFO     page_NUM: 1
+2026-04-14 02:58:12,426 profiles.views INFO     page_NUM: <Page 1 of 3>
+2026-04-14 02:58:35,962 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 02:58:35,963 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 02:58:35,963 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 02:58:35,963 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 02:58:35,963 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-14 02:58:35,963 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 02:58:35,963 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 02:58:49,126 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 02:58:49,128 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 02:58:55,768 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-04-14 02:58:55,769 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['TvEFUQ1syCqe9siIYZUgWglnOeK5EqdDHdUtMIBFLhatxTnIEHBgmIzNECTCkKUA'], 'organisation_payer': [''], 'delivery': ['19'], 'date_complite': ['2026-04-16']}>
+2026-04-14 02:58:55,769 root         INFO     USER reds0
+2026-04-14 02:58:55,769 root         INFO     [INFO] отправленная форма имеет дату 2026-04-16
+2026-04-14 02:58:55,772 root         INFO     [INFO] Приводим строку в формату даты 2026-04-16 00:00:00
+2026-04-14 02:58:55,772 root         INFO     [INFO] прибавляем 12 часов 2026-04-16 12:00:00
+2026-04-14 02:58:55,772 root         INFO     date_complite 2026-04-16 12:00:00 - <class 'datetime.datetime'>
+2026-04-14 02:58:55,773 root         INFO     DELIV ID:  19
+2026-04-14 02:58:55,773 root         INFO     ORGANISATION:  
+2026-04-14 03:03:09,847 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:03:09,848 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:04:50,685 orders.models INFO     cost_price_per_item 0.00
+2026-04-14 03:04:50,695 orders.models INFO     1300.00
+2026-04-14 03:04:50,696 orders.models INFO     Себестоимость, 0.00
+2026-04-14 03:04:50,704 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-14 03:04:50,704 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-14 03:04:50,704 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-14 03:04:50,709 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 03:04:50,710 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:04:50,710 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:05:00,208 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-04-14 03:05:00,221 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-04-14 03:05:00,223 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-04-16 09:00:00+00:00
+2026-04-14 03:05:00,364 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2026-04-14 03:05:00,364 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2026-04-14 03:05:01,365 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2026-04-14 03:05:02,366 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2026-04-14 03:05:03,367 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2026-04-14 03:05:04,368 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2026-04-14 03:05:05,369 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2026-04-14 03:05:06,371 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2026-04-14 03:05:07,371 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2026-04-14 03:05:08,372 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2026-04-14 03:05:09,374 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2026-04-14 03:05:10,374 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2026-04-14 03:05:11,376 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2026-04-14 03:05:12,377 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2026-04-14 03:05:13,378 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2026-04-14 03:05:14,379 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2026-04-14 03:05:15,380 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2026-04-14 03:05:16,381 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2026-04-14 03:05:17,382 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2026-04-14 03:05:18,383 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2026-04-14 03:05:19,040 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:05:19,042 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:05:19,384 celery.backends.redis CRITICAL 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2026-04-14 03:05:19,483 django.request ERROR    Internal Server Error: /orders/order_pay/66
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 855, in connect_check_health
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/retry.py", line 116, in call_with_retry
+    return do()
+           ^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 856, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 1306, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 1290, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 130, in reconnect_on_error
+    yield
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 180, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/client.py", line 1090, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/client.py", line 914, in execute_command
+    self.connection = self.connection_pool.get_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/utils.py", line 196, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 2603, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 846, in connect
+    self.connect_check_health(check_health=True)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 863, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 855, in connect_check_health
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/retry.py", line 116, in call_with_retry
+    return do()
+           ^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 856, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 1306, in _connect
+    raise err
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 1290, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 133, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 428, in ensure
+    return retry_over_time(
+           ^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/kombu/utils/functional.py", line 318, in retry_over_time
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 109, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/commands/core.py", line 2091, in mget
+    return self.execute_command("MGET", *args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/client.py", line 657, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/client.py", line 663, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/utils.py", line 196, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 2603, in get_connection
+    connection.connect()
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 846, in connect
+    self.connect_check_health(check_health=True)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/redis/connection.py", line 863, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/orders/views.py", line 214, in order_pay
+    arh_for_mail.delay(order_id, domain) # отправляем архив - файл на почту
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/app/task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/app/task.py", line 608, in apply_async
+    return app.send_task(
+           ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/app/base.py", line 946, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 417, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 172, in consume_from
+    return self.start(task_id)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 150, in start
+    self._consume_from(initial_task_id)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 179, in _consume_from
+    with self.reconnect_on_error():
+  File "/home/sasha/.local/share/uv/python/cpython-3.11.13-linux-x86_64-gnu/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/celery/backends/redis.py", line 136, in reconnect_on_error
+    raise RuntimeError(E_RETRY_LIMIT_EXCEEDED) from e
+RuntimeError: 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+
+2026-04-14 03:05:47,083 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:05:47,083 profiles.views INFO     page_NUM: 1
+2026-04-14 03:05:47,084 profiles.views INFO     page_NUM: <Page 1 of 4>
+2026-04-14 03:06:17,723 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:06:17,725 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:06:44,292 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-04-14 03:06:44,294 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['5Vu2z6iB4QagdoOEv6Rkv6ZOnKhCwg4jTDKQrYSOhvUvBPTEbOykVyded8q9cALg'], 'organisation_payer': [''], 'delivery': ['19'], 'date_complite': ['2026-04-16']}>
+2026-04-14 03:06:44,294 root         INFO     USER reds0
+2026-04-14 03:06:44,294 root         INFO     [INFO] отправленная форма имеет дату 2026-04-16
+2026-04-14 03:06:44,294 root         INFO     [INFO] Приводим строку в формату даты 2026-04-16 00:00:00
+2026-04-14 03:06:44,294 root         INFO     [INFO] прибавляем 12 часов 2026-04-16 12:00:00
+2026-04-14 03:06:44,295 root         INFO     date_complite 2026-04-16 12:00:00 - <class 'datetime.datetime'>
+2026-04-14 03:06:44,295 root         INFO     DELIV ID:  19
+2026-04-14 03:06:44,295 root         INFO     ORGANISATION:  
+2026-04-14 03:06:53,243 orders.models INFO     cost_price_per_item 0.00
+2026-04-14 03:06:53,251 orders.models INFO     1300.00
+2026-04-14 03:06:53,251 orders.models INFO     Себестоимость, 0.00
+2026-04-14 03:06:53,261 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-14 03:06:53,261 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-14 03:06:53,261 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-14 03:06:53,265 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 03:06:53,265 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:06:53,265 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
