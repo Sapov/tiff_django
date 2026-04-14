@@ -76,16 +76,16 @@
             .d-md-inline {
                 display: none !important;
             }
+
+            #sidebarToggleTop {
+                display: none !important;
+            }
         }
 
         /* Десктопная версия - сайдбар открыт по умолчанию */
         @media (min-width: 769px) {
-            #accordionSidebar.mobile-open {
-                left: 0 !important;
-            }
-
             .mobile-menu-btn {
-                display: none;
+                display: none !important;
             }
         }
 
@@ -268,11 +268,6 @@
                     <i class="fas fa-bars"></i>
                 </button>
 
-                <!-- Sidebar Toggle (Topbar) - стандартная кнопка -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-
                 <!-- Topbar Search -->
                 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
@@ -424,8 +419,14 @@
             const overlay = document.getElementById('sidebarOverlay');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
+            console.log('Sidebar:', sidebar);
+            console.log('Mobile menu button:', mobileMenuBtn);
+
             // Функция для открытия/закрытия мобильного меню
-            function toggleMobileMenu() {
+            function toggleMobileMenu(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Toggle menu called');
                 sidebar.classList.toggle('mobile-open');
                 overlay.classList.toggle('active');
                 mobileMenuBtn.classList.toggle('active');
@@ -433,8 +434,10 @@
                 // Блокируем скролл при открытом меню
                 if (sidebar.classList.contains('mobile-open')) {
                     document.body.style.overflow = 'hidden';
+                    console.log('Menu opened');
                 } else {
                     document.body.style.overflow = '';
+                    console.log('Menu closed');
                 }
             }
 
@@ -449,6 +452,9 @@
             // Обработчик клика по кнопке гамбургера
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+                console.log('Event listener added to mobile menu button');
+            } else {
+                console.error('Mobile menu button not found!');
             }
 
             // Обработчик клика по оверлею
@@ -464,14 +470,16 @@
             });
 
             // Закрываем меню при клике на ссылку в сайдбаре (для мобильных)
-            const sidebarLinks = sidebar.querySelectorAll('a');
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        setTimeout(closeMobileMenu, 300);
-                    }
+            if (sidebar) {
+                const sidebarLinks = sidebar.querySelectorAll('a');
+                sidebarLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth <= 768) {
+                            setTimeout(closeMobileMenu, 300);
+                        }
+                    });
                 });
-            });
+            }
 
             // Сохраняем состояние сайдбара для десктопа
             const wrapper = document.getElementById('wrapper');
@@ -494,6 +502,14 @@
                 } else if (savedState === 'false') {
                     wrapper.classList.remove('toggled');
                 }
+            }
+
+            // Проверяем, что сайдбар скрыт на мобильных при загрузке
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('mobile-open');
+                overlay.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     </script>
