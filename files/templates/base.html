@@ -28,11 +28,12 @@
 
             #accordionSidebar {
                 position: fixed;
-                left: -250px;
+                left: -280px;
                 transition: left 0.3s ease-in-out;
                 z-index: 1040;
                 height: 100vh;
                 overflow-y: auto;
+                width: 280px;
             }
 
             #accordionSidebar.mobile-open {
@@ -80,12 +81,42 @@
             #sidebarToggleTop {
                 display: none !important;
             }
+
+            /* Фиксим отображение вложенных меню на мобильных */
+            .collapse {
+                display: none;
+            }
+
+            .collapse.show {
+                display: block;
+            }
+
+            .nav-item .collapse-inner {
+                background: rgba(255,255,255,0.95) !important;
+                border-radius: 8px;
+                margin: 0.5rem 0;
+            }
+
+            .nav-item .collapse-item {
+                padding: 0.5rem 1rem;
+                display: block;
+                color: #4e73df;
+            }
+
+            .nav-item .collapse-header {
+                padding: 0.5rem 1rem;
+                font-weight: 600;
+            }
         }
 
         /* Десктопная версия - сайдбар открыт по умолчанию */
         @media (min-width: 769px) {
             .mobile-menu-btn {
                 display: none !important;
+            }
+
+            #accordionSidebar {
+                left: 0 !important;
             }
         }
 
@@ -96,6 +127,28 @@
 
         .mobile-menu-btn.active i {
             transform: rotate(90deg);
+        }
+
+        /* Дополнительные стили для мобильного меню */
+        @media (max-width: 768px) {
+            .sidebar .nav-item .nav-link {
+                padding: 0.75rem 1rem;
+            }
+
+            .sidebar .nav-item .collapse-inner {
+                position: relative;
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .sidebar .nav-item .collapse-item {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem 0.5rem 2rem;
+            }
+
+            .sidebar .sidebar-heading {
+                padding: 0.75rem 1rem;
+            }
         }
     </style>
 
@@ -419,14 +472,12 @@
             const overlay = document.getElementById('sidebarOverlay');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
-            console.log('Sidebar:', sidebar);
-            console.log('Mobile menu button:', mobileMenuBtn);
-
             // Функция для открытия/закрытия мобильного меню
             function toggleMobileMenu(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Toggle menu called');
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
                 sidebar.classList.toggle('mobile-open');
                 overlay.classList.toggle('active');
                 mobileMenuBtn.classList.toggle('active');
@@ -434,10 +485,8 @@
                 // Блокируем скролл при открытом меню
                 if (sidebar.classList.contains('mobile-open')) {
                     document.body.style.overflow = 'hidden';
-                    console.log('Menu opened');
                 } else {
                     document.body.style.overflow = '';
-                    console.log('Menu closed');
                 }
             }
 
@@ -452,9 +501,6 @@
             // Обработчик клика по кнопке гамбургера
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-                console.log('Event listener added to mobile menu button');
-            } else {
-                console.error('Mobile menu button not found!');
             }
 
             // Обработчик клика по оверлею
@@ -510,6 +556,25 @@
                 overlay.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
                 document.body.style.overflow = '';
+            }
+
+            // Для мобильных: переопределяем поведение collapse
+            if (window.innerWidth <= 768) {
+                const collapseTriggers = document.querySelectorAll('[data-toggle="collapse"]');
+                collapseTriggers.forEach(trigger => {
+                    trigger.addEventListener('click', function(e) {
+                        const targetId = this.getAttribute('data-target');
+                        const target = document.querySelector(targetId);
+                        if (target) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            target.classList.toggle('show');
+                            // Обновляем aria-expanded
+                            const expanded = target.classList.contains('show');
+                            this.setAttribute('aria-expanded', expanded);
+                        }
+                    });
+                });
             }
         });
     </script>
