@@ -71,7 +71,7 @@ def delete(request, id):
     try:
         product = Product.objects.get(id=id)  # выбрали запись
         # Deleting files
-
+        # print(os.getcwd())
         os.remove(f"media/{str(product.images)}")  # Удаление файла
         product.delete()
         # удалили запись
