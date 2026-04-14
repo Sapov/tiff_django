@@ -82,30 +82,61 @@
                 display: none !important;
             }
 
-            /* Фиксим отображение вложенных меню на мобильных */
-            .collapse {
-                display: none;
+            /* Фиксим отображение вложенных меню на мобильных - раскрываются вниз */
+            .sidebar .nav-item .collapse {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
             }
 
-            .collapse.show {
+            .sidebar .nav-item .collapse.show {
                 display: block;
             }
 
-            .nav-item .collapse-inner {
+            .sidebar .nav-item .collapse-inner {
                 background: rgba(255,255,255,0.95) !important;
                 border-radius: 8px;
                 margin: 0.5rem 0;
+                padding: 0.5rem 0;
+                position: static;
+                box-shadow: none;
+                width: 100%;
             }
 
-            .nav-item .collapse-item {
-                padding: 0.5rem 1rem;
+            .sidebar .nav-item .collapse-item {
+                padding: 0.5rem 1rem 0.5rem 2.5rem;
                 display: block;
                 color: #4e73df;
+                font-size: 0.9rem;
             }
 
-            .nav-item .collapse-header {
-                padding: 0.5rem 1rem;
+            .sidebar .nav-item .collapse-header {
+                padding: 0.5rem 1rem 0.5rem 2rem;
                 font-weight: 600;
+                font-size: 0.8rem;
+                color: #858796;
+            }
+
+            .sidebar .nav-item .nav-link {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .sidebar .nav-item .nav-link span:first-child {
+                margin-right: 0.5rem;
+            }
+
+            .sidebar .nav-item .nav-link .fa-chevron-down,
+            .sidebar .nav-item .nav-link .fa-chevron-right {
+                margin-left: auto;
+                transition: transform 0.2s ease;
+            }
+
+            .sidebar .nav-item .nav-link[aria-expanded="true"] .fa-chevron-down,
+            .sidebar .nav-item .nav-link[aria-expanded="true"] .fa-chevron-right {
+                transform: rotate(90deg);
             }
         }
 
@@ -133,21 +164,17 @@
         @media (max-width: 768px) {
             .sidebar .nav-item .nav-link {
                 padding: 0.75rem 1rem;
-            }
-
-            .sidebar .nav-item .collapse-inner {
-                position: relative;
-                width: 100%;
-                box-shadow: none;
-            }
-
-            .sidebar .nav-item .collapse-item {
-                font-size: 0.9rem;
-                padding: 0.5rem 1rem 0.5rem 2rem;
+                justify-content: flex-start;
             }
 
             .sidebar .sidebar-heading {
                 padding: 0.75rem 1rem;
+            }
+
+            /* Убираем скролл у сайдбара при открытом подменю */
+            #accordionSidebar {
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
         }
     </style>
@@ -190,6 +217,7 @@
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Заказы</span>
+                <i class="fas fa-chevron-down"></i>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -208,6 +236,7 @@
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Профиль</span>
+                <i class="fas fa-chevron-down"></i>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
@@ -238,13 +267,15 @@
         <li class="nav-item">
             <a class="nav-link" href="{% url 'profiles:dashboard' %}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Главная</span></a>
+                <span>Главная</span>
+            </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{% url 'files:calculator' %}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Калькулятор</span></a>
+                <span>Калькулятор</span>
+            </a>
         </li>
 
         <!-- Divider -->
@@ -261,6 +292,7 @@
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Заказы</span>
+                <i class="fas fa-chevron-down"></i>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -278,6 +310,7 @@
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Настройки</span>
+                <i class="fas fa-chevron-down"></i>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
@@ -292,7 +325,8 @@
         <li class="nav-item">
             <a class="nav-link" href="{% url 'files:price' %}">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Прайс-лист</span></a>
+                <span>Прайс-лист</span>
+            </a>
         </li>
 
         <!-- Divider -->
@@ -472,6 +506,9 @@
             const overlay = document.getElementById('sidebarOverlay');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
+            // Флаг для предотвращения закрытия меню при клике на collapse
+            let isCollapseClick = false;
+
             // Функция для открытия/закрытия мобильного меню
             function toggleMobileMenu(e) {
                 if (e) {
@@ -492,6 +529,11 @@
 
             // Функция для закрытия мобильного меню
             function closeMobileMenu() {
+                // Не закрываем меню, если клик был по collapse элементу
+                if (isCollapseClick) {
+                    isCollapseClick = false;
+                    return;
+                }
                 sidebar.classList.remove('mobile-open');
                 overlay.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
@@ -511,17 +553,84 @@
             // Закрываем меню при ресайзе окна (если стало десктопом)
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 768) {
-                    closeMobileMenu();
+                    sidebar.classList.remove('mobile-open');
+                    overlay.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             });
 
-            // Закрываем меню при клике на ссылку в сайдбаре (для мобильных)
+            // Для мобильных: обработка кликов по collapse элементам
+            if (window.innerWidth <= 768) {
+                const collapseTriggers = document.querySelectorAll('[data-toggle="collapse"]');
+                collapseTriggers.forEach(trigger => {
+                    // Убираем оригинальный обработчик Bootstrap
+                    trigger.removeAttribute('data-toggle');
+
+                    trigger.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Устанавливаем флаг, что это клик по collapse
+                        isCollapseClick = true;
+
+                        const targetId = this.getAttribute('data-target');
+                        const target = document.querySelector(targetId);
+                        const chevron = this.querySelector('.fa-chevron-down, .fa-chevron-right');
+
+                        if (target) {
+                            // Закрываем все другие открытые меню
+                            const allCollapses = document.querySelectorAll('#accordionSidebar .collapse');
+                            allCollapses.forEach(collapse => {
+                                if (collapse !== target && collapse.classList.contains('show')) {
+                                    collapse.classList.remove('show');
+                                    // Обновляем стрелку у соответствующего триггера
+                                    const otherTrigger = document.querySelector(`[data-target="#${collapse.id}"]`);
+                                    if (otherTrigger) {
+                                        otherTrigger.classList.add('collapsed');
+                                        otherTrigger.setAttribute('aria-expanded', 'false');
+                                        const otherChevron = otherTrigger.querySelector('.fa-chevron-down, .fa-chevron-right');
+                                        if (otherChevron) {
+                                            otherChevron.style.transform = 'rotate(0deg)';
+                                        }
+                                    }
+                                }
+                            });
+
+                            // Открываем/закрываем текущее меню
+                            target.classList.toggle('show');
+                            const isExpanded = target.classList.contains('show');
+                            this.classList.toggle('collapsed', !isExpanded);
+                            this.setAttribute('aria-expanded', isExpanded);
+
+                            // Анимируем стрелку
+                            if (chevron) {
+                                chevron.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
+                            }
+                        }
+
+                        // Сбрасываем флаг через небольшую задержку
+                        setTimeout(() => {
+                            isCollapseClick = false;
+                        }, 200);
+                    });
+                });
+            }
+
+            // Закрываем меню при клике на ссылку в сайдбаре (кроме collapse триггеров)
             if (sidebar) {
-                const sidebarLinks = sidebar.querySelectorAll('a');
+                const sidebarLinks = sidebar.querySelectorAll('a:not([data-target])');
                 sidebarLinks.forEach(link => {
                     link.addEventListener('click', function() {
                         if (window.innerWidth <= 768) {
-                            setTimeout(closeMobileMenu, 300);
+                            // Проверяем, что это не ссылка внутри collapse меню
+                            const isInsideCollapse = this.closest('.collapse');
+                            if (!isInsideCollapse) {
+                                setTimeout(closeMobileMenu, 300);
+                            } else {
+                                // Если ссылка внутри collapse, закрываем меню после перехода
+                                setTimeout(closeMobileMenu, 500);
+                            }
                         }
                     });
                 });
@@ -556,25 +665,6 @@
                 overlay.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
                 document.body.style.overflow = '';
-            }
-
-            // Для мобильных: переопределяем поведение collapse
-            if (window.innerWidth <= 768) {
-                const collapseTriggers = document.querySelectorAll('[data-toggle="collapse"]');
-                collapseTriggers.forEach(trigger => {
-                    trigger.addEventListener('click', function(e) {
-                        const targetId = this.getAttribute('data-target');
-                        const target = document.querySelector(targetId);
-                        if (target) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            target.classList.toggle('show');
-                            // Обновляем aria-expanded
-                            const expanded = target.classList.contains('show');
-                            this.setAttribute('aria-expanded', expanded);
-                        }
-                    });
-                });
             }
         });
     </script>
