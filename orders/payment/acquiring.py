@@ -53,6 +53,8 @@ class Acquiring(Bank):
                     "failRedirectUrl": "https://order.san-cd.ru/orders/fail",
                     "paymentMode": [
                         "sbp",
+                        "card",
+                        "dolyame"
                     ],
                     "saveCard": True,
                     "consumerId": str(payer.user.email),
