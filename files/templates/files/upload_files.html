@@ -1,110 +1,8 @@
-<!--{% extends "base.html" %}-->
-<!--{% load crispy_forms_tags %}-->
-<!--{% block body %}-->
-<!--<div class="container mt-5">-->
-<!--    <h2>Загрузка файлов для широкоформатной печати</h2>-->
-
-<!--    <form id="uploadForm" method="post" enctype="multipart/form-data">-->
-<!--        {% csrf_token %}-->
-<!--        {{ form|crispy }}-->
-<!--        <div class="progress mb-3 d-none" id="progressBarContainer">-->
-<!--            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%"></div>-->
-<!--        </div>-->
-
-<!--        <div id="progressDescription" class="mb-3"></div>-->
-
-<!--        <button type="submit" class="btn btn-primary" id="submitBtn">Загрузить</button>-->
-<!--    </form>-->
-<!--</div>-->
-
-<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
-<!--&lt;!&ndash;<script>&ndash;&gt;-->
-<!--&lt;!&ndash;document.getElementById('uploadForm').addEventListener('submit', function(e) {&ndash;&gt;-->
-<!--&lt;!&ndash;    e.preventDefault();&ndash;&gt;-->
-
-<!--&lt;!&ndash;    const form = e.target;&ndash;&gt;-->
-<!--&lt;!&ndash;    const progressBarContainer = document.getElementById('progressBarContainer');&ndash;&gt;-->
-<!--&lt;!&ndash;    const progressBar = document.getElementById('progressBar');&ndash;&gt;-->
-<!--&lt;!&ndash;    const progressDescription = document.getElementById('progressDescription');&ndash;&gt;-->
-<!--&lt;!&ndash;    const submitBtn = document.getElementById('submitBtn');&ndash;&gt;-->
-
-<!--&lt;!&ndash;    // Показываем прогресс-бар&ndash;&gt;-->
-<!--&lt;!&ndash;    progressBarContainer.classList.remove('d-none');&ndash;&gt;-->
-<!--&lt;!&ndash;    submitBtn.disabled = true;&ndash;&gt;-->
-
-<!--&lt;!&ndash;    // Создаем FormData объект&ndash;&gt;-->
-<!--&lt;!&ndash;    const formData = new FormData(form);&ndash;&gt;-->
-
-<!--&lt;!&ndash;    // Добавляем заголовок для AJAX&ndash;&gt;-->
-<!--&lt;!&ndash;    const config = {&ndash;&gt;-->
-<!--&lt;!&ndash;        headers: {&ndash;&gt;-->
-<!--&lt;!&ndash;            'X-Requested-With': 'XMLHttpRequest',&ndash;&gt;-->
-<!--&lt;!&ndash;            'Content-Type': 'multipart/form-data'&ndash;&gt;-->
-<!--&lt;!&ndash;        },&ndash;&gt;-->
-<!--&lt;!&ndash;        onUploadProgress: function(progressEvent) {&ndash;&gt;-->
-<!--&lt;!&ndash;            if (progressEvent.lengthComputable) {&ndash;&gt;-->
-<!--&lt;!&ndash;                const percentComplete = Math.round((progressEvent.loaded / progressEvent.total) * 100);&ndash;&gt;-->
-<!--&lt;!&ndash;                progressBar.style.width = percentComplete + '%';&ndash;&gt;-->
-<!--&lt;!&ndash;                progressBar.setAttribute('aria-valuenow', percentComplete);&ndash;&gt;-->
-<!--&lt;!&ndash;                progressBar.textContent = percentComplete + '%';&ndash;&gt;-->
-<!--&lt;!&ndash;                progressDescription.textContent = 'Загрузка файла... ' + percentComplete + '%';&ndash;&gt;-->
-<!--&lt;!&ndash;            }&ndash;&gt;-->
-<!--&lt;!&ndash;        }&ndash;&gt;-->
-<!--&lt;!&ndash;    };&ndash;&gt;-->
-
-<!--&lt;!&ndash;    // Отправляем данные&ndash;&gt;-->
-<!--&lt;!&ndash;    axios.post(form.action, formData, config)&ndash;&gt;-->
-<!--&lt;!&ndash;        .then(function(response) {&ndash;&gt;-->
-<!--&lt;!&ndash;            const taskId = response.data.task_id;&ndash;&gt;-->
-<!--&lt;!&ndash;            checkProgress(taskId);&ndash;&gt;-->
-<!--&lt;!&ndash;        })&ndash;&gt;-->
-<!--&lt;!&ndash;        .catch(function(error) {&ndash;&gt;-->
-<!--&lt;!&ndash;            console.error(error);&ndash;&gt;-->
-<!--&lt;!&ndash;            alert('Ошибка загрузки файла');&ndash;&gt;-->
-<!--&lt;!&ndash;            submitBtn.disabled = false;&ndash;&gt;-->
-<!--&lt;!&ndash;        });&ndash;&gt;-->
-<!--&lt;!&ndash;});&ndash;&gt;-->
-
-<!--&lt;!&ndash;function checkProgress(taskId) {&ndash;&gt;-->
-<!--&lt;!&ndash;    const progressBar = document.getElementById('progressBar');&ndash;&gt;-->
-<!--&lt;!&ndash;    const progressDescription = document.getElementById('progressDescription');&ndash;&gt;-->
-
-<!--&lt;!&ndash;    const progressUrl = `/celery-progress/${taskId}/`;&ndash;&gt;-->
-<!--&lt;!&ndash;    const checkInterval = setInterval(function() {&ndash;&gt;-->
-<!--&lt;!&ndash;        fetch(progressUrl)&ndash;&gt;-->
-<!--&lt;!&ndash;            .then(response => response.json())&ndash;&gt;-->
-<!--&lt;!&ndash;            .then(data => {&ndash;&gt;-->
-<!--&lt;!&ndash;                if (data.progress) {&ndash;&gt;-->
-<!--&lt;!&ndash;                    const progress = data.progress.current / data.progress.total * 100;&ndash;&gt;-->
-<!--&lt;!&ndash;                    progressBar.style.width = progress + '%';&ndash;&gt;-->
-<!--&lt;!&ndash;                    progressBar.textContent = Math.round(progress) + '%';&ndash;&gt;-->
-
-<!--&lt;!&ndash;                    if (data.progress.description) {&ndash;&gt;-->
-<!--&lt;!&ndash;                        progressDescription.textContent = data.progress.description;&ndash;&gt;-->
-<!--&lt;!&ndash;                    }&ndash;&gt;-->
-<!--&lt;!&ndash;                }&ndash;&gt;-->
-
-<!--&lt;!&ndash;                if (data.complete) {&ndash;&gt;-->
-<!--&lt;!&ndash;                    clearInterval(checkInterval);&ndash;&gt;-->
-<!--&lt;!&ndash;                    if (data.success) {&ndash;&gt;-->
-<!--&lt;!&ndash;                        window.location.href = "{% url 'files:myfiles' %}";&ndash;&gt;-->
-<!--&lt;!&ndash;                    } else {&ndash;&gt;-->
-<!--&lt;!&ndash;                        alert('Ошибка обработки файла');&ndash;&gt;-->
-<!--&lt;!&ndash;                        document.getElementById('submitBtn').disabled = false;&ndash;&gt;-->
-<!--&lt;!&ndash;                    }&ndash;&gt;-->
-<!--&lt;!&ndash;                }&ndash;&gt;-->
-<!--&lt;!&ndash;            });&ndash;&gt;-->
-<!--&lt;!&ndash;    }, 1000);&ndash;&gt;-->
-<!--&lt;!&ndash;}&ndash;&gt;-->
-<!--&lt;!&ndash;</script>&ndash;&gt;-->
-<!--{% endblock %}-->
-
-
 {% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %}Загрузка файлов для широкоформатной печати{% endblock %}
+{% block title %}Загрузка файлов для широкоформатной печати_{% endblock %}
 
 {% block body %}
 <div class="container-fluid px-4 py-4">
@@ -115,7 +13,7 @@
                 <i class="fas fa-expand-alt me-3"></i>Широкоформатная печать
             </h1>
             <p class="text-muted mt-2">
-                <i class="fas fa-upload me-1"></i>Загрузка файлов для широкоформатной печати
+                <i class="fas fa-upload me-1"></i>Загрузка файлов для широкоформатной печати_
             </p>
         </div>
     </div>

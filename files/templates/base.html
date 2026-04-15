@@ -9,6 +9,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108557576', 'ym');
+
+        ym(108557576, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/108557576" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
     <title>{% block title %} {% endblock %}</title>
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link
@@ -222,8 +239,10 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Мои заказы:</h6>
-                    <a class="collapse-item" href="{% url 'delivery_in_bus:orders_for_courier_in_bus' %}">Заказы в доставку</a>
-                    <a class="collapse-item" href="{% url 'delivery_in_bus:complete_delivers_courier_in_bus'%}">Выполненые заказы</a>
+                    <a class="collapse-item" href="{% url 'delivery_in_bus:orders_for_courier_in_bus' %}">Заказы в
+                        доставку</a>
+                    <a class="collapse-item" href="{% url 'delivery_in_bus:complete_delivers_courier_in_bus'%}">Выполненые
+                        заказы</a>
                     <a class="collapse-item" href="{% url 'files:myfiles' %}">Баланс</a>
                     <a class="collapse-item" href="{% url 'files:create_files' %}">Выплаты</a>
                 </div>
@@ -259,83 +278,83 @@
     </ul>
     <!-- End of Sidebar -->
 
-        {% else %}
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+    {% else %}
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'profiles:dashboard' %}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Главная</span>
-            </a>
-        </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'profiles:dashboard' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Главная</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'files:calculator' %}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Калькулятор</span>
-            </a>
-        </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'files:calculator' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Калькулятор</span>
+        </a>
+    </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
+    </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Заказы</span>
-                <i class="fas fa-chevron-down"></i>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Мои заказы:</h6>
-                    <a class="collapse-item" href="{% url 'orders:new_order' %}">Новый заказ</a>
-                    <a class="collapse-item" href="{% url 'orders:view_orders'%}">Заказы</a>
-                    <a class="collapse-item" href="{% url 'files:myfiles' %}">Мои файлы</a>
-                </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Заказы</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Мои заказы:</h6>
+                <a class="collapse-item" href="{% url 'orders:new_order' %}">Новый заказ</a>
+                <a class="collapse-item" href="{% url 'orders:view_orders'%}">Заказы</a>
+                <a class="collapse-item" href="{% url 'files:myfiles' %}">Мои файлы</a>
             </div>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Настройки</span>
-                <i class="fas fa-chevron-down"></i>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">профиль:</h6>
-                    <a class="collapse-item" href="{% url 'profiles:delivery_list' %}">Адреса доставки</a>
-                    <a class="collapse-item" href="{% url 'profiles:list_organisation' %}">Организации</a>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'files:price' %}">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Прайс-лист</span>
-            </a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Настройки</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">профиль:</h6>
+                <a class="collapse-item" href="{% url 'profiles:delivery_list' %}">Адреса доставки</a>
+                <a class="collapse-item" href="{% url 'profiles:list_organisation' %}">Организации</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'files:price' %}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Прайс-лист</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 
     </ul>
     <!-- End of Sidebar -->
@@ -669,7 +688,7 @@
         });
     </script>
 
-{% endif %}
+    {% endif %}
 
 </body>
 </html>
