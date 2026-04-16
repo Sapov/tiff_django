@@ -9565,3 +9565,695 @@ self.material: Баннер 440 грамм ламинированный Широ
 SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
 2026-04-14 03:06:53,265 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
 2026-04-14 03:06:53,265 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:16:21,478 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:16:21,479 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:16:28,260 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:16:28,261 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:16:29,582 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:16:29,589 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:16:33,401 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:16:33,401 profiles.views INFO     page_NUM: 1
+2026-04-14 03:16:33,402 profiles.views INFO     page_NUM: <Page 1 of 4>
+2026-04-14 03:17:04,621 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:17:04,621 profiles.views INFO     page_NUM: 1
+2026-04-14 03:17:04,622 profiles.views INFO     page_NUM: <Page 1 of 4>
+2026-04-14 03:17:10,763 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:17:10,763 profiles.views INFO     page_NUM: 1
+2026-04-14 03:17:10,764 profiles.views INFO     page_NUM: <Page 1 of 4>
+2026-04-14 03:17:17,963 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:17:17,964 profiles.views INFO     page_NUM: 1
+2026-04-14 03:17:17,965 profiles.views INFO     page_NUM: <Page 1 of 4>
+2026-04-14 03:17:49,991 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 03:17:49,991 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:17:49,991 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:17:49,991 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 03:17:49,992 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django/media/orders
+2026-04-14 03:17:49,992 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 03:17:49,992 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 03:18:15,004 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:18:15,005 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:18:23,697 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-04-14 03:18:23,698 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['wm4rPk23yDx4gETepMyoYSN0REeHrB6hk4kfHcCgLihjE5Ye5ufook1qH2ne7VNe'], 'organisation_payer': [''], 'delivery': ['19'], 'date_complite': ['2026-04-16']}>
+2026-04-14 03:18:23,699 root         INFO     USER reds0
+2026-04-14 03:18:23,699 root         INFO     [INFO] отправленная форма имеет дату 2026-04-16
+2026-04-14 03:18:23,699 root         INFO     [INFO] Приводим строку в формату даты 2026-04-16 00:00:00
+2026-04-14 03:18:23,699 root         INFO     [INFO] прибавляем 12 часов 2026-04-16 12:00:00
+2026-04-14 03:18:23,699 root         INFO     date_complite 2026-04-16 12:00:00 - <class 'datetime.datetime'>
+2026-04-14 03:18:23,699 root         INFO     DELIV ID:  19
+2026-04-14 03:18:23,699 root         INFO     ORGANISATION:  
+2026-04-14 03:20:12,585 orders.models INFO     cost_price_per_item 1300.00
+2026-04-14 03:20:12,593 orders.models INFO     1300.00
+2026-04-14 03:20:12,593 orders.models INFO     Себестоимость, 1300.00
+2026-04-14 03:20:12,601 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-14 03:20:12,602 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-14 03:20:12,602 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-14 03:20:12,607 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:оставить белые поля по 5 см TYPE <class 'files.models.FinishWork'>
+self.material: Блюбек Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 03:20:12,608 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:20:12,608 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:23:18,788 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:23:18,788 profiles.views INFO     page_NUM: 1
+2026-04-14 03:23:18,789 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 03:29:38,499 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:29:38,499 profiles.views INFO     page_NUM: 1
+2026-04-14 03:29:38,501 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 03:29:43,759 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:29:43,760 profiles.views INFO     page_NUM: 1
+2026-04-14 03:29:43,761 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 03:30:59,885 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:30:59,885 profiles.views INFO     page_NUM: 1
+2026-04-14 03:30:59,886 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 03:32:47,025 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:32:47,025 profiles.views INFO     page_NUM: 1
+2026-04-14 03:32:47,026 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 03:35:34,234 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:35:34,236 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:35:41,558 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-04-14 03:35:41,562 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['3IAbm4J6my6zrmXlW73KBz5n5qFGUoxoRqQZeWjjzdQOPN2lCPKK11jNVOOdAIel'], 'organisation_payer': [''], 'delivery': ['19'], 'date_complite': ['2026-04-16']}>
+2026-04-14 03:35:41,563 root         INFO     USER reds0
+2026-04-14 03:35:41,563 root         INFO     [INFO] отправленная форма имеет дату 2026-04-16
+2026-04-14 03:35:41,563 root         INFO     [INFO] Приводим строку в формату даты 2026-04-16 00:00:00
+2026-04-14 03:35:41,564 root         INFO     [INFO] прибавляем 12 часов 2026-04-16 12:00:00
+2026-04-14 03:35:41,564 root         INFO     date_complite 2026-04-16 12:00:00 - <class 'datetime.datetime'>
+2026-04-14 03:35:41,564 root         INFO     DELIV ID:  19
+2026-04-14 03:35:41,564 root         INFO     ORGANISATION:  
+2026-04-14 03:36:11,166 orders.models INFO     cost_price_per_item 0.00
+2026-04-14 03:36:11,175 orders.models INFO     1300.00
+2026-04-14 03:36:11,176 orders.models INFO     Себестоимость, 0.00
+2026-04-14 03:36:11,190 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-14 03:36:11,191 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-14 03:36:11,191 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-14 03:36:11,195 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 03:36:11,195 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:36:11,195 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 03:48:19,536 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:48:19,537 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:48:37,051 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:48:37,052 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 03:48:56,892 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 03:48:56,893 profiles.views INFO     page_NUM: 1
+2026-04-14 03:48:56,894 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 03:50:46,202 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 03:50:46,203 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 13:25:16,275 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:25:16,275 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:25:16,275 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:25:16,275 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 13:25:16,275 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django/media/orders
+2026-04-14 13:25:16,276 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:25:16,276 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:36:35,485 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 13:36:35,494 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 13:37:15,297 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 13:37:15,298 profiles.views INFO     page_NUM: 1
+2026-04-14 13:37:15,299 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 13:38:10,953 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:38:10,953 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:38:10,953 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:38:10,954 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 13:38:10,954 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django/media/orders
+2026-04-14 13:38:10,954 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:38:10,954 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:38:22,431 django.request ERROR    Internal Server Error: /files/delete/165/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views/views.py", line 75, in delete
+    os.remove(f"media/{str(product.images)}")  # Удаление файла
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'media/image/banner_os0S9Ld.tif'
+2026-04-14 13:38:44,625 django.request ERROR    Internal Server Error: /files/delete/166/
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/files/views/views.py", line 75, in delete
+    os.remove(f"media/{str(product.images)}")  # Удаление файла
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'media/image/banner_5Gb9nxk.tif'
+2026-04-14 13:41:39,612 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/views.py changed, reloading.
+2026-04-14 13:41:41,099 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-04-14 13:42:30,609 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 13:42:30,610 profiles.views INFO     page_NUM: 1
+2026-04-14 13:42:30,611 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 13:43:00,995 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:43:00,995 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:43:00,995 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:43:00,995 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 13:43:00,995 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-14 13:43:00,995 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:43:00,995 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:43:37,862 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/files/views/views.py changed, reloading.
+2026-04-14 13:43:39,816 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-04-14 13:43:44,286 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 13:43:44,287 profiles.views INFO     page_NUM: 1
+2026-04-14 13:43:44,290 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 13:43:58,033 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:43:58,034 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:43:58,034 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:43:58,034 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 13:43:58,034 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-14 13:43:58,034 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:43:58,034 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:44:24,879 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-04-14 13:44:31,319 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 13:44:31,320 profiles.views INFO     page_NUM: 1
+2026-04-14 13:44:31,322 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 13:44:42,434 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:44:42,434 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:44:42,434 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:44:42,434 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 13:44:42,434 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-14 13:44:42,434 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:44:42,434 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:44:59,336 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 13:44:59,346 profiles.views INFO     page_NUM: 1
+2026-04-14 13:44:59,350 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 13:45:10,450 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:45:10,450 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:45:10,451 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:45:10,451 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 13:45:10,451 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-14 13:45:10,451 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:45:10,451 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:45:53,204 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 13:45:53,204 profiles.views INFO     page_NUM: 1
+2026-04-14 13:45:53,206 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 13:46:08,550 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:46:08,550 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:46:08,550 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:46:08,550 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 13:46:08,550 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-14 13:46:08,550 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:46:08,551 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:46:33,994 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 13:46:33,996 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 13:46:58,774 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 13:46:58,775 profiles.views INFO     page_NUM: 1
+2026-04-14 13:46:58,776 profiles.views INFO     page_NUM: <Page 1 of 5>
+2026-04-14 13:49:31,271 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 13:49:31,276 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 13:51:12,603 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 13:51:12,605 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 13:51:53,368 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-04-14 13:51:53,369 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['fbZRXnGf0c3pBAGUeHTLST3bfBI4hCXn3TfFPfgsdRNEZ1LUUpALilhB5ZRBXWEk'], 'organisation_payer': [''], 'delivery': ['19'], 'date_complite': ['2026-04-16']}>
+2026-04-14 13:51:53,370 root         INFO     USER reds0
+2026-04-14 13:51:53,370 root         INFO     [INFO] отправленная форма имеет дату 2026-04-16
+2026-04-14 13:51:53,372 root         INFO     [INFO] Приводим строку в формату даты 2026-04-16 00:00:00
+2026-04-14 13:51:53,372 root         INFO     [INFO] прибавляем 12 часов 2026-04-16 12:00:00
+2026-04-14 13:51:53,373 root         INFO     date_complite 2026-04-16 12:00:00 - <class 'datetime.datetime'>
+2026-04-14 13:51:53,373 root         INFO     DELIV ID:  19
+2026-04-14 13:51:53,373 root         INFO     ORGANISATION:  
+2026-04-14 13:53:15,968 orders.models INFO     cost_price_per_item 1300.00
+2026-04-14 13:53:15,977 orders.models INFO     1300.00
+2026-04-14 13:53:15,977 orders.models INFO     Себестоимость, 1300.00
+2026-04-14 13:53:15,989 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-14 13:53:15,989 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-14 13:53:15,989 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-14 13:53:15,994 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Бумага постерная СytiLight  150 грамм (1,27; 1,6м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:53:15,994 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:53:15,994 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:53:21,944 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-14 13:53:21,944 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-14 13:53:21,944 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-14 13:53:21,949 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Резка в размер (обрезка полей по краю изображения) TYPE <class 'files.models.FinishWork'>
+self.material: Бумага постерная СytiLight  150 грамм (1,27; 1,6м) Интерьерная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:53:21,949 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:53:21,949 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:53:21,961 root         INFO     [Удаляем из OrderItems] Заказ № 70-image/banner_4f9dJcX_w92aVce.tif
+2026-04-14 13:53:25,065 orders.models INFO     cost_price_per_item 0.00
+2026-04-14 13:53:25,072 orders.models INFO     1300.00
+2026-04-14 13:53:25,072 orders.models INFO     Себестоимость, 0.00
+2026-04-14 13:53:25,081 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-14 13:53:25,081 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-14 13:53:25,081 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-14 13:53:25,087 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:53:25,087 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:53:25,087 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:53:28,601 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-04-14 13:53:28,609 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-04-14 13:53:28,610 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-04-16 09:00:00+00:00
+2026-04-14 13:53:28,726 celery.backends.redis ERROR    Connection to Redis lost: Retry (0/20) now.
+2026-04-14 13:53:28,727 celery.backends.redis ERROR    Connection to Redis lost: Retry (1/20) in 1.00 second.
+2026-04-14 13:53:29,729 celery.backends.redis ERROR    Connection to Redis lost: Retry (2/20) in 1.00 second.
+2026-04-14 13:53:30,731 celery.backends.redis ERROR    Connection to Redis lost: Retry (3/20) in 1.00 second.
+2026-04-14 13:53:31,738 celery.backends.redis ERROR    Connection to Redis lost: Retry (4/20) in 1.00 second.
+2026-04-14 13:53:32,741 celery.backends.redis ERROR    Connection to Redis lost: Retry (5/20) in 1.00 second.
+2026-04-14 13:53:33,743 celery.backends.redis ERROR    Connection to Redis lost: Retry (6/20) in 1.00 second.
+2026-04-14 13:53:34,746 celery.backends.redis ERROR    Connection to Redis lost: Retry (7/20) in 1.00 second.
+2026-04-14 13:53:35,749 celery.backends.redis ERROR    Connection to Redis lost: Retry (8/20) in 1.00 second.
+2026-04-14 13:53:36,752 celery.backends.redis ERROR    Connection to Redis lost: Retry (9/20) in 1.00 second.
+2026-04-14 13:53:37,758 celery.backends.redis ERROR    Connection to Redis lost: Retry (10/20) in 1.00 second.
+2026-04-14 13:53:38,761 celery.backends.redis ERROR    Connection to Redis lost: Retry (11/20) in 1.00 second.
+2026-04-14 13:53:39,762 celery.backends.redis ERROR    Connection to Redis lost: Retry (12/20) in 1.00 second.
+2026-04-14 13:53:40,764 celery.backends.redis ERROR    Connection to Redis lost: Retry (13/20) in 1.00 second.
+2026-04-14 13:53:41,769 celery.backends.redis ERROR    Connection to Redis lost: Retry (14/20) in 1.00 second.
+2026-04-14 13:53:42,773 celery.backends.redis ERROR    Connection to Redis lost: Retry (15/20) in 1.00 second.
+2026-04-14 13:53:43,774 celery.backends.redis ERROR    Connection to Redis lost: Retry (16/20) in 1.00 second.
+2026-04-14 13:53:44,776 celery.backends.redis ERROR    Connection to Redis lost: Retry (17/20) in 1.00 second.
+2026-04-14 13:53:45,780 celery.backends.redis ERROR    Connection to Redis lost: Retry (18/20) in 1.00 second.
+2026-04-14 13:53:46,789 celery.backends.redis ERROR    Connection to Redis lost: Retry (19/20) in 1.00 second.
+2026-04-14 13:53:47,828 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-04-14 13:53:48,151 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2026-04-14 13:53:48,153 orders.payment.acquiring INFO     self.customer_code <class 'str'>
+2026-04-14 13:53:48,160 orders.payment.acquiring INFO     Посчитанный TOTAL PRICE: 1300.00
+2026-04-14 13:53:48,160 orders.payment.acquiring INFO     positions: [{'vatType': 'none', 'name': 'Баннер 440 грамм ламинированный Широкоформатная печать 0.4x0.9 м', 'amount': 1300.0, 'quantity': 1, 'paymentMethod': 'full_payment', 'paymentObject': 'goods', 'measure': 'шт.'}]
+2026-04-14 13:53:48,161 orders.payment.acquiring INFO     ['PAYLOAD__: {\n    "Data": {\n        "customerCode": "301576470",\n        "amount": 1300.0,\n        "purpose": "\\u041e\\u043f\\u043b\\u0430\\u0442\\u0430 \\u0437\\u0430\\u043a\\u0430\\u0437\\u0430 \\u2116 70",\n        "redirectUrl": "https://order.san-cd.ru/orders/success",\n        "failRedirectUrl": "https://order.san-cd.ru/orders/fail",\n        "paymentMode": [\n            "sbp"\n        ],\n        "saveCard": true,\n        "consumerId": "rpk.reds@gmail.com",\n        "taxSystemCode": "usn_income",\n        "merchantId": null,\n        "Client": {\n            "name": "Reds",\n            "email": "rpk.reds@gmail.com",\n            "phone": "+79515456824"\n        },\n        "Items": [\n            {\n                "vatType": "none",\n                "name": "\\u0411\\u0430\\u043d\\u043d\\u0435\\u0440 440 \\u0433\\u0440\\u0430\\u043c\\u043c \\u043b\\u0430\\u043c\\u0438\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u043d\\u044b\\u0439 \\u0428\\u0438\\u0440\\u043e\\u043a\\u043e\\u0444\\u043e\\u0440\\u043c\\u0430\\u0442\\u043d\\u0430\\u044f \\u043f\\u0435\\u0447\\u0430\\u0442\\u044c 0.4x0.9 \\u043c",\n                "amount": 1300.0,\n                "quantity": 1,\n                "paymentMethod": "full_payment",\n                "paymentObject": "goods",\n                "measure": "\\u0448\\u0442."\n            }\n        ]\n    }\n}']
+2026-04-14 13:53:48,697 orders.payment.acquiring INFO     RESPONSE FOR PAYMENT LINK :{'Data': {'purpose': 'Оплата заказа № 70', 'status': 'CREATED', 'amount': 1300.0, 'operationId': 'ea9e183d-1bc0-4df9-8e24-933bbd74f28d', 'paymentLink': 'https://merch.tochka.com/order/?uuid=ea9e183d-1bc0-4df9-8e24-933bbd74f28d', 'consumerId': 'rpk.reds@gmail.com', 'ttl': 10080, 'paymentLinkId': '435', 'paymentMode': ['sbp'], 'customerCode': '301576470', 'redirectUrl': 'https://order.san-cd.ru/orders/success', 'failRedirectUrl': 'https://order.san-cd.ru/orders/fail', 'taxSystemCode': 'usn_income', 'Client': {'name': 'Reds', 'email': 'rpk.reds@gmail.com', 'phone': '+79515456824'}, 'Items': [{'vatType': 'none', 'name': 'Баннер 440 грамм ламинированный Широкоформатная печать 0.4x0.9 м', 'amount': 1300.0, 'quantity': 1.0, 'paymentMethod': 'full_payment', 'paymentObject': 'goods', 'measure': 'шт.'}]}, 'Links': {'self': 'https://enter.tochka.com/uapi/acquiring/v1.0/payments_with_receipt'}, 'Meta': {'totalPages': 1}}
+2026-04-14 13:53:48,702 orders.payment.acquiring INFO     SAVE PAY-LINK: https://merch.tochka.com/order/?uuid=ea9e183d-1bc0-4df9-8e24-933bbd74f28d
+2026-04-14 13:53:48,731 orders.views INFO     [Сгенерили - Ссылку для оплаты]https://merch.tochka.com/order/?uuid=ea9e183d-1bc0-4df9-8e24-933bbd74f28d
+2026-04-14 13:59:05,327 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py changed, reloading.
+2026-04-14 13:59:06,489 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-04-14 13:59:07,053 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 13:59:07,055 profiles.views INFO     page_NUM: 1
+2026-04-14 13:59:07,057 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 13:59:25,264 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:59:25,264 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:59:25,264 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:59:25,264 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-14 13:59:25,264 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-14 13:59:25,264 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:59:25,264 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-14 13:59:31,043 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-14 13:59:31,045 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 2
+2026-04-14 13:59:43,230 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-04-14 13:59:43,231 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['vcqGKK1H12h8aSWRf4IEzhWfT0zrYbjhjUGuCCBUeH1nyj1RVMpEZJaFJoIYEv0e'], 'organisation_payer': [''], 'delivery': ['19'], 'date_complite': ['2026-04-16']}>
+2026-04-14 13:59:43,232 root         INFO     USER reds0
+2026-04-14 13:59:43,232 root         INFO     [INFO] отправленная форма имеет дату 2026-04-16
+2026-04-14 13:59:43,236 root         INFO     [INFO] Приводим строку в формату даты 2026-04-16 00:00:00
+2026-04-14 13:59:43,236 root         INFO     [INFO] прибавляем 12 часов 2026-04-16 12:00:00
+2026-04-14 13:59:43,236 root         INFO     date_complite 2026-04-16 12:00:00 - <class 'datetime.datetime'>
+2026-04-14 13:59:43,236 root         INFO     DELIV ID:  19
+2026-04-14 13:59:43,236 root         INFO     ORGANISATION:  
+2026-04-14 13:59:47,359 orders.models INFO     cost_price_per_item 0.00
+2026-04-14 13:59:47,367 orders.models INFO     1300.00
+2026-04-14 13:59:47,367 orders.models INFO     Себестоимость, 0.00
+2026-04-14 13:59:47,376 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-14 13:59:47,376 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-14 13:59:47,376 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-14 13:59:47,381 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-14 13:59:47,381 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:59:47,381 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-14 13:59:50,807 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-04-14 13:59:50,824 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-04-14 13:59:50,825 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-04-16 09:00:00+00:00
+2026-04-14 13:59:51,291 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-04-14 13:59:51,716 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2026-04-14 13:59:51,721 orders.payment.acquiring INFO     self.customer_code <class 'str'>
+2026-04-14 13:59:51,758 orders.payment.acquiring INFO     Посчитанный TOTAL PRICE: 1300.00
+2026-04-14 13:59:51,759 orders.payment.acquiring INFO     positions: [{'vatType': 'none', 'name': 'Баннер 440 грамм ламинированный Широкоформатная печать 0.4x0.9 м', 'amount': 1300.0, 'quantity': 1, 'paymentMethod': 'full_payment', 'paymentObject': 'goods', 'measure': 'шт.'}]
+2026-04-14 13:59:51,760 orders.payment.acquiring INFO     ['PAYLOAD__: {\n    "Data": {\n        "customerCode": "301576470",\n        "amount": 1300.0,\n        "purpose": "\\u041e\\u043f\\u043b\\u0430\\u0442\\u0430 \\u0437\\u0430\\u043a\\u0430\\u0437\\u0430 \\u2116 71",\n        "redirectUrl": "https://order.san-cd.ru/orders/success",\n        "failRedirectUrl": "https://order.san-cd.ru/orders/fail",\n        "paymentMode": [\n            "sbp",\n            "card",\n            "tinkoff",\n            "dolyame"\n        ],\n        "saveCard": true,\n        "consumerId": "rpk.reds@gmail.com",\n        "taxSystemCode": "usn_income",\n        "merchantId": null,\n        "Client": {\n            "name": "Reds",\n            "email": "rpk.reds@gmail.com",\n            "phone": "+79515456824"\n        },\n        "Items": [\n            {\n                "vatType": "none",\n                "name": "\\u0411\\u0430\\u043d\\u043d\\u0435\\u0440 440 \\u0433\\u0440\\u0430\\u043c\\u043c \\u043b\\u0430\\u043c\\u0438\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u043d\\u044b\\u0439 \\u0428\\u0438\\u0440\\u043e\\u043a\\u043e\\u0444\\u043e\\u0440\\u043c\\u0430\\u0442\\u043d\\u0430\\u044f \\u043f\\u0435\\u0447\\u0430\\u0442\\u044c 0.4x0.9 \\u043c",\n                "amount": 1300.0,\n                "quantity": 1,\n                "paymentMethod": "full_payment",\n                "paymentObject": "goods",\n                "measure": "\\u0448\\u0442."\n            }\n        ]\n    }\n}']
+2026-04-14 13:59:52,276 orders.payment.acquiring INFO     RESPONSE FOR PAYMENT LINK :{'Data': {'purpose': 'Оплата заказа № 71', 'status': 'CREATED', 'amount': 1300.0, 'operationId': 'cb4f8d4d-1583-44b0-8c92-7c97f48784ae', 'paymentLink': 'https://merch.tochka.com/order/?uuid=cb4f8d4d-1583-44b0-8c92-7c97f48784ae', 'consumerId': 'rpk.reds@gmail.com', 'ttl': 10080, 'paymentLinkId': '436', 'paymentMode': ['sbp', 'card', 'tinkoff', 'dolyame'], 'customerCode': '301576470', 'redirectUrl': 'https://order.san-cd.ru/orders/success', 'failRedirectUrl': 'https://order.san-cd.ru/orders/fail', 'taxSystemCode': 'usn_income', 'Client': {'name': 'Reds', 'email': 'rpk.reds@gmail.com', 'phone': '+79515456824'}, 'Items': [{'vatType': 'none', 'name': 'Баннер 440 грамм ламинированный Широкоформатная печать 0.4x0.9 м', 'amount': 1300.0, 'quantity': 1.0, 'paymentMethod': 'full_payment', 'paymentObject': 'goods', 'measure': 'шт.'}]}, 'Links': {'self': 'https://enter.tochka.com/uapi/acquiring/v1.0/payments_with_receipt'}, 'Meta': {'totalPages': 1}}
+2026-04-14 13:59:52,279 orders.payment.acquiring INFO     SAVE PAY-LINK: https://merch.tochka.com/order/?uuid=cb4f8d4d-1583-44b0-8c92-7c97f48784ae
+2026-04-14 13:59:52,301 orders.views INFO     [Сгенерили - Ссылку для оплаты]https://merch.tochka.com/order/?uuid=cb4f8d4d-1583-44b0-8c92-7c97f48784ae
+2026-04-14 14:01:26,000 django.utils.autoreload INFO     /home/sasha/PycharmProjects/tiff_django/orders/payment/acquiring.py changed, reloading.
+2026-04-14 14:01:27,291 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-04-14 14:02:36,900 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:02:36,901 profiles.views INFO     page_NUM: 1
+2026-04-14 14:02:36,903 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:18:29,719 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-04-14 14:23:12,103 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-04-14 14:23:37,226 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:23:37,226 profiles.views INFO     page_NUM: 1
+2026-04-14 14:23:37,228 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:25:54,744 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:25:54,749 profiles.views INFO     page_NUM: 1
+2026-04-14 14:25:54,749 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:28:25,986 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:28:25,986 profiles.views INFO     page_NUM: 1
+2026-04-14 14:28:25,988 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:29:08,826 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-04-14 14:33:17,229 django.request WARNING  Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-04-14 14:42:34,327 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:42:34,328 profiles.views INFO     page_NUM: 1
+2026-04-14 14:42:34,329 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:42:50,563 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:42:50,564 profiles.views INFO     page_NUM: 1
+2026-04-14 14:42:50,565 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:48:58,110 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:48:58,110 profiles.views INFO     page_NUM: 1
+2026-04-14 14:48:58,111 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:48:58,188 django.request ERROR    Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/profiles/views.py", line 38, in dashboard
+    return render(
+           ^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 197, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 519, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 519, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 524, in parse
+    self.unclosed_block_tag(parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 591, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 7: 'block'. Looking for one of: endblock.
+2026-04-14 14:50:13,095 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:50:13,095 profiles.views INFO     page_NUM: 1
+2026-04-14 14:50:13,096 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:50:18,626 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:50:18,626 profiles.views INFO     page_NUM: 1
+2026-04-14 14:50:18,627 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:51:04,037 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:51:04,037 profiles.views INFO     page_NUM: 1
+2026-04-14 14:51:04,038 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:52:01,710 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:52:01,712 profiles.views INFO     page_NUM: 1
+2026-04-14 14:52:01,715 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:52:01,803 django.request ERROR    Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 511, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/profiles/views.py", line 38, in dashboard
+    return render(
+           ^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 197, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 513, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 578, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 93: 'endblock'. Did you forget to register or load this tag?
+2026-04-14 14:52:24,948 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:52:24,948 profiles.views INFO     page_NUM: 1
+2026-04-14 14:52:24,949 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:52:35,853 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:52:35,855 profiles.views INFO     page_NUM: 1
+2026-04-14 14:52:35,860 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:54:52,168 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:54:52,169 profiles.views INFO     page_NUM: 1
+2026-04-14 14:54:52,171 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:59:08,700 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 14:59:08,700 profiles.views INFO     page_NUM: 1
+2026-04-14 14:59:08,709 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-14 14:59:09,122 django.request ERROR    Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/profiles/views.py", line 38, in dashboard
+    return render(
+           ^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 197, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 519, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 519, in parse
+    raise self.error(token, e)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 524, in parse
+    self.unclosed_block_tag(parse_until)
+  File "/home/sasha/PycharmProjects/tiff_django/.venv/lib/python3.11/site-packages/django/template/base.py", line 591, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 7: 'block'. Looking for one of: endblock.
+2026-04-14 15:01:17,958 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-14 15:01:17,958 profiles.views INFO     page_NUM: 1
+2026-04-14 15:01:17,959 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-16 13:49:16,870 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2026-04-16 13:49:35,657 profiles.views INFO     Orders:  <QuerySet [<Order: Заказ № 71>, <Order: Заказ № 70>, <Order: Заказ № 69>, <Order: Заказ № 68>, <Order: Заказ № 67>, <Order: Заказ № 66>, <Order: Заказ № 65>, <Order: Заказ № 64>, <Order: Заказ № 63>, <Order: Заказ № 62>, <Order: Заказ № 19>, <Order: Заказ № 18>]>
+2026-04-16 13:49:35,660 profiles.views INFO     page_NUM: 1
+2026-04-16 13:49:35,665 profiles.views INFO     page_NUM: <Page 1 of 6>
+2026-04-16 13:49:52,153 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-16 13:49:52,153 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-16 13:49:52,153 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-16 13:49:52,153 files.works_with_files.convert_png_to_tif INFO     [пришел]banner.png
+2026-04-16 13:49:52,153 files.works_with_files.convert_png_to_tif INFO     [DECORATOR] перед обработкой файла МЫ тут/home/sasha/PycharmProjects/tiff_django
+2026-04-16 13:49:52,154 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] Мы Выбрали /home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-16 13:49:52,154 files.works_with_files.convert_png_to_tif INFO      [DECORATOR] перед архивацией МЫ тут/home/sasha/PycharmProjects/tiff_django/media/image
+2026-04-16 13:50:17,874 root         INFO     <WSGIRequest: GET '/orders/neworder/'>
+2026-04-16 13:50:17,876 root         INFO     [ДАТА ГОТОВНОСТИ + ДВА ДНЯ К ДАТЕ ЗАКАЗА] 4
+2026-04-16 13:50:34,413 root         INFO     <WSGIRequest: POST '/orders/neworder/'>
+2026-04-16 13:50:34,415 root         INFO     REQUEST <QueryDict: {'csrfmiddlewaretoken': ['Jd0gWmdaNgkWIjVX2t7wKWwcaiefkiyxxVg4OeNn0V4b6K0XIbOwaoKC0GnM0Cfu'], 'organisation_payer': [''], 'delivery': ['19'], 'date_complite': ['2026-04-20']}>
+2026-04-16 13:50:34,415 root         INFO     USER reds0
+2026-04-16 13:50:34,416 root         INFO     [INFO] отправленная форма имеет дату 2026-04-20
+2026-04-16 13:50:34,421 root         INFO     [INFO] Приводим строку в формату даты 2026-04-20 00:00:00
+2026-04-16 13:50:34,421 root         INFO     [INFO] прибавляем 12 часов 2026-04-20 12:00:00
+2026-04-16 13:50:34,421 root         INFO     date_complite 2026-04-20 12:00:00 - <class 'datetime.datetime'>
+2026-04-16 13:50:34,422 root         INFO     DELIV ID:  19
+2026-04-16 13:50:34,422 root         INFO     ORGANISATION:  
+2026-04-16 13:50:46,778 orders.models INFO     cost_price_per_item 0.00
+2026-04-16 13:50:46,796 orders.models INFO     1300.00
+2026-04-16 13:50:46,803 orders.models INFO     Себестоимость, 0.00
+2026-04-16 13:50:46,816 files.works_with_files.image_tiff_file INFO     [SIZE File] :0.9 m X 0.4 m
+2026-04-16 13:50:46,816 files.works_with_files.image_tiff_file INFO     [SIZE File PIXELS] :width: 3401 px, length: 1511 px
+2026-04-16 13:50:46,816 files.works_with_files.image_tiff_file INFO     [RESOLUTION] : 96 px
+2026-04-16 13:50:46,824 root         INFO     [INFO]. self.length:0.4 TYPE<class 'float'>
+Width: 0.9 TYPE <class 'float'>
+ Quantity: 1 TYPE <class 'int'>
+Value_finishing_price: None TYPE <class 'NoneType'>
+self.finishing:Люверсы через 30 см в подворот TYPE <class 'files.models.FinishWork'>
+self.material: Баннер 440 грамм ламинированный Широкоформатная печать TYPE<class 'files.models.Material'>
+SELF.USER: CUSTOMER_RETAIL: TYPE <class 'str'> 
+2026-04-16 13:50:46,824 files.tiff_file INFO     CHECK ROLE -> USER IS ROLE: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-16 13:50:46,825 files.tiff_file INFO     CHECK ROLE -> USER IS USER: CUSTOMER_RETAIL, TYPE <class 'str'>
+2026-04-16 13:50:56,997 orders.views INFO     МЕНЯЮ СТАТУС НА Оформлен
+2026-04-16 13:50:57,006 orders.views INFO     DOMAIN: 127.0.0.1:8000
+2026-04-16 13:50:57,007 orders.alerts INFO     Старт обратного отсчета ДАТА ГОТОВНОСТИ, 2026-04-20 09:00:00+00:00
+2026-04-16 13:50:57,143 orders.views INFO     [НЕ Выбрана организация - только  ссылку на частное лицо]
+2026-04-16 13:50:57,520 root         INFO     RESPONSE__CUSTOMER_ID: 301576470
+2026-04-16 13:50:57,526 orders.payment.acquiring INFO     self.customer_code <class 'str'>
+2026-04-16 13:50:57,554 orders.payment.acquiring INFO     Посчитанный TOTAL PRICE: 1300.00
+2026-04-16 13:50:57,554 orders.payment.acquiring INFO     positions: [{'vatType': 'none', 'name': 'Баннер 440 грамм ламинированный Широкоформатная печать 0.4x0.9 м', 'amount': 1300.0, 'quantity': 1, 'paymentMethod': 'full_payment', 'paymentObject': 'goods', 'measure': 'шт.'}]
+2026-04-16 13:50:57,554 orders.payment.acquiring INFO     ['PAYLOAD__: {\n    "Data": {\n        "customerCode": "301576470",\n        "amount": 1300.0,\n        "purpose": "\\u041e\\u043f\\u043b\\u0430\\u0442\\u0430 \\u0437\\u0430\\u043a\\u0430\\u0437\\u0430 \\u2116 72",\n        "redirectUrl": "https://order.san-cd.ru/orders/success",\n        "failRedirectUrl": "https://order.san-cd.ru/orders/fail",\n        "paymentMode": [\n            "sbp",\n            "card",\n            "dolyame"\n        ],\n        "saveCard": true,\n        "consumerId": "rpk.reds@gmail.com",\n        "taxSystemCode": "usn_income",\n        "merchantId": null,\n        "Client": {\n            "name": "Reds",\n            "email": "rpk.reds@gmail.com",\n            "phone": "+79515456824"\n        },\n        "Items": [\n            {\n                "vatType": "none",\n                "name": "\\u0411\\u0430\\u043d\\u043d\\u0435\\u0440 440 \\u0433\\u0440\\u0430\\u043c\\u043c \\u043b\\u0430\\u043c\\u0438\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u043d\\u044b\\u0439 \\u0428\\u0438\\u0440\\u043e\\u043a\\u043e\\u0444\\u043e\\u0440\\u043c\\u0430\\u0442\\u043d\\u0430\\u044f \\u043f\\u0435\\u0447\\u0430\\u0442\\u044c 0.4x0.9 \\u043c",\n                "amount": 1300.0,\n                "quantity": 1,\n                "paymentMethod": "full_payment",\n                "paymentObject": "goods",\n                "measure": "\\u0448\\u0442."\n            }\n        ]\n    }\n}']
+2026-04-16 13:50:58,007 orders.payment.acquiring INFO     RESPONSE FOR PAYMENT LINK :{'Data': {'purpose': 'Оплата заказа № 72', 'status': 'CREATED', 'amount': 1300.0, 'operationId': '4f49c6e2-5650-461e-9caf-0e595dd51451', 'paymentLink': 'https://merch.tochka.com/order/?uuid=4f49c6e2-5650-461e-9caf-0e595dd51451', 'consumerId': 'rpk.reds@gmail.com', 'ttl': 10080, 'paymentLinkId': '437', 'paymentMode': ['sbp', 'card', 'dolyame'], 'customerCode': '301576470', 'redirectUrl': 'https://order.san-cd.ru/orders/success', 'failRedirectUrl': 'https://order.san-cd.ru/orders/fail', 'taxSystemCode': 'usn_income', 'Client': {'name': 'Reds', 'email': 'rpk.reds@gmail.com', 'phone': '+79515456824'}, 'Items': [{'vatType': 'none', 'name': 'Баннер 440 грамм ламинированный Широкоформатная печать 0.4x0.9 м', 'amount': 1300.0, 'quantity': 1.0, 'paymentMethod': 'full_payment', 'paymentObject': 'goods', 'measure': 'шт.'}]}, 'Links': {'self': 'https://enter.tochka.com/uapi/acquiring/v1.0/payments_with_receipt'}, 'Meta': {'totalPages': 1}}
+2026-04-16 13:50:58,011 orders.payment.acquiring INFO     SAVE PAY-LINK: https://merch.tochka.com/order/?uuid=4f49c6e2-5650-461e-9caf-0e595dd51451
+2026-04-16 13:50:58,040 orders.views INFO     [Сгенерили - Ссылку для оплаты]https://merch.tochka.com/order/?uuid=4f49c6e2-5650-461e-9caf-0e595dd51451

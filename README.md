@@ -51,6 +51,7 @@ SECRET_KEY='SecRet_Key'
 
 --- Локально: ---
 
+
 1. Запускаем redis:
 docker run -d -p 6379:6379 redis
 
