@@ -47,6 +47,7 @@ services:
                ./manage.py makemigrations && 
                ./manage.py migrate && 
                ./manage.py add_price && 
+               ./manage.py add_intervals && 
                gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
     networks:
       - internal
