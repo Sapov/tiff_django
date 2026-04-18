@@ -28,7 +28,7 @@ RUN useradd -rms /bin/bash django && \
     chown -R django:django /django
 
 # Создаем директории ПОСЛЕ смены владельца
-RUN mkdir -p /django/media/{image,orders,arhive} /django/static && \
+RUN mkdir -p /django/media/image /django/media/orders /django/media/arhive  /django/static && \
     chown -R django:django /django
 
 # Переключаемся на пользователя django
