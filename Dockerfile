@@ -12,27 +12,24 @@ RUN apt update && apt -qy install gcc gettext cron openssh-client locales vim &&
 
 WORKDIR /django
 
-# Копируем зависимости
-COPY pyproject.toml uv.lock ./
+# Создаем пользователя ДО копирования файлов
+RUN useradd -rms /bin/bash django
 
-# Устанавливаем зависимости
-RUN pip install --no-cache-dir -e . || true
-COPY requirements.txt ./
+# Копируем только зависимости (это меняется редко)
+COPY pyproject.toml uv.lock requirements.txt ./
+
+# Устанавливаем зависимости (от root)
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем код
-COPY . .
+# Копируем остальной код (это меняется часто)
+COPY --chown=django:django . .
 
-# Создаем пользователя
-RUN useradd -rms /bin/bash django && \
-    chown -R django:django /django
-
-# Создаем директории ПОСЛЕ смены владельца
-RUN mkdir -p /django/media/image /django/media/orders /django/media/arhive  /django/static && \
+# Создаем директории для медиа и статики (от root, потом меняем владельца)
+RUN mkdir -p /django/media/image /django/media/orders /django/media/arhive /django/static && \
     chown -R django:django /django
 
 # Переключаемся на пользователя django
 USER django
 
-# Запускаем collectstatic от django пользователя
 CMD ["bash", "-c", "python manage.py collectstatic --noinput && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"]
+

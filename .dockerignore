@@ -1,0 +1,31 @@
+# Виртуальные окружения
+venv/
+env/
+.env/
+__pycache__/
+*.pyc
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+
+# Логи и временные файлы
+*.log
+*.tmp
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Медиа и статика (они будут в volumes)
+/django/media/
+/django/static/
+
+# Кэш pip
+.pytest_cache/
+.mypy_cache/
