@@ -26,7 +26,8 @@ COPY --chown=django:django . .
 
 # Создаем директории для медиа и статики (от root, потом меняем владельца)
 RUN mkdir -p /django/media/image /django/media/orders /django/media/arhive /django/static && \
-    chown -R django:django /django
+    chown django:django /django/media /django/static
+
 
 # Переключаемся на пользователя django
 USER django
