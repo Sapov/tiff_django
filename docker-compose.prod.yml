@@ -1,0 +1,109 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    restart: always
+    expose:
+      - "6379"  # Доступен только внутри сети Docker
+    volumes:
+      - redis_data:/data
+    networks:
+      - internal    # Сеть для связи между вашими сервисами
+      - proxy_network # <-- Сеть, которую будет видеть внешний Nginx
+
+  postgres_db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    expose:
+      - "5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - internal # База данных не должна быть доступна прокси напрямую
+
+  django_project:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: django_docker:latest
+    container_name: django_docker
+    restart: always
+    depends_on:
+      - postgres_db
+      - redis
+    volumes:
+      - static_volume:/django/static
+      - media_volume:/django/media
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    command: >
+      bash -c "./manage.py collectstatic --noinput && 
+               ./manage.py makemigrations && 
+               ./manage.py migrate && 
+               ./manage.py add_price && 
+               gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
+    networks:
+      - internal
+      - proxy_network # <-- Прокси должен "видеть" Django
+
+        #network_mode: host  # ← ДОБАВЛЯЕМ ЭТУ СТРОКУ
+
+
+  worker:
+    restart: always
+    build: .
+    volumes:
+      - ./:/app
+      - static_volume:/django/static
+      - media_volume:/django/media
+    depends_on:
+      - redis
+      - django_project
+    command: celery -A mysite worker -l info
+    networks:
+      - internal # Воркеру не нужен прямой доступ извне
+    env_file:
+      - .env
+
+  celery-beat:
+    restart: always
+    build: .
+    volumes:
+      - ./:/app
+      - static_volume:/django/static
+      - media_volume:/django/media
+    depends_on:
+      - redis
+      - django_project
+    command: 'celery -A mysite beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler'
+    networks:
+      - internal # Воркеру не нужен прямой доступ извне
+
+
+volumes:
+  static_volume:
+    name: django_static_volume
+  media_volume:
+    name: django_media_volume
+  postgres_data:
+    name: postgres_data
+  redis_data:
+    name: redis_data
+
+networks:
+  # Внутренняя сеть для связи redis, db, worker между собой
+  internal:
+    driver: bridge
+    name: django_internal_network
+    # external: false (значение по умолчанию)
+
+  # Эта сеть нужна, чтобы связать ваш проект с внешним Nginx
+  proxy_network:
+    name: reverse_proxy_network # Имя должно совпадать с тем, что использует Nginx
+    external: true              # <-- КЛЮЧЕВОЙ МОМЕНТ: не создавать новую, а использовать существующую

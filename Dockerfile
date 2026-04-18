@@ -10,19 +10,12 @@ RUN pip install --upgrade pip
 RUN apt update && apt -qy install gcc gettext cron openssh-client locales vim && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
-# Создаем директории
-RUN mkdir -p /django/{media/{image,orders,arhive},static}
-
 WORKDIR /django
 
 # Копируем зависимости
 COPY pyproject.toml uv.lock ./
-# Устанавливаем зависимости с помощью uv (быстро)
-# --system: устанавливает в системный Python, а не в venv
-# --no-dev: если не нужны зависимости для разработки
-# RUN uv pip install --system -r pyproject.toml
 
-# Если в pyproject.toml есть другие зависимости, установите их
+# Устанавливаем зависимости
 RUN pip install --no-cache-dir -e . || true
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
@@ -34,6 +27,12 @@ COPY . .
 RUN useradd -rms /bin/bash django && \
     chown -R django:django /django
 
+# Создаем директории ПОСЛЕ смены владельца
+RUN mkdir -p /django/media/{image,orders,arhive} /django/static && \
+    chown -R django:django /django
+
+# Переключаемся на пользователя django
 USER django
 
+# Запускаем collectstatic от django пользователя
 CMD ["bash", "-c", "python manage.py collectstatic --noinput && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"]
