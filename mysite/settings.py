@@ -169,7 +169,7 @@ LOGIN_URL = "account_login"
 # LOGOUT_URL = "logout"
 LOGOUT_URL = reverse_lazy('account_logout')
 
-LOGOUT_REDIRECT_URL = 'account_login'
+LOGOUT_REDIRECT_URL = 'files:create_banner'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = os.getenv("EMAIL_HOST")

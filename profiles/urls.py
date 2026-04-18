@@ -13,7 +13,7 @@ urlpatterns = [
     path('delete_organisation_user/<pk>', views.OrganisationDeleteView.as_view(), name='delete_organisation_user'),
     path('update_organisation_user/<pk>', views.OrganisationUpdateView.as_view(), name='update_organisation_user'),
 
-    path('', views.dashboard, name='dashboard'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 
     # ---------------------------- CRUD ADDRESS delivery user ---------------------------
     path('delivery_list/', views.DeliveryAddressListView.as_view(), name='delivery_list'),

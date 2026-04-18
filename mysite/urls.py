@@ -7,10 +7,10 @@ from django.conf.urls.static import static
 
 handler404 = page_not_found
 urlpatterns = [
-                  path("files/", include("files.urls")),
+                  path("", include("files.urls")),
                   path('accounts/', include('allauth.urls')),
 
-                  path("", include("profiles.urls")),
+                  path("profiles/", include("profiles.urls")),
                   path("users/", include("users.urls")),
 
                   path("lids/", include("lids.urls")),

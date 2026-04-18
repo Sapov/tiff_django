@@ -23,7 +23,7 @@ from .views import (
 app_name = "files"
 
 urlpatterns = [
-    path("", index, name="myfiles"),  # Myfiles
+    path("myfiles/", index, name="myfiles"),  # Myfiles
     path("ind/", ViewFilesUserListView.as_view(), name="myfiles1"),  # Myfiles
     # форма добавления файла
     path("create/", FilesCreateView.as_view(), name="create_files"),  # АРХИВ
@@ -65,7 +65,7 @@ urlpatterns = [
     path('upload/status/<int:upload_id>/', upload_status, name='upload_status'),
 
 
-    path('create_banner/', BannerGeneratorView.as_view(), name='create_banner'),
+    path('', BannerGeneratorView.as_view(), name='create_banner'),
     path('submit-banner-order/', submit_banner_order, name='submit_banner_order'),
 
     path('add_new_user_banner/', add_new_contact_user_banner, name='submit_contact'),
