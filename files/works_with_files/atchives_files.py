@@ -206,6 +206,7 @@ class UtilsModel:
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
 
 
+
     @classmethod
     def _add_white_border(cls, file_name, resolution):
         logger.info(f'[info] Увеличиваем поля на 5 см resolution {resolution} RESP {5 * resolution / 2.54}')
