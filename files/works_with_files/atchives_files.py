@@ -200,7 +200,7 @@ class UtilsModel:
 
     def __generate_link_to_work(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в работе'''
-        self.confirm_link_to_work = (f'http://{self.domain}/files/confirm_order_to_work/{self.order_id}/'
+        self.confirm_link_to_work = (f'http://{self.domain}/confirm_order_to_work/{self.order_id}/'
                                      f'{self.calculate_signature(self.order_id)}')
         logger.info(f'[Генерирую ссылку подтверждения принятия заказа] CONFIRM LINK: {self.confirm_link_to_work}')
 

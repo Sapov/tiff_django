@@ -43,12 +43,12 @@ class Alerts:
 
     def __generate_link_to_completed(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в готов'''
-        self.confirm_link_to_completed = (f'http://{self.domain}/files/confirm_order_to_competed/{self.order_id}/'
+        self.confirm_link_to_completed = (f'http://{self.domain}/confirm_order_to_competed/{self.order_id}/'
                                           f'{UtilsModel.calculate_signature(self.order_id)}')
         logger.info(f'[Генерирую ссылку ПЕРЕВОД С СОСТОЯНИЕ ГОТОВ] CONFIRM LINK: {self.confirm_link_to_completed}')
 
     def __generate_link_add_time_order(self):
-        self.add_time_order = (f'http://{self.domain}/files/add_time_order/{self.order_id}/'
+        self.add_time_order = (f'http://{self.domain}/add_time_order/{self.order_id}/'
                                f'{UtilsModel.calculate_signature(self.order_id)}')
         logger.info(f'[Генерирую ссылку Добавочное время] : {self.add_time_order}')
 
