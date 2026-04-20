@@ -41,6 +41,7 @@ class Alerts:
         msg.attach_alternative(html_message, "text/html")
         msg.send()
 
+
     def __generate_link_to_completed(self):
         '''Генерирую ссылку с уникальным ключом для перевода заказа в состояние в готов'''
         self.confirm_link_to_completed = (f'http://{self.domain}/confirm_order_to_competed/{self.order_id}/'
