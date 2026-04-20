@@ -28,6 +28,7 @@ class UtilsModel:
         self.domain = domain
         self.confirm_link_to_work = None
 
+
     def send_mail_order(self):
         """отправляем письмо с архивом подрядчику"""
         order = Order.objects.get(id=self.order_id)
