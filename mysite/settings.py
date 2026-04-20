@@ -8,6 +8,24 @@ load_dotenv(find_dotenv())
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Простая и безопасная загрузка .env
+env_path = BASE_DIR / '.env'
+if env_path.exists():
+    load_dotenv(env_path, override=True)
+else:
+    # Если файла нет, пробуем найти в родительской директории
+    parent_env = BASE_DIR.parent / '.env'
+    if parent_env.exists():
+        load_dotenv(parent_env, override=True)
+
+# Или используйте try-except для безопасной загрузки
+try:
+    load_dotenv(BASE_DIR / '.env', override=True)
+except Exception as e:
+    print(f"⚠️ Ошибка загрузки .env: {e}")
+
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
